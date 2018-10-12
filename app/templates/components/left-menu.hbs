@@ -1,0 +1,20 @@
+<ul class="left_bar">
+    {{#each menuList as |item|}}
+        {{left-menu-item icon=item.icon title=item.title expendable=item.expond}}
+    {{/each}}
+    <li class="left_bar_item" >
+        <div class="left_menu_mid menu_margin_right">
+            <img class="left_menu_icon" src="" />
+            {{!-- <img class="left_menu_icon" src="../images/management_normal.png" /> --}}
+        </div>
+        <div class="left_menu_mid menu_margin_right">
+            {{#link-to 'stud'}}
+                <span class="left_menu_text">学员</span>
+            {{/link-to}}
+            {{!-- <span class="left_menu_text">{{title}}</span> --}}
+            {{!-- <span class="left_menu_text">管理中心</span> --}}
+        </div>
+    </li>
+</ul>
+
+{{yield}}

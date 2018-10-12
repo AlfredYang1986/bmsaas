@@ -1,0 +1,159 @@
+@import "args";
+
+@import "left-menu";
+
+.edit_page_top_margin {
+    padding-top: 50px;
+}
+
+.edit_first_panel {
+    margin-top: 24px !important;
+}
+
+.edit_panel {
+    background: #FFFFFF;
+    width: 718px;
+    height: auto;
+    box-shadow: 2px 2px 6px 0 #CAD5E1;
+    padding: 32px;
+    margin: 8px 0;
+
+    .edit_title {
+        font-family: $font-brand;
+        font-size: 18px;
+        color: #767A80;
+        letter-spacing: 2.57px;
+    }
+
+    .edit_subtitle {
+        font-family: $font-brand;
+        font-size: 14px;
+        color: #565656;
+        letter-spacing: 2.4px;
+
+        margin-top: 24px;
+    }
+
+    .edit_logo_container {
+        border: 1px dashed #979797;
+        border-radius: 4px;
+       
+        width: 140px;
+        height: 140px;
+
+        margin-top: 8px;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: nowrap;
+
+        .edit_logo_des {
+            font-family: $font-brand;
+            font-size: 14px;
+            color: #767A80;
+            letter-spacing: 2px;
+        }
+
+        .edit_logo_img {
+            display: none;
+            height: 140px;
+            width: 140px;
+        }
+
+    }
+
+    .edit_logo_right {
+        font-family: $font-brand;
+        font-size: 12px;
+        color: #767A80;
+        letter-spacing: 2px;
+
+        margin-left: 16px;
+    }
+
+    .edit_required {
+        font-family: $font-nav-acc;
+        font-size: 12px;
+        color: #D3727E;
+        letter-spacing: 1.71px;
+    }
+
+    .edit_condition {
+        font-family: $font-nav-acc;
+        font-size: 12px;
+        color: #565656;
+        letter-spacing: 1.71px;
+    }
+
+    .edit_text_field {
+        border: 1px solid #DAD9D9;
+        border-radius: 4px;
+
+        height: 30px;
+        margin-top: 8px;
+
+    }
+
+    input::placeholder {
+        font-family: $font-nav-acc;
+        font-size: 12px;
+        color: #AAAAAA;
+        letter-spacing: 1px;
+    }
+
+    .edit_dropdown_btn {
+        border: 1px solid #DAD9D9;
+        border-radius: 4px;
+        background: white;
+
+        font-family: $font-nav-acc;
+        font-size: 12px;
+        color: #AAAAAA;
+        letter-spacing: 1px;
+    }
+
+    .edit_title_des_between {
+        margin-top: 8px;
+    }
+
+    .edit_des {
+        font-family: $font-nav-acc;
+        font-size: 12px;
+        color: #767A80;
+        letter-spacing: 1.2px;
+    }
+
+    .edit_text_area {
+        height: 414px;
+    }
+
+}
+    
+.edit_reward_panel {
+    min-height: 575px;
+}
+
+.edit_left_bar {
+    @extend .left_bar;
+
+    background: #FFFFFF00;
+    border-right: none;
+    padding-top: 88px;
+
+    .edit_left_menu_mid {
+        width: 100%;
+
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        flex-direction: row;
+
+        .edit_left_menu_text {
+            font-family: $font-brand;
+            font-size: 14px;
+            color: #767A80;
+            letter-spacing: 2px;
+        }
+    }
+}

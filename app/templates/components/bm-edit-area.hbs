@@ -1,0 +1,25 @@
+{{#layout-push direction="col" classNames='edit_panel'}}
+    {{#layout-push direction="row" }}
+        <span class="edit_title">{{title}}</span>
+    {{/layout-push }}
+    {{#layout-push direction="row" classNames='edit_title_des_between'}}
+        <div class="edit_des">
+            <span>{{subtitle}}</span>
+        </div>
+    {{/layout-push }}
+    {{#layout-push direction="row" split=true }}
+        {{#if isNeeded}}
+        {{#layout-push direction="row" }}
+            <div class="v_end">
+                <span class="edit_required" >* 必填</span>
+            </div>
+        {{/layout-push }}
+        {{/if}}
+        <div class="v_end">
+            <span class="edit_condition" >{{countHint}}</span>
+        </div>
+    {{/layout-push }}
+    {{textarea classNames="edit_text_area"}}
+{{/layout-push }}
+
+{{yield}}

@@ -1,0 +1,19 @@
+<div >
+    {{nav-top}}
+    {{left-menu}}
+</div>
+
+<div class="stud_content_top" >
+    {{#layout-push direction="col" classNames="stud_content"}}
+        {{#layout-push direction="row"}}
+            <button class="stud_qrcod_btn">学员注册二维码</button>
+        {{/layout-push}}
+        <span class="stud_remind">温馨提示：提示新用户在扫码后进入小程序我的页面中进行注册。</span>
+
+        <div class="line_container_warp stud_card_container" >
+            {{stud-card onStudCardClicked=(action 'cardClicked') }}
+        </div>
+    {{/layout-push}}
+</div>
+
+{{outlet}}

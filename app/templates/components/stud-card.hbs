@@ -1,0 +1,27 @@
+{{#layout-push direction='row' split=true classNames='stud_card'}}
+    {{#layout-push direction='col' mid=true classNames='stud_card_content'}}
+        {{#layout-push direction='col' midt=true }}
+            {{#layout-push direction='row' classNames='stud_card_content_line'}}
+                <span class="stud_card_title">姓名: </span>
+                <span class="stud_card_text">王大锤</span>
+            {{/layout-push }}
+            {{#layout-push direction='row' classNames='stud_card_content_line'}}
+                <span class="stud_card_title">性别: </span>
+                <span class="stud_card_text">男</span>
+            {{/layout-push }}
+            {{#layout-push direction='row' classNames='stud_card_content_line'}}
+                <span class="stud_card_title">年龄: </span>
+                <span class="stud_card_text">8岁</span>
+            {{/layout-push }}
+            {{#layout-push direction='row' classNames='stud_card_content_line'}}
+                <span class="stud_card_title">电话: </span>
+                <span class="stud_card_text">13720200856</span>
+            {{/layout-push }}
+        {{/layout-push }}
+    {{/layout-push }}
+    {{#layout-push direction='col' mid=true }}
+        <img class="stud_card_icon" src="../images/stud-normal.png" />
+    {{/layout-push }}
+{{/layout-push }}
+
+{{yield}}

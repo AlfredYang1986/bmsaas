@@ -1,0 +1,17 @@
+<li class="left_bar_item" {{action "toggle2"}}>
+    <div class="left_menu_mid menu_margin_right">
+        <img class="left_menu_icon" src={{icon}} />
+        {{!-- <img class="left_menu_icon" src="../images/management_normal.png" /> --}}
+    </div>
+    <div class="left_menu_mid menu_margin_right">
+        <span class="left_menu_text">{{title}}</span>
+        {{!-- <span class="left_menu_text">管理中心</span> --}}
+    </div>
+    {{#if expendable}}
+    <div class="left_menu_mid">
+        <img class="left_menu_icon" src="../images/fold.png" />
+    </div>
+    {{/if}}
+</li>
+
+{{yield}}

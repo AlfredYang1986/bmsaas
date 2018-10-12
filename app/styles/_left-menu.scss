@@ -1,0 +1,56 @@
+@import 'args';
+
+.left_bar {
+    z-index: 0.9;
+    background: #FFFFFF;
+    border-right: 1px solid rgba(110,124,212,0.39);
+    width: 202px;
+    height: 100%;
+    padding-top: 58px;
+    position: fixed;
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+    .left_bar_item {
+        padding-left: 26px;
+        height: 38px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+       
+        .left_menu_mid {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            flex-wrap: nowrap;
+
+            .left_menu_icon {
+                width: 16px;
+                height: 16px;
+            }
+
+            .left_menu_title {
+                font-family: $font-nav-acc;
+                font-size: 16px;
+                color: #767A80;
+                letter-spacing: 2px;
+            }
+
+            .left_menu_text {
+                font-family: $font-nav-acc;
+                font-size: 16px;
+                color: #767A80;
+                letter-spacing: 2px;
+            }
+        }
+            
+        .menu_margin_right {
+            margin-right: 26px;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+    }
+}
