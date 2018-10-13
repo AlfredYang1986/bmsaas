@@ -2,8 +2,7 @@ import Component from '@ember/component';
 
 export default Component.extend({
     menuList: 
-        [
-        {
+        [{
             icon: '../images/email_normal.png',
             title: '收件箱',
             expond: false,

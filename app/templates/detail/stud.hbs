@@ -3,4 +3,175 @@
     {{left-menu}}
 </div>
 
+<div class="detail_content_top" >
+    <div class="detail_page" >
+        {{#link-to 'stud' class="detail_href_ref"}}
+            返回
+        {{/link-to}}
+
+        <div class='detail_panel' >
+            {{#layout-push direction='row' }}
+                {{#layout-push direction='col' mid=true classNames='detail_panel_img_right_margin'}}
+                    <img src='../images/stud-normal.png' class='detail_panel_img' />
+                {{/layout-push}}
+
+                {{#layout-push direction='col' mid=true }}
+                    {{#layout-push direction='col'}}
+                        <span class="detail_panel_role_name">王大锤</span>
+                        {{#layout-push direction='row'}}
+                            <span class="detail_panel_role_des">年龄 : 8岁</span> 
+                            <span class="detail_panel_role_des">性别 : 男</span> 
+                        {{/layout-push}}
+                    {{/layout-push}}
+                {{/layout-push}}
+            {{/layout-push}}
+        </div>
+
+        <div class="detail_panel detail_panel_col_between" >
+            {{#layout-push direction='col' mid=true}}
+                <span class='detail_panel_head'>详细信息</span>
+            {{/layout-push}}
+        </div>
+
+        <div class="detail_panel detail_panel_col_between" >
+            {{#layout-push direction='col'}}
+                {{#layout-push direction='col'}}
+                    {{#layout-push direction="row" split=true}}
+                        <div class="v_end" >
+                            <span class='detail_panel_title'>基础资料</span> 
+                        </div>
+                        {{#link-to 'edit.stud' classNames='detail_panel_edit_btn'}}
+                            编辑
+                        {{/link-to}}
+                    {{/layout-push}}
+                    {{#layout-push direction='row' mid=true }}
+                        {{#layout-push direction='row' classNames='detail_panel_des_container'}}
+                            {{#layout-push direction='row' classNames='line_half detail_panel_des_between detail_panel_des_underline'}}
+                                <span class='detail_panel_des_01'>姓名</span>
+                                <span class='detail_panel_des_02'>王大锤</span>
+                            {{/layout-push}}
+                            {{#layout-push direction='row' classNames='line_half detail_panel_des_underline'}}
+                                <span class='detail_panel_des_01'>昵称</span>
+                                <span class='detail_panel_des_02'>锤子</span>
+                            {{/layout-push}}
+                        {{/layout-push}}
+                    {{/layout-push}}
+                    {{#layout-push direction='row' mid=true classNames='detail_panel_des_container_between'}}
+                        {{#layout-push direction='row' classNames='detail_panel_des_container'}}
+                            {{#layout-push direction='row' classNames='line_half detail_panel_des_between detail_panel_des_underline'}}
+                                <span class='detail_panel_des_01'>出生日期</span>
+                                <span class='detail_panel_des_02'>2011-12-12</span>
+                            {{/layout-push}}
+                            {{#layout-push direction='row' classNames='line_half detail_panel_des_underline'}}
+                                <span class='detail_panel_des_01'>年龄</span>
+                                <span class='detail_panel_des_02'>4</span>
+                            {{/layout-push}}
+                        {{/layout-push}}
+                    {{/layout-push}}
+                    {{#layout-push direction='row' mid=true classNames='detail_panel_des_container_between'}}
+                        {{#layout-push direction='row' classNames='detail_panel_des_container'}}
+                            {{#layout-push direction='row' classNames='line_half detail_panel_des_between detail_panel_des_underline'}}
+                                <span class='detail_panel_des_01'>性别</span>
+                                <span class='detail_panel_des_02'>女</span>
+                            {{/layout-push}}
+                            {{#layout-push direction='row' classNames='line_half detail_panel_des_underline'}}
+                                <span class='detail_panel_des_01'>就读学校</span>
+                                <span class='detail_panel_des_02'>霍格沃茨</span>
+                            {{/layout-push}}
+                        {{/layout-push}}
+                    {{/layout-push}}
+                {{/layout-push}}
+
+                {{#layout-push direction='col' classNames='detail_panel_des_info_between'}}
+                    <span class='detail_panel_title'>家长信息</span> 
+                    {{#layout-push direction='row' mid=true }}
+                        {{#layout-push direction='row' classNames='detail_panel_des_container detail_panel_des_container_between'}}
+                            <span class='detail_panel_subtitle' >监护人</span>
+                        {{/layout-push}}
+                    {{/layout-push}}
+                    {{#layout-push direction='row' mid=true classNames='detail_panel_des_container_between'}}
+                        {{#layout-push direction='row' classNames='detail_panel_des_container'}}
+                            {{#layout-push direction='row' classNames='line_half detail_panel_des_between detail_panel_des_underline'}}
+                                <span class='detail_panel_des_01'>姓名</span>
+                                <span class='detail_panel_des_02'>王大锤</span>
+                            {{/layout-push}}
+                            {{#layout-push direction='row' classNames='line_half detail_panel_des_underline'}}
+                                <span class='detail_panel_des_01'>昵称</span>
+                                <span class='detail_panel_des_02'>锤子</span>
+                            {{/layout-push}}
+                        {{/layout-push}}
+                    {{/layout-push}}
+                    {{#layout-push direction='row' mid=true classNames='detail_panel_des_container_between'}}
+                        {{#layout-push direction='row' classNames='detail_panel_des_container'}}
+                            {{#layout-push direction='row' classNames='line_half detail_panel_des_between detail_panel_des_underline'}}
+                                <span class='detail_panel_des_01'>关系</span>
+                                <span class='detail_panel_des_02'>父子</span>
+                            {{/layout-push}}
+                            {{#layout-push direction='row' classNames='line_half detail_panel_des_underline'}}
+                                <span class='detail_panel_des_01'>联系方式</span>
+                                <span class='detail_panel_des_02'>13720200856</span>
+                            {{/layout-push}}
+                        {{/layout-push}}
+                    {{/layout-push}}
+                    {{#layout-push direction='row' mid=true classNames='detail_panel_des_container_between'}}
+                        {{#layout-push direction='row' classNames='detail_panel_des_container'}}
+                            {{#layout-push direction='row' classNames='line_half detail_panel_des_between detail_panel_des_underline'}}
+                                <span class='detail_panel_des_01'>微信</span>
+                                <span class='detail_panel_des_02'></span>
+                            {{/layout-push}}
+                            {{#layout-push direction='row' classNames='line_half detail_panel_des_underline'}}
+                                <span class='detail_panel_des_01'>地址 </span>
+                                <span class='detail_panel_des_02'>霍格沃茨</span>
+                            {{/layout-push}}
+                        {{/layout-push}}
+                    {{/layout-push}}
+
+                    {{#layout-push direction='row' mid=true }}
+                        {{#layout-push direction='row' classNames='detail_panel_des_container detail_panel_des_container_between'}}
+                            <span class='detail_panel_subtitle' >紧急联系人</span>
+                        {{/layout-push}}
+                    {{/layout-push}}
+                    {{#layout-push direction='row' mid=true classNames='detail_panel_des_container_between'}}
+                        {{#layout-push direction='row' classNames='detail_panel_des_container'}}
+                            {{#layout-push direction='row' classNames='line_half detail_panel_des_between detail_panel_des_underline'}}
+                                <span class='detail_panel_des_01'>姓名</span>
+                                <span class='detail_panel_des_02'>王大锤</span>
+                            {{/layout-push}}
+                            {{#layout-push direction='row' classNames='line_half detail_panel_des_underline'}}
+                                <span class='detail_panel_des_01'>昵称</span>
+                                <span class='detail_panel_des_02'>锤子</span>
+                            {{/layout-push}}
+                        {{/layout-push}}
+                    {{/layout-push}}
+                    {{#layout-push direction='row' mid=true classNames='detail_panel_des_container_between'}}
+                        {{#layout-push direction='row' classNames='detail_panel_des_container'}}
+                            {{#layout-push direction='row' classNames='line_half detail_panel_des_between detail_panel_des_underline'}}
+                                <span class='detail_panel_des_01'>关系</span>
+                                <span class='detail_panel_des_02'>父子</span>
+                            {{/layout-push}}
+                            {{#layout-push direction='row' classNames='line_half detail_panel_des_underline'}}
+                                <span class='detail_panel_des_01'>联系方式</span>
+                                <span class='detail_panel_des_02'>13720200856</span>
+                            {{/layout-push}}
+                        {{/layout-push}}
+                    {{/layout-push}}
+                {{/layout-push}}
+
+                {{#layout-push direction='col' classNames='detail_panel_des_info_between'}}
+                    <span class='detail_panel_title'>系统信息</span> 
+                    {{#layout-push direction='row' mid=true classNames='detail_panel_des_container_between'}}
+                        {{#layout-push direction='row' classNames='detail_panel_des_container'}}
+                            {{#layout-push direction='row' classNames='line_half detail_panel_des_between detail_panel_des_underline'}}
+                                <span class='detail_panel_des_01'>注册时间</span>
+                                <span class='detail_panel_des_02'>2018-12-12</span>
+                            {{/layout-push}}
+                        {{/layout-push}}
+                    {{/layout-push}}
+                {{/layout-push}}
+            {{/layout-push}}
+        </div>
+
+    </div>
+</div>
+
 {{outlet}}

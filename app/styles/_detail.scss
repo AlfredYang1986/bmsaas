@@ -1,0 +1,136 @@
+@import 'args';
+
+%detail_content_basic {
+    padding-left: 202px;
+}
+
+.detail_content_top {
+    @extend %detail_content_basic;
+    padding-top: 50px;
+}
+
+.detail_page {
+    padding: 16px 24px;
+}
+
+.detail_href_ref {
+    font-family: $font-href;
+    font-size: 14px;
+    color: #6E7CD4;
+    letter-spacing: 2px;
+}
+
+%detail_panel_basic {
+    background-color: white;
+    // box-shadow: 2px 2px 6px 0 #CAD5E1;
+    box-shadow: 0 2px 10px 0 #CAD5E1;
+}
+
+.detail_panel_col_between {
+    margin-top: 8px;
+}
+
+.detail_panel {
+    @extend %detail_panel_basic;
+
+    padding: 20px 28px;
+
+    .detail_panel_img {
+        width: 82px;
+        height: 82px;
+
+        border: 1px solid black;
+        border-radius: 41px;
+    }
+
+    .detail_panel_img_right_margin {
+        margin-right: 70px;
+    }
+
+    .detail_panel_role_name {
+        font-family: $font-href;
+        font-size: 18px;
+        color: #767A80;
+        letter-spacing: 2px;
+    }
+
+    .detail_panel_role_des {
+        font-family: $font-href;
+        font-size: 12px;
+        color: #6E7CD4;
+        letter-spacing: 1.71px;
+
+        margin-right: 21px;
+    }
+
+    .detail_panel_head {
+        font-family: $font-brand;
+        font-size: 14px;
+        color: #343538;
+        letter-spacing: 2px;
+    }
+
+    .detail_panel_title {
+        font-family: $font-brand;
+        font-size: 16px;
+        color: #767A80;
+        letter-spacing: 2.29px;
+    }
+
+    .detail_panel_des_container_between {
+        margin-top: 32px;
+    }
+
+    .detail_panel_des_info_between {
+        margin-top: 44px;
+    }
+
+    .detail_panel_edit_btn {
+        font-family: $font-brand;
+        font-size: 14px;
+        color: #FFFFFF;
+        letter-spacing: 2px;
+
+        background: #6E7CD4;
+        border: 1px solid #6E7CD4;
+        border-radius: 4px;
+
+        padding: 8px 24px;
+    }
+
+    .detail_panel_des_container {
+        width: 70%;
+
+        .detail_panel_subtitle {
+            font-family: $font-brand;
+            font-size: 14px;
+            color: #767A80;
+            letter-spacing: 2px;
+        }
+
+        .detail_panel_des_01 {
+            font-family: $font-brand;
+            font-size: 14px;
+            color: #B6B6B6;
+            letter-spacing: 2px;
+
+            min-width: 70px;
+            margin-right: 30px;
+        }
+
+        .detail_panel_des_underline {
+            border-bottom: 1px solid #EEEEEE;
+        }
+
+        .detail_panel_des_between {
+            margin-right: 90px;
+        }
+        
+        .detail_panel_des_02 {
+            font-family: $font-brand;
+            font-size: 14px;
+            color: #767A80;
+            letter-spacing: 2px;
+        }
+    }
+}
