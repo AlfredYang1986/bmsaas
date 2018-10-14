@@ -1,0 +1,125 @@
+<ul class="nav">
+    <li class="nav-item">
+        <a class="nav-link active brand_name" href="#">编辑-老师信息</a>
+    </li>
+    <li class="nav-item menu_mid">
+        <div class="menu_container">
+            {{#link-to 'home' class="nav_cancel_btn menu_button_between"}}
+                取消
+            {{/link-to}}
+            {{!-- {{#link-to 'home' class="nav_save_btn menu_button_between"}} --}}
+                {{!-- 保存 --}}
+            {{!-- {{/link-to}} --}}
+            {{!-- <button class="nav_cancel_btn menu_button_between">取消</button> --}}
+            <button class="nav_save_btn menu_button_between" >保存</button>
+        </div>
+    </li>
+</ul>
+
+<ul class="edit_left_bar">
+    <li class="left_bar_item" >
+        <div class="edit_left_menu_mid menu_margin_right">
+            <a class="edit_left_menu_text" href="#tech-info">基本信息</a>
+        </div>
+    </li>
+    <li class="left_bar_item" >
+        <div class="edit_left_menu_mid menu_margin_right">
+            <a class="edit_left_menu_text" href="#tech-edc">教育信息</a>
+        </div>
+    </li>
+    <li class="left_bar_item" >
+        <div class="edit_left_menu_mid menu_margin_right">
+            <a class="edit_left_menu_text" href="#tech-story">工作经历</a>
+        </div>
+    </li>
+</ul>
+
+<section id="tech-info" class="line_container_mid edit_page_top_margin">
+    <div class="edit_panel v_push edit_first_panel">
+        {{#layout-push direction="row"}}
+            <span class="edit_title">基础信息</span>
+        {{/layout-push}}
+
+        {{#layout-push direction="row"}}
+            <div class="edit_logo_container">
+                <div class="v_mid">
+                    <span class="edit_logo_des">点击上传</span>
+                </div>
+                <img class="edit_logo_img" src="" />
+            </div>
+            <div class="v_end edit_logo_right" >
+                <span>144px*144px</span>
+                <span>支持jpg、jpeg、png，小于100 KB</span>
+            </div>
+        {{/layout-push}}
+
+        {{#layout-push direction='row' split=true}}
+            {{bm-edit-line title="姓名" isNeeded=true maxCount=8 inputVal=brand_name classNames='line_half' }}
+            {{bm-edit-line title="昵称" isNeeded=true maxCount=8 classNames='line_half' }}
+        {{/layout-push}}
+
+        {{#layout-push direction='row' split=true}}
+            {{#layout-push direction='col' classNames='line_half'}}
+                <div class="line_container_split" >
+                    <div class="line_container" >
+                        <span class="edit_subtitle" >成立时间</span>
+                        <div class="v_end">
+                            <span class="edit_required" >* 必填</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="line_container" >
+                    {{#bs-dropdown as |dd|}}
+                        {{#dd.button classNames="edit_dropdown_btn"}}年<span class="caret"></span>{{/dd.button}}
+                        {{#dd.menu as |menu|}}
+                            {{#menu.item}}
+                                {{#menu.link-to "home"}}Home{{/menu.link-to}}
+                            {{/menu.item}}
+                            {{#menu.item}}
+                                {{#menu.link-to "home"}}Dropdowns{{/menu.link-to}}
+                            {{/menu.item}}
+                        {{/dd.menu}}
+                    {{/bs-dropdown}}
+
+                    {{#bs-dropdown as |dd|}}
+                        {{#dd.button classNames="edit_dropdown_btn"}}月<span class="caret"></span>{{/dd.button}}
+                        {{#dd.menu as |menu|}}
+                            {{#menu.item}}
+                                {{#menu.link-to "home"}}Home{{/menu.link-to}}
+                            {{/menu.item}}
+                            {{#menu.item}}
+                                {{#menu.link-to "home"}}Dropdowns{{/menu.link-to}}
+                            {{/menu.item}}
+                        {{/dd.menu}}
+                    {{/bs-dropdown}}
+
+                    {{#bs-dropdown as |dd|}}
+                        {{#dd.button classNames="edit_dropdown_btn"}}日<span class="caret"></span>{{/dd.button}}
+                        {{#dd.menu as |menu|}}
+                            {{#menu.item}}
+                                {{#menu.link-to "home"}}Home{{/menu.link-to}}
+                            {{/menu.item}}
+                            {{#menu.item}}
+                                {{#menu.link-to "home"}}Dropdowns{{/menu.link-to}}
+                            {{/menu.item}}
+                        {{/dd.menu}}
+                    {{/bs-dropdown}}
+                </div>
+            {{/layout-push}}
+
+            {{bm-edit-line title="性别" isNeeded=true maxCount=1 classNames='line_half'}}
+        {{/layout-push}}
+
+        {{#layout-push direction='row' split=true}}
+            {{bm-edit-line title="来自(城市)" inputVal=brand_name classNames='line_half' }}
+        {{/layout-push}}
+
+        {{#layout-push direction='row' split=true}}
+            {{bm-edit-line title="联系方式" isNeeded=true classNames='line_half'}}
+            {{bm-edit-line title="微信 Wechat" classNames='line_half'}}
+        {{/layout-push}}
+        {{bm-edit-line title="地址" maxCount=30 }}
+    </div>
+</section>
+
+{{outlet}}

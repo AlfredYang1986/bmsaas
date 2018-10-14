@@ -133,4 +133,30 @@
             letter-spacing: 2px;
         }
     }
+
+    .detail_inner_panel {
+
+        background: #6E7CD43F;
+        border-radius: 4px;
+    
+        padding: 16px;
+
+        font-family: $font-light;
+        font-size: 12px;
+        color: #767A80;
+        letter-spacing: 1.71px;
+
+        .detail_inner_content_line {
+            margin-bottom: 8px;
+
+            .detail_inner_left {
+
+            }
+
+            .detail_inner_right {
+
+            }
+        }
+
+    }
 }

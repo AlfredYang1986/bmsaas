@@ -12,11 +12,13 @@ Router.map(function() {
   this.route('edit', function() {
     this.route('brand');
     this.route('stud');
+    this.route('tech');
   });
   this.route('stud');
 
   this.route('detail', function() {
     this.route('stud');
+    this.route('tech');
   });
   this.route('tech');
 });
