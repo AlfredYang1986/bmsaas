@@ -1,0 +1,41 @@
+@import "args";
+
+.tech_card {
+    width: 269px;
+    height: 102px;
+
+    background: #FFFFFF;
+    box-shadow: 2px 2px 6px 0 #CAD5E1;
+    border-radius: 4px;
+
+    margin-right: 24px;
+    margin-bottom: 16px;
+
+    padding: 16px;
+
+    .tech_card_content_line {
+        margin: 8px 0;
+
+        .tech_card_title {
+            font-family: $font-brand;
+            font-size: 12px;
+            color: #767A80;
+            letter-spacing: 1.58px;
+        }
+
+        .tech_card_text {
+            font-family: $font-brand;
+            font-size: 12px;
+            color: #767A80;
+            letter-spacing: 1.58px;
+        }
+    }
+
+    .tech_card_icon {
+        width: 72px;
+        height: 72px;
+
+        border-radius: 36px;
+        border: 1px solid black;
+    }
+}

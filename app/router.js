@@ -18,6 +18,7 @@ Router.map(function() {
   this.route('detail', function() {
     this.route('stud');
   });
+  this.route('tech');
 });
 
 export default Router;

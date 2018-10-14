@@ -1,0 +1,31 @@
+@import 'args';
+
+@import 'tech-card';
+
+%tech_content_basic {
+    padding-left: 202px;
+}
+
+.tech_content_top {
+    @extend %tech_content_basic;
+    padding-top: 50px;
+}
+
+.tech_content {
+    padding: 32px;
+
+    .tech_add_btn {
+        background: #6E7CD4;
+        border-radius: 100px;
+        font-family: $font-nav-acc;
+        font-size: 14px;
+        color: #FFFFFF;
+        letter-spacing: 2px;
+
+        padding: 8px 24px;
+    }
+
+    .tech_card_container {
+        margin-top: 16px;
+    }
+}
