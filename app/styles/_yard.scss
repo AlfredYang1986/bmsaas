@@ -1,0 +1,29 @@
+@import 'args';
+
+%yard_content_basic {
+    padding-left: 202px;
+}
+
+.yard_content_top {
+    @extend %yard_content_basic;
+    padding-top: 50px;
+}
+
+.yard_content {
+    padding: 32px;
+
+    .yard_add_btn {
+        background: #6E7CD4;
+        border-radius: 100px;
+        font-family: $font-nav-acc;
+        font-size: 14px;
+        color: #FFFFFF;
+        letter-spacing: 2px;
+
+        padding: 8px 24px;
+    }
+
+    .yard_card_container {
+        margin-top: 16px;
+    }
+}

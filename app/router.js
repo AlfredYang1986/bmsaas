@@ -21,6 +21,7 @@ Router.map(function() {
     this.route('tech');
   });
   this.route('tech');
+  this.route('yard');
 });
 
 export default Router;
