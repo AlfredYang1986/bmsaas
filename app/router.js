@@ -13,15 +13,18 @@ Router.map(function() {
     this.route('brand');
     this.route('stud');
     this.route('tech');
+    this.route('yard');
   });
   this.route('stud');
 
   this.route('detail', function() {
     this.route('stud');
     this.route('tech');
+    this.route('yard');
   });
   this.route('tech');
   this.route('yard');
+  this.route('phrtest');
 });
 
 export default Router;

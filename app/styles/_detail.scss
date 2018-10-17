@@ -1,5 +1,7 @@
 @import 'args';
 
+@import 'detail-card';
+
 %detail_content_basic {
     padding-left: 202px;
 }
@@ -157,6 +159,21 @@
 
             }
         }
+    }
 
+    .detail_panel_ls_heading {
+        font-family: $font-href;
+        font-size: 20px;
+        color: #767A80;
+        letter-spacing: 2.86px;
+    }
+
+    .detail_panel_ls_subheading {
+        font-family: $font-href;
+        font-size: 14px;
+        color: #767A80;
+        letter-spacing: 2px;
+
+        margin-top: 6px;
     }
 }

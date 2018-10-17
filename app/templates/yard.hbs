@@ -8,6 +8,10 @@
         {{#layout-push direction="row"}}
             <button class="yard_add_btn">+ 添加场地</button>
         {{/layout-push}}
+        
+        <div class="line_container_warp yard_card_container" >
+            {{yard-card onStudCardClicked=(action 'cardClicked') }}
+        </div>
     {{/layout-push}}
 </div>
 

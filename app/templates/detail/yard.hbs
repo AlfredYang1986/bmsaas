@@ -1,0 +1,100 @@
+<div >
+    {{nav-top}}
+    {{left-menu}}
+</div>
+
+<div class="detail_content_top" >
+    <div class="detail_page" >
+        {{#link-to 'yard' class="detail_href_ref"}}
+            返回
+        {{/link-to}}
+
+        <div class='detail_panel' >
+            {{#layout-push direction='col' }}
+                <span class='detail_panel_ls_heading'>乐高少儿建构教室</span>
+                <span class='detail_panel_ls_subheading'>地址：北京朝阳区东直门外斜街888号</span>
+            {{/layout-push}}
+        </div>
+
+        <div class="detail_panel detail_panel_col_between" >
+            {{#layout-push direction='col' mid=true}}
+                <span class='detail_panel_head'>详细信息</span>
+            {{/layout-push}}
+        </div>
+
+        <div class="detail_panel detail_panel_col_between" >
+            {{#layout-push direction='col'}}
+                {{#layout-push direction="row" split=true}}
+                    <div class="v_end" >
+                        <span class='detail_panel_title'>场地描述</span> 
+                    </div>
+                    {{#link-to 'edit.yard' classNames='detail_panel_edit_btn'}}
+                        编辑
+                    {{/link-to}}
+                {{/layout-push}}
+            {{/layout-push}}
+
+            {{#layout-push direction='col' classNames='detail_inner_panel'}}
+                {{#layout-push direction='row' split=true classNames='detail_inner_content_line'}}
+                    <span class='detail_inner_left'>
+                        我们的场地遵循国际儿童环境友好性标准，
+                        拥有可供孩子们认真学习的向阳空间10余间，
+                        内置丰富的STEM教学用具，供孩子们尽情展现他们的想象力和动手动力，
+                        餐饮区为孩子们准备了多样精美的水果和点心，当然啦！
+                        我们的餐点也有为来接孩子和参与体验的家长们准备，所有的食物都是用心加工，
+                        保证绝对的干净！娱乐区是孩子们嬉戏玩耍的天堂。
+                        我们将一切的设施家具进行圆角处理，并给予贴心的插图文字提示。
+                        相信孩子们在娱乐区能尽情享受快乐的时光。
+                        我们也有为课后来接送孩子和前来交流的家长们设计舒适的休息区
+                        ～最后期待孩子和您的到来啦！
+                    </span>
+                {{/layout-push}}
+            {{/layout-push}}
+
+            {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
+                <span class='detail_panel_title'>周边交通线路信息</span> 
+            {{/layout-push}}
+
+            {{#layout-push direction='col' classNames='detail_inner_panel'}}
+                {{#layout-push direction='row' split=true classNames='detail_inner_content_line'}}
+                    <span class='detail_inner_left'>
+                        场地距离地铁六号线两站，步行200右转即达。
+                    </span>
+                {{/layout-push}}
+            {{/layout-push}}
+
+            {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
+                <span class='detail_panel_title'>场地图片</span> 
+            {{/layout-push}}
+
+            <div class="line_conatainer_warp detail_card_container" >
+                {{detail-card }}
+                {{detail-card }}
+                {{detail-card }}
+                {{detail-card }}
+            </div>
+
+            {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
+                <span class='detail_panel_title'>场地设施</span> 
+            {{/layout-push}}
+
+            {{#layout-push direction='col' classNames='detail_inner_panel'}}
+                {{#layout-push direction='row' split=true classNames='detail_inner_content_line'}}
+                    <span class='detail_inner_left'>
+                        停车场
+                    </span>
+                {{/layout-push}}
+            {{/layout-push}}
+
+            {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
+                <span class='detail_panel_title'>场地资质认证</span> 
+            {{/layout-push}}
+
+            <div class="line_conatainer_warp detail_card_container" >
+                {{detail-card }}
+            </div>
+        </div>
+    </div>
+</div>
+
+{{outlet}}

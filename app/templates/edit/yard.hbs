@@ -1,0 +1,116 @@
+<ul class="nav">
+    <li class="nav-item">
+        <a class="nav-link active brand_name" href="#">编辑-老师信息</a>
+    </li>
+    <li class="nav-item menu_mid">
+        <div class="menu_container">
+            {{#link-to 'home' class="nav_cancel_btn menu_button_between"}}
+                取消
+            {{/link-to}}
+            {{!-- {{#link-to 'home' class="nav_save_btn menu_button_between"}} --}}
+                {{!-- 保存 --}}
+            {{!-- {{/link-to}} --}}
+            {{!-- <button class="nav_cancel_btn menu_button_between">取消</button> --}}
+            <button class="nav_save_btn menu_button_between" >保存</button>
+        </div>
+    </li>
+</ul>
+
+<ul class="edit_left_bar">
+    <li class="left_bar_item" >
+        <div class="edit_left_menu_mid menu_margin_right">
+            <a class="edit_left_menu_text" href="#yard-loc">场地地址</a>
+        </div>
+    </li>
+    <li class="left_bar_item" >
+        <div class="edit_left_menu_mid menu_margin_right">
+            <a class="edit_left_menu_text" href="#yard-info">场地名称</a>
+        </div>
+    </li>
+    <li class="left_bar_item" >
+        <div class="edit_left_menu_mid menu_margin_right">
+            <a class="edit_left_menu_text" href="#yard-evn">场地环境</a>
+        </div>
+    </li>
+    <li class="left_bar_item" >
+        <div class="edit_left_menu_mid menu_margin_right">
+            <a class="edit_left_menu_text" href="#yard-faclity">设施</a>
+        </div>
+    </li>
+    <li class="left_bar_item" >
+        <div class="edit_left_menu_mid menu_margin_right">
+            <a class="edit_left_menu_text" href="#yard-cert">资质与认证</a>
+        </div>
+    </li>
+</ul>
+
+<section id="yard-loc" class="line_container_mid edit_page_top_margin">
+    <div class="edit_panel v_push edit_first_panel">
+        {{#layout-push direction="row"}}
+            <span class="edit_title">地址信息</span>
+        {{/layout-push}}
+
+        {{bm-edit-line title="地址信息" isNeeded=true maxCount=30 }}
+    </div>
+</section>
+
+<section id="yard-info" class="line_container_mid ">
+    <div class="edit_panel v_push ">
+        {{#layout-push direction="row"}}
+            <span class="edit_title">场地描述</span>
+        {{/layout-push}}
+
+        {{bm-edit-line title="场地名称" isNeeded=true maxCount=20 pholder="如：东外五十六号创业园" }}
+        {{bm-edit-line title="场地描述" maxCount=300 }}
+    </div>
+</section>
+
+<section id="yard-evn" class="line_container_mid ">
+    <div class="edit_panel v_push ">
+        {{#layout-push direction="row"}}
+            <span class="edit_title">场地环境</span>
+        {{/layout-push}}
+
+        {{bm-edit-line title="场地类型" maxCount=3 }}
+        {{bm-edit-line title="周围环境" maxCount=3 }}
+        {{bm-edit-line title="小区名，商圈名，校区名等" maxCount=3 pholder="例如：天通苑"}}
+        {{bm-edit-line title="周边交通路线信息" maxCount=100 pholder="例如：天通苑"}}
+    </div>
+</section>
+
+<section class="line_container_mid " >
+    {{#layout-push direction='col' classNames='edit_panel edit_reward_panel'}}
+        {{#layout-push direction='row' }}
+            <span class="edit_title">资质认证</span>
+        {{/layout-push }}
+        {{#layout-push direction='row' classNames='edit_title_des_between'}}
+            <div class="edit_des">
+                <br>
+                <span>每张图片小于100 KB</span>
+            </div>
+        {{/layout-push }}
+
+        <div class="line_container_warp">
+            <div class="edit_logo_container">
+                {{#layout-push direction='col' mid=true}}
+                    <span class="edit_logo_des">点击上传</span>
+                {{/layout-push }}
+            </div>
+        </div>
+    {{/layout-push }}
+</section>
+
+<section id="yard-faclity" class="line_container_mid " >
+    {{#layout-push direction='col' classNames='edit_panel '}}
+        {{#layout-push direction='row' }}
+            <span class="edit_title">设施</span>
+        {{/layout-push }}
+
+        {{#layout-push direction='row' split=true}}
+            {{bm-edit-line title="停车场" isNeeded=true maxCount=1 classNames='line_half' }}
+            {{bm-edit-line title="急救包" isNeeded=true maxCount=1 classNames='line_half' }}
+        {{/layout-push}}
+    {{/layout-push }}
+</section>
+
+{{outlet}}

@@ -43,7 +43,8 @@
     "eslint-plugin-ember": "^5.0.0",
     "loader.js": "^4.2.3",
     "qunit-dom": "^0.6.2",
-    "sass": "^1.14.0"
+    "sass": "^1.14.0",
+    "pharbers-route-addon": "1.0.0"
   },
   "engines": {
     "node": "6.* || 8.* || >= 10.*"
