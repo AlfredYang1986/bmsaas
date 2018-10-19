@@ -21,10 +21,16 @@ Router.map(function() {
     this.route('stud');
     this.route('tech');
     this.route('yard');
+    this.route('course');
   });
   this.route('tech');
   this.route('yard');
   this.route('phrtest');
+  this.route('course');
+  this.route('inbox');
+  this.route('workBench');
+  this.route('experienceOpen');
+  this.route('courseReserve');
 });
 
 export default Router;

@@ -18,7 +18,8 @@
         flex-direction: row;
         justify-content: flex-start;
         flex-wrap: nowrap;
-       
+        cursor: pointer;
+        
         .left_menu_mid {
             display: flex;
             flex-direction: column;
@@ -44,7 +45,7 @@
                 letter-spacing: 2px;
             }
         }
-            
+
         .menu_margin_right {
             margin-right: 26px;
         }

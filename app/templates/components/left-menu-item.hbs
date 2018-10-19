@@ -1,17 +1,77 @@
-<li class="left_bar_item" {{action "toggle2"}}>
-    <div class="left_menu_mid menu_margin_right">
-        <img class="left_menu_icon" src={{icon}} />
-        {{!-- <img class="left_menu_icon" src="../images/management_normal.png" /> --}}
-    </div>
-    <div class="left_menu_mid menu_margin_right">
-        <span class="left_menu_text">{{title}}</span>
-        {{!-- <span class="left_menu_text">管理中心</span> --}}
-    </div>
-    {{#if expendable}}
-    <div class="left_menu_mid">
-        <img class="left_menu_icon" src="../images/fold.png" />
-    </div>
+{{!-- {{#if clicks}} --}}
+    <li class="left_bar_item" {{action "toggle2"}}>
+        <div class="left_menu_mid menu_margin_right">
+            <img class="left_menu_icon" src={{icon}} />
+            {{!-- <img class="left_menu_icon" src="../images/management_normal.png" /> --}}
+        </div>
+        <div class="left_menu_mid menu_margin_right">
+            {{#link-to pageUrl}}
+                <span class="left_menu_text">{{title}}</span>
+            {{/link-to}}
+            {{!-- <span class="left_menu_text">管理中心</span> --}}
+        </div>
+        {{#if expendable}}
+            <div class="left_menu_mid">
+                <img class="left_menu_icon" src="../images/fold.png" />
+            </div>
+        {{/if}}
+        {{#if expands}}
+            <div class="left_menu_mid">
+                <img class="left_menu_icon" src="../images/unfold.png" />
+            </div>
+        {{/if}}
+    </li>
+
+    {{#if manageClick}}
+        <li class="left_bar_item">
+            <div class="left_menu_mid menu_margin_right">
+                <img class="left_menu_icon" src="" />
+                {{!-- <img class="left_menu_icon" src="../images/management_normal.png" /> --}}
+            </div>
+            <div class="left_menu_mid menu_margin_right">
+                {{#link-to 'stud'}}
+                    <span class="left_menu_text">学员</span>
+                {{/link-to}}
+            </div>
+        </li>
+        <li class="left_bar_item" >
+            <div class="left_menu_mid menu_margin_right">
+                <img class="left_menu_icon" src="" />
+                {{!-- <img class="left_menu_icon" src="../images/management_normal.png" /> --}}
+            </div>
+            <div class="left_menu_mid menu_margin_right">
+                {{#link-to 'tech'}}
+                    <span class="left_menu_text">老师</span>
+                {{/link-to}}
+            </div>
+        </li>
+        <li class="left_bar_item" >
+            <div class="left_menu_mid menu_margin_right">
+                <img class="left_menu_icon" src="" />
+                {{!-- <img class="left_menu_icon" src="../images/management_normal.png" /> --}}
+            </div>
+            <div class="left_menu_mid menu_margin_right">
+                {{#link-to 'yard'}}
+                    <span class="left_menu_text">场地</span>
+                {{/link-to}}
+            </div>
+        </li>
     {{/if}}
-</li>
+
+    {{#if teachClick}}
+        <li class="left_bar_item" >
+            <div class="left_menu_mid menu_margin_right">
+                <img class="left_menu_icon" src="" />
+                {{!-- <img class="left_menu_icon" src="../images/management_normal.png" /> --}}
+            </div>
+            <div class="left_menu_mid menu_margin_right">
+                {{#link-to 'course'}}
+                    <span class="left_menu_text">课程</span>
+                {{/link-to}}
+            </div>
+        </li>
+    {{/if}}
+{{!-- {{/if}} --}}
+
 
 {{yield}}
