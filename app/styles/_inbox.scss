@@ -1,0 +1,29 @@
+@import "args";
+
+.time-select {
+    margin-right: 25px;
+    font-family: PingFangSC-Semibold;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+.today {
+    color: #767A80;
+}
+.before {
+    color: #BDBDBE;
+}
+.table-header {
+    margin-top: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    height: 60px;
+    background: #6E7CD4;
+    box-shadow: 2px 2px 6px 0 #CAD5E1;
+    font-family: PingFangSC-Regular;
+    font-size: 12px;
+    color: #FFFFFF;
+    letter-spacing: 1.71px;
+    span {
+        margin-top: 5px;
+    }
+}

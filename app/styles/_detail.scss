@@ -127,7 +127,7 @@
         .detail_panel_des_between {
             margin-right: 90px;
         }
-        
+
         .detail_panel_des_02 {
             font-family: $font-brand;
             font-size: 14px;
@@ -140,7 +140,7 @@
 
         background: #6E7CD43F;
         border-radius: 4px;
-    
+
         padding: 16px;
 
         font-family: $font-light;
@@ -175,5 +175,46 @@
         letter-spacing: 2px;
 
         margin-top: 6px;
+    }
+    .class-head-card {
+        margin:12px 4px;
+        height: 160px;
+        font-family: PingFangSC-Medium;
+        .left-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 460px;
+            p.headline {
+                font-size: 24px;
+                color: #767A80;
+                letter-spacing: 3.43px;
+            }
+            p.sub-title {
+                font-size: 18px;
+                color: #767A80;
+                letter-spacing: 2.57px;
+            }
+            .sites p {
+                font-size: 14px;
+                color: #767A80;
+                letter-spacing: 2px;
+            }
+
+        }
+        .choose-list {
+            width: 103px;
+            height: 95px;
+            border: 1px solid #6E7CD4;
+            border-radius: 2px;
+            font-size: 14px;
+            color: #6E7CD4;
+            letter-spacing: 2px;
+            a {
+                font-size: 14px;
+                color: #6E7CD4;
+                letter-spacing: 2px;
+            }
+        }
     }
 }

@@ -7,10 +7,6 @@
             {{#link-to 'home' class="nav_cancel_btn menu_button_between"}}
                 取消
             {{/link-to}}
-            {{!-- {{#link-to 'home' class="nav_save_btn menu_button_between"}} --}}
-                {{!-- 保存 --}}
-            {{!-- {{/link-to}} --}}
-            {{!-- <button class="nav_cancel_btn menu_button_between">取消</button> --}}
             <button class="nav_save_btn menu_button_between" {{action 'showValication'}}>保存</button>
         </div>
     </li>
@@ -52,7 +48,7 @@
             {{bm-edit-line title="孩子姓名" isNeeded=true maxCount=8 inputVal=brand_name classNames='line_half' }}
             {{bm-edit-line title="孩子昵称" isNeeded=true maxCount=8 classNames='line_half' }}
         {{/layout-push}}
-        
+
         {{#layout-push direction='row' split=true}}
             {{#layout-push direction='col' classNames='line_half'}}
                 <div class="line_container_split" >
@@ -118,9 +114,9 @@
             {{bm-edit-line title="家长姓名" isNeeded=true maxCount=8 classNames='line_half'}}
             {{bm-edit-line title="家长昵称" isNeeded=true maxCount=8 classNames='line_half'}}
         {{/layout-push}}
-            
+
         {{bm-edit-line title="与孩子的关系" isNeeded=true }}
-        
+
         {{#layout-push direction='row' split=true}}
             {{bm-edit-line title="联系方式" isNeeded=true maxCount=8 classNames='line_half'}}
             {{bm-edit-line title="微信 Wechat" isNeeded=false maxCount=8 classNames='line_half'}}

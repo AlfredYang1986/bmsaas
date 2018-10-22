@@ -1,0 +1,33 @@
+<div >
+    {{nav-top}}
+    {{left-menu}}
+</div>
+
+<div class="detail_content_top">
+    <div class="detail_page">
+        <div class="content_page">
+            {{#layout-push direction='row' classNames="options"}}
+                <p class="title">选择场地</p>
+                <form class="select-site">
+                    <select name="cars">
+                        <option value="volvo">东外文创产业园</option>
+                        <option value="saab">Saab</option>
+                        <option value="fiat">Fiat</option>
+                        <option value="audi">Audi</option>
+                    </select>
+                </form>
+            {{/layout-push}}
+            {{#layout-push direction=row classNames="operate"}}
+                <div class="time-piker">
+                    <p>8月06-12日</p>
+                </div>
+                <div class="btns">
+                    <button type="button" class="btn btn-primary">Primary</button>
+                    <button type="button" class="btn btn-primary">Primary</button>
+                </div>
+            {{/layout-push}}
+        </div>
+    </div>
+</div>
+
+{{outlet}}

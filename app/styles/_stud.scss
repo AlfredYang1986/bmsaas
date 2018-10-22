@@ -13,13 +13,14 @@
 .modal-dialog {
     margin-top: 150px;
     .modal-content {
+        padding-top: 40px;
+        margin-left: 85px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding-top: 40px;
         height: 463px;
-        width: 331px;
+        width: 330px;
         img {
             width: 237px;
             height: 237px;

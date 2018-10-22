@@ -22,6 +22,7 @@ Router.map(function() {
     this.route('tech');
     this.route('yard');
     this.route('course');
+    this.route('classes');
   });
   this.route('tech');
   this.route('yard');
@@ -31,6 +32,8 @@ Router.map(function() {
   this.route('workBench');
   this.route('experienceOpen');
   this.route('courseReserve');
+  this.route('classes');
+  this.route('arrange-class');
 });
 
 export default Router;

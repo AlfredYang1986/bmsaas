@@ -1,0 +1,39 @@
+.content_page {
+    padding-top: 40px;
+    padding-left: 26px;
+    padding-right: 26px;
+    .options {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #e9e9e9;
+        .title {
+            margin-right: 27px;
+            font-family: PingFangSC-Medium;
+            font-size: 18px;
+            color: #485465;
+            letter-spacing: 2px;
+        }
+        .select-site {
+            width: 404px;
+            font-family: PingFangSC-Medium;
+            font-size: 14px;
+            color: #B9B9B9;
+            letter-spacing: 2px;
+            select {
+                // background: #fafbfe;
+                border: 1px solid #C9C9C9;
+                border-radius: 3px;
+            }
+        }
+    }
+    .operate {
+        padding-left: 19px;
+        padding-right: 19px;
+        padding-top: 36px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}

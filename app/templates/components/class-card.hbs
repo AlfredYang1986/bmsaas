@@ -1,0 +1,30 @@
+{{#layout-push direction=col split=true mid=true classNames="class-card"}}
+    {{#layout-push direction=col}}
+        <p class="headline">乐高机器人搭建Ａ班</p>
+        <p class="secondary-title">乐高机器人设计搭建课</p>
+    {{/layout-push}}
+    {{#layout-push direction=col}}
+        {{#layout-push direction=row classNames="list"}}
+            <img src="../images/coursebooking_selected.png" alt="">
+            <p>2018/07/20–2018/12/31</p>
+        {{/layout-push}}
+        {{#layout-push direction=row classNames="list"}}
+            <img src="../images/activities_selected.png" alt="">
+            <p>北京东直门东外56号文创产业园</p>
+        {{/layout-push}}
+        {{#layout-push direction=row classNames="stud"}}
+            <img src="../images/cover_pic.jpg" alt="">
+            <img src="../images/cover_pic.jpg" alt="">
+        {{/layout-push}}
+        {{#layout-push direction=col}}
+            <div class="progress-label">
+                <p>课程进度</p>
+                <p>60%</p>
+            </div>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        {{/layout-push}}
+    {{/layout-push}}
+{{/layout-push}}
+{{yield}}

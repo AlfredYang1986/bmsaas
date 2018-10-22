@@ -1,0 +1,71 @@
+@import "args";
+
+.class-card {
+    padding: 20px 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 240px;
+    height: 280px;
+    background: #FFFFFF;
+    border-radius: 4px;
+    font-family: PingFangSC-Semibold;
+    .headline {
+        font-size: 18px;
+        color: #767A80;
+        letter-spacing: 2.57px;
+    }
+    .secondary-title {
+        margin-top: 6px;
+        font-size: 12px;
+        color: #767A80;
+        letter-spacing: 1.71px;
+    }
+    .list {
+        margin-bottom: 6px;
+        display: flex;
+        flex-direction: row;
+        align-items: top;
+        color: #767A80;
+        letter-spacing: 1.71px;
+        p {
+            font-size: 12px;
+        }
+        img {
+            width: 12px;
+            height: 12px;
+            margin-right: 5px;
+            margin-top: 3px;
+        }
+    }
+    .stud {
+        margin-top: 6px;
+        margin-bottom: 12px;
+        img {
+            margin-right: 4px;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+        }
+    }
+    .progress-label {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        color: #767A80;
+        letter-spacing: 1.71px;
+        p {
+            font-size: 12px;
+        }
+    }
+    .progress {
+        margin-bottom: 0;
+        padding: 0;
+        width: 200px;
+        height: 10px;
+        border-radius: 8px;
+        .progress-bar {
+            background: #6E7CD4;
+        }
+    }
+}

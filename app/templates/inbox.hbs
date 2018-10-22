@@ -1,1 +1,28 @@
+<div >
+    {{nav-top}}
+    {{left-menu}}
+</div>
+<div class="detail_content_top">
+    <div class="detail_page">
+        <div class="detail_panel detail_panel_col_between" >
+            {{#layout-push direction='row'}}
+                    <div class="time-select today">
+                        <p>今天<span>(9)</span></p>
+                    </div>
+                    <div class="time-select before ">
+                        <p>以前<span>(300)</span></p>
+                    </div>
+            {{/layout-push}}
+        </div>
+        <div class="detail_page table-header">
+            {{#layout-push direction='col'}}
+                {{#layout-push direction='row' split=true}}
+                    {{#each model as |item|}}
+                        <span>{{item.title}}</span>
+                    {{/each}}
+                {{/layout-push}}
+            {{/layout-push}}
+        </div>
+    </div>
+</div>
 {{outlet}}

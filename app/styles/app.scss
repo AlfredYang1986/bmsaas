@@ -7,9 +7,15 @@
 @import "detail";
 @import "tech";
 @import "yard";
+@import "inbox";
+@import "classes";
+@import "arrange-class";
 
 body {
     background-color: #FAFBFE
+}
+p {
+    margin-bottom: 0;
 }
 
 .v_mid {
