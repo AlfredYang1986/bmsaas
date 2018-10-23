@@ -13,6 +13,10 @@
 .modal-dialog {
     margin-top: 150px;
     .modal-content {
+        background: transparent;
+        border:none;
+    }
+    .stud-modal {
         padding-top: 40px;
         margin-left: 85px;
         display: flex;
@@ -21,21 +25,24 @@
         align-items: center;
         height: 463px;
         width: 330px;
-        img {
-            width: 237px;
-            height: 237px;
-            background: red;
-            border: 1px solid #979797;
+        background: #fff;
+        .stud-modal-body {
+            img {
+                width: 237px;
+                height: 237px;
+                background: red;
+                border: 1px solid #979797;
+            }
+            p {
+                margin-top: 29px;
+                text-align: center;
+                font-family: PingFangSC-Medium;
+                font-size: 18px;
+                color: #767A80;
+                letter-spacing: 1.5px;
+            }
         }
-        p {
-            margin-top: 29px;
-            text-align: center;
-            font-family: PingFangSC-Medium;
-            font-size: 18px;
-            color: #767A80;
-            letter-spacing: 1.5px;
-        }
-        .modal-footer {
+        .stud-modal-footer {
             display: flex;
             justify-content: space-between;
             width: 237px;

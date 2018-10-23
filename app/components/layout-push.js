@@ -28,5 +28,5 @@ export default Component.extend({
                         'rowpush:line_container',
                         'rowsplit:line_container_split',
                         'rowmid:line_container_mid',
-                       ],
+                    ],
 });

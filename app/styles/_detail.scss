@@ -179,7 +179,6 @@
     .class-head-card {
         margin:12px 4px;
         height: 160px;
-        font-family: PingFangSC-Medium;
         .left-info {
             display: flex;
             flex-direction: column;
@@ -202,19 +201,46 @@
             }
 
         }
-        .choose-list {
-            width: 103px;
-            height: 95px;
-            border: 1px solid #6E7CD4;
-            border-radius: 2px;
-            font-size: 14px;
-            color: #6E7CD4;
-            letter-spacing: 2px;
-            a {
+        .chooses {
+            .choose-list {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 103px;
+                height: 95px;
+                border: 1px solid #6E7CD4;
+                border-radius: 2px;
                 font-size: 14px;
                 color: #6E7CD4;
                 letter-spacing: 2px;
+                p {
+                    height: 35px;
+                    width: 103px;
+                    line-height: 35px;
+                    text-align: center;
+                    border-bottom: 1px solid #6E7CD4;
+                }
+                a {
+                    font-size: 14px;
+                    color: #6E7CD4;
+                    letter-spacing: 2px;
+                }
+                a.delete-class {
+                    color: #d5717e;
+                }
             }
+        }
+
+    }
+    .tabs {
+        width: 32%;
+        span {
+            font-size: 14px;
+            color: #AAAAAA;
+            letter-spacing: 2px;
+        }
+        span.active {
+            color: #6E7CD4;
         }
     }
 }

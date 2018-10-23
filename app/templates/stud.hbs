@@ -17,15 +17,16 @@
 </div>
 <div local-class="modal-dialog">
     {{#bs-modal open=modal3 onHidden=(action (mut modal3) false) as |modal|}}
-
-      {{#modal.body}}
-        <img src="" local-class="code-img" alt="">
-        <p local-class="title">品牌小程序</p>
-      {{/modal.body}}
-      {{#modal.footer}}
-        {{#bs-button onClick=(action modal.close)}}取消{{/bs-button}}
-        {{#bs-button type="success" onClick=(action modal.submit)}}保存图片{{/bs-button}}
-      {{/modal.footer}}
+        <div class="stud-modal">
+            {{#modal.body classNames="stud-modal-body"}}
+              <img src="" local-class="code-img" alt="">
+              <p local-class="title">品牌小程序</p>
+            {{/modal.body}}
+            {{#modal.footer classNames="stud-modal-footer"}}
+              {{#bs-button onClick=(action modal.close)}}取消{{/bs-button}}
+              {{#bs-button type="success" onClick=(action modal.submit)}}保存图片{{/bs-button}}
+            {{/modal.footer}}
+        </div>
     {{/bs-modal}}
 </div>
 

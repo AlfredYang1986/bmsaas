@@ -6,5 +6,8 @@ export default Controller.extend({
             // this.transitionToRoute('edit.stud');
             this.transitionToRoute('detail.classes');
         },
+        createClass() {
+            this.transitionToRoute('edit.classes')
+        }
     }
 });

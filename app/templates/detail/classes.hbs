@@ -21,18 +21,21 @@
                         <p>时间：尚未安排</p>
                     {{/layout-push}}
                 {{/layout-push}}
-
-                {{#layout-push direction='col' classNames="choose-list"}}
-                    <p>更多</p>
-                    <a href="">修改班名</a>
-                    <a href="">删除班级</a>
+                {{#layout-push direction="col" classNames="chooses v_end"}}
+                    {{#layout-push direction='col' mid=true classNames="choose-list"}}
+                        <p>更多</p>
+                        <a href="">修改班名</a>
+                        <a href="" class="delete-class">删除班级</a>
+                    {{/layout-push}}
                 {{/layout-push}}
             {{/layout-push}}
         </div>
 
         <div class="detail_panel detail_panel_col_between" >
-            {{#layout-push direction='col' mid=true}}
-                <span class='detail_panel_head'>详细信息</span>
+            {{#layout-push direction='row' split=true classNames="tabs"}}
+                <span class='detail_panel_head active'>详细信息</span>
+                <span class="detail_panel_head">班级详情</span>
+                <span class="detail_panel_head">学员名单</span>
             {{/layout-push}}
         </div>
 

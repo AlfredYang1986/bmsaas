@@ -14,6 +14,7 @@ Router.map(function() {
     this.route('stud');
     this.route('tech');
     this.route('yard');
+    this.route('classes');
   });
   this.route('stud');
 
