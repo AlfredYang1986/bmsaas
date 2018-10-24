@@ -232,15 +232,20 @@
         }
 
     }
-    .tabs {
-        width: 32%;
-        span {
-            font-size: 14px;
-            color: #AAAAAA;
-            letter-spacing: 2px;
-        }
-        span.active {
-            color: #6E7CD4;
-        }
+
+    span {
+        font-size: 14px;
+        color: #AAAAAA;
+        letter-spacing: 2px;
+        margin-right: 100px;
     }
+    span.active {
+        color: #6E7CD4;
+    }
+}
+.class-teacher-card {
+    margin-top: 8px;
+    background: #fff;
+    width: 315px;
+    height: 409px;
 }

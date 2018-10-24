@@ -32,12 +32,45 @@
         </div>
 
         <div class="detail_panel detail_panel_col_between" >
-            {{#layout-push direction='row' split=true classNames="tabs"}}
-                <span class='detail_panel_head active'>详细信息</span>
-                <span class="detail_panel_head">班级详情</span>
-                <span class="detail_panel_head">学员名单</span>
-            {{/layout-push}}
+            <span class='detail_panel_head active'>课程安排</span>
+            <span class="detail_panel_head">班级详情</span>
+            <span class="detail_panel_head">学员名单</span>
         </div>
+
+        {{#layout-push direction=row}}
+            {{!-- <div class="detail_panel detail_panel_col_between"> --}}
+                {{#layout-push direction=col classNames="class-teacher-card"}}
+                    {{#layout-push direction=row}}
+                        <p class="tech-head-title">教师</p>
+                        <button type="button" name="button" class="btn">编辑</button>
+                    {{/layout-push}}
+                    {{#layout-push direction=row}}
+                        <img src="" alt="">
+                        {{#layout-push direction=col}}
+                            <p>姓名：李娜</p>
+                            <p>电话：188 1019 0000</p>
+                        {{/layout-push}}
+                    {{/layout-push}}
+                {{/layout-push}}
+            {{!-- </div> --}}
+            {{!-- <div class="detail_panel detail_panel_col_between" > --}}
+                {{#layout-push direction=col classNames="class-arrange-card"}}
+                    <div class="class-head">
+                        <p class="title">教师</p>
+                        <button type="button" name="button" class="btn">编辑</button>
+                    </div>
+                    <div class="class-list">
+                        <div class="class-info">
+                            <img src="" alt="">
+                            <div class="list-info">
+                                <p></p>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                {{/layout-push}}
+            {{!-- </div> --}}
+        {{/layout-push}}
 
     </div>
 </div>
