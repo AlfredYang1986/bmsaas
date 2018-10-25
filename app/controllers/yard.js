@@ -5,5 +5,8 @@ export default Controller.extend({
         cardClicked(idx) {
             this.transitionToRoute('detail.yard');
         },
+        addYard() {
+            this.transitionToRoute('edit.yard')
+        }
     }
 });

@@ -1,4 +1,4 @@
-<div >
+<div>
     {{nav-top}}
     {{left-menu}}
 </div>
@@ -6,7 +6,7 @@
 <div class="tech_content_top" >
     {{#layout-push direction="col" classNames="tech_content"}}
         {{#layout-push direction="row"}}
-            <button class="tech_add_btn">+ 添加老师</button>
+            <button class="tech_add_btn" {{action 'addTech'}}>+ 添加老师</button>
         {{/layout-push}}
 
         <div class="line_container_warp tech_card_container" >

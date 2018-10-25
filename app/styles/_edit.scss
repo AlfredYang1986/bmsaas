@@ -8,6 +8,9 @@
 
 .edit_first_panel {
     margin-top: 24px !important;
+    .detail-address {
+        margin-top: -15px;
+    }
 }
 
 .edit_panel {
@@ -33,7 +36,61 @@
 
         margin-top: 24px;
     }
+    .time-cycle {
+        margin-right: 45px;
+    }
+    select.select-school {
+        width: 167px;
+    }
+    select.start-time {
+        margin-right: 10px;
+        margin-top: 3px;
+        width: 140px;
+        height: 35px;
+        text-align: center;
+        border: 1px solid #DAD9D9;
+        border-radius: 4px;
+        font-size: 14px;
+        color: #767A80;
+        letter-spacing: 2px;
+    }
+    .add-decide-btn {
+        margin-top: 16px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        button {
+            margin-left: 14px;
+            width: 80px;
+            height: 35px;
+            background: #fff;
+            border: 1px solid #DAD9D9;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #454545;
+            letter-spacing: 1.71px;
+        }
+    }
+    .edit_inner_panel {
+        margin-top: 16px;
+        padding: 16px 16px 8px;
+        background: #6E7CD43F;
+        border-radius: 4px;
+        font-family: $font-light;
+        font-size: 12px;
+        color: #767A80;
+        letter-spacing: 1.71px;
 
+        .edit_inner_content_line {
+            p {
+                margin-bottom: 8px;
+                font-size: 12px;
+                color: #767A80;
+                letter-spacing: 1.71px;
+            }
+        }
+    }
     .edit_logo_container {
         border: 1px dashed #979797;
         border-radius: 4px;
@@ -127,7 +184,32 @@
     .edit_text_area {
         height: 414px;
     }
+    .single-select {
+        .form-check-input {
+            display: none;
+        }
+        .form-check-label {
+            margin-left: 0;
+            margin-right: 16px;
+            width: 110px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border: 1px solid #DAD9D9;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #C1C1C1;
+            letter-spacing: 2px;
 
+        }
+        .edit_sub_title {
+            margin-top: 16px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #767A80;
+            letter-spacing: 2px;
+        }
+    }
 }
 .edit-class {
     height: 500px;

@@ -1,4 +1,4 @@
-{{#layout-push direction="col" classNames='edit_panel'}}
+{{#layout-push direction="col"}}
     {{#layout-push direction="row" }}
         <span class="edit_title">{{title}}</span>
     {{/layout-push }}
@@ -19,7 +19,7 @@
             <span class="edit_condition" >{{countHint}}</span>
         </div>
     {{/layout-push }}
-    {{textarea classNames="edit_text_area"}}
+    <textarea classNames="edit_text_area" rows={{rowsAmount}}></textarea>
 {{/layout-push }}
 
 {{yield}}

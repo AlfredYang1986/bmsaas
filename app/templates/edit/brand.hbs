@@ -68,7 +68,7 @@
         {{bm-edit-line title="品牌名称" isNeeded=true maxCount=15 pholder="如：Black Mirror Tech"}}
         {{bm-edit-line title="品牌简称" isNeeded=true maxCount=15 pholder="简称更容易让大家记住您的品牌喔！如：Black Mirror"}}
         {{bm-edit-line title="一句话介绍(slogan)" isNeeded=true maxCount=15 pholder="请用一句话想家长和孩子们传递您的品牌理念"}}
-               
+
         {{#layout-push direction='row' split=true}}
             {{#layout-push direction='row' }}
                 <span class="edit_subtitle" >成立时间</span>
@@ -108,8 +108,9 @@
 </section>
 
 <section id="start-story" class="line_container_mid" >
-    {{bm-edit-area 
-        title="初心故事" 
+    {{bm-edit-area
+        classNames='edit_panel'
+        title="初心故事"
         subtitle="请描述品牌的成立宗旨、教学理念、发展历程与未来期许，让家长们了解您的用户的用心与坚持。初心故事将作为品牌介绍将展示在小程序、app中。"
         maxCount=400
         isNeeded=true}}
@@ -166,11 +167,14 @@
 </section>
 
 <section id="about-tech" class="line_container_mid" >
-    {{bm-edit-area 
-        title="师资介绍" 
+    {{bm-edit-area
+        classNames='edit_panel'
+        title="师资介绍"
         subtitle="师资组成一直是家长们关心的内容，向家长们简单介绍您品牌下的师资队伍，让家长们更加了解您的品牌。"
         maxCount=400
-        isNeeded=true}}
+        isNeeded=true
+        rowsAmount=5
+    }}
 </section>
 
 {{outlet}}
