@@ -140,7 +140,7 @@ export default Component.extend({
             this.set('start_date', tmp);
         },
         appendBtnClicked() {
-            this.addClassBtnClicked();
+            this.onAddClassBtnClicked();
         }
     },
 
