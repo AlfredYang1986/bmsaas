@@ -10,18 +10,14 @@
                 {{/layout-push}}
                 {{#layout-push direction='col' mid=true}}
                     {{#layout-push direction="col" classNames="brand_info"}}
-                        <p class="brand_title">PRO科学空间</p>
-                        <p class="brand_subtitle">彩色方块的转动中感受魔方的魅力</p>
+                        <p class="brand_title">{{model.brand.title}}</p>
+                        <p class="brand_subtitle">{{model.brand.subtitle}}</p>
                         {{#layout-push direction="row"}}
-                            {{#layout-push direction='col' mid=true classNames="brand_tag brand_tag_margin"}}
-                                <span>场景教学</span>
-                            {{/layout-push}}
-                            {{#layout-push direction='col' mid=true classNames="brand_tag brand_tag_margin"}}
-                                <span>先进理念</span>
-                            {{/layout-push}}
-                            {{#layout-push direction='col' mid=true classNames="brand_tag brand_tag_margin"}}
-                                <span>专业团队</span>
-                            {{/layout-push}}
+                            {{#each model.brand.brand_tags as |item|}}
+                                {{#layout-push direction='col' mid=true classNames="brand_tag brand_tag_margin"}}
+                                    <span>{{item}}</span>
+                                {{/layout-push}}
+                            {{/each}}
                         {{/layout-push}}
                     {{/layout-push}}
                 {{/layout-push}}
@@ -50,102 +46,66 @@
                 {{/layout-push }}
                 {{#layout-push direction="row" classNames="detail_margin_between"}}
                     <span class="detail_subtitle detail_contant_between">品牌名称</span>
-                    <span class="detail_content ">PRO科学空间</span>
+                    <span class="detail_content ">{{model.brand.title}}</span>
                 {{/layout-push }}
                 {{#layout-push direction="row" classNames="detail_margin_between"}}
                     <span class="detail_subtitle detail_contant_between">成立时间</span>
-                    <span class="detail_content ">2000年7月</span>
+                    <span class="detail_content ">{{model.brand.found_data}}</span>
                 {{/layout-push }}
                 {{#layout-push direction="row" classNames="detail_margin_between"}}
                     <span class="detail_subtitle detail_contant_between">品牌亮点</span>
                     {{#layout-push direction="row"}}
-                        {{#layout-push direction="col" mid=true classNames="brand_tag_2 brand_tag_margin"}}
-                            <span>场景教学</span>
-                        {{/layout-push }}
-                        {{#layout-push direction="col" mid=true classNames="brand_tag_2 brand_tag_margin"}}
-                            <span>先进理念</span>
-                        {{/layout-push }}
-                        {{#layout-push direction="col" mid=true classNames="brand_tag_2 brand_tag_margin"}}
-                            <span>专业团队</span>
-                        {{/layout-push }}
-                    {{/layout-push }}
+                        {{#each model.brand.brand_tags as |item|}}
+                            {{#layout-push direction='col' mid=true classNames="brand_tag_2 brand_tag_margin"}}
+                                <span>{{item}}</span>
+                            {{/layout-push}}
+                        {{/each}}
+                    {{/layout-push}}
                 {{/layout-push }}
                 {{#layout-push direction="row" classNames="detail_margin_between"}}
                     <span class="detail_subtitle detail_contant_between">一句话简介</span>
-                    <span class="detail_content ">彩色方块的转动中感受魔方的魅力。</span>
+                    <span class="detail_content ">{{model.brand.subtitle}}</span>
                 {{/layout-push }}
                 <div class="detail_title detail_margin_between" >
                     <span>初心故事</span>
                 </div>
                 <div class="detail_story_panel">
                     <div class="detail_story_content">
-                        <span>PRO科学空间是PRO集团高端幼儿教育品牌，专注于3-12岁高端幼少儿STEAM教育，在美国STEAM教育理念基础上，融合了符合中国儿童成长的语言教育，以国际幼少儿英语，数学逻辑思维，STEAM编程课程为主。旨在培养幼少儿的语言思维、创造性思维、空间想象力、逻辑思维、科学精神、动手能力及核心素养。目前在天津、北京、上海、广州、南京、武汉、苏州7个城市设立18个国际学习中心。</span>
+                        <span>{{model.brand.found_stroy}}</span>
                     </div>
                 </div>
                 <div class="detail_title detail_margin_between" >
                     <span>品牌荣誉</span>
                 </div>
                 {{#layout-push direction="row" split=true}}
-                    {{#layout-push direction="col" mid=true classNames="detail_reward"}}
-                        <img src="../images/reward01.jpeg" class="detail_reward_img" />
-                        <div class="detail_reward_title">
-                            <span>2014-全国青少年编程创新大赛</span>
-                        </div>
-                    {{/layout-push }}
-                    {{#layout-push direction="col" mid=true classNames="detail_reward"}}
-                        <img src="../images/reward02.jpeg" class="detail_reward_img" />
-                        <div class="detail_reward_title">
-                            <span>2014-全国青少年编程创新大赛</span>
-                        </div>
-                    {{/layout-push }}
-                    {{#layout-push direction="col" mid=true classNames="detail_reward"}}
-                        <img src="../images/reward03.jpeg" class="detail_reward_img" />
-                        <div class="detail_reward_title">
-                            <span>2014-全国青少年编程创新大赛</span>
-                        </div>
-                    {{/layout-push }}
-                    {{#layout-push direction="col" mid=true classNames="detail_reward"}}
-                        <img src="../images/reward04.jpeg" class="detail_reward_img" />
-                        <div class="detail_reward_title">
-                            <span>2014-全国青少年编程创新大赛</span>
-                        </div>
-                    {{/layout-push }}
+                    {{#each model.brand.rewards as |item|}}
+                        {{#layout-push direction="col" mid=true classNames="detail_reward"}}
+                            <img src={{item.img_src}} class="detail_reward_img" />
+                            <div class="detail_reward_title">
+                                <span>{{item.reward_des}}</span>
+                            </div>
+                        {{/layout-push }}                        
+                    {{/each}}
                 {{/layout-push }}
                 <div class="detail_title detail_margin_between" >
                     <span>资质认证</span>
                 </div>
                 {{#layout-push direction="row" split=true}}
-                    {{#layout-push direction="col" mid=true classNames="detail_reward"}}
-                        <img src="../images/reward01.jpeg" class="detail_reward_img" />
-                        <div class="detail_reward_title">
-                            <span>2014-全国青少年编程创新大赛</span>
-                        </div>
-                    {{/layout-push }}
-                    {{#layout-push direction="col" mid=true classNames="detail_reward"}}
-                        <img src="../images/reward02.jpeg" class="detail_reward_img" />
-                        <div class="detail_reward_title">
-                            <span>2014-全国青少年编程创新大赛</span>
-                        </div>
-                    {{/layout-push }}
-                    {{#layout-push direction="col" mid=true classNames="detail_reward"}}
-                        <img src="../images/reward03.jpeg" class="detail_reward_img" />
-                        <div class="detail_reward_title">
-                            <span>2014-全国青少年编程创新大赛</span>
-                        </div>
-                    {{/layout-push }}
-                    {{#layout-push direction="col" mid=true classNames="detail_reward"}}
-                        <img src="../images/reward04.jpeg" class="detail_reward_img" />
-                        <div class="detail_reward_title">
-                            <span>2014-全国青少年编程创新大赛</span>
-                        </div>
-                    {{/layout-push }}
+                    {{#each model.brand.rewards as |item|}}
+                        {{#layout-push direction="col" mid=true classNames="detail_reward"}}
+                            <img src={{item.img_src}} class="detail_reward_img" />
+                            <div class="detail_reward_title">
+                                <span>{{item.reward_des}}</span>
+                            </div>
+                        {{/layout-push }}                        
+                    {{/each}}
                 {{/layout-push }}
                 <div class="detail_title detail_margin_between" >
                     <span>核心团队</span>
                 </div>
                 <div class="detail_story_panel">
                     <div class="detail_story_content">
-                        <span>PRO科学空间拥有强大的师资团队，授课讲师均来自知名企业从事一线科研工作并拥有丰富的项目科研经验。教师团队均获硕士及博士学历并在科研领域行业中从业5年以上 ，我们严格把关教学品质，为孩子的科学教育奠定坚实的基础。</span>
+                        <span>{{model.brand.team_des}}</span>
                     </div>
                 </div>
             </div>
