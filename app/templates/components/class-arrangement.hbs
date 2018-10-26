@@ -1,0 +1,33 @@
+{{#layout-push direction='col'}}
+    {{#layout-push direction='row' split=true classNames='arrange_panel'}}
+        {{#layout-push direction='row' }}
+            {{#layout-push direction='col' mid=true}}
+                <span class='time_display'>{{start_month}}月{{start_day}}日-{{end_month}}月{{end_day}}日</span>
+            {{/layout-push}}
+            {{#layout-push direction='col' mid=true}}
+                {{#layout-push direction='row' }}
+                    <button class='btn' class='time_skip_btn' {{action 'leftBtnClicked'}}>
+                        <span><img src='../images/time_arr_left_arrow.png' class='time_skip_btn_icon' /></span>
+                    </button>
+                    
+                    <button class='btn' class='time_skip_btn' {{action 'rightBtnClicked'}}>
+                        <span><img src='../images/time_arr_right_arrow.png' class='time_skip_btn_icon' /></span>
+                    </button>
+                {{/layout-push}}
+            {{/layout-push}}
+        {{/layout-push}}
+
+        {{#layout-push direction='row' }}
+            <button class='btn' class='time_add_btn'>
+                添加
+            </button>
+        {{/layout-push}} 
+    {{/layout-push}}
+
+    {{#layout-push direction='row' mid=true}}
+        <canvas id='arrangement' width="940" height="488"/>
+    {{/layout-push}} 
+
+{{/layout-push}}
+
+{{yield}}
