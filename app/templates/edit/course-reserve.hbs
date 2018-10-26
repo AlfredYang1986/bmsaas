@@ -1,0 +1,90 @@
+<ul class="nav">
+    <li class="nav-item">
+        <a class="nav-link active brand_name" href="#">添加开放-预约课程</a>
+    </li>
+    <li class="nav-item menu_mid">
+        <div class="menu_container">
+            {{#link-to 'home' class="nav_cancel_btn menu_button_between"}}
+                取消
+            {{/link-to}}
+            {{#bs-button type="success" classNames="nav_save_btn menu_button_between" onClick=(action (mut saveInfo) true) }}添加{{/bs-button}}
+            {{#bs-modal open=saveInfo onHidden=(action (mut saveInfo) false) as |modal|}}
+                <div class="course-reserve-pop-ups">
+                    {{#modal.body classNames="course-reserve-success"}}
+                        {{#layout-push direction=row classNames="success-info"}}
+                            <img src="../images/success.png" alt="">
+                            {{#layout-push direction=col}}
+                                <p>添加成功！该课程已在小程序中显示，可被用戶申请预约。 </p>
+                                <p>您可在收件箱查看新的预约报名消息。</p>
+                            {{/layout-push}}
+                        {{/layout-push}}
+                    {{/modal.body}}
+                    {{#modal.footer}}
+                      {{#bs-button type="success" classNames="course-reserve-card-save" onClick=(action 'saveChanges')}}确定{{/bs-button}}
+                    {{/modal.footer}}
+                </div>
+            {{/bs-modal}}
+        </div>
+    </li>
+</ul>
+
+<ul class="edit_left_bar">
+    <li class="left_bar_item" >
+        <div class="edit_left_menu_mid menu_margin_right">
+            <a class="edit_left_menu_text" href="#tech-info">课程选择</a>
+        </div>
+    </li>
+    <li class="left_bar_item" >
+        <div class="edit_left_menu_mid menu_margin_right">
+            <a class="edit_left_menu_text" href="#tech-edc">预约设定</a>
+        </div>
+    </li>
+</ul>
+
+<section id="tech-info" class="line_container_mid edit_page_top_margin">
+    <div class="edit_panel v_push edit_first_panel">
+        {{#layout-push direction="row"}}
+            <span class="edit_title">请选择课程</span>
+        {{/layout-push}}
+        {{#layout-push direction="col"}}
+            <p class="select-reserve-title">选择开放申请预约的课程</p>
+            <select class="" name="" size="6" class="select-reserve-course">
+                <option value="">乐高机器人设计搭建课</option>
+                <option value="">乐高机器人设计搭建课</option>
+                <option value="">乐高机器人设计搭建课</option>
+                <option value="">乐高机器人设计搭建课</option>
+                <option value="">乐高机器人设计搭建课</option>
+                <option value="">乐高机器人设计搭建课</option>
+                <option value="">乐高机器人设计搭建课</option>
+            </select>
+            <a class="add-course-btn">尚未建立课程？前往建立课程。</a>
+        {{/layout-push}}
+    </div>
+</section>
+
+<section id="tech-info" class="line_container_mid">
+    <div class="edit_panel v_push edit_first_panel">
+        {{#layout-push direction="row"}}
+            <span class="edit_title">预约时间设置</span>
+        {{/layout-push}}
+
+        {{#layout-push direction='col'}}
+            {{#layout-push direction="row" classNames='line_half select-time'}}
+                <p class="select-reserve-time">可预约开始日期</p>
+                <select class="" name="">
+                    <option value="">请选择日期</option>
+                    <option value=""></option>
+                </select>
+            {{/layout-push}}
+            {{#layout-push direction="row" classNames='line_half select-time'}}
+                <p class="select-reserve-time">可预约开始日期</p>
+                <select class="" name="">
+                    <option value="">请选择日期</option>
+                    <option value=""></option>
+                </select>
+            {{/layout-push}}
+        {{/layout-push}}
+    </div>
+</section>
+
+{{outlet}}

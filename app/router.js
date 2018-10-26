@@ -16,6 +16,7 @@ Router.map(function() {
     this.route('yard');
     this.route('classes');
     this.route('course');
+    this.route('course-reserve');
   });
   this.route('stud');
 

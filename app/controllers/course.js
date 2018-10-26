@@ -6,6 +6,8 @@ export default Controller.extend({
             // this.transitionToRoute('edit.stud');
             this.transitionToRoute('detail.course');
         },
-    
+        addCourse() {
+            this.transitionToRoute('edit.course');
+        }
     }
 });

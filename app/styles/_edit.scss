@@ -20,7 +20,26 @@
     box-shadow: 2px 2px 6px 0 #CAD5E1;
     padding: 32px;
     margin: 8px 0;
-
+    span.edit-course-subtitle {
+        margin: 10px 0;
+        font-size: 12px;
+        color: #767A80;
+        letter-spacing: 1.71px;
+    }
+    .edit-course-required {
+        font-family: $font-nav-acc;
+        font-size: 12px;
+        color: #D3727E;
+        letter-spacing: 1.71px;
+        margin-bottom: 10px;
+    }
+    .select-spacing {
+        margin: 0 18px;
+        font-size: 14px;
+        color: #767A80;
+        letter-spacing: 1.8px;
+        line-height: 35px;
+    }
     .edit_title {
         font-family: $font-brand;
         font-size: 18px;
@@ -210,6 +229,48 @@
             letter-spacing: 2px;
         }
     }
+    .select-reserve-title {
+        margin-top: 8px;
+        margin-bottom: 11px;
+        font-size: 12px;
+        color: #767A80;
+        letter-spacing: 1.2px;
+    }
+    .select-reserve-course {
+        height: 230px;
+        margin-bottom: 54px;
+        option {
+            height: 35px;
+        }
+    }
+    a.add-course-btn {
+        font-size: 14px;
+        color: #6E7CD4;
+        letter-spacing: 1.4px;
+    }
+    .select-time {
+        margin-top: 10px;
+        margin-bottom: 13px;
+        p.select-reserve-time {
+            margin-right: 32px;
+            min-width: 110px;
+            line-height: 30px;
+            font-size: 14px;
+            color: #767A80;
+            letter-spacing: 1.4px;
+        }
+        select {
+            border: 1px solid #DAD9D9;
+            border-radius: 4px;
+        }
+    }
+
+}
+.add-other-course {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #6E7CD4;
+    letter-spacing: 1.3px;
 }
 .edit-class {
     height: 500px;
