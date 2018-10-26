@@ -1,10 +1,10 @@
 @import "args";
 
-.yard_card {
-    width: 230px;
-    height: 223px;
+.course_card {
+    width: 254px;
+    height: 180px;
 
-    background: #FFFFFF;
+    background: url('../images/cover_pic_2.jpeg');
     box-shadow: 2px 2px 6px 0 #CAD5E1;
     border-radius: 4px;
 
@@ -13,31 +13,33 @@
 
     // padding: 16px;
 
-    .yard_card_content {
-        padding: 16px 12px;
+    .course_card_content {
+        padding: 7px 12px;
+        height: 48px;
+        background: rgba(0,0,0,0.54)
     }
 
-    .yard_card_content_line {
+    .course_card_content_line {
         // margin: 8px 0;
 
-        .yard_card_title {
+        .course_card_title {
             font-family: $font-brand;
             font-size: 14px;
-            color: #767A80;
+            color: #fff;
             letter-spacing: 2px;
         }
 
-        .yard_card_text {
+        .course_card_text {
+            margin-top: 5px;
+            margin-right: 16px;
             font-family: $font-brand;
             font-size: 12px;
-            color: #767A80;
+            color: #fff;
             letter-spacing: 1.58px;
-
-            margin-top: 8px;
         }
     }
 
-    .yard_card_icon {
+    .course_card_icon {
         width: 230px;
         height: 134px;
 

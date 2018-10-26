@@ -138,7 +138,7 @@
 
     .detail_inner_panel {
 
-        background: #6E7CD43F;
+        background: #eff1f9;
         border-radius: 4px;
 
         padding: 16px;
@@ -155,8 +155,17 @@
 
             }
 
-            .detail_inner_right {
-
+            .detail_inner_list {
+                margin: 5px 0;
+                span.detail_inner_list_btn {
+                    width: 10px;
+                    height: 10px;
+                    background: red;
+                    border-radius: 50%;
+                }
+            }
+            .detail_inner_content {
+                margin: 10px 0;
             }
         }
     }
@@ -235,12 +244,64 @@
 
     span {
         font-size: 14px;
-        color: #AAAAAA;
         letter-spacing: 2px;
         margin-right: 100px;
     }
     span.active {
         color: #6E7CD4;
+    }
+    .course_detail_head {
+        padding: 16px 8px;
+        .detail_panel_ls_heading {
+            font-size: 24px;
+            color: #767A80;
+            letter-spacing: 3.43px;
+        }
+        .detail_panel_ls_subheading {
+            font-size: 12px;
+            color: #767A80;
+            letter-spacing: 1.71px;
+            span {
+                margin-left: 30px;
+            }
+        }
+    }
+    .course-info {
+        a.course-info-change-btn {
+            width: 80px;
+            height: 35px;
+            line-height: 35px;
+            background: #6E7CD4;
+            border: 1px solid #6E7CD4;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #FFFFFF;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+        p {
+            margin-right: 70px;
+            margin-bottom: 32px;
+            min-width: 110px;
+            text-align: left;
+            font-size: 14px;
+            color: #767A80;
+            letter-spacing: 1.4px;
+            span {
+                margin-left: 30px;
+            }
+        }
+        .course-sub-title {
+            margin-left: 260px;
+        }
+        .course-info-feature {
+            width: 120px;
+            height: 35px;
+            border: 1px solid #979797;
+            border-radius: 100px;
+            line-height: 35px;
+            text-align: center;
+        }
     }
 }
 .class-teacher-card {

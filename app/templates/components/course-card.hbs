@@ -1,25 +1,13 @@
-{{!-- {{#layout-push direction=col split=true classNames="course-card"}}
-    {{#layout-push direction=col}}
-        <p class="course-title">乐高机器人设计搭建课</p>
-        <p><span>科学</span>STEM</p>
-    {{/layout-push}}
-{{/layout-push}}
-{{yield}} --}}
-{{#layout-push direction='col' classNames='yard_card'}}
-    {{!-- {{#layout-push direction='col' mid=true }} --}}
-        <img  src="../images/cover_pic_2.jpeg" class="yard_card_icon" />
-    {{!-- {{/layout-push }} --}}
-    {{#layout-push direction='col' mid=true classNames='yard_card_content'}}
-        {{#layout-push direction='col' midt=true }}
-            {{#layout-push direction='row' classNames='yard_card_content_line'}}
-                <span class="yard_card_title">乐高少儿建构教室</span>
+{{#layout-push direction='col' classNames='course_card' split=true}}
+        {{#layout-push direction='col' mid=true classNames='course_card_content'}}
+            {{#layout-push direction='row' classNames='course_card_content_line'}}
+                <span class="course_card_title">乐高少儿建构教室</span>
             {{/layout-push }}
-            {{#layout-push direction='row' classNames='yard_card_content_line'}}
-                <span class="yard_card_text">地址：北京朝阳区东直门外斜街888号</span>
+            {{#layout-push direction='row' classNames='course_card_content_line'}}
+                <span class="course_card_text">科学</span>
+                <span class="course_card_text">STEM</span>
             {{/layout-push }}
-        {{/layout-push }}
     {{/layout-push }}
-
 {{/layout-push }}
 
 {{yield}}
