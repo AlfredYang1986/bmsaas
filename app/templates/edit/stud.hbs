@@ -4,9 +4,15 @@
     </li>
     <li class="nav-item menu_mid">
         <div class="menu_container">
-            {{#link-to 'detail.stud' model.stud.id class="nav_cancel_btn menu_button_between"}}
-                取消
-            {{/link-to}}
+            {{#if isPushing}}
+                {{#link-to 'stud' class="nav_cancel_btn menu_button_between"}}
+                    取消
+                {{/link-to}}
+            {{else}}
+                {{#link-to 'detail.stud' model.stud.id class="nav_cancel_btn menu_button_between"}}
+                    取消
+                {{/link-to}}
+            {{/if}}
             <button class="nav_save_btn menu_button_between" {{action 'saveInputBtnClicked'}}>保存</button>
         </div>
     </li>
