@@ -13,12 +13,6 @@ export default Route.extend({
             this.transitionTo('home');
         } 
 
-        // if (params.studid == 'push') {
-        //     stud = this.store.createRecord('bmstud', {
-        //         id: this.guid()
-        //     })
-        // }
-
         return RSVP.hash({
                 stud: stud
             })
@@ -46,6 +40,7 @@ export default Route.extend({
             controller.set('urg_rs', model.stud.urgent.get('rs'));
             controller.set('urg_contact', model.stud.urgent.get('me').get('contact'));
             
+            controller.set('isPushing', false);
         } else {
             controller.set('chd_name', '');
             controller.set('chd_nickname', '');

@@ -6,12 +6,14 @@
 <div class="tech_content_top" >
     {{#layout-push direction="col" classNames="tech_content"}}
         {{#layout-push direction="row"}}
-            <button class="tech_add_btn" {{action 'addTech'}}>+ 添加老师</button>
+            {{#link-to 'edit.tech' 'tech/push' classNames='tech_add_btn'}}+ 添加老师{{/link-to}}
         {{/layout-push}}
 
-        <div class="line_container_warp tech_card_container" >
-            {{tech-card onStudCardClicked=(action 'cardClicked') }}
-        </div>
+        {{#each model.techs as |item|}}
+            <div class="line_container_warp tech_card_container" >
+                {{tech-card onTechCardClicked=(action 'cardClicked') tech=item}}
+            </div>
+        {{/each}}
     {{/layout-push}}
 </div>
 

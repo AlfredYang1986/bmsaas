@@ -4,10 +4,16 @@
     </li>
     <li class="nav-item menu_mid">
         <div class="menu_container">
-            {{#link-to 'home' class="nav_cancel_btn menu_button_between"}}
-                取消
-            {{/link-to}}
-            <button class="nav_save_btn menu_button_between" {{action 'saveChanges'}}>保存</button>
+            {{#if isPushing}}
+                {{#link-to 'home' class="nav_cancel_btn menu_button_between"}}
+                    取消
+                {{/link-to}}
+            {{else}}
+                {{#link-to 'detail.tech' model.tech.id class="nav_cancel_btn menu_button_between"}}
+                    取消
+                {{/link-to}}
+            {{/if}}
+            <button class="nav_save_btn menu_button_between" {{action 'saveTechBtnClicked'}}>保存</button>
         </div>
     </li>
 </ul>
@@ -50,8 +56,8 @@
         {{/layout-push}}
 
         {{#layout-push direction='row' split=true}}
-            {{bm-edit-line title="姓名" isNeeded=true maxCount=8 inputVal=brand_name classNames='line_half' }}
-            {{bm-edit-line title="昵称" isNeeded=true maxCount=8 classNames='line_half' }}
+            {{bm-edit-line title="姓名" isNeeded=true maxCount=8 inputVal=tech_name classNames='line_half' }}
+            {{bm-edit-line title="昵称" isNeeded=true maxCount=8 inputVal=tech_nickname classNames='line_half' }}
         {{/layout-push}}
 
         {{#layout-push direction='row' split=true}}
@@ -84,14 +90,14 @@
         {{/layout-push}}
 
         {{#layout-push direction='row' split=true}}
-            {{bm-edit-line title="来自(城市)" inputVal=brand_name classNames='line_half' }}
+            {{bm-edit-line title="来自(城市)" inputVal=tech_homeland classNames='line_half' }}
         {{/layout-push}}
 
         {{#layout-push direction='row' split=true}}
-            {{bm-edit-line title="联系方式" isNeeded=true classNames='line_half'}}
-            {{bm-edit-line title="微信 Wechat" classNames='line_half'}}
+            {{bm-edit-line title="联系方式" isNeeded=true inputVal=tech_contact classNames='line_half'}}
+            {{bm-edit-line title="微信 Wechat" inputVal=tech_wechat classNames='line_half'}}
         {{/layout-push}}
-        {{bm-edit-line title="地址" maxCount=30 }}
+        {{bm-edit-line title="地址" maxCount=30 inputVal=tech_address}}
     </div>
 </section>
 

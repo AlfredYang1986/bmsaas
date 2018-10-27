@@ -1,7 +1,8 @@
 import Component from '@ember/component';
 
 export default Component.extend({
+    positionalParams: ['tech'],
     click() {
-        this.onStudCardClicked(12);
+        this.onTechCardClicked(this.tech.get('id'));
     }
 });

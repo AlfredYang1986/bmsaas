@@ -1,9 +1,7 @@
 import Controller from '@ember/controller';
 
 export default Controller.extend({
-    // actions: {
-    //     cardClicked(idx) {
-    //         this.transitionToRoute('home');
-    //     },
-    // }
+    onTechCardClicked(idx) {
+        this.transitionToRoute('detail.tech', idx);
+    }
 });

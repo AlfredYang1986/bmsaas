@@ -34,7 +34,6 @@ export default Controller.extend({
                 return;
             }
 
-            debugger
             let stud = null;
             if (this.isPushing) {
                 stud = this.store.createRecord('bmstud', {

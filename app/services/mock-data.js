@@ -6,6 +6,7 @@ export default Service.extend({
     init() {
         this.sureBrand();
         this.sureStud();
+        this.sureTech();
     },
     store: service(),
     sureBrand() {
@@ -197,5 +198,46 @@ export default Service.extend({
             urgent_02.set('me', person_urgent_02);
             urgent_02.set('urg', stud02);
         }
-    }
+    },
+    sureTech() {
+        console.log('sure tech');
+        let tech_lst = this.store.peekAll('bmtech');
+        if (tech_lst.length == 0) {
+            let person_tech_01 = this.store.createRecord('bmperson', {
+                id: 'i am tech person 01',
+                icon: '../images/stud-normal.png',
+                name: '司徒钟',
+                nickname: '酒剑仙',
+                age: 1004,
+                gender: 1,
+                contact: '17611245119',
+                wechat: '',
+                register_date: new Date(), 
+            })
+            let tech_01 = this.store.createRecord('bmtech', {
+                id: 'i am tech 01',
+                address: '四川蜀山001',
+                homeland: '人间山神庙'
+            })
+            tech_01.set('me', person_tech_01);
+
+            let person_tech_02 = this.store.createRecord('bmperson', {
+                id: 'i am tech person 02',
+                icon: '../images/stud-normal.png',
+                name: '李逍遥',
+                nickname: '老婆哭哭就到手',
+                age: 512,
+                gender: 1,
+                contact: '17611245119',
+                wechat: '',
+                register_date: new Date(), 
+            })
+            let tech_02 = this.store.createRecord('bmtech', {
+                id: 'i am tech 02',
+                address: '四川蜀山007',
+                homeland: '余杭小客栈'
+            })
+            tech_02.set('me', person_tech_02);
+        }    
+    } 
 });

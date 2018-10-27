@@ -1,16 +1,16 @@
 {{#layout-push direction='row' split=true classNames='tech_card'}}
     {{#layout-push direction='col' mid=true }}
-        <img class="tech_card_icon" src="../images/stud-normal.png" />
+        <img class="tech_card_icon" src={{tech.me.icon}} />
     {{/layout-push }}
     {{#layout-push direction='col' mid=true classNames='tech_card_content'}}
         {{#layout-push direction='col' midt=true }}
             {{#layout-push direction='row' classNames='tech_card_content_line'}}
                 <span class="tech_card_title">姓名: </span>
-                <span class="tech_card_text">王大锤</span>
+                <span class="tech_card_text">{{tech.me.name}}</span>
             {{/layout-push }}
             {{#layout-push direction='row' classNames='tech_card_content_line'}}
                 <span class="tech_card_title">电话: </span>
-                <span class="tech_card_text">13720200856</span>
+                <span class="tech_card_text">{{tech.me.contact}}</span>
             {{/layout-push }}
         {{/layout-push }}
     {{/layout-push }}
