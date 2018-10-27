@@ -6,6 +6,7 @@ export default Controller.extend({
     experience: false,
     activity: false,
     selectTitle: false,
+    experContent: false,
     actions: {
         activitySort() {
             this.set('noSortChoose', false);
@@ -20,6 +21,34 @@ export default Controller.extend({
         sortNext() {
             this.set('selectSort', false);
             this.set('selectTitle', true);
+        },
+        titleNext() {
+            this.set('selectTitle', false);
+            this.set('experContent', true);
+        },
+        contentNext() {
+            this.set('experContent', false);
+            this.set('childInteractive', true);
+        },
+        interactiveNext() {
+            this.set('childInteractive', false);
+            this.set('childReward', true);
+        },
+        rewardNext() {
+            this.set('childReward', false);
+            this.set('addPhotos', true);
+        },
+        addPhotosNext() {
+            this.set('addPhotos', false);
+            this.set('offerGoods', true);
+        },
+        offerGoodsNext() {
+            this.set('offerGoods', false);
+            this.set('comeWith', true);
+        },
+        comeWithNext() {
+            this.set('comeWith', false);
+            this.set('notice', true);
         }
     }
 });
