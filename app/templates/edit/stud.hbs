@@ -4,10 +4,10 @@
     </li>
     <li class="nav-item menu_mid">
         <div class="menu_container">
-            {{#link-to 'home' class="nav_cancel_btn menu_button_between"}}
+            {{#link-to 'detail.stud' model.stud.id class="nav_cancel_btn menu_button_between"}}
                 取消
             {{/link-to}}
-            <button class="nav_save_btn menu_button_between" {{action 'showValication'}}>保存</button>
+            <button class="nav_save_btn menu_button_between" {{action 'saveInputBtnClicked'}}>保存</button>
         </div>
     </li>
 </ul>
@@ -45,8 +45,8 @@
         {{/layout-push}}
 
         {{#layout-push direction='row' split=true}}
-            {{bm-edit-line title="孩子姓名" isNeeded=true maxCount=8 inputVal=brand_name classNames='line_half' }}
-            {{bm-edit-line title="孩子昵称" isNeeded=true maxCount=8 classNames='line_half' }}
+            {{bm-edit-line title="孩子姓名" isNeeded=true maxCount=8 inputVal=chd_name classNames='line_half' }}
+            {{bm-edit-line title="孩子昵称" isNeeded=true maxCount=8 inputVal=chd_nickname classNames='line_half' }}
         {{/layout-push}}
 
         {{#layout-push direction='row' split=true}}
@@ -98,9 +98,9 @@
                 </div>
             {{/layout-push}}
 
-            {{bm-edit-line title="性别" isNeeded=true maxCount=1 classNames='line_half'}}
+            {{bm-edit-line title="性别" isNeeded=true maxCount=1 inputVal=chd_gender_str classNames='line_half'}}
         {{/layout-push}}
-        {{bm-edit-line title="就读学校" isNeeded=true maxCount=14 }}
+        {{bm-edit-line title="就读学校" isNeeded=true maxCount=14 inputVal=chd_school}}
     </div>
 </section>
 
@@ -111,29 +111,29 @@
         {{/layout-push}}
 
         {{#layout-push direction='row' split=true}}
-            {{bm-edit-line title="家长姓名" isNeeded=true maxCount=8 classNames='line_half'}}
-            {{bm-edit-line title="家长昵称" isNeeded=true maxCount=8 classNames='line_half'}}
+            {{bm-edit-line title="家长姓名" isNeeded=true maxCount=8 inputVal=par_name classNames='line_half'}}
+            {{bm-edit-line title="家长昵称" isNeeded=true maxCount=8 inputVal=par_nickname classNames='line_half'}}
         {{/layout-push}}
 
-        {{bm-edit-line title="与孩子的关系" isNeeded=true }}
+        {{bm-edit-line title="与孩子的关系" isNeeded=true inputVal=par_rs }}
 
         {{#layout-push direction='row' split=true}}
-            {{bm-edit-line title="联系方式" isNeeded=true maxCount=8 classNames='line_half'}}
-            {{bm-edit-line title="微信 Wechat" isNeeded=false maxCount=8 classNames='line_half'}}
+            {{bm-edit-line title="联系方式" isNeeded=true maxCount=8 inputVal=par_contact classNames='line_half'}}
+            {{bm-edit-line title="微信 Wechat" isNeeded=false maxCount=8 inputVal=par_wechat classNames='line_half'}}
         {{/layout-push}}
-        {{bm-edit-line title="地址" isNeeded=false maxCount=30 }}
+        {{bm-edit-line title="地址" isNeeded=false inputVal=par_address maxCount=30 }}
 
         {{#layout-push direction="row"}}
             <span class="edit_title">紧急联络人</span>
         {{/layout-push }}
 
         {{#layout-push direction='row' split=true}}
-            {{bm-edit-line title="姓名" isNeeded=false maxCount=8 classNames='line_half'}}
-            {{bm-edit-line title="昵称" isNeeded=false maxCount=8 classNames='line_half'}}
+            {{bm-edit-line title="姓名" isNeeded=false maxCount=8 inputVal=urg_name classNames='line_half'}}
+            {{bm-edit-line title="昵称" isNeeded=false maxCount=8 inputVal=urg_nickname classNames='line_half'}}
         {{/layout-push }}
         {{#layout-push direction='row' split=true}}
-            {{bm-edit-line title="与孩子关系" isNeeded=false maxCount=8 classNames='line_half'}}
-            {{bm-edit-line title="联系方式" isNeeded=false maxCount=8 classNames='line_half'}}
+            {{bm-edit-line title="与孩子关系" isNeeded=false maxCount=8 inputVal=urg_rs classNames='line_half'}}
+            {{bm-edit-line title="联系方式" isNeeded=false maxCount=8 inputVal=urg_contact classNames='line_half'}}
         {{/layout-push }}
 
     </div>

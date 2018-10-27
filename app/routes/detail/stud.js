@@ -5,12 +5,16 @@ import { inject as service } from '@ember/service';
 
 export default Route.extend({
     mock_data: service(),
-    model() {
+
+    model(params) {
         this.mock_data.sureStud();
-        let studs = this.store.peekAll('bmstud');
+        let stud = this.store.peekRecord('bmstud', params.studid);
+        if (stud == null) {
+            this.transitionTo('home');
+        }
 
         return RSVP.hash({
-                studs: studs
+                stud: stud
             })
     },
 });

@@ -11,7 +11,7 @@ Router.map(function() {
 
   this.route('edit', function() {
     this.route('brand');
-    this.route('stud');
+    this.route('stud', { path: '/:studid' });
     this.route('tech');
     this.route('yard');
     this.route('classes');
@@ -21,7 +21,7 @@ Router.map(function() {
   this.route('stud');
 
   this.route('detail', function() {
-    this.route('stud');
+    this.route('stud', { path: '/:studid' });
     this.route('tech');
     this.route('yard');
     this.route('course');

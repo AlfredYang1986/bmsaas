@@ -12,7 +12,7 @@
 
         {{#each model.studs as |item|}}
             <div class="line_container_warp stud_card_container" >
-                {{stud-card onStudCardClicked=(action 'cardClicked') }}
+                {{stud-card onStudCardClicked=(action 'cardClicked') stud=item}}
             </div>
         {{/each}}
     {{/layout-push}}
