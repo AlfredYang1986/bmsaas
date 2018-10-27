@@ -49,6 +49,16 @@ export default Controller.extend({
         comeWithNext() {
             this.set('comeWith', false);
             this.set('notice', true);
+        },
+        noticeNext() {
+            this.set('notice', false);
+            this.set('costExplain', true);
+        },
+        gotoExperience() {
+            this.transitionToRoute('experienceOpen');
+        },
+        checkDetail() {
+            this.transitionToRoute('experienceOpen');
         }
     }
 });

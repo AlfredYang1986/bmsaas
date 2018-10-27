@@ -1,0 +1,95 @@
+<div >
+    {{nav-top}}
+    {{left-menu}}
+</div>
+<div class="detail_content_top">
+    <div class="detail_page">
+        {{#link-to 'experienceOpen' class="detail_href_ref"}}体验开放{{/link-to}}
+        {{#link-to 'detail.experience' class="detail_href_ref"}}>场次安排 {{/link-to}}
+        <div class='detail_panel' >
+            {{#layout-push direction='row' split=true}}
+                {{#layout-push direction='col' mid=true }}
+                    {{#layout-push direction='col'}}
+                        <span class="detail_panel_role_name">乐高机器人设计搭建课</span>
+                        {{#layout-push direction='row'}}
+                            <span class="course_detail_panel_role_des">运动</span>
+                            <span class="course_detail_panel_role_des">跆拳道</span>
+                        {{/layout-push}}
+                        <span class="course_detail_panel_role_des">两个场次报名开放中</span>
+                    {{/layout-push}}
+                {{/layout-push}}
+                {{#layout-push direction="row"}}
+                    <button type="button" name="button" class="btn delete-course-btn">删除</button>
+                    {{#bs-button class="stud_qrcod_btn" onClick=(action (mut courseCode) true) classNames="course-code-btn"}}生成课程二维码{{/bs-button}}
+                    {{#bs-button class="stud_qrcod_btn" onClick=(action 'addSession') classNames="add-experience"}}添加场次{{/bs-button}}
+                    <div local-class="modal-dialog">
+                        {{#bs-modal open=courseCode onHidden=(action (mut courseCode) false) as |modal|}}
+                            <div class="stud-modal">
+                                {{#modal.body classNames="stud-modal-body"}}
+                                  <img src="" local-class="code-img" alt="">
+                                  <p local-class="title">课程预约详情</p>
+                                {{/modal.body}}
+                                {{#modal.footer classNames="stud-modal-footer"}}
+                                  {{#bs-button onClick=(action modal.close)}}取消{{/bs-button}}
+                                  {{#bs-button type="success" onClick=(action modal.submit)}}保存图片{{/bs-button}}
+                                {{/modal.footer}}
+                            </div>
+                        {{/bs-modal}}
+                    </div>
+                {{/layout-push}}
+            {{/layout-push}}
+        </div>
+        <div class="detail_panel detail_panel_col_between" >
+            {{#layout-push direction='row'}}
+                    <div class="time-select today">
+                        <p>场次安排</p>
+                    </div>
+                    <div class="time-select today">
+                        <p>活动详情</p>
+                    </div>
+            {{/layout-push}}
+        </div>
+        <div class="detail_page table-header">
+            {{#layout-push direction='col'}}
+                {{#layout-push direction='row' split=true}}
+                    {{#each model as |item|}}
+                        <span>{{item.title}}</span>
+                    {{/each}}
+                {{/layout-push}}
+            {{/layout-push}}
+        </div>
+        <div class="inbox-table">
+            <div class="detail_page table-body">
+                    {{#layout-push direction='col'}}
+                        {{#layout-push direction='row' split=true}}
+                            <span class="email-status">01</span>
+                            <span class="">08/03（周五）10:30</span>
+                            <span class="">北京朝阳区东外56号文创产业园111座</span>
+                            <span class="">20/100</span>
+                            <span class="apply-status-open">开放</span>
+                            {{#layout-push direction='row'}}
+                                {{#bs-button classNames="email-option" onClick=(action (mut modal3) true)}}<span>停止报名</span>{{/bs-button}}
+                                {{#bs-button classNames="email-option" onClick=(action (mut modal3) true)}}<span>更多</span>{{/bs-button}}
+                            {{/layout-push}}
+                        {{/layout-push}}
+                    {{/layout-push}}
+            </div>
+            <div class="detail_page table-body">
+                    {{#layout-push direction='col'}}
+                        {{#layout-push direction='row' split=true}}
+                            <span class="email-status">02</span>
+                            <span class="">08/03（周五）10:30</span>
+                            <span class="">北京朝阳区东外56号文创产业园111座</span>
+                            <span class="">20/100</span>
+                            <span class="apply-status-close">关闭</span>
+                            {{#layout-push direction='row'}}
+                                {{#bs-button classNames="email-option" onClick=(action (mut modal3) true)}}<span>停止报名</span>{{/bs-button}}
+                                {{#bs-button classNames="email-option" onClick=(action (mut modal3) true)}}<span>更多</span>{{/bs-button}}
+                            {{/layout-push}}
+                        {{/layout-push}}
+                    {{/layout-push}}
+            </div>
+        </div>
+    </div>
+</div>
+{{outlet}}
