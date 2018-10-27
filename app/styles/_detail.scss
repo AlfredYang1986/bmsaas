@@ -57,18 +57,17 @@
     }
 
     .detail_panel_role_des {
+        margin-right: 21px;
         font-family: $font-href;
         font-size: 12px;
         color: #6E7CD4;
         letter-spacing: 1.71px;
-
-        margin-right: 21px;
     }
 
     .detail_panel_head {
         font-family: $font-brand;
         font-size: 14px;
-        color: #343538;
+        color: #AAAAAA;
         letter-spacing: 2px;
     }
 
@@ -336,7 +335,90 @@
 }
 .class-teacher-card {
     margin-top: 8px;
+    padding-bottom: 8px;
     background: #fff;
-    width: 315px;
-    height: 409px;
+    width: 25%;
+    min-height: 400px;
+    height: auto;
+    margin-right: 10px;
+    background: #FFFFFF;
+    box-shadow: 2px 2px 6px 0 #CAD5E1;
+}
+.class-course-card {
+    margin-top: 8px;
+    padding-bottom: 8px;
+    background: #fff;
+    width: 75%;
+    min-height: 400px;
+    height: auto;
+    background: #FFFFFF;
+    box-shadow: 2px 2px 6px 0 #CAD5E1;
+}
+.class-card-head {
+    padding: 14px 32px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 50px;
+    background: #f0f2fa;
+    border: 1px solid #f0f2fa;
+    .class-card-title {
+        font-size: 14px;
+        color: #485465;
+        letter-spacing: 2px;
+    }
+    .class-card-btn {
+        width: 80px;
+        height: 35px;
+        line-height: 35px;
+        text-align: center;
+        border: 1px solid #6E7CD4;
+        border-radius: 2px;
+        font-size: 14px;
+        color: #6E7CD4;
+        letter-spacing: 2px;
+    }
+}
+.class-teacher-list {
+    padding: 16px 0;
+    margin: 0 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100px;
+    border-bottom: 1px solid #6E7CD4;
+    .class-card-head-img {
+        margin-right: 23px;
+        width: 72px;
+        height: 72px;
+    }
+    p {
+        margin:8px 0;
+        font-size: 12px;
+        color: #767A80;
+        letter-spacing: 1.58px;
+    }
+}
+.class-course-list {
+    padding: 16px 0;
+    margin: 0 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 47px;
+    border-bottom: 1px solid #6E7CD4;
+    p {
+        margin-top: 8px;
+        margin-right: 32px;
+        margin-bottom: 8px;
+        font-size: 14px;
+        color: #485465;
+        letter-spacing: 2px;er-spacing: 1.58px;
+    }
+}
+.course-time p{
+    margin-right: 20px;
+    font-size: 14px;
+    color: #6E7CD4;
+    letter-spacing: 2px;
 }

@@ -1,0 +1,218 @@
+<ul class="nav">
+    <li class="nav-item">
+        <a class="nav-link active brand_name" href="#">创建班级</a>
+    </li>
+    <li class="nav-item menu_mid">
+        <div class="menu_container">
+            {{#link-to 'home' class="nav_cancel_btn menu_button_between"}}
+                取消
+            {{/link-to}}
+            {{#bs-button class="nav_save_btn menu_button_between" onClick=(action (mut modal3) true)}}创建{{/bs-button}}
+        </div>
+    </li>
+</ul>
+
+<ul class="edit_left_bar">
+    <li class="left_bar_item" >
+        <div class="edit_left_menu_mid menu_margin_right ">
+            <a class="edit_left_menu_title" href="#kid-info" {{action 'selectClass' argument}}>活动体验描述</a>
+        </div>
+    </li>
+
+    <li class="left_bar_item" >
+        <div class="edit_left_menu_mid menu_margin_right">
+            <a class="edit_left_menu_text" href="#kid-info" {{action 'selectClass' argument}}>分类</a>
+        </div>
+    </li>
+    <li class="left_bar_item" >
+        <div class="edit_left_menu_mid menu_margin_right">
+            <a class="edit_left_menu_text" href="#par-story" {{action 'selectNext'}}>标题/主题</a>
+        </div>
+    </li>
+    <li class="left_bar_item" >
+        <div class="edit_left_menu_mid menu_margin_right">
+            <a class="edit_left_menu_text" href="#par-story" {{action 'arrangeNext'}}>內容介绍</a>
+        </div>
+    </li>
+    <li class="left_bar_item" >
+        <div class="edit_left_menu_mid menu_margin_right">
+            <a class="edit_left_menu_text" href="#par-story" {{action 'arrangeNext'}}>与孩子互动</a>
+        </div>
+    </li>
+    <li class="left_bar_item" >
+        <div class="edit_left_menu_mid menu_margin_right">
+            <a class="edit_left_menu_text" href="#par-story" {{action 'arrangeNext'}}>宝贝将获得</a>
+        </div>
+    </li>
+    <li class="left_bar_item" >
+        <div class="edit_left_menu_mid menu_margin_right">
+            <a class="edit_left_menu_text" href="#par-story" {{action 'arrangeNext'}}>体验图片</a>
+        </div>
+    </li>
+
+    <li class="left_bar_item" >
+        <div class="edit_left_menu_mid menu_margin_right ">
+            <a class="edit_left_menu_title" href="#kid-info" {{action 'selectClass' argument}}>体验指南</a>
+        </div>
+    </li>
+
+    <li class="left_bar_item" >
+        <div class="edit_left_menu_mid menu_margin_right">
+            <a class="edit_left_menu_text" href="#kid-info" {{action 'selectClass' argument}}>您提供的东西</a>
+        </div>
+    </li>
+    <li class="left_bar_item" >
+        <div class="edit_left_menu_mid menu_margin_right">
+            <a class="edit_left_menu_text" href="#par-story" {{action 'selectNext'}}>参与者需自带</a>
+        </div>
+    </li>
+    <li class="left_bar_item" >
+        <div class="edit_left_menu_mid menu_margin_right">
+            <a class="edit_left_menu_text" href="#par-story" {{action 'arrangeNext'}}>须知</a>
+        </div>
+    </li>
+    <li class="left_bar_item" >
+        <div class="edit_left_menu_mid menu_margin_right">
+            <a class="edit_left_menu_text" href="#par-story" {{action 'arrangeNext'}}>费用说明</a>
+        </div>
+    </li>
+</ul>
+
+{{#if selectSort}}
+    <section id="select-class" class="line_container_mid edit_page_top_margin">
+        <div class="edit-class edit_panel edit_first_panel ">
+            {{#layout-push direction=col classNames="edit-class-card"}}
+                {{#layout-push direction=col classNames="v_pusht"}}
+                        <p class="class-head-title">您的体验属于哪一个分类？</p>
+                        <p class="class-sub-title">请选择最能描述您的旅程体验的类别。</p>
+                {{/layout-push}}
+                {{#if noSortChoose}}
+                    {{#layout-push direction="row" classNames="sort-name"}}
+                        <p {{action 'activitySort' argument}}>活动</p>
+                        <p {{action 'experienceSort'}}>体验课</p>
+                    {{/layout-push}}
+                {{/if}}
+
+                {{#if activity}}
+                    {{#layout-push direction="row" classNames="sort-name"}}
+                        <p {{action 'activitySort'}} class="sort-name-active">活动</p>
+                        <p {{action 'experienceSort'}}>体验课</p>
+                    {{/layout-push}}
+                    {{#layout-push direction="col" classNames="sort-sub-name"}}
+                        <p>为活动选择类别</p>
+                        {{#layout-push direction="row" classNames="sort-sub-checkbox"}}
+                            <p><input type="checkbox" name="vehicle" value="展览" />展览</p>
+                            <p><input type="checkbox" name="vehicle" value="赛事"/>赛事</p>
+                            <p><input type="checkbox" name="vehicle" value="亲子"/>亲子</p>
+                        {{/layout-push}}
+                    {{/layout-push}}
+                {{/if}}
+                {{#if experience}}
+                    {{#layout-push direction="row" classNames="sort-name"}}
+                        <p {{action 'activitySort'}} >活动</p>
+                        <p {{action 'experienceSort'}} class="sort-name-active">体验课</p>
+                    {{/layout-push}}
+                    {{#layout-push direction="col" classNames="sort-sub-name"}}
+                        <p>为体验课选择详细类目，这样便于用户快速查找您的体验服务。</p>
+                        {{#layout-push direction="row" classNames="sort-sub-select"}}
+                            <select class="" name="">
+                                <option value="">请选择</option>
+                                <option value="">科学创新</option>
+                                <option value="">科学创新</option>
+                            </select>
+                            <select class="" name="">
+                                <option value="">请选择</option>
+                                <option value="">STEM</option>
+                                <option value="">STEM</option>
+                            </select>
+                            <select class="" name="">
+                                <option value="">请选择</option>
+                            </select>
+                        {{/layout-push}}
+                    {{/layout-push}}
+                {{/if}}
+            {{/layout-push}}
+            {{#layout-push direction=col }}
+                <button class="nav_save_btn menu_button_between" {{action 'sortNext'}}>下一步</button>
+            {{/layout-push}}
+        </div>
+    </section>
+{{/if}}
+
+{{#if selectTitle}}
+    <section id="arrange-site" class="line_container_mid edit_page_top_margin">
+        <div class="edit-class edit_panel edit_first_panel ">
+            {{#layout-push direction=col classNames="edit-class-card"}}
+                {{#layout-push direction=col classNames="v_pusht"}}
+                        <p class="class-head-title">安排场地</p>
+                        <p class="class-sub-title">请为该班级安排授课场地</p>
+                {{/layout-push}}
+                <select class="select-class">
+                  <option value ="volvo">场地1</option>
+                  <option value ="saab">Saab</option>
+                  <option value="opel">Opel</option>
+                  <option value="audi">Audi</option>
+                </select>
+            {{/layout-push}}
+            {{#layout-push direction=col }}
+                <button class="nav_save_btn menu_button_between" {{action 'arrangeNext'}}>下一步</button>
+                <p class="link-to-creat">尚未添加场地？前往添加场地。</p>
+            {{/layout-push}}
+        </div>
+    </section>
+{{/if}}
+
+{{#if className}}
+    <section id="class-name" class="line_container_mid edit_page_top_margin">
+        <div class="edit-class edit_panel edit_first_panel ">
+            {{#layout-push direction=col classNames="edit-class-card"}}
+                {{#layout-push direction=col classNames="v_pusht"}}
+                    <p class="class-head-title">班级名称</p>
+                    <p class="class-sub-title">请为班级设定名称，方便识别。</p>
+                {{/layout-push}}
+                {{#layout-push direction=col classNames="v_pusht class-name-card"}}
+                    <p> 字数（0/10）</p>
+                    <div class="input-group">
+                      <textarea class="form-control"></textarea>
+                    </div>
+                {{/layout-push}}
+
+            {{/layout-push}}
+        </div>
+    </section>
+{{/if}}
+
+{{#bs-modal open=modal3  onHidden=(action (mut modal3) false) as |modal|}}
+    <div class="class-modal">
+        {{#modal.body}}
+           {{#layout-push direction=col classNames="class-modal-content"}}
+                <p class="class-modal-title">温馨提示：</p>
+                <p>完整的信息能让参与者更加了解您的服务和品牌。</p>
+                <p>班级一旦创建只可更改班级名称，否则需要删除班级之后重新建立，请确定您的课程内容和场地位置无误。</p>
+           {{/layout-push}}
+        {{/modal.body}}
+        {{#modal.footer}}
+          {{#bs-button onClick=(action modal.close) classNames="class-modal-cancel"}}取消{{/bs-button}}
+          {{#bs-button classNames="class-modal-certain" onClick=(action (mut modal4) true)}}确定{{/bs-button}}
+        {{/modal.footer}}
+    </div>
+{{/bs-modal}}
+{{#bs-modal open=modal4  onHidden=(action (mut modal3) false) as |modal|}}
+    <div class="class-modal">
+        {{#modal.body}}
+           {{#layout-push direction=row classNames="class-modal-content"}}
+                <img src="" alt="">
+                <div class="success-info">
+                    <p>成功 创建班級： 班级名称</p>
+                    <p>您可以为前往“班级名称”为该班级安排上课时间与授课教师！</p>
+                </div>
+           {{/layout-push}}
+        {{/modal.body}}
+        {{#modal.footer}}
+          {{#bs-button onClick=(action modal.close) classNames="class-modal-cancel"}}暂不前往{{/bs-button}}
+          {{#bs-button classNames="class-modal-certain"}}立即前往{{/bs-button}}
+        {{/modal.footer}}
+    </div>
+{{/bs-modal}}
+
+{{outlet}}

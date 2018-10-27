@@ -293,6 +293,62 @@
             color: #767A80;
             letter-spacing: 1.3px;
         }
+
+
+        /* 创建体验的样式 */
+
+        .sort-name p{
+            margin-right: 20px;
+            width: 110px;
+            height: 35px;
+            border: 1px solid #6E7CD4;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #6E7CD4;
+            letter-spacing: 2px;
+            line-height: 35px;
+            text-align: center;
+        }
+        p.sort-name-active{
+            color: #fff;
+            background: #6E7CD4;
+        }
+        .sort-sub-name {
+            margin-top: 25px;
+            p {
+                margin-bottom: 10px;
+                font-size: 14px;
+                color: #666666;
+                letter-spacing: 1.4px;
+            }
+            .sort-sub-checkbox {
+                input[type=checkbox] {
+                    display: none;
+                }
+                p {
+                    margin-right: 30px;
+                    margin-bottom: 20px;
+                    width: 80px;
+                    height: 35px;
+                    border: 1px solid #DAD9D9;
+                    border-radius: 4px;
+                    font-size: 14px;
+                    color: #767A80;
+                    letter-spacing: 0.78px;
+                    line-height: 35px;
+                    text-align: center;
+
+                }
+            }
+            .sort-sub-select select{
+                margin-right: 35px;
+                border: 1px solid #DAD9D9;
+                border-radius: 4px;
+                font-size: 14px;
+                color: #767A80;
+                letter-spacing: 2px;
+            }
+        }
     }
     p.link-to-creat {
         margin-top: 20px;
@@ -361,10 +417,15 @@
     background: #FFFFFF00;
     border-right: none;
     padding-top: 88px;
-
+    a.edit_left_menu_title{
+        font-family: $font-brand;
+        font-weight: bold;
+        font-size: 14px;
+        color: #485465;
+        letter-spacing: 2px;
+    }
     .edit_left_menu_mid {
         width: 100%;
-
         display: flex;
         flex-wrap: nowrap;
         justify-content: space-around;

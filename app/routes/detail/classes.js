@@ -1,4 +1,76 @@
 import Route from '@ember/routing/route';
 
 export default Route.extend({
+    model() {
+        return {
+            teacherList:[{
+                name:"张洒",
+                tel:"15188311343"
+            },{
+                name:"张洒",
+                tel:"15188311343"
+            },{
+                name:"张洒",
+                tel:"15188311343"
+            },{
+                name:"张洒",
+                tel:"15188311343"
+            },],
+            courseList:[{
+                courseRank:"第一节",
+                data:"08/08",
+                week:"周二",
+                time:"10：00~12：00",
+                teacherName:"a老师"
+            },{
+                courseRank:"第一节",
+                data:"08/08",
+                week:"周二",
+                time:"10：00~12：00",
+                teacherName:"a老师"
+            },{
+                courseRank:"第一节",
+                data:"08/08",
+                week:"周二",
+                time:"10：00~12：00",
+                teacherName:"a老师"
+            },{
+                courseRank:"第一节",
+                data:"08/08",
+                week:"周二",
+                time:"10：00~12：00",
+                teacherName:"a老师"
+            },{
+                courseRank:"第一节",
+                data:"08/08",
+                week:"周二",
+                time:"10：00~12：00",
+                teacherName:"a老师"
+            },{
+                courseRank:"第一节",
+                data:"08/08",
+                week:"周二",
+                time:"10：00~12：00",
+                teacherName:"a老师"
+            },{
+                courseRank:"第一节",
+                data:"08/08",
+                week:"周二",
+                time:"10：00~12：00",
+                teacherName:"a老师"
+            },{
+                courseRank:"第一节",
+                data:"08/08",
+                week:"周二",
+                time:"10：00~12：00",
+                teacherName:"a老师"
+            },{
+                courseRank:"第一节",
+                data:"08/08",
+                week:"周二",
+                time:"10：00~12：00",
+                teacherName:"a老师"
+            }]
+        }
+    }
 });

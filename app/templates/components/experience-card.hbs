@@ -1,0 +1,16 @@
+{{#layout-push classNames='experience_card'}}
+        {{#layout-push classNames="apply-num" }}
+            <p>10个场次报名中</p>
+        {{/layout-push}}
+        {{#layout-push direction='col' mid=true classNames='experience_card_content'}}
+            {{#layout-push direction='row' classNames='experience_card_content_line'}}
+                <span class="experience_card_title">奇妙的色彩艺术之旅</span>
+            {{/layout-push }}
+            {{#layout-push direction='row' classNames='experience_card_content_line'}}
+                <span class="experience_card_text">类别</span>
+                <span class="experience_card_text">子类别</span>
+            {{/layout-push }}
+    {{/layout-push }}
+{{/layout-push }}
+
+{{yield}}
