@@ -303,6 +303,36 @@
             text-align: center;
         }
     }
+    .delete-course-btn {
+        margin-right: 30px;
+        margin-top: 10px;
+        width: 100px;
+        height: 35px;
+        background: #FFFFFF;
+        border: 1px solid #6E7CD4;
+        border-radius: 4px;
+        font-size: 14px;
+        color: #D3727E;
+        letter-spacing: 2px;
+    }
+    .course-code-btn {
+        margin-top: 10px;
+        width: 150px;
+        height: 35px;
+        border: 1px solid #6E7CD4;
+        border-radius: 4px;
+        font-size: 14px;
+        background: #fff;
+        color: #6E7CD4;
+        letter-spacing: 2px;
+    }
+    .course_detail_panel_role_des {
+        margin-top: 8px;
+        margin-right: 13px;
+        font-size: 12px;
+        color: #767A80;
+        letter-spacing: 1.71px;
+    }
 }
 .class-teacher-card {
     margin-top: 8px;
