@@ -6,12 +6,16 @@
 <div class="yard_content_top" >
     {{#layout-push direction="col" classNames="yard_content"}}
         {{#layout-push direction="row"}}
-            <button class="yard_add_btn" {{action 'addYard'}}>+ 添加场地</button>
+            {{#link-to 'edit.yard' 'yard/push' classNames='yard_add_btn'}}
+                + 添加场地
+            {{/link-to}}
         {{/layout-push}}
 
-        <div class="line_container_warp yard_card_container" >
-            {{yard-card onStudCardClicked=(action 'cardClicked') }}
-        </div>
+        {{#each model.yards as |item|}}
+            <div class="line_container_warp yard_card_container" >
+                {{yard-card onYardCardClicked=(action 'cardClicked') yard=item}}
+            </div>
+        {{/each}}
     {{/layout-push}}
 </div>
 

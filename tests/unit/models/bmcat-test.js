@@ -1,12 +1,13 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
-module('Unit | Controller | detail/yard', function(hooks) {
+module('Unit | Model | bmcat', function(hooks) {
   setupTest(hooks);
 
   // Replace this with your real tests.
   test('it exists', function(assert) {
-    let controller = this.owner.lookup('controller:detail/yard');
-    assert.ok(controller);
+    let store = this.owner.lookup('service:store');
+    let model = store.createRecord('bmcat', {});
+    assert.ok(model);
   });
 });

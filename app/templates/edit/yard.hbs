@@ -4,10 +4,16 @@
     </li>
     <li class="nav-item menu_mid">
         <div class="menu_container">
-            {{#link-to 'home' class="nav_cancel_btn menu_button_between"}}
-                取消
-            {{/link-to}}
-            <button class="nav_save_btn menu_button_between" {{action 'saveChanges'}}>保存</button>
+            {{#if isPushing}}
+                {{#link-to 'yard' class="nav_cancel_btn menu_button_between"}}
+                    取消
+                {{/link-to}}
+            {{else}}
+                {{#link-to 'detail.yard' model.yard.id class="nav_cancel_btn menu_button_between"}}
+                    取消
+                {{/link-to}}
+            {{/if}}
+            <button class="nav_save_btn menu_button_between" {{action 'saveYardBtnClicked'}}>保存</button>
         </div>
     </li>
 </ul>
@@ -81,8 +87,8 @@
             <span class="edit_title">场地描述</span>
         {{/layout-push}}
 
-        {{bm-edit-line title="场地名称" isNeeded=true maxCount=20 pholder="如：东外五十六号创业园" }}
-        {{bm-edit-line title="场地描述" maxCount=400 pholder="您的场地都有哪些类型的空间呢，简单的描述您场地下拥有的空间上数量和功能，能让家长更加了解您的规模和环境，让家长放心。同时贴心的服务也能为您的品牌加分喔！"}}
+        {{bm-edit-line title="场地名称" isNeeded=true maxCount=20 pholder="如：东外五十六号创业园" inputVal=yard_title}}
+        {{bm-edit-line title="场地描述" maxCount=400 pholder="您的场地都有哪些类型的空间呢，简单的描述您场地下拥有的空间上数量和功能，能让家长更加了解您的规模和环境，让家长放心。同时贴心的服务也能为您的品牌加分喔！" inputVal=yard_des}}
     </div>
 
 </section>
@@ -134,8 +140,8 @@
                 </div>
             {{/layout-push}}
         {{/layout-push}}
-        {{bm-edit-line title="小区名，商圈名，校区名等" maxCount=3 pholder="例如：天通苑"}}
-        {{bm-edit-line title="周边交通路线信息" maxCount=100 pholder="例如：天通苑"}}
+        {{bm-edit-line title="小区名，商圈名，校区名等" maxCount=3 pholder="例如：天通苑" inputVal=yard_ardes}}
+        {{bm-edit-line title="周边交通路线信息" maxCount=100 pholder="例如：天通苑" inputVal=yard_around}}
     </div>
 </section>
 

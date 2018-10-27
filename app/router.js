@@ -12,8 +12,8 @@ Router.map(function() {
   this.route('edit', function() {
     this.route('brand');
     this.route('stud', { path: '/:studid' });
-    this.route('tech', { path: '/:techid'});
-    this.route('yard');
+    this.route('tech', { path: '/:techid' });
+    this.route('yard', { path: '/:yardid' });
     this.route('classes');
     this.route('course');
     this.route('course-reserve');
@@ -25,7 +25,7 @@ Router.map(function() {
   this.route('detail', function() {
     this.route('stud', { path: '/:studid' });
     this.route('tech', { path: '/:techid' });
-    this.route('yard');
+    this.route('yard', { path: '/:yardid' });
     this.route('course');
     this.route('classes');
     this.route('course-reserve');
