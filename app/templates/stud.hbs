@@ -10,9 +10,11 @@
         {{/layout-push}}
         <span class="stud_remind">温馨提示：提示新用户在扫码后进入小程序我的页面中进行注册。</span>
 
-        <div class="line_container_warp stud_card_container" >
-            {{stud-card onStudCardClicked=(action 'cardClicked') }}
-        </div>
+        {{#each model.studs as |item|}}
+            <div class="line_container_warp stud_card_container" >
+                {{stud-card onStudCardClicked=(action 'cardClicked') stud=item}}
+            </div>
+        {{/each}}
     {{/layout-push}}
 </div>
 <div local-class="modal-dialog">

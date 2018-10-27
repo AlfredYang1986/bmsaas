@@ -3,19 +3,26 @@
         {{#layout-push direction='col' midt=true }}
             {{#layout-push direction='row' classNames='stud_card_content_line'}}
                 <span class="stud_card_title">姓名: </span>
-                <span class="stud_card_text">王大锤</span>
+                <span class="stud_card_text">{{stud.me.name}}</span>
             {{/layout-push }}
             {{#layout-push direction='row' classNames='stud_card_content_line'}}
                 <span class="stud_card_title">性别: </span>
-                <span class="stud_card_text">男</span>
+                <span class="stud_card_text">
+                    {{#if isFemale}}
+                        女
+                    {{/if}}
+                    {{#if isFemale}}
+                        男
+                    {{/if}}
+                </span>
             {{/layout-push }}
             {{#layout-push direction='row' classNames='stud_card_content_line'}}
                 <span class="stud_card_title">年龄: </span>
-                <span class="stud_card_text">8岁</span>
+                <span class="stud_card_text">{{stud.me.age}}岁</span>
             {{/layout-push }}
             {{#layout-push direction='row' classNames='stud_card_content_line'}}
                 <span class="stud_card_title">电话: </span>
-                <span class="stud_card_text">13720200856</span>
+                <span class="stud_card_text">{{stud.me.contact}}</span>
             {{/layout-push }}
         {{/layout-push }}
     {{/layout-push }}
