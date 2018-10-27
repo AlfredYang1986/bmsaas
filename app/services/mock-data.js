@@ -5,6 +5,7 @@ import { A } from '@ember/array';
 export default Service.extend({
     init() {
         this.sureBrand();
+        this.sureStud();
     },
     store: service(),
     sureBrand() {
@@ -64,6 +65,55 @@ export default Service.extend({
 
             let tmp = A([reward01, reward02, reward03, reward04]);
             brand.set('rewards', tmp);
+        }
+    },
+    sureStud() {
+        console.log('sure stud');
+        let stud_lst = this.store.peekAll('bmstud');
+        if (stud_lst.length == 0) {
+            let dob_stud_01 = this.store.createRecord('date-format', {
+                id: 'i am stud person dob 01',
+                year: 2016,
+                month: 7,
+                day: 1
+            })
+            let person_stud_01 = this.store.createRecord('bmperson', {
+                id: 'i am stud person 01',
+                icon: '../images/stud-normal.png',
+                name: '王大锤',
+                age: 4,
+                gender: 0,
+                contact: '',
+                register_date: new Date(),
+            })
+            person_stud_01.set('dob', dob_stud_01);
+            let stud01 = this.store.createRecord('bmstud', {
+                id: 'i am stud 01',
+                stud: '霍格沃茨' 
+            })
+            stud01.set('me', person_stud_01);
+
+            let dob_stud_02 = this.store.createRecord('date-format', {
+                id: 'i am stud person dob 02',
+                year: 2017,
+                month: 8,
+                day: 1
+            })
+            let person_stud_02 = this.store.createRecord('bmperson', {
+                id: 'i am stud person 02',
+                icon: '../images/stud-normal.png',
+                name: '莫小贝',
+                age: 3,
+                gender: 0,
+                contact: '',
+                register_date: new Date(),
+            })
+            person_stud_02.set('dob', dob_stud_02);
+            let stud02 = this.store.createRecord('bmstud', {
+                id: 'i am stud 02',
+                stud: '霍格沃茨' 
+            })
+            stud02.set('me', person_stud_02);
         }
     }
 });
