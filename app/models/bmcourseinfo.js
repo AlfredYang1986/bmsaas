@@ -10,8 +10,9 @@ export default DS.Model.extend({
     category: DS.belongsTo('bmcat'),
     target: DS.attr('string'),
     planning: DS.attr('string'),
-    content: DS.attr('string'),
+    ccontent: DS.attr('string'),
     imgs: DS.hasMany('bmtagimg'),
     tags: DS.attr(),
     reserve: DS.hasMany('bmreservable'),
+    cls: DS.hasMany('bmclass')
 });

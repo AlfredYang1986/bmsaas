@@ -8,7 +8,7 @@ export default DS.Model.extend({
     length: DS.attr('number'),
     description: DS.attr('string'),
     planning: DS.attr('string'),
-    content: DS.attr('string'),
+    ccontent: DS.attr('string'),
     gains: DS.attr(),
     cover: DS.attr('string'),
     imgs: DS.hasMany('bmtagimg'),
