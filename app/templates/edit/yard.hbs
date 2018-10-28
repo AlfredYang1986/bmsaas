@@ -62,22 +62,18 @@
                     </div>
                 </div>
                 <div class="line_container" >
-                    <select class="start-time" name="">
-                        <option value="">省份</option>
-                        <option value="">2018</option>
-                    </select>
-                    <select class="start-time" name="">
-                        <option value="">城市</option>
-                        <option value="">01</option>
-                    </select>
-                    <select class="start-time" name="">
-                        <option value="">行政区域</option>
-                        <option value="">01</option>
-                    </select>
+                    {{region-choose 
+                        provinces=yard_provinces 
+                        citys=yard_citys 
+                        governmentAreas=yard_government_areas 
+                        model=model.yard
+                        changeProvinces=(action 'changeProvinces')
+                        changeCitys=(action 'changeCitys')
+                        changeGovernmentAreas=(action 'changeGovernmentAreas')}}
                 </div>
             {{/layout-push}}
         {{/layout-push}}
-        {{bm-edit-line pholder="例如：街道门牌号、小区楼号、楼层号" classNames="detail-address"}}
+        {{bm-edit-line pholder="例如：街道门牌号、小区楼号、楼层号" classNames="detail-address" inputVal=model.yard.detail_address}}
     </div>
 </section>
 
@@ -164,6 +160,9 @@
                 {{/layout-push }}
             </div>
         </div>
+        {{!-- 新增认证Cards --}}
+        {{editor-certification-cards data=yard_awards}}
+
     {{/layout-push }}
 </section>
 

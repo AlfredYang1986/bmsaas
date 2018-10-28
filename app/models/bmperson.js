@@ -9,5 +9,6 @@ export default DS.Model.extend({
     contact: DS.attr('string'),
     wechat: DS.attr('string'),
     register_date: DS.attr('Date'),
-    dob: DS.belongsTo('date-format'),
+    // dob: DS.belongsTo('date-format'),
+    dob: DS.attr('date-to-yyyy-mm-dd-hh-mm-ss')
 });
