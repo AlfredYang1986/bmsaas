@@ -1,0 +1,31 @@
+@import 'args';
+
+@import 'class-card';
+
+%class_content_basic {
+    padding-left: 202px;
+}
+
+.class_content_top {
+    @extend %class_content_basic;
+    padding-top: 50px;
+}
+
+.class_content {
+    padding: 32px;
+
+    .class_add_btn {
+        background: #6E7CD4;
+        border-radius: 100px;
+        font-family: $font-nav-acc;
+        font-size: 14px;
+        color: #FFFFFF;
+        letter-spacing: 2px;
+
+        padding: 8px 24px;
+    }
+
+    .class_card_container {
+        margin-top: 20px;
+    }
+}

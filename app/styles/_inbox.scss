@@ -1,0 +1,223 @@
+@import "args";
+
+.time-select {
+    margin-right: 25px;
+    font-family: PingFangSC-Semibold;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+.today {
+    color: #767A80;
+}
+.before {
+    color: #BDBDBE;
+}
+.table-header {
+    margin-top: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    height: 60px;
+    background: #6E7CD4;
+    box-shadow: 2px 2px 6px 0 #CAD5E1;
+    font-family: PingFangSC-Regular;
+    font-size: 12px;
+    color: #FFFFFF;
+    letter-spacing: 1.71px;
+    text-align: center;
+    span {
+        // margin-right: 50px;
+        padding: 0 20px;
+        min-width: 14%;
+        margin-top: 5px;
+    }
+}
+.table-body {
+    padding-left: 40px;
+    padding-right: 40px;
+    min-height: 60px;
+    height: auto;
+    width: 100%;
+    background: #fff;
+    box-shadow: 2px 2px 6px 0 #CAD5E1;
+    font-size: 12px;
+    color: #767A80;
+    letter-spacing: 2px;
+    text-align: center;
+    span {
+        // margin-right: 50px;
+        padding: 0 20px;
+        min-width: 14%;
+        margin-top: 5px;
+    }
+    button.email-option {
+        padding: 0 20px;
+        min-width: 14%;
+        margin-top: 5px;
+        border: none;
+        background: #fff;
+        span {
+            padding:9px 28px;
+            background: #6E7CD4;
+            border: 1px solid #6E7CD4;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #FFFFFF;
+            letter-spacing: 1.71px;
+        }
+
+    }
+
+}
+.inbox-table {
+    div.table-body:nth-child(even) {
+    background: #eff1f9;
+    button.email-option {
+        background: #eff1f9;
+        span {
+            background: rgba(0,0,0,0);
+            color: #6E7CD4;
+        }
+
+    }
+    }
+}
+.course-reserve-pop-ups {
+    margin-left: -107px;
+    width: 714px;
+    height: auto;
+    background: #fff;
+    .course-reserve-modal-title {
+        height: 50px;
+        background:#eff1f9;
+        p.modal-title {
+            font-size: 18px;
+            color: #767A80;
+            letter-spacing: 2.57px;
+        }
+    }
+    .course-reserve-success {
+        width: 580px;
+        height: 323px;
+        .success-info {
+            padding-left: 58px;
+            padding-right: 45px;
+            height: 323px;
+            width: 580px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            img {
+                margin-bottom: 20px;
+                margin-right: 25px;
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+            }
+            p {
+                margin-bottom: 20px;
+                font-size: 14px;
+                color: #767A80;
+                letter-spacing: 3.43px;
+            }
+        }
+    }
+    .course-reserve-modal-body {
+        padding-left: 35px;
+        padding-right: 45px;
+        padding-top: 27px;
+        .course-reserve-content {
+            p {
+                font-size: 14px;
+                color: #767A80;
+                letter-spacing: 2px;
+            }
+            p.course-reserve-title {
+                margin-right: 25px;
+                margin-bottom: 28px;
+                font-weight: bold;
+            }
+            p.course-reserve-label {
+                margin-bottom: 25px;
+                margin-right: 70px;
+                min-width: 60px;
+                text-align: center;
+            }
+            .course-reserve-btn {
+                margin-right: 25px;
+                width: 100px;
+                height: 35px;
+                background: #6E7CD4;
+                border: 1px solid #6E7CD4;
+                border-radius: 4px;
+                font-size: 14px;
+                color: #FFFFFF;
+                letter-spacing: 2px;
+                text-align: center;
+            }
+            .experience-apply-btn {
+                margin-right: 25px;
+                width: 100px;
+                height: 35px;
+                background: #fff;
+                border: 1px solid #6E7CD4;
+                border-radius: 4px;
+                font-size: 14px;
+                color: #6E7CD4;
+                letter-spacing: 2px;
+                text-align: center;
+            }
+            .course-reserve-modal-select {
+                font-size: 14px;
+                color: #767A80;
+                letter-spacing: 2px;
+            }
+            .course-participants {
+                p {
+                    font-size: 13px;
+                    color: #767A80;
+                    letter-spacing: 1.86px;
+                }
+                .course-child {
+                    margin-bottom: 25px;
+                    .course-child-name {
+                        color: #6E7CD4;
+                        margin-left: 15px;
+                        margin-bottom: 15px;
+                    }
+                    .course-child-info p {
+                        margin-left: 15px;
+                        margin-right: 150px;
+                        margin-bottom: 15px;
+                    }
+                }
+
+            }
+        }
+    }
+    .course-reserve-card-cancel {
+        width: 100px;
+        height: 35px;
+        border: 1px solid #6E7CD4;
+        border-radius: 3px;
+        background: #fff;
+        font-size: 14px;
+        color: #6E7CD4;
+        letter-spacing: 2px;
+    }
+    .course-reserve-card-save {
+        width: 100px;
+        height: 35px;
+        border: 1px solid #6E7CD4;
+        border-radius: 3px;
+        background: #6E7CD4;
+        font-size: 14px;
+        color: #fff;
+        letter-spacing: 2px;
+    }
+    .arrangeSuccess {
+        width: 580px;
+        height: 323px;
+        background: #fff;
+    }
+}

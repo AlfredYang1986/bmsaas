@@ -1,0 +1,21 @@
+<div >
+    {{nav-top}}
+    {{left-menu}}
+</div>
+
+<div class="class_content_top" >
+    {{#layout-push direction="col" classNames="class_content"}}
+        {{#layout-push direction="row"}}
+            <button class="class_add_btn" {{action 'createClass'}}>+ 创建班级</button>
+        {{/layout-push}}
+        {{#layout-push direction="row" wrap=true classNames="card-wrap"}}
+            {{#each model.cls as |item|}}
+                <div class="line_container_warp class_card_container" >
+                    {{class-card onClassCardClicked=(action 'cardClicked') cls=item}}
+                </div>
+            {{/each}}
+        {{/layout-push}}
+    {{/layout-push}}
+</div>
+
+{{outlet}}

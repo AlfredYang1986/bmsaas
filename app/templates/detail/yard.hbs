@@ -11,8 +11,8 @@
 
         <div class='detail_panel' >
             {{#layout-push direction='col' }}
-                <span class='detail_panel_ls_heading'>乐高少儿建构教室</span>
-                <span class='detail_panel_ls_subheading'>地址：北京朝阳区东直门外斜街888号</span>
+                <span class='detail_panel_ls_heading'>{{model.yard.title}}</span>
+                <span class='detail_panel_ls_subheading'>地址：{{model.yard.address}}</span>
             {{/layout-push}}
         </div>
 
@@ -28,7 +28,7 @@
                     <div class="v_end" >
                         <span class='detail_panel_title'>场地描述</span> 
                     </div>
-                    {{#link-to 'edit.yard' classNames='detail_panel_edit_btn'}}
+                    {{#link-to 'edit.yard' model.yard.id classNames='detail_panel_edit_btn'}}
                         编辑
                     {{/link-to}}
                 {{/layout-push}}
@@ -37,16 +37,7 @@
             {{#layout-push direction='col' classNames='detail_inner_panel'}}
                 {{#layout-push direction='row' split=true classNames='detail_inner_content_line'}}
                     <span class='detail_inner_left'>
-                        我们的场地遵循国际儿童环境友好性标准，
-                        拥有可供孩子们认真学习的向阳空间10余间，
-                        内置丰富的STEM教学用具，供孩子们尽情展现他们的想象力和动手动力，
-                        餐饮区为孩子们准备了多样精美的水果和点心，当然啦！
-                        我们的餐点也有为来接孩子和参与体验的家长们准备，所有的食物都是用心加工，
-                        保证绝对的干净！娱乐区是孩子们嬉戏玩耍的天堂。
-                        我们将一切的设施家具进行圆角处理，并给予贴心的插图文字提示。
-                        相信孩子们在娱乐区能尽情享受快乐的时光。
-                        我们也有为课后来接送孩子和前来交流的家长们设计舒适的休息区
-                        ～最后期待孩子和您的到来啦！
+                        {{model.yard.description}}
                     </span>
                 {{/layout-push}}
             {{/layout-push}}
@@ -58,7 +49,7 @@
             {{#layout-push direction='col' classNames='detail_inner_panel'}}
                 {{#layout-push direction='row' split=true classNames='detail_inner_content_line'}}
                     <span class='detail_inner_left'>
-                        场地距离地铁六号线两站，步行200右转即达。
+                        {{model.yard.around}}
                     </span>
                 {{/layout-push}}
             {{/layout-push}}
@@ -68,10 +59,9 @@
             {{/layout-push}}
 
             <div class="line_conatainer_warp detail_card_container" >
-                {{detail-card }}
-                {{detail-card }}
-                {{detail-card }}
-                {{detail-card }}
+                {{#each model.yard.imgs as |item|}}
+                    {{detail-card card=item}}
+                {{/each}}
             </div>
 
             {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
@@ -80,9 +70,11 @@
 
             {{#layout-push direction='col' classNames='detail_inner_panel'}}
                 {{#layout-push direction='row' split=true classNames='detail_inner_content_line'}}
+                    {{#each model.yard.facilities as |item|}}
                     <span class='detail_inner_left'>
-                        停车场
+                        {{item}}
                     </span>
+                    {{/each}}
                 {{/layout-push}}
             {{/layout-push}}
 
@@ -91,7 +83,9 @@
             {{/layout-push}}
 
             <div class="line_conatainer_warp detail_card_container" >
-                {{detail-card }}
+                {{#each model.yard.awards as |item|}}
+                    {{detail-card card=item}}
+                {{/each}}
             </div>
         </div>
     </div>

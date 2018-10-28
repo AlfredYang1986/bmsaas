@@ -12,12 +12,12 @@
         </div>
         {{#if expendable}}
             <div class="left_menu_mid">
-                <img class="left_menu_icon" src="../images/fold.png" />
+                <img class="left_menu_icon" src="/images/fold.png" />
             </div>
         {{/if}}
         {{#if expands}}
             <div class="left_menu_mid">
-                <img class="left_menu_icon" src="../images/unfold.png" />
+                <img class="left_menu_icon" src="/images/unfold.png" />
             </div>
         {{/if}}
     </li>
@@ -31,6 +31,28 @@
             <div class="left_menu_mid menu_margin_right">
                 {{#link-to 'stud'}}
                     <span class="left_menu_text">学员</span>
+                {{/link-to}}
+            </div>
+        </li>
+        <li class="left_bar_item">
+            <div class="left_menu_mid menu_margin_right">
+                <img class="left_menu_icon" src="" />
+                {{!-- <img class="left_menu_icon" src="../images/management_normal.png" /> --}}
+            </div>
+            <div class="left_menu_mid menu_margin_right">
+                {{#link-to 'arrange-class'}}
+                    <span class="left_menu_text">排课</span>
+                {{/link-to}}
+            </div>
+        </li>
+        <li class="left_bar_item">
+            <div class="left_menu_mid menu_margin_right">
+                <img class="left_menu_icon" src="" />
+                {{!-- <img class="left_menu_icon" src="../images/management_normal.png" /> --}}
+            </div>
+            <div class="left_menu_mid menu_margin_right">
+                {{#link-to 'classes'}}
+                    <span class="left_menu_text">班级</span>
                 {{/link-to}}
             </div>
         </li>

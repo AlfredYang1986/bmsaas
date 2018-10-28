@@ -1,0 +1,297 @@
+<div >
+    {{nav-top}}
+    {{left-menu}}
+</div>
+
+<div class="detail_content_top" >
+    <div class="detail_page" >
+        {{#link-to 'classes' class="detail_href_ref"}}
+            返回
+        {{/link-to}}
+
+        <div class='detail_panel' >
+            {{#layout-push direction='row' split=true classNames="class-head-card"}}
+                {{#layout-push direction='col' mid=true classNames='left-info'}}
+                    <div >
+                        <p class="headline">{{model.cls.name}}</p>
+                        <p class="sub-title">{{model.cls.course.name}}</p>
+                    </div>
+                    {{#layout-push direction='row' classNames="sites" split=true}}
+                        <p>场地：{{model.cls.yard.address}}</p>
+                        <p>时间：{{arrangedDate}}</p>
+                    {{/layout-push}}
+                {{/layout-push}}
+                {{#layout-push direction="col" classNames="chooses v_end"}}
+                    {{#layout-push direction='col' mid=true classNames="choose-list"}}
+                        <p>更多</p>
+                        {{!-- <a href=""></a>
+                        <a href="" class="delete-class"></a> --}}
+                        {{#bs-button onClick=(action (mut changeClass) true) classNames="change-class-btn"}}修改班名{{/bs-button}}
+                        {{#bs-button onClick=(action (mut deleteClass) true) classNames="delete-class-btn"}}删除班级{{/bs-button}}
+                    {{/layout-push}}
+                {{/layout-push}}
+            {{/layout-push}}
+        </div>
+        {{#bs-modal open=changeClass  onHidden=(action (mut changeClass) false) as |modal|}}
+            <div class="change-class-pop-ups">
+                {{#modal.body classNames="change-class-pop-ups-content"}}
+                    <p>您确定要删除“跆拳道入门A班”的全部班级信息吗？</p>
+                {{/modal.body}}
+                {{#modal.footer}}
+                    {{#bs-button type="success" classNames="edit-teacher-save" onClick=(action modal.submit) }}确定{{/bs-button}}
+                    {{#bs-button onClick=(action modal.close) classNames="edit-teacher-cancel"}}取消{{/bs-button}}
+                {{/modal.footer}}
+            </div>
+        {{/bs-modal}}
+        {{#bs-modal open=deleteClass  onHidden=(action (mut deleteClass) false) as |modal|}}
+            <div class="delete-calss-pop-ups">
+                {{#modal.body classNames=""}}
+                    {{#layout-push direction="col"}}
+                        {{#layout-push direction="row" split=true classNames="pop-ups-head"}}
+                            <p class="pop-ups-head-title">编辑班名</p>
+                            {{#layout-push direction="row"}}
+                                {{#bs-button onClick=(action modal.close) classNames="edit-teacher-cancel"}}取消{{/bs-button}}
+                                {{#bs-button type="success" classNames="edit-teacher-save" onClick=(action modal.submit) }}保存{{/bs-button}}
+                            {{/layout-push}}
+                        {{/layout-push}}
+                        {{#layout-push direction="col" classNames="pop-ups-content"}}
+                            {{#layout-push direction='row'}}
+                                <p>当前名称</p>
+                                <p>跆拳道入门A班</p>
+                            {{/layout-push}}
+                            {{#layout-push direction='row'}}
+                                <p>新名称</p>
+                                <input type="text" name="" value="">
+                            {{/layout-push}}
+                        {{/layout-push}}
+                    {{/layout-push}}
+                {{/modal.body}}
+            </div>
+        {{/bs-modal}}
+        {{#if arrangeClass}}
+            <div class="detail_panel detail_panel_col_between" >
+                <span class='detail_panel_head active' {{action 'arrangeClass'}}>课程安排</span>
+                <span class="detail_panel_head" {{action 'classDetails'}}>班级详情</span>
+                <span class="detail_panel_head" {{action 'traineesLists'}}>学员名单</span>
+            </div>
+            {{#layout-push direction='row'}}
+                    {{#layout-push direction='col' classNames="class-teacher-card"}}
+                        {{#layout-push direction='row' split=true classNames="class-card-head"}}
+                            <p class="class-card-title">教师</p>
+                            <a href="#" class=""></a>
+                            {{#bs-button onClick=(action (mut editTeacherCard) true) classNames="class-card-btn"}}编辑{{/bs-button}}
+                        {{/layout-push}}
+                        {{#each model.teacherList as |item|}}
+                            {{#layout-push direction='row' classNames="class-teacher-list"}}
+                                <img src="../images/stud-normal.png" alt="" class="class-card-head-img">
+                                {{#layout-push direction=col}}
+                                    <p>姓名：{{item.name}}</p>
+                                    <p>电话：{{item.tel}}</p>
+                                {{/layout-push}}
+                            {{/layout-push}}
+                        {{/each}}
+                    {{/layout-push}}
+                    {{#bs-modal open=editTeacherCard  onHidden=(action (mut editTeacherCard) false) as |modal|}}
+                        <div class="edit-teacher-pop-ups">
+                            {{#modal.body classNames=""}}
+                                {{#layout-push direction="col"}}
+                                    {{#layout-push direction="row" split=true classNames="pop-ups-head"}}
+                                        <p class="pop-ups-head-title">添加班级老师</p>
+                                        {{#layout-push direction="row"}}
+                                            {{#bs-button onClick=(action modal.close) classNames="edit-teacher-cancel"}}取消{{/bs-button}}
+                                            {{#bs-button type="success" classNames="edit-teacher-save" onClick=(action modal.submit) }}确定{{/bs-button}}
+                                        {{/layout-push}}
+                                    {{/layout-push}}
+                                    {{#layout-push direction="row" classNames="card-wrap edit-teacher-list"}}
+                                        {{#each model.techs as |item|}}
+                                            <div class="line_container_warp tech_card_container" >
+                                                {{tech-card  tech=item}}
+                                            </div>
+                                        {{/each}}
+                                    {{/layout-push}}
+                                {{/layout-push}}
+                            {{/modal.body}}
+                        </div>
+                    {{/bs-modal}}
+                    {{#layout-push direction='col' classNames="class-arrange-card" classNames="class-course-card"}}
+                        {{#layout-push direction='row' split=true classNames="class-card-head"}}
+                            <p class="class-card-title">课程安排</p>
+                            {{#bs-button onClick=(action 'goToarrangeClass') classNames="class-card-btn"}}排课{{/bs-button}}
+                        {{/layout-push}}
+                        {{#layout-push direction="col"}}
+                            {{#layout-push direction="row"  classNames="class-course-list course-time"}}
+                                <p>时间：08/08日～12/31</p>
+                                <p>共 30 节</p>
+                                <p>共 60 课时</p>
+                            {{/layout-push}}
+                            {{#each model.courseList as |item|}}
+                                {{#layout-push direction="row" split=true classNames="class-course-list"}}
+                                    {{#layout-push direction="row" }}
+                                        <p>{{item.courseRank}}</p>
+                                        <p>{{item.data}} &nbsp;&nbsp; {{item.week}}&nbsp;&nbsp;{{item.time}}</p>
+                                    {{/layout-push}}
+                                    <p>{{item.teacherName}}</p>
+                                {{/layout-push}}
+                            {{/each}}
+                        {{/layout-push}}
+                    {{/layout-push}}
+                {{!-- </div> --}}
+            {{/layout-push}}
+        {{/if}}
+
+        {{#if classDetails}}
+            <div class="detail_panel detail_panel_col_between" >
+                <span class='detail_panel_head ' {{action 'arrangeClass'}}>课程安排</span>
+                <span class="detail_panel_head active" {{action 'classDetails'}}>班级详情</span>
+                <span class="detail_panel_head" {{action 'traineesLists'}}>学员名单</span>
+            </div>
+            <div class="detail_panel detail_panel_col_between">
+                <div class="course-info">
+                    {{#layout-push direction='row'  split=true classNames="line_conatainer_split"}}
+                    {{#layout-push direction="row"}}
+                        <p>课程名称</p>
+                        <p>{{model.cls.course.name}}</p>
+                    {{/layout-push}}
+                    <a class="course-info-change-btn" {{action 'editCourse'}}>编辑</a>
+                    {{/layout-push}}
+                    {{#layout-push direction='row'}}
+                        <p>课程类别</p>
+                        <p>{{model.cls.course.category.cat}}<span>{{model.cls.course.category.sub}}</span></p>
+                    {{/layout-push}}
+                    {{#layout-push direction='row'}}
+                        <p>适应年龄</p>
+                        <p>{{model.cls.course.alb}}-{{model.cls.course.aub}}</p>
+                        <p class="course-sub-title">分级/阶段<span>{{modle.cls.course.level}}</span></p>
+                    {{/layout-push}}
+                    {{#layout-push direction='row'}}
+                        <p>预计课时数</p>
+                        <p>{{model.cls.course.count}}</p>
+                        <p class="course-sub-title">课程时长<span>{{model.cls.course.length}} min</span></p>
+                    {{/layout-push}}
+                    {{#layout-push direction='row'}}
+                        <p>教育理念及模式</p>
+                        {{#layout-push direction='row'}}
+                            {{#each model.cls.course.tags as |item|}}
+                                <p class="course-info-feature">{{item}}</p>
+                            {{/each}}
+                        {{/layout-push}}
+                    {{/layout-push}}
+
+                    {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
+                        <span class='detail_panel_title'>课程目标</span>
+                    {{/layout-push}}
+                    {{#layout-push direction='col' classNames='detail_inner_panel'}}
+                        {{#layout-push direction='col' classNames='detail_inner_content_line'}}
+                            <span class='detail_inner_left'>
+                                {{model.cls.course.target}}
+                            </span>
+                        {{/layout-push}}
+                    {{/layout-push}}
+
+                    {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
+                        <span class='detail_panel_title'>课程计划</span>
+                    {{/layout-push}}
+                    {{#layout-push direction='col' classNames='detail_inner_panel'}}
+                        {{#layout-push direction='col' classNames='detail_inner_content_line'}}
+                            <span class='detail_inner_left'>
+                                {{model.cls.course.planning}}
+                            </span>
+                        {{/layout-push}}
+                    {{/layout-push}}
+
+
+                    {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
+                        <span class='detail_panel_title'>课程内容</span>
+                    {{/layout-push}}
+                    {{#layout-push direction='col' classNames='detail_inner_panel'}}
+                        {{#layout-push direction='col' classNames='detail_inner_content_line'}}
+                            <span class='detail_inner_left'>
+                                {{model.cls.course.ccontent}}
+                            </span>
+                        {{/layout-push}}
+                    {{/layout-push}}
+
+                    {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
+                        <span class='detail_panel_title'>课程图片</span>
+                    {{/layout-push}}
+                    <div class="line_conatainer_warp detail_card_container" >
+                        {{#each model.cls.course.imgs as |item|}}
+                            {{detail-card card=item}}
+                        {{/each}}
+                    </div>
+
+                </div>
+
+            </div>
+        {{/if}}
+
+        {{#if traineesLists}}
+            <div class="detail_panel detail_panel_col_between" >
+                <span class='detail_panel_head' {{action 'arrangeClass'}}>课程安排</span>
+                <span class="detail_panel_head" {{action 'classDetails'}}>班级详情</span>
+                <span class="detail_panel_head active" {{action 'traineesLists'}}>学员名单</span>
+            </div>
+                <div class="detail_panel detail_panel_col_between" >
+                    {{#layout-push direction='row' classNames="add-student"}}
+                        {{#bs-button onClick=(action (mut addStudentCard) true) classNames="add-student-btn"}}添加学员{{/bs-button}}
+                    {{/layout-push}}
+                </div>
+                {{#bs-modal open=addStudentCard  onHidden=(action (mut addStudentCard) false) as |modal|}}
+                    <div class="edit-teacher-pop-ups">
+                        {{#modal.body classNames=""}}
+                            {{#layout-push direction="col"}}
+                                {{#layout-push direction="row" split=true classNames="pop-ups-head"}}
+                                    <p class="pop-ups-head-title">添加班级学员</p>
+                                    {{#layout-push direction="row"}}
+                                        {{#bs-button onClick=(action modal.close) classNames="edit-teacher-cancel"}}取消{{/bs-button}}
+                                        {{#bs-button type="success" classNames="edit-teacher-save" onClick=(action modal.submit) }}确认添加{{/bs-button}}
+                                    {{/layout-push}}
+                                {{/layout-push}}
+                                {{#layout-push direction="row" classNames="card-wrap edit-teacher-list"}}
+                                    {{#each model.studs as |item|}}
+                                        <div class="line_container_warp stud_card_container" >
+                                            {{stud-card stud=item}}
+                                        </div>
+                                    {{/each}}
+                                {{/layout-push}}
+                            {{/layout-push}}
+                        {{/modal.body}}
+                    </div>
+                {{/bs-modal}}
+                <div class="detail_page table-header">
+                    {{#layout-push direction='col'}}
+                        {{#layout-push direction='row' split=true}}
+                            {{#each model.studentTableHead as |item|}}
+                                <span>{{item.title}}</span>
+                            {{/each}}
+                        {{/layout-push}}
+                    {{/layout-push}}
+                </div>
+                <div class="inbox-table">
+                    <div class="detail_page table-body">
+                            {{#layout-push direction='col'}}
+                                {{#layout-push direction='row' split=true}}
+                                    <span class="email-status">jim</span>
+                                    <span class="">女</span>
+                                    <span class="">10</span>
+                                    <span class="">15111311343</span>
+                                {{/layout-push}}
+                            {{/layout-push}}
+                    </div>
+                    <div class="detail_page table-body">
+                            {{#layout-push direction='col'}}
+                                {{#layout-push direction='row' split=true}}
+                                    <span class="email-status">jim</span>
+                                    <span class="">女</span>
+                                    <span class="">10</span>
+                                    <span class="">15111311343</span>
+                                {{/layout-push}}
+                            {{/layout-push}}
+                    </div>
+                </div>
+        {{/if}}
+
+    </div>
+</div>
+
+{{outlet}}

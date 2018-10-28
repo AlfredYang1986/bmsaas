@@ -1,0 +1,86 @@
+<div >
+    {{nav-top}}
+    {{left-menu}}
+</div>
+<div class="detail_content_top">
+    <div class="detail_page">
+        {{#link-to 'experienceOpen' class="detail_href_ref"}}体验开放{{/link-to}}
+        {{#link-to 'detail.experience' model.act.id class="detail_href_ref"}}>场次安排 {{/link-to}}
+        {{#link-to 'detail.actarrangement' model.act.id model.period.id class="detail_href_ref"}}>场次详情 {{/link-to}}
+        <div class='detail_panel' >
+            {{#layout-push direction='row' split=true classNames="class-head-card"}}
+                {{#layout-push direction='col' mid=true classNames='left-info'}}
+                    <div >
+                        <p class="headline">{{model.act.name}}</p>
+                        <p class="sub-title">{{model.act.cat}}</p>
+                    </div>
+                    {{#layout-push direction='row' classNames="sites" split=true}}
+                        <p>场地：{{address}}</p>
+                        <p>时间：{{start_time}} --- {{end_time}} </p>
+                    {{/layout-push}}
+                {{/layout-push}}
+                {{#layout-push direction="col" classNames="chooses v_end"}}
+                    {{#layout-push direction='col' mid=true classNames="choose-list"}}
+                        <p>更多</p>
+                        <a href="">修改班名</a>
+                        <a href="" class="delete-class">删除班级</a>
+                    {{/layout-push}}
+                {{/layout-push}}
+            {{/layout-push}}
+        </div>
+        <div class="detail_page table-header">
+            {{#layout-push direction='col'}}
+                {{#layout-push direction='row' split=true}}
+                    {{#each model.title as |item|}}
+                        <span>{{item.title}}</span>
+                    {{/each}}
+                {{/layout-push}}
+            {{/layout-push}}
+        </div>
+        <div class="inbox-table">
+            <div class="detail_page table-body">
+                    {{#layout-push direction='col'}}
+                        {{#layout-push direction='row' split=true}}
+                            <span class="email-status">已到</span>
+                            <span class="">王大錘</span>
+                            <span class="">2006/12/12</span>
+                            <span class="">男孩</span>
+                            <span class="">184 9382 7483</span>
+                            <span class="">小程序</span>
+                            {{#bs-button classNames="email-option" onClick=(action (mut experPopUps) true)}}<span>签到</span>{{/bs-button}}
+                        {{/layout-push}}
+                    {{/layout-push}}
+            </div>
+            <div class="detail_page table-body">
+                    {{#layout-push direction='col'}}
+                        {{#layout-push direction='row' split=true}}
+                            <span class="email-status">已到</span>
+                            <span class="">王大錘</span>
+                            <span class="">2006/12/12</span>
+                            <span class="">男孩</span>
+                            <span class="">184 9382 7483</span>
+                            <span class="">小程序</span>
+                            {{#bs-button classNames="email-option" onClick=(action (mut modal3) true)}}<span>签到</span>{{/bs-button}}
+                        {{/layout-push}}
+                    {{/layout-push}}
+            </div>
+        </div>
+    </div>
+</div>
+{{#bs-modal open=experPopUps  onHidden=(action (mut experPopUps) false) as |modal|}}
+    <div class="course-reserve-pop-ups">
+        {{#modal.header classNames="course-reserve-modal-title"}}
+          <p class="modal-title">
+            体验详情
+         </p>
+        {{/modal.header}}
+        {{#modal.body classNames="course-reserve-modal-body"}}
+            {{exper-detail-pop-ups}}
+        {{/modal.body}}
+        {{#modal.footer}}
+          {{#bs-button onClick=(action modal.close) classNames="course-reserve-card-cancel"}}删除{{/bs-button}}
+          {{#bs-button type="success" classNames="course-reserve-card-save" onClick=(action modal.submit) }}签到{{/bs-button}}
+        {{/modal.footer}}
+    </div>
+{{/bs-modal}}
+{{outlet}}

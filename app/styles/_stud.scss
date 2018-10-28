@@ -13,28 +13,36 @@
 .modal-dialog {
     margin-top: 150px;
     .modal-content {
+        background: transparent;
+        border:none;
+    }
+    .stud-modal {
+        padding-top: 40px;
+        margin-left: 85px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding-top: 40px;
         height: 463px;
-        width: 331px;
-        img {
-            width: 237px;
-            height: 237px;
-            background: red;
-            border: 1px solid #979797;
+        width: 330px;
+        background: #fff;
+        .stud-modal-body {
+            img {
+                width: 237px;
+                height: 237px;
+                background: red;
+                border: 1px solid #979797;
+            }
+            p {
+                margin-top: 29px;
+                text-align: center;
+                font-family: PingFangSC-Medium;
+                font-size: 18px;
+                color: #767A80;
+                letter-spacing: 1.5px;
+            }
         }
-        p {
-            margin-top: 29px;
-            text-align: center;
-            font-family: PingFangSC-Medium;
-            font-size: 18px;
-            color: #767A80;
-            letter-spacing: 1.5px;
-        }
-        .modal-footer {
+        .stud-modal-footer {
             display: flex;
             justify-content: space-between;
             width: 237px;
@@ -81,6 +89,8 @@
         border-radius: 100px;
 
         padding: 8px 9px;
+        margin-right: 20px;
+        min-width: 135px;
     }
 
     .stud_remind {
@@ -91,8 +101,8 @@
 
         margin-top: 16px;
     }
-
     .stud_card_container {
+        width: 260px;
         margin-top: 16px;
     }
 }

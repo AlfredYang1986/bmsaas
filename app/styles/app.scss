@@ -7,9 +7,17 @@
 @import "detail";
 @import "tech";
 @import "yard";
+@import "inbox";
+@import "classes";
+@import "course";
+@import "arrange-class";
+@import "experience-open";
 
 body {
     background-color: #FAFBFE
+}
+p {
+    margin-bottom: 0;
 }
 
 .v_mid {
@@ -63,4 +71,15 @@ body {
 
 .line_half {
     width: 46%;
+}
+
+.required {
+    font-size: 12px;
+    color: #D3727E;
+    letter-spacing: 0.86px;
+}
+.card-wrap {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }

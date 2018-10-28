@@ -3,11 +3,19 @@
     {{left-menu}}
 </div>
 
-<div class="tech_content_top" >
-    {{#layout-push direction="col" classNames="tech_content"}}
+<div class="course_content_top" >
+    {{#layout-push direction="col" classNames="course_content"}}
         {{#layout-push direction="row"}}
-            <button class="tech_add_btn">+ 添加课程</button>
+            <p class="course_add_btn" {{action 'addCourse'}}>+ 添加课程</p>
         {{/layout-push}}
+        {{#layout-push direction="row" wrap=true classNames="card-wrap"}}
+            {{#each model.course as |item|}}
+                <div class="line_container_warp course_card_container" >
+                    {{course-card onCourseCardClicked=(action 'cardClicked') course=item}}
+                </div>
+            {{/each}}
+        {{/layout-push}}
+
     {{/layout-push}}
 </div>
 
