@@ -78,3 +78,8 @@ p {
     color: #D3727E;
     letter-spacing: 0.86px;
 }
+.card-wrap {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}

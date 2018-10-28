@@ -7,7 +7,7 @@
             {{#link-to 'home' class="nav_cancel_btn menu_button_between"}}
                 取消
             {{/link-to}}
-            {{#bs-button class="nav_save_btn menu_button_between" onClick=(action (mut modal3) true)}}创建{{/bs-button}}
+            {{#bs-button class="nav_save_btn menu_button_between" onClick=(action (mut pointPopUp) true)}}创建{{/bs-button}}
         </div>
     </li>
 </ul>
@@ -86,7 +86,7 @@
                 {{#layout-push direction=col classNames="v_pusht class-name-card"}}
                     <p> 字数（0/10）</p>
                     <div class="input-group">
-                      <textarea class="form-control"></textarea>
+                      <input type="text" name="" value="">
                     </div>
                 {{/layout-push}}
 
@@ -95,7 +95,7 @@
     </section>
 {{/if}}
 
-{{#bs-modal open=modal3  onHidden=(action (mut modal3) false) as |modal|}}
+{{#bs-modal open=pointPopUp onSubmit=(action "successPopUps")  onHidden=(action (mut pointPopUp) false) as |modal|}}
     <div class="class-modal">
         {{#modal.body}}
            {{#layout-push direction=col classNames="class-modal-content"}}
@@ -106,15 +106,15 @@
         {{/modal.body}}
         {{#modal.footer}}
           {{#bs-button onClick=(action modal.close) classNames="class-modal-cancel"}}取消{{/bs-button}}
-          {{#bs-button classNames="class-modal-certain" onClick=(action (mut modal4) true)}}确定{{/bs-button}}
+          {{#bs-button classNames="class-modal-certain" onClick=(action modal.submit)}}确定{{/bs-button}}
         {{/modal.footer}}
     </div>
 {{/bs-modal}}
-{{#bs-modal open=modal4  onHidden=(action (mut modal3) false) as |modal|}}
+{{#bs-modal open=successPopUp  onHidden=(action (mut successPopUp) false) as |modal|}}
     <div class="class-modal">
         {{#modal.body}}
-           {{#layout-push direction=row classNames="class-modal-content"}}
-                <img src="" alt="">
+           {{#layout-push direction='row' classNames="class-modal-content"}}
+                <img src="../images/success.png" alt="">
                 <div class="success-info">
                     <p>成功 创建班級： 班级名称</p>
                     <p>您可以为前往“班级名称”为该班级安排上课时间与授课教师！</p>

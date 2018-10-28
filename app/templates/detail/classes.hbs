@@ -24,12 +24,50 @@
                 {{#layout-push direction="col" classNames="chooses v_end"}}
                     {{#layout-push direction='col' mid=true classNames="choose-list"}}
                         <p>更多</p>
-                        <a href="">修改班名</a>
-                        <a href="" class="delete-class">删除班级</a>
+                        {{!-- <a href=""></a>
+                        <a href="" class="delete-class"></a> --}}
+                        {{#bs-button onClick=(action (mut changeClass) true) classNames="change-class-btn"}}修改班名{{/bs-button}}
+                        {{#bs-button onClick=(action (mut deleteClass) true) classNames="delete-class-btn"}}删除班级{{/bs-button}}
                     {{/layout-push}}
                 {{/layout-push}}
             {{/layout-push}}
         </div>
+        {{#bs-modal open=changeClass  onHidden=(action (mut changeClass) false) as |modal|}}
+            <div class="change-class-pop-ups">
+                {{#modal.body classNames="change-class-pop-ups-content"}}
+                    <p>您确定要删除“跆拳道入门A班”的全部班级信息吗？</p>
+                {{/modal.body}}
+                {{#modal.footer}}
+                    {{#bs-button type="success" classNames="edit-teacher-save" onClick=(action modal.submit) }}确定{{/bs-button}}
+                    {{#bs-button onClick=(action modal.close) classNames="edit-teacher-cancel"}}取消{{/bs-button}}
+                {{/modal.footer}}
+            </div>
+        {{/bs-modal}}
+        {{#bs-modal open=deleteClass  onHidden=(action (mut deleteClass) false) as |modal|}}
+            <div class="delete-calss-pop-ups">
+                {{#modal.body classNames=""}}
+                    {{#layout-push direction="col"}}
+                        {{#layout-push direction="row" split=true classNames="pop-ups-head"}}
+                            <p class="pop-ups-head-title">编辑班名</p>
+                            {{#layout-push direction="row"}}
+                                {{#bs-button onClick=(action modal.close) classNames="edit-teacher-cancel"}}取消{{/bs-button}}
+                                {{#bs-button type="success" classNames="edit-teacher-save" onClick=(action modal.submit) }}保存{{/bs-button}}
+                            {{/layout-push}}
+                        {{/layout-push}}
+                        {{#layout-push direction="col" classNames="pop-ups-content"}}
+                            {{#layout-push direction='row'}}
+                                <p>当前名称</p>
+                                <p>跆拳道入门A班</p>
+                            {{/layout-push}}
+                            {{#layout-push direction='row'}}
+                                <p>新名称</p>
+                                <input type="text" name="" value="">
+                            {{/layout-push}}
+                        {{/layout-push}}
+                    {{/layout-push}}
+                {{/modal.body}}
+            </div>
+        {{/bs-modal}}
         {{#if arrangeClass}}
             <div class="detail_panel detail_panel_col_between" >
                 <span class='detail_panel_head active' {{action 'arrangeClass'}}>课程安排</span>
@@ -40,7 +78,8 @@
                     {{#layout-push direction='col' classNames="class-teacher-card"}}
                         {{#layout-push direction='row' split=true classNames="class-card-head"}}
                             <p class="class-card-title">教师</p>
-                            <a href="#" class="class-card-btn">编辑</a>
+                            <a href="#" class=""></a>
+                            {{#bs-button onClick=(action (mut editTeacherCard) true) classNames="class-card-btn"}}编辑{{/bs-button}}
                         {{/layout-push}}
                         {{#each model.teacherList as |item|}}
                             {{#layout-push direction='row' classNames="class-teacher-list"}}
@@ -52,10 +91,32 @@
                             {{/layout-push}}
                         {{/each}}
                     {{/layout-push}}
+                    {{#bs-modal open=editTeacherCard  onHidden=(action (mut editTeacherCard) false) as |modal|}}
+                        <div class="edit-teacher-pop-ups">
+                            {{#modal.body classNames=""}}
+                                {{#layout-push direction="col"}}
+                                    {{#layout-push direction="row" split=true classNames="pop-ups-head"}}
+                                        <p class="pop-ups-head-title">添加班级老师</p>
+                                        {{#layout-push direction="row"}}
+                                            {{#bs-button onClick=(action modal.close) classNames="edit-teacher-cancel"}}取消{{/bs-button}}
+                                            {{#bs-button type="success" classNames="edit-teacher-save" onClick=(action modal.submit) }}确定{{/bs-button}}
+                                        {{/layout-push}}
+                                    {{/layout-push}}
+                                    {{#layout-push direction="row" classNames="card-wrap edit-teacher-list"}}
+                                        {{#each model.techs as |item|}}
+                                            <div class="line_container_warp tech_card_container" >
+                                                {{tech-card  tech=item}}
+                                            </div>
+                                        {{/each}}
+                                    {{/layout-push}}
+                                {{/layout-push}}
+                            {{/modal.body}}
+                        </div>
+                    {{/bs-modal}}
                     {{#layout-push direction='col' classNames="class-arrange-card" classNames="class-course-card"}}
                         {{#layout-push direction='row' split=true classNames="class-card-head"}}
                             <p class="class-card-title">课程安排</p>
-                            <a href="../arrange-class" class="class-card-btn">排课</a>
+                            {{#bs-button onClick=(action 'goToarrangeClass') classNames="class-card-btn"}}排课{{/bs-button}}
                         {{/layout-push}}
                         {{#layout-push direction="col"}}
                             {{#layout-push direction="row"  classNames="class-course-list course-time"}}
@@ -194,6 +255,72 @@
                 </div>
 
             </div>
+        {{/if}}
+
+        {{#if traineesLists}}
+            <div class="detail_panel detail_panel_col_between" >
+                <span class='detail_panel_head' {{action 'arrangeClass'}}>课程安排</span>
+                <span class="detail_panel_head" {{action 'classDetails'}}>班级详情</span>
+                <span class="detail_panel_head active" {{action 'traineesLists'}}>学员名单</span>
+            </div>
+                <div class="detail_panel detail_panel_col_between" >
+                    {{#layout-push direction='row' classNames="add-student"}}
+                        {{#bs-button onClick=(action (mut addStudentCard) true) classNames="add-student-btn"}}添加学员{{/bs-button}}
+                    {{/layout-push}}
+                </div>
+                {{#bs-modal open=addStudentCard  onHidden=(action (mut addStudentCard) false) as |modal|}}
+                    <div class="edit-teacher-pop-ups">
+                        {{#modal.body classNames=""}}
+                            {{#layout-push direction="col"}}
+                                {{#layout-push direction="row" split=true classNames="pop-ups-head"}}
+                                    <p class="pop-ups-head-title">添加班级学员</p>
+                                    {{#layout-push direction="row"}}
+                                        {{#bs-button onClick=(action modal.close) classNames="edit-teacher-cancel"}}取消{{/bs-button}}
+                                        {{#bs-button type="success" classNames="edit-teacher-save" onClick=(action modal.submit) }}确认添加{{/bs-button}}
+                                    {{/layout-push}}
+                                {{/layout-push}}
+                                {{#layout-push direction="row" classNames="card-wrap edit-teacher-list"}}
+                                    {{#each model.studs as |item|}}
+                                        <div class="line_container_warp stud_card_container" >
+                                            {{stud-card stud=item}}
+                                        </div>
+                                    {{/each}}
+                                {{/layout-push}}
+                            {{/layout-push}}
+                        {{/modal.body}}
+                    </div>
+                {{/bs-modal}}
+                <div class="detail_page table-header">
+                    {{#layout-push direction='col'}}
+                        {{#layout-push direction='row' split=true}}
+                            {{#each model.studentTableHead as |item|}}
+                                <span>{{item.title}}</span>
+                            {{/each}}
+                        {{/layout-push}}
+                    {{/layout-push}}
+                </div>
+                <div class="inbox-table">
+                    <div class="detail_page table-body">
+                            {{#layout-push direction='col'}}
+                                {{#layout-push direction='row' split=true}}
+                                    <span class="email-status">jim</span>
+                                    <span class="">女</span>
+                                    <span class="">10</span>
+                                    <span class="">15111311343</span>
+                                {{/layout-push}}
+                            {{/layout-push}}
+                    </div>
+                    <div class="detail_page table-body">
+                            {{#layout-push direction='col'}}
+                                {{#layout-push direction='row' split=true}}
+                                    <span class="email-status">jim</span>
+                                    <span class="">女</span>
+                                    <span class="">10</span>
+                                    <span class="">15111311343</span>
+                                {{/layout-push}}
+                            {{/layout-push}}
+                    </div>
+                </div>
         {{/if}}
 
     </div>

@@ -39,57 +39,139 @@
                 {{/layout-push}}
             {{/layout-push}}
         </div>
-        <div class="detail_panel detail_panel_col_between" >
-            {{#layout-push direction='row'}}
-                    <div class="time-select today">
-                        <p>场次安排</p>
-                    </div>
-                    <div class="time-select today">
-                        <p>活动详情</p>
-                    </div>
-            {{/layout-push}}
-        </div>
-        <div class="detail_page table-header">
-            {{#layout-push direction='col'}}
-                {{#layout-push direction='row' split=true}}
-                    {{#each model as |item|}}
-                        <span>{{item.title}}</span>
-                    {{/each}}
+        {{#if sessionArrange}}
+            <div class="detail_panel detail_panel_col_between" >
+                {{#layout-push direction='row'}}
+                        <div class="time-select today">
+                            <p class="active" {{action 'sessionArrange'}}>场次安排</p>
+                        </div>
+                        <div class="time-select today">
+                            <p class="" {{action 'activityDetail'}}>体验详情</p>
+                        </div>
                 {{/layout-push}}
-            {{/layout-push}}
-        </div>
-        <div class="inbox-table">
-            <div class="detail_page table-body">
-                    {{#layout-push direction='col'}}
-                        {{#layout-push direction='row' split=true  onClick=(action 'viewExperDetail')}}
-                            <span class="email-status" {{action 'viewExperDetail'}}>01</span>
-                            <span class="">08/03（周五）10:30</span>
-                            <span class="">北京朝阳区东外56号文创产业园111座</span>
-                            <span class="">20/100</span>
-                            <span class="apply-status-open">开放</span>
-                            {{#layout-push direction='row'}}
-                                {{#bs-button classNames="email-option" onClick=(action (mut modal3) true)}}<span>停止报名</span>{{/bs-button}}
-                                {{#bs-button classNames="email-option" onClick=(action (mut modal3) true)}}<span>更多</span>{{/bs-button}}
+            </div>
+            <div class="detail_page table-header">
+                {{#layout-push direction='col'}}
+                    {{#layout-push direction='row' split=true}}
+                        {{#each model as |item|}}
+                            <span>{{item.title}}</span>
+                        {{/each}}
+                    {{/layout-push}}
+                {{/layout-push}}
+            </div>
+            <div class="inbox-table">
+                <div class="detail_page table-body">
+                        {{#layout-push direction='col'}}
+                            {{#layout-push direction='row' split=true  onClick=(action 'viewExperDetail')}}
+                                <span class="email-status" {{action 'viewExperDetail'}}>01</span>
+                                <span class="">08/03（周五）10:30</span>
+                                <span class="">北京朝阳区东外56号文创产业园111座</span>
+                                <span class="">20/100</span>
+                                <span class="apply-status-open">开放</span>
+                                {{#layout-push direction='row'}}
+                                    {{#bs-button classNames="email-option" onClick=(action (mut modal3) true)}}<span>停止报名</span>{{/bs-button}}
+                                    {{#bs-button classNames="email-option" onClick=(action (mut modal3) true)}}<span>更多</span>{{/bs-button}}
+                                {{/layout-push}}
                             {{/layout-push}}
                         {{/layout-push}}
-                    {{/layout-push}}
-            </div>
-            <div class="detail_page table-body">
-                    {{#layout-push direction='col'}}
-                        {{#layout-push direction='row' split=true}}
-                            <span class="email-status">02</span>
-                            <span class="">08/03（周五）10:30</span>
-                            <span class="">北京朝阳区东外56号文创产业园111座</span>
-                            <span class="">20/100</span>
-                            <span class="apply-status-close">关闭</span>
-                            {{#layout-push direction='row'}}
-                                {{#bs-button classNames="email-option" onClick=(action (mut modal3) true)}}<span>停止报名</span>{{/bs-button}}
-                                {{#bs-button classNames="email-option" onClick=(action (mut modal3) true)}}<span>更多</span>{{/bs-button}}
+                </div>
+                <div class="detail_page table-body">
+                        {{#layout-push direction='col'}}
+                            {{#layout-push direction='row' split=true}}
+                                <span class="email-status">02</span>
+                                <span class="">08/03（周五）10:30</span>
+                                <span class="">北京朝阳区东外56号文创产业园111座</span>
+                                <span class="">20/100</span>
+                                <span class="apply-status-close">关闭</span>
+                                {{#layout-push direction='row'}}
+                                    {{#bs-button classNames="email-option" onClick=(action (mut modal3) true)}}<span>停止报名</span>{{/bs-button}}
+                                    {{#bs-button classNames="email-option" onClick=(action (mut modal3) true)}}<span>更多</span>{{/bs-button}}
+                                {{/layout-push}}
                             {{/layout-push}}
                         {{/layout-push}}
-                    {{/layout-push}}
+                </div>
             </div>
-        </div>
+        {{/if}}
+
+        {{#if activityDetail}}
+            <div class="detail_panel detail_panel_col_between" >
+                {{#layout-push direction='row'}}
+                        <div class="time-select today">
+                            <p class="" {{action 'sessionArrange'}}>场次安排</p>
+                        </div>
+                        <div class="time-select today">
+                            <p class="active" {{action 'activityDetail'}}>体验详情</p>
+                        </div>
+                {{/layout-push}}
+            </div>
+            <div class="detail_panel detail_panel_col_between">
+                <div class="course-info">
+                    {{#layout-push direction='row'  split=true classNames="line_conatainer_split"}}
+                        {{#layout-push direction="row"}}
+                            <p>主题</p>
+                            <p>乐高机器人设计搭建课</p>
+                        {{/layout-push}}
+                        <a class="course-info-change-btn">编辑</a>
+                    {{/layout-push}}
+                    {{#layout-push direction='row'}}
+                        <p>分类</p>
+                        <p>体验课</p>
+                    {{/layout-push}}
+                    {{#layout-push direction='row'}}
+                        <p>适应年龄</p>
+                        <p>6~12</p>
+                    {{/layout-push}}
+                    {{#layout-push direction='row'}}
+                        <p>体验时长</p>
+                        <p>240 min</p>
+                    {{/layout-push}}
+                    
+                    {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
+                        <span class='detail_panel_title'>课程目标</span>
+                    {{/layout-push}}
+                    {{#layout-push direction='col' classNames='detail_inner_panel'}}
+                        {{#layout-push direction='col' classNames='detail_inner_content_line'}}
+                            <span class='detail_inner_left'>
+                                {{model.course.target}}
+                            </span>
+                        {{/layout-push}}
+                    {{/layout-push}}
+
+                    {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
+                        <span class='detail_panel_title'>课程计划</span>
+                    {{/layout-push}}
+                    {{#layout-push direction='col' classNames='detail_inner_panel'}}
+                        {{#layout-push direction='col' classNames='detail_inner_content_line'}}
+                            <span class='detail_inner_list'>
+                                {{model.course.planning}}
+                            </span>
+                        {{/layout-push}}
+                    {{/layout-push}}
+
+
+                    {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
+                        <span class='detail_panel_title'>课程内容</span>
+                    {{/layout-push}}
+                    {{#layout-push direction='col' classNames='detail_inner_panel'}}
+                        {{#layout-push direction='col' classNames='detail_inner_content_line'}}
+                            <span class='detail_inner_content'>
+                                {{model.course.content}}
+                            </span>
+                        {{/layout-push}}
+                    {{/layout-push}}
+
+                    {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
+                        <span class='detail_panel_title'>课程图片</span>
+                    {{/layout-push}}
+                    <div class="line_conatainer_warp detail_card_container" >
+                        {{#each model.course.imgs as |item|}}
+                            {{detail-card card=item}}
+                        {{/each}}
+                    </div>
+                </div>
+
+            </div>
+        {{/if}}
     </div>
 </div>
 {{outlet}}
