@@ -1,16 +1,16 @@
 {{#layout-push direction=col split=true mid=true classNames="class-card"}}
     {{#layout-push direction=col}}
-        <p class="headline">乐高机器人搭建Ａ班</p>
-        <p class="secondary-title">乐高机器人设计搭建课</p>
+        <p class="headline">{{cls.name}}</p>
+        <p class="secondary-title">{{cls.course.name}}</p>
     {{/layout-push}}
     {{#layout-push direction=col}}
         {{#layout-push direction=row classNames="list"}}
             <img src="../images/coursebooking_selected.png" alt="">
-            <p>2018/07/20–2018/12/31</p>
+            <p>{{arrangedDate}}</p>
         {{/layout-push}}
         {{#layout-push direction=row classNames="list"}}
             <img src="../images/activities_selected.png" alt="">
-            <p>北京东直门东外56号文创产业园</p>
+            <p>{{cls.yard.address}}</p>
         {{/layout-push}}
         {{#layout-push direction=row classNames="stud"}}
             <img src="../images/cover_pic.jpg" alt="">

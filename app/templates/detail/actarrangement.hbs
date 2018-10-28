@@ -6,17 +6,17 @@
     <div class="detail_page">
         {{#link-to 'experienceOpen' class="detail_href_ref"}}体验开放{{/link-to}}
         {{#link-to 'detail.experience' model.act.id class="detail_href_ref"}}>场次安排 {{/link-to}}
-        {{#link-to 'detail.experience-detail' model.act.id class="detail_href_ref"}}>场次详情 {{/link-to}}
+        {{#link-to 'detail.actarrangement' model.act.id model.period.id class="detail_href_ref"}}>场次详情 {{/link-to}}
         <div class='detail_panel' >
             {{#layout-push direction='row' split=true classNames="class-head-card"}}
                 {{#layout-push direction='col' mid=true classNames='left-info'}}
                     <div >
-                        <p class="headline">跆拳道入门Ａ班</p>
-                        <p class="sub-title">课程名称</p>
+                        <p class="headline">{{model.act.name}}</p>
+                        <p class="sub-title">{{model.act.cat}}</p>
                     </div>
                     {{#layout-push direction='row' classNames="sites" split=true}}
-                        <p>场地：道观1场地</p>
-                        <p>时间：尚未安排</p>
+                        <p>场地：{{address}}</p>
+                        <p>时间：{{start_time}} --- {{end_time}} </p>
                     {{/layout-push}}
                 {{/layout-push}}
                 {{#layout-push direction="col" classNames="chooses v_end"}}
@@ -31,7 +31,7 @@
         <div class="detail_page table-header">
             {{#layout-push direction='col'}}
                 {{#layout-push direction='row' split=true}}
-                    {{#each model as |item|}}
+                    {{#each model.title as |item|}}
                         <span>{{item.title}}</span>
                     {{/each}}
                 {{/layout-push}}

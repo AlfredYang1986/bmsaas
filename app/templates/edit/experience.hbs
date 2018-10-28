@@ -1,13 +1,20 @@
 <ul class="nav">
     <li class="nav-item">
-        <a class="nav-link active brand_name" href="#">创建班级</a>
+        <a class="nav-link active brand_name" href="#">创建体验</a>
     </li>
     <li class="nav-item menu_mid">
         <div class="menu_container">
-            {{#link-to 'home' class="nav_cancel_btn menu_button_between"}}
-                取消
-            {{/link-to}}
-            {{#bs-button class="nav_save_btn menu_button_between" onClick=(action (mut modal4) true)}}创建{{/bs-button}}
+            {{#if isPushing}}
+                {{#link-to 'experienceOpen' class="nav_cancel_btn menu_button_between"}}
+                    取消
+                {{/link-to}}
+                {{#bs-button class="nav_save_btn menu_button_between" onClick=(action (mut modal4) true)}}创建{{/bs-button}}
+            {{else}}
+                {{#link-to 'detail.experience' model.act.id class="nav_cancel_btn menu_button_between"}}
+                    取消
+                {{/link-to}}
+                {{#bs-button class="nav_save_btn menu_button_between" onClick=(action (mut modal4) true)}}保存{{/bs-button}}
+            {{/if}}
         </div>
     </li>
 </ul>
@@ -147,7 +154,7 @@
                         <p class="class-head-title">为“体验”起个名称吧 ！</p>
                         <p class="class-sub-title">标题应该简短、具描述性、激动人心</p>
                 {{/layout-push}}
-                {{bm-edit-line title="标题" isNeeded=true maxCount=20}}
+                {{bm-edit-line title="标题" isNeeded=true maxCount=20 inputVal=model.act.name}}
                 {{#layout-push direction="col" classNames="exper-age"}}
                     <p>适宜年龄</p>
                     {{#layout-push direction="row" classNames="selece-exper-age"}}
@@ -167,7 +174,7 @@
                         </select>
                         <p class="no-age-limit"><input type="checkbox" name="vehicle" value="赛事"/>无年龄限制</p>
                     {{/layout-push}}
-                    {{bm-edit-line title="体验时常" isNeeded=true maxCount=20 classNames='line_half duration'}}
+                    {{bm-edit-line title="体验时常" isNeeded=true maxCount=20 classNames='line_half duration' inputVal=model.act.length}}
                 {{/layout-push}}
 
             {{/layout-push}}
@@ -193,7 +200,7 @@
                     {{/layout-push}}
 
                     <div class="input-group">
-                      <textarea class="form-control"></textarea>
+                      <textarea class="form-control" value={{model.act.description}}></textarea>
                     </div>
                 {{/layout-push}}
 
@@ -204,7 +211,7 @@
                     {{/layout-push}}
 
                     <div class="input-group">
-                      <textarea class="form-control"></textarea>
+                      <textarea class="form-control" inputVal={{model.act.planning}}></textarea>
                     </div>
                 {{/layout-push}}
             {{/layout-push}}
@@ -231,7 +238,7 @@
                     {{/layout-push}}
 
                     <div class="input-group">
-                      <textarea class="form-control"></textarea>
+                      <textarea class="form-control" inputVal={{model.act.content}}></textarea>
                     </div>
                 {{/layout-push}}
             {{/layout-push}}
@@ -396,7 +403,7 @@
                     <p class="class-sub-title">请设身处地为参与者着想。有些信息可能显而易见，不过详细说明可以让参与者做好充分准备。如：着装建议、身体情况限制、需家长陪同、 接送说明等注意事项。</p>
                 {{/layout-push}}
                 {{#layout-push direction='col' }}
-                    {{bm-edit-area maxCount=20}}
+                    {{bm-edit-area maxCount=20 inputVal=model.act.notice}}
 
                     {{#layout-push direction="row" classNames="reward-description"}}
                         <input type="checkbox" name="vehicle" value="亲子"/>
