@@ -10,6 +10,18 @@
     @extend %detail_content_basic;
     padding-top: 50px;
 }
+span.list-title {
+    min-width: 110px;
+}
+span.list-status {
+    margin-left: 54px;
+    margin-top: 6px;
+    margin-right: 5px;
+    width: 8px;
+    height: 8px;
+    background: #9B9B9B;
+    border-radius: 50%;
+}
 .change-class-pop-ups {
     width: 550px;
     height: 315px;
@@ -433,7 +445,7 @@
 
     }
 
-    span {
+    span.detail_panel_head {
         font-size: 14px;
         letter-spacing: 2px;
         margin-right: 100px;

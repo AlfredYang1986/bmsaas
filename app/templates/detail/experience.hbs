@@ -125,49 +125,139 @@
                         <p>体验时长</p>
                         <p>240 min</p>
                     {{/layout-push}}
-                    
-                    {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
-                        <span class='detail_panel_title'>课程目标</span>
+
+                    {{#layout-push direction='col' classNames='detail_panel_des_container'}}
+                        <span class='detail_panel_title'>体验图片</span>
+                    {{/layout-push}}
+                    <div class="line_conatainer_warp detail_card_container" >
+                        {{detail-card}}
+                    </div>
+                    {{#layout-push direction='col' classNames='detail_panel_des_container'}}
+                        <span class='detail_panel_title'>体验内容</span>
                     {{/layout-push}}
                     {{#layout-push direction='col' classNames='detail_inner_panel'}}
                         {{#layout-push direction='col' classNames='detail_inner_content_line'}}
                             <span class='detail_inner_left'>
-                                {{model.course.target}}
+                                本次体验孩子们将在特别设计的主题式场景中，运用不同种类的乐高教学积木，学习拼搭装备主题造型，以解决问题的方法为基础，培养科学技术实践运用的能力。乐高强调“玩中学”，在玩的过程中孩子们自由探索，体会属于他们自己的世界，不知不觉促进着孩子肢体语言和自我意识的发展。
+
                             </span>
                         {{/layout-push}}
                     {{/layout-push}}
 
                     {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
-                        <span class='detail_panel_title'>课程计划</span>
+                        <span class='detail_panel_title'>体验计划</span>
                     {{/layout-push}}
                     {{#layout-push direction='col' classNames='detail_inner_panel'}}
                         {{#layout-push direction='col' classNames='detail_inner_content_line'}}
                             <span class='detail_inner_list'>
-                                {{model.course.planning}}
+                                {{#layout-push direction='col' classNames='detail_inner_content_line'}}
+                                    {{#layout-push direction="row"}}
+                                        <span class="list-status"></span>
+                                        <p> 对乐高积木文化和编程建立基础认识</p>
+                                    {{/layout-push}}
+                                    {{#layout-push direction="row"}}
+                                        <span class="list-status"></span>
+                                        <p> 简单乐高积木搭建和软件入门</p>
+                                    {{/layout-push}}
+                                    {{#layout-push direction="row"}}
+                                        <span class="list-status"></span>
+                                        <p> 软件实操</p>
+                                    {{/layout-push}}
+                                    {{#layout-push direction="row"}}
+                                        <span class="list-status"></span>
+                                        <p> 乐高积木组件和编程结合练习完成简易机器人搭建。</p>
+                                    {{/layout-push}}
+                                {{/layout-push}}
                             </span>
                         {{/layout-push}}
                     {{/layout-push}}
 
 
                     {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
-                        <span class='detail_panel_title'>课程内容</span>
+                        <span class='detail_panel_title'>与孩子互动</span>
                     {{/layout-push}}
                     {{#layout-push direction='col' classNames='detail_inner_panel'}}
                         {{#layout-push direction='col' classNames='detail_inner_content_line'}}
                             <span class='detail_inner_content'>
-                                {{model.course.content}}
+                                我们将协助每一位孩子让他们完成各自的作品，鼓励孩子突破面对的搭建困难，并积极响应孩子们对于知识难点的疑问。
+全程悉心教导孩子完成乐高积木搭建，软件使用，以及编程能力养成。在解决问题的同时帮助孩子们根据项目积极思考，
+提高逻辑思维，合作沟通，独立思考，以及解决问题的能力。
                             </span>
                         {{/layout-push}}
                     {{/layout-push}}
 
-                    {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
-                        <span class='detail_panel_title'>课程图片</span>
+                    {{#layout-push direction='row' classNames='detail_panel_des_container detail_panel_des_container_between'}}
+                        <span class='detail_panel_title list-title'>宝贝将获得</span>
+                        {{#layout-push direction='col' classNames='detail_inner_content_line'}}
+                            {{#layout-push direction="row"}}
+                                <span class="list-status"></span>
+                                <p> 属于自己的乐高机器人</p>
+                            {{/layout-push}}
+                            {{#layout-push direction="row"}}
+                                <span class="list-status"></span>
+                                <p> 机器人奖状</p>
+                            {{/layout-push}}
+                            {{#layout-push direction="row"}}
+                                <span class="list-status"></span>
+                                <p> 水果点心</p>
+                            {{/layout-push}}
+                        {{/layout-push}}
                     {{/layout-push}}
-                    <div class="line_conatainer_warp detail_card_container" >
-                        {{#each model.course.imgs as |item|}}
-                            {{detail-card card=item}}
-                        {{/each}}
-                    </div>
+
+                    {{#layout-push direction='row' classNames='detail_panel_des_container detail_panel_des_container_between'}}
+                        <span class='detail_panel_title list-title'>您提供的東西</span>
+                        {{#layout-push direction='col' classNames='detail_inner_content_line'}}
+                            {{#layout-push direction="row"}}
+                                <span class="list-status"></span>
+                                <p> 属于自己的乐高机器人</p>
+                            {{/layout-push}}
+                            {{#layout-push direction="row"}}
+                                <span class="list-status"></span>
+                                <p> 机器人奖状</p>
+                            {{/layout-push}}
+                            {{#layout-push direction="row"}}
+                                <span class="list-status"></span>
+                                <p> 水果点心</p>
+                            {{/layout-push}}
+                        {{/layout-push}}
+                    {{/layout-push}}
+
+                    {{#layout-push direction='row' classNames='detail_panel_des_container detail_panel_des_container_between'}}
+                        <span class='detail_panel_title list-title'>参与者需自带</span>
+                        {{#layout-push direction='col' classNames='detail_inner_content_line'}}
+                            {{#layout-push direction="row"}}
+                                <span class="list-status"></span>
+                                <p> 属于自己的乐高机器人</p>
+                            {{/layout-push}}
+                            {{#layout-push direction="row"}}
+                                <span class="list-status"></span>
+                                <p> 机器人奖状</p>
+                            {{/layout-push}}
+                            {{#layout-push direction="row"}}
+                                <span class="list-status"></span>
+                                <p> 水果点心</p>
+                            {{/layout-push}}
+                        {{/layout-push}}
+                    {{/layout-push}}
+
+
+                    {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
+                        <span class='detail_panel_title'>须知</span>
+                    {{/layout-push}}
+                    {{#layout-push direction='col' classNames='detail_inner_panel'}}
+                        {{#layout-push direction='col' classNames='detail_inner_content_line'}}
+                            <span class='detail_inner_content'>
+                                需家长陪同，需家长接送。
+                            </span>
+                        {{/layout-push}}
+                    {{/layout-push}}
+
+                    {{#layout-push direction='row' classNames='detail_panel_des_container detail_panel_des_container_between'}}
+                        <span class='detail_panel_title'>费用说明</span>
+                        <span class='detail_panel_role_name'>
+                            承诺本次体验全部免费，不收任何额外费用。
+                        </span>
+                    {{/layout-push}}
                 </div>
 
             </div>
