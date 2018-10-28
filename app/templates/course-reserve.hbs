@@ -9,16 +9,15 @@
         {{#bs-button class="stud_qrcod_btn" onClick=(action 'openReserve')}} + 开放预约课程 {{/bs-button}}
     {{/layout-push}}
         <span class="stud_remind">温馨提示：成功添加的预约课程将在小程序和APP上显示。</span>
+        {{#layout-push direction="row" wrap=true classNames="card-wrap"}}
+            {{#each model.reserves as |item|}}
+                <div class="line_container_warp stud_card_container" >
+                    {{course-card onCourseCardClicked=(action 'cardClicked') course=item.course}}
+                </div>
+            {{/each}}
+        {{/layout-push}}
 
-        <div class="line_container_warp stud_card_container" >
-            {{#link-to 'detail.course-reserve'}}
-              {{course-card }}
-            {{/link-to}}
-
-        </div>
     {{/layout-push}}
 </div>
-
-{{outlet}}
 
 {{outlet}}

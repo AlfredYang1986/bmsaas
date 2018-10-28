@@ -20,7 +20,7 @@
                         {{/layout-push}}
                     {{/modal.body}}
                     {{#modal.footer}}
-                      {{#bs-button type="success" classNames="course-reserve-card-save" onClick=(action 'saveChanges')}}确定{{/bs-button}}
+                      {{#bs-button type="success" classNames="course-reserve-card-save" onClick=(action 'addReserveCourseBtnClicked')}}确定{{/bs-button}}
                     {{/modal.footer}}
                 </div>
             {{/bs-modal}}
@@ -49,15 +49,13 @@
         {{#layout-push direction="col"}}
             <p class="select-reserve-title">选择开放申请预约的课程</p>
             <select class="" name="" size="6" class="select-reserve-course">
-                <option value="">乐高机器人设计搭建课</option>
-                <option value="">乐高机器人设计搭建课</option>
-                <option value="">乐高机器人设计搭建课</option>
-                <option value="">乐高机器人设计搭建课</option>
-                <option value="">乐高机器人设计搭建课</option>
-                <option value="">乐高机器人设计搭建课</option>
-                <option value="">乐高机器人设计搭建课</option>
+                {{#each model.course as |item|}}
+                    <option value="">{{item.name}}</option>
+                {{/each}}
             </select>
-            <a class="add-course-btn">尚未建立课程？前往建立课程。</a>
+            {{#link-to 'edit.course' 'course/push' classNames='add-course-btn'}}
+                尚未建立课程？前往建立课程。
+            {{/link-to}}
         {{/layout-push}}
     </div>
 </section>

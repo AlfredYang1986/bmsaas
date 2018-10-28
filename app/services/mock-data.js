@@ -11,7 +11,8 @@ export default Service.extend({
         this.sureTech();
         this.sureYard();
         this.sureCourse();
-        
+        this.sureReserve();
+        this.sureActivity();
     },
     store: service(),
     sureBrand() {
@@ -420,31 +421,5 @@ export default Service.extend({
             course_02.set('category', cat_02);
             course_02.set('imgs', A([tag_02_01, tag_02_02, tag_02_03]));
         }
-    },
-    regionSource() {
-        window.console.log('sure regionSource');
-        let provinces = ["北京"];
-        let citys = ["北京"];
-        let governmentAreas = ["东城区", "西城区", "朝阳区", "丰台区", "石景山区", "海淀区", "门头沟区", "房山区", "通州区", "顺义区", "昌平区", "大兴区", "怀柔区", "平谷区", "密云区", "延庆区"];
-        provinces.forEach((name, index) => {
-            this.store.createRecord('bmprovinces', {
-                id: (index + 1),
-                name
-            })
-        });
-
-        citys.forEach((name, index) => {
-            this.store.createRecord('bmcitys', {
-                id: (index + 1),
-                name
-            })
-        });
-
-        governmentAreas.forEach((name, index) => {
-            this.store.createRecord('bmgovernment-areas', {
-                id: (index + 1),
-                name
-            })
-        });
     }
 });

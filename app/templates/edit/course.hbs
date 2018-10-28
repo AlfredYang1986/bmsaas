@@ -4,9 +4,15 @@
     </li>
     <li class="nav-item menu_mid">
         <div class="menu_container">
-            {{#link-to 'home' class="nav_cancel_btn menu_button_between"}}
-                取消
-            {{/link-to}}
+            {{#if isPushing}}
+                {{#link-to 'course' class="nav_cancel_btn menu_button_between"}}
+                    取消
+                {{/link-to}}
+            {{else}}
+                {{#link-to 'detail.course' model.course.id class="nav_cancel_btn menu_button_between"}}
+                    取消
+                {{/link-to}}
+            {{/if}}
             {{#bs-button classNames="nav_save_btn menu_button_between" onClick=(action (mut modal3) true)}}保存{{/bs-button}}
             {{#bs-modal open=modal3 onHidden=(action (mut modal3) false) as |modal|}}
                 <div class="course-reserve-pop-ups">
@@ -95,7 +101,9 @@
         title="课程名称"
         subtitle="有趣的课程名称能让家长和孩子对您的课程内容产生兴趣和好奇心。"
         maxCount=20
-        isNeeded=true}}
+        isNeeded=true
+        inputVal=crs_name
+        }}
 </section>
 
 <section id="basic-info" class="line_container_mid" >
@@ -129,10 +137,10 @@
             {{/layout-push}}
         {{/layout-push}}
 
-        {{bm-edit-line title="分级阶段"  maxCount=6 pholder="如：入门级、LV1"}}
-        {{bm-edit-line title="预计课时数" isNeeded=true  pholder="请输入整数"}}
-        {{bm-edit-line title="课程时长（min）" isNeeded=true maxCount=6}}
-        {{bm-edit-line title="课程时长（min）" isNeeded=true maxCount=6 pholder="如：蒙特梭利"}}
+        {{bm-edit-line title="分级阶段"  maxCount=6 pholder="如：入门级、LV1" inputVal=crs_level}}
+        {{bm-edit-line title="预计课时数" isNeeded=true  pholder="请输入整数" inputVal=crs_count}}
+        {{bm-edit-line title="课程时长（min）" isNeeded=true maxCount=6 inputVal=crs_length}}
+        {{bm-edit-line title="教学特点" isNeeded=true maxCount=6 pholder="如：蒙特梭利" }}
 
         <a href="" class="add-other-course">+ 添加另一个项目</a>
     {{/layout-push }}
@@ -147,6 +155,7 @@
             maxCount=50
             isNeeded=true
             rowsAmount=5
+            inputVal=crs_target
         }}
         {{bm-edit-area
             classNames='edit_panel'
@@ -155,6 +164,7 @@
             maxCount=200
             isNeeded=true
             rowsAmount=5
+            inputVal=crs_plan
         }}
         {{bm-edit-area
             classNames='edit_panel'
@@ -163,6 +173,7 @@
             maxCount=1000
             isNeeded=true
             rowsAmount=5
+            inputVal=crs_content
         }}
     {{/layout-push}}
 </section>

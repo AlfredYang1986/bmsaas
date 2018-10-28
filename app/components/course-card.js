@@ -7,6 +7,6 @@ export default Component.extend({
         return this.course != null;
     }),
     click() {
-        this.onCourseCardClicked(this.course.id);
+        this.onCourseCardClicked(this.course.get('id'));
     }
 });

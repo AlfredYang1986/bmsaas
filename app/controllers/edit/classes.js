@@ -23,6 +23,14 @@ export default Controller.extend({
         },
         showModal() {
             this.set('showModal', true);
-        }
+        },
+        successPopUps() {
+            this.set('pointPopUp', false);
+            let that = this;
+            setTimeout(function() {
+                that.set('successPopUp', true);
+            },1000)
+
+        },
     }
 });

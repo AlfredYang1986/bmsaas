@@ -8,10 +8,15 @@
         {{#layout-push direction="row"}}
             <button class="class_add_btn" {{action 'createClass'}}>+ 创建班级</button>
         {{/layout-push}}
+        {{#layout-push direction="row" wrap=true classNames="card-wrap"}}
+            <div class="line_container_warp class_card_container" >
+                {{class-card onStudCardClicked=(action 'cardClicked')}}
+            </div>
+            <div class="line_container_warp class_card_container" >
+                {{class-card onStudCardClicked=(action 'cardClicked')}}
+            </div>
+        {{/layout-push}}
 
-        <div class="line_container_warp class_card_container" >
-            {{class-card onStudCardClicked=(action 'cardClicked')}}
-        </div>
     {{/layout-push}}
 </div>
 

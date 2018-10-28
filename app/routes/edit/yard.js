@@ -8,7 +8,6 @@ export default Route.extend({
 
     model(params) {
         this.mock_data.sureTech();
-        // debugger
         let yard = this.store.peekRecord('bmyard', params.yardid);
         if (yard == null && params.yardid != 'yard/push') {
             this.transitionTo('home');

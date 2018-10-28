@@ -9,16 +9,14 @@
         {{#bs-button class="stud_qrcod_btn" onClick=(action 'editExperience')}} + 创建体验 {{/bs-button}}
     {{/layout-push}}
         <span class="stud_remind">温馨提示：成功添加的预约课程将在小程序和APP上显示。</span>
-
-        <div class="line_container_warp stud_card_container" >
-            {{#link-to 'detail.experience'}}
-              {{experience-card }}
-            {{/link-to}}
-
-        </div>
+        {{#layout-push direction="row" wrap=true classNames="card-wrap"}}
+            {{#each model.acts as |item|}}
+                <div class="line_container_warp stud_card_container" >
+                    {{experience-card onExperienceCardClick=(action 'cardClicked') activity=item}}
+                </div>
+            {{/each}}
+        {{/layout-push}}
     {{/layout-push}}
 </div>
-
-{{outlet}}
 
 {{outlet}}

@@ -15,10 +15,10 @@ Router.map(function() {
     this.route('tech', { path: '/:techid' });
     this.route('yard', { path: '/:yardid' });
     this.route('classes');
-    this.route('course');
+    this.route('course', { path: '/:courseid' });
     this.route('course-reserve');
     this.route('experience');
-    this.route('session');
+    this.route('session', { path: '/:actid'});
   });
   this.route('stud');
 
@@ -29,7 +29,8 @@ Router.map(function() {
     this.route('course', { path: '/:courseid' });
     this.route('classes');
     this.route('course-reserve');
-    this.route('experience');
+    this.route('experience', { path: '/:actid' });
+    this.route('actarrangement', { path: '/:actactid' });
   });
   this.route('tech');
   this.route('yard');
