@@ -13,7 +13,6 @@ export default DS.Model.extend({
     facilities: DS.attr(),
     awards: DS.hasMany('bmtagimg'),
     address: computed('detail_address', 'region.province.name', 'region.city.name', 'region.governmentArea.name', function() {
-        window.console.info(this.detail_address)
         return `${this.region.province.name} ${this.region.city.name} ${this.region.governmentArea.name} ${this.detail_address}`
     })
 });
