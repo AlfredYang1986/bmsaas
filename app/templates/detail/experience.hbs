@@ -5,17 +5,17 @@
 <div class="detail_content_top">
     <div class="detail_page">
         {{#link-to 'experienceOpen' class="detail_href_ref"}}体验开放{{/link-to}}
-        {{#link-to 'detail.experience' class="detail_href_ref"}}>场次安排 {{/link-to}}
+        {{#link-to 'detail.experience' model.act.id class="detail_href_ref"}}>场次安排 {{/link-to}}
         <div class='detail_panel' >
             {{#layout-push direction='row' split=true}}
                 {{#layout-push direction='col' mid=true }}
                     {{#layout-push direction='col'}}
-                        <span class="detail_panel_role_name">乐高机器人设计搭建课</span>
+                        <span class="detail_panel_role_name">{{model.act.name}}</span>
                         {{#layout-push direction='row'}}
-                            <span class="course_detail_panel_role_des">运动</span>
-                            <span class="course_detail_panel_role_des">跆拳道</span>
+                            <span class="course_detail_panel_role_des">{{model.act.cat}}</span>
+                            <span class="course_detail_panel_role_des">{{model.act.cat}}</span>
                         {{/layout-push}}
-                        <span class="course_detail_panel_role_des">两个场次报名开放中</span>
+                        <span class="course_detail_panel_role_des">{{model.act.periods.length}}个场次报名开放中</span>
                     {{/layout-push}}
                 {{/layout-push}}
                 {{#layout-push direction="row"}}
@@ -53,43 +53,40 @@
             <div class="detail_page table-header">
                 {{#layout-push direction='col'}}
                     {{#layout-push direction='row' split=true}}
-                        {{#each model as |item|}}
+                        {{#each model.title as |item|}}
                             <span>{{item.title}}</span>
                         {{/each}}
                     {{/layout-push}}
                 {{/layout-push}}
             </div>
             <div class="inbox-table">
-                <div class="detail_page table-body">
+                {{#each model.act.periods as |item|}}
+                    <div class="detail_page table-body">
                         {{#layout-push direction='col'}}
                             {{#layout-push direction='row' split=true  onClick=(action 'viewExperDetail')}}
                                 <span class="email-status" {{action 'viewExperDetail'}}>01</span>
-                                <span class="">08/03（周五）10:30</span>
-                                <span class="">北京朝阳区东外56号文创产业园111座</span>
+                                <span class="">
+                                    {{bmperioddateformat item.start_date}}
+                                </span>
+                                <span class="">
+                                    {{item.yard.address}}
+                                </span>
                                 <span class="">20/100</span>
-                                <span class="apply-status-open">开放</span>
+                                <span class="apply-status-open">
+                                    {{#if (bmperiodopen item)}}
+                                        开放
+                                    {{else}}
+                                        关闭
+                                    {{/if}}
+                                </span>
                                 {{#layout-push direction='row'}}
                                     {{#bs-button classNames="email-option" onClick=(action (mut modal3) true)}}<span>停止报名</span>{{/bs-button}}
                                     {{#bs-button classNames="email-option" onClick=(action (mut modal3) true)}}<span>更多</span>{{/bs-button}}
                                 {{/layout-push}}
                             {{/layout-push}}
                         {{/layout-push}}
-                </div>
-                <div class="detail_page table-body">
-                        {{#layout-push direction='col'}}
-                            {{#layout-push direction='row' split=true}}
-                                <span class="email-status">02</span>
-                                <span class="">08/03（周五）10:30</span>
-                                <span class="">北京朝阳区东外56号文创产业园111座</span>
-                                <span class="">20/100</span>
-                                <span class="apply-status-close">关闭</span>
-                                {{#layout-push direction='row'}}
-                                    {{#bs-button classNames="email-option" onClick=(action (mut modal3) true)}}<span>停止报名</span>{{/bs-button}}
-                                    {{#bs-button classNames="email-option" onClick=(action (mut modal3) true)}}<span>更多</span>{{/bs-button}}
-                                {{/layout-push}}
-                            {{/layout-push}}
-                        {{/layout-push}}
-                </div>
+                    </div>                
+                {{/each}}
             </div>
         {{/if}}
 

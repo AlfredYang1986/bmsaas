@@ -9,6 +9,8 @@ export default Service.extend({
         this.sureTech();
         this.sureYard();
         this.sureCourse();
+        this.sureReserve();
+        this.sureActivity();
     },
     store: service(),
     sureBrand() {
@@ -392,6 +394,146 @@ export default Service.extend({
             })
             course_02.set('category', cat_02);
             course_02.set('imgs', A([tag_02_01, tag_02_02, tag_02_03]));
+        }
+    },
+    sureReserve() {
+        console.log('sure reserve');
+        let reserve_lst = this.store.peekAll('bmreservable');
+        if (reserve_lst.length == 0) {
+            this.sureCourse();
+            let reserve = this.store.createRecord('bmreservable', {
+                id: 'i am reserve 01',
+                start: new Date("2018-10-25"),
+                end: new Date("2018-11-10"),
+            })
+            let course = this.store.peekRecord('bmcourseinfo', 'i am course 01');
+            reserve.set ('course', course);
+            course.set('reserve', A([reserve]));
+        }
+    },
+    queryNotReservableCourse() {
+        console.log('sure not reserve course');
+        let lst = this.store.peekAll('bmcourseinfo');
+        if (lst.length == 0) {
+            this.sureCourse();
+            this.sureReserve();
+            return this.queryNotReservableCourse();
+        }
+
+        function notReserveCondition(course) {
+            let condi = course.get('reserve');
+            return condi == null || condi.length == 0;
+        }
+
+        return lst.filter(notReserveCondition);
+    },
+    sureActivity() {
+        console.log('sure activity');
+        let acts = this.store.peekAll('bmactivityinfo')
+        if (acts.length == 0) {
+            let act_01 = this.store.createRecord('bmactivityinfo', {
+                id: 'i am activity 01',
+                cat: '体验',
+                name: '剑法体验课',
+                alb: 3,
+                aub: 9,
+                length: 90,
+                description: '辟邪剑法，独霸一方，欲练神功，必先自宫',
+                planning: '集体统一切小鸡鸡',
+                content: '看孩子切',
+                gains: ['绝世武功', '天下第一'],
+                cover: '../images/cover_pic_2.jpeg',
+                offered: ['咖啡'],
+                needed: ['衣服'],
+                notice: '消息提醒'
+            })
+            let act_img_01_01 = this.store.createRecord('bmtagimg', {
+                id: 'i am act img 01 01',
+                img_src: '../images/cover_pic_2.jpeg',
+                img_tag: '扯鸡巴蛋'
+            })
+            let act_img_01_02 = this.store.createRecord('bmtagimg', {
+                id: 'i am act img 01 02',
+                img_src: '../images/cover_pic_2.jpeg',
+                img_tag: '扯鸡巴蛋'
+            })
+            act_01.set('imgs', A([act_img_01_01, act_img_01_02]))
+            let fee_01 = this.store.createRecord('bmprice', {
+                id: 'i am price 01',
+                amount: 123,
+                description: ''
+            })
+            act_01.set('fee', fee_01);
+
+            let period_01_01 = this.store.createRecord('bmactperiod', {
+                id: 'i am period 01 01',
+                start_date: new Date('2018-10-01'),
+                end_date: new Date('2018-11-11'),
+                can_register: 1,
+                register_date: new Date('2018-11-11'),
+                limits: 30,
+            })
+            let yard_01_01 = this.store.peekRecord('bmyard', 'i am yard 01');
+            period_01_01.set('yard', yard_01_01);
+
+            let period_01_02 = this.store.createRecord('bmactperiod', {
+                id: 'i am period 01 02',
+                start_date: new Date('2018-10-01'),
+                end_date: new Date('2018-11-11'),
+                can_register: 0,
+                register_date: new Date('2018-11-11'),
+                limits: 30,
+            })
+            let yard_01_02 = this.store.peekRecord('bmyard', 'i am yard 02');
+            period_01_02.set('yard', yard_01_02);
+            act_01.set('periods', A([period_01_01, period_01_02]));
+
+            let act_02 = this.store.createRecord('bmactivityinfo', {
+                id: 'i am activity 02',
+                cat: '体验',
+                name: '风云体验',
+                alb: 3,
+                aub: 9,
+                length: 90,
+                description: '麒麟岂是池中物，一遇风云便化龙，九霄龙吟惊天变，风云际会浅水游。',
+                planning: '天霜拳，排云掌，风神腿',
+                content: '看孩子切',
+                gains: ['绝世武功', '天下第一'],
+                cover: '../images/cover_pic_2.jpeg',
+                offered: ['咖啡'],
+                needed: ['衣服'],
+                notice: '消息提醒'
+            })
+            let act_img_02_01 = this.store.createRecord('bmtagimg', {
+                id: 'i am act img 02 01',
+                img_src: '../images/cover_pic_2.jpeg',
+                img_tag: '扯鸡巴蛋'
+            })
+            let act_img_02_02 = this.store.createRecord('bmtagimg', {
+                id: 'i am act img 02 02',
+                img_src: '../images/cover_pic_2.jpeg',
+                img_tag: '扯鸡巴蛋'
+            })
+            act_02.set('imgs', A([act_img_02_01, act_img_02_02]))
+            let fee_02 = this.store.createRecord('bmprice', {
+                id: 'i am price 02',
+                amount: 321,
+                description: ''
+            })
+            act_02.set('fee', fee_02);
+
+            let period_02_01 = this.store.createRecord('bmactperiod', {
+                id: 'i am period 02 01',
+                start_date: new Date('2018-10-01'),
+                end_date: new Date('2018-11-11'),
+                can_register: 1,
+                register_date: new Date('2018-11-11'),
+                limits: 60,
+            })
+            let yard_02_01 = this.store.peekRecord('bmyard', 'i am yard 01');
+            period_02_01.set('yard', yard_02_01);
+
+            act_02.set('periods', A([period_02_01]));
         }
     }
 });

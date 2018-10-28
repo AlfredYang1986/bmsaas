@@ -5,8 +5,8 @@
 <div class="detail_content_top">
     <div class="detail_page">
         {{#link-to 'experienceOpen' class="detail_href_ref"}}体验开放{{/link-to}}
-        {{#link-to 'detail.experience' class="detail_href_ref"}}>场次安排 {{/link-to}}
-        {{#link-to 'detail.experience-detail' class="detail_href_ref"}}>场次详情 {{/link-to}}
+        {{#link-to 'detail.experience' model.act.id class="detail_href_ref"}}>场次安排 {{/link-to}}
+        {{#link-to 'detail.experience-detail' model.act.id class="detail_href_ref"}}>场次详情 {{/link-to}}
         <div class='detail_panel' >
             {{#layout-push direction='row' split=true classNames="class-head-card"}}
                 {{#layout-push direction='col' mid=true classNames='left-info'}}

@@ -10,15 +10,12 @@
     {{/layout-push}}
         <span class="stud_remind">温馨提示：成功添加的预约课程将在小程序和APP上显示。</span>
 
-        <div class="line_container_warp stud_card_container" >
-            {{#link-to 'detail.experience'}}
-              {{experience-card }}
-            {{/link-to}}
-
-        </div>
+        {{#each model.acts as |item|}}
+            <div class="line_container_warp stud_card_container" >
+                {{experience-card onExperienceCardClick=(action 'cardClicked') activity=item}}
+            </div>
+        {{/each}}
     {{/layout-push}}
 </div>
-
-{{outlet}}
 
 {{outlet}}

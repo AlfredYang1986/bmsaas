@@ -7,7 +7,6 @@ export default Controller.extend({
             this.transitionToRoute('detail.stud', idx);
         },
         addStudClicked() {
-            const add = EmberObject.create();
             this.transitionToRoute('edit.stud', "stud/push");
         }
     }

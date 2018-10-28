@@ -4,7 +4,7 @@
     </li>
     <li class="nav-item menu_mid">
         <div class="menu_container">
-            {{#link-to 'detail.experience' class="nav_cancel_btn menu_button_between"}}
+            {{#link-to 'detail.experience' model.act.id class="nav_cancel_btn menu_button_between"}}
                 取消
             {{/link-to}}
             {{#bs-button classNames="nav_save_btn menu_button_between" onClick=(action (mut modal3) true)}}确定{{/bs-button}}
@@ -69,7 +69,7 @@
                     </select>
                 </div>
             {{/layout-push}}
-            {{bm-edit-line pholder="如：街道门牌号、小区楼号、楼层号"}}
+            {{bm-edit-line pholder="如：街道门牌号、小区楼号、楼层号" }}
         {{/layout-push}}
     {{/layout-push }}
 </section>

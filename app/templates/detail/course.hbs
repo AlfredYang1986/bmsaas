@@ -5,7 +5,7 @@
 
 <div class="detail_content_top" >
     <div class="detail_page" >
-        {{#link-to 'yard' class="detail_href_ref"}}
+        {{#link-to 'course' class="detail_href_ref"}}
             返回
         {{/link-to}}
 
@@ -32,7 +32,9 @@
                     <p>课程名称</p>
                     <p>{{model.course.name}}</p>
                 {{/layout-push}}
-                <a class="course-info-change-btn" {{action 'editCourse' argument}}>编辑</a>
+                {{#link-to 'edit.course' model.course.id classNames='course-info-change-btn'}}
+                    编辑
+                {{/link-to}}
                 {{/layout-push}}
                 {{#layout-push direction='row'}}
                     <p>课程类别</p>
