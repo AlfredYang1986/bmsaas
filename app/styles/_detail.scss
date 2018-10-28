@@ -13,6 +13,18 @@
 span.list-title {
     min-width: 110px;
 }
+.cost {
+    margin-top: 46px;
+}
+span.plan-list-status {
+    margin-top: 6px;
+    margin-right: 17px;
+    width: 10px;
+    height: 10px;
+    background: #6E7CD4;
+    border-radius: 50%;
+
+}
 span.list-status {
     margin-left: 54px;
     margin-top: 6px;
@@ -485,7 +497,7 @@ span.list-status {
         }
         p {
             margin-right: 70px;
-            margin-bottom: 32px;
+            margin-bottom: 12px;
             min-width: 110px;
             text-align: left;
             font-size: 14px;
