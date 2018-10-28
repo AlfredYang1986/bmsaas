@@ -30,6 +30,7 @@ Router.map(function() {
     this.route('classes');
     this.route('course-reserve');
     this.route('experience');
+    this.route('experience-detail');
   });
   this.route('tech');
   this.route('yard');

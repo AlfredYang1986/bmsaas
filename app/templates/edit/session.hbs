@@ -4,10 +4,10 @@
     </li>
     <li class="nav-item menu_mid">
         <div class="menu_container">
-            {{#link-to 'home' class="nav_cancel_btn menu_button_between"}}
+            {{#link-to 'detail.experience' class="nav_cancel_btn menu_button_between"}}
                 取消
             {{/link-to}}
-            {{#bs-button classNames="nav_save_btn menu_button_between" onClick=(action (mut modal3) true)}}保存{{/bs-button}}
+            {{#bs-button classNames="nav_save_btn menu_button_between" onClick=(action (mut modal3) true)}}确定{{/bs-button}}
             {{#bs-modal open=modal3 onHidden=(action (mut modal3) false) as |modal|}}
                 <div class="course-reserve-pop-ups">
                     {{#modal.body classNames="course-reserve-success"}}
@@ -20,55 +20,36 @@
                         {{/layout-push}}
                     {{/modal.body}}
                     {{#modal.footer}}
-                     {{#bs-button type="success" classNames="nav_cancel_btn menu_button_between" onClick=(action 'saveCourse') }}暂不开放{{/bs-button}}
-                      {{#bs-button type="success" classNames="nav_save_btn menu_button_between"  onClick=(action 'reserveCourse')}}前往开放预约体验{{/bs-button}}
+                     {{#bs-button type="success" classNames="nav_cancel_btn menu_button_between" }}暂不开放{{/bs-button}}
+                      {{#bs-button type="success" classNames="nav_save_btn menu_button_between"}}前往开放预约体验{{/bs-button}}
                     {{/modal.footer}}
                 </div>
             {{/bs-modal}}
         </div>
     </li>
 </ul>
-
-<ul class="edit_left_bar">
-    <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right">
-            <a class="edit_left_menu_text" href="#tech-info">课程类别</a>
-        </div>
-    </li>
-    <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right">
-            <a class="edit_left_menu_text" href="#tech-edc">课程名称</a>
-        </div>
-    </li>
-    <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right">
-            <a class="edit_left_menu_text" href="#tech-story">分类/标签</a>
-        </div>
-    </li>
-    <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right">
-            <a class="edit_left_menu_text" href="#tech-story">课程详情</a>
-        </div>
-    </li>
-    <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right">
-            <a class="edit_left_menu_text" href="#tech-story">图片</a>
-        </div>
-    </li>
-</ul>
-
-<section id="basic-info" class="line_container_mid edit_page_top_margin" >
+<section id="basic-info" class="edit_page_top_margin edit_page_head_content" >
+{{#layout-push direction="col" }}
+    <p class="edit_page_head_title">足球小将的英雄之旅</p>
+    {{#layout-push direction="row" classNames="edit_page_head_subtitle"}}
+        <p>体验课</p>
+        <p>足球</p>
+        <p>2个场次报名中</p>
+    {{/layout-push}}
+{{/layout-push}}
+</section>
+<section id="basic-info" class="line_container_mid" >
     {{#layout-push direction='col' classNames="edit_panel edit_first_panel"}}
         {{#layout-push direction='row'}}
             <span class="edit_title">体验地点</span>
         {{/layout-push }}
         {{#layout-push direction='col' classNames='select-school'}}
-            {{#layout-push direction="row"}}
-                <p class="no-age-limit"><input type="checkbox" name="vehicle" value="赛事"/>无年龄限制</p>
-                <p class="no-age-limit"><input type="checkbox" name="vehicle" value="赛事"/>无年龄限制</p>
+            {{#layout-push direction="row" classNames="select-site"}}
+                <p class="no-age-limit"><input type="checkbox" name="vehicle" value="赛事"/>使用已录入的场地</p>
+                <p class="no-age-limit"><input type="checkbox" name="vehicle" value="赛事"/>其它场地</p>
             {{/layout-push}}
-            <p>地址</p>
-            {{#layout-push direction="row"}}
+            <p class="edit_subtitle">地址</p>
+            {{#layout-push direction="row" }}
                 <div class="line_container" >
                     <select class="start-time" name="">
                         <option value="">科学</option>
@@ -88,6 +69,7 @@
                     </select>
                 </div>
             {{/layout-push}}
+            {{bm-edit-line pholder="如：街道门牌号、小区楼号、楼层号"}}
         {{/layout-push}}
     {{/layout-push }}
 </section>
@@ -95,7 +77,7 @@
 <section id="basic-info" class="line_container_mid" >
     {{#layout-push direction='col' classNames="edit_panel"}}
         {{#layout-push direction='row'}}
-            <span class="edit_title">体检时间</span>
+            <span class="edit_title">体验时间</span>
         {{/layout-push }}
         {{#layout-push direction='col' classNames='select-school'}}
 
@@ -117,7 +99,7 @@
                 {{#layout-push direction="col"}}
                     <div class="line_container_split" >
                         <div class="line_container" >
-                            <span class="edit-course-subtitle">开始时间</span>
+                            <span class="select-time-subtitle">开始时间</span>
                         </div>
                     </div>
                     <div class="line_container" >
@@ -130,7 +112,7 @@
                 {{#layout-push direction="col"}}
                     <div class="line_container_split" >
                         <div class="line_container" >
-                            <span class="edit-course-subtitle">结束时间</span>
+                            <span class="select-time-subtitle">结束时间</span>
                         </div>
                     </div>
                     <div class="line_container" >
@@ -145,19 +127,21 @@
     {{/layout-push }}
 </section>
 
-<section id="basic-info" class="line_container_mid edit_page_top_margin" >
-    {{#layout-push direction='col' classNames="edit_panel edit_first_panel"}}
+<section id="basic-info" class="line_container_mid" >
+    {{#layout-push direction='col' classNames="edit_panel"}}
         {{#layout-push direction='row'}}
             <span class="edit_title">报名设置</span>
         {{/layout-push }}
-        <p>报名截止时间</p>
+        <p class="edit_subtitle">报名截止时间</p>
         {{#layout-push direction='col' classNames='select-school'}}
-            {{#layout-push direction="row"}}
+            {{#layout-push direction="row"  classNames="select-site"}}
                 <p class="no-age-limit"><input type="checkbox" name="vehicle" value="赛事"/>无年龄限制</p>
                 <p class="no-age-limit"><input type="checkbox" name="vehicle" value="赛事"/>无年龄限制</p>
             {{/layout-push}}
             {{#layout-push direction="row"}}
-            <p class="no-age-limit"><input type="checkbox" name="vehicle" value="赛事"/>其他</p>
+                {{#layout-push direction="row" classNames="select-site"}}
+                    <p class="no-age-limit"><input type="checkbox" name="vehicle" value="赛事"/>其他</p>
+                {{/layout-push}}
                 <div class="line_container" >
                     <select class="start-time" name="">
                         <option value="">科学</option>
@@ -173,7 +157,9 @@
             {{/layout-push}}
         {{/layout-push}}
         {{bm-edit-line title="活动名额" classNames="line_half"}}
-        <p class="no-age-limit"><input type="checkbox" name="vehicle" value="赛事"/>不限制</p>
+        {{#layout-push direction="row" classNames="select-site"}}
+            <p class="no-age-limit"><input type="checkbox" name="vehicle" value="赛事"/>不限制</p>
+        {{/layout-push}}
     {{/layout-push }}
 </section>
 {{outlet}}

@@ -61,8 +61,8 @@
         <div class="inbox-table">
             <div class="detail_page table-body">
                     {{#layout-push direction='col'}}
-                        {{#layout-push direction='row' split=true}}
-                            <span class="email-status">01</span>
+                        {{#layout-push direction='row' split=true  onClick=(action 'viewExperDetail')}}
+                            <span class="email-status" {{action 'viewExperDetail'}}>01</span>
                             <span class="">08/03（周五）10:30</span>
                             <span class="">北京朝阳区东外56号文创产业园111座</span>
                             <span class="">20/100</span>

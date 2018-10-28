@@ -5,7 +5,34 @@
 .edit_page_top_margin {
     padding-top: 50px;
 }
+span.select-time-subtitle {
+    margin-top: 30px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #767A80;
+    letter-spacing: 1.4px;
+}
+.edit_page_head_content {
+    padding-top: 70px;
+    padding-left: 55px;
+    min-height: 148px;
+    background: #eaedf8;
+    .edit_page_head_title {
+        font-size: 24px;
+        color: #767A80;
+        letter-spacing: 3.43px;
+    }
+    .edit_page_head_subtitle {
+        p{
+            margin-right: 30px;
+            margin-top: 8px;
+            font-size: 14px;
+            color: #767A80;
+            letter-spacing: 2px;
+        }
 
+    }
+}
 .edit_first_panel {
     margin-top: 24px !important;
     .detail-address {
@@ -40,13 +67,31 @@
         letter-spacing: 1.8px;
         line-height: 35px;
     }
+    .select-site {
+        p {
+            margin-right: 80px;
+            margin-top: 16px;
+            font-size: 14px;
+            color: #767A80;
+            letter-spacing: 1.4px;
+        }
+        input {
+            margin-right: 14px;
+        }
+    }
     .edit_title {
         font-family: $font-brand;
         font-size: 18px;
         color: #767A80;
         letter-spacing: 2.57px;
     }
-
+    p.edit_subtitle {
+        margin-top: 0;
+        margin-bottom: 16px;
+        font-size: 14px;
+        color: #767A80;
+        letter-spacing: 2px;
+    }
     .edit_subtitle {
         font-family: $font-brand;
         font-size: 14px;
