@@ -56,7 +56,7 @@
         padding: 0px;
         width: 22px;
         height: 22px;
-        
+
         background: #D8D8D8;
         border-radius: 3px;
 
@@ -70,13 +70,161 @@
     }
 
     .time_add_btn {
+        margin-right: 30px;
         padding: 7px 24px;
         background: #6E7CD4;
         border: 1px solid #6E7CD4;
         border-radius: 4px;
     }
+    .time_delete_btn {
+        margin-right: 30px;
+        padding: 7px 24px;
+        background: #fff;
+        border: 1px solid #D3727E;
+        border-radius: 4px;
+        color: #D3727E;
+    }
 }
-
+.arrange-class-pop-ups {
+    width: 680px;
+    height: 761px;
+    background: #fff;
+    .pop-ups-head {
+        margin-top: -16px;
+        margin-left: -16px;
+        margin-right: -16px;
+        height: 50px;
+        width: 680px;
+        background: rgba(110,124,212,0.10);
+        p {
+            margin-left: 32px;
+            font-size: 18px;
+            color: #485465;
+            letter-spacing: 2.57px;
+            line-height: 50px;
+        }
+        .edit-teacher-cancel {
+            margin-top: 8px;
+            margin-right: 30px;
+            width: 110px;
+            height: 34px;
+            background: transparent;
+            border: 1px solid #6E7CD4;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #6E7CD4;
+            letter-spacing: 1.17px;
+        }
+        .edit-teacher-save {
+            margin-top: 8px;
+            margin-right: 30px;
+            width: 110px;
+            height: 34px;
+            background: #6E7CD4;
+            border: 1px solid #6E7CD4;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #fff;
+            letter-spacing: 1.17px;
+        }
+    }
+    .pop-ups-content {
+        padding: 24px 32px;
+        .arrange-course-class {
+            padding-bottom: 25px;
+            border-bottom: 1px solid #6E7CD4;
+        }
+        p {
+            margin-bottom: 8px;
+            margin-right: 17px;
+            font-size: 14px;
+            color: #485465;
+            letter-spacing: 2px;
+        }
+        select.class-name {
+            border: 1px solid #979797;
+            height: 35px;
+            border-radius: 3px;
+            font-size: 12px;
+            color: #767A80;
+            letter-spacing: 1.58px;
+        }
+        input {
+            margin-left: 20px;
+            width: 380px;
+            height: 35px;
+            border: 1px solid #979797;
+            border-radius: 3px;
+        }
+        .class-arrange-time-select {
+            margin-top: 30px;
+            select {
+                width: 110pcx;
+                height: 35px;
+                margin-right: 16px;
+                border: 1px solid #979797;
+                border-radius: 3px;
+                font-size: 14px;
+                color: #485465;
+                letter-spacing: 1.56px;
+            }
+        }
+        .course-duration {
+            margin-top: 24px;
+            select {
+                width: 236px;
+                height: 35px;
+                border: 1px solid #979797;
+                border-radius: 3px;
+            }
+        }
+        .class-teacher-select {
+            margin-top: 24px;
+            .class-teacher-list-content {
+                padding: 5px 10px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 345px;
+                background: rgba(110,124,212,0.10);
+                border-radius: 4px;
+                p {
+                    font-size: 12px;
+                    color: #6E7CD4;
+                    letter-spacing: 1.56px;
+                }
+                .class-arrange-btns {
+                    .save {
+                        margin-right: 14px;
+                        width: 80px;
+                        height: 35px;
+                        background: #6E7CD4;
+                        border: 1px solid #6E7CD4;
+                        border-radius: 4px;
+                        font-size: 12px;
+                        color: #FFFFFF;
+                        letter-spacing: 1.71px;
+                    }
+                    .cancel {
+                        width: 80px;
+                        height: 35px;
+                        background: #fff;
+                        border: 1px solid #6E7CD4;
+                        border-radius: 4px;
+                        font-size: 12px;
+                        color: #6E7CD4;
+                        letter-spacing: 1.71px;
+                    }
+                }
+                .class-arrange-btns {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-end;
+                }
+            }
+        }
+    }
+}
 #arrangement {
     width: 940px;
     height: 488px;
