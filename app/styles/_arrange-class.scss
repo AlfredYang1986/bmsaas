@@ -86,6 +86,7 @@
     }
 }
 .arrange-class-pop-ups {
+    margin-left: -90px;
     width: 680px;
     height: 761px;
     background: #fff;
@@ -221,6 +222,15 @@
                     flex-direction: row;
                     justify-content: flex-end;
                 }
+
+            }
+            .class-teacher-select-btn {
+                font-size: 14px;
+                color: #485465;
+                letter-spacing: 1.56px;
+                background: #fff;
+                border: none;
+                text-align: left;
             }
         }
     }
