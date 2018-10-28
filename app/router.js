@@ -29,8 +29,8 @@ Router.map(function() {
     this.route('course', { path: '/:courseid' });
     this.route('classes');
     this.route('course-reserve');
-    this.route('experience', { path: '/:actid'});
-    this.route('experience-detail');
+    this.route('experience', { path: '/:actid' });
+    this.route('actarrangement', { path: '/:actactid' });
   });
   this.route('tech');
   this.route('yard');
