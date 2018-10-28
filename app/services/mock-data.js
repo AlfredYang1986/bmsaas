@@ -4,6 +4,8 @@ import { A } from '@ember/array';
 
 export default Service.extend({
     init() {
+        this._super(...arguments);
+        this.regionSource();
         this.sureBrand();
         this.sureStud();
         this.sureTech();
@@ -14,8 +16,32 @@ export default Service.extend({
         this.sureClasses();
     },
     store: service(),
+    regionSource() {
+        window.console.info('sure regionSource');
+        let provinces = ['北京'];
+        let citys = ['北京'];
+        let governmentArea = ["密云区", "延庆区", "朝阳区", "丰台区", "石景山区", "海淀区", "门头沟区", "房山区", "通州区", "顺义区", "昌平区", "大兴区", "怀柔区", "平谷区", "东城区", "西城区"]
+        provinces.forEach((name, index) => {
+            this.store.createRecord('bmprovinces', {
+                id: (index + 1),
+                name
+            })
+        });
+        citys.forEach((name, index) => {
+            this.store.createRecord('bmcitys', {
+                id: (index + 1),
+                name
+            })
+        });
+        governmentArea.forEach((name, index) => {
+            this.store.createRecord('bmgovernment-areas', {
+                id: (index + 1),
+                name
+            })
+        })
+    },
     sureBrand() {
-        console.log('sure brand');
+        window.console.log('sure brand');
         let brand = this.store.peekRecord('bmbrand', 'i am a brand');
         if (brand == null) {
             brand = this.store.createRecord('bmbrand', {
@@ -74,15 +100,16 @@ export default Service.extend({
         }
     },
     sureStud() {
-        console.log('sure stud');
+        window.console.log('sure stud');
         let stud_lst = this.store.peekAll('bmstud');
         if (stud_lst.length == 0) {
-            let dob_stud_01 = this.store.createRecord('date-format', {
-                id: 'i am stud person dob 01',
-                year: 2016,
-                month: 7,
-                day: 1
-            })
+            // let dob_stud_01 = this.store.createRecord('date-format', {
+            //     id: 'i am stud person dob 01',
+            //     year: 2016,
+            //     month: 7,
+            //     day: 1
+            // })
+            let dob_stud_01 = "2016-07-01";
             let person_stud_01 = this.store.createRecord('bmperson', {
                 id: 'i am stud person 01',
                 icon: '../images/stud-normal.png',
@@ -140,12 +167,13 @@ export default Service.extend({
             urgent_01.set('me', person_urgent_01);
             urgent_01.set('urg', stud01);
 
-            let dob_stud_02 = this.store.createRecord('date-format', {
-                id: 'i am stud person dob 02',
-                year: 2017,
-                month: 8,
-                day: 1
-            })
+            // let dob_stud_02 = this.store.createRecord('date-format', {
+            //     id: 'i am stud person dob 02',
+            //     year: 2017,
+            //     month: 8,
+            //     day: 1
+            // })
+            let dob_stud_02 = "2017-08-01"
             let person_stud_02 = this.store.createRecord('bmperson', {
                 id: 'i am stud person 02',
                 icon: '../images/stud-normal.png',
@@ -205,7 +233,7 @@ export default Service.extend({
         }
     },
     sureTech() {
-        console.log('sure tech');
+        window.console.log('sure tech');
         let tech_lst = this.store.peekAll('bmtech');
         if (tech_lst.length == 0) {
             let person_tech_01 = this.store.createRecord('bmperson', {
@@ -246,19 +274,33 @@ export default Service.extend({
         }    
     },
     sureYard() {
-        console.log('sure yard');
+        window.console.log('sure yard');
         let yard_lst = this.store.peekAll('bmyard');
         if (yard_lst.length == 0) {
             let yard_01 = this.store.createRecord('bmyard', {
                 id: 'i am yard 01',
                 title: '乐高少儿建构教室',
                 cover: '../images/cover_pic_2.jpeg',
-                address: '北京朝阳区东直门外斜街888号',
+                detail_address: '北京朝阳区东直门外斜街888号',
                 description: '我们的场地遵循国际儿童环境友好性标准， 拥有可供孩子们认真学习的向阳空间10余间， 内置丰富的STEM教学用具，供孩子们尽情展现他们的想象力和动手动力， 餐饮区为孩子们准备了多样精美的水果和点心，当然啦！ 我们的餐点也有为来接孩子和参与体验的家长们准备，所有的食物都是用心加工， 保证绝对的干净！娱乐区是孩子们嬉戏玩耍的天堂。 我们将一切的设施家具进行圆角处理，并给予贴心的插图文字提示。 相信孩子们在娱乐区能尽情享受快乐的时光。 我们也有为课后来接送孩子和前来交流的家长们设计舒适的休息区 ～最后期待孩子和您的到来啦！',
                 around: '场地距离地铁六号线两站，步行200右转即达。',
                 ardes: '你妹的',
                 facilities: A(['停车场']),
             });
+
+            let province = this.store.peekRecord('bmprovinces', "1");
+            let city = this.store.peekRecord('bmcitys', '1');
+            let rg_area_01 = this.store.peekRecord('bmgovernment-areas', "1");
+            let rg_area_02 = this.store.peekRecord('bmgovernment-areas', "2");
+
+
+            let rg_01_01 = this.store.createRecord('bmregion', {
+                id: '1',
+                province,
+                city,
+                governmentArea: rg_area_01
+            });
+            yard_01.set('region', rg_01_01);
 
             let tg_01_01 = this.store.createRecord('bmtagimg', {
                 id: 'tag img 01 01',
@@ -288,12 +330,20 @@ export default Service.extend({
                 id: 'i am yard 02',
                 title: '天安门中南海店',
                 cover: '../images/cover_pic_2.jpeg',
-                address: '北京长安街中南海001号',
+                detail_address: '北京长安街中南海001号',
                 description: '我们的场地遵循国际儿童环境友好性标准， 拥有可供孩子们认真学习的向阳空间10余间， 内置丰富的STEM教学用具，供孩子们尽情展现他们的想象力和动手动力， 餐饮区为孩子们准备了多样精美的水果和点心，当然啦！ 我们的餐点也有为来接孩子和参与体验的家长们准备，所有的食物都是用心加工， 保证绝对的干净！娱乐区是孩子们嬉戏玩耍的天堂。 我们将一切的设施家具进行圆角处理，并给予贴心的插图文字提示。 相信孩子们在娱乐区能尽情享受快乐的时光。 我们也有为课后来接送孩子和前来交流的家长们设计舒适的休息区 ～最后期待孩子和您的到来啦！',
                 around: '场地距离地铁六号线两站，步行200右转即达。',
                 ardes: '天安门',
                 facilities: A(['停车场']),
             });
+
+            let rg_01_02 = this.store.createRecord('bmregion', {
+                id: '2',
+                province,
+                city,
+                governmentArea: rg_area_02
+            })
+            yard_02.set('region', rg_01_02);
 
             let tg_02_01 = this.store.createRecord('bmtagimg', {
                 id: 'tag img 02 01',
@@ -321,7 +371,7 @@ export default Service.extend({
         }
     },
     sureCourse() {
-        console.log('sure course');
+        window.console.log('sure course');
         let course_lst = this.store.peekAll('bmcourseinfo');
         if (course_lst.length == 0) {
             let course_01 = this.store.createRecord('bmcourseinfo', {
