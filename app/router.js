@@ -26,7 +26,7 @@ Router.map(function() {
     this.route('stud', { path: '/:studid' });
     this.route('tech', { path: '/:techid' });
     this.route('yard', { path: '/:yardid' });
-    this.route('course');
+    this.route('course', { path: '/:courseid' });
     this.route('classes');
     this.route('course-reserve');
     this.route('experience');

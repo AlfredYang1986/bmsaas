@@ -13,6 +13,4 @@ export default Route.extend({
                 course: course
             })
     },
-
-   
 });
