@@ -171,38 +171,42 @@
 
                     {{#layout-push direction='row' classNames='detail_panel_des_container detail_panel_des_container_between'}}
                         <span class='detail_panel_title list-title'>宝贝将获得</span>
-                        {{#layout-push direction='col' classNames='detail_inner_content_line'}}
+                        
+                        {{experience-list-info data=model.act.gains}}
+                        {{!-- {{#layout-push direction='col' classNames='detail_inner_content_line'}}
                             {{#each model.act.gains as |item|}}
                                 {{#layout-push direction="row"}}
                                     <span class="list-status"></span>
                                     <p>{{item}}</p>
                                 {{/layout-push}}
                             {{/each}}
-                        {{/layout-push}}
+                        {{/layout-push}} --}}
                     {{/layout-push}}
 
                     {{#layout-push direction='row' classNames='detail_panel_des_container detail_panel_des_container_between'}}
                         <span class='detail_panel_title list-title'>您提供的東西</span>
-                        {{#layout-push direction='col' classNames='detail_inner_content_line'}}
+                        {{experience-list-info data=model.act.offered}}
+                        {{!-- {{#layout-push direction='col' classNames='detail_inner_content_line'}}
                             {{#each model.act.offered as |item|}}
                                 {{#layout-push direction="row"}}
                                     <span class="list-status"></span>
                                     <p>{{item}}</p>
                                 {{/layout-push}}
                             {{/each}}
-                        {{/layout-push}}
+                        {{/layout-push}} --}}
                     {{/layout-push}}
 
                     {{#layout-push direction='row' classNames='detail_panel_des_container detail_panel_des_container_between'}}
                         <span class='detail_panel_title list-title'>参与者需自带</span>
-                        {{#layout-push direction='col' classNames='detail_inner_content_line'}}
+                        {{experience-list-info data=model.act.needed}}
+                        {{!-- {{#layout-push direction='col' classNames='detail_inner_content_line'}}
                             {{#each model.act.needed as |item|}}
                                 {{#layout-push direction="row"}}
                                     <span class="list-status"></span>
                                     <p>{{item}}</p>
                                 {{/layout-push}}
                             {{/each}}
-                        {{/layout-push}}
+                        {{/layout-push}} --}}
                     {{/layout-push}}
 
 

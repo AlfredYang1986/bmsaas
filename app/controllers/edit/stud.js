@@ -23,6 +23,8 @@ export default Controller.extend({
     urg_rs: '',
     urg_contact: '',
 
+    stud_date: '',
+
     isPushing: false,
 
     actions: {
@@ -48,7 +50,7 @@ export default Controller.extend({
                 let per_urg = this.store.createRecord('bmperson', {
                     id: this.guid()
                 })
-                let gard = this.store.createRecord('bmgardian', {
+                let gard = this.store.createRecord('bmguardian', {
                     id: this.guid()
                 })
                 let urg = this.store.createRecord('bmurgent', {
@@ -58,6 +60,7 @@ export default Controller.extend({
                 urg.set('me', per_urg);
                 stud.set('me', per_stud);
                 stud.set('urgent', urg);
+                stud.set('guardian', gard)
             } else {
                 stud = this.model.stud;
             }
@@ -65,6 +68,7 @@ export default Controller.extend({
             stud.me.set('name', this.chd_name);
             stud.me.set('nickname', this.chd_nickname);
             stud.me.set('gender', this.chd_gender);
+            stud.me.set('dob', this.stud_date)
             stud.set('school', this.chd_school);
 
             stud.guardian.me.set('name', this.par_name);
