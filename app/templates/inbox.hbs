@@ -51,13 +51,18 @@
                 successbtncss='course-reserve-card-save'  
                 cancelbtncss='course-reserve-card-cancel'
                 canceltext='取消'
-                onCancelBtnClicked=(action 'modaltest')  
-                onSuccessBtnClicked=(action 'modaltest')}}
+                onCancelBtnClicked=(action 'cancelHandled')  
+                onSuccessBtnClicked=(action 'successHandled')}}
             {{#layout-push direction=row classNames="success-info"}}
-                {{mail-processing-pop-ups classNames="course-reserve-modal-body" apply=current_apply}}
+                {{mail-processing-pop-ups 
+                        classNames="course-reserve-modal-body" 
+                        selectedReservable=sr
+                        selectedYard=sy 
+                        isValidate=isV
+                        apply=current_apply}}
             {{/layout-push}}
         {{/bm-modal-container}}
-        {{#bm-modal-container mswitch=showcomfirmdlg successbtncss='course-reserve-card-save' onSuccessBtnClicked=(action 'modaltest')}}
+        {{#bm-modal-container mswitch=showcomfirmdlg successbtncss='course-reserve-card-save' onSuccessBtnClicked=(action 'successHandled')}}
             {{#layout-push direction=row classNames="success-info course-reverve-success"}}
                 <img src="../images/success.png" alt="">
                 {{#layout-push direction=col}}
