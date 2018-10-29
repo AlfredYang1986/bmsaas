@@ -14,16 +14,20 @@
                     {{/layout-push}}
                     {{#layout-push direction=row classNames="line_container"}}
                         <p class="course-reserve-label">课程</p>
-                            <select class="course-reserve-modal-select" name="">
+                            <select class="course-reserve-modal-select" id='reservableselect' name="" onChange={{action 'reservableChanged'}}>
                                 <option value="">课程标题</option>
-                                <option value="">2018</option>
+                                {{#each course_lst as |item|}}
+                                    <option value={{item}}>{{item.course.name}}</option>
+                                {{/each}}
                             </select>
                     {{/layout-push}}
                     {{#layout-push direction=row classNames="line_container"}}
                         <p class="course-reserve-label">场地</p>
-                            <select class="course-reserve-modal-select" name="">
+                            <select class="course-reserve-modal-select" id='yardselect' name="" onChange={{action 'yardChanged'}}>
                                 <option value="">场地位置</option>
-                                <option value="">2018</option>
+                                {{#each yard_lst as |item|}}
+                                    <option value={{item}}>{{item.address}}</option>
+                                {{/each}}
                             </select>
                     {{/layout-push}}
                     {{#layout-push direction=row classNames="line_container"}}

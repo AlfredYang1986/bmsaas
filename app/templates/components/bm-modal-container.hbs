@@ -12,7 +12,7 @@
         {{/modal.body}}
         {{#modal.footer}}
             {{#if needcancel}}
-                {{#button type="cancel" classNames=cancelbtncss onClick=(action 'cancelBtnClicked') }}取消{{/button}}
+                {{#bs-button type="cancel" classNames=cancelbtncss onClick=(action 'cancelBtnClicked') }}取消{{/bs-button}}
             {{/if }}
             {{#bs-button type="success" classNames=successbtncss onClick=(action 'successBtnClicked') }}确定{{/bs-button}}
         {{/modal.footer}}
