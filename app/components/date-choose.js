@@ -42,13 +42,20 @@ export default Component.extend({
     },
 
     selectedYear: computed('data', function() {
-        return this.get('data').split('-')[0];
+        if (this.get('data')) {
+            return this.get('data').split('-')[0];
+        }
     }),
     selectedMonth: computed('data', function() {
-        return this.get('data').split('-')[1];
+        if (this.get('data')) {
+            return this.get('data').split('-')[1];
+        }
+        
     }),
     selectedDay: computed('data', function() {
-        return this.get('data').split('-')[2];
+        if (this.get('data')) {
+            return this.get('data').split('-')[2];
+        }
     }),
 
     actions: {
