@@ -32,7 +32,7 @@
                 {{/layout-push}}
             {{/layout-push}}
         </div>
-        {{#bs-modal open=changeClass  onHidden=(action (mut changeClass) false) as |modal|}}
+        {{#bs-modal open=deleteClass  onHidden=(action (mut deleteClass) false) as |modal|}}
             <div class="change-class-pop-ups">
                 {{#modal.body classNames="change-class-pop-ups-content"}}
                     <p>您确定要删除“跆拳道入门A班”的全部班级信息吗？</p>
@@ -43,7 +43,7 @@
                 {{/modal.footer}}
             </div>
         {{/bs-modal}}
-        {{#bs-modal open=deleteClass  onHidden=(action (mut deleteClass) false) as |modal|}}
+        {{#bs-modal open=changeClass  onHidden=(action (mut changeClass) false) as |modal|}}
             <div class="delete-calss-pop-ups">
                 {{#modal.body classNames=""}}
                     {{#layout-push direction="col"}}

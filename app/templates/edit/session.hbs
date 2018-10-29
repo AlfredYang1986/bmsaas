@@ -1,6 +1,6 @@
 <ul class="nav">
     <li class="nav-item">
-        <a class="nav-link active brand_name" href="#">新建-课程信息</a>
+        <a class="nav-link active brand_name" href="#">添加-场次</a>
     </li>
     <li class="nav-item menu_mid">
         <div class="menu_container">
@@ -44,40 +44,53 @@
             <span class="edit_title">体验地点</span>
         {{/layout-push }}
         {{#layout-push direction='col' classNames='select-school'}}
-            {{#layout-push direction="row" classNames="select-site"}}
-                <p class="no-age-limit"><input type="checkbox" name="vehicle" value="赛事"/>使用已录入的场地</p>
-                <p class="no-age-limit"><input type="checkbox" name="vehicle" value="赛事"/>其它场地</p>
-            {{/layout-push}}
-            <p class="edit_subtitle">地址</p>
-            {{#layout-push direction="row" }}
-                <div class="line_container" >
-                    <select class="start-time" name="">
-                        <option value="">科学</option>
-                        <option value="">2018</option>
-                    </select>
-                </div>
-                <div class="line_container" >
-                    <select class="start-time" name="">
-                        <option value="">年</option>
-                        <option value="">2018</option>
-                    </select>
-                </div>
-                <div class="line_container" >
-                    <select class="start-time" name="">
-                        <option value="">年</option>
-                        <option value="">2018</option>
-                    </select>
-                </div>
-                {{!-- {{region-choose 
-                        provinces=yard_provinces 
-                        citys=yard_citys 
-                        governmentAreas=yard_government_areas 
-                        model=model.yard
-                        changeProvinces=(action 'changeProvinces')
-                        changeCitys=(action 'changeCitys')
-                        changeGovernmentAreas=(action 'changeGovernmentAreas')}} --}}
-            {{/layout-push}}
-            {{bm-edit-line pholder="如：街道门牌号、小区楼号、楼层号" }}
+            {{#if enteredSite}}
+                {{#layout-push direction="row" classNames="select-site"}}
+                    <span class="selected-site" {{action 'enteredSite'}}></span>
+                    <p class="no-age-limit" {{action 'enteredSite'}}>使用已录入的场地</p>
+                    <span class="not-selected-site" {{action 'otherSite'}}></span>
+                    <p class="no-age-limit" {{action 'otherSite'}}>其它场地</p>
+                {{/layout-push}}
+                <select class="" name="" class="select-entered-site" size="5">
+                    <option value="">选择场地</option>
+                    <option value="">场地地址</option>
+                    <option value="">场地地址</option>
+                    <option value="">场地地址</option>
+                    <option value="">场地地址</option>
+                    <option value="">场地地址</option>
+                    <option value="">场地地址</option>
+                </select>
+            {{/if}}
+            {{#if otherSite}}
+                {{#layout-push direction="row" classNames="select-site"}}
+                    <span class="not-selected-site" {{action 'enteredSite'}}></span>
+                    <p class="no-age-limit" {{action 'enteredSite'}}>使用已录入的场地</p>
+                    <span class="selected-site"  {{action 'otherSite'}}></span>
+                    <p class="no-age-limit" {{action 'otherSite'}}>其它场地</p>
+                {{/layout-push}}
+                <p class="edit_subtitle">地址</p>
+                {{#layout-push direction="row" }}
+                    <div class="line_container" >
+                        <select class="start-time" name="">
+                            <option value="">科学</option>
+                            <option value="">2018</option>
+                        </select>
+                    </div>
+                    <div class="line_container" >
+                        <select class="start-time" name="">
+                            <option value="">年</option>
+                            <option value="">2018</option>
+                        </select>
+                    </div>
+                    <div class="line_container" >
+                        <select class="start-time" name="">
+                            <option value="">年</option>
+                            <option value="">2018</option>
+                        </select>
+                    </div>
+                {{/layout-push}}
+                {{bm-edit-line pholder="如：街道门牌号、小区楼号、楼层号" }}
+            {{/if}}
         {{/layout-push}}
     {{/layout-push }}
 </section>

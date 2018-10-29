@@ -4,7 +4,7 @@ import { inject as service } from '@ember/service';
 
 export default Component.extend({
     mock_data: service(),
-    positionalParams: ['apply', 'selectedReservable', 'selectedYard', 'isValidate'],
+    positionalParams: ['apply', 'selectedReservable', 'selectedYard', 'selectedDate', 'isValidate'],
     courseReserve: true,
     experienceApply: false,
     course_lst: computed(function(){
