@@ -24,6 +24,7 @@ export default Route.extend({
         // Implement your custom setup after
         if (model.stud != null) {
 
+            controller.set('act_cat', this.model.act.get('cat'));
             controller.set('act_name', this.model.act.get('name'));
             controller.set('act_alb', this.model.act.get('alb'));
             controller.set('act_aub', this.model.act.get('aub'));
@@ -40,6 +41,7 @@ export default Route.extend({
 
             controller.set('isPushing', false);
         } else {
+            controller.set('act_cat', '');
             controller.set('act_name', '');
             controller.set('act_alb', 0);
             controller.set('act_aub', 0);

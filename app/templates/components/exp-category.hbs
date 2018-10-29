@@ -1,0 +1,13 @@
+{{!-- {{yield}} --}}
+<select onchange={{action 'changeMain' value="target.value"}}>
+    <option>请选择</option>
+    {{#each main as |item|}}
+            <option value={{item}}>{{item}}</option>
+    {{/each}}
+</select>
+<select onchange={{action 'changeSub' value="target.value"}}>
+    <option>请选择</option>
+    {{#each sub as |item|}}
+            <option value={{item}}>{{item}}</option>
+    {{/each}}
+</select>

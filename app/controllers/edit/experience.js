@@ -114,6 +114,7 @@ export default Controller.extend({
 
     isPushing: false,
 
+    act_cat: '',
     act_name: '',
     act_alb: 0,
     act_aub: 1,
