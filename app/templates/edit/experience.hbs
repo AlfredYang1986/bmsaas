@@ -105,14 +105,15 @@
                         <p {{action 'activitySort'}} class="sort-name-active">活动</p>
                         <p {{action 'experienceSort'}}>体验课</p>
                     {{/layout-push}}
-                    {{#layout-push direction="col" classNames="sort-sub-name"}}
+                    {{!-- {{#layout-push direction="col" classNames="sort-sub-name"}}
                         <p>为活动选择类别</p>
                         {{#layout-push direction="row" classNames="sort-sub-checkbox"}}
                             <p><input type="checkbox" name="vehicle" value="展览" />展览</p>
                             <p><input type="checkbox" name="vehicle" value="赛事"/>赛事</p>
                             <p><input type="checkbox" name="vehicle" value="亲子"/>亲子</p>
                         {{/layout-push}}
-                    {{/layout-push}}
+                    {{/layout-push}} --}}
+                    {{checkbox-label title="为活动选择类别" }}
                 {{/if}}
                 {{#if experience}}
                     {{#layout-push direction="row" classNames="sort-name"}}
@@ -211,7 +212,7 @@
                     {{/layout-push}}
 
                     <div class="input-group">
-                      <textarea class="form-control" inputVal={{model.act.planning}}></textarea>
+                      <textarea class="form-control" value={{model.act.planning}}></textarea>
                     </div>
                 {{/layout-push}}
             {{/layout-push}}
@@ -238,7 +239,7 @@
                     {{/layout-push}}
 
                     <div class="input-group">
-                      <textarea class="form-control" inputVal={{model.act.content}}></textarea>
+                      <textarea class="form-control" value={{model.act.ccontent}}></textarea>
                     </div>
                 {{/layout-push}}
             {{/layout-push}}

@@ -9,6 +9,8 @@ export default Controller.extend({
     yard_around: '',
     yard_ardes: '',
     yard_facilities: '',
+    yard_parking: '',
+    yard_embag: '',
 
     yard_awards: null,
 
@@ -41,7 +43,13 @@ export default Controller.extend({
                 yard = this.model.yard;
             }
 
+            // TODO: 其他一些属性的修改
             yard.set('title', this.yard_title);
+            yard.set('description', this.yard_des);
+            yard.set('ardes', this.yard_ardes);
+            yard.set('around', this.yard_around);
+            yard.set('parking', this.yard_parking);
+            yard.set('embag', this.yard_embag);
             yard.set('detail_address', this.yard_detail_address);
             let region = yard.region;
             if (this.yard_selected_province) region.set('province', this.yard_selected_province);
@@ -78,7 +86,14 @@ export default Controller.extend({
     },
 
     yardValidate() {
-        return this.yard_title.length != 0;
+        let valiFlag = true;
+        if (this.yard_title.length == 0 ||
+            this.yard_parking.length == 0 ||
+            this.yard_embag.length == 0) {
+          valiFlag = false;
+        }
+        return valiFlag;
+        // return this.yard_title.length != 0;
     },
 
     guid() {
