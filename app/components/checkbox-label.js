@@ -9,12 +9,12 @@ export default Component.extend({
     actions: {
         onOneUnselected(ele) {
             this.set('count', this.count - 1);
-            ele.set('siSelected', false);
+            ele.set('isSelected', false);
         },
         onOneSelected(ele) {
             if (this.count < this.limit) {
                 this.set('count', this.count + 1);
-                ele.set('siSelected', true);
+                ele.set('isSelected', true);
             }
         }
     }

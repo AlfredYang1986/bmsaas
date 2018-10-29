@@ -1,9 +1,12 @@
 import Component from '@ember/component';
 import { A } from '@ember/array';
 import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
-    positionalParams: ['xmargin', 'ymargin'],
+    mock_data: service(),
+    store: service(),
+    positionalParams: ['xmargin', 'ymargin', 'yardid'],
     time_line_margin: 10,
     time_line_width: computed(function(){
         var canvas = document.getElementById('arrangement');
@@ -34,8 +37,9 @@ export default Component.extend({
     }),
 
     end_date: computed('start_date', function(){
-        let tmp = new Date()
-        tmp.setDate(this.start_date.getDate() + 6);
+        let tmp = new Date();
+        let span = this.start_date.getTime() + 6 * 24 * 60 * 60 * 1000;
+        tmp.setTime(span);
         return tmp;
     }),
     start_month: computed('start_date', function(){
@@ -59,10 +63,8 @@ export default Component.extend({
         this._super(...arguments);
         this.start_date = this.initStartDate();
     },
-    didUpdate() {
-
-    },
     didRender() {
+        console.log('data did render');
         var canvas = document.getElementById('arrangement');
         var ctx = canvas.getContext('2d');
 
@@ -70,6 +72,7 @@ export default Component.extend({
         this.drawTimeLine(ctx);
         this.drawDayLine(ctx);
         this.drawWeekDate(ctx);
+        this.drawSessions(ctx);
     },
     cleanCanves(ctx) {
         ctx.clearRect(0, 0, this.total_width, this.total_height);
@@ -131,12 +134,14 @@ export default Component.extend({
     actions: {
         leftBtnClicked() {
             let tmp = new Date();
-            tmp.setDate(this.start_date.getDate() - 7);
+            let span = this.start_date.getTime() - 7 * 24 * 60 * 60 * 1000;
+            tmp.setTime(span);
             this.set('start_date', tmp);
         },
         rightBtnClicked() {
             let tmp = new Date();
-            tmp.setDate(this.start_date.getDate() + 7);
+            let span = this.start_date.getTime() + 7 * 24 * 60 * 60 * 1000;
+            tmp.setTime(span);
             this.set('start_date', tmp);
         },
         appendBtnClicked() {
@@ -146,9 +151,78 @@ export default Component.extend({
 
     initStartDate() {
         let tmp = new Date()
+        tmp.setHours(0);
+        tmp.setMinutes(0);
         while (tmp.getDay() != 1) {
             tmp.setDate(tmp.getDate() - 1)
         }
         return tmp;
+    },
+
+    /**
+     * start logic
+     */
+    cur_yard: computed('yardid', function(){
+        return this.store.peekRecord('bmyard', this.yardid);
+    }),
+    cls_on_yard: computed('cur_yard', function(){
+        let that = this;
+        function filerClsOnYardCondi(cls) {
+            return cls.yard.get('id') == that.cur_yard.get('id');
+        }
+        let all = this.store.peekAll('bmclass');
+        return all.filter(filerClsOnYardCondi);
+    }),
+    sessions_on_cls: computed('cls_on_yard', function(){
+        let lst = A();
+        for (let idx = 0; idx < this.cls_on_yard.length; idx++) {
+            let tmp = this.cls_on_yard[idx].get('session');
+            for (let inner = 0; inner < tmp.length; inner++) {
+                lst.pushObject(tmp.objectAt(inner));
+            }
+        }
+        return lst;
+    }),
+    sessions_on_time: computed('sessions_on_cls', 'start_date', function() {
+        let that = this;
+        function filerSessionWithTime(ses) {
+            let condi = ses.get('start_date');
+            let line = that.get('start_date');;
+            return condi > line;
+        }
+        return this.sessions_on_cls.filter(filerSessionWithTime);
+    }),
+    drawSessions(ctx) {
+        console.log('draw session');
+
+        let s = this.get('start_date');
+        let sdd = s.getDay() == 0 ? 7 : s.getDay();
+        
+        let e = this.get('end_date');
+        let edd = e.getDay() == 0 ? 7 : e.getDay();
+
+        let x_str = this.xmargin + this.time_line_margin + this.time_line_width - 1;
+        let step_width = this.tb_width / 7.0;
+
+        let line_height_step = this.tb_height / 12.0;
+
+        for (let idx = 0; idx < this.sessions_on_time.length; idx++) {
+            let ses = this.sessions_on_time.objectAt(idx);
+            let date = ses.get('start_date');
+
+            let dd = date.getDay() == 0 ? 7 : date.getDay();
+            let hh = date.getHours() - 8;
+            let ll = ses.get('length') / 60;
+
+            let x = x_str + step_width * (dd - 1);
+            let y = this.time_line_margin + this.time_span_height + line_height_step * hh - 7;
+            ctx.fillRect(x, y, step_width, ll * line_height_step);
+
+            ctx.font = '10px PingFangSC-Regular';
+            ctx.fillStyle = '#FFF';
+            ctx.fillText('班级名称: ' + ses.cls.get('name'), x, y + 14);
+            ctx.fillText('开始时间: ' + (hh + 8), x, y + 14 + 14);
+            ctx.fillText('持续时间: ' + ses.get('length') + ' mins', x, y + 14 + 14 + 14);
+        }
     }
 });
