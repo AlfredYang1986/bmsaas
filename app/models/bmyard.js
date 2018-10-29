@@ -11,6 +11,8 @@ export default DS.Model.extend({
     ardes: DS.attr('string'),
     imgs: DS.hasMany('bmtagimg'),
     facilities: DS.attr(),
+    parking: DS.attr(),
+    embag: DS.attr(),
     awards: DS.hasMany('bmtagimg'),
     address: computed('detail_address', 'region.province.name', 'region.city.name', 'region.governmentArea.name', function() {
         return `${this.region.province.name} ${this.region.city.name} ${this.region.governmentArea.name} ${this.detail_address}`

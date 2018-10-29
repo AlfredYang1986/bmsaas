@@ -12,7 +12,7 @@ export default Controller.extend({
     crs_subcat: '',
     crs_target: '',
     crs_plan: '',
-    crs_content: '',
+    crs_ccontent: '',
     crs_imgs: [],
     crs_tags: [],
 
@@ -36,6 +36,13 @@ export default Controller.extend({
             }
 
             course.set('name', this.crs_name);
+            course.set('level', this.crs_level);
+            course.set('count', this.crs_count);
+            course.set('length', this.crs_length);
+            course.set('tags', this.crs_tags);
+            course.set('target', this.crs_target);
+            course.set('planning', this.crs_plan);
+            course.set('ccontent', this.crs_ccontent);
             // TODO: 其他一些属性的修改
 
             if (this.isPushing) {
@@ -50,7 +57,19 @@ export default Controller.extend({
     },
     
     courseValidate() {
-        return this.crs_name.length != 0;
+        let valiFlag = true;
+        if (this.crs_name.length == 0 ||
+          this.crs_level.length == 0 ||
+          this.crs_count.length == 0 ||
+          this.crs_length.length == 0 ||
+          this.crs_tags.length == 0 ||
+          this.crs_target.length == 0 ||
+          this.crs_plan.length == 0 ||
+          this.crs_ccontent.length == 0) {
+          valiFlag = false;
+        }
+        return valiFlag;
+        // return this.crs_name.length != 0;
     },
 
     guid() {

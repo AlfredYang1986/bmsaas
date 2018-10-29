@@ -1,0 +1,20 @@
+{{#bs-modal open=mswitch onHidden=(action (mut mswitch) false) onSubmit=(action (mut mswitch) false) onClose=(action 'cancelBtnClicked') as |modal|}}
+    <div class="course-reserve-pop-ups">
+        {{#if needTitle}}
+            {{#modal.header classNames="course-reserve-modal-title"}}
+                <p class="modal-title">
+                    {{title}}
+                </p>
+            {{/modal.header}}
+        {{/if}}
+        {{#modal.body}}
+            {{yield}}
+        {{/modal.body}}
+        {{#modal.footer}}
+            {{#if needcancel}}
+                {{#button type="cancel" classNames=cancelbtncss onClick=(action 'cancelBtnClicked') }}取消{{/button}}
+            {{/if }}
+            {{#bs-button type="success" classNames=successbtncss onClick=(action 'successBtnClicked') }}确定{{/bs-button}}
+        {{/modal.footer}}
+    </div>
+{{/bs-modal}}
