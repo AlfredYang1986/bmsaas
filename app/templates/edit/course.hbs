@@ -26,7 +26,7 @@
                         {{/layout-push}}
                     {{/modal.body}}
                     {{#modal.footer}}
-                     {{#bs-button type="success" classNames="nav_cancel_btn menu_button_between" onClick=(action 'saveCourse') }}暂不开放{{/bs-button}}
+                     {{#bs-button type="success" classNames="nav_cancel_btn menu_button_between" onClick=(action 'saveCourseBtnClicked') }}暂不开放{{/bs-button}}
                       {{#bs-button type="success" classNames="nav_save_btn menu_button_between"  onClick=(action 'reserveCourse')}}前往开放预约体验{{/bs-button}}
                     {{/modal.footer}}
                 </div>
@@ -103,7 +103,7 @@
         maxCount=20
         isNeeded=true
         inputVal=crs_name
-        }}
+    }}
 </section>
 
 <section id="basic-info" class="line_container_mid" >

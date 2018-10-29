@@ -6,7 +6,9 @@
 <div class="course_content_top" >
     {{#layout-push direction="col" classNames="course_content"}}
         {{#layout-push direction="row"}}
-            <p class="course_add_btn" {{action 'addCourse'}}>+ 添加课程</p>
+            {{#link-to 'edit.course' 'course/push' classNames='course_add_btn'}}
+                + 添加课程
+            {{/link-to}}
         {{/layout-push}}
         {{#layout-push direction="row" wrap=true classNames="card-wrap"}}
             {{#each model.course as |item|}}
