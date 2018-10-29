@@ -26,6 +26,7 @@ export default Route.extend({
         
         if (model.yard != null) {
             controller.set('yard_title', model.yard.get('title'));
+            controller.set('yard_detail_address', model.yard.get('detail_address'));
             controller.set('yard_cover', model.yard.get('cover'));
             controller.set('yard_des', model.yard.get('description'));
             controller.set('yard_ardes', model.yard.get('ardes'));
@@ -37,6 +38,7 @@ export default Route.extend({
             controller.set('isPushing', false);
         } else {
             controller.set('yard_title', ''),
+            controller.set('yard_detail_address', '');
             controller.set('yard_cover', ''),
             controller.set('yard_des', ''),
             controller.set('yard_ardes', ''),

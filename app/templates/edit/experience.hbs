@@ -123,7 +123,7 @@
                     {{#layout-push direction="col" classNames="sort-sub-name"}}
                         <p>为体验课选择详细类目，这样便于用户快速查找您的体验服务。</p>
                         {{#layout-push direction="row" classNames="sort-sub-select"}}
-                            <select class="" name="">
+                            {{!-- <select class="" name="">
                                 <option value="">请选择</option>
                                 <option value="">科学创新</option>
                                 <option value="">科学创新</option>
@@ -135,7 +135,8 @@
                             </select>
                             <select class="" name="">
                                 <option value="">请选择</option>
-                            </select>
+                            </select> --}}
+                            {{exp-category data=act_cat}}
                         {{/layout-push}}
                     {{/layout-push}}
                 {{/if}}
@@ -263,8 +264,7 @@
                     <p class="class-sub-title">如：小礼物、活动相关成品等...</p>
                 {{/layout-push}}
                 {{#layout-push direction='col' }}
-                    {{bm-edit-line title="第一项" maxCount="10" pholder="在这里输入一个项目"}}
-                    <p class="add-other-btn">+ 添加另一个项目</p>
+                    {{dynamic-input listInputs=model.act.gains inputs=(action 'gainsInputs')}}
                     {{#layout-push direction="row" classNames="reward-description"}}
                         <input type="checkbox" name="vehicle" value="亲子"/>
                         <p class="">还没有准备好相关礼物，但是能力上大大提高啦。</p>
@@ -358,8 +358,7 @@
                     <p class="class-sub-title">请列出体验中包含的内容，如教学用具、水、咖啡、小吃等</p>
                 {{/layout-push}}
                 {{#layout-push direction='col' }}
-                    {{bm-edit-line title="第一项" maxCount="10" pholder="在这里输入一个项目"}}
-                    <p class="add-other-btn">+ 添加另一个项目</p>
+                    {{dynamic-input listInputs=model.act.offered inputs=(action 'offeredInputs')}}
                     <p class="class-head-title">您不为参与者提供任何东西吗？</p>
                     {{#layout-push direction="row" classNames="reward-description"}}
                         <input type="checkbox" name="vehicle" value="亲子"/>
@@ -383,8 +382,7 @@
                     <p class="class-sub-title">请仔细考虑，在开展“体验”过程中，除了您提供的东西，参与者还需要携带什么。</p>
                 {{/layout-push}}
                 {{#layout-push direction='col' }}
-                    {{bm-edit-line title="参与者要带些什么东西？" maxCount="10" pholder="输入内容，如：一套换洗衣物"}}
-                    <p class="add-other-btn">+ 添加另一个项目</p>
+                    {{dynamic-input listInputs=model.act.needed inputs=(action 'neededInputs')}}
                     {{#layout-push direction="row" classNames="reward-description"}}
                         <input type="checkbox" name="vehicle" value="亲子"/>
                         <p class="">当前无需参与者自行准备。</p>

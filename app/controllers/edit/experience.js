@@ -1,13 +1,20 @@
 import Controller from '@ember/controller';
 
 export default Controller.extend({
+    // listInputs: [],
     selectSort: true,
     noSortChoose: true,
     experience: false,
     activity: false,
     selectTitle: false,
     experContent: false,
+
+    gainsInputArray: null,
+    offeredInputArray: null,
+    neededInputArray: null,
+    
     actions: {
+        
         activitySort() {
             this.set('noSortChoose', false);
             this.set('experience', false);
@@ -91,6 +98,10 @@ export default Controller.extend({
 
             // TODO: 其他的一些属性修改都在这里解决
             act.set('name', this.act_name);
+            act.set('gains', this.gainsInputArray);
+            act.set('offered', this.offeredInputArray);
+            act.set('needed', this.neededInputArray);
+            // TODO: 其他的一些属性修改都在这里解决
             act.set('length', this.act_length);
             act.set('planning', this.act_planning);
             act.set('description', this.act_des);
@@ -109,11 +120,30 @@ export default Controller.extend({
             } else {
                 this.transitionToRoute('detail.experience', act.id);
             }
+        },
+        gainsInputs(data) {
+            let darry = data.map(e => e.text)
+            this.set('gainsInputArray', darry);
+            // this.model.act.set('gains', darry)
+            // window.console.info(this.model.act.gains)
+        },
+        offeredInputs(data) {
+            let darry = data.map(e => e.text)
+            this.set('offeredInputArray', darry);
+            // this.model.act.set('offered', darry)
+            // window.console.info(this.model.act.offered)
+        },
+        neededInputs(data) {
+            let darry = data.map(e => e.text)
+            this.set('neededInputArray', darry);
+            // this.model.act.set('needed', darry)
+            // window.console.info(this.model.act.needed)
         }
     },
 
     isPushing: false,
 
+    act_cat: '',
     act_name: '',
     act_alb: 0,
     act_aub: 1,
