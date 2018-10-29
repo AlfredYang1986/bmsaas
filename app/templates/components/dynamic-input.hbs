@@ -1,5 +1,5 @@
 {{!-- {{yield}} --}}
-{{#each listInputs as |item index|}}
+{{#each listInputsObs as |item index|}}
     {{#bm-edit-line title=(concat "第" item.id "项") maxCount="10" pholder="在这里输入一个项目" inputVal=item.text}}
         <span class="edit_input_remove" {{action "remove" item.id}}>
             <img src="../images/remove.png"/>
