@@ -10,6 +10,47 @@
     @extend %detail_content_basic;
     padding-top: 50px;
 }
+/* 场次详情 */
+.session-left-info {
+    p.headline {
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: #767A80;
+        letter-spacing: 3.43px;
+    }
+    .session-info {
+        p {
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #767A80;
+            letter-spacing: 2px;
+        }
+    }
+}
+.open-apply-btn {
+    margin-right: 23px;
+    width: 110px;
+    height: 35px;
+    background: #90B967;
+    border: 1px solid #90B967;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #FFFFFF;
+    letter-spacing: 2px;
+    line-height: 35px;
+    text-align: center;
+}
+.choose-list {
+    a{
+        font-size: 14px;
+        color: #6E7CD4;
+        letter-spacing: 2px;
+    }
+    a.delete-class {
+        color:#D3727E;
+    }
+}
+
 .detail-delete-pop-ups {
     margin-left: 85px;
     width: 330px;
