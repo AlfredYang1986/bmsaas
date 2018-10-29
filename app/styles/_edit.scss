@@ -448,6 +448,16 @@ span.select-time-subtitle {
                 input[type=checkbox] {
                     display: none;
                 }
+                input:checked + .check-label {
+                    border-color: #6E7CD4;
+                    display: block;
+                }
+                input:checked + .check-label::after {
+                    content: '√';
+                    color: #6E7CD4;
+                    font-weight: bold;
+                    margin-left: 5px;
+                }
                 p {
                     margin-right: 30px;
                     margin-bottom: 20px;

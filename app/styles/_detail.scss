@@ -10,6 +10,80 @@
     @extend %detail_content_basic;
     padding-top: 50px;
 }
+.detail-delete-pop-ups {
+    margin-left: 85px;
+    width: 330px;
+    height: 256px;
+    background: #fff;
+    .detail-delete-modal-body {
+        margin-top: 70px;
+        margin-left: 44px;
+        margin-bottom: 60px;
+        p {
+            font-size: 14px;
+            color: #767A80;
+            letter-spacing: 1.17px;
+        }
+    }
+    .detail-delete-card-save {
+        width: 80px;
+        height: 35px;
+        border: 1px solid #6E7CD4;
+        border-radius: 4px;
+        background: #fff;
+        color: #6E7CD4;
+    }
+    .course-delete-card-cancel {
+        width: 80px;
+        height: 35px;
+        border: 1px solid #6E7CD4;
+        border-radius: 4px;
+        background: #6E7CD4;
+        color: #fff;
+    }
+}
+.course-reserve-card-delete {
+    width: 100px;
+    height: 35px;
+    border: 1px solid #D3727E;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #D3727E;
+    letter-spacing: 2px;
+    background: transparent;
+}
+.detail-modal-head {
+    margin-left: -35px;
+    margin-right: -45px;
+    margin-top: -27px;
+    margin-bottom: 30px;
+    padding: 0 27px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: #eff1f9;
+    height: 50px;
+    p.detail-modal-title {
+        font-size: 18px;
+        color: #767A80;
+        letter-spacing: 2.57px;
+    }
+    .course-reserve-card-cancel {
+        margin-right: 30px;
+    }
+}
+.arrive-stauts {
+    background: transparent;
+    border:none;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+.arrived {
+    color: #6E7CD4;
+}
+.not-arrived {
+    color: #D3727E;
+}
 span.list-title {
     min-width: 110px;
 }
