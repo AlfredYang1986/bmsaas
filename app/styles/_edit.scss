@@ -302,8 +302,12 @@ span.select-time-subtitle {
             letter-spacing: 2px;
         }
         .sort-sub-checkbox  {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
             div {
                 margin-right: 16px;
+                margin-bottom: 10px;
                 width: 110px;
                 height: 30px;
                 line-height: 30px;
