@@ -7,82 +7,65 @@
         <div class="detail_panel detail_panel_col_between" >
             {{#layout-push direction='row'}}
                     <div class="time-select today">
-                        <p>今天<span>(9)</span></p>
+                        <p>今天<span>({{today_apply_count}})</span></p>
                     </div>
                     <div class="time-select before ">
-                        <p>以前<span>(300)</span></p>
+                        <p>以前<span>({{older_apply_count}})</span></p>
                     </div>
             {{/layout-push}}
         </div>
         <div class="detail_page table-header">
             {{#layout-push direction='col'}}
                 {{#layout-push direction='row' split=true}}
-                    {{#each model as |item|}}
+                    {{#each model.title as |item|}}
                         <span>{{item.title}}</span>
                     {{/each}}
                 {{/layout-push}}
             {{/layout-push}}
         </div>
         <div class="inbox-table">
-            <div class="detail_page table-body">
+            {{#each model.applies as |item|}}
+                <div class="detail_page table-body">
                     {{#layout-push direction='col'}}
                         {{#layout-push direction='row' split=true}}
                             <span class="email-status">未处理</span>
-                            <span class="">08/03（周五）10:30</span>
-                            <span class="">北京朝阳区东外56号文创产业园111座</span>
-                            <span class="">小明老师带你从新手到高手</span>
-                            <span class="">王大槌</span>
-                            <span class="">184 9382 7483</span>
-                            {{#bs-button classNames="email-option" onClick=(action (mut modal3) true)}}<span>处理</span>{{/bs-button}}
+                            <span class="">{{bmperioddateformat item.apply_date}}</span>
+                            <span class="">{{item.apply_yard.address}}</span>
+                            <span class="">{{bmapplycontentname item.apply_course item.apply_activity}}</span>
+                            <span class="">
+                                {{#each item.attendee as |chd idx|}}
+                                    {{#if (bmeqn idx 0)}}
+                                        ,
+                                    {{/if}}
+                                    {{chd.name}}
+                                {{/each}}
+                            </span>
+                            <span class="">{{item.applyee.contact}}</span>
+                            {{#bs-button classNames="email-option" onClick=(action 'setCurrentApply' item)}}<span>处理</span>{{/bs-button}}
                         {{/layout-push}}
                     {{/layout-push}}
-            </div>
-            <div class="detail_page table-body">
-                    {{#layout-push direction='col'}}
-                        {{#layout-push direction='row' split=true}}
-                            <span class="email-status">未处理</span>
-                            <span class="">08/03（周五）10:30</span>
-                            <span class="">北京朝阳区东外56号文创产业园111座</span>
-                            <span class="">小明老师带你从新手到高手</span>
-                            <span class="">王大槌</span>
-                            <span class="">184 9382 7483</span>
-                            {{#bs-button classNames="email-option" onClick=(action (mut modal3) true)}}<span>处理</span>{{/bs-button}}
-                        {{/layout-push}}
-                    {{/layout-push}}
-            </div>
+                </div>
+            {{/each}}
         </div>
-        {{#bs-modal open=modal3  onHidden=(action (mut modal3) false) onSubmit=(action 'saveInfo') as |modal|}}
-            <div class="course-reserve-pop-ups">
-                {{#modal.header classNames="course-reserve-modal-title"}}
-                  <p class="modal-title">
-                    课程预约
-                </p>
-                {{/modal.header}}
-                {{#modal.body classNames="course-reserve-modal-body"}}
-                    {{mail-processing-pop-ups}}
-                {{/modal.body}}
-                {{#modal.footer}}
-                  {{#bs-button onClick=(action modal.close) classNames="course-reserve-card-cancel"}}取消{{/bs-button}}
-                  {{#bs-button type="success" classNames="course-reserve-card-save" onClick=(action modal.submit) }}确定{{/bs-button}}
-                {{/modal.footer}}
-            </div>
-        {{/bs-modal}}
-        {{#bs-modal open=saveInfo onHidden=(action (mut saveInfo) false) as |modal|}}
-            <div class="course-reserve-pop-ups">
-                {{#modal.body classNames="course-reserve-success"}}
-                    {{#layout-push direction=row classNames="success-info"}}
-                        <img src="../images/success.png" alt="">
-                        {{#layout-push direction=col}}
-                            <p>安排成功！ </p>
-                            <p>已确认参与者提交状态，参与者可在小程序>我的>我的服务中查看详情。</p>
-                        {{/layout-push}}
-                    {{/layout-push}}
-                {{/modal.body}}
-                {{#modal.footer}}
-                  {{#bs-button type="success" classNames="course-reserve-card-save" onClick=(action 'successSave') }}确定{{/bs-button}}
-                {{/modal.footer}}
-            </div>
-        {{/bs-modal}}
+         {{#bm-modal-container title="课程预约" mswitch=showhandledlg 
+                successbtncss='course-reserve-card-save'  
+                cancelbtncss='course-reserve-card-cancel'
+                canceltext='取消'
+                onCancelBtnClicked=(action 'modaltest')  
+                onSuccessBtnClicked=(action 'modaltest')}}
+            {{#layout-push direction=row classNames="success-info"}}
+                {{mail-processing-pop-ups classNames="course-reserve-modal-body" apply=current_apply}}
+            {{/layout-push}}
+        {{/bm-modal-container}}
+        {{#bm-modal-container mswitch=showcomfirmdlg successbtncss='course-reserve-card-save' onSuccessBtnClicked=(action 'modaltest')}}
+            {{#layout-push direction=row classNames="success-info course-reverve-success"}}
+                <img src="../images/success.png" alt="">
+                {{#layout-push direction=col}}
+                    <p>安排成功！ </p>
+                    <p>已确认参与者提交状态，参与者可在小程序>我的>我的服务中查看详情。</p>
+                {{/layout-push}}
+            {{/layout-push}}
+        {{/bm-modal-container}}
     </div>
 </div>
 {{outlet}}
