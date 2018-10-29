@@ -5,6 +5,20 @@
 .edit_page_top_margin {
     padding-top: 50px;
 }
+.form-check-label {
+    margin-left: 0;
+    margin-right: 16px;
+    width: 110px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid #DAD9D9;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #C1C1C1;
+    letter-spacing: 2px;
+
+}
 span.select-time-subtitle {
     margin-top: 30px;
     margin-bottom: 8px;
@@ -279,26 +293,32 @@ span.select-time-subtitle {
         .form-check-input {
             display: none;
         }
-        .form-check-label {
-            margin-left: 0;
-            margin-right: 16px;
-            width: 110px;
-            height: 30px;
-            line-height: 30px;
-            text-align: center;
-            border: 1px solid #DAD9D9;
-            border-radius: 4px;
-            font-size: 12px;
-            color: #C1C1C1;
-            letter-spacing: 2px;
 
-        }
         .edit_sub_title {
             margin-top: 16px;
             margin-bottom: 8px;
             font-size: 14px;
             color: #767A80;
             letter-spacing: 2px;
+        }
+        .sort-sub-checkbox  {
+            div {
+                margin-right: 16px;
+                width: 110px;
+                height: 30px;
+                line-height: 30px;
+                text-align: center;
+                border: 1px solid #DAD9D9;
+                border-radius: 4px;
+                font-size: 14px;
+                color: #767A80;
+                letter-spacing: 2px;
+            }
+            div.selected {
+                border: 1px solid #6E7CD4;
+                color: #6E7CD4;
+            }
+
         }
     }
     .select-reserve-title {
