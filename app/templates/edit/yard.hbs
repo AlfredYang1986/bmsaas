@@ -102,6 +102,13 @@
                     }}
         {{/layout-push}}
         {{#layout-push direction="col" classNames="single-select card-wrap"}}
+            {{checkbox-label title='周围环境' limit=10
+                    candidate=surroundings
+                    titlecss='edit_sub_title'
+                    btncss='form-check-label'
+                    }}
+        {{/layout-push}}
+        {{!-- {{#layout-push direction="col" classNames="single-select card-wrap"}}
             <p class="edit_sub_title">周围环境</p>
             {{#layout-push direction="row"}}
                 <div class="form-check form-check-inline">
@@ -125,7 +132,7 @@
                   <label class="form-check-label" for="inlineCheckbox3">户外</label>
                 </div>
             {{/layout-push}}
-        {{/layout-push}}
+        {{/layout-push}} --}}
         {{bm-edit-line title="小区名，商圈名，校区名等" maxCount=3 pholder="例如：天通苑" inputVal=yard_ardes}}
         {{bm-edit-line title="周边交通路线信息" maxCount=100 pholder="例如：天通苑" inputVal=yard_around}}
     </div>

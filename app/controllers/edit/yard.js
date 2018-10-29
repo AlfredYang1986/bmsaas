@@ -20,7 +20,7 @@ export default Controller.extend({
     isPushing: false,
 
     yardCandidate: ['室内', '室外', '室内 + 室外'],
-
+    surroundings: ['社区', '商圈', '校区', '写字楼', '户外', '露天', '闹市区'],
     actions: {
         saveYardBtnClicked() {
             console.log('save tech editing');
