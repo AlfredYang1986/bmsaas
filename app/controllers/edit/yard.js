@@ -3,12 +3,17 @@ import Controller from '@ember/controller';
 export default Controller.extend({
 
     yard_title: '',
-    yard_address: '',
     yard_cover: '',
     yard_des: '',
     yard_around: '',
     yard_ardes: '',
     yard_facilities: '',
+
+    yard_awards: null,
+
+    yard_provinces: null,
+    yard_citys: null,
+    yard_government_areas: null,
 
     isPushing: false,
 
@@ -37,6 +42,21 @@ export default Controller.extend({
             } else {
                 this.transitionToRoute('detail.yard', yard.id);
             }
+        },
+        changeProvinces(value) {
+            let province = this.store.peekRecord('bmprovinces', value);
+            let region = this.model.yard.region;
+            region.set('province', province);
+        },
+        changeCitys(value) {
+            let city = this.store.peekRecord('bmcitys', value);
+            let region = this.model.yard.region;
+            region.set('city', city);
+        },
+        changeGovernmentAreas(value) {
+            let area = this.store.peekRecord('bmgovernment-areas', value);
+            let region = this.model.yard.region;
+            region.set('governmentArea', area);
         }
     },
 

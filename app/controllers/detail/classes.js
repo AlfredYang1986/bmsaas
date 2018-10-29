@@ -1,4 +1,5 @@
 import Controller from '@ember/controller';
+import { computed } from '@ember/object';
 
 export default Controller.extend({
     arrangeClass: true,
@@ -23,5 +24,15 @@ export default Controller.extend({
         goToarrangeClass() {
             this.transitionToRoute('arrange-class');
         }
-    }
+    },
+    arrangedDate: computed(function(){
+        if (this.model.cls != null || this.model.cls.get('start_date') == null) {
+            return '没有安排';
+        } else {
+            let s = this.model.cls.get('start_date');
+            let e = this.model.cls.get('end_date');
+            return s.getFullYear() + '/' + (s.getMonth() + 1) + '/' + s.getDate() + 
+                ' ---- ' + e.getFullYear() + '/' + (e.getMonth() + 1) + '/' + e.getDate()
+        }
+    }),
 });

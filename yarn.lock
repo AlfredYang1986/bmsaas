@@ -2637,6 +2637,12 @@ ember-source@~3.2.0:
     jquery "^3.3.1"
     resolve "^1.6.0"
 
+ember-truth-helpers@^2.1.0:
+  version "2.1.0"
+  resolved "http://registry.npm.taobao.org/ember-truth-helpers/download/ember-truth-helpers-2.1.0.tgz#d4dab4eee7945aa2388126485977baeb33ca0798"
+  dependencies:
+    ember-cli-babel "^6.6.0"
+
 ember-wormhole@^0.5.4:
   version "0.5.5"
   resolved "https://registry.npmjs.org/ember-wormhole/-/ember-wormhole-0.5.5.tgz#db417ff748cb21e574cd5f233889897bc27096cb"

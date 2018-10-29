@@ -3,8 +3,7 @@ import Controller from '@ember/controller';
 export default Controller.extend({
     actions: {
         cardClicked(idx) {
-            // this.transitionToRoute('edit.stud');
-            this.transitionToRoute('detail.classes');
+            this.transitionToRoute('detail.classes', idx);
         },
         createClass() {
             this.transitionToRoute('edit.classes')

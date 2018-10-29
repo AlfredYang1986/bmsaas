@@ -71,6 +71,7 @@ export default Controller.extend({
                 this.transitionToRoute('detail.stud', stud.id);
             }
         },
+        
     },
 
     studValidate() {

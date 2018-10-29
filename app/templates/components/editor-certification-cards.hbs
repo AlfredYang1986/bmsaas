@@ -1,0 +1,9 @@
+{{!-- {{yield}} --}}
+{{#each data as |item|}}
+    <div>
+        <div class="edit_logo_container">
+            <img src={{item.img_src}} alt="">
+        </div>
+        <p>{{input value=item.img_tag}}</p>
+    </div>
+{{/each}}

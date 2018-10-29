@@ -59,48 +59,14 @@
             {{#layout-push direction='col' classNames='line_half'}}
                 <div class="line_container_split" >
                     <div class="line_container" >
-                        <span class="edit_subtitle" >成立时间</span>
+                        <span class="edit_subtitle" >出生日期</span>
                         <div class="v_end">
                             <span class="edit_required" >* 必填</span>
                         </div>
                     </div>
                 </div>
                 <div class="line_container" >
-                    {{#bs-dropdown as |dd|}}
-                        {{#dd.button classNames="edit_dropdown_btn"}}年<span class="caret"></span>{{/dd.button}}
-                        {{#dd.menu as |menu|}}
-                            {{#menu.item}}
-                                {{#menu.link-to "home"}}Home{{/menu.link-to}}
-                            {{/menu.item}}
-                            {{#menu.item}}
-                                {{#menu.link-to "home"}}Dropdowns{{/menu.link-to}}
-                            {{/menu.item}}
-                        {{/dd.menu}}
-                    {{/bs-dropdown}}
-
-                    {{#bs-dropdown as |dd|}}
-                        {{#dd.button classNames="edit_dropdown_btn"}}月<span class="caret"></span>{{/dd.button}}
-                        {{#dd.menu as |menu|}}
-                            {{#menu.item}}
-                                {{#menu.link-to "home"}}Home{{/menu.link-to}}
-                            {{/menu.item}}
-                            {{#menu.item}}
-                                {{#menu.link-to "home"}}Dropdowns{{/menu.link-to}}
-                            {{/menu.item}}
-                        {{/dd.menu}}
-                    {{/bs-dropdown}}
-
-                    {{#bs-dropdown as |dd|}}
-                        {{#dd.button classNames="edit_dropdown_btn"}}日<span class="caret"></span>{{/dd.button}}
-                        {{#dd.menu as |menu|}}
-                            {{#menu.item}}
-                                {{#menu.link-to "home"}}Home{{/menu.link-to}}
-                            {{/menu.item}}
-                            {{#menu.item}}
-                                {{#menu.link-to "home"}}Dropdowns{{/menu.link-to}}
-                            {{/menu.item}}
-                        {{/dd.menu}}
-                    {{/bs-dropdown}}
+                    {{date-choose data=model.stud.me.dob}}
                 </div>
             {{/layout-push}}
 

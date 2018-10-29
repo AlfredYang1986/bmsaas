@@ -8,8 +8,9 @@ export default Controller.extend({
         addSession() {
             this.transitionToRoute('edit.session', this.model.act.id);
         },
-        viewExperDetail() {
-            this.transitionToRoute('detail.experience-detail', this.model.act.id);
+        viewExperDetail(idx) {
+            this.transitionToRoute('detail.actarrangement', 
+                this.model.act.id, this.model.act.periods.objectAt(idx).id);
         },
         sessionArrange() {
             this.set('sessionArrange', true);

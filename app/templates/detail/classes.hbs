@@ -5,7 +5,7 @@
 
 <div class="detail_content_top" >
     <div class="detail_page" >
-        {{#link-to 'stud' class="detail_href_ref"}}
+        {{#link-to 'classes' class="detail_href_ref"}}
             返回
         {{/link-to}}
 
@@ -13,12 +13,12 @@
             {{#layout-push direction='row' split=true classNames="class-head-card"}}
                 {{#layout-push direction='col' mid=true classNames='left-info'}}
                     <div >
-                        <p class="headline">跆拳道入门Ａ班</p>
-                        <p class="sub-title">课程名称</p>
+                        <p class="headline">{{model.cls.name}}</p>
+                        <p class="sub-title">{{model.cls.course.name}}</p>
                     </div>
                     {{#layout-push direction='row' classNames="sites" split=true}}
-                        <p>场地：道观1场地</p>
-                        <p>时间：尚未安排</p>
+                        <p>场地：{{model.cls.yard.address}}</p>
+                        <p>时间：{{arrangedDate}}</p>
                     {{/layout-push}}
                 {{/layout-push}}
                 {{#layout-push direction="col" classNames="chooses v_end"}}
@@ -150,30 +150,30 @@
                     {{#layout-push direction='row'  split=true classNames="line_conatainer_split"}}
                     {{#layout-push direction="row"}}
                         <p>课程名称</p>
-                        <p>乐高机器人设计搭建课</p>
+                        <p>{{model.cls.course.name}}</p>
                     {{/layout-push}}
                     <a class="course-info-change-btn" {{action 'editCourse'}}>编辑</a>
                     {{/layout-push}}
                     {{#layout-push direction='row'}}
                         <p>课程类别</p>
-                        <p>科学<span>STEM</span></p>
+                        <p>{{model.cls.course.category.cat}}<span>{{model.cls.course.category.sub}}</span></p>
                     {{/layout-push}}
                     {{#layout-push direction='row'}}
                         <p>适应年龄</p>
-                        <p>6-12</p>
-                        <p class="course-sub-title">分级/阶段<span>入门级</span></p>
+                        <p>{{model.cls.course.alb}}-{{model.cls.course.aub}}</p>
+                        <p class="course-sub-title">分级/阶段<span>{{modle.cls.course.level}}</span></p>
                     {{/layout-push}}
                     {{#layout-push direction='row'}}
                         <p>预计课时数</p>
-                        <p>30</p>
-                        <p class="course-sub-title">课程时长<span>120 min</span></p>
+                        <p>{{model.cls.course.count}}</p>
+                        <p class="course-sub-title">课程时长<span>{{model.cls.course.length}} min</span></p>
                     {{/layout-push}}
                     {{#layout-push direction='row'}}
                         <p>教育理念及模式</p>
                         {{#layout-push direction='row'}}
-                            <p class="course-info-feature">趣味教学</p>
-                            <p class="course-info-feature">PBL项目教学</p>
-                            <p class="course-info-feature">学科乐趣培养</p>
+                            {{#each model.cls.course.tags as |item|}}
+                                <p class="course-info-feature">{{item}}</p>
+                            {{/each}}
                         {{/layout-push}}
                     {{/layout-push}}
 
@@ -183,16 +183,7 @@
                     {{#layout-push direction='col' classNames='detail_inner_panel'}}
                         {{#layout-push direction='col' classNames='detail_inner_content_line'}}
                             <span class='detail_inner_left'>
-                                在乐高机器人设计搭建系列课程中，我们将和孩子一起通过简单工具搭建生活中常见的场景和机器人。
-                            </span>
-                            <span class='detail_inner_left'>
-                                让孩子们探索生活中的细节与乐趣，提升孩子们的逻辑思维能力和综合学科能力，
-                            </span>
-                            <span class='detail_inner_left'>
-                                同时在创建属于自己的机器人的过程中提高想象力和创造力。
-                            </span>
-                            <span class='detail_inner_left'>
-                                通过系统的教程对孩子提供各方面培养：动手能力、物理搭建、编程实践、团队合作等。
+                                {{model.cls.course.target}}
                             </span>
                         {{/layout-push}}
                     {{/layout-push}}
@@ -202,20 +193,8 @@
                     {{/layout-push}}
                     {{#layout-push direction='col' classNames='detail_inner_panel'}}
                         {{#layout-push direction='col' classNames='detail_inner_content_line'}}
-                            <span class='detail_inner_list'>
-                                在乐高机器人设计搭建系列课程中，我们将和孩子一起通过简单工具搭建生活中常见的场景和机器人。
-                            </span>
-                            <span class='detail_inner_list'>
-                                让孩子们探索生活中的细节与乐趣，提升孩子们的逻辑思维能力和综合学科能力，
-                            </span>
-                            <span class='detail_inner_list'>
-                                同时在创建属于自己的机器人的过程中提高想象力和创造力。
-                            </span>
-                            <span class='detail_inner_list'>
-                                通过系统的教程对孩子提供各方面培养：动手能力、物理搭建、编程实践、团队合作等。
-                            </span>
-                            <span class='detail_inner_list'>
-                                通过系统的教程对孩子提供各方面培养：动手能力、物理搭建、编程实践、团队合作等。
+                            <span class='detail_inner_left'>
+                                {{model.cls.course.planning}}
                             </span>
                         {{/layout-push}}
                     {{/layout-push}}
@@ -226,18 +205,8 @@
                     {{/layout-push}}
                     {{#layout-push direction='col' classNames='detail_inner_panel'}}
                         {{#layout-push direction='col' classNames='detail_inner_content_line'}}
-                            <span class='detail_inner_content'>
-                                由PRO科技空间的负责人刘美老师为家长和孩子们介绍乐高公益体验活动的流程及如何正确引导孩子认识乐高积木的要点。我们的课程将会分为三大阶段，面向对于乐高机器人搭建感兴趣的学员以及想要参加VEX及VEX-IQ各地区赛事的学员。
-                            </span>
-                            <span class='detail_inner_content'>
-                                基础的编程，全面了解ROBOTC，虚拟世界，深入学习复杂语句及其组合，以教学基础为载体，学会各种VEX-IQ
-                                各种基本语句传感器的用法。掌握Arduino IDE 编程基本语句，通过XB硬件以及各种传感器，学习各种基本语句，加深对编程的理解。
-                            </span>
-                            <span class='detail_inner_content'>
-                                学习乐高WeDo2.0、EV3核心套件，完成从基础到高阶学习，可以独立搭建复杂机械机构，学习使用ROBOTC语言编程，设计物理、变量等高级知识。学习使用ARM核智能硬件开发套件。基于ARM Cortex-M4核智能硬件开发套件平台，结合舵机等打造人工智能机器人，用C/C++语言编程。
-                            </span>
-                            <span class='detail_inner_content'>
-                                综合锻炼，通过各种挑战，掌握复杂语句的编写。开放式、自由式的学习环境，培养孩子们的各种能力，为各种机器人比赛以及创客培养打下基础。
+                            <span class='detail_inner_left'>
+                                {{model.cls.course.ccontent}}
                             </span>
                         {{/layout-push}}
                     {{/layout-push}}
@@ -246,10 +215,9 @@
                         <span class='detail_panel_title'>课程图片</span>
                     {{/layout-push}}
                     <div class="line_conatainer_warp detail_card_container" >
-                        {{detail-card }}
-                        {{detail-card }}
-                        {{detail-card }}
-                        {{detail-card }}
+                        {{#each model.cls.course.imgs as |item|}}
+                            {{detail-card card=item}}
+                        {{/each}}
                     </div>
 
                 </div>
