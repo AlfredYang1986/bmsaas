@@ -58,14 +58,6 @@ export default Controller.extend({
     
     courseValidate() {
         let valiFlag = true;
-        console.log(this.crs_name.length);
-        console.log(this.crs_level.length);
-        console.log(this.crs_count.length);
-        console.log(this.crs_length.length);
-        console.log(this.crs_tags.length);
-        console.log(this.crs_target.length);
-        console.log(this.crs_plan.length);
-        console.log(this.crs_ccontent.length);
         if (this.crs_name.length == 0 ||
           this.crs_level.length == 0 ||
           this.crs_count.length == 0 ||
