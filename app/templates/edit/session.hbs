@@ -68,6 +68,14 @@
                         <option value="">2018</option>
                     </select>
                 </div>
+                {{!-- {{region-choose 
+                        provinces=yard_provinces 
+                        citys=yard_citys 
+                        governmentAreas=yard_government_areas 
+                        model=model.yard
+                        changeProvinces=(action 'changeProvinces')
+                        changeCitys=(action 'changeCitys')
+                        changeGovernmentAreas=(action 'changeGovernmentAreas')}} --}}
             {{/layout-push}}
             {{bm-edit-line pholder="如：街道门牌号、小区楼号、楼层号" }}
         {{/layout-push}}
@@ -81,7 +89,7 @@
         {{/layout-push }}
         {{#layout-push direction='col' classNames='select-school'}}
 
-            {{#layout-push direction="row"}}
+            {{!-- {{#layout-push direction="row"}}
                 <div class="line_container" >
                     <select class="start-time" name="">
                         <option value="">年</option>
@@ -94,7 +102,7 @@
                         <option value="">2018</option>
                     </select>
                 </div>
-            {{/layout-push}}
+            {{/layout-push}} --}}
             {{#layout-push direction="row"}}
                 {{#layout-push direction="col"}}
                     <div class="line_container_split" >
@@ -103,6 +111,7 @@
                         </div>
                     </div>
                     <div class="line_container" >
+                        {{!-- {{date-choose data=se_date}} --}}
                         <select class="start-time" name="">
                             <option value="">年</option>
                             <option value="">2018</option>
@@ -116,6 +125,7 @@
                         </div>
                     </div>
                     <div class="line_container" >
+                        {{!-- {{date-choose data=se_date}} --}}
                         <select class="start-time" name="">
                             <option value="">年</option>
                             <option value="">2018</option>
@@ -133,6 +143,7 @@
             <span class="edit_title">报名设置</span>
         {{/layout-push }}
         <p class="edit_subtitle">报名截止时间</p>
+        {{!-- {{date-choose data=se_date}} --}}
         {{#layout-push direction='col' classNames='select-school'}}
             {{#layout-push direction="row"  classNames="select-site"}}
                 <p class="no-age-limit"><input type="checkbox" name="vehicle" value="赛事"/>无年龄限制</p>

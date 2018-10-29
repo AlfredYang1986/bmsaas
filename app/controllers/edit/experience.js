@@ -23,14 +23,26 @@ export default Controller.extend({
             this.set('selectTitle', true);
         },
         titleNext() {
+            if (!this.activityValidate1()) {
+                alert('something wrong!');
+                return;
+            }
             this.set('selectTitle', false);
             this.set('experContent', true);
         },
         contentNext() {
+            if (!this.activityValidate2()) {
+                alert('something wrong!');
+                return;
+            }
             this.set('experContent', false);
             this.set('childInteractive', true);
         },
         interactiveNext() {
+            if (!this.activityValidate3()) {
+                alert('something wrong!');
+                return;
+            }
             this.set('childInteractive', false);
             this.set('childReward', true);
         },
@@ -63,10 +75,10 @@ export default Controller.extend({
         saveActivityBtnClicked() {
             console.log('save the activity');
 
-            if (!this.activityValidate()) {
-                alert('something wrong!');
-                return;
-            }
+            // if (!this.activityValidate()) {
+            //     alert('something wrong!');
+            //     return;
+            // }
 
             let act = null;
             if (this.isPushing) {
@@ -77,8 +89,20 @@ export default Controller.extend({
                 act = this.model.act;
             }
 
-            act.set('name', this.act_name);
             // TODO: 其他的一些属性修改都在这里解决
+            act.set('name', this.act_name);
+            act.set('length', this.act_length);
+            act.set('planning', this.act_planning);
+            act.set('description', this.act_des);
+            act.set('ccontent', this.act_content);
+            // act.set('alb', this.act_alb);
+            // act.set('aub', this.act_aub);
+            // act.set('gains', this.act_gains);
+            // act.set('cover', this.act_cover);
+            // act.set('imgs', this.act_imgs);
+            // act.set('offered', this.act_offered);
+            // act.set('needed', this.act_needed);
+            // act.set('notice', this.act_notice);
 
             if (this.isPushing) {
                 this.transitionToRoute('experience');
@@ -105,7 +129,32 @@ export default Controller.extend({
     act_notice: '',
 
     activityValidate() {
-        return this.act_name.length != 0;
+    },
+
+    activityValidate1() {
+        let valiFlag = true;
+        if (this.act_name.length == 0 ||
+          this.act_length.length == 0) {
+          valiFlag = false;
+        }
+        return valiFlag;
+    },
+
+    activityValidate2() {
+        let valiFlag = true;
+        if (this.act_planning.length == 0 ||
+          this.act_des.length == 0) {
+          valiFlag = false;
+        }
+        return valiFlag;
+    },
+
+    activityValidate3() {
+        let valiFlag = true;
+        if (this.act_content.length == 0) {
+          valiFlag = false;
+        }
+        return valiFlag;
     },
 
     guid() {
