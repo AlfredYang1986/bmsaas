@@ -31,19 +31,7 @@
                             </select>
                     {{/layout-push}}
                     {{#layout-push direction=row classNames="line_container"}}
-                        <p class="course-reserve-label">时间</p>
-                            <select class="course-reserve-modal-select" name="">
-                                <option value="">月</option>
-                                <option value="">2018</option>
-                            </select>
-                            <select class="course-reserve-modal-select" name="">
-                                <option value="">日</option>
-                                <option value="">2018</option>
-                            </select>
-                            <select class="course-reserve-modal-select" name="">
-                                <option value="">时间</option>
-                                <option value="">2018</option>
-                            </select>
+                        {{date-choose needday=true data=selectedDate}}
                     {{/layout-push}}
                 {{/layout-push}}
                 {{#layout-push direction=col classNames="course-participants"}}
