@@ -2,6 +2,7 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 
 export default Component.extend({
+    positionalParams: ['data'],
     tagName: '',
     years: Array.from(new Array(9), (val,index) => (index + 2010).toString()),
     months: Array.from(new Array(12),(val,index)=> { 
@@ -9,12 +10,33 @@ export default Component.extend({
         if (m < 10) return "0" + m;
         return m;
     }),
-    days:  Array.from(new Array(31),(val,index)=> {
-        let d = (index + 1).toString();
-        if (d < 10) return "0" + d;
-        return d;
+    days: computed('selectedYear', 'selectedMonth', function(){
+        let tmp_b = [1, 3, 5, 7, 8, 10, 12];
+        let tmp_s = [4, 6, 9, 11];
+        let tmp_y = 2;
+        let sm = parseInt(this.selectedMonth);
+        let sy = parseInt(this.selectedYear);
+        let base = 31;
+        if (tmp_s.includes(sm)) {
+            base = 30;
+        } else if (tmp_y == sm) {
+            if (this.isYeapYear(sy)) {
+                base = 29;
+            } else {
+                base = 28;
+            }
+        }
+        return Array.from(new Array(base),
+                    (val,index)=> {
+                        let d = (index + 1).toString();
+                        if (d < 10) return "0" + d;
+                        return d;
+                    })
     }),
 
+    isYeapYear(y) {
+        return (y % 100 == 0 && y % 400 == 0) || y % 4 == 0;
+    },
 
     selectedYear: computed('data', function() {
         return this.get('data').split('-')[0];

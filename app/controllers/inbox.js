@@ -13,6 +13,11 @@ export default Controller.extend({
     showhandledlg: false,
     current_apply: null,
     showcomfirmdlg: false,
+
+    sr : null, 
+    sy: null, 
+    isV: false,
+
     actions: {
         saveInfo() {
             this.set('modal3',false);
@@ -22,14 +27,26 @@ export default Controller.extend({
             },500);
         },
         setCurrentApply(item) {
+            this.set('sr', null);
+            this.set('sy', null);
+            this.set('isV', false);
             this.set('current_apply', item);
             this.set('showhandledlg', true);
         },
         successSave() {
             this.set('saveInfo',false);
         },
-        modaltest() {
-            this.set('showmodal3', false);
+        successHandled() {
+            debugger
+
+            this.set('showhandledlg', false);
+        },
+        cancelHandled() {
+            this.set('sr', null);
+            this.set('sy', null);
+            this.set('isV', false);
+            this.set('current_apply', null);
+            this.set('showhandledlg', false);
         }
     },
 });

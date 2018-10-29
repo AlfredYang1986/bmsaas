@@ -7,7 +7,6 @@ export default Component.extend({
         return this.title != null && this.title.length > 0;
     }),
     mswitch: false,
-    needcancel: false,
     canceltext: '',
     successtext: '确定',
     needcancel: computed('canceltext', function(){
