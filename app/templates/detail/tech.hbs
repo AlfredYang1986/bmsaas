@@ -67,7 +67,10 @@
                         {{#layout-push direction='row' classNames='detail_panel_des_container'}}
                             {{#layout-push direction='row' classNames='line_half detail_panel_des_between detail_panel_des_underline'}}
                                 <span class='detail_panel_des_01'>出生日期</span>
-                                <span class='detail_panel_des_02'>2011-12-12</span>
+                                <span class='detail_panel_des_02'>
+                                    {{!-- 2011-12-12 --}}
+                                    {{model.tech.me.dob}}
+                                    </span>
                             {{/layout-push}}
                             {{#layout-push direction='row' classNames='line_half detail_panel_des_underline'}}
                                 <span class='detail_panel_des_01'>年龄</span>
