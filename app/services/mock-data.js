@@ -236,6 +236,7 @@ export default Service.extend({
         window.console.log('sure tech');
         let tech_lst = this.store.peekAll('bmtech');
         if (tech_lst.length == 0) {
+            let dob_tech_01 = "2011-08-01"
             let person_tech_01 = this.store.createRecord('bmperson', {
                 id: 'i am tech person 01',
                 icon: '../images/stud-normal.png',
@@ -247,13 +248,15 @@ export default Service.extend({
                 wechat: '',
                 register_date: new Date(), 
             })
+            person_tech_01.set('dob', dob_tech_01);
             let tech_01 = this.store.createRecord('bmtech', {
                 id: 'i am tech 01',
                 address: '四川蜀山001',
                 homeland: '人间山神庙'
             })
             tech_01.set('me', person_tech_01);
-
+            
+            let dob_tech_02 = "2011-08-01"
             let person_tech_02 = this.store.createRecord('bmperson', {
                 id: 'i am tech person 02',
                 icon: '../images/stud-normal.png',
@@ -265,6 +268,7 @@ export default Service.extend({
                 wechat: '',
                 register_date: new Date(), 
             })
+            person_tech_02.set('dob', dob_tech_02);
             let tech_02 = this.store.createRecord('bmtech', {
                 id: 'i am tech 02',
                 address: '四川蜀山007',

@@ -14,7 +14,7 @@ export default Controller.extend({
     tech_contact: '',
     tech_address: '',
     tech_wechat: '',
-    tech_date:'',
+    // tech_date:'',
     edu_name:'',
     edu_category:'',
     ca_company:'',
@@ -25,7 +25,7 @@ export default Controller.extend({
     actions: {
         saveTechBtnClicked() {
             console.log('save tech editing');
-
+            
             if (!this.techValidate()) {
                 alert('必填项不能为空！');
                 return;
