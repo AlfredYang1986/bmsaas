@@ -57,8 +57,8 @@
         <div class="inbox-table">
             <div class="detail_page table-body">
                     {{#layout-push direction='col'}}
-                        {{#layout-push direction='row' split=true}}
-                            <span class="email-status">已到</span>
+                        {{#layout-push direction='row' split=true }}
+                            <span>{{#bs-button class="arrive-stauts arrived" onClick=(action (mut reserveDetail) true) classNames="course-code-btn"}}已到{{/bs-button}}</span>
                             <span class="">08/03（周五）10:30</span>
                             <span class="">北京朝阳区东外56号文创产业园111座</span>
                             <span class="">王大槌</span>
@@ -70,7 +70,7 @@
             <div class="detail_page table-body">
                     {{#layout-push direction='col'}}
                         {{#layout-push direction='row' split=true}}
-                            <span class="email-status">未到</span>
+                            <span>{{#bs-button class="arrive-stauts not-arrived" onClick=(action (mut courseCode) true) classNames="course-code-btn"}}未到{{/bs-button}}</span>
                             <span class="">08/03（周五）10:30</span>
                             <span class="">北京朝阳区东外56号文创产业园111座</span>
                             <span class="">王大槌</span>
@@ -80,6 +80,28 @@
                     {{/layout-push}}
             </div>
         </div>
+        {{#bs-modal open=reserveDetail onSubmit=(action "deleteDetail")  onHidden=(action (mut reserveDetail) false) as |modal|}}
+            <div class="course-reserve-pop-ups">
+                {{#modal.body classNames="course-reserve-modal-body"}}
+                    {{exper-detail-pop-ups}}
+                {{/modal.body}}
+                {{#modal.footer}}
+                  {{#bs-button onClick=(action modal.close) classNames="course-reserve-card-cancel"}}取消{{/bs-button}}
+                  {{!-- {{#bs-button type="success" classNames="course-reserve-card-delete" onClick=(action modal.submit)}}删除{{/bs-button}} --}}
+                {{/modal.footer}}
+            </div>
+        {{/bs-modal}}
+        {{!-- {{#bs-modal open=deleteDetail onHidden=(action (mut deleteDetail) false) as |modal|}}
+            <div class="detail-delete-pop-ups">
+                {{#modal.body classNames="detail-delete-modal-body"}}
+                    <p>您确定要删除该课程预约信息吗？</p>
+                {{/modal.body}}
+                {{#modal.footer}}
+                  {{#bs-button type="success" classNames="detail-delete-card-save"}}确定{{/bs-button}}
+                  {{#bs-button onClick=(action modal.close) classNames="course-delete-card-cancel"}}取消{{/bs-button}}
+                {{/modal.footer}}
+            </div>
+        {{/bs-modal}} --}}
     </div>
 </div>
 {{outlet}}
