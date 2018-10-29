@@ -1,13 +1,16 @@
 import Controller from '@ember/controller';
 
 export default Controller.extend({
+    listInputs: [],
     selectSort: true,
     noSortChoose: true,
     experience: false,
     activity: false,
     selectTitle: false,
     experContent: false,
+    
     actions: {
+        
         activitySort() {
             this.set('noSortChoose', false);
             this.set('experience', false);

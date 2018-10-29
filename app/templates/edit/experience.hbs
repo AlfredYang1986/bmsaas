@@ -259,8 +259,7 @@
                     <p class="class-sub-title">如：小礼物、活动相关成品等...</p>
                 {{/layout-push}}
                 {{#layout-push direction='col' }}
-                    {{bm-edit-line title="第一项" maxCount="10" pholder="在这里输入一个项目"}}
-                    <p class="add-other-btn">+ 添加另一个项目</p>
+                    {{dynamic-input listInputs=listInputs}}
                     {{#layout-push direction="row" classNames="reward-description"}}
                         <input type="checkbox" name="vehicle" value="亲子"/>
                         <p class="">还没有准备好相关礼物，但是能力上大大提高啦。</p>
