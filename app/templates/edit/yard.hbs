@@ -110,6 +110,12 @@
                   <label class="form-check-label" for="inlineCheckbox3">室内+室外</label>
                 </div>
             {{/layout-push}}
+            
+            {{checkbox-label title='场地类型' limit=1 
+                    candidate=yardCandidate
+                    titlecss='edit_sub_title'
+                    btncss='form-check-label'
+                    }}
         {{/layout-push}}
         {{#layout-push direction="col" classNames="single-select"}}
             <p class="edit_sub_title">周围环境</p>

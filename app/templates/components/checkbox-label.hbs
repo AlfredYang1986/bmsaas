@@ -1,14 +1,11 @@
 {{#layout-push direction="col" classNames="sort-sub-name"}}
-    <p>{{title}}</p>
+    <p class={{titlecss}}>{{title}}</p>
     {{#layout-push direction="row" classNames="sort-sub-checkbox"}}
-            {{!-- <input id="1" type="checkbox" name="vehicle" value="展览"  />
-            <label for="1" class="check-label" >展览</label> --}}
-            <div class="" {{action 'choicetest'}}>
-                <label>展览{{select}}</label>
-                <label>赛事</label>
-                <label>活动</label>
-            </div>
-
+        {{#each candidate as |item|}}
+            {{checkbox-item text=item 
+                    onUnselected=(action 'onOneUnselected')
+                    onSelected=(action 'onOneSelected')
+                    }}
+        {{/each}}
     {{/layout-push}}
 {{/layout-push}}
-{{yield}}

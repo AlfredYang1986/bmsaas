@@ -155,7 +155,7 @@
                         <p class="class-head-title">为“体验”起个名称吧 ！</p>
                         <p class="class-sub-title">标题应该简短、具描述性、激动人心</p>
                 {{/layout-push}}
-                {{bm-edit-line title="标题" isNeeded=true maxCount=20 inputVal=model.act.name}}
+                {{bm-edit-line title="标题" isNeeded=true maxCount=20 inputVal=act_name}}
                 {{#layout-push direction="col" classNames="exper-age"}}
                     <p>适宜年龄</p>
                     {{#layout-push direction="row" classNames="selece-exper-age"}}
@@ -175,7 +175,7 @@
                         </select>
                         <p class="no-age-limit"><input type="checkbox" name="vehicle" value="赛事"/>无年龄限制</p>
                     {{/layout-push}}
-                    {{bm-edit-line title="体验时常" isNeeded=true maxCount=20 classNames='line_half duration' inputVal=model.act.length}}
+                    {{bm-edit-line title="体验时常" isNeeded=true maxCount=20 classNames='line_half duration' inputVal=act_length}}
                 {{/layout-push}}
 
             {{/layout-push}}
@@ -201,7 +201,8 @@
                     {{/layout-push}}
 
                     <div class="input-group">
-                      <textarea class="form-control" value={{model.act.description}}></textarea>
+                      {{!-- <textarea class="form-control" value={{act_des}}></textarea> --}}
+                      {{textarea class="form-control" value=act_des}}
                     </div>
                 {{/layout-push}}
 
@@ -212,7 +213,8 @@
                     {{/layout-push}}
 
                     <div class="input-group">
-                      <textarea class="form-control" value={{model.act.planning}}></textarea>
+                      {{!-- <textarea class="form-control" value='act_planning'></textarea> --}}
+                      {{textarea class="form-control" value=act_planning}}
                     </div>
                 {{/layout-push}}
             {{/layout-push}}
@@ -239,7 +241,8 @@
                     {{/layout-push}}
 
                     <div class="input-group">
-                      <textarea class="form-control" value={{model.act.ccontent}}></textarea>
+                      {{!-- <textarea class="form-control" inputVal={{model.act.content}}></textarea> --}}
+                      {{textarea class="form-control" value=act_content}}
                     </div>
                 {{/layout-push}}
             {{/layout-push}}
