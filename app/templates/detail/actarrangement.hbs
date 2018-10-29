@@ -9,23 +9,25 @@
         {{#link-to 'detail.actarrangement' model.act.id model.period.id class="detail_href_ref"}}>场次详情 {{/link-to}}
         <div class='detail_panel' >
             {{#layout-push direction='row' split=true classNames="class-head-card"}}
-                {{#layout-push direction='col' mid=true classNames='left-info'}}
-                    <div >
-                        <p class="headline">{{model.act.name}}</p>
-                        <p class="sub-title">{{model.act.cat}}</p>
-                    </div>
-                    {{#layout-push direction='row' classNames="sites" split=true}}
+                {{#layout-push direction='col' classNames='session-left-info'}}
+                    <p class="headline">{{model.act.name}}</p>
+                    {{#layout-push direction='col' classNames="session-info"}}
+                        <p>报名人数：20/2000</p>
                         <p>场地：{{address}}</p>
                         <p>时间：{{start_time}} --- {{end_time}} </p>
                     {{/layout-push}}
                 {{/layout-push}}
-                {{#layout-push direction="col" classNames="chooses v_end"}}
-                    {{#layout-push direction='col' mid=true classNames="choose-list"}}
-                        <p>更多</p>
-                        <a href="">修改班名</a>
-                        <a href="" class="delete-class">删除班级</a>
+                {{#layout-push direction="row"}}
+                    <p class="open-apply-btn">开放报名</p>
+                    {{#layout-push direction="col" classNames="chooses"}}
+                        {{#layout-push direction='col' mid=true classNames="choose-list"}}
+                            <p>更多</p>
+                            <a href="">修改场次</a>
+                            <a href="" class="delete-class">删除场次</a>
+                        {{/layout-push}}
                     {{/layout-push}}
                 {{/layout-push}}
+
             {{/layout-push}}
         </div>
         <div class="detail_page table-header">

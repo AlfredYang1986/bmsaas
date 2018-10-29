@@ -67,10 +67,37 @@ span.select-time-subtitle {
         letter-spacing: 1.8px;
         line-height: 35px;
     }
+    .select-entered-site {
+        height: 205px;
+        border: 1px solid #DAD9D9;
+        border-radius: 4px;
+        option {
+            height: 30px;
+        }
+    }
     .select-site {
+        margin-top: 20px;
+        margin-bottom: 16px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        .selected-site {
+            margin-right: 8px;
+            width: 15px;
+            height: 15px;
+            background: #6E7CD4;
+            border-radius: 4px;
+        }
+        .not-selected-site {
+            margin-right: 8px;
+            width: 15px;
+            height: 15px;
+            background: #fff;
+            border: 1px solid #979797;
+            border-radius: 4px;
+        }
         p {
             margin-right: 80px;
-            margin-top: 16px;
             font-size: 14px;
             color: #767A80;
             letter-spacing: 1.4px;
