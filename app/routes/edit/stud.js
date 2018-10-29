@@ -39,6 +39,8 @@ export default Route.extend({
             controller.set('urg_nickname', model.stud.urgent.get('me').get('nickname'));
             controller.set('urg_rs', model.stud.urgent.get('rs'));
             controller.set('urg_contact', model.stud.urgent.get('me').get('contact'));
+
+            controller.set('stud_date', model.stud.get('me').get('dob'));
             
             controller.set('isPushing', false);
         } else {
@@ -58,6 +60,8 @@ export default Route.extend({
             controller.set('urg_nickname', '');
             controller.set('urg_rs', '');
             controller.set('urg_contact', '');
+
+            controller.set('stud_date', '年-月-日');
 
             controller.set('isPushing', true);
         }
