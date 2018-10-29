@@ -2,7 +2,10 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 
 export default Component.extend({
-    positionalParams: ['data'],
+    positionalParams: ['data', 'needYear', 'needday', 'needhours'],
+    needYear: true,
+    needday: true,
+    needhours: false,
     tagName: '',
     years: Array.from(new Array(9), (val,index) => (index + 2010).toString()),
     months: Array.from(new Array(12),(val,index)=> { 

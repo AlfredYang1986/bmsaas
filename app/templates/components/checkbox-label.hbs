@@ -1,11 +1,13 @@
 {{#layout-push direction="col" classNames="sort-sub-name"}}
-    <p>{{title}}</p>
+    <p class={{titlecss}}>{{title}}</p>
     {{#layout-push direction="row" classNames="sort-sub-checkbox"}}
-            {{!-- <input id="1" type="checkbox" name="vehicle" value="展览"  />
-            <label for="1" class="check-label" >展览</label> --}}
-            <p {{action 'choicetest'}}>展览{{abm}}</p>
-            <p>赛事</p>
-            <p>活动</p>
+        {{#each candidate as |item|}}
+            {{checkbox-item text=item
+                    titlecss='edit_sub_title'
+                    btncss='form-check-label'
+                    onUnselected=(action 'onOneUnselected')
+                    onSelected=(action 'onOneSelected')
+                    }}
+        {{/each}}
     {{/layout-push}}
 {{/layout-push}}
-{{yield}}

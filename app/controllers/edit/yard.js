@@ -24,6 +24,8 @@ export default Controller.extend({
 
     isPushing: false,
 
+    yardCandidate: ['室内', '室外', '室内 + 室外'],
+
     actions: {
         saveYardBtnClicked() {
             console.log('save tech editing');

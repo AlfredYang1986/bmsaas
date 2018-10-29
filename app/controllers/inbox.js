@@ -17,6 +17,7 @@ export default Controller.extend({
     sr : null, 
     sy: null, 
     isV: false,
+    dt: '2018-10-01',
 
     actions: {
         saveInfo() {
@@ -38,6 +39,7 @@ export default Controller.extend({
         },
         successHandled() {
             debugger
+            
 
             this.set('showhandledlg', false);
         },
@@ -47,6 +49,9 @@ export default Controller.extend({
             this.set('isV', false);
             this.set('current_apply', null);
             this.set('showhandledlg', false);
+        },
+        checkValidate() {
+            return sr != null && sy != null && isV == true && this.dt.length > 0;
         }
     },
 });
