@@ -445,9 +445,9 @@ span.select-time-subtitle {
                 letter-spacing: 1.4px;
             }
             .sort-sub-checkbox {
-                input[type=checkbox] {
-                    display: none;
-                }
+                // input[type=checkbox] {
+                //     display: none;
+                // }
                 input:checked + .check-label {
                     border-color: #6E7CD4;
                     display: block;
@@ -458,7 +458,7 @@ span.select-time-subtitle {
                     font-weight: bold;
                     margin-left: 5px;
                 }
-                p {
+                label {
                     margin-right: 30px;
                     margin-bottom: 20px;
                     width: 80px;
