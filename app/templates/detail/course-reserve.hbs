@@ -39,29 +39,24 @@
                 {{/layout-push}}
             {{/layout-push}}
         </div>
-        <div class="detail_page reserve-table-header">
-            {{#layout-push direction='col'}}
-                {{#layout-push direction='row' split=true}}
-                    {{#each model.title as |item|}}
-                        <span>{{item.title}}</span>
-                    {{/each}}
-                {{/layout-push}}
-            {{/layout-push}}
-        </div>
-        <div class="inbox-table">
-            {{#each model.res.studs as |item|}}
-                <div class="detail_page table-body">
-                    {{#layout-push direction='col'}}
-                        {{#layout-push direction='row' split=true }}
-                            {{!-- <span>{{#bs-button class="arrive-stauts arrived" onClick=(action (mut reserveDetail) true) classNames="course-code-btn"}}已到{{/bs-button}}</span> --}}
-                            <span class="">{{item.me.name}}</span>
-                            <span class="">{{item.me.contact}}</span>
-                            {{#bs-button classNames="email-option" onClick=(action (mut modal3) true)}}<span>签到</span>{{/bs-button}}
-                        {{/layout-push}}
-                    {{/layout-push}}
-                </div>
+
+        <table class='ib_table_head'>
+            <tr>
+                {{#each model.title as |item|}}
+                    <th class='ib_table_item'>{{item.title}}</th>
+                {{/each}}
+            </tr>
+            {{#each model.res.reserve_records as |item|}}
+            <tr>
+                <td class='ib_table_content_item'>{{bmdobformat item.res_date}}</td>
+                <td class='ib_table_content_item'>{{item.yard.address}}</td>
+                <td class="ib_table_content_item">{{bmattendeename item}}</td>
+                <td class="ib_table_content_item">{{bmattendeecontact item}}</td>
+                <td class="ib_table_content_item">签到</td>
+            </tr>            
             {{/each}}
-        </div>
+        </table>
+
         {{#bs-modal open=reserveDetail onSubmit=(action "deleteDetail")  onHidden=(action (mut reserveDetail) false) as |modal|}}
             <div class="course-reserve-pop-ups">
                 {{#modal.body classNames="course-reserve-modal-body"}}
