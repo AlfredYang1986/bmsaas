@@ -2,4 +2,36 @@
 
 @import "experience-card";
 
-@import "experience-create";
+@import "experience-create-alex";
+
+.experience_content_top {
+    @extend %dd_content_basic;
+    padding-top: 64px;
+}
+
+.experience_content {
+    min-height: 768px;
+    margin: 24px 18px 0 30px;
+    padding: 0 24px;
+    background-color: #FFF;
+
+    .experience_header {
+        height: 72px;
+        line-height: 72px;
+        .experience_title {
+            font-family: $font-brand;
+            font-size: 24px;
+            color: #172B4D;
+        }
+        .experience_creat_btn {
+            width: 100px;
+            height: 32px;
+            padding: 8px 15px;
+            border-radius: 100px;
+            background: #80AEFF;
+            font-family: $font-brand;
+            font-size: 14px;
+            color: #FFFFFF;
+        }
+    }
+}

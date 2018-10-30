@@ -12,5 +12,11 @@ export default Route.extend({
         return RSVP.hash({
                 course : course
             })
-    },  
+    },
+    activate() {
+        if (this.controller) {
+            this.controller.set('selected_index', -1);
+            this.controller.set('savedlg', false);
+        }
+    }
 });
