@@ -661,6 +661,7 @@ export default Service.extend({
         gender: 1,
         contact: '(蜀汉) 13720200856',
         register_date: new Date(),
+        dob: new Date('184-01-01')
       });
 
       let applyee_01 = this.store.createRecord('bmperson', {
@@ -696,6 +697,7 @@ export default Service.extend({
         gender: 1,
         contact: '(蜀汉) 13720200856',
         register_date: new Date(),
+        dob: new Date('189-01-01')
       });
 
       let applyee_02 = this.store.createRecord('bmperson', {
