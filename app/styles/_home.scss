@@ -116,7 +116,8 @@
 }
 
 .dd_container_margin {
-    margin: 0 25px;
+    margin: 0 24px;
+
 }
 
 .dd_container {
@@ -124,6 +125,50 @@
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
+    .brand_info_card {
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 296px;
+        height: 338px;
+        background: #fff;
+        .brand_info_card_head {
+            width: 128px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .brand_logo {
+                margin-bottom: 16px;
+                width: 128px;
+                height: 128px;
+                border: 1px solid rgba(0,0,0,0.12);
+                border-radius: 4px;
+            }
+            p.brand_title {
+                font-size: 16px;
+                color: #172B4D;
+            }
+        }
+        .brand_info_card_content {
+            margin-top: 40px;
+            p {
+                margin-right: 16px;
+                min-width: 70px;
+                font-size: 14px;
+                color: #172B4D;
+            }
+            .brand_info_card_list {
+                margin-bottom: 24px;
+            }
+            span {
+                font-size: 14px;
+                color: #172B4D;
+                text-align: left;
+            }
+        }
+
+    }
     .brand_panel_head {
         padding: 0 24px;
         display: flex;
@@ -143,6 +188,60 @@
             color: #42526E;
             text-align: center;
             text-decoration: none;
+        }
+    }
+}
+.brand_detail {
+    padding: 24px;
+    margin-left: -16px;
+    margin-right: 24px;
+    min-height: 338px;
+    width: 100%;
+    background: #fff;
+    .brand_detail_info {
+        margin-bottom: 40px;
+        min-height: 100px;
+        border-bottom: 1px solid rgba(0,0,0,0.12);
+        img.detail_reward_img {
+            margin-bottom: 17px;
+            width: 160px;
+            height: 106px;
+        }
+        .detail_reward_title {
+            margin-bottom: 40px;
+            span {
+                font-family: PingFangSC-Regular;
+                font-size: 14px;
+                color: #172B4D;
+                text-align: center;
+            }
+        }
+        p.brand_detail_list_title {
+            margin-bottom: 24px;
+            font-family: PingFangSC-Medium;
+            font-size: 14px;
+            color: #172B4D;
+        }
+        .brand_detail_list_content {
+            margin-bottom: 40px;
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #172B4D;
+            text-align: left;
+        }
+        .brand_tags {
+            margin-bottom: 40px;
+            min-width: 106px;
+            height: 32px;
+            line-height: 32px;
+            text-align: center;
+            background: #e4effe;
+            border-radius: 4px;
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #172B4D;
+            text-align: center;
+            border: none
         }
     }
 }
@@ -304,7 +403,7 @@
         height: 183px;
         border-radius: 8px;
 
-        margin-bottom: 11px;
+        margin-bottom: 17px;
     }
 
     .detail_reward_title {
@@ -312,6 +411,12 @@
         font-size: 12px;
         color: #767A80;
         letter-spacing: 1.71px;
+        span {
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #172B4D;
+            text-align: center;
+        }
     }
 }
 

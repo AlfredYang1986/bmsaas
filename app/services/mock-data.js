@@ -58,7 +58,7 @@ export default Service.extend({
 
             let reward01 = this.store.createRecord('bmbrand-reward', {
                 id: 'brand reward 01',
-                img_src: '../images/reward01.jpeg',
+                img_src: '../images/award_00.png',
                 reward_des: '2014-全国青少年编程创新大赛'
             })
 
@@ -66,7 +66,7 @@ export default Service.extend({
 
             let reward02 = this.store.createRecord('bmbrand-reward', {
                 id: 'brand reward 02',
-                img_src: '../images/reward02.jpeg',
+                img_src: '../images/award_01@1x.png',
                 reward_des: '2014-全国青少年编程创新大赛'
             })
 
@@ -74,7 +74,7 @@ export default Service.extend({
 
             let reward03 = this.store.createRecord('bmbrand-reward', {
                 id: 'brand reward 03',
-                img_src: '../images/reward03.jpeg',
+                img_src: '../images/award_00.png',
                 reward_des: '2014-全国青少年编程创新大赛'
             })
 
@@ -82,7 +82,7 @@ export default Service.extend({
 
             let reward04 = this.store.createRecord('bmbrand-reward', {
                 id: 'brand reward 04',
-                img_src: '../images/reward04.jpeg',
+                img_src: '../images/award_01@1x.png',
                 reward_des: '2014-全国青少年编程创新大赛'
             })
 
