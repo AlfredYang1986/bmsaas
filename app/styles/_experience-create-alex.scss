@@ -44,6 +44,21 @@
 }
 
 .experience-content {
+    .experience-choose-btn {
+        p {
+            margin-right: 20px;
+            width: 110px;
+            height: 35px;
+            border: 1px solid #80AEFF;
+            border-radius: 4px;
+            font-size: 14px;
+            letter-spacing: 2px;
+            line-height: 35px;
+            text-align: center;
+            cursor: pointer;
+        }
+    }
+
     .experience-class-title {
         font-family: $font-brand;
         font-size: 14px;
@@ -54,5 +69,14 @@
         font-family: $font-brand;
         font-size: 14px;
         color: #6B778C;
+    }
+
+    .experience-active {
+        color: #fff;
+        background: #80AEFF;
+    }
+
+    .w {
+        width: 180px;
     }
 }

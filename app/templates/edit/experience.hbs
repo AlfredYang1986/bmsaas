@@ -167,48 +167,32 @@
                     {{/layout-push}}
                     <p>&nbsp;</p>
                     {{#if noSortChoose}}
-                        {{#layout-push direction="row" classNames="sort-name"}}
-                            <p {{action 'activitySort' argument}}>活动</p>
+                        {{#layout-push direction="row" classNames="experience-choose-btn"}}
+                            <p {{action 'activitySort'}}>活动</p>
                             <p {{action 'experienceSort'}}>体验课</p>
                         {{/layout-push}}
                     {{/if}}
 
                     {{#if activity}}
-                        {{#layout-push direction="row" classNames="sort-name"}}
-                            <p {{action 'activitySort'}} class="sort-name-active">活动</p>
+                        {{#layout-push direction="row" classNames="experience-choose-btn"}}
+                            <p {{action 'activitySort'}} class="experience-active">活动</p>
                             <p {{action 'experienceSort'}}>体验课</p>
                         {{/layout-push}}
-                        {{!-- {{#layout-push direction="col" classNames="sort-sub-name"}}
-                            <p>为活动选择类别</p>
-                            {{#layout-push direction="row" classNames="sort-sub-checkbox"}}
-                                <p><input type="checkbox" name="vehicle" value="展览" />展览</p>
-                                <p><input type="checkbox" name="vehicle" value="赛事"/>赛事</p>
-                                <p><input type="checkbox" name="vehicle" value="亲子"/>亲子</p>
-                            {{/layout-push}}
-                        {{/layout-push}} --}}
                         {{checkbox-label title="为活动选择类别" }}
+                        {{#layout-push direction="row" classNames="experience-choose-btn"}}
+                            <p>展览</p>
+                            <p>赛事</p>
+                            <p>亲子</p>
+                        {{/layout-push}}
                     {{/if}}
                     {{#if experience}}
-                        {{#layout-push direction="row" classNames="sort-name"}}
+                        {{#layout-push direction="row" classNames="experience-choose-btn"}}
                             <p {{action 'activitySort'}} >活动</p>
-                            <p {{action 'experienceSort'}} class="sort-name-active">体验课</p>
+                            <p {{action 'experienceSort'}} class="experience-active">体验课</p>
                         {{/layout-push}}
                         {{#layout-push direction="col" classNames="sort-sub-name"}}
                             <p>为体验课选择详细类目，这样便于用户快速查找您的体验服务。</p>
                             {{#layout-push direction="row" classNames="sort-sub-select"}}
-                                {{!-- <select class="" name="">
-                                    <option value="">请选择</option>
-                                    <option value="">科学创新</option>
-                                    <option value="">科学创新</option>
-                                </select>
-                                <select class="" name="">
-                                    <option value="">请选择</option>
-                                    <option value="">STEM</option>
-                                    <option value="">STEM</option>
-                                </select>
-                                <select class="" name="">
-                                    <option value="">请选择</option>
-                                </select> --}}
                                 {{exp-category data=act_cat}}
                             {{/layout-push}}
                         {{/layout-push}}
@@ -226,30 +210,27 @@
             <div class="edit-class edit_panel edit_first_panel ">
                 {{#layout-push direction='col' classNames="edit-class-card"}}
                     {{#layout-push direction='col' classNames="v_pusht"}}
-                            <p class="class-head-title">为“体验”起个名称吧 ！</p>
-                            <p class="class-sub-title">标题应该简短、具描述性、激动人心</p>
+                        <p class="experience-class-title">为“体验”起个名称吧 ！</p>
+                        <p class="experience-class-title text-sub">标题应该简短、具描述性、激动人心</p>
                     {{/layout-push}}
-                    {{bm-edit-line title="标题" isNeeded=true maxCount=20 inputVal=act_name}}
+                    {{bm-edit-line title="标题" isNeeded=true maxCount=20 inputVal=act_name }}
+                    
                     {{#layout-push direction="col" classNames="exper-age"}}
-                        <p>适宜年龄</p>
-                        {{#layout-push direction="row" classNames="selece-exper-age"}}
-                            <input type="checkbox" name="vehicle" value="展览"/>
-                            <select class="select-class">
-                            <option value ="volvo">场地1</option>
-                            <option value ="saab">Saab</option>
-                            <option value="opel">Opel</option>
-                            <option value="audi">Audi</option>
-                            </select>
-                            <p>至</p>
-                            <select class="select-class">
-                            <option value ="volvo">场地1</option>
-                            <option value ="saab">Saab</option>
-                            <option value="opel">Opel</option>
-                            <option value="audi">Audi</option>
-                            </select>
-                            <p class="no-age-limit"><input type="checkbox" name="vehicle" value="赛事"/>无年龄限制</p>
-                        {{/layout-push}}
-                        {{bm-edit-line title="体验时常" isNeeded=true maxCount=20 classNames='line_half duration' inputVal=act_length}}
+                        {{#bm-edit-line title="体验时常" isNeeded=true maxCount=3 classNames='line_half duration' inputVal=act_length group='append'}}
+                            <span class="edit_text_field_group">分钟</span>
+                        {{/bm-edit-line}}
+                        <div>
+                            <p>适宜年龄</p>
+                            <p>
+                                <span></span>
+                                <span></span>
+                            </p>
+                            <p>
+                                <span></span>
+                                <span></span>
+                            </p>
+                        </div>
+                        
                     {{/layout-push}}
 
                 {{/layout-push}}
