@@ -18,8 +18,6 @@ export default Route.extend({
             act: act,
             period: period,
             title: [{
-                title:"状态"
-            },{
                 title:"孩子姓名"
             },{
                 title:"生日"

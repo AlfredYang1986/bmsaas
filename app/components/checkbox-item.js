@@ -5,7 +5,7 @@ export default Component.extend({
     isSelected: false,
     tagName: 'div',
     classNameBindings: [
-        'siSelected:selected',
+        'isSelected:selected',
     ],
     click(event) {
         let arr = event.target.className.split(' ');
