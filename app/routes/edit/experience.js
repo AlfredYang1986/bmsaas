@@ -8,6 +8,7 @@ export default Route.extend({
 
     model(params) {
         this.mock_data.sureActivity();
+        let cats = this.store.peekAll('bmcat');
         let act = this.store.peekRecord('bmactivityinfo', params.epid);
         if (act == null && params.epid != 'experience/push') {
             this.transitionTo('home');
@@ -15,6 +16,7 @@ export default Route.extend({
 
         return RSVP.hash({
                 act: act,
+                cats
             })
     },
 

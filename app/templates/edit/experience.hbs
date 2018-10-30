@@ -2,17 +2,16 @@
     {{#layout-push direction="row" split=true classNames="experience-header text-center"}}
         <span class="experience-title">创建体验</span>
         <span>
-
             {{#if isPushing}}
                 {{#link-to 'experienceOpen' class="experience-canel-btn"}}
                     取消
                 {{/link-to}}
-                {{#bs-button class="experience-btn disable" onClick=(action (mut modal4) true)}}创建{{/bs-button}}
+                {{#bs-button class="experience-btn disable" onClick=(action 'saveActivityBtnClicked')}}创建{{/bs-button}}
             {{else}}
                 {{#link-to 'detail.experience' model.act.id class="experience-canel-btn"}}
                     取消
                 {{/link-to}}
-                {{#bs-button class="experience-btn disable" onClick=(action (mut modal4) true)}}保存{{/bs-button}}
+                {{#bs-button class="experience-btn disable" onClick=(action 'saveActivityBtnClicked')}}保存{{/bs-button}}
             {{/if}}
         </span>
     {{/layout-push}}
@@ -102,9 +101,9 @@
                         {{/layout-push}}
                         {{checkbox-label title="为活动选择类别" }}
                         {{#layout-push direction="row" classNames="experience-choose-btn"}}
-                            <p>展览</p>
-                            <p>赛事</p>
-                            <p>亲子</p>
+                            {{#each model.cats as |item|}}
+                                <p class={{if (eq act_cat item.cat) 'experience-active'}} {{action 'setCat' item.cat}}>{{item.cat}}</p>
+                            {{/each}}
                         {{/layout-push}}
                     {{/if}}
                     {{#if experience}}
@@ -135,7 +134,7 @@
                         <p class="experience-class-title">为“体验”起个名称吧 ！</p>
                         <p class="experience-class-title text-sub">标题应该简短、具描述性、激动人心</p>
                     {{/layout-push}}
-                    {{bm-edit-line title="标题" isNeeded=true maxCount=20 inputVal=act_name }}
+                    {{bm-edit-line title="名称" isNeeded=true maxCount=20 inputVal=act_name }}
                     
                     {{#layout-push direction="col" classNames="exper-age"}}
                         {{#bm-edit-line title="体验时常" isNeeded=true maxCount=3 classNames='line_half duration' inputVal=act_length group='append'}}
@@ -396,7 +395,7 @@
                     {{/layout-push}}
                     <p>&nbsp;</p>
                     {{#layout-push direction='col' }}
-                        {{bm-edit-area maxCount=20 inputVal=model.act.notice}}
+                        {{bm-edit-area maxCount=20 inputVal=act_notice}}
                         {{#layout-push direction="row" classNames="reward-description"}}
                             <input type="checkbox" name="vehicle" value="亲子"/>
                             <p class="">无其它须知说明</p>
