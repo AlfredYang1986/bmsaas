@@ -2,25 +2,26 @@
     {{nav-top}}
     {{left-menu}}
 </div>
-<div class="detail_content_top">
+<div class="detail_content_top detail_container">
     <div class="detail_page">
-        {{#link-to 'experienceOpen' class="detail_href_ref"}}体验开放{{/link-to}}
-        {{#link-to 'detail.experience' model.act.id class="detail_href_ref"}}>场次安排 {{/link-to}}
-        <div class='detail_panel' >
+        {{#link-to 'experienceOpen' class="detail_href_ref pre_href"}}体验开放 /{{/link-to}}
+        {{#link-to 'detail.experience' model.act.id class="detail_href_ref"}} 场次安排{{/link-to}}
+        <div class='detail_panel detail_exper_nav' >
             {{#layout-push direction='row' split=true}}
                 {{#layout-push direction='col' mid=true }}
                     {{#layout-push direction='col'}}
                         <span class="detail_panel_role_name">{{model.act.name}}</span>
-                        {{#layout-push direction='row'}}
+                        {{!-- {{#layout-push direction='row'}}
                             <span class="course_detail_panel_role_des">{{model.act.cat}}</span>
-                        {{/layout-push}}
+                        {{/layout-push}} --}}
                         <span class="course_detail_panel_role_des">{{model.act.periods.length}}个场次报名开放中</span>
                     {{/layout-push}}
                 {{/layout-push}}
-                {{#layout-push direction="row"}}
-                    {{!-- <button type="button" name="button" class="btn delete-course-btn">删除</button> --}}
-                    {{!-- {{#bs-button class="stud_qrcod_btn" onClick=(action (mut courseCode) true) classNames="course-code-btn"}}生成课程二维码{{/bs-button}} --}}
-                    {{#bs-button class="stud_qrcod_btn" onClick=(action 'addSession') classNames="add-experience"}}添加场次{{/bs-button}}
+                {{#layout-push direction="row" classNames="btn_area"}}
+                    {{!-- <button type="button" name="button" class="btn delete-course-btn">删除</button>
+                    {{#bs-button class="stud_qrcod_btn" onClick=(action (mut courseCode) true) classNames="course-code-btn"}}生成课程二维码{{/bs-button}} --}}
+                    <img class="qr_code" src="../images/activities_normal.png" width="32" height="32" alt="">
+                    {{#bs-button class="stud_qrcod_btn" onClick=(action 'addSession') classNames="add-experience"}}+添加场次{{/bs-button}}
                     <div local-class="modal-dialog">
                         {{#bs-modal open=courseCode onHidden=(action (mut courseCode) false) as |modal|}}
                             <div class="stud-modal">
@@ -52,18 +53,20 @@
                 </tr>
 
                 {{#each model.act.periods as |item index|}}
-                <tr>
-                    <td class='ib_table_content_item'>{{index}}</td>
-                    <td class='ib_table_content_item'>{{bmperioddateformat item.start_date}}</td>
-                    <td class="ib_table_content_item">{{item.yard.address}}</td>
-                    <td class="ib_table_content_item">{{item.studs.length}}/{{item.limits}}</td>
-                    {{!-- <td class="ib_table_content_item">{{item.applyee.contact}}</td> --}}
-                    <td class='ib_table_content_item'>
-                        {{#link-to 'detail.actarrangement' model.act.id item.id classNames='ib_table_content_btn'}}
-                            <span>进入</span>
-                        {{/link-to}}
-                    </td>
-                </tr>            
+                    <tr class="tbody_tr">
+                        <td class='ib_table_content_item'>{{index}}</td>
+                        <td class='ib_table_content_item'>{{bmperioddateformat item.start_date}}</td>
+                        <td class="ib_table_content_item">{{item.yard.address}}</td>
+                        <td class="ib_table_content_item">{{item.studs.length}}/{{item.limits}}</td>
+                        {{!-- <td class="ib_table_content_item">{{item.applyee.contact}}</td> --}}
+                        <td class='ib_table_content_item'>
+                            {{#link-to 'detail.actarrangement' model.act.id item.id classNames='ib_table_content_btn'}}
+                                <span>开放报名</span>
+                            {{/link-to}}
+                        </td>
+                    </tr>
+                    {{else}}
+                    <h4>没有场次安排</h4>
                 {{/each}}
             </table>
         {{/if}}
@@ -84,133 +87,82 @@
                 <span class='ib_tab_btn' {{action 'sessionArrange'}}>场次安排</span>
                 <span class='ib_tab_btn active ib_tab_btn_active'>体验详情</span>
             {{/layout-push}}
+            {{#layout-push direction='row' split=true class="detail_title" }}
+              <span class="title_text">体验详情</span>
+              {{#link-to 'edit.experience' model.act.id classNames='detail_panel_edit_btn'}}
+                  编辑
+              {{/link-to}}
+            {{/layout-push}}
+            {{#layout-push direction='row' split=true classNames='class_detail stud_detail' }}
+              <div class="basis_margin">
+                {{#layout-push direction='col' mid=true classNames='class_detail_basis stud_detail_basis' }}
 
-            <div class="detail_panel detail_panel_col_between">
-                <div class="course-info">
-                    {{#layout-push direction='row'  split=true classNames="line_conatainer_split"}}
-                        {{#layout-push direction="row"}}
-                            <p>主题</p>
-                            <p>{{model.act.name}}</p>
-                        {{/layout-push}}
-                        {{#link-to 'edit.experience' model.act.id classNames='course-info-change-btn'}}
-                            编辑
-                        {{/link-to}}
-                    {{/layout-push}}
-                    {{#layout-push direction='row'}}
-                        <p>分类</p>
-                        <p>{{model.act.cat}}</p>
-                    {{/layout-push}}
-                    {{#layout-push direction='row'}}
+                  <p class="basis_name">{{model.act.name}}</p>
+                  <p class="basis_cat">{{model.act.cat}}</p>
+
+                  {{#layout-push direction='row' mid=true classNames='basis_time_age' }}
+                    {{#layout-push direction='col' mid=true classNames='time_age age' }}
+                        <p>{{model.act.alb}}~{{model.act.aub}}岁</p>
                         <p>适应年龄</p>
-                        <p>{{model.act.alb}}~{{model.act.aub}}</p>
                     {{/layout-push}}
-                    {{#layout-push direction='row'}}
+                    {{#layout-push direction='col' mid=true classNames='time_age time' }}
+                        <p>{{model.act.length}} 分钟</p>
                         <p>体验时长</p>
-                        <p>{{model.act.length}} min</p>
                     {{/layout-push}}
+                  {{/layout-push}}
+                  {{#layout-push direction='row' split=true classNames='basis_imgs' }}
+                    {{#layout-push direction='col' mid=true classNames='basis_imgs_left' }}
+                        <img src="../images/cover_pic.jpg" alt="">
+                    {{/layout-push}}
+                    {{#layout-push direction='col' mid=true classNames='basis_imgs_right' }}
+                        <p> <img src="../images/cover_pic_1.jpg" alt=""> </p>
+                        <p> <img src="../images/cover_pic_2.jpeg" alt=""> </p>
+                    {{/layout-push}}
+                  {{/layout-push}}
+                {{/layout-push }}
 
-                    {{#layout-push direction='col' classNames='detail_panel_des_container'}}
-                        <span class='detail_panel_title'>体验图片</span>
-                    {{/layout-push}}
-                    <div class="line_conatainer_warp detail_card_container" >
-                        {{#each model.act.imgs as |item|}}
-                            {{detail-card card=item}}
-                        {{/each}}
+              </div>
+              {{#layout-push direction='col' mid=true classNames='class_detail_other stud_detail_other' }}
+                <div class="other_self">
+                    <div class="_inside_container">
+                        <p>体验内容</p>
+                        <p>{{model.act.description}}</p>
                     </div>
-                    {{#layout-push direction='col' classNames='detail_panel_des_container'}}
-                        <span class='detail_panel_title'>体验内容</span>
-                    {{/layout-push}}
-                    {{#layout-push direction='col' classNames='detail_inner_panel'}}
-                        {{#layout-push direction='col' classNames='detail_inner_content_line'}}
-                            <span class='detail_inner_left'>
-                                {{model.act.description}}
-                            </span>
-                        {{/layout-push}}
-                    {{/layout-push}}
-
-                    {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
-                        <span class='detail_panel_title'>体验计划</span>
-                    {{/layout-push}}
-                    {{#layout-push direction='col' classNames='detail_inner_panel'}}
-                        {{#layout-push direction='col' classNames='detail_inner_content_line'}}
-                            <span class='detail_inner_list'>
-                                {{#layout-push direction='col' classNames='detail_inner_content_line'}}
-                                    {{model.act.planning}}
-                                {{/layout-push}}
-                            </span>
-                        {{/layout-push}}
-                    {{/layout-push}}
-
-
-                    {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
-                        <span class='detail_panel_title'>与孩子互动</span>
-                    {{/layout-push}}
-                    {{#layout-push direction='col' classNames='detail_inner_panel'}}
-                        {{#layout-push direction='col' classNames='detail_inner_content_line'}}
-                            <span class='detail_inner_content'>
-                                {{model.act.ccontent}}
-                            </span>
-                        {{/layout-push}}
-                    {{/layout-push}}
-
-                    {{#layout-push direction='row' classNames='detail_panel_des_container detail_panel_des_container_between'}}
-                        <span class='detail_panel_title list-title'>宝贝将获得</span>
-                        
+                    <div class="_inside_container">
+                        <p>体验计划</p>
+                        <p>{{model.act.planning}}</p>
+                    </div>
+                    <div class="_inside_container">
+                        <p>与孩子互动</p>
+                        <p>{{model.act.ccontent}}</p>
+                    </div>
+                </div>
+                <div class="other_self">
+                    <div class="_inside_container">
+                        <p>宝贝将获得</p>
+                        {{!-- <p>{{model.act.description}}</p> --}}
                         {{experience-list-info data=model.act.gains}}
-                        {{!-- {{#layout-push direction='col' classNames='detail_inner_content_line'}}
-                            {{#each model.act.gains as |item|}}
-                                {{#layout-push direction="row"}}
-                                    <span class="list-status"></span>
-                                    <p>{{item}}</p>
-                                {{/layout-push}}
-                            {{/each}}
-                        {{/layout-push}} --}}
-                    {{/layout-push}}
-
-                    {{#layout-push direction='row' classNames='detail_panel_des_container detail_panel_des_container_between'}}
-                        <span class='detail_panel_title list-title'>您提供的東西</span>
+                    </div>
+                    <div class="_inside_container">
+                        <p>您提供的东西</p>
                         {{experience-list-info data=model.act.offered}}
-                        {{!-- {{#layout-push direction='col' classNames='detail_inner_content_line'}}
-                            {{#each model.act.offered as |item|}}
-                                {{#layout-push direction="row"}}
-                                    <span class="list-status"></span>
-                                    <p>{{item}}</p>
-                                {{/layout-push}}
-                            {{/each}}
-                        {{/layout-push}} --}}
-                    {{/layout-push}}
-
-                    {{#layout-push direction='row' classNames='detail_panel_des_container detail_panel_des_container_between'}}
-                        <span class='detail_panel_title list-title'>参与者需自带</span>
+                    </div>
+                    <div class="_inside_container">
+                        <p>参与者需自带</p>
                         {{experience-list-info data=model.act.needed}}
-                        {{!-- {{#layout-push direction='col' classNames='detail_inner_content_line'}}
-                            {{#each model.act.needed as |item|}}
-                                {{#layout-push direction="row"}}
-                                    <span class="list-status"></span>
-                                    <p>{{item}}</p>
-                                {{/layout-push}}
-                            {{/each}}
-                        {{/layout-push}} --}}
-                    {{/layout-push}}
-
-
-                    {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
-                        <span class='detail_panel_title'>须知</span>
-                    {{/layout-push}}
-                    {{#layout-push direction='col' classNames='detail_inner_panel'}}
-                        {{#layout-push direction='col' classNames='detail_inner_content_line'}}
-                            <span class='detail_inner_content'>
-                                {{model.act.notice}}
-                            </span>
-                        {{/layout-push}}
-                    {{/layout-push}}
-
-                    {{#layout-push direction='row' classNames="cost"}}
+                    </div>
+                    <div class="_inside_container">
+                        <p>须知</p>
+                        <p>{{model.act.notice}}</p>
+                    </div>
+                    <div class="_inside_container">
                         <p>费用说明</p>
                         <p>{{model.fee.description}}</p>
-                    {{/layout-push}}
+                    </div>
                 </div>
-            </div>
+              {{/layout-push }}
+            {{/layout-push }}
+            
         {{/if}}
     </div>
 </div>
