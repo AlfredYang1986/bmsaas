@@ -310,15 +310,23 @@ export default Service.extend({
 
             let tg_01_01 = this.store.createRecord('bmtagimg', {
                 id: 'tag img 01 01',
+                position: 'left',
                 img_src: '../images/cover_pic_2.jpeg',
                 img_tag: '休息区'
             })
             let tg_01_02 = this.store.createRecord('bmtagimg', {
                 id: 'tag img 01 02',
+                position: 'top',
                 img_src: '../images/cover_pic_2.jpeg',
                 img_tag: '切克瑙'
             })
-            yard_01.set('imgs', A([tg_01_01, tg_01_02]));
+            let tg_01_03 = this.store.createRecord('bmtagimg', {
+                id: 'tag img 01 03',
+                position: 'bottom',
+                img_src: '../images/cover_pic_2.jpeg',
+                img_tag: '切克瑙'
+            })
+            yard_01.set('imgs', A([tg_01_01, tg_01_02, tg_01_03]));
 
             let award_01_01 = this.store.createRecord('bmtagimg', {
                 id: 'award 01 01',
@@ -359,15 +367,23 @@ export default Service.extend({
 
             let tg_02_01 = this.store.createRecord('bmtagimg', {
                 id: 'tag img 02 01',
-                img_src: '../images/cover_pic_2.jpeg',
+                position: 'left',
+                img_src: '../images/cover_pic_1.jpg',
                 img_tag: '休息区'
             })
             let tg_02_02 = this.store.createRecord('bmtagimg', {
                 id: 'tag img 02 02',
-                img_src: '../images/cover_pic_2.jpeg',
+                position: 'top',
+                img_src: '../images/yard_01.jpg',
                 img_tag: '哇哇哇'
             })
-            yard_02.set('imgs', A([tg_02_01, tg_02_02]));
+            let tg_02_03 = this.store.createRecord('bmtagimg', {
+                id: 'tag img 02 03',
+                position: 'bottom',
+                img_src: '../images/yard_02.jpg',
+                img_tag: '呃呃呃'
+            })
+            yard_02.set('imgs', A([tg_02_01, tg_02_02, tg_02_03]));
 
             let award_02_01 = this.store.createRecord('bmtagimg', {
                 id: 'award 02 01',

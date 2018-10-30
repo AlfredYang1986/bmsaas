@@ -43,12 +43,23 @@
                             {{detail-card card=item}}
                         {{/each}}
                     </div> -->
-                    <div class="detail_yard_pintu" >
+                    <!-- <div class="detail_yard_pintu" >
                         {{#layout-push direction='row' }}
                             <img src="../images/cover_pic_1.jpg" class="detail_yard_pintu_left" alt="Responsive image">
                             {{#layout-push direction='col' }}
                                 <img src="../images/yard_01.jpg" class="detail_yard_pintu_top" alt="Responsive image">
-                                <div class="detail_yard_pintu_bottom">
+                                <div class="detail_yard_pintu_bottom" >
+                                    <a href="#" class="detail_yard_pintu_content">查看更多</a>
+                                </div>
+                            {{/layout-push}}
+                        {{/layout-push}}
+                    </div> -->
+                    <div class="detail_yard_pintu" >
+                        {{#layout-push direction='row' }}
+                            <img src={{bmgetyardimageurl model.yard.imgs namedArgs="left"}} class="detail_yard_pintu_left" alt="Responsive image">
+                            {{#layout-push direction='col' }}
+                                <img src={{bmgetyardimageurl model.yard.imgs namedArgs="top"}} class="detail_yard_pintu_top" alt="Responsive image">
+                                <div class="detail_yard_pintu_bottom" style="background: url({{bmgetyardimageurl model.yard.imgs namedArgs='bottom'}}) no-repeat;">
                                     <a href="#" class="detail_yard_pintu_content">查看更多</a>
                                 </div>
                             {{/layout-push}}
