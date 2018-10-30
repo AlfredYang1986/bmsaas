@@ -5,7 +5,7 @@ import { inject as service } from '@ember/service';
 
 export default Route.extend({
     mock_data: service(),
-    
+
     model(params) {
         this.mock_data.sureReserve();
         let res = this.store.peekRecord('bmreservable', params.reid);
@@ -16,7 +16,11 @@ export default Route.extend({
         return RSVP.hash({
             res : res,
             title: [{
-                    title:"孩子姓名"
+                title:"时间",
+                },{
+                    title:"场地"
+                },{
+                    title:"参与者"
                 },{
                     title:"联系方式"
                 },{

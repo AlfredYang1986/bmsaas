@@ -5,7 +5,8 @@
 
 <div class="class_content_top" >
     {{#layout-push direction="col" classNames="class_content"}}
-        {{#layout-push direction="row"}}
+        {{#layout-push direction="row" split=true}}
+            <p class="class-content-title">班级</p>
             <button class="class_add_btn" {{action 'createClass'}}>+ 创建班级</button>
         {{/layout-push}}
         {{#layout-push direction="row" wrap=true classNames="card-wrap"}}

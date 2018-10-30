@@ -10,113 +10,73 @@
             {{/layout-push}}
         </div>
     </div>
-    <div class="dd_content dd_content_margin_top">
-        <div class="dd_container dd_container_margin" >
-            {{#layout-push direction='row' classNames="brand_panel"}}
-                {{#layout-push direction='col' mid=true}}
-                    <img class="brand_logo" src="../images/brand_demo.png" />
-                {{/layout-push}}
-                {{#layout-push direction='col' mid=true}}
-                    {{#layout-push direction="col" classNames="brand_info"}}
+    {{#layout-push direction="row"}}
+        <div class="dd_content dd_content_margin_top">
+            <div class="dd_container dd_container_margin">
+                {{#layout-push direction="col" classNames="brand_info_card"}}
+                    {{#layout-push direction="col" classNames="brand_info_card_head"}}
+                        <img class="brand_logo" src="../images/brand_demo.png" />
                         <p class="brand_title">{{model.brand.title}}</p>
-                        <p class="brand_subtitle">{{model.brand.subtitle}}</p>
-                        {{#layout-push direction="row"}}
-                            {{#each model.brand.brand_tags as |item|}}
-                                {{#layout-push direction='col' mid=true classNames="brand_tag brand_tag_margin"}}
-                                    <span>{{item}}</span>
-                                {{/layout-push}}
-                            {{/each}}
+                    {{/layout-push}}
+                    {{#layout-push direction="col" classNames="brand_info_card_content"}}
+                        {{#layout-push direction="row" classNames="brand_info_card_list"}}
+                            <p>成立时间</p>
+                            <span class="detail_content ">{{model.brand_display_name}}</span>
+                        {{/layout-push}}
+                        {{#layout-push direction="row" classNames=""}}
+                            <p>一句话介绍</p>
+                            <span class="brand_subtitle">{{model.brand.subtitle}}</span>
                         {{/layout-push}}
                     {{/layout-push}}
                 {{/layout-push}}
-            {{/layout-push}}
-        </div>
-    </div>
-
-    <div class="dd_content dd_content_margin_top">
-        <div class="dd_container dd_container_margin" >
-            {{#layout-push direction='col' mid=true classNames="brand_panel_des"}}
-                <span>品牌详情</span>
-            {{/layout-push }}
-        </div>
-    </div>
-
-    <div class="dd_content dd_content_margin_top">
-        <div class="dd_container dd_container_margin" >
-            <div class="brand_panel_detail" >
-                {{#layout-push classNames="detail_title" direction="row" split=true}}
-                    {{#layout-push direction='col' mid=true }}
-                        <span>基本信息</span>
-                    {{/layout-push }}
-                    {{#link-to 'edit.brand' class="detail_edit_button btn"}}
-                        编辑
-                    {{/link-to}}
-                {{/layout-push }}
-                {{#layout-push direction="row" classNames="detail_margin_between"}}
-                    <span class="detail_subtitle detail_contant_between">品牌名称</span>
-                    <span class="detail_content ">{{model.brand.title}}</span>
-                {{/layout-push }}
-                {{#layout-push direction="row" classNames="detail_margin_between"}}
-                    <span class="detail_subtitle detail_contant_between">成立时间</span>
-                    <span class="detail_content ">{{model.brand_display_name}}</span>
-                {{/layout-push }}
-                {{#layout-push direction="row" classNames="detail_margin_between"}}
-                    <span class="detail_subtitle detail_contant_between">品牌亮点</span>
-                    {{#layout-push direction="row"}}
-                        {{#each model.brand.brand_tags as |item|}}
-                            {{#layout-push direction='col' mid=true classNames="brand_tag_2 brand_tag_margin"}}
-                                <span>{{item}}</span>
-                            {{/layout-push}}
-                        {{/each}}
-                    {{/layout-push}}
-                {{/layout-push }}
-                {{#layout-push direction="row" classNames="detail_margin_between"}}
-                    <span class="detail_subtitle detail_contant_between">一句话简介</span>
-                    <span class="detail_content ">{{model.brand.subtitle}}</span>
-                {{/layout-push }}
-                <div class="detail_title detail_margin_between" >
-                    <span>初心故事</span>
-                </div>
-                <div class="detail_story_panel">
-                    <div class="detail_story_content">
-                        <span>{{model.brand.found_stroy}}</span>
-                    </div>
-                </div>
-                <div class="detail_title detail_margin_between" >
-                    <span>品牌荣誉</span>
-                </div>
-                {{#layout-push direction="row" split=true}}
-                    {{#each model.brand.rewards as |item|}}
-                        {{#layout-push direction="col" mid=true classNames="detail_reward"}}
-                            <img src={{item.img_src}} class="detail_reward_img" />
-                            <div class="detail_reward_title">
-                                <span>{{item.reward_des}}</span>
-                            </div>
-                        {{/layout-push }}
-                    {{/each}}
-                {{/layout-push }}
-                <div class="detail_title detail_margin_between" >
-                    <span>资质认证</span>
-                </div>
-                {{#layout-push direction="row" split=true}}
-                    {{#each model.brand.rewards as |item|}}
-                        {{#layout-push direction="col" mid=true classNames="detail_reward"}}
-                            <img src={{item.img_src}} class="detail_reward_img" />
-                            <div class="detail_reward_title">
-                                <span>{{item.reward_des}}</span>
-                            </div>
-                        {{/layout-push }}
-                    {{/each}}
-                {{/layout-push }}
-                <div class="detail_title detail_margin_between" >
-                    <span>核心团队</span>
-                </div>
-                <div class="detail_story_panel">
-                    <div class="detail_story_content">
-                        <span>{{model.brand.team_des}}</span>
-                    </div>
-                </div>
             </div>
         </div>
-    </div>
+        <div class="dd_container dd_content_margin_top brand_detail">
+            {{#layout-push direction="col"  classNames="brand_detail_info"}}
+                <p class="brand_detail_list_title">品牌亮点</p>
+                {{#layout-push direction="row"}}
+                    {{#each model.brand.brand_tags as |item|}}
+                        {{#layout-push direction='col' mid=true classNames="brand_tags brand_tag_margin"}}
+                            <span>{{item}}</span>
+                        {{/layout-push}}
+                    {{/each}}
+                {{/layout-push}}
+            {{/layout-push}}
+            {{#layout-push direction="col" classNames="brand_detail_info"}}
+                <p class="brand_detail_list_title">初心故事</p>
+                <span class="brand_detail_list_content">{{model.brand.found_stroy}}</span>
+            {{/layout-push}}
+            {{#layout-push direction="col" classNames="brand_detail_info"}}
+                <p class="brand_detail_list_title">师资团队</p>
+                <span class="brand_detail_list_content">{{model.brand.team_des}}</span>
+            {{/layout-push}}
+            {{#layout-push direction="col" classNames="brand_detail_info"}}
+                <p class="brand_detail_list_title">品牌荣誉</p>
+                {{#layout-push direction="row" split=true}}
+                    {{#each model.brand.rewards as |item|}}
+                        {{#layout-push direction="col" mid=true classNames="detail_reward card-wrap"}}
+                            <img src={{item.img_src}} class="detail_reward_img" />
+                            <div class="detail_reward_title">
+                                <span>{{item.reward_des}}</span>
+                            </div>
+                        {{/layout-push }}
+                    {{/each}}
+                {{/layout-push}}
+            {{/layout-push}}
+            {{#layout-push direction="col" classNames="brand_detail_info"}}
+                <p class="brand_detail_list_title">资质认证</p>
+                {{#layout-push direction="row" split=true}}
+                    {{#each model.brand.rewards as |item|}}
+                        {{#layout-push direction="col" mid=true classNames="detail_reward card-wrap"}}
+                            <img src={{item.img_src}} class="detail_reward_img" />
+                            <div class="detail_reward_title">
+                                <span>{{item.reward_des}}</span>
+                            </div>
+                        {{/layout-push }}
+                    {{/each}}
+                {{/layout-push}}
+            {{/layout-push}}
+        </div>
+    {{/layout-push}}
+
 </div>

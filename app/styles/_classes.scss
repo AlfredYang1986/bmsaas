@@ -3,26 +3,33 @@
 @import 'class-card';
 
 %class_content_basic {
-    padding-left: 202px;
+    padding-left: 240px;
 }
 
 .class_content_top {
     @extend %class_content_basic;
-    padding-top: 50px;
+    padding-top: 64px;
 }
 
 .class_content {
-    padding: 32px;
-
+    background: #fff;
+    padding: 20px 24px;
+    margin: 24px;
+    p.class-content-title {
+        font-family: PingFangSC-Medium;
+        font-size: 24px;
+        color: #172B4D;
+    }
     .class_add_btn {
-        background: #6E7CD4;
+        width: 100px;
+        height: 32px;
+        padding: 6px 12px;
+        text-align: center;
+        background: #80AEFF;
         border-radius: 100px;
         font-family: $font-nav-acc;
         font-size: 14px;
         color: #FFFFFF;
-        letter-spacing: 2px;
-
-        padding: 8px 24px;
     }
 
     .class_card_container {

@@ -5,50 +5,57 @@
 
 <div class="detail_content_top" >
     <div class="detail_page" >
-        {{#link-to 'classes' class="detail_href_ref"}}
+        {{!-- {{#link-to 'classes' class="detail_href_ref"}}
             返回
-        {{/link-to}}
+        {{/link-to}} --}}
 
         <div class='detail_panel' >
-            {{#layout-push direction='row' split=true classNames="class-head-card"}}
-                {{#layout-push direction='col' mid=true classNames='left-info'}}
-                    <div >
+            {{#layout-push direction='col' classNames="class-head-card"}}
+                {{#layout-push direction='row' split=true classNames='top-info'}}
+                    {{#layout-push direction="col"}}
                         <p class="headline">{{model.cls.name}}</p>
-                        <p class="sub-title">{{model.cls.course.name}}</p>
-                    </div>
-                    {{#layout-push direction='row' classNames="sites" split=true}}
-                        <p>场地：{{model.cls.yard.address}}</p>
-                        <p>时间：{{arrangedDate}}</p>
+                        <a class="sub-title">{{model.cls.course.name}} > </a>
+                    {{/layout-push}}
+                    <img href="../images/btn_more_default@2x.png">
+                {{/layout-push}}
+                {{#layout-push direction="row" split=true classNames="bottom-info"}}
+                    {{#layout-push direction='col' classNames="sites"}}
+                        <p>时间&nbsp;&nbsp;<span>{{arrangedDate}}</span> </p>
+                        <p>场地&nbsp;&nbsp;<span>{{model.cls.yard.address}}</span></p>
+                    {{/layout-push}}
+                    {{#layout-push direction="row" classNames="class-num"}}
+                        <p><span>2</span>课时</p>
+                        <p><span>0</span>课时</p>
                     {{/layout-push}}
                 {{/layout-push}}
-                {{#layout-push direction="col" classNames="chooses v_end"}}
+                {{!-- {{#layout-push direction="col" classNames="chooses v_end"}}
                     {{#layout-push direction='col' mid=true classNames="choose-list"}}
-                        <p>更多</p>
+                        <p>更多</p> --}}
                         {{!-- <a href=""></a>
                         <a href="" class="delete-class"></a> --}}
-                        {{#bs-button onClick=(action (mut changeClassName) true) classNames="change-class-btn"}}修改班名{{/bs-button}}
+                        {{!-- {{#bs-button onClick=(action (mut changeClassName) true) classNames="change-class-btn"}}修改班名{{/bs-button}}
                         {{#bs-button onClick=(action (mut delclsdlg) true) classNames="delete-class-btn"}}删除班级{{/bs-button}}
-                    {{/layout-push}}
-                {{/layout-push}}
+                    {{/layout-push}} --}}
+                {{!-- {{/layout-push}} --}}
             {{/layout-push}}
         </div>
 
-        {{#bm-modal-container mswitch=delclsdlg 
-                successbtncss='course-reserve-card-save'  
+        {{#bm-modal-container mswitch=delclsdlg
+                successbtncss='course-reserve-card-save'
                 cancelbtncss='course-reserve-card-cancel'
                 canceltext='取消'
-                onCancelBtnClicked=(action 'cancelDelClsHandled')  
+                onCancelBtnClicked=(action 'cancelDelClsHandled')
                 onSuccessBtnClicked=(action 'successDelClsHandled')}}
             <div class="change-class-pop-ups">
                 <p>您确定要删除“{{model.cls.name}}”的全部班级信息吗？</p>
             </div>
         {{/bm-modal-container}}
 
-        {{#bm-modal-container title="编集班名" mswitch=changeClassName 
-                successbtncss='course-reserve-card-save'  
+        {{#bm-modal-container title="编集班名" mswitch=changeClassName
+                successbtncss='course-reserve-card-save'
                 cancelbtncss='course-reserve-card-cancel'
                 canceltext='取消'
-                onCancelBtnClicked=(action 'cancelChangeNameHandled')  
+                onCancelBtnClicked=(action 'cancelChangeNameHandled')
                 onSuccessBtnClicked=(action 'successChangeNameHandled')}}
             {{#layout-push direction=row classNames="success-info"}}
                 {{#layout-push direction="col" classNames="pop-ups-content"}}
@@ -87,12 +94,12 @@
                             {{/layout-push}}
                         {{/each}}
                     {{/layout-push}}
-                    {{#bm-modal-container mswitch=techdlg 
+                    {{#bm-modal-container mswitch=techdlg
                             title='添加颁奖老师'
-                            successbtncss='course-reserve-card-save'  
+                            successbtncss='course-reserve-card-save'
                             cancelbtncss='course-reserve-card-cancel'
                             canceltext='取消'
-                            onCancelBtnClicked=(action 'cancelTechHandled')  
+                            onCancelBtnClicked=(action 'cancelTechHandled')
                             onSuccessBtnClicked=(action 'successTechHandled')}}
 
                         {{#layout-push direction="col"}}
@@ -104,8 +111,8 @@
                                 {{/each}}
                             {{/layout-push}}
                         {{/layout-push}}
-
                     {{/bm-modal-container}}
+
                     {{#layout-push direction='col' classNames="class-arrange-card" classNames="class-course-card"}}
                         {{#layout-push direction='row' split=true classNames="class-card-head"}}
                             <p class="class-card-title">课程安排</p>
@@ -133,7 +140,7 @@
         {{/if}}
 
         {{#if classDetails}}
-            <div class="detail_panel detail_panel_col_between" >
+            <div class="detail_panel detail_panel_col_between class_detail_tab" >
                 <span class='detail_panel_head ' {{action 'arrangeClass'}}>课程安排</span>
                 <span class="detail_panel_head active" {{action 'classDetails'}}>班级详情</span>
                 <span class="detail_panel_head" {{action 'traineesLists'}}>学员名单</span>
@@ -229,12 +236,12 @@
                         {{#bs-button onClick=(action (mut studdlg) true) classNames="add-student-btn"}}添加学员{{/bs-button}}
                     {{/layout-push}}
                 </div>
-                {{#bm-modal-container mswitch=studdlg 
+                {{#bm-modal-container mswitch=studdlg
                         title='添加班级学生'
-                        successbtncss='course-reserve-card-save'  
+                        successbtncss='course-reserve-card-save'
                         cancelbtncss='course-reserve-card-cancel'
                         canceltext='取消'
-                        onCancelBtnClicked=(action 'cancelStudHandled')  
+                        onCancelBtnClicked=(action 'cancelStudHandled')
                         onSuccessBtnClicked=(action 'successStudHandled')}}
 
                     {{#layout-push direction="col"}}
@@ -245,9 +252,9 @@
                                 </div>
                             {{/each}}
                         {{/layout-push}}
-                    {{/layout-push}} 
+                    {{/layout-push}}
                 {{/bm-modal-container}}
-    
+
                 <div class="detail_page table-header">
                     {{#layout-push direction='col'}}
                         {{#layout-push direction='row' split=true}}
