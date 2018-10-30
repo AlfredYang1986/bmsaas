@@ -41,7 +41,10 @@
     }
     .class_detail {
         .class_detail_basis {
+            padding: 24px;
             height: 384px;
+            text-align: center;
+            background-color: #FFF;
             .basis_name {
                 margin-bottom: 16px;
                 line-height: 22px;
@@ -85,6 +88,7 @@
                     flex: 1;
                     img {
                         margin-left: 8px;
+                        width: 112px;
                     }
                     p:first-child {
                         img {
@@ -94,7 +98,12 @@
                 }
             }
         }
+        .class_basis_margin {
+            flex: 0 0 296px;
+            padding-right: 8px;
+        }
         .class_detail_other {
+            flex: 1;
             ._inside_container {
                 margin-bottom: 40px;
                 p {
