@@ -72,11 +72,15 @@
         {{/bm-modal-container}}
 
         {{#if arrangeClass}}
-            <div class="detail_panel detail_panel_col_between" >
-                <span class='detail_panel_head active' {{action 'arrangeClass'}}>课程安排</span>
-                <span class="detail_panel_head" {{action 'classDetails'}}>班级详情</span>
-                <span class="detail_panel_head" {{action 'traineesLists'}}>学员名单</span>
-            </div>
+            {{#layout-push direction='row' classNames='ib_tab_bar'}}
+                <span class='ib_tab_btn active ib_tab_btn_active'>课程安排</span>
+                <span class='ib_tab_btn' {{action 'traineesLists'}}>学员名单</span>
+            {{/layout-push}}
+            {{!-- <div class="detail_panel detail_panel_col_between" > --}}
+                {{!-- <span class='detail_panel_head active' {{action 'arrangeClass'}}>课程安排</span> --}}
+                {{!-- <span class="detail_panel_head" {{action 'classDetails'}}>班级详情</span> --}}
+                {{!-- <span class="detail_panel_head" {{action 'traineesLists'}}>学员名单</span> --}}
+            {{!-- </div> --}}
             {{#layout-push direction='row'}}
                     {{#layout-push direction='col' classNames="class-teacher-card"}}
                         {{#layout-push direction='row' split=true classNames="class-card-head"}}
@@ -139,7 +143,7 @@
             {{/layout-push}}
         {{/if}}
 
-        {{#if classDetails}}
+        {{!-- {{#if classDetails}}
             <div class="detail_panel detail_panel_col_between class_detail_tab" >
                 <span class='detail_panel_head ' {{action 'arrangeClass'}}>课程安排</span>
                 <span class="detail_panel_head active" {{action 'classDetails'}}>班级详情</span>
@@ -223,14 +227,18 @@
                 </div>
 
             </div>
-        {{/if}}
+        {{/if}} --}}
 
         {{#if traineesLists}}
-            <div class="detail_panel detail_panel_col_between" >
+            {{#layout-push direction='row' classNames='ib_tab_bar'}}
+                <span class='ib_tab_btn' {{action 'arrangeClass'}}>课程安排</span>
+                <span class='ib_tab_btn active ib_tab_btn_active'>学员名单</span>
+            {{/layout-push}}
+            {{!-- <div class="detail_panel detail_panel_col_between" >
                 <span class='detail_panel_head' {{action 'arrangeClass'}}>课程安排</span>
                 <span class="detail_panel_head" {{action 'classDetails'}}>班级详情</span>
                 <span class="detail_panel_head active" {{action 'traineesLists'}}>学员名单</span>
-            </div>
+            </div> --}}
                 <div class="detail_panel detail_panel_col_between" >
                     {{#layout-push direction='row' classNames="add-student"}}
                         {{#bs-button onClick=(action (mut studdlg) true) classNames="add-student-btn"}}添加学员{{/bs-button}}
@@ -255,35 +263,27 @@
                     {{/layout-push}}
                 {{/bm-modal-container}}
 
-                <div class="detail_page table-header">
-                    {{#layout-push direction='col'}}
-                        {{#layout-push direction='row' split=true}}
-                            {{#each model.studentTableHead as |item|}}
-                                <span>{{item.title}}</span>
-                            {{/each}}
-                        {{/layout-push}}
-                    {{/layout-push}}
-                </div>
-                <div class="inbox-table">
+                <table class='ib_table_head'>
+                    <tr>
+                        {{#each model.studentTableHead as |item|}}
+                            <th class='ib_table_item'>{{item.title}}</th>
+                        {{/each}}
+                    </tr>
                     {{#each model.cls.stud as |item|}}
-                    <div class="detail_page table-body">
-                        {{#layout-push direction='col'}}
-                            {{#layout-push direction='row' split=true}}
-                                <span class="email-status">{{item.me.name}}</span>
-                                <span class="">
-                                    {{#if (bmeq item.me.gender 1)}}
-                                    男
-                                    {{else}}
-                                    女
-                                    {{/if}}
-                                </span>
-                                <span class="">{{item.me.age}}</span>
-                                <span class="">{{item.me.contact}}</span>
-                            {{/layout-push}}
-                        {{/layout-push}}
-                    </div>
+                    <tr>
+                        <td class='ib_table_content_item'>{{item.me.name}}</td>
+                        <td class='ib_table_content_item'>
+                            {{#if (bmeq item.me.gender 1)}}
+                            男
+                            {{else}}
+                            女
+                            {{/if}}
+                        </td>
+                        <td class="ib_table_content_item">{{item.me.age}}</td>
+                        <td class="ib_table_content_item">{{item.me.contact}}</td>
+                    </tr>            
                     {{/each}}
-                </div>
+                </table>
         {{/if}}
 
     </div>
