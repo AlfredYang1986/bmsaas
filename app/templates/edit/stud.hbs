@@ -45,8 +45,8 @@
     <section id="kid-info" class="kids_info">
       {{#layout-push direction="col" split=true classNames='input_area' }}
         <p class="edit_title">学员真实姓名</p>
-        <input type="text" class="edit_input kid_name" name="" value="">
-        <span class="edit_hint">0/8</span>
+        {{input type="text" class="edit_input kid_name" maxlength='8' value=chd_name}}
+        <span class="edit_hint">{{chd_name_length}}/8</span>
       {{/layout-push}}
 
       {{#layout-push direction="col" split=true classNames='input_area' }}
@@ -54,34 +54,34 @@
         {{#layout-push direction="row" split=false classNames='date_choose' }}
           {{date-choose data=stud_date}}
         {{/layout-push}}
-        {{!-- <span class="edit_hint">0/8</span> --}}
       {{/layout-push}}
       {{#layout-push direction="col" split=true classNames='input_area' }}
         <p class="edit_title">性别</p>
         <div class="">
           <span class="radio-inline">
-              <input type="radio" name="sex" value="male" checked/>
+              {{log chd_gender_female}}
+              {{log chd_gender_male}}
+              <input type="radio" name="sex" value="male" checked={{chd_gender_male}}/>
               <label for="man">男生</label>
           </span>
           <span class="radio-inline">
-              <input type="radio" name="sex" value="female" />
+              <input type="radio" name="sex" value="female" checked={{chd_gender_female}}/>
               <label for="woman">女生</label>
           </span>
         </div>
       {{/layout-push}}
       {{#layout-push direction="col" split=true classNames='input_area' }}
         <p class="edit_title">就读学校<span class="sub_title">(选填)</span></p>
-        <input type="text" class="edit_input kid_name" name="" value="">
-        <span class="edit_hint">0/14</span>
+        {{input type="text" class="edit_input kid_school" maxlength='14' value=chd_school}}
+        <span class="edit_hint">{{school_length}}/14</span>
       {{/layout-push}}
     </section>
     <section id="par-story" class="parent_info">
       {{#layout-push direction="col" split=true classNames='input_area' }}
         <p class="edit_title">家长姓名</p>
-        <input type="text" class="edit_input kid_name" name="" value="">
-        <span class="edit_hint">0/8</span>
+        {{input type="text" class="edit_input par_name" maxlength='8' value=par_name}}
+        <span class="edit_hint">{{par_name_length}}/8</span>
       {{/layout-push}}
-
 
       {{#layout-push direction="col" split=true classNames='input_area' }}
         <p class="edit_title">与学员关系</p>
@@ -94,16 +94,20 @@
               <input type="radio" name="rel" value="ma" checked/>
               <label for="mom">母亲</label>
           </span>
+          <span class="radio-inline">
+              <input type="radio" name="rel" value="other"/>
+              <label for="other">{{input type="text" class="edit_input kid_rel" value=""}}</label>
+          </span>
         </div>
       {{/layout-push}}
       {{#layout-push direction="col" split=true classNames='input_area' }}
         <p class="edit_title">联系方式</p>
-        <input type="text" class="edit_input kid_name" name="" value="">
+        {{input type="text" class="edit_input par_contact" value=par_contact}}
       {{/layout-push}}
       {{#layout-push direction="col" split=true classNames='input_area' }}
         <p class="edit_title">地址</p>
-        <input type="text" class="edit_input kid_name" name="" value="">
-        <span class="edit_hint">0/14</span>
+        {{input type="text" class="edit_input par_address" maxlength="14" value=par_address }}
+        <span class="edit_hint">{{address_length}}/14</span>
       {{/layout-push}}
     </section>
   </div>
