@@ -10,64 +10,65 @@
     {{/layout-push}}
 {{/layout-push}}
 <div class="experience-content">
+    {{log selectSort}}
     <ul class="edit_left_bar">
-        <li class="left_bar_item nav-active" >
+        <li class="left_bar_item" >
             <div class="edit_left_menu_mid menu_margin_right ">
-                <a class="edit_left_menu_title" href="#kid-info" {{action 'selectClass' argument}}>体验类别</a>
+                <a class={{if selectSort 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>体验类别</a>
             </div>
         </li> 
 
         <li class="left_bar_item" >
             <div class="edit_left_menu_mid menu_margin_right ">
-                <a class="edit_left_menu_title" href="#kid-info" {{action 'selectClass' argument}}>基本信息</a>
+                <a class={{if selectTitle 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>基本信息</a>
             </div>
         </li> 
 
         <li class="left_bar_item" >
             <div class="edit_left_menu_mid menu_margin_right ">
-                <a class="edit_left_menu_title" href="#kid-info" {{action 'selectClass' argument}}>内容介绍</a>
+                <a class={{if experContent 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>内容介绍</a>
             </div>
         </li> 
 
         <li class="left_bar_item" >
             <div class="edit_left_menu_mid menu_margin_right ">
-                <a class="edit_left_menu_title" href="#kid-info" {{action 'selectClass' argument}}>与孩子互动</a>
+                <a class={{if childInteractive 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>与孩子互动</a>
             </div>
         </li> 
 
         <li class="left_bar_item" >
             <div class="edit_left_menu_mid menu_margin_right ">
-                <a class="edit_left_menu_title" href="#kid-info" {{action 'selectClass' argument}}>宝贝将获得</a>
+                <a class={{if childReward 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>宝贝将获得</a>
             </div>
         </li> 
 
         <li class="left_bar_item" >
             <div class="edit_left_menu_mid menu_margin_right ">
-                <a class="edit_left_menu_title" href="#kid-info" {{action 'selectClass' argument}}>体验图片</a>
+                <a class={{if addPhotos 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>体验图片</a>
             </div>
         </li> 
 
         <li class="left_bar_item" >
             <div class="edit_left_menu_mid menu_margin_right ">
-                <a class="edit_left_menu_title" href="#kid-info" {{action 'selectClass' argument}}>您提供的东西</a>
+                <a class={{if offerGoods 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>您提供的东西</a>
             </div>
         </li> 
 
         <li class="left_bar_item" >
             <div class="edit_left_menu_mid menu_margin_right ">
-                <a class="edit_left_menu_title" href="#kid-info" {{action 'selectClass' argument}}>参与者需自带</a>
+                <a class={{if comeWith 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>参与者需自带</a>
             </div>
         </li> 
 
         <li class="left_bar_item" >
             <div class="edit_left_menu_mid menu_margin_right ">
-                <a class="edit_left_menu_title" href="#kid-info" {{action 'selectClass' argument}}>须知</a>
+                <a class={{if notice 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>须知</a>
             </div>
         </li> 
 
         <li class="left_bar_item" >
             <div class="edit_left_menu_mid menu_margin_right ">
-                <a class="edit_left_menu_title" href="#kid-info" {{action 'selectClass' argument}}>费用说明</a>
+                <a class={{if costExplain 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>费用说明</a>
             </div>
         </li> 
 

@@ -47,6 +47,15 @@
 }
 
 .experience-content {
+    .experience-active {
+        color: #fff;
+        background: #80AEFF;
+    }
+
+    .nav-active {
+       color: #80AEFF !important;
+    }
+
     .ageInput {
         width: 80px;
         margin-left: 5px;
@@ -77,11 +86,6 @@
         font-family: $font-brand;
         font-size: 14px;
         color: #6B778C;
-    }
-
-    .experience-active {
-        color: #fff;
-        background: #80AEFF;
     }
     
     .terms {
