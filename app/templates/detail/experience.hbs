@@ -18,8 +18,8 @@
                     {{/layout-push}}
                 {{/layout-push}}
                 {{#layout-push direction="row"}}
-                    <button type="button" name="button" class="btn delete-course-btn">删除</button>
-                    {{#bs-button class="stud_qrcod_btn" onClick=(action (mut courseCode) true) classNames="course-code-btn"}}生成课程二维码{{/bs-button}}
+                    {{!-- <button type="button" name="button" class="btn delete-course-btn">删除</button> --}}
+                    {{!-- {{#bs-button class="stud_qrcod_btn" onClick=(action (mut courseCode) true) classNames="course-code-btn"}}生成课程二维码{{/bs-button}} --}}
                     {{#bs-button class="stud_qrcod_btn" onClick=(action 'addSession') classNames="add-experience"}}添加场次{{/bs-button}}
                     <div local-class="modal-dialog">
                         {{#bs-modal open=courseCode onHidden=(action (mut courseCode) false) as |modal|}}
