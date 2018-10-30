@@ -29,3 +29,43 @@
         margin-top: 16px;
     }
 }
+
+.course_selection {
+    padding-top: 64px;
+    padding-left: 240px;
+
+    .course_panel {
+        margin: 24px;
+        background: #FFFFFF;
+        .course_head {
+            height: 72px;
+
+            .course_text {
+                font-family: $font-nav-acc;
+                font-size: 24px;
+                color: #172B4D;
+
+                margin-left: 24px;
+            }
+
+            .course_add_btn {
+                padding: 6px 12px;
+                height: 32px;
+                border-radius: 16px;
+                background: #80AEFF;
+
+                font-family: $font-brand;
+                font-size: 14px;
+                color: #FFFFFF;
+
+                margin-right: 24px;
+            }
+        }
+
+        .course_warp_content {
+            flex-wrap: wrap;
+
+            padding: 24px 12px;
+        }
+    }
+}

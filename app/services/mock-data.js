@@ -407,7 +407,7 @@ export default Service.extend({
             })
             let tag_01_01 = this.store.createRecord('bmtagimg', {
                 id: 'course 01 01',
-                img_src: '../images/cover_pic_2.jpeg',
+                img_src: '../images/course_tmp_img_01.png',
                 img_tag: '吹牛逼'
             })
             let tag_01_02 = this.store.createRecord('bmtagimg', {
@@ -443,7 +443,7 @@ export default Service.extend({
       })
       let tag_02_01 = this.store.createRecord('bmtagimg', {
         id: 'course 02 01',
-        img_src: '../images/cover_pic_2.jpeg',
+        img_src: '../images/course_tmp_img_02.jpg',
         img_tag: '吃'
       })
       let tag_02_02 = this.store.createRecord('bmtagimg', {
