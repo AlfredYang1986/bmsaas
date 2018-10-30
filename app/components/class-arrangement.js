@@ -125,29 +125,6 @@ export default Component.extend({
             tmp.setDate(tmp.getDate() + 1);
         }
     },
-    // click(event) {
-    //     console.log('click');
-    //     console.log(event.offsetX);
-    //     console.log(event.offsetY);
-    // },
-
-    actions: {
-        leftBtnClicked() {
-            let tmp = new Date();
-            let span = this.start_date.getTime() - 7 * 24 * 60 * 60 * 1000;
-            tmp.setTime(span);
-            this.set('start_date', tmp);
-        },
-        rightBtnClicked() {
-            let tmp = new Date();
-            let span = this.start_date.getTime() + 7 * 24 * 60 * 60 * 1000;
-            tmp.setTime(span);
-            this.set('start_date', tmp);
-        },
-        appendBtnClicked() {
-            this.onAddClassBtnClicked();
-        }
-    },
 
     initStartDate() {
         let tmp = new Date()
@@ -173,7 +150,7 @@ export default Component.extend({
         let all = this.store.peekAll('bmclass');
         return all.filter(filerClsOnYardCondi);
     }),
-    sessions_on_cls: computed('cls_on_yard', function(){
+    sessions_on_cls: computed('cls_on_yard', 'start_date', 'session_refresh_token', function(){
         let lst = A();
         for (let idx = 0; idx < this.cls_on_yard.length; idx++) {
             let tmp = this.cls_on_yard[idx].get('session');
@@ -183,12 +160,13 @@ export default Component.extend({
         }
         return lst;
     }),
-    sessions_on_time: computed('sessions_on_cls', 'start_date', function() {
+    sessions_on_time: computed('sessions_on_cls', function() {
         let that = this;
         function filerSessionWithTime(ses) {
             let condi = ses.get('start_date');
-            let line = that.get('start_date');;
-            return condi > line;
+            let ss = that.get('end_date');
+            let ee = that.get('start_date');;
+            return condi > ee && condi < ss;
         }
         return this.sessions_on_cls.filter(filerSessionWithTime);
     }),
@@ -214,6 +192,7 @@ export default Component.extend({
             let hh = date.getHours() - 8;
             let ll = ses.get('length') / 60;
 
+            ctx.fillStyle = '#AAA';
             let x = x_str + step_width * (dd - 1);
             let y = this.time_line_margin + this.time_span_height + line_height_step * hh - 7;
             ctx.fillRect(x, y, step_width, ll * line_height_step);
@@ -224,5 +203,120 @@ export default Component.extend({
             ctx.fillText('开始时间: ' + (hh + 8), x, y + 14 + 14);
             ctx.fillText('持续时间: ' + ses.get('length') + ' mins', x, y + 14 + 14 + 14);
         }
+    },
+
+    /**
+     * insert session dlg logic
+     */
+    insertdlg: false,
+    session_insert_cls: null,
+    session_insert_date: '2018-10-01',
+    session_insert_hours: 0,
+    session_insert_length: 0,
+    session_insert_techid_lst: A(),
+    session_refresh_token: 'start-token',
+   
+    session_insert_is_validate: computed('session_insert_cls', 
+                                         'session_insert_date', 
+                                         'session_insert_hours', 
+                                         'session_insert_length',
+                                         'session_insert_techid_lst', function(){
+
+        return this.session_insert_cls != null &&
+                    this.session_insert_date.length > 0 &&
+                    this.session_insert_length > 0 &&
+                    this.session_insert_hours > 0 &&
+                    this.session_insert_techid_lst.length > 0;
+    }),
+
+    actions: {
+        leftBtnClicked() {
+            let tmp = new Date();
+            let span = this.start_date.getTime() - 7 * 24 * 60 * 60 * 1000;
+            tmp.setTime(span);
+            this.set('start_date', tmp);
+        },
+        rightBtnClicked() {
+            let tmp = new Date();
+            let span = this.start_date.getTime() + 7 * 24 * 60 * 60 * 1000;
+            tmp.setTime(span);
+            this.set('start_date', tmp);
+        },
+        appendBtnClicked() {
+            this.onAddClassBtnClicked();
+        },
+        cslChanged() {
+            let sel = document.getElementById('clsselect');
+            if (sel.selectedIndex == 0) {
+                this.set('session_insert_cls', null);
+            } else {
+                let cls_id = sel.options[sel.selectedIndex].value;
+                let cls = this.store.peekRecord('bmclass', cls_id);
+                this.set('session_insert_cls', cls);
+            }
+        },
+        cancelHandled() {
+            this.set('session_insert_techid_lst', A());
+            this.set('session_insert_length', 0);
+            this.set('session_insert_cls', null);
+            this.set('session_insert_hours', 0);
+            this.set('insertdlg', false);
+        }, 
+        successHandled() {
+
+            if (this.session_insert_is_validate) {
+                console.log('insert session');
+                let nse = this.store.createRecord('bmclssession', {
+                    id: this.guid(),
+                    length: this.session_insert_length,
+                })
+                let sd = new Date(this.session_insert_date);
+                sd.setHours(this.session_insert_hours);
+                nse.set('start_date', sd);
+
+                let tmp = this.session_insert_techid_lst.objectAt(0);
+                let tech_lst = this.store.peekRecord('bmtech', tmp);
+                nse.set('tech', tech_lst);
+
+                nse.set('cls', this.session_insert_cls);
+                // use refresh token to refresh
+                this.set('session_refresh_token', this.guid());
+
+            } else {
+                alert('something wrong')
+            }
+
+            this.set('session_insert_techid_lst', A());
+            this.set('session_insert_length', 0);
+            this.set('session_insert_cls', null);
+            this.set('session_insert_hours', 0);
+            this.set('insertdlg', false);
+        },
+        hourChanged() {
+            let sel = document.getElementById('hourselect');
+            if (sel.selectedIndex == 0) {
+                this.set('session_insert_hours', 0);
+            } else {
+                let hours = sel.options[sel.selectedIndex].value;
+                this.set('session_insert_hours', hours);
+            }
+        },
+        oneTechChecked(techid, checked) {
+            if (checked) {
+                this.session_insert_techid_lst.pushObject(techid);
+            } else {
+                this.session_insert_techid_lst.removeObject(techid);
+            }
+        },
+        
+    },
+
+    guid() {
+        function s4() {
+          return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+        }
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
     }
 });
