@@ -7,10 +7,6 @@ export default DS.Model.extend({
     apply_course: DS.belongsTo('bmcourseinfo'),
     apply_activity: DS.belongsTo('bmactivityinfo'),
 
-    dispatch_yard: DS.belongsTo('bmyard'),
-    dispatch_course: DS.belongsTo('bmcourseinfo'),
-    dispatch_activity: DS.belongsTo('bmactivityinfo'),
-
     attendee: DS.hasMany('bmperson'),
     applyee: DS.belongsTo('bmperson')
 });

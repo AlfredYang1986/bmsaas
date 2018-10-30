@@ -12,7 +12,7 @@
         {{#layout-push direction="row" wrap=true classNames="card-wrap"}}
             {{#each model.reserves as |item|}}
                 <div class="line_container_warp stud_card_container" >
-                    {{course-card onCourseCardClicked=(action 'cardClicked') course=item.course}}
+                    {{reserve-card onCourseCardClicked=(action 'cardClicked') reserve=item}}
                 </div>
             {{/each}}
         {{/layout-push}}

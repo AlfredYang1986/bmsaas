@@ -12,7 +12,7 @@
                 {{#layout-push direction='col' classNames='session-left-info'}}
                     <p class="headline">{{model.act.name}}</p>
                     {{#layout-push direction='col' classNames="session-info"}}
-                        <p>报名人数：20/2000</p>
+                        <p>报名人数：{{model.period.studs.length}}/{{model.period.limits}}</p>
                         <p>场地：{{address}}</p>
                         <p>时间：{{start_time}} --- {{end_time}} </p>
                     {{/layout-push}}
@@ -40,32 +40,28 @@
             {{/layout-push}}
         </div>
         <div class="inbox-table">
-            <div class="detail_page table-body">
+            {{#each model.period.studs as |item|}}
+                <div class="detail_page table-body">
                     {{#layout-push direction='col'}}
                         {{#layout-push direction='row' split=true}}
-                            <span class="email-status">已到</span>
-                            <span class="">王大錘</span>
+                            {{!-- <span class="email-status">已到</span> --}}
+                            <span class="">{{item.me.name}}</span>
                             <span class="">2006/12/12</span>
-                            <span class="">男孩</span>
-                            <span class="">184 9382 7483</span>
+                            <span class="">
+                                {{#if (bmeq item.me.gender 1)}}
+                                男孩
+                                {{else}}
+                                女孩
+                                {{/if}}
+                            </span>
+                            <span class="">{{item.me.contact}}</span>
                             <span class="">小程序</span>
-                            {{#bs-button classNames="email-option" onClick=(action (mut experPopUps) true)}}<span>签到</span>{{/bs-button}}
+                            {{!-- {{#bs-button classNames="email-option" onClick=(action (mut experPopUps) true)}}<span>签到</span>{{/bs-button}} --}}
+                            <span class='email-option'>签到</span>
                         {{/layout-push}}
                     {{/layout-push}}
-            </div>
-            <div class="detail_page table-body">
-                    {{#layout-push direction='col'}}
-                        {{#layout-push direction='row' split=true}}
-                            <span class="email-status">已到</span>
-                            <span class="">王大錘</span>
-                            <span class="">2006/12/12</span>
-                            <span class="">男孩</span>
-                            <span class="">184 9382 7483</span>
-                            <span class="">小程序</span>
-                            {{#bs-button classNames="email-option" onClick=(action (mut modal3) true)}}<span>签到</span>{{/bs-button}}
-                        {{/layout-push}}
-                    {{/layout-push}}
-            </div>
+                </div>
+            {{/each}}
         </div>
     </div>
 </div>

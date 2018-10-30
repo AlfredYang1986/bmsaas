@@ -98,9 +98,11 @@ export default Controller.extend({
 
             // TODO: 其他的一些属性修改都在这里解决
             act.set('name', this.act_name);
+
             act.set('gains', this.gainsInputArray);
             act.set('offered', this.offeredInputArray);
             act.set('needed', this.neededInputArray);
+            
             // TODO: 其他的一些属性修改都在这里解决
             act.set('length', this.act_length);
             act.set('planning', this.act_planning);

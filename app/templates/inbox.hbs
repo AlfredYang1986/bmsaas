@@ -28,7 +28,7 @@
                 <div class="detail_page table-body">
                     {{#layout-push direction='col'}}
                         {{#layout-push direction='row' split=true}}
-                            <span class="email-status">未处理</span>
+                            <span class="email-status">{{bmapplystatus item.status}}</span>
                             <span class="">{{bmperioddateformat item.apply_date}}</span>
                             <span class="">{{item.apply_yard.address}}</span>
                             <span class="">{{bmapplycontentname item.apply_course item.apply_activity}}</span>
@@ -41,13 +41,17 @@
                                 {{/each}}
                             </span>
                             <span class="">{{item.applyee.contact}}</span>
-                            {{#bs-button classNames="email-option" onClick=(action 'setCurrentApply' item)}}<span>处理</span>{{/bs-button}}
+                            {{#if (bmeq item.status 0)}}
+                                {{#bs-button classNames="email-option" onClick=(action 'setCurrentApply' item)}}<span>处理</span>{{/bs-button}}
+                            {{else}}
+                                <span class="email-status">{{bmapplystatus item.status}}</span>
+                            {{/if}}
                         {{/layout-push}}
                     {{/layout-push}}
                 </div>
             {{/each}}
         </div>
-         {{#bm-modal-container title="课程预约" mswitch=showhandledlg 
+        {{#bm-modal-container title="课程预约" mswitch=showhandledlg 
                 successbtncss='course-reserve-card-save'  
                 cancelbtncss='course-reserve-card-cancel'
                 canceltext='取消'
@@ -58,12 +62,17 @@
                         classNames="course-reserve-modal-body" 
                         selectedReservable=sr
                         selectedYard=sy 
-                        isValidate=isV
                         selectedDate=dt
+                        selectedActivity=sa
+                        selectedSession=ss
+                        innerCat=isCourse
                         apply=current_apply}}
             {{/layout-push}}
         {{/bm-modal-container}}
-        {{#bm-modal-container mswitch=showcomfirmdlg successbtncss='course-reserve-card-save' onSuccessBtnClicked=(action 'successHandled')}}
+        {{#bm-modal-container 
+                mswitch=showcomfirmdlg 
+                successbtncss='course-reserve-card-save' 
+                onSuccessBtnClicked=(action 'successHandled')}}
             {{#layout-push direction=row classNames="success-info course-reverve-success"}}
                 <img src="../images/success.png" alt="">
                 {{#layout-push direction=col}}

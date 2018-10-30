@@ -15,6 +15,7 @@ export default Service.extend({
         this.sureActivity();
         this.sureClasses();
         this.sureApplies();
+        this.sureClsSession();
     },
     store: service(),
     regionSource() {
@@ -604,6 +605,9 @@ export default Service.extend({
             let yard_01 = this.store.peekRecord('bmyard', 'i am yard 01');
             cls_01.set('course', course_01);
             cls_01.set('yard', yard_01);
+
+            let tech = this.store.peekRecord('bmtech', 'i am tech 01');
+            cls_01.set('tech', A([tech]));
         }
     },
     sureApplies() {
@@ -612,6 +616,7 @@ export default Service.extend({
         if (applies.length == 0) {
             let apply_01 = this.store.createRecord('bmapply', {
                 id: 'i am apply 01',
+                status: 0,
                 apply_date: new Date(),
             })
             let yard_01 = this.store.peekRecord('bmyard', 'i am yard 01');
@@ -646,6 +651,7 @@ export default Service.extend({
 
             let apply_02 = this.store.createRecord('bmapply', {
                 id: 'i am apply 02',
+                status: 0,
                 apply_date: new Date(),
             })
             let yard_02 = this.store.peekRecord('bmyard', 'i am yard 02');
@@ -685,6 +691,17 @@ export default Service.extend({
     yardCondi() {
         return this.store.peekAll('bmyard');
     },
+    activityCandi() {
+        return this.store.peekAll('bmactivityinfo');
+    },
+    sessionCandi(actid) {
+        if (actid == null) {
+            return []
+        } else {
+            let act = this.store.peekRecord('bmactivityinfo', actid);
+            return act.periods;
+        }
+    },
     todayApplies() {
         let applies = this.store.peekAll('bmapply');
 
@@ -708,6 +725,36 @@ export default Service.extend({
         }
 
         return applies.filter(filterOlderCondi)
+    },
+    queryAllTech() {
+        return this.store.peekAll('bmtech');
+    },
+    queryAllStud() {
+        return this.store.peekAll('bmstud');
+    },
+    queryAllYard() {
+        return this.store.peekAll('bmyard');
+    },
+    queryUnhandled() {
+        let applies = this.store.peekAll('bmapply');
+        function unhandledCondi(app) {
+            let condi = app.get('status');
+            return condi == 0;
+        }
+        return applies.filter(unhandledCondi).length;
+    },
+    sureClsSession() {
+        let ses = this.store.peekAll('bmclssession');
+        if (ses.length == 0) {
+            let ses_01 = this.store.createRecord('bmclssession', {
+                id: 'i am cls session 01',
+                start_date: new Date('2018-10-29 08:00'),
+                length: 120,
+            }) 
+            let tech = this.store.peekRecord('bmtech', 'i am tech 01');
+            ses_01.set('tech', tech)
+            let cls = this.store.peekRecord('bmclass', 'i am class 01');
+            ses_01.set('cls', cls);
+        }
     }
-
 });

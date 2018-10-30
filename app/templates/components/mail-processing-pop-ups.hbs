@@ -17,7 +17,7 @@
                             <select class="course-reserve-modal-select" id='reservableselect' name="" onChange={{action 'reservableChanged'}}>
                                 <option value="">课程标题</option>
                                 {{#each course_lst as |item|}}
-                                    <option value={{item}}>{{item.course.name}}</option>
+                                    <option value={{item.id}}>{{item.course.name}}</option>
                                 {{/each}}
                             </select>
                     {{/layout-push}}
@@ -26,7 +26,7 @@
                             <select class="course-reserve-modal-select" id='yardselect' name="" onChange={{action 'yardChanged'}}>
                                 <option value="">场地位置</option>
                                 {{#each yard_lst as |item|}}
-                                    <option value={{item}}>{{item.address}}</option>
+                                    <option value={{item.id}}>{{item.address}}</option>
                                 {{/each}}
                             </select>
                     {{/layout-push}}
@@ -77,16 +77,20 @@
                     {{/layout-push}}
                     {{#layout-push direction=row classNames="line_container"}}
                         <p class="course-reserve-label">体验</p>
-                            <select class="course-reserve-modal-select" name="">
-                                <option value="">场次</option>
-                                <option value="">2018</option>
+                            <select class="course-reserve-modal-select" id='actselect' name="" onChange={{action 'activityChanged'}}>
+                                <option value="">体验</option>
+                                {{#each activity_lst as |item|}}
+                                    <option value={{item.id}}>{{item.name}}</option>
+                                {{/each}}
                             </select>
                     {{/layout-push}}
                     {{#layout-push direction=row classNames="line_container"}}
                         <p class="course-reserve-label">场次</p>
-                            <select class="course-reserve-modal-select" name="">
+                            <select class="course-reserve-modal-select" id='sessionselect' name="" onChange={{action 'sessionChanged'}}>
                                 <option value="">场地位置</option>
-                                <option value="">2018</option>
+                                {{#each session_lst as |item|}}
+                                    <option value={{item.id}}>{{item.yard.address}}</option>
+                                {{/each}}
                             </select>
                     {{/layout-push}}
                 {{/layout-push}}

@@ -1,6 +1,9 @@
 import Controller from '@ember/controller';
 
 export default Controller.extend({
+
+    changeClassName: false,
+
     selectClass: true,
     arrangeSite: false,
     className: false,
