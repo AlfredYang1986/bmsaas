@@ -18,6 +18,7 @@ export default Controller.extend({
             this.set('savedlg', false);
         },
         successHandled() {
+            // debugger
             if (this.addReserveCourseBtnClicked()) {
                 this.transitionToRoute('courseReserve');
             }
@@ -28,9 +29,9 @@ export default Controller.extend({
             this.set('savedlg', false);
         },
         resCouresSelect() {
-            debugger
+            // debugger
             let sel = document.getElementById('rescourseselect');
-            this.set('selected_index', sel.selected_index);
+            this.set('selected_index', sel.selectedIndex);
         },
     },
 

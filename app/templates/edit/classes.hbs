@@ -44,7 +44,7 @@
                     {{/each}}
                 </select>
             {{/layout-push}}
-            {{#layout-push direction=col }}
+            {{#layout-push direction='col' }}
                 <button class="nav_save_btn menu_button_between" {{action (mut cur_index) 1}}>下一步</button>
                 {{#link-to 'course' classNames='link-to-creat'}}
                     尚未建立课程？前往创建课程。
@@ -69,7 +69,7 @@
                     {{/each}}
                 </select>
             {{/layout-push}}
-            {{#layout-push direction=col}}
+            {{#layout-push direction='col'}}
                 <button class="nav_save_btn menu_button_between" {{action (mut cur_index) 2}}>下一步</button>
                 {{#link-to 'yard' classNames='link-to-creat'}}
                     尚未添加场地？前往添加场地。

@@ -216,3 +216,33 @@
         }
     }
 }
+
+.alt_course_edit_btn_margin {
+    margin-top: 24px;
+    justify-content: flex-end;
+}
+
+.alt_course_section {
+    padding-top: 64px;
+    padding-left: 240px;
+
+    .alt_course_panel {
+        margin: 24px;
+        background: #FFF;
+
+        padding: 24px;
+
+        .alt_course_title {
+            font-family: PingFangSC-Medium;
+            font-size: 14px;
+            color: #172B4D;
+        }
+
+        .alt_course_des {
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #6B778C;
+            text-align: left;
+        }
+    }
+}

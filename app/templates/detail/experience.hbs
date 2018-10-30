@@ -39,57 +39,37 @@
             {{/layout-push}}
         </div>
         {{#if sessionArrange}}
-            <div class="detail_panel detail_panel_col_between" >
-                {{#layout-push direction='row'}}
-                    <div class="time-select today">
-                        <p class="active" {{action 'sessionArrange'}}>场次安排</p>
-                    </div>
-                    <div class="time-select today">
-                        <p class="" {{action 'activityDetail'}}>体验详情</p>
-                    </div>
-                {{/layout-push}}
-            </div>
-            <div class="detail_page table-header">
-                {{#layout-push direction='col'}}
-                    {{#layout-push direction='row' split=true}}
-                        {{#each model.title as |item|}}
-                            <span>{{item.title}}</span>
-                        {{/each}}
-                    {{/layout-push}}
-                {{/layout-push}}
-            </div>
-            <div class="inbox-table">
+            {{#layout-push direction='row' classNames='ib_tab_bar'}}
+                <span class='ib_tab_btn active ib_tab_btn_active'>场次安排</span>
+                <span class='ib_tab_btn' {{action 'activityDetail'}} >体验详情</span>
+            {{/layout-push}}
+
+            <table class='ib_table_head'>
+                <tr>
+                    {{#each model.title as |item|}}
+                        <th class='ib_table_item'>{{item.title}}</th>
+                    {{/each}}
+                </tr>
+
                 {{#each model.act.periods as |item index|}}
-                    <div class="detail_page table-body">
-                        {{#layout-push direction='col'}}
-                            {{#layout-push direction='row' split=true  onClick=(action 'viewExperDetail')}}
-                                <span class="email-status" {{action 'viewExperDetail' index}}>{{index}}</span>
-                                <span class="">
-                                    {{bmperioddateformat item.start_date}}
-                                </span>
-                                <span class="">
-                                    {{item.yard.address}}
-                                </span>
-                                <span class="">{{item.studs.length}}/{{item.limits}}</span>
-                                <span class="apply-status-open">
-                                    {{#if (bmperiodopen item)}}
-                                        开放
-                                    {{else}}
-                                        关闭
-                                    {{/if}}
-                                </span>
-                                {{#layout-push direction='row'}}
-                                    {{#link-to 'detail.actarrangement' model.act.id item.id classNames='email-option'}}<span>更多</span>{{/link-to}}
-                                {{/layout-push}}
-                            {{/layout-push}}
-                        {{/layout-push}}
-                    </div>
+                <tr>
+                    <td class='ib_table_content_item'>{{index}}</td>
+                    <td class='ib_table_content_item'>{{bmperioddateformat item.start_date}}</td>
+                    <td class="ib_table_content_item">{{item.yard.address}}</td>
+                    <td class="ib_table_content_item">{{item.studs.length}}/{{item.limits}}</td>
+                    {{!-- <td class="ib_table_content_item">{{item.applyee.contact}}</td> --}}
+                    <td class='ib_table_content_item'>
+                        {{#link-to 'detail.actarrangement' model.act.id item.id classNames='ib_table_content_btn'}}
+                            <span>进入</span>
+                        {{/link-to}}
+                    </td>
+                </tr>            
                 {{/each}}
-            </div>
+            </table>
         {{/if}}
 
         {{#if activityDetail}}
-            <div class="detail_panel detail_panel_col_between" >
+            {{!-- <div class="detail_panel detail_panel_col_between" >
                 {{#layout-push direction='row'}}
                     <div class="time-select today">
                         <p class="" {{action 'sessionArrange'}}>场次安排</p>
@@ -98,7 +78,13 @@
                         <p class="active" {{action 'activityDetail'}}>体验详情</p>
                     </div>
                 {{/layout-push}}
-            </div>
+            </div> --}}
+
+            {{#layout-push direction='row' classNames='ib_tab_bar'}}
+                <span class='ib_tab_btn' {{action 'sessionArrange'}}>场次安排</span>
+                <span class='ib_tab_btn active ib_tab_btn_active'>体验详情</span>
+            {{/layout-push}}
+
             <div class="detail_panel detail_panel_col_between">
                 <div class="course-info">
                     {{#layout-push direction='row'  split=true classNames="line_conatainer_split"}}

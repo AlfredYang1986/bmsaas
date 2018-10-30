@@ -30,39 +30,33 @@
 
             {{/layout-push}}
         </div>
-        <div class="detail_page table-header">
-            {{#layout-push direction='col'}}
-                {{#layout-push direction='row' split=true}}
-                    {{#each model.title as |item|}}
-                        <span>{{item.title}}</span>
-                    {{/each}}
-                {{/layout-push}}
-            {{/layout-push}}
-        </div>
-        <div class="inbox-table">
-            {{#each model.period.studs as |item|}}
-                <div class="detail_page table-body">
-                    {{#layout-push direction='col'}}
-                        {{#layout-push direction='row' split=true}}
-                            {{!-- <span class="email-status">已到</span> --}}
-                            <span class="">{{item.me.name}}</span>
-                            <span class="">2006/12/12</span>
-                            <span class="">
-                                {{#if (bmeq item.me.gender 1)}}
-                                男孩
-                                {{else}}
-                                女孩
-                                {{/if}}
-                            </span>
-                            <span class="">{{item.me.contact}}</span>
-                            <span class="">小程序</span>
-                            {{!-- {{#bs-button classNames="email-option" onClick=(action (mut experPopUps) true)}}<span>签到</span>{{/bs-button}} --}}
-                            <span class='email-option'>签到</span>
-                        {{/layout-push}}
-                    {{/layout-push}}
-                </div>
+
+        <table class='ib_table_head'>
+            <tr>
+                {{#each model.title as |item|}}
+                    <th class='ib_table_item'>{{item.title}}</th>
+                {{/each}}
+            </tr>
+
+            {{#each model.period.studs as |item index|}}
+            <tr>
+                <td class='ib_table_content_item'>{{item.me.name}}</td>
+                <td class='ib_table_content_item'>{{bmdobformat item.me.dob}}</td>
+                <td class="ib_table_content_item">
+                    {{#if (bmeq item.me.gender 1)}}
+                    男孩
+                    {{else}}
+                    女孩
+                    {{/if}}
+                </td>
+                <td class="ib_table_content_item">{{item.me.contact}}</td>
+                <td class="ib_table_content_item">小程序</td>
+                <td class='ib_table_content_item'>
+                    <span>签到</span>
+                </td>
+            </tr>            
             {{/each}}
-        </div>
+        </table>
     </div>
 </div>
 {{#bs-modal open=experPopUps  onHidden=(action (mut experPopUps) false) as |modal|}}
