@@ -164,8 +164,9 @@ export default Component.extend({
         let that = this;
         function filerSessionWithTime(ses) {
             let condi = ses.get('start_date');
-            let line = that.get('start_date');;
-            return condi > line;
+            let ss = that.get('end_date');
+            let ee = that.get('start_date');;
+            return condi > ee && condi < ss;
         }
         return this.sessions_on_cls.filter(filerSessionWithTime);
     }),
@@ -273,11 +274,8 @@ export default Component.extend({
                 sd.setHours(this.session_insert_hours);
                 nse.set('start_date', sd);
 
-                let tech_lst = A();
-                for (let idx = 0; idx < this.session_insert_techid_lst.length; idx++) {
-                    let tmp = this.store.peekRecord('bmtech', this.session_insert_techid_lst.objectAt(idx));
-                    tech_lst.pushObject(tmp);
-                }
+                let tmp = this.session_insert_techid_lst.objectAt(0);
+                let tech_lst = this.store.peekRecord('bmtech', tmp);
                 nse.set('tech', tech_lst);
 
                 nse.set('cls', this.session_insert_cls);

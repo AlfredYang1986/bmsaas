@@ -418,7 +418,7 @@ export default Service.extend({
 
             let course_02 = this.store.createRecord('bmcourseinfo', {
                 id: 'i am course 02',
-                name: '乐高机器人设计搭建课',
+                name: 'Python机器人',
                 alb: 6,
                 aub: 12,
                 count: 60,
@@ -734,6 +734,9 @@ export default Service.extend({
     },
     queryAllYard() {
         return this.store.peekAll('bmyard');
+    },
+    queryAllCourse() {
+        return this.store.peekAll('bmcourseinfo');
     },
     queryUnhandled() {
         let applies = this.store.peekAll('bmapply');
