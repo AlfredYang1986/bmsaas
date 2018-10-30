@@ -11,7 +11,7 @@ export default Component.extend({
             isInbox: true,
         },
         {
-            icon: '/images/working desk_normal.png',
+            icon: '/images/icon_dashboard_normal@1x.png',
             title: '工作台',
             expond: false,
             pageUrl:'workBench',

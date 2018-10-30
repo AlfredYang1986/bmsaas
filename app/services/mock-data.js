@@ -125,7 +125,7 @@ export default Service.extend({
             person_stud_01.set('dob', dob_stud_01);
             let stud01 = this.store.createRecord('bmstud', {
                 id: 'i am stud 01',
-                school: '霍格沃茨' 
+                school: '霍格沃茨'
             })
             stud01.set('me', person_stud_01);
 
@@ -189,7 +189,7 @@ export default Service.extend({
             person_stud_02.set('dob', dob_stud_02);
             let stud02 = this.store.createRecord('bmstud', {
                 id: 'i am stud 02',
-                school: '霍格沃茨' 
+                school: '霍格沃茨'
             })
             stud02.set('me', person_stud_02);
 
@@ -241,14 +241,14 @@ export default Service.extend({
             let dob_tech_01 = "2011-08-01"
             let person_tech_01 = this.store.createRecord('bmperson', {
                 id: 'i am tech person 01',
-                icon: '../images/stud-normal.png',
+                icon: '../images/avatar_defautl_96px @1x.png',
                 name: '司徒钟',
                 nickname: '酒剑仙',
                 age: 1004,
                 gender: 1,
                 contact: '17611245119',
                 wechat: '',
-                register_date: new Date(), 
+                register_date: new Date(),
             })
             person_tech_01.set('dob', dob_tech_01);
             let tech_01 = this.store.createRecord('bmtech', {
@@ -257,18 +257,18 @@ export default Service.extend({
                 homeland: '人间山神庙'
             })
             tech_01.set('me', person_tech_01);
-            
+
             let dob_tech_02 = "2011-08-01"
             let person_tech_02 = this.store.createRecord('bmperson', {
                 id: 'i am tech person 02',
-                icon: '../images/stud-normal.png',
+                icon: '../images/avatar_defautl_96px @1x.png',
                 name: '李逍遥',
                 nickname: '老婆哭哭就到手',
                 age: 512,
                 gender: 1,
                 contact: '17611245119',
                 wechat: '',
-                register_date: new Date(), 
+                register_date: new Date(),
             })
             person_tech_02.set('dob', dob_tech_02);
             let tech_02 = this.store.createRecord('bmtech', {
@@ -277,7 +277,7 @@ export default Service.extend({
                 homeland: '余杭小客栈'
             })
             tech_02.set('me', person_tech_02);
-        }    
+        }
     },
     sureYard() {
         window.console.log('sure yard');
@@ -632,7 +632,7 @@ export default Service.extend({
                 age: 1600,
                 gender: 1,
                 contact: '(蜀汉) 13720200856',
-                register_date: new Date(), 
+                register_date: new Date(),
             });
 
             let applyee_01 = this.store.createRecord('bmperson', {
@@ -643,7 +643,7 @@ export default Service.extend({
                 age: 2000,
                 gender: 1,
                 contact: '(大汉) 17611245119',
-                register_date: new Date(), 
+                register_date: new Date(),
             })
 
             apply_01.set('attendee', A([attendee_01]));
@@ -667,7 +667,7 @@ export default Service.extend({
                 age: 1600,
                 gender: 1,
                 contact: '(蜀汉) 13720200856',
-                register_date: new Date(), 
+                register_date: new Date(),
             });
 
             let applyee_02 = this.store.createRecord('bmperson', {
@@ -678,7 +678,7 @@ export default Service.extend({
                 age: 1000,
                 gender: 1,
                 contact: '(大唐) 17611245119',
-                register_date: new Date(), 
+                register_date: new Date(),
             })
 
             apply_02.set('attendee', A([attendee_02]));
@@ -753,7 +753,7 @@ export default Service.extend({
                 id: 'i am cls session 01',
                 start_date: new Date('2018-10-29 08:00'),
                 length: 120,
-            }) 
+            })
             let tech = this.store.peekRecord('bmtech', 'i am tech 01');
             ses_01.set('tech', tech)
             let cls = this.store.peekRecord('bmclass', 'i am class 01');

@@ -8,7 +8,9 @@
         <div class='detail_panel' >
             {{#layout-push direction="row" split=true }}
                 <p class="detail_head_name">教师详情</p>
-                <p class="more_btn">更多</p>
+                {{#link-to 'edit.tech' model.tech.id classNames='more_btn'}}
+                    更多
+                {{/link-to}}
             {{/layout-push}}
         </div>
         {{#layout-push direction="row"}}
