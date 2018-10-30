@@ -439,7 +439,7 @@ export default Service.extend({
             let cat_01 = this.store.createRecord('bmcat', {
                 id: 'course cat 01',
                 cat: '科学',
-                sub: 'STEAM'
+                sub: 'STEM'
             })
             course_01.set('category', cat_01);
             course_01.set('imgs', A([tag_01_01, tag_01_02, tag_01_03]));
@@ -475,7 +475,7 @@ export default Service.extend({
       let cat_02 = this.store.createRecord('bmcat', {
         id: 'course cat 02',
         cat: '运动',
-        sub: '球球'
+        sub: '足球'
       })
       course_02.set('category', cat_02);
       course_02.set('imgs', A([tag_02_01, tag_02_02, tag_02_03]));
@@ -788,5 +788,19 @@ export default Service.extend({
       let cls = this.store.peekRecord('bmclass', 'i am class 01');
       ses_01.set('cls', cls);
     }
+  },
+  queryCateCandidate() {
+    return A(['科学', '运动', '艺术']);
+  },
+  querySubCatCondidate(cat) {
+    if (cat == '科学') {
+        return A(['STEM', 'python']);
+    } else if (cat == '运动') {
+        return A(['足球', '篮球']);
+	} else if (cat == '艺术') {
+		return A(['画画', '唱歌']);
+	} else {
+		return A();
+	}
   }
 });

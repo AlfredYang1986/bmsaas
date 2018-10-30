@@ -2,141 +2,83 @@
     {{#layout-push direction="row" split=true classNames="experience-header text-center"}}
         <span class="experience-title">创建体验</span>
         <span>
-            {{#link-to 'detail.experience' model.act.id class="experience-canel-btn"}}
-                取消
-            {{/link-to}}
-            {{#bs-button class="experience-btn disable" onClick=(action (mut modal4) true)}}提交{{/bs-button}}
+            {{#if isPushing}}
+                {{#link-to 'experienceOpen' class="experience-canel-btn"}}
+                    取消
+                {{/link-to}}
+                {{#bs-button class="experience-btn disable" onClick=(action 'saveActivityBtnClicked')}}创建{{/bs-button}}
+            {{else}}
+                {{#link-to 'detail.experience' model.act.id class="experience-canel-btn"}}
+                    取消
+                {{/link-to}}
+                {{#bs-button class="experience-btn disable" onClick=(action 'saveActivityBtnClicked')}}保存{{/bs-button}}
+            {{/if}}
         </span>
     {{/layout-push}}
 {{/layout-push}}
 <div class="experience-content">
-    {{log selectSort}}
     <ul class="edit_left_bar">
         <li class="left_bar_item" >
             <div class="edit_left_menu_mid menu_margin_right ">
-                <a class={{if selectSort 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>体验类别</a>
+                <a class={{if (eq selectNav 0) 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} {{action (mut selectNav) 0}}>体验类别</a>
             </div>
         </li> 
 
         <li class="left_bar_item" >
             <div class="edit_left_menu_mid menu_margin_right ">
-                <a class={{if selectTitle 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>基本信息</a>
+                <a class={{if (eq selectNav 1) 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} {{action (mut selectNav) 1}}>基本信息</a>
             </div>
         </li> 
 
         <li class="left_bar_item" >
             <div class="edit_left_menu_mid menu_margin_right ">
-                <a class={{if experContent 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>内容介绍</a>
+                <a class={{if (eq selectNav 2) 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} {{action (mut selectNav) 2}}>内容介绍</a>
             </div>
         </li> 
 
         <li class="left_bar_item" >
             <div class="edit_left_menu_mid menu_margin_right ">
-                <a class={{if childInteractive 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>与孩子互动</a>
+                <a class={{if (eq selectNav 3) 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} {{action (mut selectNav) 3}}>与孩子互动</a>
             </div>
         </li> 
 
         <li class="left_bar_item" >
             <div class="edit_left_menu_mid menu_margin_right ">
-                <a class={{if childReward 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>宝贝将获得</a>
+                <a class={{if (eq selectNav 4) 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} {{action (mut selectNav) 4}}>宝贝将获得</a>
             </div>
         </li> 
 
         <li class="left_bar_item" >
             <div class="edit_left_menu_mid menu_margin_right ">
-                <a class={{if addPhotos 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>体验图片</a>
+                <a class={{if (eq selectNav 5) 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} {{action (mut selectNav) 5}}>体验图片</a>
             </div>
         </li> 
 
         <li class="left_bar_item" >
             <div class="edit_left_menu_mid menu_margin_right ">
-                <a class={{if offerGoods 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>您提供的东西</a>
+                <a class={{if (eq selectNav 6) 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} {{action (mut selectNav) 6}}>您提供的东西</a>
             </div>
         </li> 
 
         <li class="left_bar_item" >
             <div class="edit_left_menu_mid menu_margin_right ">
-                <a class={{if comeWith 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>参与者需自带</a>
+                <a class={{if (eq selectNav 7) 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} {{action (mut selectNav) 7}}>参与者需自带</a>
             </div>
         </li> 
 
         <li class="left_bar_item" >
             <div class="edit_left_menu_mid menu_margin_right ">
-                <a class={{if notice 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>须知</a>
+                <a class={{if (eq selectNav 8) 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} {{action (mut selectNav) 8}}>须知</a>
             </div>
         </li> 
 
         <li class="left_bar_item" >
             <div class="edit_left_menu_mid menu_margin_right ">
-                <a class={{if costExplain 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>费用说明</a>
+                <a class={{if (eq selectNav 9) 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} {{action (mut selectNav) 9}}>费用说明</a>
             </div>
         </li> 
-
-        {{!-- <li class="left_bar_item" >
-            <div class="edit_left_menu_mid menu_margin_right ">
-                <a class="edit_left_menu_title" href="#kid-info" {{action 'selectClass' argument}}>活动体验描述</a>
-            </div>
-        </li> 
-
-        <li class="left_bar_item" >
-            <div class="edit_left_menu_mid menu_margin_right">
-                <a class="edit_left_menu_text" href="#kid-info" {{action 'selectClass' argument}}>分类</a>
-            </div>
-        </li>
-        <li class="left_bar_item" >
-            <div class="edit_left_menu_mid menu_margin_right">
-                <a class="edit_left_menu_text" href="#par-story" {{action 'selectNext'}}>标题/主题</a>
-            </div>
-        </li>
-        <li class="left_bar_item" >
-            <div class="edit_left_menu_mid menu_margin_right">
-                <a class="edit_left_menu_text" href="#par-story" {{action 'arrangeNext'}}>內容介绍</a>
-            </div>
-        </li>
-        <li class="left_bar_item" >
-            <div class="edit_left_menu_mid menu_margin_right">
-                <a class="edit_left_menu_text" href="#par-story" {{action 'arrangeNext'}}>与孩子互动</a>
-            </div>
-        </li>
-        <li class="left_bar_item" >
-            <div class="edit_left_menu_mid menu_margin_right">
-                <a class="edit_left_menu_text" href="#par-story" {{action 'arrangeNext'}}>宝贝将获得</a>
-            </div>
-        </li>
-        <li class="left_bar_item" >
-            <div class="edit_left_menu_mid menu_margin_right">
-                <a class="edit_left_menu_text" href="#par-story" {{action 'arrangeNext'}}>体验图片</a>
-            </div>
-        </li>
-
-        <li class="left_bar_item" >
-            <div class="edit_left_menu_mid menu_margin_right ">
-                <a class="edit_left_menu_title" href="#kid-info" {{action 'selectClass' argument}}>体验指南</a>
-            </div>
-        </li>
-
-        <li class="left_bar_item" >
-            <div class="edit_left_menu_mid menu_margin_right">
-                <a class="edit_left_menu_text" href="#kid-info" {{action 'selectClass' argument}}>您提供的东西</a>
-            </div>
-        </li>
-        <li class="left_bar_item" >
-            <div class="edit_left_menu_mid menu_margin_right">
-                <a class="edit_left_menu_text" href="#par-story" {{action 'selectNext'}}>参与者需自带</a>
-            </div>
-        </li>
-        <li class="left_bar_item" >
-            <div class="edit_left_menu_mid menu_margin_right">
-                <a class="edit_left_menu_text" href="#par-story" {{action 'arrangeNext'}}>须知</a>
-            </div>
-        </li>
-        <li class="left_bar_item" >
-            <div class="edit_left_menu_mid menu_margin_right">
-                <a class="edit_left_menu_text" href="#par-story" {{action 'arrangeNext'}}>费用说明</a>
-            </div>
-        </li> --}}
     </ul>
-    {{#if selectSort}}
+    {{#if (eq selectNav 0)}}
         <section id="select-class" class="line_container_mid edit_page_top_margin">
             <div class="edit-class edit_panel edit_first_panel ">
                 {{#layout-push direction=col classNames="edit-class-card"}}
@@ -159,9 +101,9 @@
                         {{/layout-push}}
                         {{checkbox-label title="为活动选择类别" }}
                         {{#layout-push direction="row" classNames="experience-choose-btn"}}
-                            <p>展览</p>
-                            <p>赛事</p>
-                            <p>亲子</p>
+                            {{#each model.cats as |item|}}
+                                <p class={{if (eq act_cat item.cat) 'experience-active'}} {{action 'setCat' item.cat}}>{{item.cat}}</p>
+                            {{/each}}
                         {{/layout-push}}
                     {{/if}}
                     {{#if experience}}
@@ -184,7 +126,7 @@
         </section>
     {{/if}}
 
-    {{#if selectTitle}}
+    {{#if (eq selectNav 1)}}
         <section id="arrange-site" class="line_container_mid edit_page_top_margin">
             <div class="edit-class edit_panel edit_first_panel ">
                 {{#layout-push direction='col' classNames="edit-class-card"}}
@@ -192,7 +134,7 @@
                         <p class="experience-class-title">为“体验”起个名称吧 ！</p>
                         <p class="experience-class-title text-sub">标题应该简短、具描述性、激动人心</p>
                     {{/layout-push}}
-                    {{bm-edit-line title="标题" isNeeded=true maxCount=20 inputVal=act_name }}
+                    {{bm-edit-line title="名称" isNeeded=true maxCount=20 inputVal=act_name }}
                     
                     {{#layout-push direction="col" classNames="exper-age"}}
                         {{#bm-edit-line title="体验时常" isNeeded=true maxCount=3 classNames='line_half duration' inputVal=act_length group='append'}}
@@ -225,7 +167,7 @@
         </section>
     {{/if}}
 
-    {{#if experContent}}
+    {{#if (eq selectNav 2)}}
         <section id="class-name" class="line_container_mid edit_page_top_margin">
             <div class="edit-class edit_panel edit_first_panel ">
                 {{#layout-push direction='col 'classNames="edit-class-card"}}
@@ -270,7 +212,7 @@
         </section>
     {{/if}}
 
-    {{#if childInteractive}}
+    {{#if (eq selectNav 3)}}
         <section id="class-name" class="line_container_mid edit_page_top_margin">
             <div class="edit-class edit_panel edit_first_panel ">
                 {{#layout-push direction='col 'classNames="edit-class-card"}}
@@ -299,7 +241,7 @@
             </div>
         </section>
     {{/if}}
-    {{#if childReward}}
+    {{#if (eq selectNav 4)}}
         <section id="class-name" class="line_container_mid edit_page_top_margin">
             <div class="edit-class edit_panel edit_first_panel ">
                 {{#layout-push direction='col 'classNames="edit-class-card"}}
@@ -323,7 +265,7 @@
             </div>
         </section>
     {{/if}}
-    {{#if addPhotos}}
+    {{#if (eq selectNav 5)}}
         <section id="class-name" class="line_container_mid edit_page_top_margin">
             <div class="edit-class edit_panel edit_first_panel ">
                 {{#layout-push direction='col 'classNames="edit-class-card"}}
@@ -394,7 +336,7 @@
             </div>
         </section>
     {{/if}}
-    {{#if offerGoods}}
+    {{#if (eq selectNav 6)}}
         <section id="class-name" class="line_container_mid edit_page_top_margin">
             <div class="edit-class edit_panel edit_first_panel ">
                 {{#layout-push direction='col 'classNames="edit-class-card"}}
@@ -419,7 +361,7 @@
             </div>
         </section>
     {{/if}}
-    {{#if comeWith}}
+    {{#if (eq selectNav 7)}}
         <section id="class-name" class="line_container_mid edit_page_top_margin">
             <div class="edit-class edit_panel edit_first_panel ">
                 {{#layout-push direction='col 'classNames="edit-class-card"}}
@@ -443,7 +385,7 @@
             </div>
         </section>
     {{/if}}
-    {{#if notice}}
+    {{#if (eq selectNav 8)}}
         <section id="class-name" class="line_container_mid edit_page_top_margin">
             <div class="edit-class edit_panel edit_first_panel ">
                 {{#layout-push direction='col 'classNames="edit-class-card"}}
@@ -453,7 +395,7 @@
                     {{/layout-push}}
                     <p>&nbsp;</p>
                     {{#layout-push direction='col' }}
-                        {{bm-edit-area maxCount=20 inputVal=model.act.notice}}
+                        {{bm-edit-area maxCount=20 inputVal=act_notice}}
                         {{#layout-push direction="row" classNames="reward-description"}}
                             <input type="checkbox" name="vehicle" value="亲子"/>
                             <p class="">无其它须知说明</p>
@@ -467,7 +409,7 @@
             </div>
         </section>
     {{/if}}
-    {{#if costExplain}}
+    {{#if (eq selectNav 9)}}
         <section id="class-name" class="line_container_mid edit_page_top_margin">
             <div class="edit-class edit_panel edit_first_panel ">
                 {{#layout-push direction='col 'classNames="edit-class-card"}}
