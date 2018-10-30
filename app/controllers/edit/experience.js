@@ -26,7 +26,7 @@ export default Controller.extend({
             this.set('isCheckAgeInput', false);
             this.set('allRadioisChecked', false);
             this.set('radioisChecked', true);
-            this.set('age_range', this.age_range);
+            // this.set('age_range', this.age_range);
         },
         allRangeRadioClick(values) {
             this.set('allRadioisChecked', true);
@@ -156,7 +156,7 @@ export default Controller.extend({
             } else {
                 this.transitionToRoute('detail.experience', act.id);
             }
-            this.set('modal4', true);
+            // this.set('modal4', true);
         },
         
     },

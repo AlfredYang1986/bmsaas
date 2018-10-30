@@ -6,12 +6,12 @@
                 {{#link-to 'experienceOpen' class="experience-canel-btn"}}
                     取消
                 {{/link-to}}
-                {{#bs-button class="experience-btn disable" onClick=(action 'saveActivityBtnClicked')}}创建{{/bs-button}}
+                {{#bs-button class="experience-btn commit" onClick=(action 'saveActivityBtnClicked')}}创建{{/bs-button}}
             {{else}}
                 {{#link-to 'detail.experience' model.act.id class="experience-canel-btn"}}
                     取消
                 {{/link-to}}
-                {{#bs-button class="experience-btn disable" onClick=(action 'saveActivityBtnClicked')}}保存{{/bs-button}}
+                {{#bs-button class="experience-btn commit" onClick=(action 'saveActivityBtnClicked')}}保存{{/bs-button}}
             {{/if}}
         </span>
     {{/layout-push}}
