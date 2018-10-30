@@ -5,11 +5,14 @@ export default Component.extend({
     manageClick: false,
     teachClick: false,
     expands: false,
+    isInbox: false,
+    isSpace: false,
     positionalParams: ['icon', 'title', 'expendable'],
     actions: {
         toggle2() {
+            console.log(111)
             this.sendAction('toggle2');
-            if (this.get('title') == "管理中心") {
+            if (this.get('title') == "管理") {
                 if(this.manageClick) {
                     this.set('manageClick', false);
                     this.set('expendable',true);
@@ -19,7 +22,7 @@ export default Component.extend({
                     this.set('expendable',false);
                     this.set('expands',true);
                 }
-            } else if(this.get('title') == "教研中心") {
+            } else if(this.get('title') == "教学中心") {
                 if(this.teachClick) {
                     this.set('teachClick', false);
                     this.set('expendable',true);

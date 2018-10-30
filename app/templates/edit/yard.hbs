@@ -62,10 +62,10 @@
                     </div>
                 </div>
                 <div class="line_container" >
-                    {{region-choose 
-                        provinces=yard_provinces 
-                        citys=yard_citys 
-                        governmentAreas=yard_government_areas 
+                    {{region-choose
+                        provinces=yard_provinces
+                        citys=yard_citys
+                        governmentAreas=yard_government_areas
                         model=model.yard
                         changeProvinces=(action 'changeProvinces')
                         changeCitys=(action 'changeCitys')
@@ -73,7 +73,7 @@
                 </div>
             {{/layout-push}}
         {{/layout-push}}
-        {{bm-edit-line pholder="例如：街道门牌号、小区楼号、楼层号" classNames="detail-address" inputVal=model.yard.detail_address}}
+        {{bm-edit-line pholder="例如：街道门牌号、小区楼号、楼层号" classNames="detail-address" inputVal=yard_detail_address}}
     </div>
 </section>
 
@@ -94,24 +94,21 @@
         {{#layout-push direction="row"}}
             <span class="edit_title">场地环境</span>
         {{/layout-push}}
-        {{#layout-push direction="col" classNames="single-select"}}
-            <p class="edit_sub_title">场地类型</p>
-            {{#layout-push direction="row"}}
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                  <label class="form-check-label" for="inlineCheckbox1">室内</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                  <label class="form-check-label" for="inlineCheckbox2">室外</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                  <label class="form-check-label" for="inlineCheckbox3">室内+室外</label>
-                </div>
-            {{/layout-push}}
+        {{#layout-push direction="col" classNames="single-select card-wrap"}}
+            {{checkbox-label title='场地类型' limit=1
+                    candidate=yardCandidate
+                    titlecss='edit_sub_title'
+                    btncss='form-check-label'
+                    }}
         {{/layout-push}}
-        {{#layout-push direction="col" classNames="single-select"}}
+        {{#layout-push direction="col" classNames="single-select card-wrap"}}
+            {{checkbox-label title='周围环境' limit=10
+                    candidate=surroundings
+                    titlecss='edit_sub_title'
+                    btncss='form-check-label'
+                    }}
+        {{/layout-push}}
+        {{!-- {{#layout-push direction="col" classNames="single-select card-wrap"}}
             <p class="edit_sub_title">周围环境</p>
             {{#layout-push direction="row"}}
                 <div class="form-check form-check-inline">
@@ -135,7 +132,7 @@
                   <label class="form-check-label" for="inlineCheckbox3">户外</label>
                 </div>
             {{/layout-push}}
-        {{/layout-push}}
+        {{/layout-push}} --}}
         {{bm-edit-line title="小区名，商圈名，校区名等" maxCount=3 pholder="例如：天通苑" inputVal=yard_ardes}}
         {{bm-edit-line title="周边交通路线信息" maxCount=100 pholder="例如：天通苑" inputVal=yard_around}}
     </div>
@@ -173,8 +170,8 @@
         {{/layout-push }}
 
         {{#layout-push direction='row' split=true}}
-            {{bm-edit-line title="停车场" isNeeded=true maxCount=1 classNames='line_half' }}
-            {{bm-edit-line title="急救包" isNeeded=true maxCount=1 classNames='line_half' }}
+            {{bm-edit-line title="停车场" isNeeded=true maxCount=1 classNames='line_half' inputVal=yard_parking}}
+            {{bm-edit-line title="急救包" isNeeded=true maxCount=1 classNames='line_half' inputVal=yard_embag}}
         {{/layout-push}}
     {{/layout-push }}
 </section>

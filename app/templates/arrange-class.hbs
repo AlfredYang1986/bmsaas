@@ -9,26 +9,15 @@
             {{#layout-push direction='row' classNames="options"}}
                 <p class="title">选择场地</p>
                 <form class="select-site">
-                    <select name="cars">
-                        <option value="volvo">东外文创产业园</option>
-                        <option value="saab">Saab</option>
-                        <option value="fiat">Fiat</option>
-                        <option value="audi">Audi</option>
+                    <select name="cars" id='yardselect' onChange={{action 'yardChanged'}}>
+                        {{#each model.yards as |item|}}
+                            <option value={{item.id}}>{{item.address}}</option>
+                        {{/each}}
                     </select>
                 </form>
             {{/layout-push}}
 
-            {{class-arrangement xmargin=10 ymargin=10}}
-
-            {{!-- {{#layout-push direction=row classNames="operate"}}
-                <div class="time-piker">
-                    <p>8月06-12日</p>
-                </div>
-                <div class="btns">
-                    <button type="button" class="btn btn-primary">Primary</button>
-                    <button type="button" class="btn btn-primary">Primary</button>
-                </div>
-            {{/layout-push}} --}}
+            {{class-arrangement xmargin=10 ymargin=10 yardid=selectedYard}}
         </div>
     </div>
 </div>

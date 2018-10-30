@@ -22,7 +22,7 @@
             {{#bs-button classNames="time_delete_btn" onClick=(action (mut modal3) true)}}删除{{/bs-button}}
         {{/layout-push}}
     {{/layout-push}}
-    {{#bs-modal open=arrangeClassAdd  onHidden=(action (mut arrangeClassAdd) false) as |modal|}}
+    {{!-- {{#bs-modal open=arrangeClassAdd  onHidden=(action (mut arrangeClassAdd) false) as |modal|}}
         <div class="arrange-class-pop-ups">
             {{#modal.body classNames=""}}
                 {{#layout-push direction="col"}}
@@ -102,11 +102,11 @@
                 {{/layout-push}}
             {{/modal.body}}
         </div>
-    {{/bs-modal}}
+    {{/bs-modal}} --}}
+
     {{#layout-push direction='row' mid=true}}
         <canvas id='arrangement' width="940" height="488"/>
     {{/layout-push}}
-
 {{/layout-push}}
 
 {{yield}}

@@ -5,6 +5,20 @@
 .edit_page_top_margin {
     padding-top: 50px;
 }
+.form-check-label {
+    margin-left: 0;
+    margin-right: 16px;
+    width: 110px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid #DAD9D9;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #C1C1C1;
+    letter-spacing: 2px;
+
+}
 span.select-time-subtitle {
     margin-top: 30px;
     margin-bottom: 8px;
@@ -67,10 +81,37 @@ span.select-time-subtitle {
         letter-spacing: 1.8px;
         line-height: 35px;
     }
+    .select-entered-site {
+        height: 205px;
+        border: 1px solid #DAD9D9;
+        border-radius: 4px;
+        option {
+            height: 30px;
+        }
+    }
     .select-site {
+        margin-top: 20px;
+        margin-bottom: 16px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        .selected-site {
+            margin-right: 8px;
+            width: 15px;
+            height: 15px;
+            background: #6E7CD4;
+            border-radius: 4px;
+        }
+        .not-selected-site {
+            margin-right: 8px;
+            width: 15px;
+            height: 15px;
+            background: #fff;
+            border: 1px solid #979797;
+            border-radius: 4px;
+        }
         p {
             margin-right: 80px;
-            margin-top: 16px;
             font-size: 14px;
             color: #767A80;
             letter-spacing: 1.4px;
@@ -252,26 +293,36 @@ span.select-time-subtitle {
         .form-check-input {
             display: none;
         }
-        .form-check-label {
-            margin-left: 0;
-            margin-right: 16px;
-            width: 110px;
-            height: 30px;
-            line-height: 30px;
-            text-align: center;
-            border: 1px solid #DAD9D9;
-            border-radius: 4px;
-            font-size: 12px;
-            color: #C1C1C1;
-            letter-spacing: 2px;
 
-        }
         .edit_sub_title {
             margin-top: 16px;
             margin-bottom: 8px;
             font-size: 14px;
             color: #767A80;
             letter-spacing: 2px;
+        }
+        .sort-sub-checkbox  {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            div {
+                margin-right: 16px;
+                margin-bottom: 10px;
+                width: 110px;
+                height: 30px;
+                line-height: 30px;
+                text-align: center;
+                border: 1px solid #DAD9D9;
+                border-radius: 4px;
+                font-size: 14px;
+                color: #767A80;
+                letter-spacing: 2px;
+            }
+            div.selected {
+                border: 1px solid #6E7CD4;
+                color: #6E7CD4;
+            }
+
         }
     }
     .select-reserve-title {
@@ -445,10 +496,20 @@ span.select-time-subtitle {
                 letter-spacing: 1.4px;
             }
             .sort-sub-checkbox {
-                input[type=checkbox] {
-                    display: none;
+                // input[type=checkbox] {
+                //     display: none;
+                // }
+                input:checked + .check-label {
+                    border-color: #6E7CD4;
+                    display: block;
                 }
-                p {
+                input:checked + .check-label::after {
+                    content: '√';
+                    color: #6E7CD4;
+                    font-weight: bold;
+                    margin-left: 5px;
+                }
+                label {
                     margin-right: 30px;
                     margin-bottom: 20px;
                     width: 80px;
@@ -570,4 +631,13 @@ span.select-time-subtitle {
             letter-spacing: 2px;
         }
     }
+}
+
+/*逐条添加样式*/
+.edit_input_remove {
+    width: 10px;
+    height: 10px;
+    line-height: 40px;
+    margin-left: 5px;
+    cursor: pointer;
 }

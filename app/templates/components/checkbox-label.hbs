@@ -1,0 +1,13 @@
+{{#layout-push direction="col" classNames="sort-sub-name"}}
+    <p class={{titlecss}}>{{title}}</p>
+    {{#layout-push direction="row" classNames="sort-sub-checkbox"}}
+        {{#each candidate as |item|}}
+            {{checkbox-item text=item
+                    titlecss='edit_sub_title'
+                    btncss='form-check-label'
+                    onUnselected=(action 'onOneUnselected')
+                    onSelected=(action 'onOneSelected')
+                    }}
+        {{/each}}
+    {{/layout-push}}
+{{/layout-push}}

@@ -4,17 +4,17 @@
 </div>
 <div class="detail_content_top">
     <div class="detail_page">
-        {{#link-to 'tech' class="detail_href_ref"}}
+        {{#link-to 'courseReserve' class="detail_href_ref"}}
             返回
         {{/link-to}}
         <div class='detail_panel' >
             {{#layout-push direction='row' split=true}}
                 {{#layout-push direction='col' mid=true }}
                     {{#layout-push direction='col'}}
-                        <span class="detail_panel_role_name">乐高机器人设计搭建课</span>
+                        <span class="detail_panel_role_name">{{model.res.course.name}}</span>
                         {{#layout-push direction='row'}}
-                            <span class="course_detail_panel_role_des">运动</span>
-                            <span class="course_detail_panel_role_des">跆拳道</span>
+                            <span class="course_detail_panel_role_des">{{model.res.course.category.cat}}</span>
+                            <span class="course_detail_panel_role_des">{{model.res.course.category.sub}}</span>
                         {{/layout-push}}
                     {{/layout-push}}
                 {{/layout-push}}
@@ -41,45 +41,55 @@
         <div class="detail_panel detail_panel_col_between" >
             {{#layout-push direction='row'}}
                     <div class="time-select today">
-                        <p>累计预约人数</p>
+                        <p>累计预约人数: {{reserve_number}}</p>
                     </div>
             {{/layout-push}}
         </div>
         <div class="detail_page table-header">
             {{#layout-push direction='col'}}
                 {{#layout-push direction='row' split=true}}
-                    {{#each model as |item|}}
+                    {{#each model.title as |item|}}
                         <span>{{item.title}}</span>
                     {{/each}}
                 {{/layout-push}}
             {{/layout-push}}
         </div>
         <div class="inbox-table">
-            <div class="detail_page table-body">
+            {{#each model.res.studs as |item|}}
+                <div class="detail_page table-body">
                     {{#layout-push direction='col'}}
-                        {{#layout-push direction='row' split=true}}
-                            <span class="email-status">已到</span>
-                            <span class="">08/03（周五）10:30</span>
-                            <span class="">北京朝阳区东外56号文创产业园111座</span>
-                            <span class="">王大槌</span>
-                            <span class="">184 9382 7483</span>
+                        {{#layout-push direction='row' split=true }}
+                            {{!-- <span>{{#bs-button class="arrive-stauts arrived" onClick=(action (mut reserveDetail) true) classNames="course-code-btn"}}已到{{/bs-button}}</span> --}}
+                            <span class="">{{item.me.name}}</span>
+                            <span class="">{{item.me.contact}}</span>
                             {{#bs-button classNames="email-option" onClick=(action (mut modal3) true)}}<span>签到</span>{{/bs-button}}
                         {{/layout-push}}
                     {{/layout-push}}
-            </div>
-            <div class="detail_page table-body">
-                    {{#layout-push direction='col'}}
-                        {{#layout-push direction='row' split=true}}
-                            <span class="email-status">未到</span>
-                            <span class="">08/03（周五）10:30</span>
-                            <span class="">北京朝阳区东外56号文创产业园111座</span>
-                            <span class="">王大槌</span>
-                            <span class="">184 9382 7483</span>
-                            {{#bs-button classNames="email-option" onClick=(action (mut modal3) true)}}<span>取消签到</span>{{/bs-button}}
-                        {{/layout-push}}
-                    {{/layout-push}}
-            </div>
+                </div>
+            {{/each}}
         </div>
+        {{#bs-modal open=reserveDetail onSubmit=(action "deleteDetail")  onHidden=(action (mut reserveDetail) false) as |modal|}}
+            <div class="course-reserve-pop-ups">
+                {{#modal.body classNames="course-reserve-modal-body"}}
+                    {{exper-detail-pop-ups}}
+                {{/modal.body}}
+                {{#modal.footer}}
+                  {{#bs-button onClick=(action modal.close) classNames="course-reserve-card-cancel"}}取消{{/bs-button}}
+                  {{!-- {{#bs-button type="success" classNames="course-reserve-card-delete" onClick=(action modal.submit)}}删除{{/bs-button}} --}}
+                {{/modal.footer}}
+            </div>
+        {{/bs-modal}}
+        {{!-- {{#bs-modal open=deleteDetail onHidden=(action (mut deleteDetail) false) as |modal|}}
+            <div class="detail-delete-pop-ups">
+                {{#modal.body classNames="detail-delete-modal-body"}}
+                    <p>您确定要删除该课程预约信息吗？</p>
+                {{/modal.body}}
+                {{#modal.footer}}
+                  {{#bs-button type="success" classNames="detail-delete-card-save"}}确定{{/bs-button}}
+                  {{#bs-button onClick=(action modal.close) classNames="course-delete-card-cancel"}}取消{{/bs-button}}
+                {{/modal.footer}}
+            </div>
+        {{/bs-modal}} --}}
     </div>
 </div>
 {{outlet}}

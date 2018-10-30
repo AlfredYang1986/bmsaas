@@ -83,3 +83,8 @@ p {
     flex-direction: row;
     flex-wrap: wrap;
 }
+
+.selected_tech {
+    color: red;
+    border: 1px solid black;
+}

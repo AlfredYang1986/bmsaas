@@ -10,7 +10,6 @@ export default Controller.extend({
     actions: {
         addReserveCourseBtnClicked() {
             console.log('save reserve editing');
-            debugger
             if (!this.reserveValidate()) {
                 alert('something wrong!');
                 return ;

@@ -23,6 +23,8 @@ export default Controller.extend({
     urg_rs: '',
     urg_contact: '',
 
+    stud_date: '',
+
     isPushing: false,
 
     actions: {
@@ -30,7 +32,7 @@ export default Controller.extend({
             console.log('save the date');
 
             if (!this.studValidate()) {
-                alert('something wrong !');
+                alert('必填项不能为空！');
                 return;
             }
 
@@ -48,7 +50,7 @@ export default Controller.extend({
                 let per_urg = this.store.createRecord('bmperson', {
                     id: this.guid()
                 })
-                let gard = this.store.createRecord('bmgardian', {
+                let gard = this.store.createRecord('bmguardian', {
                     id: this.guid()
                 })
                 let urg = this.store.createRecord('bmurgent', {
@@ -58,11 +60,28 @@ export default Controller.extend({
                 urg.set('me', per_urg);
                 stud.set('me', per_stud);
                 stud.set('urgent', urg);
+                stud.set('guardian', gard)
             } else {
                 stud = this.model.stud;
             }
             // this.model.stud.me.set('name', this.chd_name);
             stud.me.set('name', this.chd_name);
+            stud.me.set('nickname', this.chd_nickname);
+            stud.me.set('gender', this.chd_gender);
+            stud.me.set('dob', this.stud_date)
+            stud.set('school', this.chd_school);
+
+            stud.guardian.me.set('name', this.par_name);
+            stud.guardian.me.set('nickname', this.par_nickname);
+            stud.guardian.set('rs', this.par_rs);
+            stud.guardian.me.set('contact', this.par_contact);
+            stud.guardian.me.set('wechat', this.par_wechat);
+            stud.guardian.set('address', this.par_address);
+
+            stud.urgent.me.set('name', this.urg_name);
+            stud.urgent.me.set('nickname', this.urg_nickname);
+            stud.urgent.set('rs', this.urg_rs);
+            stud.urgent.me.set('contact', this.urg_contact);
             // TODO: 其他的一些属性的修改都在这里解决
 
             if (this.isPushing) {
@@ -75,7 +94,19 @@ export default Controller.extend({
     },
 
     studValidate() {
-        return this.chd_name.length != 0;
+        let valiFlag = true;
+        if (this.chd_name.length == 0 ||
+          this.chd_nickname.length == 0 ||
+          this.chd_gender_str.length == 0 ||
+          this.chd_school.length == 0 ||
+          this.par_name.length == 0 ||
+          this.par_nickname.length == 0 ||
+          this.par_rs.length == 0 ||
+          this.par_contact.length == 0) {
+            valiFlag = false;
+        }
+        return valiFlag;
+        // return this.chd_name.length != 0;
     },
 
     guid() {
