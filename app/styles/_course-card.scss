@@ -47,3 +47,40 @@
         // border: 1px solid black;
     }
 }
+
+.alt_course_card {
+    width: 191px;
+    height: 266px;
+
+    background: #FFFFFF;
+    box-shadow: 0 4px 8px -2px rgba(9,30,66,0.25);
+    border-radius: 4px;
+
+    margin: 12px;
+
+    .alt_course_cover {
+        width: 191px;
+        height: 185px;
+        border-radius: 4px;
+    }
+
+    .alt_course_content {
+        height: 100%;
+        padding-left: 17px;
+        padding-right: 22px;
+
+        .alt_course_cat {
+            font-family: $font-nav-acc;
+            font-size: 14px;
+            color: #6B778C;
+            text-align: left;
+            line-height: 20px;
+        }
+
+        .alt_course_title {
+            font-family: $font-nav-acc;
+            font-size: 14px;
+            color: #172B4D;
+        }
+    }
+}
