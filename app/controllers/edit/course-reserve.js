@@ -5,6 +5,8 @@ export default Controller.extend({
     start_date: new Date(),
     end_date: new Date(),
 
+    savedlg: false,
+
     selected_index: 0,
 
     actions: {
@@ -23,6 +25,12 @@ export default Controller.extend({
             reserve.set('course', course);
 
             this.transitionToRoute('courseReserve')
+        },
+        cancelHandled() {
+            
+        },
+        successHandled() {
+
         }
     },
 
