@@ -1,20 +1,20 @@
 @import "args";
 
-.experience_nav {
+.experience-nav {
     width: 100%;
     height: 64px;
     background-color: #FFF;
     box-shadow: 2px 2px 6px 0 #CAD5E1;
 
-    .experience_header {
+    .experience-header {
         line-height: 64px;
         padding: 0 24px;
-        .experience_title {
+        .experience-title {
             font-family: $font-brand;
             font-size: 24px;
             color: #172B4D;
         }
-        .experience_canel_btn {
+        .experience-canel-btn {
             font-family: $font-brand;
             font-size: 14px;
             color: #42526E;
@@ -23,16 +23,60 @@
             border-radius: 4px;
             padding: 7px 24px;
         }
-        .experience_commit_btn {
-            font-family: $font-brand;
-            font-size: 14px;
-            color: #FFFFFF;
-            letter-spacing: 2px;
+        .commit {
             background: #6E7CD4;
             border: 1px solid #6E7CD4;
+            color: #FFF;
+        }
+        .disable {
+            background: rgba(9,30,66,0.04);
+            border: 1px solid rgba(9,30,66,0.04);
+            color: #A5ADBA;
+        }
+        .experience-btn {
+            font-family: $font-brand;
+            font-size: 14px;
+            letter-spacing: 2px;
             border-radius: 4px;
             padding: 7px 24px;
         }
     }
+}
+
+.experience-content {
+    .experience-choose-btn {
+        p {
+            margin-right: 20px;
+            width: 110px;
+            height: 35px;
+            border: 1px solid #80AEFF;
+            border-radius: 4px;
+            font-size: 14px;
+            letter-spacing: 2px;
+            line-height: 35px;
+            text-align: center;
+            cursor: pointer;
+        }
+    }
+
+    .experience-class-title {
+        font-family: $font-brand;
+        font-size: 14px;
+        color: #172B4D; 
+    }
     
+    .text-sub {
+        font-family: $font-brand;
+        font-size: 14px;
+        color: #6B778C;
+    }
+
+    .experience-active {
+        color: #fff;
+        background: #80AEFF;
+    }
+
+    .w {
+        width: 180px;
+    }
 }

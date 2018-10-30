@@ -1,0 +1,120 @@
+.detail_content_top {
+     height: 100%;
+}
+.detail_page {
+    padding: 24px;
+    margin-top: 14px;
+    .tech_info_card {
+        margin-right: 8px;
+        width: 296px;
+        min-height: 420px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .tech_info_base {
+            width: 128px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .tech_info_other {
+            margin-top: 42px;
+            display: flex;
+            flex-direction: column;
+            width: 296px;
+            .tech_info_other_list {
+                margin-left: 24px;
+                margin-bottom: 24px;
+                height: 20px;
+                line-height: 20px;
+                p {
+                    width: 56px;
+                    text-align: left;
+                    font-size: 14px;
+                    color: #6B778C;
+                    letter-spacing: -0.12px;
+                    text-align: left;
+                }
+                span {
+                    margin-left: 20px;
+                    font-size: 14px;
+                    color: #172B4D;
+                    letter-spacing: 2;
+                }
+            }
+
+        }
+    }
+    .tech_info_detail {
+        width: 100%;
+        padding: 0 24px;
+        .tech_info_area {
+            padding-top: 40px;
+            min-height: 192px;
+            border-bottom: 1px solid rgba(0,0,0,0.12);
+            p.period {
+                opacity: 0.7;
+                font-size: 14px;
+                color: #6B778C;
+            }
+            p {
+                margin-bottom: 24px;
+                margin-right: 16px;
+                min-width: 56px;
+                font-size: 14px;
+                color: #172B4D;
+            }
+            span {
+                margin-bottom: 24px;
+                font-size: 14px;
+                color: #172B4D;
+                letter-spacing: 1px;
+            }
+        }
+    }
+    .detail_head_name {
+        line-height: 32px;
+        font-size: 16px;
+        color: #172B4D;
+    }
+    .more_btn {
+        padding: 6px 26px;
+        height: 32px;
+        font-size: 14px;
+        color: #42526E;
+        text-align: center;
+        background: rgba(9,30,66,0.04);
+        border-radius: 3px;
+    }
+}
+.detail_panel {
+    @extend %detail_panel_basic;
+    padding: 21px 24px;
+    .detail_panel_img {
+        margin-bottom: 16px;
+        width: 128px;
+        height: 128px;
+        border-radius: 50%;
+    }
+    .detail_panel_role_name {
+        margin-bottom: 10px;
+        font-family: $font-href;
+        font-size: 24px;
+        color: #172B4D;
+        line-height: 28px;
+    }
+    .detail_panel_role_des {
+        height: 24px;
+        line-height: 24px;
+        font-family: $font-href;
+        font-size: 14px;
+        color: #6B778C;
+        letter-spacing: 1.71px;
+        img.sex-icon {
+            margin-right: 10px;
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+}

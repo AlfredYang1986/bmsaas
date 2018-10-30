@@ -4,6 +4,26 @@
 </div>
 <div class="detail_content_top">
     <div class="detail_page">
+
+        {{#layout-push direction='col' classNames='ib_title'}}
+            收件箱
+        {{/layout-push}}
+
+        {{#layout-push direction='row' classNames='ib_tab_bar'}}
+            <span class='ib_tab_btn active ib_tab_btn_active'>今天 {{today_apply_count}}</span>
+            <span class='ib_tab_btn'>以前 {{older_apply_count}}</span>
+        {{/layout-push}}
+
+        <div class="detail_page table-header">
+            {{#layout-push direction='col'}}
+                {{#layout-push direction='row' split=true}}
+                    {{#each model.title as |item|}}
+                        <span>{{item.title}}</span>
+                    {{/each}}
+                {{/layout-push}}
+            {{/layout-push}}
+        </div>
+
         <div class="detail_panel detail_panel_col_between" >
             {{#layout-push direction='row'}}
                     <div class="time-select today">
