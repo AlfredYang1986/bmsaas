@@ -2,12 +2,12 @@ import Controller from '@ember/controller';
 
 export default Controller.extend({
     // listInputs: [],
-    selectSort: true,
+    // selectSort: true,
     noSortChoose: true,
     experience: false,
     activity: false,
-    selectTitle: false,
-    experContent: false,
+    // selectTitle: false,
+    // experContent: false,
 
     gainsInputArray: null,
     offeredInputArray: null,
@@ -16,6 +16,8 @@ export default Controller.extend({
     radioisChecked: false,
     allRadioisChecked: false,
     isCheckAgeInput: true,
+
+    selectNav: 0,
 
     age_range: '',
     
@@ -43,52 +45,43 @@ export default Controller.extend({
             this.set('activity', false);
         },
         sortNext() {
-            this.set('selectSort', false);
-            this.set('selectTitle', true);
+            this.set('selectNav', this.selectNav + 1);
         },
         titleNext() {
             if (!this.activityValidate1()) {
                 alert('something wrong!');
                 return;
             }
-            this.set('selectTitle', false);
-            this.set('experContent', true);
+            this.set('selectNav', this.selectNav + 1);
         },
         contentNext() {
             if (!this.activityValidate2()) {
                 alert('something wrong!');
                 return;
             }
-            this.set('experContent', false);
-            this.set('childInteractive', true);
+            this.set('selectNav', this.selectNav + 1);
         },
         interactiveNext() {
             if (!this.activityValidate3()) {
                 alert('something wrong!');
                 return;
             }
-            this.set('childInteractive', false);
-            this.set('childReward', true);
+            this.set('selectNav', this.selectNav + 1);
         },
         rewardNext() {
-            this.set('childReward', false);
-            this.set('addPhotos', true);
+            this.set('selectNav', this.selectNav + 1);
         },
         addPhotosNext() {
-            this.set('addPhotos', false);
-            this.set('offerGoods', true);
+            this.set('selectNav', this.selectNav + 1);
         },
         offerGoodsNext() {
-            this.set('offerGoods', false);
-            this.set('comeWith', true);
+            this.set('selectNav', this.selectNav + 1);
         },
         comeWithNext() {
-            this.set('comeWith', false);
-            this.set('notice', true);
+            this.set('selectNav', this.selectNav + 1);
         },
         noticeNext() {
-            this.set('notice', false);
-            this.set('costExplain', true);
+            this.set('selectNav', this.selectNav + 1);
         },
         gotoExperience() {
             this.transitionToRoute('experienceOpen');
