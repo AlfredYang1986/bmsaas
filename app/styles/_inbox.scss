@@ -221,3 +221,31 @@
         background: #fff;
     }
 }
+
+.ib_title {
+    font-family: $font-nav-acc;
+    font-size: 24px;
+    color: #172B4D;
+}
+
+.ib_tab_bar {
+    border-bottom: 2px rgba(9,30,66,0.08) solid;
+    width: 100%;
+    margin-top: 26px;
+
+    .ib_tab_btn {
+        width: 84px;
+        height: 24px;
+
+        font-family: $font-nav-acc;
+        font-size: 14px;
+        color: #42526E;
+        text-align: center;
+        line-height: 20px;
+
+    }
+    .ib_tab_btn_active {
+        color: #3172E0;
+        border-bottom: 2px #3172E0 solid;
+    }
+}
