@@ -1,6 +1,7 @@
 @import 'args';
 @import 'detail-stu-frank';
 @import 'detail-card';
+@import 'zl-detail';
 
 %detail_content_basic {
     padding-left: 240px;
@@ -409,6 +410,7 @@ span.list-status {
         color: #9B9B9B;
         letter-spacing: 2px;
     }
+    
 }
 
 .detail_href_ref {

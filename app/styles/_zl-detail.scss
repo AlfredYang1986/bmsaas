@@ -118,3 +118,63 @@
     }
 
 }
+/* 课程预约 */
+a.reserve_detail_href_ref {
+    font-family: PingFangSC-Medium;
+    font-size: 12px;
+    color: #3172E0;
+    line-height: 16px;
+}
+.detail_margin_top {
+    margin-top: 24px;
+}
+.reserve-detail-head {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .reserve-detail-btn {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .reserve-code-btn {
+        width: 32px;
+        height: 32px;
+        background-image: url('../images/icon_QR.png');
+        background-position: center;
+        background-size: cover;
+    }
+    .detail_panel_role_name {
+        font-family: PingFangSC-Medium;
+        font-size: 24px;
+        color: #172B4D;
+    }
+    p.detail_panel_role_num {
+
+        font-size: 14px;
+        color: #6B778C;
+        text-align: left;
+    }
+    .reserve-more-btn {
+        margin-right: 16px;
+        width: 32px;
+        height: 32px;
+        background: url('../images/btn_more_default@2x.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+.reserve-table-header {
+    margin-top: -20px;
+    background: #f7f8fa;
+    height: 40px;
+    font-family: PingFangSC-Regular;
+    font-size: 11px;
+    color: #6B778C;
+    span {
+        min-width: 140px;
+        max-width: 140px;
+        text-align: center;
+    }
+}

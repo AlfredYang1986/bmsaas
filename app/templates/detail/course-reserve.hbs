@@ -4,23 +4,24 @@
 </div>
 <div class="detail_content_top">
     <div class="detail_page">
-        {{#link-to 'courseReserve' class="detail_href_ref"}}
+        {{#link-to 'courseReserve' class="reserve_detail_href_ref"}}
             返回
         {{/link-to}}
-        <div class='detail_panel' >
-            {{#layout-push direction='row' split=true}}
+        <div class='detail_panel detail_margin_top' >
+            {{#layout-push direction='row' split=true classNames="reserve-detail-head"}}
                 {{#layout-push direction='col' mid=true }}
                     {{#layout-push direction='col'}}
                         <span class="detail_panel_role_name">{{model.res.course.name}}</span>
                         {{#layout-push direction='row'}}
-                            <span class="course_detail_panel_role_des">{{model.res.course.category.cat}}</span>
-                            <span class="course_detail_panel_role_des">{{model.res.course.category.sub}}</span>
+                        <p class="detail_panel_role_num">累计预约人数&nbsp;&nbsp;{{reserve_number}}</p>
+                            {{!-- <span class="course_detail_panel_role_des">{{model.res.course.category.cat}}</span> --}}
+                            {{!-- <span class="course_detail_panel_role_des">{{model.res.course.category.sub}}</span> --}}
                         {{/layout-push}}
                     {{/layout-push}}
                 {{/layout-push}}
-                {{#layout-push direction="row"}}
-                    <button type="button" name="button" class="btn delete-course-btn">删除</button>
-                    {{#bs-button class="stud_qrcod_btn" onClick=(action (mut courseCode) true) classNames="course-code-btn"}}生成课程二维码{{/bs-button}}
+                {{#layout-push direction="row" classNames="reserve-detail-btn"}}
+                    <p class="reserve-more-btn"></p>
+                    {{#bs-button onClick=(action (mut courseCode) true) classNames="reserve-code-btn"}}{{/bs-button}}
                     <div local-class="modal-dialog">
                         {{#bs-modal open=courseCode onHidden=(action (mut courseCode) false) as |modal|}}
                             <div class="stud-modal">
@@ -38,14 +39,7 @@
                 {{/layout-push}}
             {{/layout-push}}
         </div>
-        <div class="detail_panel detail_panel_col_between" >
-            {{#layout-push direction='row'}}
-                    <div class="time-select today">
-                        <p>累计预约人数: {{reserve_number}}</p>
-                    </div>
-            {{/layout-push}}
-        </div>
-        <div class="detail_page table-header">
+        <div class="detail_page reserve-table-header">
             {{#layout-push direction='col'}}
                 {{#layout-push direction='row' split=true}}
                     {{#each model.title as |item|}}
