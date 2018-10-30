@@ -12,9 +12,26 @@ export default Controller.extend({
     gainsInputArray: null,
     offeredInputArray: null,
     neededInputArray: null,
+
+    radioisChecked: false,
+    allRadioisChecked: false,
+    isCheckAgeInput: true,
+
+    age_range: '',
     
     actions: {
-        
+        rangeRadioClick(values) {
+            this.set('isCheckAgeInput', false);
+            this.set('allRadioisChecked', false);
+            this.set('radioisChecked', true);
+            this.set('age_range', this.age_range);
+        },
+        allRangeRadioClick(values) {
+            this.set('allRadioisChecked', true);
+            this.set('isCheckAgeInput', true);
+            this.set('radioisChecked', false);
+            this.set('age_range', "");
+        },
         activitySort() {
             this.set('noSortChoose', false);
             this.set('experience', false);

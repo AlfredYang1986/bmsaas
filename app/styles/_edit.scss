@@ -326,7 +326,7 @@ span.select-time-subtitle {
   }
 
   .edit_text_area {
-    height: 414px;
+    height: auto;
   }
 
   .single-select {
@@ -462,12 +462,17 @@ span.select-time-subtitle {
     }
 
     p.add-other-btn {
-      margin-top: 30px;
+      margin-top: 20px;
       margin-bottom: 80px;
       font-size: 13px;
-      color: #6E7CD4;
+      color: #42526E;
       letter-spacing: 1.3px;
+      cursor: pointer;
     }
+
+    p.add-other-btn:hover {
+        color: #1060eb;
+      }
 
     .exper-age {
       margin-top: 24px;

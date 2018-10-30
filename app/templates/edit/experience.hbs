@@ -1,24 +1,3 @@
-{{!-- <ul class="nav">
-    <li class="nav-item">
-        <a class="nav-link active brand_name" href="#">创建体验</a>
-    </li>
-    <li class="nav-item menu_mid">
-        <div class="menu_container">
-            {{#if isPushing}}
-                {{#link-to 'experienceOpen' class="nav_cancel_btn menu_button_between"}}
-                    取消
-                {{/link-to}}
-                {{#bs-button class="nav_save_btn menu_button_between" onClick=(action (mut modal4) true)}}创建{{/bs-button}}
-            {{else}}
-                {{#link-to 'detail.experience' model.act.id class="nav_cancel_btn menu_button_between"}}
-                    取消
-                {{/link-to}}
-                {{#bs-button class="nav_save_btn menu_button_between" onClick=(action (mut modal4) true)}}保存{{/bs-button}}
-            {{/if}}
-        </div>
-    </li>
-</ul> --}}
-
 {{#layout-push direction="col" classNames="experience-nav"}}
     {{#layout-push direction="row" split=true classNames="experience-header text-center"}}
         <span class="experience-title">创建体验</span>
@@ -30,133 +9,133 @@
         </span>
     {{/layout-push}}
 {{/layout-push}}
-
-<ul class="edit_left_bar">
-    <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right ">
-            <a class="edit_left_menu_title" href="#kid-info" {{action 'selectClass' argument}}>体验类别</a>
-        </div>
-    </li> 
-
-    <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right ">
-            <a class="edit_left_menu_title" href="#kid-info" {{action 'selectClass' argument}}>基本信息</a>
-        </div>
-    </li> 
-
-    <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right ">
-            <a class="edit_left_menu_title" href="#kid-info" {{action 'selectClass' argument}}>内容介绍</a>
-        </div>
-    </li> 
-
-    <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right ">
-            <a class="edit_left_menu_title" href="#kid-info" {{action 'selectClass' argument}}>与孩子互动</a>
-        </div>
-    </li> 
-
-    <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right ">
-            <a class="edit_left_menu_title" href="#kid-info" {{action 'selectClass' argument}}>宝贝将获得</a>
-        </div>
-    </li> 
-
-    <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right ">
-            <a class="edit_left_menu_title" href="#kid-info" {{action 'selectClass' argument}}>体验图片</a>
-        </div>
-    </li> 
-
-    <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right ">
-            <a class="edit_left_menu_title" href="#kid-info" {{action 'selectClass' argument}}>您提供的东西</a>
-        </div>
-    </li> 
-
-    <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right ">
-            <a class="edit_left_menu_title" href="#kid-info" {{action 'selectClass' argument}}>参与者需自带</a>
-        </div>
-    </li> 
-
-    <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right ">
-            <a class="edit_left_menu_title" href="#kid-info" {{action 'selectClass' argument}}>须知</a>
-        </div>
-    </li> 
-
-    <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right ">
-            <a class="edit_left_menu_title" href="#kid-info" {{action 'selectClass' argument}}>费用说明</a>
-        </div>
-    </li> 
-
-    {{!-- <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right ">
-            <a class="edit_left_menu_title" href="#kid-info" {{action 'selectClass' argument}}>活动体验描述</a>
-        </div>
-    </li> 
-
-    <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right">
-            <a class="edit_left_menu_text" href="#kid-info" {{action 'selectClass' argument}}>分类</a>
-        </div>
-    </li>
-    <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right">
-            <a class="edit_left_menu_text" href="#par-story" {{action 'selectNext'}}>标题/主题</a>
-        </div>
-    </li>
-    <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right">
-            <a class="edit_left_menu_text" href="#par-story" {{action 'arrangeNext'}}>內容介绍</a>
-        </div>
-    </li>
-    <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right">
-            <a class="edit_left_menu_text" href="#par-story" {{action 'arrangeNext'}}>与孩子互动</a>
-        </div>
-    </li>
-    <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right">
-            <a class="edit_left_menu_text" href="#par-story" {{action 'arrangeNext'}}>宝贝将获得</a>
-        </div>
-    </li>
-    <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right">
-            <a class="edit_left_menu_text" href="#par-story" {{action 'arrangeNext'}}>体验图片</a>
-        </div>
-    </li>
-
-    <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right ">
-            <a class="edit_left_menu_title" href="#kid-info" {{action 'selectClass' argument}}>体验指南</a>
-        </div>
-    </li>
-
-    <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right">
-            <a class="edit_left_menu_text" href="#kid-info" {{action 'selectClass' argument}}>您提供的东西</a>
-        </div>
-    </li>
-    <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right">
-            <a class="edit_left_menu_text" href="#par-story" {{action 'selectNext'}}>参与者需自带</a>
-        </div>
-    </li>
-    <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right">
-            <a class="edit_left_menu_text" href="#par-story" {{action 'arrangeNext'}}>须知</a>
-        </div>
-    </li>
-    <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right">
-            <a class="edit_left_menu_text" href="#par-story" {{action 'arrangeNext'}}>费用说明</a>
-        </div>
-    </li> --}}
-</ul>
 <div class="experience-content">
+    {{log selectSort}}
+    <ul class="edit_left_bar">
+        <li class="left_bar_item" >
+            <div class="edit_left_menu_mid menu_margin_right ">
+                <a class={{if selectSort 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>体验类别</a>
+            </div>
+        </li> 
+
+        <li class="left_bar_item" >
+            <div class="edit_left_menu_mid menu_margin_right ">
+                <a class={{if selectTitle 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>基本信息</a>
+            </div>
+        </li> 
+
+        <li class="left_bar_item" >
+            <div class="edit_left_menu_mid menu_margin_right ">
+                <a class={{if experContent 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>内容介绍</a>
+            </div>
+        </li> 
+
+        <li class="left_bar_item" >
+            <div class="edit_left_menu_mid menu_margin_right ">
+                <a class={{if childInteractive 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>与孩子互动</a>
+            </div>
+        </li> 
+
+        <li class="left_bar_item" >
+            <div class="edit_left_menu_mid menu_margin_right ">
+                <a class={{if childReward 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>宝贝将获得</a>
+            </div>
+        </li> 
+
+        <li class="left_bar_item" >
+            <div class="edit_left_menu_mid menu_margin_right ">
+                <a class={{if addPhotos 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>体验图片</a>
+            </div>
+        </li> 
+
+        <li class="left_bar_item" >
+            <div class="edit_left_menu_mid menu_margin_right ">
+                <a class={{if offerGoods 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>您提供的东西</a>
+            </div>
+        </li> 
+
+        <li class="left_bar_item" >
+            <div class="edit_left_menu_mid menu_margin_right ">
+                <a class={{if comeWith 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>参与者需自带</a>
+            </div>
+        </li> 
+
+        <li class="left_bar_item" >
+            <div class="edit_left_menu_mid menu_margin_right ">
+                <a class={{if notice 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>须知</a>
+            </div>
+        </li> 
+
+        <li class="left_bar_item" >
+            <div class="edit_left_menu_mid menu_margin_right ">
+                <a class={{if costExplain 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} href="#kid-info" {{action 'selectClass' argument}}>费用说明</a>
+            </div>
+        </li> 
+
+        {{!-- <li class="left_bar_item" >
+            <div class="edit_left_menu_mid menu_margin_right ">
+                <a class="edit_left_menu_title" href="#kid-info" {{action 'selectClass' argument}}>活动体验描述</a>
+            </div>
+        </li> 
+
+        <li class="left_bar_item" >
+            <div class="edit_left_menu_mid menu_margin_right">
+                <a class="edit_left_menu_text" href="#kid-info" {{action 'selectClass' argument}}>分类</a>
+            </div>
+        </li>
+        <li class="left_bar_item" >
+            <div class="edit_left_menu_mid menu_margin_right">
+                <a class="edit_left_menu_text" href="#par-story" {{action 'selectNext'}}>标题/主题</a>
+            </div>
+        </li>
+        <li class="left_bar_item" >
+            <div class="edit_left_menu_mid menu_margin_right">
+                <a class="edit_left_menu_text" href="#par-story" {{action 'arrangeNext'}}>內容介绍</a>
+            </div>
+        </li>
+        <li class="left_bar_item" >
+            <div class="edit_left_menu_mid menu_margin_right">
+                <a class="edit_left_menu_text" href="#par-story" {{action 'arrangeNext'}}>与孩子互动</a>
+            </div>
+        </li>
+        <li class="left_bar_item" >
+            <div class="edit_left_menu_mid menu_margin_right">
+                <a class="edit_left_menu_text" href="#par-story" {{action 'arrangeNext'}}>宝贝将获得</a>
+            </div>
+        </li>
+        <li class="left_bar_item" >
+            <div class="edit_left_menu_mid menu_margin_right">
+                <a class="edit_left_menu_text" href="#par-story" {{action 'arrangeNext'}}>体验图片</a>
+            </div>
+        </li>
+
+        <li class="left_bar_item" >
+            <div class="edit_left_menu_mid menu_margin_right ">
+                <a class="edit_left_menu_title" href="#kid-info" {{action 'selectClass' argument}}>体验指南</a>
+            </div>
+        </li>
+
+        <li class="left_bar_item" >
+            <div class="edit_left_menu_mid menu_margin_right">
+                <a class="edit_left_menu_text" href="#kid-info" {{action 'selectClass' argument}}>您提供的东西</a>
+            </div>
+        </li>
+        <li class="left_bar_item" >
+            <div class="edit_left_menu_mid menu_margin_right">
+                <a class="edit_left_menu_text" href="#par-story" {{action 'selectNext'}}>参与者需自带</a>
+            </div>
+        </li>
+        <li class="left_bar_item" >
+            <div class="edit_left_menu_mid menu_margin_right">
+                <a class="edit_left_menu_text" href="#par-story" {{action 'arrangeNext'}}>须知</a>
+            </div>
+        </li>
+        <li class="left_bar_item" >
+            <div class="edit_left_menu_mid menu_margin_right">
+                <a class="edit_left_menu_text" href="#par-story" {{action 'arrangeNext'}}>费用说明</a>
+            </div>
+        </li> --}}
+    </ul>
     {{#if selectSort}}
         <section id="select-class" class="line_container_mid edit_page_top_margin">
             <div class="edit-class edit_panel edit_first_panel ">
@@ -198,8 +177,8 @@
                         {{/layout-push}}
                     {{/if}}
                 {{/layout-push}}
-                {{#layout-push}}
-                    <button class="nav_save_btn menu_button_between" {{action 'sortNext'}}>下一步</button>
+                {{#layout-push classNames="text-right"}}
+                    <button class="nav_save_btn menu_button_between" {{action 'sortNext'}}>完成</button>
                 {{/layout-push}}
             </div>
         </section>
@@ -221,21 +200,26 @@
                         {{/bm-edit-line}}
                         <div>
                             <p>适宜年龄</p>
-                            <p>
-                                <span></span>
-                                <span></span>
+                            <p class="radio_p">
+                                {{bm-radio-box isChecked=radioisChecked name="age-range" text="" inputVal="我是value" radioClick=(action 'rangeRadioClick')}}
+                                <div class="input-group age-input">
+                                    {{input class="edit_text_field ageInput" disabled=isCheckAgeInput value=age_range}}
+                                    <div class="input-group-append">
+                                        <span class="edit_text_field_group">岁</span>
+                                    </div>
+                                </div>
                             </p>
-                            <p>
-                                <span></span>
-                                <span></span>
+                            <p class="radio_p">
+                                {{bm-radio-box isChecked=allRadioisChecked name="" text="" inputVal="无年龄限制" radioClick=(action 'allRangeRadioClick')}}
+                                无年龄限制
                             </p>
                         </div>
                         
                     {{/layout-push}}
-
                 {{/layout-push}}
-                {{#layout-push}}
-                    <button class="nav_save_btn menu_button_between" {{action 'titleNext'}}>下一步</button>
+                <p>&nbsp;</p>
+                {{#layout-push classNames="text-right"}}
+                    <button class="nav_save_btn menu_button_between" {{action 'titleNext'}}>完成</button>
                 {{/layout-push}}
             </div>
         </section>
@@ -246,36 +230,41 @@
             <div class="edit-class edit_panel edit_first_panel ">
                 {{#layout-push direction='col 'classNames="edit-class-card"}}
                     {{#layout-push direction='col' classNames="v_pusht"}}
-                        <p class="class-head-title">描述“体验”的内容</p>
-                        <p class="class-sub-title">有趣、详细的活动內容介绍会引起参与者的极大兴趣。</p>
+                        <p class="experience-class-title">描述“体验”的内容</p>
+                        <p class="experience-class-title text-sub">有趣、详细的活动內容介绍会引起参与者的极大兴趣</p>
                     {{/layout-push}}
-                    {{#layout-push direction='col' classNames="v_pusht class-name-card"}}
-                        {{#layout-push direction='row' split=true}}
+                    <p>&nbsp;</p>
+                    {{#layout-push direction='col' classNames="class-name-card"}}
+                        {{!-- {{#layout-push direction='row' split=true}}
                             <p>体验內容-介绍“体验”具体场景及内容 <span class='required'>*必填</span> </p>
                             <p> 字数（0/1000）</p>
-                        {{/layout-push}}
+                        {{/layout-push}} --}}
 
-                        <div class="input-group">
+                        {{!-- <div class="input-group"> --}}
                         {{!-- <textarea class="form-control" value={{act_des}}></textarea> --}}
-                        {{textarea class="form-control" value=act_des}}
-                        </div>
-                    {{/layout-push}}
+                        {{!-- {{textarea class="form-control" value=act_des}} --}}
+                        {{!-- </div> --}}
 
-                    {{#layout-push direction='col' classNames="v_pusht class-name-card"}}
-                        {{#layout-push direction='row' split=true}}
+                        {{bm-edit-area title="体验內容-介绍“体验”具体场景及内容" rowsAmount=5 isNeeded=true maxCount=1000 inputVal=act_des}}
+
+                    {{/layout-push}}
+                    <p>&nbsp;</p>
+                    {{#layout-push direction='col' classNames="class-name-card"}}
+                        {{!-- {{#layout-push direction='row' split=true}}
                             <p>体验计划-分条目地描述“体验”的过程和安排 <span class='required'>*必填</span> </p>
                             <p> 字数（0/100）</p>
-                        {{/layout-push}}
+                        {{/layout-push}} --}}
 
-                        <div class="input-group">
+                        {{!-- <div class="input-group"> --}}
                         {{!-- <textarea class="form-control" value='act_planning'></textarea> --}}
-                        {{textarea class="form-control" value=act_planning}}
-                        </div>
+                        {{!-- {{textarea class="form-control" value=act_planning}}
+                        </div> --}}
+                        {{bm-edit-area title="体验计划-分条目地描述“体验”的过程和安排" rowsAmount=5 isNeeded=true maxCount=1000 inputVal=act_planning}}
                     {{/layout-push}}
                 {{/layout-push}}
-
-                {{#layout-push}}
-                    <button class="nav_save_btn menu_button_between" {{action 'contentNext'}}>下一步</button>
+                <p>&nbsp;</p>
+                {{#layout-push classNames="text-right"}}
+                    <button class="nav_save_btn menu_button_between" {{action 'contentNext'}}>完成</button>
                 {{/layout-push}}
             </div>
         </section>
@@ -286,24 +275,26 @@
             <div class="edit-class edit_panel edit_first_panel ">
                 {{#layout-push direction='col 'classNames="edit-class-card"}}
                     {{#layout-push direction='col' classNames="v_pusht"}}
-                        <p class="class-head-title">与孩子互动</p>
-                        <p class="class-sub-title">描述体验中与孩子互动的环节，让孩子和家长同时期待这次体验。</p>
+                        <p class="experience-class-title">与孩子互动</p>
+                        <p class="experience-class-title text-sub">描述体验中与孩子互动的环节，让孩子和家长同时期待这次体验。</p>
                     {{/layout-push}}
+                    <p>&nbsp;</p>
                     {{#layout-push direction='col' classNames="v_pusht class-name-card"}}
-                        {{#layout-push direction='row' split=true}}
+                        {{!-- {{#layout-push direction='row' split=true}}
                             <p><span class='required'>*必填</span> </p>
                             <p> 字数（0/200）</p>
-                        {{/layout-push}}
+                        {{/layout-push}} --}}
 
-                        <div class="input-group">
+                        {{!-- <div class="input-group"> --}}
                         {{!-- <textarea class="form-control" inputVal={{model.act.content}}></textarea> --}}
-                        {{textarea class="form-control" value=act_content}}
-                        </div>
+                        {{!-- {{textarea class="form-control" value=act_content}}
+                        </div> --}}
+                        {{bm-edit-area rowsAmount=5 isNeeded=true maxCount=200 inputVal=act_content}}
                     {{/layout-push}}
                 {{/layout-push}}
-
-                {{#layout-push}}
-                    <button class="nav_save_btn menu_button_between" {{action 'interactiveNext'}}>下一步</button>
+                <p>&nbsp;</p>
+                {{#layout-push classNames="text-right"}}
+                    <button class="nav_save_btn menu_button_between" {{action 'interactiveNext'}}>完成</button>
                 {{/layout-push}}
             </div>
         </section>
@@ -313,9 +304,9 @@
             <div class="edit-class edit_panel edit_first_panel ">
                 {{#layout-push direction='col 'classNames="edit-class-card"}}
                     {{#layout-push direction='col' classNames="v_pusht"}}
-                        <p class="class-head-title">宝贝将获得什么</p>
-                        <p class="class-sub-title">体验结束后，宝贝将获得什么实质性的成果呢？</p>
-                        <p class="class-sub-title">如：小礼物、活动相关成品等...</p>
+                        <p class="experience-class-title">宝贝将获得什么</p>
+                        <p class="experience-class-title text-sub">体验结束后，宝贝将获得什么实质性的成果呢？</p>
+                        <p class="experience-class-title text-sub">如：小礼物、活动相关成品等...</p>
                     {{/layout-push}}
                     {{#layout-push direction='col' }}
                         {{dynamic-input listInputs=model.act.gains inputs=(action 'gainsInputs')}}
@@ -325,9 +316,9 @@
                         {{/layout-push}}
                     {{/layout-push}}
                 {{/layout-push}}
-
-                {{#layout-push}}
-                    <button class="nav_save_btn menu_button_between" {{action 'rewardNext'}}>下一步</button>
+                <p>&nbsp;</p>
+                {{#layout-push classNames="text-right"}}
+                    <button class="nav_save_btn menu_button_between" {{action 'rewardNext'}}>完成</button>
                 {{/layout-push}}
             </div>
         </section>
@@ -396,9 +387,9 @@
                     {{/layout-push}}
 
                 {{/layout-push}}
-
-                {{#layout-push}}
-                    <button class="nav_save_btn menu_button_between" {{action 'addPhotosNext'}}>下一步</button>
+                <p>&nbsp;</p>
+                {{#layout-push classNames="text-right"}}
+                    <button class="nav_save_btn menu_button_between" {{action 'addPhotosNext'}}>完成</button>
                 {{/layout-push}}
             </div>
         </section>
@@ -408,20 +399,21 @@
             <div class="edit-class edit_panel edit_first_panel ">
                 {{#layout-push direction='col 'classNames="edit-class-card"}}
                     {{#layout-push direction='col' classNames="v_pusht"}}
-                        <p class="class-head-title">您提供的物品</p>
-                        <p class="class-sub-title">请列出体验中包含的内容，如教学用具、水、咖啡、小吃等</p>
+                        <p class="experience-class-title">您提供的物品</p>
+                        <p class="experience-class-title text-sub">请列出体验中包含的内容，如教学用具、水、咖啡、小吃等</p>
                     {{/layout-push}}
                     {{#layout-push direction='col' }}
                         {{dynamic-input listInputs=model.act.offered inputs=(action 'offeredInputs')}}
-                        <p class="class-head-title">您不为参与者提供任何东西吗？</p>
+                        <p class="experience-class-title">您不为参与者提供任何东西吗？</p>
+                        <p>&nbsp;</p>
                         {{#layout-push direction="row" classNames="reward-description"}}
                             <input type="checkbox" name="vehicle" value="亲子"/>
                             <p class="">该“体验”暂无提供物品</p>
                         {{/layout-push}}
                     {{/layout-push}}
                 {{/layout-push}}
-
-                {{#layout-push}}
+                <p>&nbsp;</p>
+                {{#layout-push classNames="text-right"}}
                     <button class="nav_save_btn menu_button_between" {{action 'offerGoodsNext'}}>下一步</button>
                 {{/layout-push}}
             </div>
@@ -432,11 +424,12 @@
             <div class="edit-class edit_panel edit_first_panel ">
                 {{#layout-push direction='col 'classNames="edit-class-card"}}
                     {{#layout-push direction='col' classNames="v_pusht"}}
-                        <p class="class-head-title">参与者需自带的东西</p>
-                        <p class="class-sub-title">请仔细考虑，在开展“体验”过程中，除了您提供的东西，参与者还需要携带什么。</p>
+                        <p class="experience-class-title">参与者需自带的东西</p>
+                        <p class="experience-class-title text-sub">请仔细考虑，在开展“体验”过程中，除了您提供的东西，参与者还需要携带什么。</p>
                     {{/layout-push}}
                     {{#layout-push direction='col' }}
                         {{dynamic-input listInputs=model.act.needed inputs=(action 'neededInputs')}}
+                        <p>&nbsp;</p>
                         {{#layout-push direction="row" classNames="reward-description"}}
                             <input type="checkbox" name="vehicle" value="亲子"/>
                             <p class="">当前无需参与者自行准备。</p>
@@ -444,8 +437,8 @@
                     {{/layout-push}}
                 {{/layout-push}}
 
-                {{#layout-push}}
-                    <button class="nav_save_btn menu_button_between" {{action 'comeWithNext'}}>下一步</button>
+                {{#layout-push classNames="text-right"}}
+                    <button class="nav_save_btn menu_button_between" {{action 'comeWithNext'}}>完成</button>
                 {{/layout-push}}
             </div>
         </section>
@@ -455,12 +448,12 @@
             <div class="edit-class edit_panel edit_first_panel ">
                 {{#layout-push direction='col 'classNames="edit-class-card"}}
                     {{#layout-push direction='col' classNames="v_pusht"}}
-                        <p class="class-head-title">须知</p>
-                        <p class="class-sub-title">请设身处地为参与者着想。有些信息可能显而易见，不过详细说明可以让参与者做好充分准备。如：着装建议、身体情况限制、需家长陪同、 接送说明等注意事项。</p>
+                        <p class="experience-class-title">须知</p>
+                        <p class="experience-class-title text-sub">请设身处地为参与者着想。有些信息可能显而易见，不过详细说明可以让参与者做好充分准备。如：着装建议、身体情况限制、需家长陪同、 接送说明等注意事项。</p>
                     {{/layout-push}}
+                    <p>&nbsp;</p>
                     {{#layout-push direction='col' }}
                         {{bm-edit-area maxCount=20 inputVal=model.act.notice}}
-
                         {{#layout-push direction="row" classNames="reward-description"}}
                             <input type="checkbox" name="vehicle" value="亲子"/>
                             <p class="">无其它须知说明</p>
@@ -468,8 +461,8 @@
                     {{/layout-push}}
                 {{/layout-push}}
 
-                {{#layout-push}}
-                    <button class="nav_save_btn menu_button_between" {{action 'noticeNext'}}>下一步</button>
+                {{#layout-push classNames="text-right"}}
+                    <button class="nav_save_btn menu_button_between" {{action 'noticeNext'}}>完成</button>
                 {{/layout-push}}
             </div>
         </section>
@@ -479,10 +472,10 @@
             <div class="edit-class edit_panel edit_first_panel ">
                 {{#layout-push direction='col 'classNames="edit-class-card"}}
                     {{#layout-push direction='col' classNames="v_pusht"}}
-                        <p class="class-head-title">费用说明</p>
-                        <p class="class-sub-title">为了保护您和参与者双方的权益，请进行相关费用简易说明。</p>
+                        <p class="experience-class-title">费用说明</p>
+                        <p class="experience-class-title text-sub">为了保护您和参与者双方的权益，请进行相关费用简易说明。</p>
                     {{/layout-push}}
-                    {{#layout-push direction='col' }}
+                    {{#layout-push direction='col' classNames="terms"}}
                         {{#layout-push direction="row" classNames="reward-description"}}
                             <input type="checkbox" name="vehicle" value="亲子"/>
                             <p class="">承诺完全免费、不收任何额外费用。</p>
