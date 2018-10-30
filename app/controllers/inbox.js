@@ -78,7 +78,9 @@ export default Controller.extend({
         }
     },
     signCoureReserve() {
+        // debugger
         let course = this.store.peekRecord('bmreservable', this.sr);
+        let yard = this.store.peekRecord('bmyard', this.sy);
         let attendee = this.current_apply.attendee;
         let tmp = [];
         for (let idx = 0; idx < attendee.length; idx++) {
@@ -90,7 +92,17 @@ export default Controller.extend({
             stud.set('me', person);
             tmp.push(stud);
         }
-        course.set('studs', tmp);
+
+        let res = this.store.createRecord('bmresrecord', {
+            id: this.guid()
+        })
+        let tmp_date = new Date(this.dt);
+        res.set('res_date', tmp_date);
+        res.set('stud', tmp);
+        res.set('yard', yard);
+
+        res.set('reservable', course);
+        // course.set('res', res);
     },
     signActivityReserve() {
         let period = this.store.peekRecord('bmactperiod', this.ss);

@@ -3,7 +3,7 @@ import { computed } from '@ember/object';
 
 export default Controller.extend({
     reserve_number: computed(function(){
-        return this.model.res.studs.length;
+        return this.model.res.reserve_records.length;
     }),
     actions: {
         deleteDetail() {
