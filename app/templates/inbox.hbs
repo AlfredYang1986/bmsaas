@@ -14,63 +14,37 @@
             <span class='ib_tab_btn'>以前 {{older_apply_count}}</span>
         {{/layout-push}}
 
-        <div class="detail_page table-header">
-            {{#layout-push direction='col'}}
-                {{#layout-push direction='row' split=true}}
-                    {{#each model.title as |item|}}
-                        <span>{{item.title}}</span>
-                    {{/each}}
-                {{/layout-push}}
-            {{/layout-push}}
-        </div>
-
-        <div class="detail_panel detail_panel_col_between" >
-            {{#layout-push direction='row'}}
-                    <div class="time-select today">
-                        <p>今天<span>({{today_apply_count}})</span></p>
-                    </div>
-                    <div class="time-select before ">
-                        <p>以前<span>({{older_apply_count}})</span></p>
-                    </div>
-            {{/layout-push}}
-        </div>
-        <div class="detail_page table-header">
-            {{#layout-push direction='col'}}
-                {{#layout-push direction='row' split=true}}
-                    {{#each model.title as |item|}}
-                        <span>{{item.title}}</span>
-                    {{/each}}
-                {{/layout-push}}
-            {{/layout-push}}
-        </div>
-        <div class="inbox-table">
+        <table class='ib_table_head'>
+            <tr>
+                {{#each model.title as |item|}}
+                    <th class='ib_table_item'>{{item.title}}</th>
+                {{/each}}
+            </tr>
             {{#each model.applies as |item|}}
-                <div class="detail_page table-body">
-                    {{#layout-push direction='col'}}
-                        {{#layout-push direction='row' split=true}}
-                            <span class="email-status">{{bmapplystatus item.status}}</span>
-                            <span class="">{{bmperioddateformat item.apply_date}}</span>
-                            <span class="">{{item.apply_yard.address}}</span>
-                            <span class="">{{bmapplycontentname item.apply_course item.apply_activity}}</span>
-                            <span class="">
-                                {{#each item.attendee as |chd idx|}}
-                                    {{#if (bmeqn idx 0)}}
-                                        ,
-                                    {{/if}}
-                                    {{chd.name}}
-                                {{/each}}
-                            </span>
-                            <span class="">{{item.applyee.contact}}</span>
-                            {{#if (bmeq item.status 0)}}
-                                {{#bs-button classNames="email-option" onClick=(action 'setCurrentApply' item)}}<span>处理</span>{{/bs-button}}
-                            {{else}}
-                                <span class="email-status">{{bmapplystatus item.status}}</span>
-                            {{/if}}
-                        {{/layout-push}}
-                    {{/layout-push}}
-                </div>
+            <tr>
+                <td class='ib_table_content_item'>{{bmperioddateformat item.apply_date}}</td>
+                <td class='ib_table_content_item'>{{bmapplycontentname item.apply_course item.apply_activity}}</td>
+                <td class="ib_table_content_item">{{item.apply_yard.address}}</td>
+                <td class="ib_table_content_item">
+                    {{#each item.attendee as |chd idx|}}
+                        {{#if (bmeqn idx 0)}}
+                            ,
+                        {{/if}}
+                        {{chd.name}}
+                    {{/each}}
+                </td>
+                <td class="ib_table_content_item">{{item.applyee.contact}}</td>
+                {{#if (bmeq item.status 0)}}
+                    <td class='ib_table_content_item'>
+                        {{#bs-button classNames="ib_table_content_btn" onClick=(action 'setCurrentApply' item)}}<span>处理</span>{{/bs-button}}
+                    </td>
+                {{else}}
+                    <td class="ib_table_content_item">{{bmapplystatus item.status}}</td>
+                {{/if}}
+            </tr>            
             {{/each}}
-        </div>
+        </table>
+
         {{#bm-modal-container title="课程预约" mswitch=showhandledlg 
                 successbtncss='course-reserve-card-save'  
                 cancelbtncss='course-reserve-card-cancel'

@@ -12,15 +12,13 @@ export default Route.extend({
         return RSVP.hash({
             applies: applies,
             title: [{
-                title:"状态"
-            },{
                 title:"时间"
+            },{
+                title:"标题"
             },{
                 title:"场地"
             },{
-                title:"内容标题"
-            },{
-                title:"孩子"
+                title:"参与者"
             },{
                 title:"联系方式"
             },{
