@@ -33,31 +33,10 @@
         <p class="item-space">space</p>
     {{/if}}
     {{#if manageClick}}
-        <li class="left_bar_item">
-            <div class="left_menu_mid menu_margin_right">
-                {{#link-to 'stud'}}
-                    <span class="left_menu_text_sub">学员</span>
-                {{/link-to}}
-            </div>
-        </li>
-        <li class="left_bar_item">
-            <div class="left_menu_mid menu_margin_right">
-                {{#link-to 'arrange-class'}}
-                    <span class="left_menu_text_sub">排课</span>
-                {{/link-to}}
-            </div>
-        </li>
-        <li class="left_bar_item">
-            <div class="left_menu_mid menu_margin_right">
-                {{#link-to 'classes'}}
-                    <span class="left_menu_text_sub">班级</span>
-                {{/link-to}}
-            </div>
-        </li>
         <li class="left_bar_item" >
             <div class="left_menu_mid menu_margin_right">
                 {{#link-to 'tech'}}
-                    <span class="left_menu_text_sub">老师</span>
+                    <span class="left_menu_text_sub">教师</span>
                 {{/link-to}}
             </div>
         </li>
@@ -68,12 +47,40 @@
                 {{/link-to}}
             </div>
         </li>
+        {{!-- <li class="left_bar_item" >
+            <div class="left_menu_mid menu_margin_right">
+                {{#link-to 'yard'}}
+                    <span class="left_menu_text_sub">收入</span>
+                {{/link-to}}
+            </div>
+        </li> --}}
     {{/if}}
     {{#if teachClick}}
+        <li class="left_bar_item">
+            <div class="left_menu_mid menu_margin_right">
+                {{#link-to 'stud'}}
+                    <span class="left_menu_text_sub">学生</span>
+                {{/link-to}}
+            </div>
+        </li>
         <li class="left_bar_item" >
             <div class="left_menu_mid menu_margin_right">
                 {{#link-to 'course'}}
                     <span class="left_menu_text_sub">课程</span>
+                {{/link-to}}
+            </div>
+        </li>
+        <li class="left_bar_item">
+            <div class="left_menu_mid menu_margin_right">
+                {{#link-to 'classes'}}
+                    <span class="left_menu_text_sub">班级</span>
+                {{/link-to}}
+            </div>
+        </li>
+        <li class="left_bar_item">
+            <div class="left_menu_mid menu_margin_right">
+                {{#link-to 'arrange-class'}}
+                    <span class="left_menu_text_sub">排课</span>
                 {{/link-to}}
             </div>
         </li>

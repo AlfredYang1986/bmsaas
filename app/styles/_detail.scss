@@ -304,6 +304,16 @@ span.list-status {
 .detail_page {
     padding: 24px;
     margin-top: 14px;
+    .class_detail_tab {
+        background: transparent;
+        height: 28px;
+        span {
+            font-size: 14px;
+            color: #3172E0;
+            text-align: center;
+            line-height: 20px;
+        }
+    }
     .tech_info_card {
         margin-right: 8px;
         width: 296px;
@@ -410,7 +420,7 @@ span.list-status {
         color: #9B9B9B;
         letter-spacing: 2px;
     }
-    
+
 }
 
 .detail_href_ref {
@@ -432,7 +442,7 @@ span.list-status {
 
 .detail_panel {
     @extend %detail_panel_basic;
-    padding: 21px 24px;
+    padding: 16px 24px;
     .add-student {
         display: flex;
         flex-direction: row;
@@ -602,30 +612,70 @@ span.list-status {
         margin-top: 6px;
     }
     .class-head-card {
-        margin:12px 4px;
-        height: 160px;
-        .left-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 168px;
+        .top-info {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             justify-content: space-between;
-            width: 460px;
+            align-items: center;
+            width: 100%;
+            height: 88px;
+            img {
+                width: 32px;
+                height: 32px;
+            }
             p.headline {
                 font-size: 24px;
-                color: #767A80;
-                letter-spacing: 3.43px;
+                color: #172B4D;
+                line-height: 28px;
             }
-            p.sub-title {
-                font-size: 18px;
-                color: #767A80;
-                letter-spacing: 2.57px;
-            }
-            .sites p {
+            a.sub-title {
+                margin-top: 8px;
+                font-family: PingFangSC-Medium;
                 font-size: 14px;
-                color: #767A80;
-                letter-spacing: 2px;
+                color: #3172E0;
             }
-
         }
+        .bottom-info {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+        .sites {
+            p {
+                margin-bottom: 10px;
+                font-family: PingFangSC-Medium;
+                font-size: 14px;
+                color: #172B4D;
+            }
+            span {
+                margin-bottom: 10px;
+                font-family: SFUIText-Regular;
+                font-size: 14px;
+                color: #6B778C;
+                text-align: left;
+            }
+        }
+        .class-num {
+            span {
+                margin-right: 4px;
+                margin-left: 34px;
+                font-size: 16px;
+                color: #172B4D;
+                text-align: right;
+            }
+            p {
+                font-size: 11px;
+                color: #6B778C;
+                text-align: right;
+            }
+        }
+
         .chooses {
             .choose-list {
                 display: flex;
