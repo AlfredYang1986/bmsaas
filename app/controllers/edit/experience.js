@@ -1,13 +1,41 @@
 import Controller from '@ember/controller';
 
 export default Controller.extend({
-    selectSort: true,
+    // listInputs: [],
+    // selectSort: true,
     noSortChoose: true,
     experience: false,
     activity: false,
-    selectTitle: false,
-    experContent: false,
+    // selectTitle: false,
+    // experContent: false,
+
+    gainsInputArray: null,
+    offeredInputArray: null,
+    neededInputArray: null,
+
+    radioisChecked: false,
+    allRadioisChecked: false,
+    isCheckAgeInput: true,
+
+    selectNav: 0,
+
+    age_range: '',
+    
     actions: {
+        rangeRadioClick(values) {
+            this.set('isCheckAgeInput', false);
+            this.set('allRadioisChecked', false);
+            this.set('radioisChecked', true);
+            // this.set('age_range', this.age_range);
+        },
+        allRangeRadioClick(values) {
+            this.set('allRadioisChecked', true);
+            this.set('isCheckAgeInput', true);
+            this.set('radioisChecked', false);
+            this.set('age_range', "");
+            this.set('act_alb', 0);
+            this.set('act_aub', 0);
+        },
         activitySort() {
             this.set('noSortChoose', false);
             this.set('experience', false);
@@ -18,41 +46,68 @@ export default Controller.extend({
             this.set('experience', true);
             this.set('activity', false);
         },
+        setCat(cat) {
+            this.set('act_cat', cat);
+        },
+        gainsInputs(data) {
+            let darry = data.map(e => e.text)
+            this.set('gainsInputArray', darry);
+            // this.model.act.set('gains', darry)
+            // window.console.info(this.model.act.gains)
+        },
+        offeredInputs(data) {
+            let darry = data.map(e => e.text)
+            this.set('offeredInputArray', darry);
+            // this.model.act.set('offered', darry)
+            // window.console.info(this.model.act.offered)
+        },
+        neededInputs(data) {
+            let darry = data.map(e => e.text)
+            this.set('neededInputArray', darry);
+            // this.model.act.set('needed', darry)
+            // window.console.info(this.model.act.needed)
+        },
         sortNext() {
-            this.set('selectSort', false);
-            this.set('selectTitle', true);
+            this.set('selectNav', this.selectNav + 1);
         },
         titleNext() {
-            this.set('selectTitle', false);
-            this.set('experContent', true);
+            if (!this.activityValidate1()) {
+                alert('something wrong!');
+                return;
+            }
+            this.set('act_alb', parseInt(this.age_range.split('-')[0]));
+            this.set('act_aub', parseInt(this.age_range.split('-')[1]));
+
+            this.set('selectNav', this.selectNav + 1);
         },
         contentNext() {
-            this.set('experContent', false);
-            this.set('childInteractive', true);
+            if (!this.activityValidate2()) {
+                alert('something wrong!');
+                return;
+            }
+            this.set('selectNav', this.selectNav + 1);
         },
         interactiveNext() {
-            this.set('childInteractive', false);
-            this.set('childReward', true);
+            if (!this.activityValidate3()) {
+                alert('something wrong!');
+                return;
+            }
+            this.set('selectNav', this.selectNav + 1);
         },
         rewardNext() {
-            this.set('childReward', false);
-            this.set('addPhotos', true);
+            this.set('selectNav', this.selectNav + 1);
         },
         addPhotosNext() {
-            this.set('addPhotos', false);
-            this.set('offerGoods', true);
+            this.set('selectNav', this.selectNav + 1);
         },
         offerGoodsNext() {
-            this.set('offerGoods', false);
-            this.set('comeWith', true);
+            this.set('selectNav', this.selectNav + 1);
         },
         comeWithNext() {
-            this.set('comeWith', false);
-            this.set('notice', true);
+            this.set('selectNav', this.selectNav + 1);
         },
         noticeNext() {
-            this.set('notice', false);
-            this.set('costExplain', true);
+            this.set('selectNav', this.selectNav + 1);
         },
         gotoExperience() {
             this.transitionToRoute('experienceOpen');
@@ -63,11 +118,10 @@ export default Controller.extend({
         saveActivityBtnClicked() {
             console.log('save the activity');
 
-            if (!this.activityValidate()) {
-                alert('something wrong!');
-                return;
-            }
-
+            // if (!this.activityValidate()) {
+            //     alert('something wrong!');
+            //     return;
+            // }
             let act = null;
             if (this.isPushing) {
                 act = this.store.createRecord('bmactivityinfo', {
@@ -77,19 +131,39 @@ export default Controller.extend({
                 act = this.model.act;
             }
 
-            act.set('name', this.act_name);
             // TODO: 其他的一些属性修改都在这里解决
+            act.set('name', this.act_name);
+            act.set('cat', this.act_cat);
+            act.set('length', this.act_length);
+            act.set('planning', this.act_planning);
+            act.set('description', this.act_des);
+            act.set('ccontent', this.act_content);
+            act.set('alb', this.act_alb);
+            act.set('aub', this.act_aub);
+            // act.set('gains', this.act_gains);
+            act.set('cover', this.act_cover);
+            act.set('imgs', this.act_imgs);
+            // act.set('offered', this.act_offered);
+            // act.set('needed', this.act_needed);
+            act.set('notice', this.act_notice);
+
+            act.set('gains', this.gainsInputArray);
+            act.set('offered', this.offeredInputArray);
+            act.set('needed', this.neededInputArray);
 
             if (this.isPushing) {
-                this.transitionToRoute('experience');
+                this.transitionToRoute('experienceOpen');
             } else {
                 this.transitionToRoute('detail.experience', act.id);
             }
-        }
+            // this.set('modal4', true);
+        },
+        
     },
 
     isPushing: false,
 
+    act_cat: '',
     act_name: '',
     act_alb: 0,
     act_aub: 1,
@@ -97,15 +171,40 @@ export default Controller.extend({
     act_des: '',
     act_planning: '',
     act_content: '',
-    act_gains: [],
+    // act_gains: [],
     act_cover: '',
     act_imgs: [],
-    act_offered: [],
-    act_needed: [],
+    // act_offered: [],
+    // act_needed: [],
     act_notice: '',
 
     activityValidate() {
-        return this.act_name.length != 0;
+    },
+
+    activityValidate1() {
+        let valiFlag = true;
+        if (this.act_name.length == 0 ||
+          this.act_length.length == 0) {
+          valiFlag = false;
+        }
+        return valiFlag;
+    },
+
+    activityValidate2() {
+        let valiFlag = true;
+        if (this.act_planning.length == 0 ||
+          this.act_des.length == 0) {
+          valiFlag = false;
+        }
+        return valiFlag;
+    },
+
+    activityValidate3() {
+        let valiFlag = true;
+        if (this.act_content.length == 0) {
+          valiFlag = false;
+        }
+        return valiFlag;
     },
 
     guid() {

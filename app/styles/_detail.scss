@@ -1,14 +1,133 @@
 @import 'args';
-
+@import 'detail-stu-frank';
 @import 'detail-card';
+@import 'zl-detail';
 
+@import 'detail-yard-jeorch';
+@import 'detail-experience-frank';
 %detail_content_basic {
-    padding-left: 202px;
+    padding-left: 240px;
 }
 
 .detail_content_top {
     @extend %detail_content_basic;
     padding-top: 50px;
+    height: 100%;
+}
+/* 场次详情 */
+.session-left-info {
+    p.headline {
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: #172B4D;
+        letter-spacing: 3.43px;
+    }
+    .session-info {
+        p {
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #767A80;
+            letter-spacing: 2px;
+        }
+    }
+}
+.open-apply-btn {
+    margin-right: 23px;
+    width: 110px;
+    height: 35px;
+    background: #90B967;
+    border: 1px solid #90B967;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #FFFFFF;
+    letter-spacing: 2px;
+    line-height: 35px;
+    text-align: center;
+}
+.choose-list {
+    a{
+        font-size: 14px;
+        color: #6E7CD4;
+        letter-spacing: 2px;
+    }
+    a.delete-class {
+        color:#D3727E;
+    }
+}
+
+.detail-delete-pop-ups {
+    margin-left: 85px;
+    width: 330px;
+    height: 256px;
+    background: #fff;
+    .detail-delete-modal-body {
+        margin-top: 70px;
+        margin-left: 44px;
+        margin-bottom: 60px;
+        p {
+            font-size: 14px;
+            color: #767A80;
+            letter-spacing: 1.17px;
+        }
+    }
+    .detail-delete-card-save {
+        width: 80px;
+        height: 35px;
+        border: 1px solid #6E7CD4;
+        border-radius: 4px;
+        background: #fff;
+        color: #6E7CD4;
+    }
+    .course-delete-card-cancel {
+        width: 80px;
+        height: 35px;
+        border: 1px solid #6E7CD4;
+        border-radius: 4px;
+        background: #6E7CD4;
+        color: #fff;
+    }
+}
+.course-reserve-card-delete {
+    width: 100px;
+    height: 35px;
+    border: 1px solid #D3727E;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #D3727E;
+    letter-spacing: 2px;
+    background: transparent;
+}
+.detail-modal-head {
+    margin-left: -35px;
+    margin-right: -45px;
+    margin-top: -27px;
+    margin-bottom: 30px;
+    padding: 0 27px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: #eff1f9;
+    height: 50px;
+    p.detail-modal-title {
+        font-size: 18px;
+        color: #767A80;
+        letter-spacing: 2.57px;
+    }
+    .course-reserve-card-cancel {
+        margin-right: 30px;
+    }
+}
+.arrive-stauts {
+    background: transparent;
+    border:none;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+.arrived {
+    color: #6E7CD4;
+}
+.not-arrived {
+    color: #D3727E;
 }
 span.list-title {
     min-width: 110px;
@@ -185,7 +304,100 @@ span.list-status {
     }
 }
 .detail_page {
-    padding: 16px 24px;
+    padding: 24px;
+    margin-top: 14px;
+    .class_detail_tab {
+        background: transparent;
+        height: 28px;
+        span {
+            font-size: 14px;
+            color: #3172E0;
+            text-align: center;
+            line-height: 20px;
+        }
+    }
+    .tech_info_card {
+        margin-right: 8px;
+        width: 296px;
+        min-height: 420px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .tech_info_base {
+            width: 128px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .tech_info_other {
+            margin-top: 42px;
+            display: flex;
+            flex-direction: column;
+            width: 296px;
+            .tech_info_other_list {
+                margin-left: 24px;
+                margin-bottom: 24px;
+                height: 20px;
+                line-height: 20px;
+                p {
+                    width: 56px;
+                    text-align: left;
+                    font-size: 14px;
+                    color: #6B778C;
+                    letter-spacing: -0.12px;
+                    text-align: left;
+                }
+                span {
+                    margin-left: 20px;
+                    font-size: 14px;
+                    color: #172B4D;
+                    letter-spacing: 2;
+                }
+            }
+
+        }
+    }
+    .tech_info_detail {
+        width: 100%;
+        padding: 0 24px;
+        .tech_info_area {
+            padding-top: 40px;
+            min-height: 192px;
+            border-bottom: 1px solid rgba(0,0,0,0.12);
+            p.period {
+                opacity: 0.7;
+                font-size: 14px;
+                color: #6B778C;
+            }
+            p {
+                margin-bottom: 24px;
+                margin-right: 16px;
+                min-width: 56px;
+                font-size: 14px;
+                color: #172B4D;
+            }
+            span {
+                margin-bottom: 24px;
+                font-size: 14px;
+                color: #172B4D;
+                letter-spacing: 1px;
+            }
+        }
+    }
+    .detail_head_name {
+        line-height: 32px;
+        font-size: 16px;
+        color: #172B4D;
+    }
+    .more_btn {
+        padding: 6px 26px;
+        height: 32px;
+        font-size: 14px;
+        color: #42526E;
+        text-align: center;
+        background: rgba(9,30,66,0.04);
+        border-radius: 3px;
+    }
     .time-select {
         p {
             cursor:pointer;
@@ -210,6 +422,7 @@ span.list-status {
         color: #9B9B9B;
         letter-spacing: 2px;
     }
+
 }
 
 .detail_href_ref {
@@ -222,7 +435,7 @@ span.list-status {
 %detail_panel_basic {
     background-color: white;
     // box-shadow: 2px 2px 6px 0 #CAD5E1;
-    box-shadow: 0 2px 10px 0 #CAD5E1;
+    // box-shadow: 0 2px 10px 0 #CAD5E1;
 }
 
 .detail_panel_col_between {
@@ -231,7 +444,7 @@ span.list-status {
 
 .detail_panel {
     @extend %detail_panel_basic;
-    padding: 20px 28px;
+    padding: 16px 24px;
     .add-student {
         display: flex;
         flex-direction: row;
@@ -248,11 +461,10 @@ span.list-status {
         }
     }
     .detail_panel_img {
-        width: 82px;
-        height: 82px;
-
-        border: 1px solid black;
-        border-radius: 41px;
+        margin-bottom: 16px;
+        width: 128px;
+        height: 128px;
+        border-radius: 50%;
     }
 
     .detail_panel_img_right_margin {
@@ -260,18 +472,25 @@ span.list-status {
     }
 
     .detail_panel_role_name {
+        margin-bottom: 10px;
         font-family: $font-href;
-        font-size: 18px;
-        color: #767A80;
-        letter-spacing: 2px;
+        font-size: 24px;
+        color: #172B4D;
+        line-height: 28px;
     }
 
     .detail_panel_role_des {
-        margin-right: 21px;
+        height: 24px;
+        line-height: 24px;
         font-family: $font-href;
-        font-size: 12px;
-        color: #6E7CD4;
+        font-size: 14px;
+        color: #6B778C;
         letter-spacing: 1.71px;
+        img.sex-icon {
+            margin-right: 10px;
+            width: 24px;
+            height: 24px;
+        }
     }
 
     .detail_panel_head {
@@ -394,31 +613,83 @@ span.list-status {
 
         margin-top: 6px;
     }
+
+    //只是个临时的，不要喷
+    .session-temp {
+        justify-content: flex-end;
+        .sub-text {
+            font-family: PingFangSC-Regular;
+            font-size: 11px;
+            color: #6B778C;
+            text-align: right;
+        }
+    }
+
     .class-head-card {
-        margin:12px 4px;
-        height: 160px;
-        .left-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 168px;
+        .top-info {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             justify-content: space-between;
-            width: 460px;
+            align-items: center;
+            width: 100%;
+            height: 88px;
+            img {
+                width: 32px;
+                height: 32px;
+            }
             p.headline {
                 font-size: 24px;
-                color: #767A80;
-                letter-spacing: 3.43px;
+                color: #172B4D;
+                line-height: 28px;
             }
-            p.sub-title {
-                font-size: 18px;
-                color: #767A80;
-                letter-spacing: 2.57px;
-            }
-            .sites p {
+            a.sub-title {
+                margin-top: 8px;
+                font-family: PingFangSC-Medium;
                 font-size: 14px;
-                color: #767A80;
-                letter-spacing: 2px;
+                color: #3172E0;
             }
-
         }
+        .bottom-info {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+        .sites {
+            p {
+                margin-bottom: 10px;
+                font-family: PingFangSC-Medium;
+                font-size: 14px;
+                color: #172B4D;
+            }
+            span {
+                margin-bottom: 10px;
+                font-family: SFUIText-Regular;
+                font-size: 14px;
+                color: #6B778C;
+                text-align: left;
+            }
+        }
+        .class-num {
+            span {
+                margin-right: 4px;
+                margin-left: 34px;
+                font-size: 16px;
+                color: #172B4D;
+                text-align: right;
+            }
+            p {
+                font-size: 11px;
+                color: #6B778C;
+                text-align: right;
+            }
+        }
+
         .chooses {
             .choose-list {
                 display: flex;

@@ -1,0 +1,135 @@
+@import 'args';
+
+.detail_yard_href {
+    margin-bottom: 14px;
+}
+
+.detail_href_ref_left {
+    font-family: $font-href;
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: #767A80;
+}
+
+.detail_href_ref_mid {
+    font-family: $font-href;
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: #767A80;
+    margin-left: 8px;
+}
+
+.detail_href_ref_right {
+    font-family: $font-href;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    margin-left: 8px;
+    color: #6E7CD4;
+}
+
+.detail_yard_title_left {
+    font-family: $font-brand;
+    font-size: 18px;
+    color: #000000;
+}
+
+.detail_yard_title_mid {
+    font-family: $font-brand;
+    font-size: 18px;
+    color: #000000;
+}
+
+.detail_yard_title_mid_panel {
+    background: #FFFFFF;
+    border-radius: 4px;
+
+    // padding: 16px;
+    margin-bottom: 16px;
+
+    font-family: $font-light;
+    font-size: 12px;
+    color: #767A80;
+    letter-spacing: 1.71px;
+}
+
+.detail_yard_inner_content_line {
+    margin-top: 16px;
+    margin-bottom: 28px;
+
+    .detail_yard_inner_left {
+
+    }
+}
+
+.detail_yard_title_btn {
+    font-family: $font-brand;
+    font-size: 14px;
+    color: #FFFFFF;
+
+    background: #6E7CD4;
+    border: 1px solid #6E7CD4;
+    border-radius: 4px;
+
+    letter-spacing: 2px;
+
+    padding: 4px 24px;
+}
+
+.detail_yarn_panel_left {
+    padding: 16px 22px;
+    margin-right: 8px;
+}
+
+.detail_yard_right_panel_layout {
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+}
+
+.detail_yarn_panel_right {
+    padding: 16px 22px;
+}
+
+.detail_yard_pintu {
+    width: 296px;
+    height: 299px;
+}
+
+.detail_yard_pintu_left {
+    width: 160px;
+    height: 180px;
+    margin-right: 8px;
+}
+
+.detail_yard_pintu_right {
+    width: 120px;
+    height: 154px;
+}
+
+.detail_yard_pintu_top {
+    width: 120px;
+    height: 86px;
+    margin-bottom: 4px;
+}
+
+.detail_yard_pintu_bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 86px;
+    margin-top: 4px;
+    // background: url('../images/yard_02.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+
+}
+
+.detail_yard_pintu_content {
+    font-family: PingFangSC-Medium;
+    font-size: 13px;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+a.detail_yard_pintu_content:hover {
+   color: #FFFFFF;
+}

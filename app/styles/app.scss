@@ -12,9 +12,10 @@
 @import "course";
 @import "arrange-class";
 @import "experience-open";
+@import "course-reserve";
 
 body {
-    background-color: #FAFBFE
+    background-color: #F7F8FA
 }
 p {
     margin-bottom: 0;
@@ -82,4 +83,9 @@ p {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+}
+
+.selected_tech {
+    color: red;
+    border: 1px solid black;
 }

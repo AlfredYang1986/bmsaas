@@ -25,15 +25,16 @@ export default Route.extend({
             controller.set('crs_alb', model.course.get('alb'));
             controller.set('crs_aub', model.course.get('aub'));
             controller.set('crs_level', model.course.get('level'));
+            controller.set('crs_count', model.course.get('count'));
             controller.set('crs_length', model.course.get('length'));
             controller.set('crs_cat', model.course.get('category').get('cat'));
             controller.set('crs_subcat', model.course.get('category').get('sub'));
             controller.set('crs_target', model.course.get('target'));
             controller.set('crs_plan', model.course.get('planning'));
-            controller.set('crs_content', model.course.get('content'));
+            controller.set('crs_content', model.course.get('ccontent'));
             controller.set('crs_imgs', model.course.get('imgs'));
             controller.set('crs_tags', model.course.get('tags'));
-            
+
             controller.set('isPushing', false);
         } else {
             controller.set('crs_name', ''),
@@ -51,5 +52,12 @@ export default Route.extend({
           
             controller.set('isPushing', true);
         }
-    }
+
+    },
+    activate() {
+        if (this.controller) {
+            this.controller.set('cur_page_idx', 0);
+            this.controller.set('refresh_token', this.controller.guid());
+        }
+    },
 });

@@ -24,8 +24,6 @@ export default Route.extend({
                 },{
                     title:"报名人数"
                 },{
-                    title:"报名状态"
-                },{
                     title:"操作"
                 }]
             })

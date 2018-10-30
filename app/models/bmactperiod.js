@@ -6,5 +6,6 @@ export default DS.Model.extend({
     end_date: DS.attr('date'),
     register_date: DS.attr('date'),
     can_register: DS.attr('number'),
-    limits: DS.attr('number')
+    limits: DS.attr('number'),
+    studs: DS.hasMany('bmstud')
 });

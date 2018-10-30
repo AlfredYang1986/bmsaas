@@ -2,17 +2,31 @@
     {{#layout-push direction="row"}}
         <span class="edit_subtitle" >{{title}}</span>
         {{#if isNeeded}}
-        <div class="v_end">
-            <span class="edit_required" >* 必填</span>
-        </div>
+            <div class="v_end">
+                <span class="edit_required" >* 必填</span>
+            </div>
         {{/if}}
     {{/layout-push}}
     <div class="v_end">
         <span class="edit_condition" >{{countHint}}</span>
     </div>
 {{/layout-push}}
-{{#layout-push direction="row"}}
+
+{{#layout-push direction="row" classNames="input-group"}}
+    {{#if (eq group 'prepend')}}
+        <div class="input-group-prepend">
+             {{yield}}
+        </div>
+    {{/if}}
     {{input classNames="edit_text_field" placeholder=pholder value=inputVal}}
+    {{#if (eq group 'append')}}
+       <div class="input-group-append">
+            {{yield}}
+       </div>
+    {{/if}}
+    {{#if (eq group undefined)}}
+       {{yield}}
+    {{/if}}
 {{/layout-push}}
 
-{{yield}}
+

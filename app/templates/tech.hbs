@@ -5,7 +5,8 @@
 
 <div class="tech_content_top" >
     {{#layout-push direction="col" classNames="tech_content"}}
-        {{#layout-push direction="row"}}
+        {{#layout-push direction="row" split=true}}
+            <p class="page_title">教师</p>
             {{#link-to 'edit.tech' 'tech/push' classNames='tech_add_btn'}}+ 添加老师{{/link-to}}
         {{/layout-push}}
         {{#layout-push direction="row" wrap=true classNames="card-wrap"}}

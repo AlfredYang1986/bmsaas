@@ -6,8 +6,14 @@ import { inject as service } from '@ember/service';
 export default Route.extend({
     mock_data: service(),
 
+    activate() {
+        let controller = this.controllerFor('edit.experience');
+        controller.set('selectNav', 0 );
+    },
+
     model(params) {
         this.mock_data.sureActivity();
+        let cats = this.store.peekAll('bmcat');
         let act = this.store.peekRecord('bmactivityinfo', params.epid);
         if (act == null && params.epid != 'experience/push') {
             this.transitionTo('home');
@@ -15,6 +21,7 @@ export default Route.extend({
 
         return RSVP.hash({
                 act: act,
+                cats
             })
     },
 
@@ -22,24 +29,30 @@ export default Route.extend({
         // Call _super for default behavior
         this._super(controller, model);
         // Implement your custom setup after
-        if (model.stud != null) {
-
-            controller.set('act_name', this.model.act.get('name'));
-            controller.set('act_alb', this.model.act.get('alb'));
-            controller.set('act_aub', this.model.act.get('aub'));
-            controller.set('act_length', this.model.act.get('length'));
-            controller.set('act_des', this.model.act.get('description'));
-            controller.set('act_planning', this.model.act.get('planning'));
-            controller.set('act_content', this.model.act.get('content'));
-            controller.set('act_gains', this.model.act.get('gains'));
-            controller.set('act_cover', this.model.act.get('cover'));
-            controller.set('act_imgs', this.model.act.get('imgs'));
-            controller.set('act_offered', this.model.act.get('offered'));
-            controller.set('act_needed', this.model.act.get('needed'));
-            controller.set('act_notice', this.model.act.get('notice'));
+        if (model.act != null) {
+            controller.set('act_cat', model.act.get('cat'));
+            controller.set('act_name', model.act.get('name'));
+            controller.set('act_alb', model.act.get('alb'));
+            controller.set('act_aub', model.act.get('aub'));
+            controller.set('age_range', model.act.get('alb') + '-' +model.act.get('aub'));
+            if (controller.get('age_range') !== '0-0') {
+                controller.set('isCheckAgeInput', false);
+                controller.set('radioisChecked', true);
+            }
+            controller.set('act_length', model.act.get('length'));
+            controller.set('act_des', model.act.get('description'));
+            controller.set('act_planning', model.act.get('planning'));
+            controller.set('act_content', model.act.get('ccontent'));
+            controller.set('act_gains', model.act.get('gains'));
+            controller.set('act_cover', model.act.get('cover'));
+            controller.set('act_imgs', model.act.get('imgs'));
+            controller.set('act_offered', model.act.get('offered'));
+            controller.set('act_needed', model.act.get('needed'));
+            controller.set('act_notice', model.act.get('notice'));
 
             controller.set('isPushing', false);
         } else {
+            controller.set('act_cat', '');
             controller.set('act_name', '');
             controller.set('act_alb', 0);
             controller.set('act_aub', 0);

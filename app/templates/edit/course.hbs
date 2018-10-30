@@ -13,24 +13,7 @@
                     取消
                 {{/link-to}}
             {{/if}}
-            {{#bs-button classNames="nav_save_btn menu_button_between" onClick=(action (mut modal3) true)}}保存{{/bs-button}}
-            {{#bs-modal open=modal3 onHidden=(action (mut modal3) false) as |modal|}}
-                <div class="course-reserve-pop-ups">
-                    {{#modal.body classNames="course-reserve-success"}}
-                        {{#layout-push direction=row classNames="success-info"}}
-                            <img src="../images/success.png" alt="">
-                            {{#layout-push direction=col}}
-                                <p>成功创建课程： 课程名称 </p>
-                                <p>您可以将该课程放入课程预约中！</p>
-                            {{/layout-push}}
-                        {{/layout-push}}
-                    {{/modal.body}}
-                    {{#modal.footer}}
-                     {{#bs-button type="success" classNames="nav_cancel_btn menu_button_between" onClick=(action 'saveCourse') }}暂不开放{{/bs-button}}
-                      {{#bs-button type="success" classNames="nav_save_btn menu_button_between"  onClick=(action 'reserveCourse')}}前往开放预约体验{{/bs-button}}
-                    {{/modal.footer}}
-                </div>
-            {{/bs-modal}}
+            {{#bs-button classNames="nav_save_btn menu_button_between" onClick=(action 'saveCourseBtnClicked')}}保存{{/bs-button}}
         </div>
     </li>
 </ul>
@@ -38,76 +21,80 @@
 <ul class="edit_left_bar">
     <li class="left_bar_item" >
         <div class="edit_left_menu_mid menu_margin_right">
-            <a class="edit_left_menu_text" href="#tech-info">课程类别</a>
+            <a class="edit_left_menu_text" onclick={{action (mut cur_page_idx) 0}}>课程类别</a>
         </div>
     </li>
     <li class="left_bar_item" >
         <div class="edit_left_menu_mid menu_margin_right">
-            <a class="edit_left_menu_text" href="#tech-edc">课程名称</a>
+            <a class="edit_left_menu_text" onclick={{action (mut cur_page_idx) 1}}>课程标题</a>
         </div>
     </li>
     <li class="left_bar_item" >
         <div class="edit_left_menu_mid menu_margin_right">
-            <a class="edit_left_menu_text" href="#tech-story">分类/标签</a>
+            <a class="edit_left_menu_text" onclick={{action (mut cur_page_idx) 2}}>基础信息</a>
         </div>
     </li>
     <li class="left_bar_item" >
         <div class="edit_left_menu_mid menu_margin_right">
-            <a class="edit_left_menu_text" href="#tech-story">课程详情</a>
+            <a class="edit_left_menu_text" onclick={{action (mut cur_page_idx) 3}}>课程详情</a>
         </div>
     </li>
     <li class="left_bar_item" >
         <div class="edit_left_menu_mid menu_margin_right">
-            <a class="edit_left_menu_text" href="#tech-story">图片</a>
+            <a class="edit_left_menu_text" onclick={{action (mut cur_page_idx) 4}}>课程图片</a>
         </div>
     </li>
 </ul>
 
-<section id="basic-info" class="line_container_mid edit_page_top_margin" >
-    {{#layout-push direction='col' classNames="edit_panel edit_first_panel"}}
-        {{#layout-push direction='row'}}
-            <span class="edit_title">课程类别</span>
-        {{/layout-push }}
-        {{#layout-push direction='col' classNames='select-school'}}
-            <div class="line_container_split" >
-                <div class="line_container" >
-                    <span class="edit-course-subtitle">明确的分类，能让家长们对课程有明确的初步印象。</span>
-                    <div class="v_end">
-                        <span class="edit-course-required">* 必填</span>
-                    </div>
-                </div>
+{{#if (bmeq cur_page_idx 0)}}
+
+<section id="start-story" class="alt_course_section" >
+    {{#layout-push direction='col' classNames='alt_course_panel'}}
+        <span class='alt_course_title'>您的课程属于哪一个分类</span>
+        <span class='alt_course_des'>明确的分类，能让家长们对课程有明确的初步印象。</span>
+        {{#layout-push direction="row"}}
+            <div class="line_container" >
+                <select class="start-time" name="" id='catselected' onchange={{action 'catChanged'}}>
+                    <option value="">请选择</option>
+                    {{#each cat_candi as |item|}}
+                        <option value={{item}}>{{item}}</option>
+                    {{/each}}
+                </select>
             </div>
-            {{#layout-push direction="row"}}
-                <div class="line_container" >
-                    <select class="start-time" name="">
-                        <option value="">科学</option>
-                        <option value="">2018</option>
-                    </select>
-                </div>
-                <div class="line_container" >
-                    <select class="start-time" name="">
-                        <option value="">年</option>
-                        <option value="">2018</option>
-                    </select>
-                </div>
-            {{/layout-push}}
+            <div class="line_container" >
+                <select class="start-time" name="" id='subselected' onchange={{action 'subChanged'}}>
+                    <option value="">请选择</option>
+                    {{#each sub_candi as |item|}}
+                        <option value={{item}}>{{item}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            {{cat_refresh}}
         {{/layout-push}}
-    {{/layout-push }}
+        {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
+            <button class="nav_save_btn menu_button_between" {{action (mut cur_page_idx) 1}}>下一步</button>
+        {{/layout-push}}
+    {{/layout-push}}
 </section>
+{{/if}}
 
-<section id="start-story" class="line_container_mid" >
-    {{bm-edit-area
-        classNames='edit_panel'
-        title="课程名称"
-        subtitle="有趣的课程名称能让家长和孩子对您的课程内容产生兴趣和好奇心。"
-        maxCount=20
-        isNeeded=true
-        inputVal=crs_name
-        }}
+{{#if (bmeq cur_page_idx 1)}}
+
+<section id="start-story" class="alt_course_section" >
+    {{#layout-push direction='col' classNames='alt_course_panel'}}
+        <span class='alt_course_title'>为课程取个名称吧</span>
+        <span class='alt_course_des'>有趣的课程名称能让家长和孩子对您的课程内容产生兴趣和好奇心。</span>
+        {{input type="text" class="edit_input kid_name" maxlength='8' value=crs_name}}
+        {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
+            <button class="nav_save_btn menu_button_between" {{action (mut cur_page_idx) 2}}>下一步</button>
+        {{/layout-push}}
+    {{/layout-push}}
 </section>
+{{/if}}
 
-<section id="basic-info" class="line_container_mid" >
-    {{#layout-push direction='col' classNames="edit_panel"}}
+{{#if (bmeq cur_page_idx 2)}}
+<section id="basic-info" class="line_container_mid edit_page_top_margin " >
+    {{#layout-push direction='col' classNames="edit_panel edit_first_panel"}}
         {{#layout-push direction='row'}}
             <span class="edit_title">分类/标签</span>
         {{/layout-push }}
@@ -121,7 +108,7 @@
                 </div>
             </div>
             {{#layout-push direction="row"}}
-                <div class="line_container" >
+                {{!-- <div class="line_container" >
                     <select class="start-time" name="">
                         <option value="">年</option>
                         <option value="">2018</option>
@@ -133,6 +120,9 @@
                         <option value="">年</option>
                         <option value="">2018</option>
                     </select>
+                </div> --}}
+                <div class="line_container" >
+                    {{age-range dataLeft=crs_alb dataRight=crs_aub}}
                 </div>
             {{/layout-push}}
         {{/layout-push}}
@@ -140,14 +130,19 @@
         {{bm-edit-line title="分级阶段"  maxCount=6 pholder="如：入门级、LV1" inputVal=crs_level}}
         {{bm-edit-line title="预计课时数" isNeeded=true  pholder="请输入整数" inputVal=crs_count}}
         {{bm-edit-line title="课程时长（min）" isNeeded=true maxCount=6 inputVal=crs_length}}
-        {{bm-edit-line title="教学特点" isNeeded=true maxCount=6 pholder="如：蒙特梭利" }}
+        {{bm-edit-line title="教学特点" isNeeded=true maxCount=6 pholder="如：蒙特梭利" inputVal=crs_tags}}
 
         <a href="" class="add-other-course">+ 添加另一个项目</a>
+        {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
+            <button class="nav_save_btn menu_button_between" {{action (mut cur_page_idx) 3}}>下一步</button>
+        {{/layout-push}}
     {{/layout-push }}
 </section>
+{{/if}}
 
-<section id="about-tech" class="line_container_mid" >
-    {{#layout-push direction="col"}}
+{{#if (bmeq cur_page_idx 3)}}
+<section id="about-tech" class="line_container_mid edit_page_top_margin" >
+    {{#layout-push direction="col" classNames='edit_first_panel'}}
         {{bm-edit-area
             classNames='edit_panel'
             title="课程详情"
@@ -175,11 +170,16 @@
             rowsAmount=5
             inputVal=crs_content
         }}
+        {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
+            <button class="nav_save_btn menu_button_between" {{action (mut cur_page_idx) 4}}>下一步</button>
+        {{/layout-push}}
     {{/layout-push}}
 </section>
+{{/if}}
 
-<section id="brand-reward" class="line_container_mid " >
-    {{#layout-push direction='col' classNames='edit_panel edit_reward_panel'}}
+{{#if (bmeq cur_page_idx 4)}}
+<section id="brand-reward" class="line_container_mid edit_page_top_margin" >
+    {{#layout-push direction='col' classNames='edit_panel edit_reward_panel edit_first_panel'}}
         {{#layout-push direction='row' }}
             <span class="edit_title">课程图片</span>
         {{/layout-push }}
@@ -201,4 +201,4 @@
         </div>
     {{/layout-push }}
 </section>
-{{outlet}}
+{{/if}}

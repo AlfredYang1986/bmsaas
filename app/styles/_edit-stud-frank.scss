@@ -1,0 +1,234 @@
+.edit_nav {
+  margin-bottom: 24px;
+  padding: 16px 24px;
+  height: 64px;
+  font-family: $font-brand;
+
+  background-color: #FFF;
+
+  span:first-child {
+    font-weight: 700;
+    font-size: 24px;
+    color: #172B4D;
+  }
+
+  span:last-child {
+    a {
+      display: inline-block;
+      width: 68px;
+      text-align: center;
+      font-size: 14px;
+      color: #172B4D;
+    }
+
+    .btn_save {
+      padding: 0;
+      width: 80px;
+      height: 32px;
+      background: rgba(9,30,66,0.04);
+      border-radius: 3px;
+      font-family: $font-brand;
+      font-size: 14px;
+      color: #A5ADBA;
+      text-align: center;
+    }
+  }
+}
+
+.edit_container {
+    font-family: $font-brand;
+  .edit_left_nav {
+    flex: 0 0 240px;
+    li {
+        text-align: center;
+        height: 40px;
+        a {
+            font-size: 14px;
+            color: #172B4D;
+        }
+
+    }
+  }
+
+  .input_container {
+    flex: 1;
+    padding-bottom: 40px;
+    section.stu_section {
+      margin: 0 24px 8px;
+      padding: 24px;
+      background-color: #FFF;
+
+      .input_area {
+          &.area-margin-bottom {
+              margin-bottom: 40px;
+          }
+
+        .edit_title {
+          margin-bottom: 16px;
+          font-family: $font-brand;
+          font-size: 14px;
+          font-weight: 700;
+          color: #172B4D;
+
+          span.sub_title {
+            font-size: 11px;
+            color: #6B778C;
+          }
+        }
+
+        input.edit_input {
+          margin-bottom: 4px;
+          width: 144px;
+          height: 32px;
+          border: 0 solid #DFE1E5;
+          border-radius: 4px;
+        }
+
+        .edit_hint {
+          font-family: $font-brand;
+          font-size: 11px;
+          color: #6B778C;
+        }
+
+        .date_choose {
+          select {
+            margin-right: 16px;
+            padding: 0 8px;
+            width: 120px;
+            height: 32px;
+            background: #FAFBFC;
+            border-radius: 4px;
+          }
+        }
+        &.area-margin-bottom:last-child {
+            margin-bottom: 0;
+        }
+      }
+    }
+    section.tech_section {
+        margin: 0 24px 8px;
+        padding: 24px;
+        background-color: #FFF;
+        .area-margin-bottom {
+            margin-bottom: 40px;
+        }
+        .area-margin-left {
+            margin-left: 40px;
+        }
+        .tech-infos-container {
+            .tech-avatar {
+                flex: 0 0 272px;
+                img {
+                    width: 272px;
+                    height: 272px;
+                }
+            }
+            .tech-basis-info {
+                flex: 1;
+                padding-left: 56px;
+            }
+        }
+        .input_area {
+
+          .edit_title {
+            margin-bottom: 16px;
+            font-family: $font-brand;
+            font-size: 14px;
+            font-weight: 700;
+            color: #172B4D;
+
+            span.sub_title {
+              font-size: 11px;
+              color: #6B778C;
+            }
+          }
+
+          input.edit_input {
+            margin-bottom: 4px;
+            width: 144px;
+            height: 32px;
+            border: 0 solid #DFE1E5;
+            border-radius: 4px;
+          }
+          input.input_100 {
+              width: 100%;
+          }
+
+          .edit_hint {
+            font-family: $font-brand;
+            font-size: 11px;
+            color: #6B778C;
+          }
+
+          .date_choose {
+            select {
+              margin-right: 16px;
+              padding: 0 8px;
+              width: 120px;
+              height: 32px;
+              background: #FAFBFC;
+              border-radius: 4px;
+            }
+          }
+          &.area-margin-bottom:last-child {
+              margin-bottom: 0;
+          }
+        }
+        &.edu-lifes,&.work-lifes {
+            display: none;
+
+            font-family: $font-brand;
+            .edu_exper_nav {
+                // padding: 0 24px;
+                height: 32px;
+                line-height: 32px;
+                span:first-child {
+                  font-weight: 700;
+                  font-size: 16px;
+                  color: #172B4D;
+                }
+
+                .btn_addedu {
+                    padding: 0;
+                    width: 80px;
+                    height: 32px;
+                    background: rgba(9,30,66,0.04);
+                    border-radius: 3px;
+                    font-size: 14px;
+                    color: #A5ADBA;
+                    text-align: center;
+                }
+            }
+            .edu_exper_container {
+                padding: 24px 0 24px;
+                .edu_exper_left {
+                    flex: 0 1 120px;
+                    opacity: 0.7;
+                    font-size: 14px;
+                    color: #6B778C;
+                }
+                .edu_exper_change {
+                    flex: 0 1 120px;
+                }
+                .edu_exper_content {
+                    flex-grow: 1;
+                    padding: 0 24px;
+                    p {
+                        margin-bottom: 8px;
+                        line-height: 20px;
+                        font-size: 14px;
+                        color: #172B4D;
+                        letter-spacing: 1px;
+                    }
+
+
+                }
+            }
+            .line {
+                opacity: 0.12;
+                border: 1px solid #000000;
+            }
+        }
+    }
+  }
+}

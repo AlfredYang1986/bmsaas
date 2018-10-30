@@ -18,95 +18,71 @@
         {{/layout-push}}
 
         {{#layout-push direction='row' }}
-            {{#bs-button classNames="time_add_btn" onClick=(action (mut arrangeClassAdd) true)}}添加{{/bs-button}}
+            {{#bs-button classNames="time_add_btn" onClick=(action (mut insertdlg) true)}}添加{{/bs-button}}
             {{#bs-button classNames="time_delete_btn" onClick=(action (mut modal3) true)}}删除{{/bs-button}}
         {{/layout-push}}
     {{/layout-push}}
-    {{#bs-modal open=arrangeClassAdd  onHidden=(action (mut arrangeClassAdd) false) as |modal|}}
-        <div class="arrange-class-pop-ups">
-            {{#modal.body classNames=""}}
-                {{#layout-push direction="col"}}
-                    {{#layout-push direction="row" split=true classNames="pop-ups-head"}}
-                        <p class="pop-ups-head-title">班级排课</p>
-                        {{#layout-push direction="row"}}
-                            {{#bs-button onClick=(action modal.close) classNames="edit-teacher-cancel"}}取消{{/bs-button}}
-                            {{#bs-button type="success" classNames="edit-teacher-save" onClick=(action modal.submit) }}确定{{/bs-button}}
-                        {{/layout-push}}
+
+    {{#bm-modal-container title="班级排课" mswitch=insertdlg 
+            successbtncss='course-reserve-card-save'  
+            cancelbtncss='course-reserve-card-cancel'
+            canceltext='取消'
+            onCancelBtnClicked=(action 'cancelHandled')  
+            onSuccessBtnClicked=(action 'successHandled')}}
+        {{#layout-push direction="col" classNames="pop-ups-content"}}
+            {{#layout-push direction="col" classNames="arrange-course-class"}}
+                <p>排课班级</p>
+                <select class="class-name" name="" id='clsselect' onChange={{action 'cslChanged'}}>
+                    <option value="">请选择班级名称</option>
+                    {{#each cls_on_yard as |item|}}
+                        <option value={{item.id}}>{{item.name}}</option>
+                    {{/each}}
+                </select>
+                {{#layout-push direction="col" classNames="class-arrange-time-select"}}
+                    <p>开始时间</p>
+                    {{#layout-push direction="row"}}
+                        {{date-choose data=session_insert_date}}
+                        <select class="" name="" id='hourselect' onChange={{action 'hourChanged'}}>
+                            <option value="">请选择开始时间</option>
+                            <option value=8>08:00</option>
+                            <option value=9>09:00</option>
+                            <option value=10>10:00</option>
+                            <option value=11>11:00</option>
+                            <option value=12>12:00</option>
+                            <option value=13>13:00</option>
+                            <option value=14>14:00</option>
+                            <option value=15>15:00</option>
+                            <option value=16>16:00</option>
+                            <option value=17>17:00</option>
+                            <option value=18>18:00</option>
+                            <option value=19>19:00</option>
+                            <option value=20>20:00</option>
+                        </select>
                     {{/layout-push}}
-                    {{#layout-push direction="col" classNames="pop-ups-content"}}
-                        {{#layout-push direction="col" classNames="arrange-course-class"}}
-                            <p>排课班级</p>
-                            <select class="class-name" name="">
-                                <option value="">请选择班级名称</option>
-                            </select>
-                        {{/layout-push}}
-                        {{#layout-push direction="col" classNames="class-arrange-time-select"}}
-                            <p>开始时间</p>
+                {{/layout-push}}
+                {{#layout-push direction="col" classNames="course-duration"}}
+                    {{bm-edit-line title='单次课程时长' isNeeded=true inputVal=session_insert_length}}
+                {{/layout-push}}
+                {{#layout-push direction="col" classNames="class-teacher-select"}}
+                    {{#bs-button classNames="class-teacher-select-btn" onClick=(action (mut editTeacherCard) true)}}请为本次课选择授课老师{{/bs-button}}
+                    {{#layout-push direction="col" classNames="class-teacher-list-content"}}
+                        {{#layout-push direction="col"}}
+                            {{!-- <p>该班级老师人数共{{ssession_insert_cls.tech.length}}人</p> --}}
                             {{#layout-push direction="row"}}
-                                <select class="" name="">
-                                    <option value="">年</option>
-                                </select>
-                                <select class="" name="">
-                                    <option value="">月</option>
-                                </select>
-                                <select class="" name="">
-                                    <option value="">日</option>
-                                </select>
-                                <select class="" name="">
-                                    <option value="">14：00</option>
-                                </select>
-                            {{/layout-push}}
-                        {{/layout-push}}
-                        {{#layout-push direction="col" classNames="course-duration"}}
-                            <p>单次课程时长</p>
-                            <select class="" name="">
-                                <option value="">min</option>
-                            </select>
-                        {{/layout-push}}
-                        {{#layout-push direction="col" classNames="class-teacher-select"}}
-                            {{#bs-button classNames="class-teacher-select-btn" onClick=(action (mut editTeacherCard) true)}}请为本次课选择授课老师{{/bs-button}}
-                            {{#layout-push direction="col" classNames="class-teacher-list-content"}}
-                                {{#layout-push direction="col"}}
-                                    <p>该班级老师人数共4人</p>
-                                    {{#layout-push direction="row"}}
-                                        {{tech-card}}{{tech-card}}
-                                    {{/layout-push}}
-                                {{/layout-push}}
-                                {{#layout-push direction="row" classNames="class-arrange-btns"}}
-                                    {{#bs-button type="success" classNames="save"}}确定{{/bs-button}}
-                                    {{#bs-button classNames="cancel"}}取消{{/bs-button}}
-                                {{/layout-push}}
+                                {{#each session_insert_cls.tech as |item|}}
+                                    {{tech-card tech=item canChecked=true onTechCardClicked=(action 'oneTechChecked')}}
+                                {{/each}}
                             {{/layout-push}}
                         {{/layout-push}}
                     {{/layout-push}}
                 {{/layout-push}}
-            {{/modal.body}}
-        </div>
-    {{/bs-modal}}
-    {{#bs-modal open=editTeacherCard  onHidden=(action (mut editTeacherCard) false) as |modal|}}
-        <div class="edit-teacher-pop-ups">
-            {{#modal.body classNames=""}}
-                {{#layout-push direction="col"}}
-                    {{#layout-push direction="row" split=true classNames="pop-ups-head"}}
-                        <p class="pop-ups-head-title">添加班级老师</p>
-                        {{#layout-push direction="row"}}
-                            {{#bs-button onClick=(action modal.close) classNames="edit-teacher-cancel"}}取消{{/bs-button}}
-                            {{#bs-button type="success" classNames="edit-teacher-save" onClick=(action modal.submit) }}确定{{/bs-button}}
-                        {{/layout-push}}
-                    {{/layout-push}}
-                    {{#layout-push direction="row" classNames="card-wrap edit-teacher-list"}}
-                            <div class="line_container_warp tech_card_container" >
-                                {{tech-card }}
-                            </div>
-                    {{/layout-push}}
-                {{/layout-push}}
-            {{/modal.body}}
-        </div>
-    {{/bs-modal}}
+            {{/layout-push}}
+        {{/layout-push}}
+    {{/bm-modal-container}}
+
     {{#layout-push direction='row' mid=true}}
         <canvas id='arrangement' width="940" height="488"/>
     {{/layout-push}}
-
 {{/layout-push}}
 
 {{yield}}

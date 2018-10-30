@@ -1,0 +1,180 @@
+.detail_content_top {
+     height: 100%;
+}
+.detail_page {
+    padding: 24px;
+    margin-top: 14px;
+    .tech_info_card {
+        margin-right: 8px;
+        width: 296px;
+        min-height: 420px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .tech_info_base {
+            width: 128px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .tech_info_other {
+            margin-top: 42px;
+            display: flex;
+            flex-direction: column;
+            width: 296px;
+            .tech_info_other_list {
+                margin-left: 24px;
+                margin-bottom: 24px;
+                height: 20px;
+                line-height: 20px;
+                p {
+                    width: 56px;
+                    text-align: left;
+                    font-size: 14px;
+                    color: #6B778C;
+                    letter-spacing: -0.12px;
+                    text-align: left;
+                }
+                span {
+                    margin-left: 20px;
+                    font-size: 14px;
+                    color: #172B4D;
+                    letter-spacing: 2;
+                }
+            }
+
+        }
+    }
+    .tech_info_detail {
+        width: 100%;
+        padding: 0 24px;
+        .tech_info_area {
+            padding-top: 40px;
+            min-height: 192px;
+            border-bottom: 1px solid rgba(0,0,0,0.12);
+            p.period {
+                opacity: 0.7;
+                font-size: 14px;
+                color: #6B778C;
+            }
+            p {
+                margin-bottom: 24px;
+                margin-right: 16px;
+                min-width: 56px;
+                font-size: 14px;
+                color: #172B4D;
+            }
+            span {
+                margin-bottom: 24px;
+                font-size: 14px;
+                color: #172B4D;
+                letter-spacing: 1px;
+            }
+        }
+    }
+    .detail_head_name {
+        line-height: 32px;
+        font-size: 16px;
+        color: #172B4D;
+    }
+    .more_btn {
+        padding: 6px 26px;
+        height: 32px;
+        font-size: 14px;
+        color: #42526E;
+        text-align: center;
+        background: rgba(9,30,66,0.04);
+        border-radius: 3px;
+    }
+}
+.detail_panel {
+    @extend %detail_panel_basic;
+    padding: 21px 24px;
+    .detail_panel_img {
+        margin-bottom: 16px;
+        width: 128px;
+        height: 128px;
+        border-radius: 50%;
+    }
+    .detail_panel_role_name {
+        margin-bottom: 10px;
+        font-family: $font-href;
+        font-size: 24px;
+        color: #172B4D;
+        line-height: 28px;
+    }
+    .detail_panel_role_des {
+        height: 24px;
+        line-height: 24px;
+        font-family: $font-href;
+        font-size: 14px;
+        color: #6B778C;
+        letter-spacing: 1.71px;
+        img.sex-icon {
+            margin-right: 10px;
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+}
+/* 课程预约 */
+a.reserve_detail_href_ref {
+    font-family: PingFangSC-Medium;
+    font-size: 12px;
+    color: #3172E0;
+    line-height: 16px;
+}
+.detail_margin_top {
+    margin-top: 24px;
+}
+.reserve-detail-head {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .reserve-detail-btn {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .reserve-code-btn {
+        width: 32px;
+        height: 32px;
+        background-image: url('../images/icon_QR.png');
+        background-position: center;
+        background-size: cover;
+    }
+    .detail_panel_role_name {
+        font-family: PingFangSC-Medium;
+        font-size: 24px;
+        color: #172B4D;
+    }
+    p.detail_panel_role_num {
+
+        font-size: 14px;
+        color: #6B778C;
+        text-align: left;
+    }
+    .reserve-more-btn {
+        margin-right: 16px;
+        width: 32px;
+        height: 32px;
+        background: url('../images/btn_more_default@2x.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+.reserve-table-header {
+    margin-top: -20px;
+    background: #f7f8fa;
+    height: 40px;
+    font-family: PingFangSC-Regular;
+    font-size: 11px;
+    color: #6B778C;
+    span {
+        min-width: 140px;
+        max-width: 140px;
+        text-align: center;
+    }
+}

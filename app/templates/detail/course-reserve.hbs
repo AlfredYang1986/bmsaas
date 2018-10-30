@@ -4,23 +4,24 @@
 </div>
 <div class="detail_content_top">
     <div class="detail_page">
-        {{#link-to 'tech' class="detail_href_ref"}}
+        {{#link-to 'courseReserve' class="reserve_detail_href_ref"}}
             返回
         {{/link-to}}
-        <div class='detail_panel' >
-            {{#layout-push direction='row' split=true}}
+        <div class='detail_panel detail_margin_top' >
+            {{#layout-push direction='row' split=true classNames="reserve-detail-head"}}
                 {{#layout-push direction='col' mid=true }}
                     {{#layout-push direction='col'}}
-                        <span class="detail_panel_role_name">乐高机器人设计搭建课</span>
+                        <span class="detail_panel_role_name">{{model.res.course.name}}</span>
                         {{#layout-push direction='row'}}
-                            <span class="course_detail_panel_role_des">运动</span>
-                            <span class="course_detail_panel_role_des">跆拳道</span>
+                        <p class="detail_panel_role_num">累计预约人数&nbsp;&nbsp;{{reserve_number}}</p>
+                            {{!-- <span class="course_detail_panel_role_des">{{model.res.course.category.cat}}</span> --}}
+                            {{!-- <span class="course_detail_panel_role_des">{{model.res.course.category.sub}}</span> --}}
                         {{/layout-push}}
                     {{/layout-push}}
                 {{/layout-push}}
-                {{#layout-push direction="row"}}
-                    <button type="button" name="button" class="btn delete-course-btn">删除</button>
-                    {{#bs-button class="stud_qrcod_btn" onClick=(action (mut courseCode) true) classNames="course-code-btn"}}生成课程二维码{{/bs-button}}
+                {{#layout-push direction="row" classNames="reserve-detail-btn"}}
+                    <p class="reserve-more-btn"></p>
+                    {{#bs-button onClick=(action (mut courseCode) true) classNames="reserve-code-btn"}}{{/bs-button}}
                     <div local-class="modal-dialog">
                         {{#bs-modal open=courseCode onHidden=(action (mut courseCode) false) as |modal|}}
                             <div class="stud-modal">
@@ -38,48 +39,46 @@
                 {{/layout-push}}
             {{/layout-push}}
         </div>
-        <div class="detail_panel detail_panel_col_between" >
-            {{#layout-push direction='row'}}
-                    <div class="time-select today">
-                        <p>累计预约人数</p>
-                    </div>
-            {{/layout-push}}
-        </div>
-        <div class="detail_page table-header">
-            {{#layout-push direction='col'}}
-                {{#layout-push direction='row' split=true}}
-                    {{#each model as |item|}}
-                        <span>{{item.title}}</span>
-                    {{/each}}
-                {{/layout-push}}
-            {{/layout-push}}
-        </div>
-        <div class="inbox-table">
-            <div class="detail_page table-body">
-                    {{#layout-push direction='col'}}
-                        {{#layout-push direction='row' split=true}}
-                            <span class="email-status">已到</span>
-                            <span class="">08/03（周五）10:30</span>
-                            <span class="">北京朝阳区东外56号文创产业园111座</span>
-                            <span class="">王大槌</span>
-                            <span class="">184 9382 7483</span>
-                            {{#bs-button classNames="email-option" onClick=(action (mut modal3) true)}}<span>签到</span>{{/bs-button}}
-                        {{/layout-push}}
-                    {{/layout-push}}
+
+        <table class='ib_table_head'>
+            <tr>
+                {{#each model.title as |item|}}
+                    <th class='ib_table_item'>{{item.title}}</th>
+                {{/each}}
+            </tr>
+            {{#each model.res.reserve_records as |item|}}
+            <tr>
+                <td class='ib_table_content_item'>{{bmdobformat item.res_date}}</td>
+                <td class='ib_table_content_item'>{{item.yard.address}}</td>
+                <td class="ib_table_content_item">{{bmattendeename item}}</td>
+                <td class="ib_table_content_item">{{bmattendeecontact item}}</td>
+                <td class="ib_table_content_item">签到</td>
+            </tr>            
+            {{/each}}
+        </table>
+
+        {{#bs-modal open=reserveDetail onSubmit=(action "deleteDetail")  onHidden=(action (mut reserveDetail) false) as |modal|}}
+            <div class="course-reserve-pop-ups">
+                {{#modal.body classNames="course-reserve-modal-body"}}
+                    {{exper-detail-pop-ups}}
+                {{/modal.body}}
+                {{#modal.footer}}
+                  {{#bs-button onClick=(action modal.close) classNames="course-reserve-card-cancel"}}取消{{/bs-button}}
+                  {{!-- {{#bs-button type="success" classNames="course-reserve-card-delete" onClick=(action modal.submit)}}删除{{/bs-button}} --}}
+                {{/modal.footer}}
             </div>
-            <div class="detail_page table-body">
-                    {{#layout-push direction='col'}}
-                        {{#layout-push direction='row' split=true}}
-                            <span class="email-status">未到</span>
-                            <span class="">08/03（周五）10:30</span>
-                            <span class="">北京朝阳区东外56号文创产业园111座</span>
-                            <span class="">王大槌</span>
-                            <span class="">184 9382 7483</span>
-                            {{#bs-button classNames="email-option" onClick=(action (mut modal3) true)}}<span>取消签到</span>{{/bs-button}}
-                        {{/layout-push}}
-                    {{/layout-push}}
+        {{/bs-modal}}
+        {{!-- {{#bs-modal open=deleteDetail onHidden=(action (mut deleteDetail) false) as |modal|}}
+            <div class="detail-delete-pop-ups">
+                {{#modal.body classNames="detail-delete-modal-body"}}
+                    <p>您确定要删除该课程预约信息吗？</p>
+                {{/modal.body}}
+                {{#modal.footer}}
+                  {{#bs-button type="success" classNames="detail-delete-card-save"}}确定{{/bs-button}}
+                  {{#bs-button onClick=(action modal.close) classNames="course-delete-card-cancel"}}取消{{/bs-button}}
+                {{/modal.footer}}
             </div>
-        </div>
+        {{/bs-modal}} --}}
     </div>
 </div>
 {{outlet}}

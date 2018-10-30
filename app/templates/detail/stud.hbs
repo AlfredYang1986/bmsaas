@@ -1,15 +1,78 @@
-<div >
-    {{nav-top}}
-    {{left-menu}}
+<div>
+  {{nav-top}} {{left-menu}}
 </div>
 
-<div class="detail_content_top" >
-    <div class="detail_page" >
-        {{#link-to 'stud' class="detail_href_ref"}}
-            返回
-        {{/link-to}}
+<div class="detail_content_top">
+  <div class="detail_page">
+    <p class="detail_stud_nav">
+      {{#link-to 'stud' class="detail_href_ref" }}
+        学生 /
+      {{/link-to}}
+      <span>学生详情</span>
+    </p>
+    {{#layout-push direction='row' split=true class="detail_title" }}
+      <span class="title_text">学生详情</span>
+      {{#link-to 'edit.stud' model.stud.id classNames='detail_panel_edit_btn' }}
+        编辑
+      {{/link-to}}
+    {{/layout-push}}
+    {{#layout-push direction='row' split=true classNames='stud_detail' }}
+      <div class="basis_margin">
+        {{#layout-push direction='col' mid=true classNames='stud_detail_basis' }}
 
-        <div class='detail_panel' >
+          <p class="basis_name">{{model.stud.me.name}}</p>
+          {{#layout-push direction='row' mid=true}}
+            <span class="basis_sex_age">
+                  {{#if isFemale}}
+                      女♀
+                  {{else}}
+                      男♂
+                  {{/if}}
+                {{model.stud.me.age}}岁
+            </span>
+          {{/layout-push}}
+          {{#layout-push direction='row' mid=true classNames='basis_dob' }}
+            <span>出生日期  {{model.stud.me.dob}}</span>
+          {{/layout-push}}
+        {{/layout-push }}
+
+      </div>
+      {{#layout-push direction='col' mid=true classNames='stud_detail_other' }}
+        <div class="other_self">
+          {{#layout-push direction='row' mid=false classNames='self_container' }}
+            <span>昵称</span><span>{{model.stud.me.nickname}}</span>
+          {{/layout-push}}
+          {{#layout-push direction='row' mid=false classNames='self_container' }}
+            <span>绑定手机号</span><span>{{model.stud.me.contact}}</span>
+          {{/layout-push}}
+          {{#layout-push direction='row' mid=false classNames='self_container' }}
+            <span>就读学校</span><span>{{model.stud.school}}</span>
+          {{/layout-push}}
+          {{#layout-push direction='row' mid=false classNames='self_container' }}
+            <span>注册时间</span><span>{{model.stud.me.register_date}}</span>
+          {{/layout-push}}
+          <div class="line"></div>
+          <p class="parent_info">家长信息</p>
+          {{#layout-push direction='row' mid=false classNames='self_container' }}
+            <span>家长姓名</span><span>{{model.stud.guardian.me.name}}</span>
+          {{/layout-push}}
+          {{#layout-push direction='row' mid=false classNames='self_container' }}
+            <span>关系</span><span>{{model.stud.guardian.rs}}</span>
+          {{/layout-push}}
+          {{#layout-push direction='row' mid=false classNames='self_container' }}
+            <span>联系方式</span><span>{{model.stud.guardian.me.contact}}</span>
+          {{/layout-push}}
+          {{#layout-push direction='row' mid=false classNames='self_container' }}
+            <span>微信</span><span>{{model.stud.guardian.me.wechat}}</span>
+          {{/layout-push}}
+          {{#layout-push direction='row' mid=false classNames='self_container' }}
+            <span>地址</span><span>{{model.stud.guardian.address}}</span>
+          {{/layout-push}}
+        </div>
+
+      {{/layout-push }}
+    {{/layout-push }}
+    {{!-- <div class='detail_panel' >
             {{#layout-push direction='row' }}
                 {{#layout-push direction='col' mid=true classNames='detail_panel_img_right_margin'}}
                     <img src={{model.stud.me.icon}} class='detail_panel_img' />
@@ -69,7 +132,6 @@
                                 <span class='detail_panel_des_01'>出生日期</span>
                                 <span class='detail_panel_des_02'>
                                     {{model.stud.me.dob}}
-                                    {{!-- {{model.stud.me.dob.year}}-{{model.stud.me.dob.month}}-{{model.stud.me.dob.day}} --}}
                                 </span>
                             {{/layout-push}}
                             {{#layout-push direction='row' classNames='line_half detail_panel_des_underline'}}
@@ -182,8 +244,8 @@
                     {{/layout-push}}
                 {{/layout-push}}
             {{/layout-push}}
-        </div>
-    </div>
+        </div> --}}
+  </div>
 </div>
 
 {{outlet}}

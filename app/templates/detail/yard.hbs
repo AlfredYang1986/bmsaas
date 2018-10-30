@@ -5,11 +5,136 @@
 
 <div class="detail_content_top" >
     <div class="detail_page" >
-        {{#link-to 'yard' class="detail_href_ref"}}
-            返回
-        {{/link-to}}
+        {{#layout-push direction='col'}}
+            <div class="detail_yard_href">
+              {{#layout-push direction='row'}}
+                  {{#link-to 'yard' class="detail_href_ref_left"}}
+                      返回
+                  {{/link-to}}
+                  <span class="detail_href_ref_mid">
+                      /
+                  </span>
+                  <span class="detail_href_ref_right">
+                      场地详情
+                  </span>
+              {{/layout-push}}
+            </div>
+            <div class='detail_panel' >
+              {{#layout-push direction='row' split=true}}
+                  <span class="detail_yard_title_left">
+                      场地详情
+                  </span>
+                  <!-- {{#link-to 'edit.yard' model.yard.id classNames='detail_yard_title_btn'}}
+                      更多
+                  {{/link-to}} -->
+              {{/layout-push}}
+            </div>
 
-        <div class='detail_panel' >
+              {{#layout-push direction='row' split=true}}
+
+                  <div class="detail_panel detail_panel_col_between detail_yarn_panel_left">
+                    {{#layout-push direction='col' classNames='detail_yard_title_mid_panel'}}
+                        <span class='detail_yard_title_mid'>{{model.yard.title}}</span>
+                        <span class='detail_panel_ls_subheading'>{{model.yard.address}}</span>
+                    {{/layout-push}}
+
+                    <!-- <div class="line_conatainer_warp detail_card_container" >
+                        {{#each model.yard.imgs as |item|}}
+                            {{detail-card card=item}}
+                        {{/each}}
+                    </div> -->
+                    <!-- <div class="detail_yard_pintu" >
+                        {{#layout-push direction='row' }}
+                            <img src="../images/cover_pic_1.jpg" class="detail_yard_pintu_left" alt="Responsive image">
+                            {{#layout-push direction='col' }}
+                                <img src="../images/yard_01.jpg" class="detail_yard_pintu_top" alt="Responsive image">
+                                <div class="detail_yard_pintu_bottom" >
+                                    <a href="#" class="detail_yard_pintu_content">查看更多</a>
+                                </div>
+                            {{/layout-push}}
+                        {{/layout-push}}
+                    </div> -->
+                    <div class="detail_yard_pintu" >
+                        {{#layout-push direction='row' }}
+                            <img src={{bmgetyardimageurl model.yard.imgs namedArgs="left"}} class="detail_yard_pintu_left" alt="Responsive image">
+                            {{#layout-push direction='col' }}
+                                <img src={{bmgetyardimageurl model.yard.imgs namedArgs="top"}} class="detail_yard_pintu_top" alt="Responsive image">
+                                <div class="detail_yard_pintu_bottom" style="background: url({{bmgetyardimageurl model.yard.imgs namedArgs='bottom'}}) no-repeat;">
+                                    <a href="#" class="detail_yard_pintu_content">查看更多</a>
+                                </div>
+                            {{/layout-push}}
+                        {{/layout-push}}
+                    </div>
+
+                  </div>
+
+                  <div class="detail_panel detail_panel_col_between detail_yarn_panel_right">
+                    {{#layout-push direction='col'}}
+
+                        <div class="detail_yard_right_panel_layout">
+                          {{#layout-push direction="row" split=true}}
+                              <div class="v_end" >
+                                  <span class='detail_yard_title_left'>场地描述</span>
+                              </div>
+                          {{/layout-push}}
+                          {{#layout-push direction='col' classNames='detail_yard_title_mid_panel'}}
+                              {{#layout-push direction='row' split=true classNames='detail_yard_inner_content_line'}}
+                                  <span class='detail_inner_left'>
+                                      {{model.yard.description}}
+                                  </span>
+                              {{/layout-push}}
+                          {{/layout-push}}
+                        </div>
+
+                        <div class="detail_yard_right_panel_layout">
+                          {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
+                              <span class='detail_yard_title_left'>周边交通线路信息</span>
+                          {{/layout-push}}
+
+                          {{#layout-push direction='col' classNames='detail_yard_title_mid_panel'}}
+                              {{#layout-push direction='row' split=true classNames='detail_yard_inner_content_line'}}
+                                  <span class='detail_inner_left'>
+                                      {{model.yard.around}}
+                                  </span>
+                              {{/layout-push}}
+                          {{/layout-push}}
+                        </div>
+
+                        <div class="detail_yard_right_panel_layout">
+                          {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
+                              <span class='detail_yard_title_left'>场地设施</span>
+                          {{/layout-push}}
+
+                          {{#layout-push direction='col' classNames='detail_yard_title_mid_panel'}}
+                              {{#layout-push direction='row' split=true classNames='detail_yard_inner_content_line'}}
+                                  {{#each model.yard.facilities as |item|}}
+                                  <span class='detail_inner_left'>
+                                      {{item}}
+                                  </span>
+                                  {{/each}}
+                              {{/layout-push}}
+                          {{/layout-push}}
+                        </div>
+
+                        {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
+                            <span class='detail_yard_title_left'>场地资质认证</span>
+                        {{/layout-push}}
+
+                        <div class="line_conatainer_warp detail_card_container" >
+                            {{#each model.yard.qualifications as |item|}}
+                                {{detail-card card=item}}
+                            {{/each}}
+                        </div>
+
+                    {{/layout-push}}
+                  </div>
+
+
+              {{/layout-push}}
+
+        {{/layout-push}}
+
+        <!-- <div class='detail_panel detail_panel_col_between' >
             {{#layout-push direction='col' }}
                 <span class='detail_panel_ls_heading'>{{model.yard.title}}</span>
                 <span class='detail_panel_ls_subheading'>地址：{{model.yard.address}}</span>
@@ -26,7 +151,7 @@
             {{#layout-push direction='col'}}
                 {{#layout-push direction="row" split=true}}
                     <div class="v_end" >
-                        <span class='detail_panel_title'>场地描述</span> 
+                        <span class='detail_panel_title'>场地描述</span>
                     </div>
                     {{#link-to 'edit.yard' model.yard.id classNames='detail_panel_edit_btn'}}
                         编辑
@@ -43,7 +168,7 @@
             {{/layout-push}}
 
             {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
-                <span class='detail_panel_title'>周边交通线路信息</span> 
+                <span class='detail_panel_title'>周边交通线路信息</span>
             {{/layout-push}}
 
             {{#layout-push direction='col' classNames='detail_inner_panel'}}
@@ -55,7 +180,7 @@
             {{/layout-push}}
 
             {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
-                <span class='detail_panel_title'>场地图片</span> 
+                <span class='detail_panel_title'>场地图片</span>
             {{/layout-push}}
 
             <div class="line_conatainer_warp detail_card_container" >
@@ -65,7 +190,7 @@
             </div>
 
             {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
-                <span class='detail_panel_title'>场地设施</span> 
+                <span class='detail_panel_title'>场地设施</span>
             {{/layout-push}}
 
             {{#layout-push direction='col' classNames='detail_inner_panel'}}
@@ -79,7 +204,7 @@
             {{/layout-push}}
 
             {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
-                <span class='detail_panel_title'>场地资质认证</span> 
+                <span class='detail_panel_title'>场地资质认证</span>
             {{/layout-push}}
 
             <div class="line_conatainer_warp detail_card_container" >
@@ -87,7 +212,7 @@
                     {{detail-card card=item}}
                 {{/each}}
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 

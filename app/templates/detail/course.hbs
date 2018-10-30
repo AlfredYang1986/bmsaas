@@ -3,108 +3,110 @@
     {{left-menu}}
 </div>
 
-<div class="detail_content_top" >
-    <div class="detail_page" >
-        {{#link-to 'course' class="detail_href_ref"}}
+<section class='alt_course_selection'>
+    {{#layout-push direction='col' classNames='alt_course_container'}}
+        {{#link-to 'course' class="alt_href_link"}}
             返回
         {{/link-to}}
-
-        <div class='detail_panel' >
-            {{#layout-push direction='col' classNames="course_detail_head"}}
-                <span class='detail_panel_ls_heading'>{{model.course.name}}</span>
-                <p class='detail_panel_ls_subheading'>
-                    {{model.course.category.cat}}
-                    <span>{{model.course.category.sub}}</span>
-                </p>
-            {{/layout-push}}
-        </div>
-
-        <div class="detail_panel detail_panel_col_between" >
+        {{#layout-push direction='row' split=true classNames='alt_course_panel'}}
             {{#layout-push direction='col' mid=true}}
-                <span class='detail_panel_head'>课程详情</span>
+                <span class='alt_course_title'>课程详情</span>
             {{/layout-push}}
-        </div>
-
-        <div class="detail_panel detail_panel_col_between">
-            <div class="course-info">
-                {{#layout-push direction='row'  split=true classNames="line_conatainer_split"}}
-                {{#layout-push direction="row"}}
-                    <p>课程名称</p>
-                    <p>{{model.course.name}}</p>
-                {{/layout-push}}
-                {{#link-to 'edit.course' model.course.id classNames='course-info-change-btn'}}
+            {{#layout-push direction='col' mid=true}}
+                {{#link-to 'edit.course' model.course.id classNames='alt_course_btn'}}
                     编辑
                 {{/link-to}}
+            {{/layout-push}}
+        {{/layout-push}}
+        {{#layout-push direction='row' split=true}}
+            {{#layout-push direction='col' classNames='alt_course_left_panel'}}
+                {{#layout-push direction='col' classNames='alt_course_panel'}}
+                {{#layout-push direction='row' mid=true classNames='alt_course_deltail_title'}}
+                    {{model.course.name}}
                 {{/layout-push}}
-                {{#layout-push direction='row'}}
-                    <p>课程类别</p>
-                    <p>{{model.course.category.cat}}<span>{{model.course.category.sub}}</span></p>
+                {{#layout-push direction='row' mid=true classNames='alt_course_detail_cat'}}
+                    {{model.course.category.cat}}·{{model.course.category.sub}}
                 {{/layout-push}}
-                {{#layout-push direction='row'}}
-                    <p>适应年龄</p>
-                    <p>{{model.course.alb}}-{{model.course.aub}}</p>
-                    <p class="course-sub-title">分级/阶段<span>{{model.course.level}}</span></p>
+                {{#layout-push direction='row' mid=true classNames='alt_course_detail_line'}} 
+                    {{#layout-push direction='row' mid=true classNames='alt_course_detail_half'}}
+                        {{#layout-push direction='col' mid=true }}
+                            {{#layout-push direction='row' mid=true }}
+                                <span class='alt_course_detail_perperty'>{{model.course.alb}}-{{model.course.aub}} 岁</span>
+                            {{/layout-push}}
+                            {{#layout-push direction='row' mid=true }}
+                                <span class='alt_course_detail_perperty_des'>适应年龄</span>
+                            {{/layout-push}}
+                        {{/layout-push}}
+                    {{/layout-push}}
+                    {{#layout-push direction='row' mid=true classNames='alt_course_detail_half'}}
+                        {{#layout-push direction='col' mid=true }}
+                            {{#layout-push direction='row' mid=true }}
+                                <span class='alt_course_detail_perperty'>{{model.course.level}}</span>
+                            {{/layout-push}}
+                            {{#layout-push direction='row' mid=true }}
+                                <span class='alt_course_detail_perperty_des'>等级</span>
+                            {{/layout-push}}
+                        {{/layout-push}}
+                    {{/layout-push}}
                 {{/layout-push}}
-                {{#layout-push direction='row'}}
-                    <p>预计课时数</p>
-                    <p>{{model.course.count}}</p>
-                    <p class="course-sub-title">课程时长<span>{{model.course.length}} min</span></p>
+                <div class='alt_course_deatil_split_line'> </div>
+                {{#layout-push direction='row' mid=true classNames='alt_course_detail_line'}} 
+                    {{#layout-push direction='row' mid=true classNames='alt_course_detail_half'}}
+                        {{#layout-push direction='col' mid=true }}
+                            {{#layout-push direction='row' mid=true }}
+                                <span class='alt_course_detail_perperty'>{{model.course.count}} 课时</span>
+                            {{/layout-push}}
+                            {{#layout-push direction='row' mid=true }}
+                                <span class='alt_course_detail_perperty_des'>预计课时数</span>
+                            {{/layout-push}}
+                        {{/layout-push}}
+                    {{/layout-push}}
+                    {{#layout-push direction='row' mid=true classNames='alt_course_detail_half'}}
+                        {{#layout-push direction='col' mid=true }}
+                            {{#layout-push direction='row' mid=true }}
+                                <span class='alt_course_detail_perperty'>{{model.course.length}} 分钟</span>
+                            {{/layout-push}}
+                            {{#layout-push direction='row' mid=true }}
+                                <span class='alt_course_detail_perperty_des'>课程时长</span>
+                            {{/layout-push}}
+                        {{/layout-push}}
+                    {{/layout-push}}
                 {{/layout-push}}
-                {{#layout-push direction='row'}}
-                    <p>教育理念及模式</p>
+                {{/layout-push}}
+                <div class='alt_course_deatil_split_line'> </div>
+                
+                {{!-- {{#layout-push direction='row' mid=true class='alt_course_detail_gallery'}} --}}
+                    {{!-- <img src={{}} --}}
+                {{!-- {{/layout-push}} --}}
+            {{/layout-push}}
+
+            {{#layout-push direction='col' classNames='alt_course_panel alt_course_right_panel'}}
+                {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
+                    <span class='alt_right_panel_perperty_title'>教育理念和模式</span>
                     {{#layout-push direction='row'}}
                         {{#each model.course.tags as |item|}}
-                            <p class="course-info-feature">{{item}}</p>
+                            {{#layout-push direction='col' mid=true classNames='alt_course_detail_tag'}}
+                                {{item}}
+                            {{/layout-push}}
                         {{/each}}
                     {{/layout-push}}
                 {{/layout-push}}
-
-                {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
-                    <span class='detail_panel_title'>课程目标</span>
+                {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
+                    <span class='alt_right_panel_perperty_title'>课程目标</span>
+                    <span class='alt_right_panel_perperty_des'>{{model.course.target}}</span>
                 {{/layout-push}}
-                {{#layout-push direction='col' classNames='detail_inner_panel'}}
-                    {{#layout-push direction='col' classNames='detail_inner_content_line'}}
-                        <span class='detail_inner_left'>
-                            {{model.course.target}}
-                        </span>
-                    {{/layout-push}}
+                {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
+                    <span class='alt_right_panel_perperty_title'>课程计划</span>
+                    <span class='alt_right_panel_perperty_des'>{{model.course.planning}}</span>
                 {{/layout-push}}
-
-                {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
-                    <span class='detail_panel_title'>课程计划</span>
-                {{/layout-push}}
-                {{#layout-push direction='col' classNames='detail_inner_panel'}}
-                    {{#layout-push direction='col' classNames='detail_inner_content_line'}}
-                        <span class='detail_inner_list'>
-                            {{model.course.planning}}
-                        </span>
-                    {{/layout-push}}
+                {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
+                    <span class='alt_right_panel_perperty_title'>课程内容</span>
+                    <span class='alt_right_panel_perperty_des'>{{model.course.ccontent}}</span>
                 {{/layout-push}}
 
+            {{/layout-push}}
 
-                {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
-                    <span class='detail_panel_title'>课程内容</span>
-                {{/layout-push}}
-                {{#layout-push direction='col' classNames='detail_inner_panel'}}
-                    {{#layout-push direction='col' classNames='detail_inner_content_line'}}
-                        <span class='detail_inner_content'>
-                            {{model.course.ccontent}}
-                        </span>
-                    {{/layout-push}}
-                {{/layout-push}}
+        {{/layout-push}}
+    {{/layout-push}}
 
-                {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
-                    <span class='detail_panel_title'>课程图片</span>
-                {{/layout-push}}
-                <div class="line_conatainer_warp detail_card_container" >
-                    {{#each model.course.imgs as |item|}}
-                        {{detail-card card=item}}
-                    {{/each}}
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-{{outlet}}
+</section>

@@ -1,4 +1,4 @@
-{{#layout-push direction='row' split=true classNames='stud_card'}}
+{{!-- {{#layout-push direction='row' split=true classNames='stud_card'}}
     {{#layout-push direction='col' mid=true classNames='stud_card_content'}}
         {{#layout-push direction='col' midt=true }}
             {{#layout-push direction='row' classNames='stud_card_content_line'}}
@@ -10,8 +10,7 @@
                 <span class="stud_card_text">
                     {{#if isFemale}}
                         女
-                    {{/if}}
-                    {{#if isFemale}}
+                    {{else}}
                         男
                     {{/if}}
                 </span>
@@ -29,6 +28,28 @@
     {{#layout-push direction='col' mid=true }}
         <img class="stud_card_icon" src="../images/stud-normal.png" />
     {{/layout-push }}
+{{/layout-push }} --}}
+
+{{#layout-push direction='col' mid=true classNames='stud_card' }}
+  {{#layout-push direction='row' split=true}}
+    <span class="stud_card_name">{{stud.me.name}}</span>
+    <span class="stud_card_other">
+        <span class="stud_card_other_sex">
+            {{#if isFemale}}
+                女♀
+            {{else}}
+                男♂
+            {{/if}}
+        </span>
+    <span class="stud_card_other_age">{{stud.me.age}}岁</span>
+    </span>
+  {{/layout-push}}
+  {{#layout-push direction='row' split=false}}
+    <img src="../images/icon_phone@2x.png" alt="" class="tel_icon"><span class="stud_card_phone">{{stud.me.contact}}</span>
+  {{/layout-push}}
+  {{#layout-push direction='row' split=true}}
+    <span></span><span class="stud_card_from">来自小程序</span>
+  {{/layout-push}}
 {{/layout-push }}
 
 {{yield}}
