@@ -1,12 +1,17 @@
 .detail_container {
     font-family: $font-brand;
-
-    .pre_href {
+    .detail_href_ref {
         font-size: 12px;
-        color: #6B778C;
         line-height: 16px;
     }
+    .pre_href {
+        color: #6B778C;
+    }
+    .next_href {
+        color: #3172E0;
+    }
     .detail_exper_nav {
+        margin-top: 24px;
         padding: 24px;
         .detail_panel_role_name {
             margin: 0;

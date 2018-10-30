@@ -5,7 +5,13 @@
 <div class="detail_content_top detail_container">
     <div class="detail_page">
         {{#link-to 'experienceOpen' class="detail_href_ref pre_href"}}体验开放 /{{/link-to}}
-        {{#link-to 'detail.experience' model.act.id class="detail_href_ref"}} 场次安排{{/link-to}}
+        {{#link-to 'detail.experience' model.act.id class="detail_href_ref next_href"}}
+            {{#if sessionArrange}}
+                场次安排
+            {{else}}
+                体验详情
+            {{/if}}
+        {{/link-to}}
         <div class='detail_panel detail_exper_nav' >
             {{#layout-push direction='row' split=true}}
                 {{#layout-push direction='col' mid=true }}
