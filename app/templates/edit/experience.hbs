@@ -20,23 +20,23 @@
 </ul> --}}
 
 {{#layout-push direction="col" classNames="experience_nav"}}
-    {{#layout-push direction="row" split=true classNames="text-center"}}
-        <span class="">体验开放</span>
+    {{#layout-push direction="row" split=true classNames="experience_header text-center"}}
+        <span class="experience_title">体验开放</span>
         <span>
-            {{#link-to 'detail.experience' model.act.id class="nav_cancel_btn menu_button_between"}}
+            {{#link-to 'detail.experience' model.act.id class="experience_canel_btn"}}
                 取消
             {{/link-to}}
-            {{#bs-button class="nav_save_btn menu_button_between" onClick=(action (mut modal4) true)}}保存{{/bs-button}}
+            {{#bs-button class="experience_commit_btn" onClick=(action (mut modal4) true)}}提交{{/bs-button}}
         </span>
     {{/layout-push}}
 {{/layout-push}}
 
 <ul class="edit_left_bar">
-    <li class="left_bar_item" >
+    {{!-- <li class="left_bar_item" >
         <div class="edit_left_menu_mid menu_margin_right ">
             <a class="edit_left_menu_title" href="#kid-info" {{action 'selectClass' argument}}>活动体验描述</a>
         </div>
-    </li>
+    </li> --}}
 
     <li class="left_bar_item" >
         <div class="edit_left_menu_mid menu_margin_right">

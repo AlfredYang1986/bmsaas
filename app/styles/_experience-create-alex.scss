@@ -5,4 +5,34 @@
     height: 64px;
     background-color: #FFF;
     box-shadow: 2px 2px 6px 0 #CAD5E1;
+
+    .experience_header {
+        line-height: 64px;
+        padding: 0 24px;
+        .experience_title {
+            font-family: $font-brand;
+            font-size: 24px;
+            color: #172B4D;
+        }
+        .experience_canel_btn {
+            font-family: $font-brand;
+            font-size: 14px;
+            color: #42526E;
+            letter-spacing: 2px;
+            background: #FFFFFF;
+            border-radius: 4px;
+            padding: 7px 24px;
+        }
+        .experience_commit_btn {
+            font-family: $font-brand;
+            font-size: 14px;
+            color: #FFFFFF;
+            letter-spacing: 2px;
+            background: #6E7CD4;
+            border: 1px solid #6E7CD4;
+            border-radius: 4px;
+            padding: 7px 24px;
+        }
+    }
+    
 }
