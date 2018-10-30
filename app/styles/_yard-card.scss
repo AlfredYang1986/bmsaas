@@ -11,19 +11,16 @@
     margin-right: 24px;
     margin-bottom: 16px;
 
-    // padding: 16px;
-
     .yard_card_content {
         padding: 16px 12px;
     }
 
     .yard_card_content_line {
-        // margin: 8px 0;
 
         .yard_card_title {
-            font-family: $font-brand;
+            font-family: "Arial";
+            font-weight: 600;
             font-size: 14px;
-            color: #767A80;
             letter-spacing: 2px;
         }
 
@@ -32,7 +29,6 @@
             font-size: 12px;
             color: #767A80;
             letter-spacing: 1.58px;
-
             margin-top: 8px;
         }
     }
