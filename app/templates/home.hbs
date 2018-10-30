@@ -3,6 +3,14 @@
     {{nav-top}}
     {{left-menu}}
     <div class="dd_content_top">
+        <div class="dd_container dd_container_margin">
+            {{#layout-push direction="row" split=true classNames="brand_panel_head"}}
+                <p class="brand_panel_head_title">品牌主页</p>
+                <a href="edit/brand" class="edit_brand">编辑</a>
+            {{/layout-push}}
+        </div>
+    </div>
+    <div class="dd_content dd_content_margin_top">
         <div class="dd_container dd_container_margin" >
             {{#layout-push direction='row' classNames="brand_panel"}}
                 {{#layout-push direction='col' mid=true}}

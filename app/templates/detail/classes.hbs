@@ -117,13 +117,13 @@
                                 <p>共 30 节</p>
                                 <p>共 60 课时</p>
                             {{/layout-push}}
-                            {{#each model.courseList as |item|}}
+                            {{#each session_lst as |item index|}}
                                 {{#layout-push direction="row" split=true classNames="class-course-list"}}
                                     {{#layout-push direction="row" }}
-                                        <p>{{item.courseRank}}</p>
-                                        <p>{{item.data}} &nbsp;&nbsp; {{item.week}}&nbsp;&nbsp;{{item.time}}</p>
+                                        <p>第{{index}}节</p>
+                                        <p>{{bmnormaldate item.start_date}} &nbsp;&nbsp; {{bmnormalweekday item.start_date}}&nbsp;&nbsp;{{item.time}}</p>
                                     {{/layout-push}}
-                                    <p>{{item.teacherName}}</p>
+                                    <p>{{item.tech.me.name}}</p>
                                 {{/layout-push}}
                             {{/each}}
                         {{/layout-push}}

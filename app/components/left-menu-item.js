@@ -10,7 +10,6 @@ export default Component.extend({
     positionalParams: ['icon', 'title', 'expendable'],
     actions: {
         toggle2() {
-            console.log(111)
             this.sendAction('toggle2');
             if (this.get('title') == "管理") {
                 if(this.manageClick) {

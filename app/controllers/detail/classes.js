@@ -22,7 +22,13 @@ export default Controller.extend({
         return this.mock_data.queryAllStud();
     }),
     studid_lst: A(),
-    
+  
+    refresh_token: "start-token",
+    session_lst: computed('refresh_token', function(){
+        let tmp = this.model.cls.session;
+        return tmp.sortBy('start_date');
+    }),
+
     arrangeClass: true,
     classDetails: false,
     traineesLists: false,

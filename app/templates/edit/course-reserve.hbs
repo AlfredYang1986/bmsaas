@@ -4,26 +4,10 @@
     </li>
     <li class="nav-item menu_mid">
         <div class="menu_container">
-            {{#link-to 'home' class="nav_cancel_btn menu_button_between"}}
+            {{#link-to 'courseReserve' class="nav_cancel_btn menu_button_between"}}
                 取消
             {{/link-to}}
-            {{#bs-button type="success" classNames="nav_save_btn menu_button_between" onClick=(action (mut saveInfo) true) }}添加{{/bs-button}}
-            {{#bs-modal open=saveInfo onHidden=(action (mut saveInfo) false) as |modal|}}
-                <div class="course-reserve-pop-ups">
-                    {{#modal.body classNames="course-reserve-success"}}
-                        {{#layout-push direction=row classNames="success-info"}}
-                            <img src="../images/success.png" alt="">
-                            {{#layout-push direction=col}}
-                                <p>添加成功！该课程已在小程序中显示，可被用戶申请预约。 </p>
-                                <p>您可在收件箱查看新的预约报名消息。</p>
-                            {{/layout-push}}
-                        {{/layout-push}}
-                    {{/modal.body}}
-                    {{#modal.footer}}
-                      {{#bs-button type="success" classNames="course-reserve-card-save" onClick=(action 'addReserveCourseBtnClicked')}}确定{{/bs-button}}
-                    {{/modal.footer}}
-                </div>
-            {{/bs-modal}}
+            {{#bs-button type="success" classNames="nav_save_btn menu_button_between" onClick=(action (mut savedlg) true) }}添加{{/bs-button}}
         </div>
     </li>
 </ul>
@@ -84,5 +68,39 @@
         {{/layout-push}}
     </div>
 </section>
+
+{{#bm-modal-container mswitch=savedlg
+        successbtncss='course-reserve-card-save'  
+        cancelbtncss='course-reserve-card-cancel'
+        canceltext='取消'
+        onCancelBtnClicked=(action 'cancelHandled')  
+        onSuccessBtnClicked=(action 'successHandled')}}
+
+    {{#layout-push direction=row classNames="success-info"}}
+        <img src="../images/success.png" alt="">
+        {{#layout-push direction=col}}
+            <p>添加成功！该课程已在小程序中显示，可被用戶申请预约。 </p>
+            <p>您可在收件箱查看新的预约报名消息。</p>
+        {{/layout-push}}
+    {{/layout-push}}
+
+{{/bm-modal-container}}
+
+{{!-- {{#bs-modal open=saveInfo onHidden=(action (mut saveInfo) false) as |modal|}}
+    <div class="course-reserve-pop-ups">
+        {{#modal.body classNames="course-reserve-success"}}
+            {{#layout-push direction=row classNames="success-info"}}
+                <img src="../images/success.png" alt="">
+                {{#layout-push direction=col}}
+                    <p>添加成功！该课程已在小程序中显示，可被用戶申请预约。 </p>
+                    <p>您可在收件箱查看新的预约报名消息。</p>
+                {{/layout-push}}
+            {{/layout-push}}
+        {{/modal.body}}
+        {{#modal.footer}}
+            {{#bs-button type="success" classNames="course-reserve-card-save" onClick=(action 'addReserveCourseBtnClicked')}}确定{{/bs-button}}
+        {{/modal.footer}}
+    </div>
+{{/bs-modal}} --}}
 
 {{outlet}}
