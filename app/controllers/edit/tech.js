@@ -10,6 +10,14 @@ export default Controller.extend({
         if (this.tech_gender == 0) return '女';
         else return '男';
     }),
+    tech_gender_male: computed('tech_gender', function(){
+        if (this.tech_gender == 0) return false;
+        else return true;
+    }),
+    tech_gender_female: computed('tech_gender', function(){
+        if (this.tech_gender == 0) return true;
+        else return false;
+    }),
     tech_homeland: '',
     tech_contact: '',
     tech_address: '',
@@ -21,11 +29,16 @@ export default Controller.extend({
     ca_name:'',
 
     isPushing: false,
-
+    tech_name_length: computed('tech_name', function() {
+        return this.get('tech_name').length;
+    }),
+    tech_nickname_length: computed('tech_nickname', function() {
+        return this.get('tech_nickname').length;
+    }),
     actions: {
         saveTechBtnClicked() {
             console.log('save tech editing');
-            
+
             if (!this.techValidate()) {
                 alert('必填项不能为空！');
                 return;
