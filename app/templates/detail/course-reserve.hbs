@@ -21,7 +21,8 @@
                 {{/layout-push}}
                 {{#layout-push direction="row" classNames="reserve-detail-btn"}}
                     <p class="reserve-more-btn"></p>
-                    {{#bs-button onClick=(action (mut courseCode) true) classNames="reserve-code-btn"}}{{/bs-button}}
+                    {{!-- {{#bs-button onClick=(action (mut courseCode) true) classNames="reserve-code-btn"}}{{/bs-button}} --}}
+                    {{#bs-button classNames="reserve-code-btn"}}{{/bs-button}} 
                     <div local-class="modal-dialog">
                         {{#bs-modal open=courseCode onHidden=(action (mut courseCode) false) as |modal|}}
                             <div class="stud-modal">
@@ -53,7 +54,7 @@
                 <td class="ib_table_content_item">{{bmattendeename item}}</td>
                 <td class="ib_table_content_item">{{bmattendeecontact item}}</td>
                 <td class="ib_table_content_item">签到</td>
-            </tr>            
+            </tr>
             {{/each}}
         </table>
 
