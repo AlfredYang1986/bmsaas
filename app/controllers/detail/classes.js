@@ -22,7 +22,7 @@ export default Controller.extend({
         return this.mock_data.queryAllStud();
     }),
     studid_lst: A(),
-  
+
     refresh_token: "start-token",
     session_lst: computed('refresh_token', function(){
         let tmp = this.model.cls.session;
@@ -114,6 +114,9 @@ export default Controller.extend({
                 this.studid_lst = this.studid_lst.removeObject(studid);
             }
         },
+        courseClicked(idx) {
+            this.transitionToRoute('detail.course', idx);
+        },
     },
     arrangedDate: computed(function(){
         if (this.model.cls != null || this.model.cls.get('start_date') == null) {
@@ -121,7 +124,7 @@ export default Controller.extend({
         } else {
             let s = this.model.cls.get('start_date');
             let e = this.model.cls.get('end_date');
-            return s.getFullYear() + '/' + (s.getMonth() + 1) + '/' + s.getDate() + 
+            return s.getFullYear() + '/' + (s.getMonth() + 1) + '/' + s.getDate() +
                 ' ---- ' + e.getFullYear() + '/' + (e.getMonth() + 1) + '/' + e.getDate()
         }
     }),

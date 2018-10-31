@@ -2,8 +2,9 @@
 {{#if isSetActivity}}
     {{#layout-push classNames='experience_card'}}
         {{#layout-push classNames='experience_card_background'}}
+            <img src={{activity.cover}} class='experience_card_img' />
             {{#layout-push classNames="apply-num" }}
-                <p>开放场次{{periodCount}}</p>
+                <p>开放{{periodCount}}个场次</p>
             {{/layout-push}}
         {{/layout-push}}
         {{#layout-push direction='col' mid=true classNames='experience_card_content'}}

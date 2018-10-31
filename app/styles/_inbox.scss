@@ -86,13 +86,62 @@
     width: 714px;
     height: auto;
     background: #fff;
+    .class-modal-content {
+      margin: 64px 48px 48px;
+
+      img {
+        margin-top: 20px;
+        margin-right: 48px;
+        width: 80px;
+        height: 80px;
+      }
+
+      .success-info {
+        width: 250px;
+      }
+
+      p {
+        margin: 20px 0;
+        font-size: 14px;
+        color: #888b8f;
+        letter-spacing: 1.4px;
+        line-height: 20px;
+      }
+
+      p.class-modal-title {
+        color: #7788d4;
+      }
+    }
+    .success-info {
+        padding-left: 58px;
+        padding-right: 45px;
+        height: 323px;
+        width: 580px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        img {
+            margin-bottom: 20px;
+            margin-right: 25px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+        p {
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #767A80;
+            letter-spacing: 3.43px;
+        }
+    }
     .course-reserve-modal-title {
         height: 50px;
-        background:#eff1f9;
+        background:#fff;
         p.modal-title {
-            font-size: 18px;
-            color: #767A80;
-            letter-spacing: 2.57px;
+            font-family: PingFangSC-Medium;
+            font-size: 16px;
+            color: #172B4D;
         }
     }
     .course-reserve-success {
@@ -123,10 +172,15 @@
         }
     }
     .course-reserve-modal-body {
-        padding-left: 35px;
-        padding-right: 45px;
-        padding-top: 27px;
+        padding: 24px 10px;
         .course-reserve-content {
+            p.course-point {
+                margin-bottom: 24px;
+                font-family: PingFangSC-Regular;
+                font-size: 14px;
+                color: #6B778C;
+                text-align: left;
+            }
             p {
                 font-size: 14px;
                 color: #767A80;
@@ -136,19 +190,74 @@
                 margin-right: 25px;
                 margin-bottom: 28px;
                 font-weight: bold;
+                font-family: PingFangSC-Medium;
+                font-size: 14px;
+                color: #172B4D;
             }
             p.course-reserve-label {
                 margin-bottom: 25px;
-                margin-right: 70px;
+                margin-right: 16px;
                 min-width: 60px;
-                text-align: center;
+                text-align: left;
+                font-family: PingFangSC-Medium;
+                font-size: 14px;
+                color: #172B4D;
+            }
+            .partner-name {
+                font-family: PingFangSC-Medium;
+                font-size: 14px;
+                color: #172B4D;
+                margin-right: 38px;
+                margin-bottom: 16px;
+            }
+            .partner-sex {
+                margin-right: 32px;
+                margin-bottom: 16px;
+                font-family: PingFangSC-Regular;
+                font-size: 14px;
+                color: #6B778C;
+                text-align: left;
+            }
+            .partner-age {
+                font-family: SFUIText-Regular;
+                font-size: 14px;
+                color: #6B778C;
+                text-align: left;
+            }
+            .partner-tel {
+                margin-bottom: 10px;
+                font-family: PingFangSC-Regular;
+                font-size: 14px;
+                color: #172B4D;
+                text-align: left;
+            }
+            .partner-points {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+            }
+            .partner-point {
+                font-family: PingFangSC-Regular;
+                font-size: 11px;
+                color: #6B778C;
+            }
+            .partner-card {
+                margin-top: 20px;
+                margin-right: 10px;
+                padding: 16px;
+                width: 200px;
+                height: 116px;
+                background: #fff;
+                border: 0 solid rgba(9,30,66,0.12);
+                box-shadow: 0 1px 1px 0 rgba(9,30,66,0.31);
+                border-radius: 4px;
             }
             .course-reserve-btn {
                 margin-right: 25px;
                 width: 100px;
                 height: 35px;
-                background: #6E7CD4;
-                border: 1px solid #6E7CD4;
+                background: #80AEFF;
+                border: 1px solid  #80AEFF;
                 border-radius: 4px;
                 font-size: 14px;
                 color: #FFFFFF;
@@ -159,12 +268,11 @@
                 margin-right: 25px;
                 width: 100px;
                 height: 35px;
-                background: #fff;
-                border: 1px solid #6E7CD4;
+                background: #e9ebee;
+                border: 1px solid #e9ebee;
                 border-radius: 4px;
                 font-size: 14px;
-                color: #6E7CD4;
-                letter-spacing: 2px;
+                color: #6B778C;
                 text-align: center;
             }
             .course-reserve-modal-select {
@@ -198,19 +306,19 @@
     .course-reserve-card-cancel {
         width: 100px;
         height: 35px;
-        border: 1px solid #6E7CD4;
+        border: 1px solid#80AEFF;
         border-radius: 3px;
         background: #fff;
         font-size: 14px;
-        color: #6E7CD4;
+        color: #80AEFF;
         letter-spacing: 2px;
     }
     .course-reserve-card-save {
         width: 100px;
         height: 35px;
-        border: 1px solid #6E7CD4;
+        border: 1px solid #80AEFF;
         border-radius: 3px;
-        background: #6E7CD4;
+        background: #80AEFF;
         font-size: 14px;
         color: #fff;
         letter-spacing: 2px;
@@ -282,6 +390,7 @@
         max-width: 200px;
 
         .ib_table_content_btn {
+            border: none;
             background: #80AEFF;
             border-radius: 4px;
             padding: 6px 26px;

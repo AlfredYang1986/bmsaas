@@ -86,6 +86,11 @@ p {
 }
 
 .selected_tech {
-    color: red;
-    border: 1px solid black;
+    margin-right: 5px;
+    border: 1px solid #80AEFF;
+    .tech-card {
+        background: #80AEFF;
+    }
+    background-color: #80AEFF;
+    border-radius: 4px;
 }
