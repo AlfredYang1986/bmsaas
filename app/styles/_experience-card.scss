@@ -16,13 +16,27 @@
     .experience_card_background {
         width: 191px;
         height: 187.6px;
-        background: url('../images/cover_pic_2.jpeg');
+        // background: url('../images/cover_pic_2.jpeg');
+
+        position: relative;
     }
-    
+   
+    .experience_card_img {
+        position: absolute;
+
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
     .apply-num {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        // display: flex;
+        // flex-direction: row;
+        // justify-content: flex-end;
         p {
             width: 92px;
             height: 28px;

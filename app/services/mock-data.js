@@ -529,25 +529,31 @@ export default Service.extend({
         alb: 3,
         aub: 9,
         length: 90,
-        description: '辟邪剑法，独霸一方，欲练神功，必先自宫',
-        planning: '集体统一切小鸡鸡',
-        ccontent: '看孩子切',
+        description: '辟邪剑法，独霸一方，独孤九剑，无招胜有招',
+        planning: '天下武功，唯快不破，如何能快，无非料敌先机，后发先至尔',
+        ccontent: '化无法为有法，以有限为为无限，是以武术最高境界',
         gains: ['绝世武功', '天下第一'],
-        cover: '../images/cover_pic_2.jpeg',
+        cover: '../images/img_act_tmp_00.jpg',
         offered: ['咖啡'],
         needed: ['衣服'],
         notice: '消息提醒'
       })
       let act_img_01_01 = this.store.createRecord('bmtagimg', {
         id: 'i am act img 01 01',
-        img_src: '../images/cover_pic_2.jpeg',
-        img_tag: '扯鸡巴蛋'
+        img_src: '../images/img_act_tmp_01.jpg',
+        img_tag: '图片01'
       })
       let act_img_01_02 = this.store.createRecord('bmtagimg', {
         id: 'i am act img 01 02',
-        img_src: '../images/cover_pic_2.jpeg',
-        img_tag: '扯鸡巴蛋'
+        img_src: '../images/img_act_tmp_02.jpg',
+        img_tag: '图片02'
       })
+      // let act_img_01_03 = this.store.createRecord('bmtagimg', {
+      //   id: 'i am act img 01 03',
+      //   img_src: '../images/img_act_tmp_02.jpg',
+      //   img_tag: '扯鸡巴蛋'
+      // })
+
       act_01.set('imgs', A([act_img_01_01, act_img_01_02]))
       let fee_01 = this.store.createRecord('bmprice', {
         id: 'i am price 01',
@@ -588,23 +594,29 @@ export default Service.extend({
         length: 90,
         description: '麒麟岂是池中物，一遇风云便化龙，九霄龙吟惊天变，风云际会浅水游。',
         planning: '天霜拳，排云掌，风神腿',
-        ccontent: '看孩子切',
+        ccontent: '和孩子一起练，三分归元气',
         gains: ['绝世武功', '天下第一'],
-        cover: '../images/cover_pic_2.jpeg',
+        cover: '../images/img_act_tmp_01.jpg',
         offered: ['咖啡'],
         needed: ['衣服'],
         notice: '消息提醒'
       })
       let act_img_02_01 = this.store.createRecord('bmtagimg', {
         id: 'i am act img 02 01',
-        img_src: '../images/cover_pic_2.jpeg',
-        img_tag: '扯鸡巴蛋'
+        img_src: '../images/img_act_tmp_01.jpg',
+        img_tag: '图片01'
       })
       let act_img_02_02 = this.store.createRecord('bmtagimg', {
         id: 'i am act img 02 02',
-        img_src: '../images/cover_pic_2.jpeg',
-        img_tag: '扯鸡巴蛋'
+        img_src: '../images/img_act_tmp_00.jpg',
+        img_tag: '图片00'
       })
+      // let act_img_02_03 = this.store.createRecord('bmtagimg', {
+      //   id: 'i am act img 02 03',
+      //   img_src: '../images/img_act_tmp_02.jpeg',
+      //   img_tag: '扯鸡巴蛋'
+      // })
+
       act_02.set('imgs', A([act_img_02_01, act_img_02_02]))
       let fee_02 = this.store.createRecord('bmprice', {
         id: 'i am price 02',
