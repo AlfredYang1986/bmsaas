@@ -22,61 +22,61 @@
             <div class="edit_left_menu_mid menu_margin_right ">
                 <a class={{if (eq selectNav 0) 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} {{action (mut selectNav) 0}}>体验类别</a>
             </div>
-        </li> 
+        </li>
 
         <li class="left_bar_item" >
             <div class="edit_left_menu_mid menu_margin_right ">
                 <a class={{if (eq selectNav 1) 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} {{action (mut selectNav) 1}}>基本信息</a>
             </div>
-        </li> 
+        </li>
 
         <li class="left_bar_item" >
             <div class="edit_left_menu_mid menu_margin_right ">
                 <a class={{if (eq selectNav 2) 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} {{action (mut selectNav) 2}}>内容介绍</a>
             </div>
-        </li> 
+        </li>
 
         <li class="left_bar_item" >
             <div class="edit_left_menu_mid menu_margin_right ">
                 <a class={{if (eq selectNav 3) 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} {{action (mut selectNav) 3}}>与孩子互动</a>
             </div>
-        </li> 
+        </li>
 
         <li class="left_bar_item" >
             <div class="edit_left_menu_mid menu_margin_right ">
                 <a class={{if (eq selectNav 4) 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} {{action (mut selectNav) 4}}>宝贝将获得</a>
             </div>
-        </li> 
+        </li>
 
         <li class="left_bar_item" >
             <div class="edit_left_menu_mid menu_margin_right ">
                 <a class={{if (eq selectNav 5) 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} {{action (mut selectNav) 5}}>体验图片</a>
             </div>
-        </li> 
+        </li>
 
         <li class="left_bar_item" >
             <div class="edit_left_menu_mid menu_margin_right ">
                 <a class={{if (eq selectNav 6) 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} {{action (mut selectNav) 6}}>您提供的东西</a>
             </div>
-        </li> 
+        </li>
 
         <li class="left_bar_item" >
             <div class="edit_left_menu_mid menu_margin_right ">
                 <a class={{if (eq selectNav 7) 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} {{action (mut selectNav) 7}}>参与者需自带</a>
             </div>
-        </li> 
+        </li>
 
         <li class="left_bar_item" >
             <div class="edit_left_menu_mid menu_margin_right ">
                 <a class={{if (eq selectNav 8) 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} {{action (mut selectNav) 8}}>须知</a>
             </div>
-        </li> 
+        </li>
 
         <li class="left_bar_item" >
             <div class="edit_left_menu_mid menu_margin_right ">
                 <a class={{if (eq selectNav 9) 'edit_left_menu_title nav-active' 'edit_left_menu_title'}} {{action (mut selectNav) 9}}>费用说明</a>
             </div>
-        </li> 
+        </li>
     </ul>
     {{#if (eq selectNav 0)}}
         <section id="select-class" class="line_container_mid edit_page_top_margin">
@@ -120,7 +120,7 @@
                     {{/if}}
                 {{/layout-push}}
                 {{#layout-push classNames="text-right"}}
-                    <button class="nav_save_btn menu_button_between" {{action 'sortNext'}}>完成</button>
+                    <p class="nav_save menu_button_between" {{action 'sortNext'}}>下一步</p>
                 {{/layout-push}}
             </div>
         </section>
@@ -135,7 +135,7 @@
                         <p class="experience-class-title text-sub">标题应该简短、具描述性、激动人心</p>
                     {{/layout-push}}
                     {{bm-edit-line title="名称" isNeeded=true maxCount=20 inputVal=act_name }}
-                    
+
                     {{#layout-push direction="col" classNames="exper-age"}}
                         {{#bm-edit-line title="体验时常" isNeeded=true maxCount=3 classNames='line_half duration' inputVal=act_length group='append'}}
                             <span class="edit_text_field_group">分钟</span>
@@ -156,12 +156,12 @@
                                 无年龄限制
                             </p>
                         </div>
-                        
+
                     {{/layout-push}}
                 {{/layout-push}}
                 <p>&nbsp;</p>
                 {{#layout-push classNames="text-right"}}
-                    <button class="nav_save_btn menu_button_between" {{action 'titleNext'}}>完成</button>
+                    <p class="nav_save  menu_button_between" {{action 'titleNext'}}>下一步</p>
                 {{/layout-push}}
             </div>
         </section>
@@ -206,7 +206,7 @@
                 {{/layout-push}}
                 <p>&nbsp;</p>
                 {{#layout-push classNames="text-right"}}
-                    <button class="nav_save_btn menu_button_between" {{action 'contentNext'}}>完成</button>
+                    <p class="nav_save menu_button_between" {{action 'contentNext'}}>下一步</p>
                 {{/layout-push}}
             </div>
         </section>
@@ -236,7 +236,7 @@
                 {{/layout-push}}
                 <p>&nbsp;</p>
                 {{#layout-push classNames="text-right"}}
-                    <button class="nav_save_btn menu_button_between" {{action 'interactiveNext'}}>完成</button>
+                    <p class="nav_save  menu_button_between" {{action 'interactiveNext'}}>下一步</p>
                 {{/layout-push}}
             </div>
         </section>
@@ -260,7 +260,7 @@
                 {{/layout-push}}
                 <p>&nbsp;</p>
                 {{#layout-push classNames="text-right"}}
-                    <button class="nav_save_btn menu_button_between" {{action 'rewardNext'}}>完成</button>
+                    <p class="nav_save  menu_button_between" {{action 'rewardNext'}}>下一步</p>
                 {{/layout-push}}
             </div>
         </section>
@@ -331,7 +331,7 @@
                 {{/layout-push}}
                 <p>&nbsp;</p>
                 {{#layout-push classNames="text-right"}}
-                    <button class="nav_save_btn menu_button_between" {{action 'addPhotosNext'}}>完成</button>
+                    <p class="nav_save  menu_button_between" {{action 'addPhotosNext'}}>下一步</p>
                 {{/layout-push}}
             </div>
         </section>
@@ -356,7 +356,7 @@
                 {{/layout-push}}
                 <p>&nbsp;</p>
                 {{#layout-push classNames="text-right"}}
-                    <button class="nav_save_btn menu_button_between" {{action 'offerGoodsNext'}}>下一步</button>
+                    <p class="nav_save  menu_button_between" {{action 'offerGoodsNext'}}>下一步</p>
                 {{/layout-push}}
             </div>
         </section>
@@ -380,7 +380,7 @@
                 {{/layout-push}}
 
                 {{#layout-push classNames="text-right"}}
-                    <button class="nav_save_btn menu_button_between" {{action 'comeWithNext'}}>完成</button>
+                    <p class="nav_save  menu_button_between" {{action 'comeWithNext'}}>下一步</p>
                 {{/layout-push}}
             </div>
         </section>
@@ -404,7 +404,7 @@
                 {{/layout-push}}
 
                 {{#layout-push classNames="text-right"}}
-                    <button class="nav_save_btn menu_button_between" {{action 'noticeNext'}}>完成</button>
+                    <p class="nav_save menu_button_between" {{action 'noticeNext'}}>下一步</p>
                 {{/layout-push}}
             </div>
         </section>

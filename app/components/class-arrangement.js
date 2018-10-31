@@ -38,7 +38,7 @@ export default Component.extend({
 
     end_date: computed('start_date', function(){
         let tmp = new Date();
-        let span = this.start_date.getTime() + 6 * 24 * 60 * 60 * 1000;
+        let span = this.start_date.getTime() + 7 * 24 * 60 * 60 * 1000;
         tmp.setTime(span);
         return tmp;
     }),
@@ -52,7 +52,7 @@ export default Component.extend({
         return this.end_date.getMonth() + 1;
     }),
     end_day: computed('end_date', function(){
-        return this.end_date.getDate();
+        return this.end_date.getDate() - 1;
     }),
     timeLine: A([
         '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00',
@@ -192,16 +192,21 @@ export default Component.extend({
             let hh = date.getHours() - 8;
             let ll = ses.get('length') / 60;
 
-            ctx.fillStyle = '#AAA';
+            ctx.fillStyle = '#F2F6FF';
             let x = x_str + step_width * (dd - 1);
             let y = this.time_line_margin + this.time_span_height + line_height_step * hh - 7;
             ctx.fillRect(x, y, step_width, ll * line_height_step);
 
-            ctx.font = '10px PingFangSC-Regular';
-            ctx.fillStyle = '#FFF';
-            ctx.fillText('班级名称: ' + ses.cls.get('name'), x, y + 14);
-            ctx.fillText('开始时间: ' + (hh + 8), x, y + 14 + 14);
-            ctx.fillText('持续时间: ' + ses.get('length') + ' mins', x, y + 14 + 14 + 14);
+            ctx.fillStyle='#80AEFF';
+            ctx.fillRect(x, y, 2, ll * line_height_step);
+
+            ctx.font = '14px PingFangSC-Medium';
+            ctx.fillStyle = '#171B4D';
+            ctx.fillText(ses.cls.get('name'), x + 4, y + 14 + 4);
+            ctx.font = '11px PingFangSC-Regular';
+            ctx.fillStyle = '#6B778C';
+            ctx.fillText('开始时间: ' + (hh + 8) + ':00', x + 4, y + 14 + 14 + 4);
+            ctx.fillText('持续时间: ' + ses.get('length') + ' mins', x + 4, y + 14 + 14 + 14 + 4);
         }
     },
 

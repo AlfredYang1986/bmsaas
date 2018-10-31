@@ -14,7 +14,7 @@ export default Component.extend({
             icon: '/images/icon_dashboard_normal@1x.png',
             title: '工作台',
             expond: false,
-            pageUrl:'workBench',
+            pageUrl:'home',
             isSpace: true,
         },
 
