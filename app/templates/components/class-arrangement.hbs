@@ -31,7 +31,7 @@
             onSuccessBtnClicked=(action 'successHandled')}}
         {{#layout-push direction="col" classNames="pop-ups-content"}}
             {{#layout-push direction="col" classNames="arrange-course-class"}}
-                <p>排课班级</p>
+                <p class="arrange-course-class-title">排课班级</p>
                 <select class="class-name" name="" id='clsselect' onChange={{action 'cslChanged'}}>
                     <option value="">请选择班级名称</option>
                     {{#each cls_on_yard as |item|}}
@@ -39,7 +39,7 @@
                     {{/each}}
                 </select>
                 {{#layout-push direction="col" classNames="class-arrange-time-select"}}
-                    <p>开始时间</p>
+                    <p class="arrange-course-class-title">开始时间</p>
                     {{#layout-push direction="row"}}
                         {{date-choose data=session_insert_date}}
                         <select class="" name="" id='hourselect' onChange={{action 'hourChanged'}}>
