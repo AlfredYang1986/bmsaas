@@ -45,8 +45,8 @@
                 </select>
             {{/layout-push}}
             {{#layout-push direction='col' }}
-                <button class="nav_save_btn menu_button_between" {{action (mut cur_index) 1}}>下一步</button>
-                {{#link-to 'course' classNames='link-to-creat'}}
+                <p class="save_next_btn menu_button_between" {{action (mut cur_index) 1}}>下一步</p>
+                {{#link-to 'course' classNames='link-to-create'}}
                     尚未建立课程？前往创建课程。
                 {{/link-to}}
             {{/layout-push}}
@@ -70,8 +70,8 @@
                 </select>
             {{/layout-push}}
             {{#layout-push direction='col'}}
-                <button class="nav_save_btn menu_button_between" {{action (mut cur_index) 2}}>下一步</button>
-                {{#link-to 'yard' classNames='link-to-creat'}}
+                <p class="save_next_btn menu_button_between" {{action (mut cur_index) 2}}>下一步</p>
+                {{#link-to 'yard' classNames='link-to-create'}}
                     尚未添加场地？前往添加场地。
                 {{/link-to}}
             {{/layout-push}}
@@ -98,11 +98,11 @@
     </section>
 {{/if}}
 
-{{#bm-modal-container mswitch=confirmdlg 
-        successbtncss='course-reserve-card-save'  
+{{#bm-modal-container mswitch=confirmdlg
+        successbtncss='course-reserve-card-save'
         cancelbtncss='course-reserve-card-cancel'
         canceltext='取消'
-        onCancelBtnClicked=(action 'cancelConirmBtnClicked')  
+        onCancelBtnClicked=(action 'cancelConirmBtnClicked')
         onSuccessBtnClicked=(action 'successConfirmBtnClicked')}}
     {{#layout-push direction=col classNames="class-modal-content"}}
         <p class="class-modal-title">温馨提示：</p>
@@ -112,10 +112,10 @@
 {{/bm-modal-container}}
 
 {{#bm-modal-container mswitch=ssuccessdlg
-        successbtncss='course-reserve-card-save'  
+        successbtncss='course-reserve-card-save'
         cancelbtncss='course-reserve-card-cancel'
         canceltext='取消'
-        onCancelBtnClicked=(action 'cancelSuccessBtnClicked')  
+        onCancelBtnClicked=(action 'cancelSuccessBtnClicked')
         onSuccessBtnClicked=(action 'successSuccessBtnClicked')}}
     {{#layout-push direction=col classNames="class-modal-content"}}
         <p class="class-modal-title">温馨提示：</p>

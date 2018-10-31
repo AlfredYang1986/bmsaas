@@ -34,6 +34,7 @@
             <p class="select-reserve-title">选择开放申请预约的课程</p>
             <select  class="select-reserve-course" id='rescourseselect' onChange={{action 'resCouresSelect'}}>
                 {{#each model.course as |item|}}
+                    <option>请选择课程</option>
                     <option value={{item.id}}>{{item.name}}</option>
                 {{/each}}
             </select>
@@ -53,21 +54,21 @@
         {{#layout-push direction='col'}}
             {{#layout-push direction="row" classNames='line_half select-time'}}
                 <p class="select-reserve-time">可预约开始日期</p>
-                {{date-choose data=start_date}}
+                {{date-choose data=start_date classNames="course-select-time"}}
             {{/layout-push}}
             {{#layout-push direction="row" classNames='line_half select-time'}}
-                <p class="select-reserve-time">可预约开始日期</p>
-                {{date-choose data=end_date}}
+                <p class="select-reserve-time">可预约结束日期</p>
+                {{date-choose data=end_date classNames="course-select-time"}}
             {{/layout-push}}
         {{/layout-push}}
     </div>
 </section>
 
 {{#bm-modal-container mswitch=savedlg
-        successbtncss='course-reserve-card-save'  
+        successbtncss='course-reserve-card-save'
         cancelbtncss='course-reserve-card-cancel'
         canceltext='取消'
-        onCancelBtnClicked=(action 'cancelHandled')  
+        onCancelBtnClicked=(action 'cancelHandled')
         onSuccessBtnClicked=(action 'successHandled')}}
 
     {{#layout-push direction=row classNames="success-info"}}

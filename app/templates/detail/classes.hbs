@@ -14,19 +14,22 @@
                 {{#layout-push direction='row' split=true classNames='top-info'}}
                     {{#layout-push direction="col"}}
                         <p class="headline">{{model.cls.name}}</p>
-                        <a class="sub-title">{{model.cls.course.name}} > </a>
+                        {{!-- <a class="sub-title" {{action 'courseClicked'}}>{{model.cls.course.name}} > </a> --}}
+                        {{#link-to 'detail.course' model.cls.course.id classNames='sub-title'}}
+                            {{model.cls.course.name}}
+                        {{/link-to}}
                     {{/layout-push}}
-                    <img href="../images/btn_more_default@2x.png">
+                    {{!-- <img href="../images/btn_more_default@2x.png"> --}}
                 {{/layout-push}}
                 {{#layout-push direction="row" split=true classNames="bottom-info"}}
                     {{#layout-push direction='col' classNames="sites"}}
-                        <p>时间&nbsp;&nbsp;<span>{{arrangedDate}}</span> </p>
+                        {{!-- <p>时间&nbsp;&nbsp;<span>{{arrangedDate}}</span> </p> --}}
                         <p>场地&nbsp;&nbsp;<span>{{model.cls.yard.address}}</span></p>
                     {{/layout-push}}
-                    {{#layout-push direction="row" classNames="class-num"}}
+                    {{!-- {{#layout-push direction="row" classNames="class-num"}}
                         <p><span>2</span>课时</p>
                         <p><span>0</span>课时</p>
-                    {{/layout-push}}
+                    {{/layout-push}} --}}
                 {{/layout-push}}
                 {{!-- {{#layout-push direction="col" classNames="chooses v_end"}}
                     {{#layout-push direction='col' mid=true classNames="choose-list"}}
@@ -83,23 +86,26 @@
             {{!-- </div> --}}
             {{#layout-push direction='row'}}
                     {{#layout-push direction='col' classNames="class-teacher-card"}}
-                        {{#layout-push direction='row' split=true classNames="class-card-head"}}
+                        {{#layout-push direction='row' split=true classNames="class-card-head-area"}}
                             <p class="class-card-title">教师</p>
-                            <a href="#" class=""></a>
-                            {{#bs-button onClick=(action (mut techdlg) true) classNames="class-card-btn"}}编辑{{/bs-button}}
+                            {{#bs-button onClick=(action (mut techdlg) true) classNames="class-card-btn"}} + 添加{{/bs-button}}
                         {{/layout-push}}
                         {{#each model.cls.tech as |item|}}
-                            {{#layout-push direction='row' classNames="class-teacher-list"}}
-                                <img src="../images/stud-normal.png" alt="" class="class-card-head-img">
-                                {{#layout-push direction=col}}
-                                    <p>姓名：{{item.me.name}}</p>
-                                    <p>电话：{{item.me.contact}}</p>
+                            {{#layout-push direction="row" split=true classNames="class-card-teacher-content"}}
+                                {{#layout-push direction='row'}}
+                                    <img src="../images/avatar_defautl_96px @1x.png" alt="" class="class-card-head-img">
+                                    {{#layout-push direction=col}}
+                                        <p>{{item.me.name}}</p>
+                                        {{!-- <p>电话：{{item.me.contact}}</p> --}}
+                                    {{/layout-push}}
                                 {{/layout-push}}
+                                <img src="../images/btn_Subicon_more@2x.png" class="more-info" alt="">
                             {{/layout-push}}
+
                         {{/each}}
                     {{/layout-push}}
                     {{#bm-modal-container mswitch=techdlg
-                            title='添加颁奖老师'
+                            title='添加班级教师'
                             successbtncss='course-reserve-card-save'
                             cancelbtncss='course-reserve-card-cancel'
                             canceltext='取消'
@@ -117,23 +123,22 @@
                         {{/layout-push}}
                     {{/bm-modal-container}}
 
-                    {{#layout-push direction='col' classNames="class-arrange-card" classNames="class-course-card"}}
-                        {{#layout-push direction='row' split=true classNames="class-card-head"}}
+                    {{#layout-push direction='col' classNames="class-course-card"}}
+                        {{#layout-push direction='row' split=true classNames="class-card-head-area"}}
                             <p class="class-card-title">课程安排</p>
                             {{#bs-button onClick=(action 'goToarrangeClass') classNames="class-card-btn"}}排课{{/bs-button}}
                         {{/layout-push}}
                         {{#layout-push direction="col"}}
-                            {{#layout-push direction="row"  classNames="class-course-list course-time"}}
+                            {{!-- {{#layout-push direction="row"  classNames="class-course-list course-time"}}
                                 <p>时间：08/08日～12/31</p>
                                 <p>共 30 节</p>
                                 <p>共 60 课时</p>
-                            {{/layout-push}}
+                            {{/layout-push}} --}}
                             {{#each session_lst as |item index|}}
-                                {{#layout-push direction="row" split=true classNames="class-course-list"}}
-                                    {{#layout-push direction="row" }}
-                                        <p>第{{index}}节</p>
-                                        <p>{{bmnormaldate item.start_date}} &nbsp;&nbsp; {{bmnormalweekday item.start_date}}&nbsp;&nbsp;{{item.time}}</p>
-                                    {{/layout-push}}
+                                {{#layout-push direction="row" split=true classNames="class-course-content"}}
+                                    <p>第{{index}}节</p>
+                                    <p>{{bmnormaldate item.start_date}} &nbsp;&nbsp; {{bmnormalweekday item.start_date}}</p>
+                                    <p>{{item.time}}10:00-11:30</p>
                                     <p>{{item.tech.me.name}}</p>
                                 {{/layout-push}}
                             {{/each}}
@@ -142,92 +147,6 @@
                 {{!-- </div> --}}
             {{/layout-push}}
         {{/if}}
-
-        {{!-- {{#if classDetails}}
-            <div class="detail_panel detail_panel_col_between class_detail_tab" >
-                <span class='detail_panel_head ' {{action 'arrangeClass'}}>课程安排</span>
-                <span class="detail_panel_head active" {{action 'classDetails'}}>班级详情</span>
-                <span class="detail_panel_head" {{action 'traineesLists'}}>学员名单</span>
-            </div>
-            <div class="detail_panel detail_panel_col_between">
-                <div class="course-info">
-                    {{#layout-push direction='row'  split=true classNames="line_conatainer_split"}}
-                    {{#layout-push direction="row"}}
-                        <p>课程名称</p>
-                        <p>{{model.cls.course.name}}</p>
-                    {{/layout-push}}
-                    <a class="course-info-change-btn" {{action 'editCourse'}}>编辑</a>
-                    {{/layout-push}}
-                    {{#layout-push direction='row'}}
-                        <p>课程类别</p>
-                        <p>{{model.cls.course.category.cat}}<span>{{model.cls.course.category.sub}}</span></p>
-                    {{/layout-push}}
-                    {{#layout-push direction='row'}}
-                        <p>适应年龄</p>
-                        <p>{{model.cls.course.alb}}-{{model.cls.course.aub}}</p>
-                        <p class="course-sub-title">分级/阶段<span>{{modle.cls.course.level}}</span></p>
-                    {{/layout-push}}
-                    {{#layout-push direction='row'}}
-                        <p>预计课时数</p>
-                        <p>{{model.cls.course.count}}</p>
-                        <p class="course-sub-title">课程时长<span>{{model.cls.course.length}} min</span></p>
-                    {{/layout-push}}
-                    {{#layout-push direction='row'}}
-                        <p>教育理念及模式</p>
-                        {{#layout-push direction='row'}}
-                            {{#each model.cls.course.tags as |item|}}
-                                <p class="course-info-feature">{{item}}</p>
-                            {{/each}}
-                        {{/layout-push}}
-                    {{/layout-push}}
-
-                    {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
-                        <span class='detail_panel_title'>课程目标</span>
-                    {{/layout-push}}
-                    {{#layout-push direction='col' classNames='detail_inner_panel'}}
-                        {{#layout-push direction='col' classNames='detail_inner_content_line'}}
-                            <span class='detail_inner_left'>
-                                {{model.cls.course.target}}
-                            </span>
-                        {{/layout-push}}
-                    {{/layout-push}}
-
-                    {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
-                        <span class='detail_panel_title'>课程计划</span>
-                    {{/layout-push}}
-                    {{#layout-push direction='col' classNames='detail_inner_panel'}}
-                        {{#layout-push direction='col' classNames='detail_inner_content_line'}}
-                            <span class='detail_inner_left'>
-                                {{model.cls.course.planning}}
-                            </span>
-                        {{/layout-push}}
-                    {{/layout-push}}
-
-
-                    {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
-                        <span class='detail_panel_title'>课程内容</span>
-                    {{/layout-push}}
-                    {{#layout-push direction='col' classNames='detail_inner_panel'}}
-                        {{#layout-push direction='col' classNames='detail_inner_content_line'}}
-                            <span class='detail_inner_left'>
-                                {{model.cls.course.ccontent}}
-                            </span>
-                        {{/layout-push}}
-                    {{/layout-push}}
-
-                    {{#layout-push direction='col' classNames='detail_panel_des_container detail_panel_des_container_between'}}
-                        <span class='detail_panel_title'>课程图片</span>
-                    {{/layout-push}}
-                    <div class="line_conatainer_warp detail_card_container" >
-                        {{#each model.cls.course.imgs as |item|}}
-                            {{detail-card card=item}}
-                        {{/each}}
-                    </div>
-
-                </div>
-
-            </div>
-        {{/if}} --}}
 
         {{#if traineesLists}}
             {{#layout-push direction='row' classNames='ib_tab_bar'}}
@@ -239,10 +158,8 @@
                 <span class="detail_panel_head" {{action 'classDetails'}}>班级详情</span>
                 <span class="detail_panel_head active" {{action 'traineesLists'}}>学员名单</span>
             </div> --}}
-                <div class="detail_panel detail_panel_col_between" >
-                    {{#layout-push direction='row' classNames="add-student"}}
-                        {{#bs-button onClick=(action (mut studdlg) true) classNames="add-student-btn"}}添加学员{{/bs-button}}
-                    {{/layout-push}}
+                <div class="detail_panel_col_between" class="add-student">
+                    {{#bs-button onClick=(action (mut studdlg) true) classNames="add-student-btn"}}添加学员{{/bs-button}}
                 </div>
                 {{#bm-modal-container mswitch=studdlg
                         title='添加班级学生'
@@ -270,7 +187,7 @@
                         {{/each}}
                     </tr>
                     {{#each model.cls.stud as |item|}}
-                    <tr>
+                    <tr class="stud-tabel-body">
                         <td class='ib_table_content_item'>{{item.me.name}}</td>
                         <td class='ib_table_content_item'>
                             {{#if (bmeq item.me.gender 1)}}
@@ -281,7 +198,10 @@
                         </td>
                         <td class="ib_table_content_item">{{item.me.age}}</td>
                         <td class="ib_table_content_item">{{item.me.contact}}</td>
-                    </tr>            
+                        <td>
+                            <img src="../images/btn_Subicon_more@2x.png" class="stud-more-info" alt="">
+                        </td>
+                    </tr>
                     {{/each}}
                 </table>
         {{/if}}

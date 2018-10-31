@@ -423,25 +423,29 @@
 .nav_cancel_btn {
     font-family: $font-brand;
     font-size: 14px;
-    color: #6E7CD4;
-    letter-spacing: 2px;
+    color: #42526E;
+    text-align: center;
 
-    background: #FFFFFF;
-    border: 1px solid #6E7CD4;
-    border-radius: 4px;
+    background: transparent;
+    border-radius: 3px;
 
-    padding: 7px 24px;
+    width: 80px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
 }
 
 .nav_save_btn {
     font-family: $font-brand;
     font-size: 14px;
-    color: #FFFFFF;
-    letter-spacing: 2px;
+    color: #A5ADBA;
+    text-align: center;
 
-    background: #6E7CD4;
-    border: 1px solid #6E7CD4;
-    border-radius: 4px;
+    background: rgba(9,30,66,0.04);
+    border: 1px solid rgba(9,30,66,0.04);
+    border-radius: 3px;
 
-    padding: 7px 24px;
+    width: 80px;
+    height: 32px;
+    text-align: center;
 }

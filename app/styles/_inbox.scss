@@ -86,13 +86,62 @@
     width: 714px;
     height: auto;
     background: #fff;
+    .class-modal-content {
+      margin: 64px 48px 48px;
+
+      img {
+        margin-top: 20px;
+        margin-right: 48px;
+        width: 80px;
+        height: 80px;
+      }
+
+      .success-info {
+        width: 250px;
+      }
+
+      p {
+        margin: 20px 0;
+        font-size: 14px;
+        color: #888b8f;
+        letter-spacing: 1.4px;
+        line-height: 20px;
+      }
+
+      p.class-modal-title {
+        color: #7788d4;
+      }
+    }
+    .success-info {
+        padding-left: 58px;
+        padding-right: 45px;
+        height: 323px;
+        width: 580px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        img {
+            margin-bottom: 20px;
+            margin-right: 25px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+        p {
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #767A80;
+            letter-spacing: 3.43px;
+        }
+    }
     .course-reserve-modal-title {
         height: 50px;
-        background:#eff1f9;
+        background:#fff;
         p.modal-title {
-            font-size: 18px;
-            color: #767A80;
-            letter-spacing: 2.57px;
+            font-family: PingFangSC-Medium;
+            font-size: 16px;
+            color: #172B4D;
         }
     }
     .course-reserve-success {
@@ -125,7 +174,8 @@
     .course-reserve-modal-body {
         padding-left: 35px;
         padding-right: 45px;
-        padding-top: 27px;
+        padding-top: 200px;
+        min-height: 500px;
         .course-reserve-content {
             p {
                 font-size: 14px;
@@ -198,19 +248,19 @@
     .course-reserve-card-cancel {
         width: 100px;
         height: 35px;
-        border: 1px solid #6E7CD4;
+        border: 1px solid#80AEFF;
         border-radius: 3px;
         background: #fff;
         font-size: 14px;
-        color: #6E7CD4;
+        color: #80AEFF;
         letter-spacing: 2px;
     }
     .course-reserve-card-save {
         width: 100px;
         height: 35px;
-        border: 1px solid #6E7CD4;
+        border: 1px solid #80AEFF;
         border-radius: 3px;
-        background: #6E7CD4;
+        background: #80AEFF;
         font-size: 14px;
         color: #fff;
         letter-spacing: 2px;

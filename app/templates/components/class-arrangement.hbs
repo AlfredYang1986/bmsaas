@@ -7,27 +7,27 @@
             {{#layout-push direction='col' mid=true}}
                 {{#layout-push direction='row' }}
                     <button class='btn' class='time_skip_btn' {{action 'leftBtnClicked'}}>
-                        <span><img src='../images/time_arr_left_arrow.png' class='time_skip_btn_icon' /></span>
+                        <span><img src='../images/chevron_left_normal@2x.png' class='time_skip_btn_icon' /></span>
                     </button>
 
                     <button class='btn' class='time_skip_btn' {{action 'rightBtnClicked'}}>
-                        <span><img src='../images/time_arr_right_arrow.png' class='time_skip_btn_icon' /></span>
+                        <span><img src='../images/chevron_right@2x.png' class='time_skip_btn_icon' /></span>
                     </button>
                 {{/layout-push}}
             {{/layout-push}}
         {{/layout-push}}
 
         {{#layout-push direction='row' }}
-            {{#bs-button classNames="time_add_btn" onClick=(action (mut insertdlg) true)}}添加{{/bs-button}}
-            {{#bs-button classNames="time_delete_btn" onClick=(action (mut modal3) true)}}删除{{/bs-button}}
+            {{#bs-button classNames="time_add_btn" onClick=(action (mut insertdlg) true)}}+ 添加排课{{/bs-button}}
+            {{!-- {{#bs-button classNames="time_delete_btn" onClick=(action (mut modal3) true)}}删除{{/bs-button}} --}}
         {{/layout-push}}
     {{/layout-push}}
 
-    {{#bm-modal-container title="班级排课" mswitch=insertdlg 
-            successbtncss='course-reserve-card-save'  
+    {{#bm-modal-container title="班级排课" mswitch=insertdlg
+            successbtncss='course-reserve-card-save'
             cancelbtncss='course-reserve-card-cancel'
             canceltext='取消'
-            onCancelBtnClicked=(action 'cancelHandled')  
+            onCancelBtnClicked=(action 'cancelHandled')
             onSuccessBtnClicked=(action 'successHandled')}}
         {{#layout-push direction="col" classNames="pop-ups-content"}}
             {{#layout-push direction="col" classNames="arrange-course-class"}}
