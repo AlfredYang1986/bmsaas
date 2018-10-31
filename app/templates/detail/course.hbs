@@ -27,7 +27,7 @@
                 {{#layout-push direction='row' mid=true classNames='alt_course_detail_cat'}}
                     {{model.course.category.cat}}·{{model.course.category.sub}}
                 {{/layout-push}}
-                {{#layout-push direction='row' mid=true classNames='alt_course_detail_line'}} 
+                {{#layout-push direction='row' mid=true classNames='alt_course_detail_line'}}
                     {{#layout-push direction='row' mid=true classNames='alt_course_detail_half'}}
                         {{#layout-push direction='col' mid=true }}
                             {{#layout-push direction='row' mid=true }}
@@ -50,7 +50,7 @@
                     {{/layout-push}}
                 {{/layout-push}}
                 <div class='alt_course_deatil_split_line'> </div>
-                {{#layout-push direction='row' mid=true classNames='alt_course_detail_line'}} 
+                {{#layout-push direction='row' mid=true classNames='alt_course_detail_line'}}
                     {{#layout-push direction='row' mid=true classNames='alt_course_detail_half'}}
                         {{#layout-push direction='col' mid=true }}
                             {{#layout-push direction='row' mid=true }}
@@ -72,9 +72,25 @@
                         {{/layout-push}}
                     {{/layout-push}}
                 {{/layout-push}}
+
+                <div class="detail_course_pintu" >
+                    <!-- <div class="detail_course_pintu_center"> -->
+                      {{#layout-push direction='row' }}
+                          <img src={{bmgetpintuimgurl model.course.imgs namedArgs="left"}} class="detail_course_pintu_left" alt="Responsive image">
+                          {{#layout-push direction='col' classNames='detail_course_pintu_right'}}
+                              <img src={{bmgetpintuimgurl model.course.imgs namedArgs="top"}} class="detail_course_pintu_top" alt="Responsive image">
+                              <div class="detail_course_pintu_bottom" style="background: url({{bmgetpintuimgurl model.course.imgs namedArgs='bottom'}}) no-repeat; background-size: cover;background-position: center;">
+                                  <a href="#" class="detail_yard_pintu_content">查看更多</a>
+                              </div>
+                          {{/layout-push}}
+                      {{/layout-push}}
+                    <!-- </div> -->
+                </div>
+
                 {{/layout-push}}
                 <div class='alt_course_deatil_split_line'> </div>
-                
+
+
                 {{!-- {{#layout-push direction='row' mid=true class='alt_course_detail_gallery'}} --}}
                     {{!-- <img src={{}} --}}
                 {{!-- {{/layout-push}} --}}
