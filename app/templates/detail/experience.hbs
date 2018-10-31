@@ -118,11 +118,12 @@
                   {{/layout-push}}
                   {{#layout-push direction='row' split=true classNames='basis_imgs' }}
                     {{#layout-push direction='col' mid=true classNames='basis_imgs_left' }}
-                        <img src="../images/cover_pic.jpg" alt="">
+                        <img src={{model.act.cover}} alt="">
                     {{/layout-push}}
                     {{#layout-push direction='col' mid=true classNames='basis_imgs_right' }}
-                        <p> <img src="../images/cover_pic_1.jpg" alt=""> </p>
-                        <p> <img src="../images/cover_pic_2.jpeg" alt=""> </p>
+                        {{#each model.act.imgs as |item|}}
+                            <p> <img src={{item.img_src}} alt=""> </p>
+                        {{/each}}
                     {{/layout-push}}
                   {{/layout-push}}
                 {{/layout-push }}

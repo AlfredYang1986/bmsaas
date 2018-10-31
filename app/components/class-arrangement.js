@@ -38,7 +38,7 @@ export default Component.extend({
 
     end_date: computed('start_date', function(){
         let tmp = new Date();
-        let span = this.start_date.getTime() + 6 * 24 * 60 * 60 * 1000;
+        let span = this.start_date.getTime() + 7 * 24 * 60 * 60 * 1000;
         tmp.setTime(span);
         return tmp;
     }),
@@ -52,7 +52,7 @@ export default Component.extend({
         return this.end_date.getMonth() + 1;
     }),
     end_day: computed('end_date', function(){
-        return this.end_date.getDate();
+        return this.end_date.getDate() - 1;
     }),
     timeLine: A([
         '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00',
