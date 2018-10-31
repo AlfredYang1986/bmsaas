@@ -33,8 +33,8 @@
         {{#layout-push direction="col"}}
             <p class="select-reserve-title">选择开放申请预约的课程</p>
             <select  class="select-reserve-course" id='rescourseselect' onChange={{action 'resCouresSelect'}}>
+                <option value="">请选择课程</option>
                 {{#each model.course as |item|}}
-                    <option>请选择课程</option>
                     <option value={{item.id}}>{{item.name}}</option>
                 {{/each}}
             </select>
