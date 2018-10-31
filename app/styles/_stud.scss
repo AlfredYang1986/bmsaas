@@ -9,7 +9,27 @@
 //   @extend %dd_content_basic;
 //   padding-top: 50px;
 // }
+.btn_save {
+  padding: 0;
+  width: 80px;
+  height: 32px;
+  background: rgba(9,30,66,0.04);
+  border-radius: 3px;
+  font-family: $font-brand;
+  font-size: 14px;
+  color: #A5ADBA;
+  text-align: center;
+}
+.tech_add_btn {
+    background: #80AEFF;
+    border-radius: 100px;
+    font-family: $font-nav-acc;
+    font-size: 14px;
+    color: #FFFFFF;
+    letter-spacing: 2px;
 
+    padding: 8px 24px;
+}
 .stud_container {
   // @extend %dd_content_basic;
   padding-left: 240px;
