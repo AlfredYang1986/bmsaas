@@ -56,10 +56,10 @@
                     </div> -->
                     <div class="detail_yard_pintu" >
                         {{#layout-push direction='row' }}
-                            <img src={{bmgetyardimageurl model.yard.imgs namedArgs="left"}} class="detail_yard_pintu_left" alt="Responsive image">
+                            <img src={{bmgetpintuimgurl model.yard.imgs namedArgs="left"}} class="detail_yard_pintu_left" alt="Responsive image">
                             {{#layout-push direction='col' }}
-                                <img src={{bmgetyardimageurl model.yard.imgs namedArgs="top"}} class="detail_yard_pintu_top" alt="Responsive image">
-                                <div class="detail_yard_pintu_bottom" style="background: url({{bmgetyardimageurl model.yard.imgs namedArgs='bottom'}}) no-repeat;">
+                                <img src={{bmgetpintuimgurl model.yard.imgs namedArgs="top"}} class="detail_yard_pintu_top" alt="Responsive image">
+                                <div class="detail_yard_pintu_bottom" style="background: url({{bmgetpintuimgurl model.yard.imgs namedArgs='bottom'}}) no-repeat; background-size: cover;background-position: center;">
                                     <a href="#" class="detail_yard_pintu_content">查看更多</a>
                                 </div>
                             {{/layout-push}}

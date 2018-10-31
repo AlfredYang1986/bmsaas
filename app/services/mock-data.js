@@ -423,16 +423,19 @@ export default Service.extend({
             })
             let tag_01_01 = this.store.createRecord('bmtagimg', {
                 id: 'course 01 01',
+                position: 'left',
                 img_src: '../images/course_tmp_img_01.png',
                 img_tag: '吹牛逼'
             })
             let tag_01_02 = this.store.createRecord('bmtagimg', {
                 id: 'course 01 02',
+                position: 'top',
                 img_src: '../images/cover_pic_2.jpeg',
                 img_tag: '继续'
             })
             let tag_01_03 = this.store.createRecord('bmtagimg', {
                 id: 'course 01 03',
+                position: 'bottom',
                 img_src: '../images/cover_pic_2.jpeg',
                 img_tag: '最终'
             })
@@ -459,16 +462,19 @@ export default Service.extend({
       })
       let tag_02_01 = this.store.createRecord('bmtagimg', {
         id: 'course 02 01',
+        position: 'left',
         img_src: '../images/course_tmp_img_02.jpg',
         img_tag: '吃'
       })
       let tag_02_02 = this.store.createRecord('bmtagimg', {
         id: 'course 02 02',
+        position: 'top',
         img_src: '../images/cover_pic_2.jpeg',
         img_tag: '碰'
       })
       let tag_02_03 = this.store.createRecord('bmtagimg', {
         id: 'course 02 03',
+        position: 'bottom',
         img_src: '../images/cover_pic_2.jpeg',
         img_tag: '糊了'
       })
