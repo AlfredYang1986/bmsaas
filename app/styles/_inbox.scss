@@ -172,11 +172,15 @@
         }
     }
     .course-reserve-modal-body {
-        padding-left: 35px;
-        padding-right: 45px;
-        padding-top: 200px;
-        min-height: 500px;
+        padding: 24px 10px;
         .course-reserve-content {
+            p.course-point {
+                margin-bottom: 24px;
+                font-family: PingFangSC-Regular;
+                font-size: 14px;
+                color: #6B778C;
+                text-align: left;
+            }
             p {
                 font-size: 14px;
                 color: #767A80;
@@ -186,19 +190,74 @@
                 margin-right: 25px;
                 margin-bottom: 28px;
                 font-weight: bold;
+                font-family: PingFangSC-Medium;
+                font-size: 14px;
+                color: #172B4D;
             }
             p.course-reserve-label {
                 margin-bottom: 25px;
-                margin-right: 70px;
+                margin-right: 16px;
                 min-width: 60px;
-                text-align: center;
+                text-align: left;
+                font-family: PingFangSC-Medium;
+                font-size: 14px;
+                color: #172B4D;
+            }
+            .partner-name {
+                font-family: PingFangSC-Medium;
+                font-size: 14px;
+                color: #172B4D;
+                margin-right: 38px;
+                margin-bottom: 16px;
+            }
+            .partner-sex {
+                margin-right: 32px;
+                margin-bottom: 16px;
+                font-family: PingFangSC-Regular;
+                font-size: 14px;
+                color: #6B778C;
+                text-align: left;
+            }
+            .partner-age {
+                font-family: SFUIText-Regular;
+                font-size: 14px;
+                color: #6B778C;
+                text-align: left;
+            }
+            .partner-tel {
+                margin-bottom: 10px;
+                font-family: PingFangSC-Regular;
+                font-size: 14px;
+                color: #172B4D;
+                text-align: left;
+            }
+            .partner-points {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+            }
+            .partner-point {
+                font-family: PingFangSC-Regular;
+                font-size: 11px;
+                color: #6B778C;
+            }
+            .partner-card {
+                margin-top: 20px;
+                margin-right: 10px;
+                padding: 16px;
+                width: 200px;
+                height: 116px;
+                background: #fff;
+                border: 0 solid rgba(9,30,66,0.12);
+                box-shadow: 0 1px 1px 0 rgba(9,30,66,0.31);
+                border-radius: 4px;
             }
             .course-reserve-btn {
                 margin-right: 25px;
                 width: 100px;
                 height: 35px;
-                background: #6E7CD4;
-                border: 1px solid #6E7CD4;
+                background: #80AEFF;
+                border: 1px solid  #80AEFF;
                 border-radius: 4px;
                 font-size: 14px;
                 color: #FFFFFF;
@@ -209,12 +268,11 @@
                 margin-right: 25px;
                 width: 100px;
                 height: 35px;
-                background: #fff;
-                border: 1px solid #6E7CD4;
+                background: #e9ebee;
+                border: 1px solid #e9ebee;
                 border-radius: 4px;
                 font-size: 14px;
-                color: #6E7CD4;
-                letter-spacing: 2px;
+                color: #6B778C;
                 text-align: center;
             }
             .course-reserve-modal-select {

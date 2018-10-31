@@ -41,21 +41,21 @@
                 {{else}}
                     <td class="ib_table_content_item">{{bmapplystatus item.status}}</td>
                 {{/if}}
-            </tr>            
+            </tr>
             {{/each}}
         </table>
 
-        {{#bm-modal-container title="课程预约" mswitch=showhandledlg 
-                successbtncss='course-reserve-card-save'  
+        {{#bm-modal-container title="处理消息" mswitch=showhandledlg
+                successbtncss='course-reserve-card-save'
                 cancelbtncss='course-reserve-card-cancel'
                 canceltext='取消'
-                onCancelBtnClicked=(action 'cancelHandled')  
+                onCancelBtnClicked=(action 'cancelHandled')
                 onSuccessBtnClicked=(action 'successHandled')}}
-            {{#layout-push direction=row classNames="success-info"}}
-                {{mail-processing-pop-ups 
-                        classNames="course-reserve-modal-body" 
+            {{#layout-push direction=row classNames="course-reserve-pop-ups-content"}}
+                {{mail-processing-pop-ups
+                        classNames="course-reserve-modal-body"
                         selectedReservable=sr
-                        selectedYard=sy 
+                        selectedYard=sy
                         selectedDate=dt
                         selectedActivity=sa
                         selectedSession=ss
@@ -63,9 +63,9 @@
                         apply=current_apply}}
             {{/layout-push}}
         {{/bm-modal-container}}
-        {{#bm-modal-container 
-                mswitch=showcomfirmdlg 
-                successbtncss='course-reserve-card-save' 
+        {{#bm-modal-container
+                mswitch=showcomfirmdlg
+                successbtncss='course-reserve-card-save'
                 onSuccessBtnClicked=(action 'successHandled')}}
             {{#layout-push direction=row classNames="success-info course-reverve-success"}}
                 <img src="../images/success.png" alt="">
