@@ -23,8 +23,8 @@
 		{{#layout-push direction='row' split=true}}
 			<span class="stud_title">学生</span>
 			<span class="qr-code">
-					<img src="../images/activities_normal.png"  alt="">
-
+					{{!-- <img src="../images/activities_normal.png"  alt=""> --}}
+					{{#link-to 'edit.stud' 'stud/push' classNames='tech_add_btn'}}+ 添加学生{{/link-to}}
 			</span>
 		{{/layout-push}}
 		{{!-- {{#layout-push direction="row"}}

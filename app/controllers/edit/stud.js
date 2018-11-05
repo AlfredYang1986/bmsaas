@@ -50,10 +50,10 @@ export default Controller.extend({
     saveInputBtnClicked() {
       console.log('save the date');
 
-      if (!this.studValidate()) {
-        alert('必填项不能为空！');
-        return;
-      }
+      // if (!this.studValidate()) {
+      //   alert('必填项不能为空！');
+      //   return;
+      // }
 
       let stud = null;
       if (this.isPushing) {
