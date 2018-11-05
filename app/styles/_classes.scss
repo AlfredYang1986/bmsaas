@@ -1,0 +1,38 @@
+@import 'args';
+
+@import 'class-card';
+
+%class_content_basic {
+    padding-left: 240px;
+}
+
+.class_content_top {
+    @extend %class_content_basic;
+    padding-top: 64px;
+}
+
+.class_content {
+    background: #fff;
+    padding: 20px 24px;
+    margin: 24px;
+    p.class-content-title {
+        font-family: PingFangSC-Medium;
+        font-size: 24px;
+        color: #172B4D;
+    }
+    .class_add_btn {
+        width: 100px;
+        height: 32px;
+        padding: 6px 12px;
+        text-align: center;
+        background: #80AEFF;
+        border-radius: 100px;
+        font-family: $font-nav-acc;
+        font-size: 14px;
+        color: #FFFFFF;
+    }
+
+    .class_card_container {
+        margin-top: 20px;
+    }
+}

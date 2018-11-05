@@ -1,0 +1,127 @@
+<ul class="nav">
+    <li class="nav-item">
+        <a class="nav-link active brand_name" href="#">创建班级</a>
+    </li>
+    <li class="nav-item menu_mid">
+        <div class="menu_container">
+            {{#link-to 'classes' class="nav_cancel_btn menu_button_between"}}
+                取消
+            {{/link-to}}
+            {{#bs-button class="nav_save_btn menu_button_between" onClick=(action (mut confirmdlg) true)}}创建{{/bs-button}}
+        </div>
+    </li>
+</ul>
+
+<ul class="edit_left_bar">
+    <li class="left_bar_item" >
+        <div class="edit_left_menu_mid menu_margin_right">
+            <a class="edit_left_menu_text" href="#kid-info" {{action (mut cur_index) 0}}>选择课程</a>
+        </div>
+    </li>
+    <li class="left_bar_item" >
+        <div class="edit_left_menu_mid menu_margin_right">
+            <a class="edit_left_menu_text" href="#par-story" {{action (mut cur_index) 1}}>安排场地</a>
+        </div>
+    </li>
+    <li class="left_bar_item" >
+        <div class="edit_left_menu_mid menu_margin_right">
+            <a class="edit_left_menu_text" href="#par-story" {{action (mut cur_index) 2}}>班级名称</a>
+        </div>
+    </li>
+</ul>
+{{#if (bmeq cur_index 0)}}
+    <section id="select-class" class="line_container_mid edit_page_top_margin">
+        <div class="edit-class edit_panel edit_first_panel ">
+            {{#layout-push direction=col classNames="edit-class-card"}}
+                {{#layout-push direction=col classNames="v_pusht"}}
+                        <p class="class-head-title">选择课程</p>
+                        <p class="class-sub-title">请选择该班级授课的课程</p>
+                {{/layout-push}}
+                <select class="select-class" id='addclsselect' onChange={{action 'addClsChanged'}}>
+                    <option value=''>请选择课程</option>
+                    {{#each course_lst as |item|}}
+                        <option value={{item.id}}>{{item.name}}</option>
+                    {{/each}}
+                </select>
+            {{/layout-push}}
+            {{#layout-push direction='col' }}
+                <p class="save_next_btn menu_button_between" {{action (mut cur_index) 1}}>下一步</p>
+                {{#link-to 'course' classNames='link-to-create'}}
+                    尚未建立课程？前往创建课程。
+                {{/link-to}}
+            {{/layout-push}}
+        </div>
+    </section>
+{{/if}}
+
+{{#if (bmeq cur_index 1)}}
+    <section id="arrange-site" class="line_container_mid edit_page_top_margin">
+        <div class="edit-class edit_panel edit_first_panel ">
+            {{#layout-push direction=col classNames="edit-class-card"}}
+                {{#layout-push direction=col classNames="v_pusht"}}
+                        <p class="class-head-title">安排场地</p>
+                        <p class="class-sub-title">请为该班级安排授课场地</p>
+                {{/layout-push}}
+                <select class="select-class" id='addyardselect' onChange={{action 'addYardChanged'}}>
+                    <option value ="">请选择场地</option>
+                    {{#each yard_lst as |item|}}
+                        <option value ={{item.id}}>{{item.address}}</option>
+                    {{/each}}
+                </select>
+            {{/layout-push}}
+            {{#layout-push direction='col'}}
+                <p class="save_next_btn menu_button_between" {{action (mut cur_index) 2}}>下一步</p>
+                {{#link-to 'yard' classNames='link-to-create'}}
+                    尚未添加场地？前往添加场地。
+                {{/link-to}}
+            {{/layout-push}}
+        </div>
+    </section>
+{{/if}}
+
+{{#if (bmeq cur_index 2)}}
+    <section id="class-name" class="line_container_mid edit_page_top_margin">
+        <div class="edit-class edit_panel edit_first_panel ">
+            {{#layout-push direction=col classNames="edit-class-card"}}
+                {{#layout-push direction=col classNames="v_pusht"}}
+                    <p class="class-head-title">班级名称</p>
+                    <p class="class-sub-title">请为班级设定名称，方便识别。</p>
+                {{/layout-push}}
+                {{#layout-push direction=col classNames="v_pusht class-name-card"}}
+                    {{!-- <p> 字数（0/10）</p> --}}
+                    <div class="input-group">
+                      {{input type="text" name="" value=insert_cls_name}}
+                    </div>
+                {{/layout-push}}
+            {{/layout-push}}
+        </div>
+    </section>
+{{/if}}
+
+{{#bm-modal-container mswitch=confirmdlg
+        successbtncss='course-reserve-card-save'
+        cancelbtncss='course-reserve-card-cancel'
+        canceltext='取消'
+        onCancelBtnClicked=(action 'cancelConirmBtnClicked')
+        onSuccessBtnClicked=(action 'successConfirmBtnClicked')}}
+    {{#layout-push direction=col classNames="class-modal-content"}}
+        <p class="class-modal-title">温馨提示：</p>
+        <p>完整的信息能让参与者更加了解您的服务和品牌。</p>
+        <p>班级一旦创建只可更改班级名称，否则需要删除班级之后重新建立，请确定您的课程内容和场地位置无误。</p>
+    {{/layout-push}}
+{{/bm-modal-container}}
+
+{{#bm-modal-container mswitch=ssuccessdlg
+        successbtncss='course-reserve-card-save'
+        cancelbtncss='course-reserve-card-cancel'
+        canceltext='取消'
+        onCancelBtnClicked=(action 'cancelSuccessBtnClicked')
+        onSuccessBtnClicked=(action 'successSuccessBtnClicked')}}
+    {{#layout-push direction=col classNames="class-modal-content"}}
+        <p class="class-modal-title">温馨提示：</p>
+        <p>完整的信息能让参与者更加了解您的服务和品牌。</p>
+        <p>班级一旦创建只可更改班级名称，否则需要删除班级之后重新建立，请确定您的课程内容和场地位置无误。</p>
+    {{/layout-push}}
+{{/bm-modal-container}}
+
+{{outlet}}

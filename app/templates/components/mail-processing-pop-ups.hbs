@@ -1,0 +1,229 @@
+   {{#layout-push direction=col}}
+        {{#layout-push direction=col classNames="course-reserve-content"}}
+            {{#layout-push direction=row classNames="line_container"}}
+                <p class="course-reserve-label">提交信息时间</p>
+                <p>{{display_apply_date}}</p>
+            {{/layout-push}}
+            {{#if courseReserve}}
+                {{#layout-push direction=col}}
+
+                    {{#layout-push direction=row classNames="line_container"}}
+                        <p class="course-reserve-label">类型</p>
+                        <p class="btn btn-primary course-reserve-btn"  {{action 'courseReserve'}}>课程预约</p>
+                        <p class="btn btn-primary experience-apply-btn" {{action 'experienceApply'}}>体验报名</p>
+                    {{/layout-push}}
+                    {{#layout-push direction=row classNames="line_container"}}
+                        <p class="course-reserve-label">课程</p>
+                            <select class="course-reserve-modal-select" id='reservableselect' name="" onChange={{action 'reservableChanged'}}>
+                                <option value="">课程标题</option>
+                                {{#each course_lst as |item|}}
+                                    <option value={{item.id}}>{{item.course.name}}</option>
+                                {{/each}}
+                            </select>
+                    {{/layout-push}}
+                    {{#layout-push direction=row classNames="line_container"}}
+                        <p class="course-reserve-label">场地</p>
+                            <select class="course-reserve-modal-select" id='yardselect' name="" onChange={{action 'yardChanged'}}>
+                                <option value="">场地位置</option>
+                                {{#each yard_lst as |item|}}
+                                    <option value={{item.id}}>{{item.address}}</option>
+                                {{/each}}
+                            </select>
+                    {{/layout-push}}
+                    {{#layout-push direction=row classNames="line_container"}}
+                        <p class="course-reserve-label">时间</p>
+                        {{date-choose needday=true data=selectedDate}}
+                    {{/layout-push}}
+                    {{#layout-push direction=row classNames="line_container"}}
+                        <p class="course-reserve-label">参与者</p>
+                        {{#each apply.attendee as |item index|}}
+                            {{#layout-push direction="col" classNames="partner-card"}}
+                                {{#layout-push direction="row" }}
+                                    <span class="partner-name">{{item.name}}</span>
+                                    <p class="partner-sex">
+                                        <span>
+                                            {{#if (bmeq item.gender 1)}}
+                                            男孩
+                                            {{else}}
+                                            女孩
+                                            {{/if}}
+                                        </span>
+                                    </p>
+                                    <span class="partner-age">12岁</span>
+                                {{/layout-push}}
+                                {{#layout-push direction="row"}}
+                                    <img src="" alt="">
+                                    <span class="partner-tel">{{item.contact}}</span>
+                                {{/layout-push}}
+                                {{#layout-push direction="row" classNames="partner-points"}}
+                                    <p class="partner-point">来自小程序</p>
+                                {{/layout-push}}
+                            {{/layout-push}}
+                        {{/each}}
+                        {{!-- {{#each apply.attendee as |item index|}}
+                            {{#layout-push direction=col classNames="course-child"}}
+                                <p class="course-child-name">孩子{{index}}</p>
+                                {{#layout-push direction=row split=true classNames="line_container course-child-info"}}
+                                    {{#layout-push direction=col}}
+                                        <p>孩子姓名:<span>{{item.name}}</span></p>
+                                        <p>生日:<span>2006/12/12</span></p>
+                                        <p>渠道:<span>小程序</span></p>
+                                    {{/layout-push}}
+                                    {{#layout-push direction=col}}
+                                        <p>性別:
+                                            <span>
+                                                {{#if (bmeq item.gender 1)}}
+                                                男孩
+                                                {{else}}
+                                                女孩
+                                                {{/if}}
+                                            </span>
+                                        </p>
+                                        <p>联系方式:<span>{{item.contact}}</span></p>
+                                    {{/layout-push}}
+                                {{/layout-push}}
+                            {{/layout-push}}
+                        {{/each}} --}}
+                    {{/layout-push}}
+                {{/layout-push}}
+                {{!-- {{#layout-push direction=col classNames="course-participants"}}
+
+                    {{#layout-push direction=col classNames="course-child"}}
+                        {{#each apply.attendee as |item index|}}
+                            <p class="course-child-name">孩子{{index}}</p>
+                            {{#layout-push direction=row split=true classNames="line_container course-child-info"}}
+                                {{#layout-push direction=col}}
+                                    <p>孩子姓名:<span>{{item.name}}</span></p>
+                                    <p>生日:<span>2006/12/12</span></p>
+                                    <p>渠道:<span>小程序</span></p>
+                                {{/layout-push}}
+                                {{#layout-push direction=col}}
+                                    <p>性別:
+                                        <span>
+                                        {{#if (bmeq item.gender 1)}}
+                                            男孩
+                                        {{else}}
+                                            女孩
+                                        {{/if}}
+                                        </span>
+                                    </p>
+                                    <p>联系方式:<span>{{item.contact}}</span></p>
+                                {{/layout-push}}
+                            {{/layout-push}}
+                        {{/each}}
+                    {{/layout-push}}
+                {{/layout-push}} --}}
+            {{/if}}
+            {{#if experienceApply}}
+                {{#layout-push direction=col}}
+                    {{!-- {{#layout-push direction=row classNames="line_container"}}
+                        <p class="course-reserve-title">参与內容</p>
+                        <p class="apply-points">温馨提示：请与参与者确认参与内容。</p>
+                    {{/layout-push}} --}}
+
+                    {{#layout-push direction=row classNames="line_container"}}
+                        <p class="course-reserve-label">类型</p>
+                        <p class="btn btn-primary experience-apply-btn" {{action 'courseReserve'}}>课程预约</p>
+                        <p class="btn btn-primary course-reserve-btn " {{action 'experienceApply'}}>体验报名</p>
+                    {{/layout-push}}
+                    {{#layout-push direction=row classNames="line_container"}}
+                        <p class="course-reserve-label">体验</p>
+                            <select class="course-reserve-modal-select" id='actselect' name="" onChange={{action 'activityChanged'}}>
+                                <option value="">体验</option>
+                                {{#each activity_lst as |item|}}
+                                    <option value={{item.id}}>{{item.name}}</option>
+                                {{/each}}
+                            </select>
+                    {{/layout-push}}
+                    {{#layout-push direction=row classNames="line_container"}}
+                        <p class="course-reserve-label">场次</p>
+                            <select class="course-reserve-modal-select" id='sessionselect' name="" onChange={{action 'sessionChanged'}}>
+                                <option value="">场地位置</option>
+                                {{#each session_lst as |item|}}
+                                    <option value={{item.id}}>{{item.yard.address}}</option>
+                                {{/each}}
+                            </select>
+                    {{/layout-push}}
+                {{/layout-push}}
+                {{#layout-push direction=row classNames="line_container"}}
+                    <p class="course-reserve-label">参与者</p>
+                    {{#each apply.attendee as |item index|}}
+                        {{#layout-push direction="col" classNames="partner-card"}}
+                            {{#layout-push direction="row" }}
+                                <span class="partner-name">{{item.name}}</span>
+                                <p class="partner-sex">
+                                    <span>
+                                        {{#if (bmeq item.gender 1)}}
+                                        男孩
+                                        {{else}}
+                                        女孩
+                                        {{/if}}
+                                    </span>
+                                </p>
+                                <span class="partner-age">12岁</span>
+                            {{/layout-push}}
+                            {{#layout-push direction="row"}}
+                                <img src="" alt="">
+                                <span class="partner-tel">{{item.contact}}</span>
+                            {{/layout-push}}
+                            {{#layout-push direction="row" classNames="partner-points"}}
+                                <p class="partner-point">来自小程序</p>
+                            {{/layout-push}}
+                        {{/layout-push}}
+                    {{/each}}
+                    {{!-- {{#each apply.attendee as |item index|}}
+                        {{#layout-push direction=col classNames="course-child"}}
+                            <p class="course-child-name">孩子{{index}}</p>
+                            {{#layout-push direction=row split=true classNames="line_container course-child-info"}}
+                                {{#layout-push direction=col}}
+                                    <p>孩子姓名:<span>{{item.name}}</span></p>
+                                    <p>生日:<span>2006/12/12</span></p>
+                                    <p>渠道:<span>小程序</span></p>
+                                {{/layout-push}}
+                                {{#layout-push direction=col}}
+                                    <p>性別:
+                                        <span>
+                                            {{#if (bmeq item.gender 1)}}
+                                            男孩
+                                            {{else}}
+                                            女孩
+                                            {{/if}}
+                                        </span>
+                                    </p>
+                                    <p>联系方式:<span>{{item.contact}}</span></p>
+                                {{/layout-push}}
+                            {{/layout-push}}
+                        {{/layout-push}}
+                    {{/each}} --}}
+                {{/layout-push}}
+                {{!-- {{#layout-push direction=col classNames="course-participants"}}
+                    <p class="course-reserve-title">参与者信息</p>
+                    {{#each apply.attendee as |item index|}}
+                        {{#layout-push direction=col classNames="course-child"}}
+                            <p class="course-child-name">孩子{{index}}</p>
+                            {{#layout-push direction=row split=true classNames="line_container course-child-info"}}
+                                {{#layout-push direction=col}}
+                                    <p>孩子姓名:<span>{{item.name}}</span></p>
+                                    <p>生日:<span>2006/12/12</span></p>
+                                    <p>渠道:<span>小程序</span></p>
+                                {{/layout-push}}
+                                {{#layout-push direction=col}}
+                                    <p>性別:
+                                        <span>
+                                            {{#if (bmeq item.gender 1)}}
+                                            男孩
+                                            {{else}}
+                                            女孩
+                                            {{/if}}
+                                        </span>
+                                    </p>
+                                    <p>联系方式:<span>{{item.contact}}</span></p>
+                                {{/layout-push}}
+                            {{/layout-push}}
+                        {{/layout-push}}
+                    {{/each}}
+                {{/layout-push}} --}}
+            {{/if}}
+        {{/layout-push}}
+   {{/layout-push}}
+{{yield}}

@@ -1,0 +1,88 @@
+<div >
+    {{nav-top}}
+    {{left-menu}}
+</div>
+<div class="detail_content_top">
+    <div class="detail_page">
+        {{#link-to 'experienceOpen' class="detail_href_ref"}}体验开放{{/link-to}}
+        {{#link-to 'detail.experience' model.act.id class="detail_href_ref"}}>场次安排 {{/link-to}}
+        {{#link-to 'detail.actarrangement' model.act.id model.period.id class="detail_href_ref"}}>场次详情 {{/link-to}}
+        <div class='detail_panel' >
+            {{#layout-push direction='row' split=true }}
+                {{#layout-push direction='col' classNames='session-left-info'}}
+                    <p class="headline">{{model.act.name}}</p>
+                    {{#layout-push direction='col' classNames="session-info"}}
+                        
+                        <p>场地：{{address}}</p>
+                        <p>时间：{{start_time}} - {{end_time}} </p>
+                    {{/layout-push}}
+                {{/layout-push}}
+                
+                {{#layout-push direction="col" classNames="session-temp"}}
+                    <p>
+                        {{model.period.studs.length}}/{{model.period.limits}}
+                        <label class="sub-text">报名人数</label>
+                    </p>
+                    {{!-- <p class="open-apply-btn">开放报名</p> --}}
+                    {{!-- {{#layout-push direction="col" classNames="chooses"}}
+                        {{#layout-push direction='col' mid=true classNames="choose-list"}}
+                            <p>更多</p>
+                            <a href="">修改场次</a>
+                            <a href="" class="delete-class">删除场次</a>
+                        {{/layout-push}}
+                    {{/layout-push}} --}}
+                {{/layout-push}}
+            {{/layout-push}}
+        </div>
+
+        <table class='ib_table_head'>
+            <tr>
+                {{#each model.title as |item|}}
+                    <th class='ib_table_item'>{{item.title}}</th>
+                {{/each}}
+            </tr>
+
+            {{#each model.period.studs as |item index|}}
+            <tr>
+                <td class='ib_table_content_item'>{{item.me.name}}</td>
+                <td class='ib_table_content_item'>{{bmdobformat item.me.dob}}</td>
+                <td class="ib_table_content_item">
+                    {{#if (bmeq item.me.gender 1)}}
+                    男孩
+                    {{else}}
+                    女孩
+                    {{/if}}
+                </td>
+                <td class="ib_table_content_item">{{item.me.contact}}</td>
+                <td class="ib_table_content_item">小程序</td>
+                <td class='ib_table_content_item'>
+                    <span>签到</span>
+                </td>
+            </tr>            
+            {{/each}}
+        </table>
+    </div>
+</div>
+{{#bs-modal open=experPopUps  onHidden=(action (mut experPopUps) false) as |modal|}}
+    <div class="course-reserve-pop-ups">
+        {{#modal.body classNames="course-reserve-modal-body"}}
+            {{exper-detail-pop-ups}}
+        {{/modal.body}}
+        {{#modal.footer}}
+          {{#bs-button type="success" classNames="course-reserve-card-save" onClick=(action modal.submit) }}取消{{/bs-button}}
+          {{!-- {{#bs-button onClick=(action modal.close) classNames="course-reserve-card-cancel"}}删除{{/bs-button}} --}}
+        {{/modal.footer}}
+    </div>
+{{/bs-modal}}
+{{!-- {{#bs-modal open=deleteDetail onHidden=(action (mut deleteDetail) false) as |modal|}}
+    <div class="detail-delete-pop-ups">
+        {{#modal.body classNames="detail-delete-modal-body"}}
+            <p>您确定要删除该课程预约信息吗？</p>
+        {{/modal.body}}
+        {{#modal.footer}}
+          {{#bs-button type="success" classNames="detail-delete-card-save"}}确定{{/bs-button}}
+          {{#bs-button onClick=(action modal.close) classNames="course-delete-card-cancel"}}取消{{/bs-button}}
+        {{/modal.footer}}
+    </div>
+{{/bs-modal}} --}}
+{{outlet}}

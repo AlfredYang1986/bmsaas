@@ -1,25 +1,44 @@
 @import 'args';
-
+.item-space {
+    height: 20px;
+    opacity: 0;
+}
 .left_bar {
     z-index: 0.9;
     background: #FFFFFF;
-    border-right: 1px solid rgba(110,124,212,0.39);
-    width: 202px;
+    box-shadow: 0 2px 2px 0 #F4F5F7;
+    width: 240px;
     height: 100%;
-    padding-top: 58px;
+    padding-top: 76px;
     position: fixed;
     overflow-x: hidden;
     overflow-y: hidden;
-
     .left_bar_item {
         padding-left: 26px;
-        height: 38px;
+        width: 208px;
+        height: 30px;
+        line-height: 40px;
         display: flex;
         flex-direction: row;
-        justify-content: flex-start;
+        justify-content: space-between;
         flex-wrap: nowrap;
         cursor: pointer;
-        
+
+        .left-bar-info {
+            display: flex;
+            flex-direction: row;
+        }
+        .email-num {
+            margin-top: 12px;
+            width: 25px;
+            height: 16px;
+            background: #3172E0;
+            border-radius: 8px;
+            font-size: 12px;
+            color: #FFFFFF;
+            line-height: 16px;
+            text-align: center;
+        }
         .left_menu_mid {
             display: flex;
             flex-direction: column;
@@ -27,8 +46,8 @@
             flex-wrap: nowrap;
 
             .left_menu_icon {
-                width: 16px;
-                height: 16px;
+                width: 18px;
+                height: 18px;
             }
 
             .left_menu_title {
@@ -40,10 +59,18 @@
 
             .left_menu_text {
                 font-family: $font-nav-acc;
-                font-size: 16px;
-                color: #767A80;
+                font-size: 14px;
+                color: #42526E;
                 letter-spacing: 2px;
             }
+            span.left_menu_text_sub {
+                margin-left: 70px;
+                font-family: $font-nav-acc;
+                font-size: 14px;
+                color: #42526E;
+                letter-spacing: 2px;
+            }
+
         }
 
         .menu_margin_right {

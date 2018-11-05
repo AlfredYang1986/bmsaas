@@ -1,41 +1,63 @@
 @import "args";
 
 .stud_card {
-    width: 230px;
-    height: 143px;
+  width: 230px;
+  height: 143px;
+  background: #FFFFFF;
+  box-shadow: 2px 2px 6px 0 #CAD5E1;
+  border-radius: 4px;
+ margin: 12px;
+  padding: 16px;
 
-    background: #FFFFFF;
-    box-shadow: 2px 2px 6px 0 #CAD5E1;
-    border-radius: 4px;
+  .stud_card_name {
+    font-family: $font-brand;
+    font-size: 14px;
+    color: #172B4D;
+  }
 
-    margin-right: 24px;
-    margin-bottom: 16px;
+  .stud_card_other {
+    font-family: $font-brand;
+    font-size: 14px;
+    color: #6B778C;
+  }
+  .tel_icon {
+      width: 20px;
+      height: 20px;
+  }
+  .stud_card_phone {
+    font-family: $font-brand;
+    font-size: 14px;
+    color: #172B4D;
+  }
 
-    padding: 16px;
-
-    .stud_card_content_line {
-        margin: 8px 0;
-
-        .stud_card_title {
-            font-family: $font-brand;
-            font-size: 12px;
-            color: #767A80;
-            letter-spacing: 1.58px;
-        }
-
-        .stud_card_text {
-            font-family: $font-brand;
-            font-size: 12px;
-            color: #767A80;
-            letter-spacing: 1.58px;
-        }
-    }
-
-    .stud_card_icon {
-        width: 72px;
-        height: 72px;
-
-        border-radius: 36px;
-        border: 1px solid black;
-    }
+  .stud_card_from {
+    font-family: $font-brand;
+    font-size: 11px;
+    color: #6B778C;
+  }
+  // .stud_card_content_line {
+  //     margin: 8px 0;
+  //
+  //     .stud_card_title {
+  //         font-family: $font-brand;
+  //         font-size: 12px;
+  //         color: #767A80;
+  //         letter-spacing: 1.58px;
+  //     }
+  //
+  //     .stud_card_text {
+  //         font-family: $font-brand;
+  //         font-size: 12px;
+  //         color: #767A80;
+  //         letter-spacing: 1.58px;
+  //     }
+  // }
+  //
+  // .stud_card_icon {
+  //     width: 72px;
+  //     height: 72px;
+  //
+  //     border-radius: 36px;
+  //     border: 1px solid black;
+  // }
 }

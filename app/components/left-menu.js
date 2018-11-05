@@ -4,37 +4,43 @@ export default Component.extend({
 
     menuList:
         [{
-            icon: '../images/email_normal.png',
+            icon: '/images/navbar_inbox_normal@2x.png',
             title: '收件箱',
             expond: false,
-            pageUrl:'inbox'
+            pageUrl:'inbox',
+            isInbox: true,
         },
         {
-            icon: '../images/working desk_normal.png',
+            icon: '/images/icon_dashboard_normal@1x.png',
             title: '工作台',
             expond: false,
-            pageUrl:'workBench'
+            pageUrl:'home',
+            isSpace: true,
         },
+
         {
-            icon: '../images/activities_normal.png',
-            title: '体验开放',
-            expond: false,
-            pageUrl:'experienceOpen'
-        },
-        {
-            icon: '../images/coursebooking_normal.png',
+            icon: '/images/navbar_booking_normal@2x.png',
             title: '课程预约',
             expond: false,
-            pageUrl:'courseReserve'
+            pageUrl:'courseReserve',
+
         },
         {
-            icon: '../images/office_normal.png',
-            title: '教研中心',
+            icon: '/images/navbar_activity_normal@2x.png',
+            title: '体验开放',
+            expond: false,
+            pageUrl:'experienceOpen',
+            isSpace: true,
+        },
+
+        {
+            icon: '/images/navbar_teach_normal@2x.png',
+            title: '教学中心',
             expond: true,
         },
         {
-            icon: '../images/management_normal.png',
-            title: '管理中心',
+            icon: '/images/navbar_management_normal@2x.png',
+            title: '管理',
             expond: true,
         }
     ]

@@ -1,0 +1,54 @@
+$font-family: Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif;
+
+%bm-button-primary-default {
+    padding: 6px 12px;
+    margin-bottom: 0;
+    height: 32px;
+    line-height: 20px;
+    min-width: 80px;
+    display: inline-block;
+
+    white-space: nowrap;
+    vertical-align: middle;
+    text-align: center;
+    background: #3172E0;
+    border-radius: 2px;
+    border: 1px solid transparent;
+
+    font-family: $font-family;
+    font-size: 14px;
+    color: #FFFFFF;
+    text-align: center;
+
+    cursor: pointer;
+    text-decoration: none;
+    outline:none;
+}
+// %bm-button-primary-default:link {
+//     background: #3172E0;
+//     color: #FFFFFF;
+//     cursor: pointer;
+//     text-decoration: none;
+//     outline:none;
+// }
+// %bm-button-primary-default:visited {
+//     background: #3172E0;
+//     color: #FFFFFF;
+//     cursor: pointer;
+//     text-decoration: none;
+//     outline:none;
+// }
+%bm-button-primary-default:hover {
+    background: #3172E0;
+    color: #FFFFFF;
+    cursor: pointer;
+    text-decoration: none;
+    outline:none;
+}
+%bm-button-primary-default:focus {
+    background: #3172E0;
+    color: #FFFFFF;
+    cursor: pointer;
+    text-decoration: none;
+    outline:none;
+}

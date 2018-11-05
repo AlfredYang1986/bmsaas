@@ -1,0 +1,22 @@
+{{!-- {{yield}} --}}
+<select onchange={{action 'changeAgeLeft' value="target.value"}}>
+    <option>岁</option>
+    {{#each agesLeft as |item|}}
+        {{#if (eq item selectedLeft)}}
+            <option selected=true value={{item}}>{{item}}</option>
+        {{else}}
+            <option value={{item}}>{{item}}</option>
+        {{/if}}
+    {{/each}}
+</select>
+<p>至</p>
+<select onchange={{action 'changeAgeRight' value="target.value"}}>
+    <option>岁</option>
+    {{#each agesRight as |item|}}
+        {{#if (eq item selectedRight)}}
+            <option selected=true value={{item}}>{{item}}</option>
+        {{else}}
+            <option value={{item}}>{{item}}</option>
+        {{/if}}
+    {{/each}}
+</select>

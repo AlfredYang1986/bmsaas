@@ -1,16 +1,19 @@
 <ul class="nav">
     <li class="nav-item">
-        <a class="nav-link active brand_name" href="home">品牌名称</a>
+        {{#layout-push direction='row' classNames="nav-item-left"}}
+            <img src="/images/logo@1x.png" alt="">
+            <a class="brand-name" href="home">PRO科学空间</a>
+        {{/layout-push}}
     </li>
     <li class="nav-item menu_mid">
         <div class="menu_container">
             <div class="menu_mid" >
                 <div class="menu_container">
-                    <a class="nav-link icon search" href="#"></a>
-                    <a class="nav-link icon notification" href="#"></a>
+                    <img src="/images/icon_notification@1x.png" alt="">
+                    <img src="/images/icon_person@1x.png" alt="">
+                    <img src="/images/icon_search@1x.png" alt="">
                 </div>
             </div>
-            <a class="nav-link active accounts" href="#">账号</a>
         </div>
     </li>
 </ul>

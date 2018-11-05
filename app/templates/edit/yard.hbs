@@ -1,17 +1,19 @@
 <ul class="nav">
     <li class="nav-item">
-        <a class="nav-link active brand_name" href="#">编辑-老师信息</a>
+        <a class="nav-link active brand_name" href="#">编辑-场地信息</a>
     </li>
     <li class="nav-item menu_mid">
         <div class="menu_container">
-            {{#link-to 'home' class="nav_cancel_btn menu_button_between"}}
-                取消
-            {{/link-to}}
-            {{!-- {{#link-to 'home' class="nav_save_btn menu_button_between"}} --}}
-                {{!-- 保存 --}}
-            {{!-- {{/link-to}} --}}
-            {{!-- <button class="nav_cancel_btn menu_button_between">取消</button> --}}
-            <button class="nav_save_btn menu_button_between" >保存</button>
+            {{#if isPushing}}
+                {{#link-to 'yard' class="nav_cancel_btn menu_button_between"}}
+                    取消
+                {{/link-to}}
+            {{else}}
+                {{#link-to 'detail.yard' model.yard.id class="nav_cancel_btn menu_button_between"}}
+                    取消
+                {{/link-to}}
+            {{/if}}
+            <button class="nav_save_btn menu_button_between" {{action 'saveYardBtnClicked'}}>保存</button>
         </div>
     </li>
 </ul>
@@ -47,22 +49,44 @@
 <section id="yard-loc" class="line_container_mid edit_page_top_margin">
     <div class="edit_panel v_push edit_first_panel">
         {{#layout-push direction="row"}}
-            <span class="edit_title">地址信息</span>
+            <span class="edit_title">场地地址</span>
         {{/layout-push}}
-
-        {{bm-edit-line title="地址信息" isNeeded=true maxCount=30 }}
+        {{#layout-push direction='row' split=true}}
+            {{#layout-push direction='col' classNames='line_half'}}
+                <div class="line_container_split" >
+                    <div class="line_container" >
+                        <span class="edit_subtitle" >场地地址</span>
+                        <div class="v_end">
+                            <span class="edit_required" >* 必填</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="line_container" >
+                    {{region-choose
+                        provinces=yard_provinces
+                        citys=yard_citys
+                        governmentAreas=yard_government_areas
+                        model=model.yard
+                        changeProvinces=(action 'changeProvinces')
+                        changeCitys=(action 'changeCitys')
+                        changeGovernmentAreas=(action 'changeGovernmentAreas')}}
+                </div>
+            {{/layout-push}}
+        {{/layout-push}}
+        {{bm-edit-line pholder="例如：街道门牌号、小区楼号、楼层号" classNames="detail-address" inputVal=yard_detail_address}}
     </div>
 </section>
 
-<section id="yard-info" class="line_container_mid ">
+<section id="yard-info" class="line_container_mid">
     <div class="edit_panel v_push ">
         {{#layout-push direction="row"}}
             <span class="edit_title">场地描述</span>
         {{/layout-push}}
 
-        {{bm-edit-line title="场地名称" isNeeded=true maxCount=20 pholder="如：东外五十六号创业园" }}
-        {{bm-edit-line title="场地描述" maxCount=300 }}
+        {{bm-edit-line title="场地名称" isNeeded=true maxCount=20 pholder="如：东外五十六号创业园" inputVal=yard_title}}
+        {{bm-edit-line title="场地描述" maxCount=400 pholder="您的场地都有哪些类型的空间呢，简单的描述您场地下拥有的空间上数量和功能，能让家长更加了解您的规模和环境，让家长放心。同时贴心的服务也能为您的品牌加分喔！" inputVal=yard_des}}
     </div>
+
 </section>
 
 <section id="yard-evn" class="line_container_mid ">
@@ -70,11 +94,47 @@
         {{#layout-push direction="row"}}
             <span class="edit_title">场地环境</span>
         {{/layout-push}}
-
-        {{bm-edit-line title="场地类型" maxCount=3 }}
-        {{bm-edit-line title="周围环境" maxCount=3 }}
-        {{bm-edit-line title="小区名，商圈名，校区名等" maxCount=3 pholder="例如：天通苑"}}
-        {{bm-edit-line title="周边交通路线信息" maxCount=100 pholder="例如：天通苑"}}
+        {{#layout-push direction="col" classNames="single-select card-wrap"}}
+            {{checkbox-label title='场地类型' limit=1
+                    candidate=yardCandidate
+                    titlecss='edit_sub_title'
+                    btncss='form-check-label'
+                    }}
+        {{/layout-push}}
+        {{#layout-push direction="col" classNames="single-select card-wrap"}}
+            {{checkbox-label title='周围环境' limit=10
+                    candidate=surroundings
+                    titlecss='edit_sub_title'
+                    btncss='form-check-label'
+                    }}
+        {{/layout-push}}
+        {{!-- {{#layout-push direction="col" classNames="single-select card-wrap"}}
+            <p class="edit_sub_title">周围环境</p>
+            {{#layout-push direction="row"}}
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                  <label class="form-check-label" for="inlineCheckbox1">社区</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                  <label class="form-check-label" for="inlineCheckbox2">商圈</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                  <label class="form-check-label" for="inlineCheckbox3">校区</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                  <label class="form-check-label" for="inlineCheckbox3">写字楼</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                  <label class="form-check-label" for="inlineCheckbox3">户外</label>
+                </div>
+            {{/layout-push}}
+        {{/layout-push}} --}}
+        {{bm-edit-line title="小区名，商圈名，校区名等" maxCount=3 pholder="例如：天通苑" inputVal=yard_ardes}}
+        {{bm-edit-line title="周边交通路线信息" maxCount=100 pholder="例如：天通苑" inputVal=yard_around}}
     </div>
 </section>
 
@@ -97,6 +157,9 @@
                 {{/layout-push }}
             </div>
         </div>
+        {{!-- 新增认证Cards --}}
+        {{editor-certification-cards data=yard_awards}}
+
     {{/layout-push }}
 </section>
 
@@ -107,8 +170,8 @@
         {{/layout-push }}
 
         {{#layout-push direction='row' split=true}}
-            {{bm-edit-line title="停车场" isNeeded=true maxCount=1 classNames='line_half' }}
-            {{bm-edit-line title="急救包" isNeeded=true maxCount=1 classNames='line_half' }}
+            {{bm-edit-line title="停车场" isNeeded=true maxCount=1 classNames='line_half' inputVal=yard_parking}}
+            {{bm-edit-line title="急救包" isNeeded=true maxCount=1 classNames='line_half' inputVal=yard_embag}}
         {{/layout-push}}
     {{/layout-push }}
 </section>

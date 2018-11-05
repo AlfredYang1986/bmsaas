@@ -1,1 +1,23 @@
+<div>
+    {{nav-top}}
+    {{left-menu}}
+</div>
+
+<div class="reserve_container" >
+    {{#layout-push direction="col" classNames="reserve_content"}}
+        {{#layout-push direction="row" split=true}}
+            <p class="reserve-manage-title">预约管理</p>
+            {{#bs-button class="reserve_qrcod_btn" onClick=(action 'openReserve')}} + 开放预约课程 {{/bs-button}}
+        {{/layout-push}}
+        {{!-- <span class="reserve_remind">温馨提示：成功添加的预约课程将在小程序和APP上显示。</span> --}}
+        {{#layout-push direction="row" wrap=true classNames="card-wrap"}}
+            {{#each model.reserves as |item|}}
+                <div class="line_container_warp" >
+                    {{reserve-card onCourseCardClicked=(action 'cardClicked') reserve=item}}
+                </div>
+            {{/each}}
+        {{/layout-push}}
+    {{/layout-push}}
+</div>
+
 {{outlet}}

@@ -5,42 +5,104 @@
 
 <div class="detail_content_top" >
     <div class="detail_page" >
-        {{#link-to 'stud' class="detail_href_ref"}}
-            返回
-        {{/link-to}}
-
         <div class='detail_panel' >
-            {{#layout-push direction='row' }}
-                {{#layout-push direction='col' mid=true classNames='detail_panel_img_right_margin'}}
-                    <img src='../images/stud-normal.png' class='detail_panel_img' />
+            {{#layout-push direction="row" split=true }}
+                <p class="detail_head_name">教师详情</p>
+                {{#link-to 'edit.tech' model.tech.id classNames='more_btn'}}
+                    更多
+                {{/link-to}}
+            {{/layout-push}}
+        </div>
+        {{#layout-push direction="row"}}
+            <div class='detail_panel detail_panel_col_between tech_info_card' >
+                {{#layout-push direction="col" classNames="tech_info_base"}}
+                    <img src={{model.tech.me.icon}} class='detail_panel_img' />
+                    <span class="detail_panel_role_name">{{model.tech.me.name}}</span>
+                    {{#layout-push direction="row"}}
+                        <span class="detail_panel_role_des">
+                            {{#if isFemale}}
+                                女
+                                <img src="../images/icon_female@2x.png" alt="" class="sex-icon">
+                            {{/if}}
+                            {{#if isMale}}
+                                男
+                                <img src="../images/icon_male@2x.png" alt="" class="sex-icon">
+                            {{/if}}
+                        </span>
+                        <span class="detail_panel_role_des">{{model.tech.me.age}}岁</span>
+                    {{/layout-push}}
                 {{/layout-push}}
-
-                {{#layout-push direction='col' mid=true }}
-                    {{#layout-push direction='col'}}
-                        <span class="detail_panel_role_name">王大锤</span>
-                        {{#layout-push direction='row'}}
-                            <span class="detail_panel_role_des">年龄 : 8岁</span> 
-                            <span class="detail_panel_role_des">性别 : 男</span> 
+                {{#layout-push direction="col" classNames="tech_info_other"}}
+                    {{#layout-push direction="row" classNames="tech_info_other_list"}}
+                        <p>联系方式</p>
+                        <span class='detail_panel_des_02'>{{model.tech.me.contact}}</span>
+                    {{/layout-push}}
+                    {{#layout-push direction="row" classNames="tech_info_other_list"}}
+                        <p>微信</p>
+                        <span class='detail_panel_des_02'>{{model.tech.me.contact}}</span>
+                    {{/layout-push}}
+                    {{#layout-push direction="row" classNames="tech_info_other_list"}}
+                        <p>地址</p>
+                        <span class='detail_panel_des_02'>{{model.tech.address}}</span>
+                    {{/layout-push}}
+                {{/layout-push}}
+            </div>
+            <div class='detail_panel detail_panel_col_between tech_info_detail' >
+                {{#layout-push direction="col" classNames="tech_info_area"}}
+                    {{#layout-push direction="row"}}
+                        <p>昵称</p>
+                        <span class='detail_panel_des_02'>{{model.tech.me.nickname}}</span>
+                    {{/layout-push}}
+                    {{#layout-push direction="row"}}
+                        <p>出生日期</p>
+                        <span class='detail_panel_des_02'>{{model.tech.me.dob}}</span>
+                    {{/layout-push}}
+                    {{#layout-push direction="row"}}
+                        <p>来自城市</p>
+                        <span class='detail_panel_des_02'>{{model.tech.homeland}}</span>
+                    {{/layout-push}}
+                {{/layout-push}}
+                {{#layout-push direction="col" classNames="tech_info_area"}}
+                    <p>教育经历</p>
+                    {{#layout-push direction="row"}}
+                        <p class="period">2017.4 -2018.4 </p>
+                        {{#layout-push direction="col"}}
+                            <p>学校名称</p>
+                            <p>本科·教育心理学</p>
+                            <p>一段关于学习经历的描述</p>
                         {{/layout-push}}
                     {{/layout-push}}
                 {{/layout-push}}
-            {{/layout-push}}
-        </div>
+                {{#layout-push direction="col" classNames="tech_info_area"}}
+                    <p>工作经历</p>
+                    {{#layout-push direction="row"}}
+                        <p class="period">2017.4 -2018.4 </p>
+                        {{#layout-push direction="col"}}
+                            <p>工作单位</p>
+                            <p>职位</p>
+                            <p>一段关于工作项目和成就的描述</p>
+                        {{/layout-push}}
+                    {{/layout-push}}
+                {{/layout-push}}
+            </div>
+        {{/layout-push}}
 
-        <div class="detail_panel detail_panel_col_between" >
+
+
+        {{!-- <div class="detail_panel detail_panel_col_between" >
             {{#layout-push direction='col' mid=true}}
                 <span class='detail_panel_head'>详细信息</span>
             {{/layout-push}}
-        </div>
+        </div> --}}
 
-        <div class="detail_panel detail_panel_col_between" >
-            {{#layout-push direction='col'}}
+        {{!-- <div class="detail_panel detail_panel_col_between" > --}}
+            {{!-- {{#layout-push direction='col'}}
                 {{#layout-push direction='col'}}
                     {{#layout-push direction="row" split=true}}
                         <div class="v_end" >
-                            <span class='detail_panel_title'>基础资料</span> 
+                            <span class='detail_panel_title'>基础资料</span>
                         </div>
-                        {{#link-to 'edit.tech' classNames='detail_panel_edit_btn'}}
+                        {{#link-to 'edit.tech' model.tech.id classNames='detail_panel_edit_btn'}}
                             编辑
                         {{/link-to}}
                     {{/layout-push}}
@@ -48,11 +110,11 @@
                         {{#layout-push direction='row' classNames='detail_panel_des_container'}}
                             {{#layout-push direction='row' classNames='line_half detail_panel_des_between detail_panel_des_underline'}}
                                 <span class='detail_panel_des_01'>姓名</span>
-                                <span class='detail_panel_des_02'>王大锤</span>
+                                <span class='detail_panel_des_02'>{{model.tech.me.name}}</span>
                             {{/layout-push}}
                             {{#layout-push direction='row' classNames='line_half detail_panel_des_underline'}}
                                 <span class='detail_panel_des_01'>昵称</span>
-                                <span class='detail_panel_des_02'>锤子</span>
+                                <span class='detail_panel_des_02'>{{model.tech.me.nickname}}</span>
                             {{/layout-push}}
                         {{/layout-push}}
                     {{/layout-push}}
@@ -60,11 +122,13 @@
                         {{#layout-push direction='row' classNames='detail_panel_des_container'}}
                             {{#layout-push direction='row' classNames='line_half detail_panel_des_between detail_panel_des_underline'}}
                                 <span class='detail_panel_des_01'>出生日期</span>
-                                <span class='detail_panel_des_02'>2011-12-12</span>
+                                <span class='detail_panel_des_02'>
+                                    {{model.tech.me.dob}}
+                                    </span>
                             {{/layout-push}}
                             {{#layout-push direction='row' classNames='line_half detail_panel_des_underline'}}
                                 <span class='detail_panel_des_01'>年龄</span>
-                                <span class='detail_panel_des_02'>4</span>
+                                <span class='detail_panel_des_02'>{{model.tech.me.age}}</span>
                             {{/layout-push}}
                         {{/layout-push}}
                     {{/layout-push}}
@@ -72,11 +136,18 @@
                         {{#layout-push direction='row' classNames='detail_panel_des_container'}}
                             {{#layout-push direction='row' classNames='line_half detail_panel_des_between detail_panel_des_underline'}}
                                 <span class='detail_panel_des_01'>性别</span>
-                                <span class='detail_panel_des_02'>女</span>
+                                <span class='detail_panel_des_02'>
+                                    {{#if isFemale}}
+                                        女
+                                    {{/if}}
+                                    {{#if isMale}}
+                                        男
+                                    {{/if}}
+                                </span>
                             {{/layout-push}}
                             {{#layout-push direction='row' classNames='line_half detail_panel_des_underline'}}
                                 <span class='detail_panel_des_01'>来自</span>
-                                <span class='detail_panel_des_02'>北京</span>
+                                <span class='detail_panel_des_02'>{{model.tech.homeland}}</span>
                             {{/layout-push}}
                         {{/layout-push}}
                     {{/layout-push}}
@@ -84,11 +155,11 @@
                         {{#layout-push direction='row' classNames='detail_panel_des_container'}}
                             {{#layout-push direction='row' classNames='line_half detail_panel_des_between detail_panel_des_underline'}}
                                 <span class='detail_panel_des_01'>电话</span>
-                                <span class='detail_panel_des_02'>13720200856</span>
+                                <span class='detail_panel_des_02'>{{model.tech.me.contact}}</span>
                             {{/layout-push}}
                             {{#layout-push direction='row' classNames='line_half detail_panel_des_underline'}}
                                 <span class='detail_panel_des_01'>微信</span>
-                                <span class='detail_panel_des_02'>北京</span>
+                                <span class='detail_panel_des_02'>{{model.tech.me.wechat}}</span>
                             {{/layout-push}}
                         {{/layout-push}}
                     {{/layout-push}}
@@ -96,13 +167,13 @@
                         {{#layout-push direction='row' classNames='detail_panel_des_container'}}
                             {{#layout-push direction='row' classNames='line_half detail_panel_des_between detail_panel_des_underline'}}
                                 <span class='detail_panel_des_01'>地址</span>
-                                <span class='detail_panel_des_02'>这是一个地址</span>
+                                <span class='detail_panel_des_02'>{{model.tech.address}}</span>
                             {{/layout-push}}
                         {{/layout-push}}
                     {{/layout-push}}
 
                     {{#layout-push direction="row" classNames='detail_panel_des_container_between'}}
-                        <span class='detail_panel_title'>教育经历</span> 
+                        <span class='detail_panel_title'>教育经历</span>
                     {{/layout-push}}
 
                     {{#layout-push direction='col' classNames='detail_inner_panel'}}
@@ -119,7 +190,7 @@
                     {{/layout-push}}
 
                     {{#layout-push direction="row" classNames='detail_panel_des_container_between'}}
-                        <span class='detail_panel_title'>工作经历</span> 
+                        <span class='detail_panel_title'>工作经历</span>
                     {{/layout-push}}
 
                     {{#layout-push direction='col' classNames='detail_inner_panel'}}
@@ -136,8 +207,8 @@
                     {{/layout-push}}
 
                 {{/layout-push}}
-            {{/layout-push}}
-        </div>
+            {{/layout-push}} --}}
+        {{!-- </div> --}}
     </div>
 </div>
 

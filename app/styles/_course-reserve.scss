@@ -1,0 +1,51 @@
+@import "args";
+
+@import "reserve-card";
+
+%stud_content_basic {
+  padding-left: 240px;
+}
+
+.reserve_container {
+  padding-left: 240px;
+  padding-top: 64px;
+  .reserve_content {
+    margin: 26px 24px 0;
+    height: 100%;
+    padding: 24px;
+    background-color: #FFF;
+    .reserve-manage-title {
+        font-family: PingFangSC-Medium;
+        font-size: 24px;
+        color: #172B4D;
+        line-height: 28px;
+    }
+    .card-wrap {
+      padding: 24px;
+    }
+    .reserve_qrcod_btn {
+        width: 128px;
+        height: 32px;
+        text-align: center;
+        font-family: $font-brand;
+        font-size: 14px;
+        color: #FFFFFF;
+        background: #80AEFF;
+        border-radius: 100px;
+        border: none;
+    }
+
+    .reserve_remind {
+      font-family: $font-brand;
+      font-size: 14px;
+      color: #6E7CD4;
+      letter-spacing: 2px;
+      margin-top: 16px;
+    }
+
+    .reserve_card_container {
+      width: 260px;
+      // margin-top: 16px;
+    }
+  }
+}

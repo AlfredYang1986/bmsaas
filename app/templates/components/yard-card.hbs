@@ -1,14 +1,15 @@
 {{#layout-push direction='col' classNames='yard_card'}}
     {{!-- {{#layout-push direction='col' mid=true }} --}}
-        <img  src="../images/cover_pic_2.jpeg" class="yard_card_icon" />
+        {{!-- <img  src="../images/cover_pic_2.jpeg" class="yard_card_icon" /> --}}
+        <img  src={{yard.cover}} class="yard_card_icon" />
     {{!-- {{/layout-push }} --}}
     {{#layout-push direction='col' mid=true classNames='yard_card_content'}}
         {{#layout-push direction='col' midt=true }}
             {{#layout-push direction='row' classNames='yard_card_content_line'}}
-                <span class="yard_card_title">乐高少儿建构教室</span>
+                <span class="yard_card_title">{{yard.title}}</span>
             {{/layout-push }}
             {{#layout-push direction='row' classNames='yard_card_content_line'}}
-                <span class="yard_card_text">地址：北京朝阳区东直门外斜街888号</span>
+                <span class="yard_card_text">{{yard.address}}</span>
             {{/layout-push }}
         {{/layout-push }}
     {{/layout-push }}

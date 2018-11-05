@@ -1,0 +1,39 @@
+
+{{#if hasSetCourse}}
+    {{!-- {{#layout-push direction='col' classNames='course_card' split=true}}
+        {{#layout-push direction='col' mid=true classNames='course_card_content'}}
+            {{#layout-push direction='row' classNames='course_card_content_line'}}
+                <span class="course_card_title">{{course.name}}</span>
+            {{/layout-push }}
+            {{#layout-push direction='row' classNames='course_card_content_line'}}
+                <span class="course_card_text">{{course.category.cat}}</span>
+                <span class="course_card_text">{{course.category.sub}}</span>
+            {{/layout-push }}
+        {{/layout-push }}
+    {{/layout-push }} --}}
+
+    {{#layout-push direction='col' classNames="alt_course_card"}} 
+        <img src={{cover}} class='alt_course_cover' />
+        {{#layout-push direction='col' mid=true classNames="alt_course_content"}}
+            {{#layout-push direction='col'}}
+                <span class='alt_course_cat'>{{course.category.cat}}·{{course.category.sub}}</span>
+                <span class='alt_course_title'>{{course.name}}</span>
+            {{/layout-push}}
+        {{/layout-push}}
+    {{/layout-push}}
+
+{{else}}
+    {{#layout-push direction='col' classNames='course_card' split=true}}
+        {{#layout-push direction='col' mid=true classNames='course_card_content'}}
+            {{#layout-push direction='row' classNames='course_card_content_line'}}
+                <span class="course_card_title">乐高少儿建构教室</span>
+            {{/layout-push }}
+            {{#layout-push direction='row' classNames='course_card_content_line'}}
+                <span class="course_card_text">科学</span>
+                <span class="course_card_text">STEM</span>
+            {{/layout-push }}
+        {{/layout-push }}
+    {{/layout-push }}
+{{/if}}
+
+{{yield}}

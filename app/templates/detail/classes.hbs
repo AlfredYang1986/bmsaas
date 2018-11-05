@@ -1,0 +1,212 @@
+<div >
+    {{nav-top}}
+    {{left-menu}}
+</div>
+
+<div class="detail_content_top" >
+    <div class="detail_page" >
+        {{!-- {{#link-to 'classes' class="detail_href_ref"}}
+            返回
+        {{/link-to}} --}}
+
+        <div class='detail_panel' >
+            {{#layout-push direction='col' classNames="class-head-card"}}
+                {{#layout-push direction='row' split=true classNames='top-info'}}
+                    {{#layout-push direction="col"}}
+                        <p class="headline">{{model.cls.name}}</p>
+                        {{!-- <a class="sub-title" {{action 'courseClicked'}}>{{model.cls.course.name}} > </a> --}}
+                        {{#link-to 'detail.course' model.cls.course.id classNames='sub-title'}}
+                            {{model.cls.course.name}}
+                        {{/link-to}}
+                    {{/layout-push}}
+                    {{!-- <img href="../images/btn_more_default@2x.png"> --}}
+                {{/layout-push}}
+                {{#layout-push direction="row" split=true classNames="bottom-info"}}
+                    {{#layout-push direction='col' classNames="sites"}}
+                        {{!-- <p>时间&nbsp;&nbsp;<span>{{arrangedDate}}</span> </p> --}}
+                        <p>场地&nbsp;&nbsp;<span>{{model.cls.yard.address}}</span></p>
+                    {{/layout-push}}
+                    {{!-- {{#layout-push direction="row" classNames="class-num"}}
+                        <p><span>2</span>课时</p>
+                        <p><span>0</span>课时</p>
+                    {{/layout-push}} --}}
+                {{/layout-push}}
+                {{!-- {{#layout-push direction="col" classNames="chooses v_end"}}
+                    {{#layout-push direction='col' mid=true classNames="choose-list"}}
+                        <p>更多</p> --}}
+                        {{!-- <a href=""></a>
+                        <a href="" class="delete-class"></a> --}}
+                        {{!-- {{#bs-button onClick=(action (mut changeClassName) true) classNames="change-class-btn"}}修改班名{{/bs-button}}
+                        {{#bs-button onClick=(action (mut delclsdlg) true) classNames="delete-class-btn"}}删除班级{{/bs-button}}
+                    {{/layout-push}} --}}
+                {{!-- {{/layout-push}} --}}
+            {{/layout-push}}
+        </div>
+
+        {{#bm-modal-container mswitch=delclsdlg
+                successbtncss='course-reserve-card-save'
+                cancelbtncss='course-reserve-card-cancel'
+                canceltext='取消'
+                onCancelBtnClicked=(action 'cancelDelClsHandled')
+                onSuccessBtnClicked=(action 'successDelClsHandled')}}
+            <div class="change-class-pop-ups">
+                <p>您确定要删除“{{model.cls.name}}”的全部班级信息吗？</p>
+            </div>
+        {{/bm-modal-container}}
+
+        {{#bm-modal-container title="编集班名" mswitch=changeClassName
+                successbtncss='course-reserve-card-save'
+                cancelbtncss='course-reserve-card-cancel'
+                canceltext='取消'
+                onCancelBtnClicked=(action 'cancelChangeNameHandled')
+                onSuccessBtnClicked=(action 'successChangeNameHandled')}}
+            {{#layout-push direction=row classNames="success-info"}}
+                {{#layout-push direction="col" classNames="pop-ups-content"}}
+                    {{#layout-push direction='row'}}
+                        <p>当前名称</p>
+                        <p>{{model.cls.name}}</p>
+                    {{/layout-push}}
+                    {{#layout-push direction='row'}}
+                        <p>新名称</p>
+                        {{input type='text' value=clsNewName }}
+                    {{/layout-push}}
+                {{/layout-push}}
+            {{/layout-push}}
+        {{/bm-modal-container}}
+
+        {{#if arrangeClass}}
+            {{#layout-push direction='row' classNames='ib_tab_bar'}}
+                <span class='ib_tab_btn active ib_tab_btn_active'>课程安排</span>
+                <span class='ib_tab_btn' {{action 'traineesLists'}}>学员名单</span>
+            {{/layout-push}}
+            {{!-- <div class="detail_panel detail_panel_col_between" > --}}
+                {{!-- <span class='detail_panel_head active' {{action 'arrangeClass'}}>课程安排</span> --}}
+                {{!-- <span class="detail_panel_head" {{action 'classDetails'}}>班级详情</span> --}}
+                {{!-- <span class="detail_panel_head" {{action 'traineesLists'}}>学员名单</span> --}}
+            {{!-- </div> --}}
+            {{#layout-push direction='row'}}
+                    {{#layout-push direction='col' classNames="class-teacher-card"}}
+                        {{#layout-push direction='row' split=true classNames="class-card-head-area"}}
+                            <p class="class-card-title">教师</p>
+                            {{#bs-button onClick=(action (mut techdlg) true) classNames="class-card-btn"}} + 添加{{/bs-button}}
+                        {{/layout-push}}
+                        {{#each model.cls.tech as |item|}}
+                            {{#layout-push direction="row" split=true classNames="class-card-teacher-content"}}
+                                {{#layout-push direction='row'}}
+                                    <img src="../images/avatar_defautl_96px @1x.png" alt="" class="class-card-head-img">
+                                    {{#layout-push direction=col}}
+                                        <p>{{item.me.name}}</p>
+                                        {{!-- <p>电话：{{item.me.contact}}</p> --}}
+                                    {{/layout-push}}
+                                {{/layout-push}}
+                                <img src="../images/btn_Subicon_more@2x.png" class="more-info" alt="">
+                            {{/layout-push}}
+
+                        {{/each}}
+                    {{/layout-push}}
+                    {{#bm-modal-container mswitch=techdlg
+                            title='添加班级教师'
+                            successbtncss='course-reserve-card-save'
+                            cancelbtncss='course-reserve-card-cancel'
+                            canceltext='取消'
+                            onCancelBtnClicked=(action 'cancelTechHandled')
+                            onSuccessBtnClicked=(action 'successTechHandled')}}
+
+                        {{#layout-push direction="col"}}
+                            {{#layout-push direction="row" classNames="card-wrap edit-teacher-list"}}
+                                {{#each tech_lst as |item|}}
+                                    <div class="line_container_warp tech_card_container" >
+                                        {{tech-card  tech=item canChecked=true onTechCardClicked=(action 'oneTechChecked')}}
+                                    </div>
+                                {{/each}}
+                            {{/layout-push}}
+                        {{/layout-push}}
+                    {{/bm-modal-container}}
+
+                    {{#layout-push direction='col' classNames="class-course-card"}}
+                        {{#layout-push direction='row' split=true classNames="class-card-head-area"}}
+                            <p class="class-card-title">课程安排</p>
+                            {{#bs-button onClick=(action 'goToarrangeClass') classNames="class-card-btn"}}排课{{/bs-button}}
+                        {{/layout-push}}
+                        {{#layout-push direction="col"}}
+                            {{!-- {{#layout-push direction="row"  classNames="class-course-list course-time"}}
+                                <p>时间：08/08日～12/31</p>
+                                <p>共 30 节</p>
+                                <p>共 60 课时</p>
+                            {{/layout-push}} --}}
+                            {{#each session_lst as |item index|}}
+                                {{#layout-push direction="row" split=true classNames="class-course-content"}}
+                                    <p>第{{index}}节</p>
+                                    <p>{{bmnormaldate item.start_date}} &nbsp;&nbsp; {{bmnormalweekday item.start_date}}</p>
+                                    <p>{{item.time}}10:00-11:30</p>
+                                    <p>{{item.tech.me.name}}</p>
+                                {{/layout-push}}
+                            {{/each}}
+                        {{/layout-push}}
+                    {{/layout-push}}
+                {{!-- </div> --}}
+            {{/layout-push}}
+        {{/if}}
+
+        {{#if traineesLists}}
+            {{#layout-push direction='row' classNames='ib_tab_bar'}}
+                <span class='ib_tab_btn' {{action 'arrangeClass'}}>课程安排</span>
+                <span class='ib_tab_btn active ib_tab_btn_active'>学员名单</span>
+            {{/layout-push}}
+            {{!-- <div class="detail_panel detail_panel_col_between" >
+                <span class='detail_panel_head' {{action 'arrangeClass'}}>课程安排</span>
+                <span class="detail_panel_head" {{action 'classDetails'}}>班级详情</span>
+                <span class="detail_panel_head active" {{action 'traineesLists'}}>学员名单</span>
+            </div> --}}
+                <div class="detail_panel_col_between" class="add-student">
+                    {{#bs-button onClick=(action (mut studdlg) true) classNames="add-student-btn"}}添加学员{{/bs-button}}
+                </div>
+                {{#bm-modal-container mswitch=studdlg
+                        title='添加班级学生'
+                        successbtncss='course-reserve-card-save'
+                        cancelbtncss='course-reserve-card-cancel'
+                        canceltext='取消'
+                        onCancelBtnClicked=(action 'cancelStudHandled')
+                        onSuccessBtnClicked=(action 'successStudHandled')}}
+
+                    {{#layout-push direction="col"}}
+                        {{#layout-push direction="row" classNames="card-wrap edit-teacher-list"}}
+                            {{#each stud_lst as |item|}}
+                                <div class="line_container_warp stud_card_container" >
+                                    {{stud-card stud=item canChecked=true onStudCardClicked=(action 'oneStudChecked')}}
+                                </div>
+                            {{/each}}
+                        {{/layout-push}}
+                    {{/layout-push}}
+                {{/bm-modal-container}}
+
+                <table class='ib_table_head'>
+                    <tr>
+                        {{#each model.studentTableHead as |item|}}
+                            <th class='ib_table_item'>{{item.title}}</th>
+                        {{/each}}
+                    </tr>
+                    {{#each model.cls.stud as |item|}}
+                    <tr class="stud-tabel-body">
+                        <td class='ib_table_content_item'>{{item.me.name}}</td>
+                        <td class='ib_table_content_item'>
+                            {{#if (bmeq item.me.gender 1)}}
+                            男
+                            {{else}}
+                            女
+                            {{/if}}
+                        </td>
+                        <td class="ib_table_content_item">{{item.me.age}}</td>
+                        <td class="ib_table_content_item">{{item.me.contact}}</td>
+                        <td>
+                            <img src="../images/btn_Subicon_more@2x.png" class="stud-more-info" alt="">
+                        </td>
+                    </tr>
+                    {{/each}}
+                </table>
+        {{/if}}
+
+    </div>
+</div>
+
+{{outlet}}

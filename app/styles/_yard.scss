@@ -12,7 +12,15 @@
 }
 
 .yard_content {
+    margin-left: 24px;
     padding: 32px;
+
+    .yard_content_title {
+        font-family: "SimHei";
+        font-weight: 500;
+        font-size: 26px;
+        color: #000000;
+    }
 
     .yard_add_btn {
         background: #6E7CD4;

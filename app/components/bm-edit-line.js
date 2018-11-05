@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 
 export default Component.extend({
-    positionalParams: ['title', 'pholder', 'maxCount', 'isNeeded', 'inputVal'],
+    positionalParams: ['title', 'pholder', 'maxCount', 'isNeeded', 'inputVal','height', 'group'],
     count: computed('inputVal', function() {
         if (typeof this.inputVal == 'string')
             return this.inputVal.length;

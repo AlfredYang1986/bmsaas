@@ -1,0 +1,25 @@
+{{#if hasSetCourse}}
+    {{#layout-push direction='col' classNames='reserve_card'}}
+        <img src="../images/course.png" alt="">
+        {{#layout-push direction="col" classNames="reser_card_info"}}
+            <p class="course_card_text"><span class="course_card_text">{{reserve.course.category.sub}}</span>&nbsp;·&nbsp;6-12岁</p>
+            <span class="course_card_title">{{reserve.course.name}}</span>
+            <span class="course_card_time">2018.09.14-2018.11.14</span>
+
+        {{/layout-push}}
+    {{/layout-push }}
+{{else}}
+    {{#layout-push direction='col' classNames='course_card' split=true}}
+        {{#layout-push direction='col' mid=true classNames='course_card_content'}}
+            {{#layout-push direction='row' classNames='course_card_content_line'}}
+                <span class="course_card_title">乐高少儿建构教室</span>
+            {{/layout-push }}
+            {{#layout-push direction='row' classNames='course_card_content_line'}}
+                <span class="course_card_text">科学</span>
+                <span class="course_card_text">STEM</span>
+            {{/layout-push }}
+        {{/layout-push }}
+    {{/layout-push }}
+{{/if}}
+
+{{yield}}
