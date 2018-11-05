@@ -22,11 +22,11 @@ export default Component.extend({
         return this.direction == 'col' &&  this.mid == true;
     }),
     classNameBindings: [
-                        'colpush:v_push',
-                        'colsplit:v_end',
-                        'colmid:v_mid',
-                        'rowpush:line_container',
-                        'rowsplit:line_container_split',
-                        'rowmid:line_container_mid',
+                        'colpush:bm-flex-v',
+                        'colsplit:bm-flex-vs',
+                        'colmid:bm-flex-vc',
+                        'rowpush:bm-flex-h',
+                        'rowsplit:bm-flex-hs',
+                        'rowmid:bm-flex-hc',
                     ],
 });

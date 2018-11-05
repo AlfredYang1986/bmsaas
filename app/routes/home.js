@@ -6,6 +6,7 @@ import { inject as service } from '@ember/service';
 export default Route.extend({
     mock_data: service(),
     model() {
+
         this.mock_data.sureBrand();
         let brand = this.store.peekRecord('bmbrand', 'i am a brand');
 
