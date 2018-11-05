@@ -1,0 +1,84 @@
+@import 'args';
+%select-box-dropdown-default {
+    background: url("../img/chevron_down_normal@2x.png") no-repeat right center transparent;
+    border: $color-border-none;
+    border-radius: $border-radius-button-product;
+    background-size: $width-icon;
+    width: $width-select-dropdown;
+    height: $height-select-dropdown;
+    padding-left: $padding-select-dropdown-left;
+    padding-right: $padding-select-dropdown-right;
+    background-color: $color-select-bg-dafault;
+    font-family: $font-family;
+    font-size: $font-size-main;
+    color: $color-form-unfilled-text;
+    outline: none;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    option {
+        max-width: $width-select-dropdown;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+    }
+}
+%select-box-dropdown-default:focus {
+    border: $color-border-none;
+    background-color: $color-select-bg-hover;
+    font-family: $font-family;
+    font-size: $font-size-main;
+    color: $color-form-unfilled-text;
+    outline: none;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    option {
+        max-width: $width-select-dropdown;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+    }
+}
+
+%select-box-dropdown-disabled {
+    background: url("../img/chevron_down_normal@2x.png") no-repeat right center transparent;
+    border: $color-border-none;
+    border-radius: $border-radius-button-product;
+    background-size: $width-icon;
+    width: $width-select-dropdown;
+    height: $height-select-dropdown;
+    padding-left: $padding-select-dropdown-left;
+    padding-right: $padding-select-dropdown-right;
+    background-color: $color-select-bg-dafault;
+    font-family: $font-family;
+    font-size: $font-size-main;
+    color: $color-neutral-N070;
+    outline: none;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    option {
+        width: $width-select-dropdown;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+    }
+}
+%select-box-dropdown-disabled:focus {
+    border: $color-border-none;
+    background-color: $color-select-bg-dafault;
+    font-family: $font-family;
+    font-size: $font-size-main;
+    color: $color-neutral-N070;
+    outline: none;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    option {
+        width: $width-select-dropdown;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+    }
+}

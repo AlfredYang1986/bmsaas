@@ -30,12 +30,16 @@ $color-form-disabled-text: #A5ADBA;
 $color-button-default-default: #42526E;
 $color-button-bg-disabled: rgba(9,30,66,0.04);
 $color-no-bg: transparent;
-
+$color-select-bg-dafault: #FAFBFC;
+$color-select-bg-hover: #F0F2F5;
+$color-border-none: 1px solid transparent;
 
 $padding-button-top-and-bottom: 6px;
 $padding-button-left-and-right: 12px;
 $padding-button-icon-left: 6px;
 $padding-button-icon-right: 2px;
+$padding-select-dropdown-left: 16px;
+$padding-select-dropdown-right: 32px;
 
 $height-button: 32px;
 $width-button: 80px;
@@ -46,3 +50,5 @@ $line-height-button: 20px;
 $border-radius-button-system: 2px;
 $border-radius-button-product: 4px;
 $border-radius-icon-only: 3px;
+$width-select-dropdown: 360px;
+$height-select-dropdown: 32px;
