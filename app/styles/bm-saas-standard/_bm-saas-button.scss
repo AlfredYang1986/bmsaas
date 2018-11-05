@@ -1,0 +1,284 @@
+@import 'args';
+%button-system-primary-default {
+    padding: $padding-button-top-and-bottom $padding-button-left-and-right;
+    height: $height-button;
+    min-width: $width-button;
+    line-height: $line-height-button;
+    background: $color-primary-B400;
+    border-radius: $border-radius-button-system;
+    font-family: $font-family;
+    font-size: $font-size-main;
+    color: $color-neutral-N000;
+
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: middle;
+    text-align: center;
+    outline:none;
+}
+%button-system-primary-default:hover {
+    background: $color-primary-B400;
+    color: $color-neutral-N000;
+    outline:none;
+}
+%button-system-primary-default:focus {
+    background: $color-primary-B400;
+    color: $color-neutral-N000;
+    outline:none;
+}
+
+%button-system-disabled {
+    padding: $padding-button-top-and-bottom $padding-button-left-and-right;
+    height: $height-button;
+    min-width: $width-button;
+    line-height: $line-height-button;
+    background: $color-button-bg-disabled;
+    font-family: $font-family;
+    border-radius: $border-radius-button-system;
+    font-size: $font-size-main;
+    color: $color-neutral-N070;
+
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: middle;
+    text-align: center;
+    outline:none;
+}
+%button-system-disabled:hover {
+    background: $color-button-bg-disabled;
+    color: $color-neutral-N070;
+    outline:none;
+}
+%button-system-disabled:focus {
+    background: $color-button-bg-disabled;
+    color: $color-neutral-N070;
+    outline:none;
+}
+
+%button-system-default-default {
+    padding: $padding-button-top-and-bottom $padding-button-left-and-right;
+    height: $height-button;
+    min-width: $width-button;
+    line-height: $line-height-button;
+    background: $color-button-bg-disabled;
+    font-family: $font-family;
+    border-radius: $border-radius-button-system;
+    font-size: $font-size-main;
+    color: $color-button-default-default;
+
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: middle;
+    text-align: center;
+    outline:none;
+}
+%button-system-default-default:hover {
+    background: $color-button-bg-disabled;
+    color: $color-button-default-default;
+    outline:none;
+}
+%button-system-default-default:focus {
+    background: $color-button-bg-disabled;
+    color: $color-button-default-default;
+    outline:none;
+}
+
+%button-system-with-icon-default {
+    padding: $padding-button-top-and-bottom $padding-button-left-and-right $padding-button-top-and-bottom $padding-button-icon-left;
+    height: $height-button;
+    min-width: $width-button;
+    line-height: $line-height-button;
+    background: $color-button-bg-disabled;
+    font-family: $font-family;
+    border-radius: $border-radius-button-system;
+    font-size: $font-size-main;
+    color: $color-button-default-default;
+
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: middle;
+    text-align: center;
+    outline:none;
+
+    img {
+        width: $width-icon;
+        height: $height-icon;
+    }
+}
+%button-system-with-icon-default:hover {
+    background: $color-button-bg-disabled;
+    color: $color-button-default-default;
+    outline:none;
+}
+%button-system-with-icon-default:focus {
+    background: $color-button-bg-disabled;
+    color: $color-button-default-default;
+    outline:none;
+}
+
+%button-system-icon-only-default {
+    padding: 4px;
+    width: $width-button-icon;
+    height: $height-button;
+    background: $color-button-bg-disabled;
+    border-radius: $border-radius-icon-only;
+
+    display: inline-block;
+    vertical-align: middle;
+    outline:none;
+
+    img {
+        width: $width-icon;
+        height: $height-icon;
+    }
+}
+%button-system-icon-only-default:hover {
+    background: $color-button-bg-disabled;
+    outline:none;
+}
+%button-system-icon-only-default:focus {
+    background: $color-button-bg-disabled;
+    outline:none;
+}
+
+%button-system-icon-only-selected {
+    padding: 4px;
+    width: $width-button-icon;
+    height: $height-button;
+    background: $color-button-default-default;
+    border-radius: $border-radius-icon-only;
+
+    display: inline-block;
+    vertical-align: middle;
+    outline:none;
+
+    img {
+        width: $width-icon;
+        height: $height-icon;
+    }
+}
+%button-system-icon-only-selected:hover {
+    background: $color-button-default-default;
+    outline:none;
+}
+%button-system-icon-only-selected:focus {
+    background: $color-button-default-default;
+    outline:none;
+}
+
+%button-system-subtle-default {
+    padding: $padding-button-top-and-bottom $padding-button-left-and-right;
+    height: $height-button;
+    min-width: $width-button;
+    line-height: $line-height-button;
+    background: $color-no-bg;
+    font-family: $font-family;
+    border-radius: $border-radius-button-system;
+    font-size: $font-size-main;
+    color: $color-button-default-default;
+
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: middle;
+    text-align: center;
+    outline:none;
+}
+%button-system-subtle-default:hover {
+    background: $color-no-bg;
+    color: $color-button-default-default;
+    outline:none;
+}
+%button-system-subtle-default:focus {
+    background: $color-no-bg;
+    color: $color-button-default-default;
+    outline:none;
+}
+
+%button-system-subtle-disabled {
+    padding: $padding-button-top-and-bottom $padding-button-left-and-right;
+    height: $height-button;
+    min-width: $width-button;
+    line-height: $line-height-button;
+    background: $color-no-bg;
+    font-family: $font-family;
+    border-radius: $border-radius-button-system;
+    font-size: $font-size-main;
+    color: $color-neutral-N070;
+
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: middle;
+    text-align: center;
+    outline:none;
+}
+%button-system-subtle-disabled:hover {
+    background: $color-no-bg;
+    color: $color-neutral-N070;
+    outline:none;
+}
+%button-system-subtle-disabled:focus {
+    background: $color-no-bg;
+    color: $color-neutral-N070;
+    outline:none;
+}
+
+%button-system-subtle-with-icon {
+    padding: $padding-button-top-and-bottom $padding-button-left-and-right $padding-button-top-and-bottom $padding-button-icon-left;
+    height: $height-button;
+    min-width: $width-button;
+    line-height: $line-height-button;
+    background: $color-no-bg;
+    font-family: $font-family;
+    border-radius: $border-radius-button-system;
+    font-size: $font-size-main;
+    color: $color-button-default-default;
+
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: middle;
+    text-align: center;
+    outline:none;
+
+    img {
+        width: $width-icon;
+        height: $height-icon;
+    }
+}
+%button-system-subtle-with-icon:hover {
+    background: $color-no-bg;
+    color: $color-button-default-default;
+    outline:none;
+}
+%button-system-subtle-with-icon:focus {
+    background: $color-no-bg;
+    color: $color-button-default-default;
+    outline:none;
+}
+
+%button-system-link {
+    padding: $padding-button-top-and-bottom $padding-button-left-and-right;
+    height: $height-button;
+    min-width: $width-button;
+    line-height: $line-height-button;
+    background: $color-no-bg;
+    font-family: $font-family;
+    border-radius: $border-radius-button-system;
+    font-size: $font-size-main;
+    color: $color-primary-B400;
+
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: middle;
+    text-align: center;
+    outline:none;
+}
+%button-system-link:hover {
+    background: $color-no-bg;
+    color: $color-primary-B400;
+    outline:none;
+}
+%button-system-link:focus {
+    background: $color-no-bg;
+    color: $color-primary-B400;
+    outline:none;
+}

@@ -1,0 +1,73 @@
+@import 'args';
+%font-page-header-title {
+	font-family: $font-family;
+	font-size:  $font-size-header;
+	font-weight: $font-weight-medium;
+	color: $color-neutral-N800;
+}
+%font-empty-prompt-title {
+	font-family: $font-family;
+	font-size: $font-size-promot;
+	font-weight: $font-weight-medium;
+	color: $color-neutral-N800;
+}
+%font-dialog-title {
+	font-family: $font-family;
+	font-size: $font-size-dialog;
+	font-weight: $font-weight-medium;
+	color: $color-neutral-N800;
+}
+%font-form-info-title {
+	font-family: $font-family;
+	font-size: $font-size-main;
+	font-weight: $font-weight-medium;
+	color: $color-neutral-N800;
+}
+%font-main-text {
+	font-family: $font-family;
+	font-size: $font-size-main;
+	font-weight: $font-weight-regular;
+	color: $color-neutral-N800;
+}
+%font-help-text {
+	font-family: $font-family;
+	font-size: $font-size-main;
+	font-weight: $font-weight-regular;
+	color: $color-neutral-N200;
+}
+%font-minimum-text {
+	font-family: $font-family;
+	font-size: $font-size-minimum;
+	font-weight: $font-weight-regular;
+	color: $color-neutral-N200;
+}
+%font-system-level-link {
+	font-family: $font-family;
+	font-size: $font-size-main;
+	font-weight: $font-weight-regular;
+	color: $color-primary-B400;
+}
+%font-product-level-link {
+	font-family: $font-family;
+	font-size: $font-size-main;
+	font-weight: $font-weight-regular;
+	color: $color-theme-T100;
+}
+%font-form-unfilled-text {
+	font-family: $font-family;
+	font-size: $font-size-main;
+	font-weight: $font-weight-regular;
+	color:  $color-form-unfilled-text;
+}
+%font-form-filled-text {
+	font-family: $font-family;
+	font-size: $font-size-main;
+	font-weight: $font-weight-regular;
+	color:  $color-form-filled-text;
+}
+%font-form-disabled-text {
+	font-family: $font-family;
+	font-size: $font-size-main;
+	font-weight: $font-weight-regular;
+	color: $color-form-disabled-text;
+}

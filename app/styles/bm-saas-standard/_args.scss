@@ -1,0 +1,48 @@
+p, button {
+    margin-bottom: 0;
+}
+a {
+    text-decoration: none;
+}
+$font-family: Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif;
+$font-size-header: 24px;
+$font-size-promot: 20px;
+$font-size-dialog: 16px;
+$font-size-main: 14px;
+$font-size-minimum: 12px;
+$font-weight-medium: 600;
+$font-weight-regular: 400;
+
+$color-theme-T100: #80AEFF;
+$color-theme-T050: #BFD6FF;
+$color-theme-T020: #E6EFFF;
+$color-primary-B400: #3172E0;
+$color-neutral-N800: #172B4D;
+$color-neutral-N200: #6B778C;
+$color-neutral-N070: #A5ADBA;
+$color-neutral-N020: #F7F8FA;
+$color-neutral-N000: #FFFFFF;
+$color-error-R400: #DE350B;
+$color-success-other: #39BF5F;
+$color-form-unfilled-text: #7A869A;
+$color-form-filled-text: #253858;
+$color-form-disabled-text: #A5ADBA;
+$color-button-default-default: #42526E;
+$color-button-bg-disabled: rgba(9,30,66,0.04);
+$color-no-bg: transparent;
+
+
+$padding-button-top-and-bottom: 6px;
+$padding-button-left-and-right: 12px;
+$padding-button-icon-left: 6px;
+$padding-button-icon-right: 2px;
+
+$height-button: 32px;
+$width-button: 80px;
+$width-button-icon: 32px;
+$width-icon: 24px;
+$height-icon: 24px;
+$line-height-button: 20px;
+$border-radius-button-system: 2px;
+$border-radius-button-product: 4px;
+$border-radius-icon-only: 3px;
