@@ -18,6 +18,21 @@ module.exports = function(defaults) {
     }
   });
 
+    app.import("vendor/laydate/theme/default/font/iconfont.eot", {
+    destDir: '/assets/laydate/fonts'
+    })
+    app.import("vendor/laydate/theme/default/font/iconfont.svg", {
+    destDir: '/assets/laydate/fonts'
+    })
+    app.import("vendor/laydate/theme/default/font/iconfont.ttf", {
+    destDir: '/assets/laydate/fonts'
+    })
+    app.import("vendor/laydate/theme/default/font/iconfont.woff", {
+    destDir: '/assets/laydate/fonts'
+    })
+    app.import("vendor/laydate/theme/default/laydate.css")
+    app.import("vendor/laydate/laydate.js")
+
   // Use `app.import` to add additional libraries to the generated
   // output files.
   //
