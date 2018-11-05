@@ -1,0 +1,85 @@
+$font-family: Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif;
+%font-page-header-title {
+	font-family: $font-family;
+	font-size:  24px;
+	font-weight: 600;
+	color: #172B4D;
+	line-height: 33px;
+}
+%font-empty-prompt-title {
+	font-family: $font-family;
+	font-size: 20px;
+	font-weight: 600;
+	color: #172B4D;
+	line-height: 28px;
+}
+%font-dialog-title {
+	font-family: $font-family;
+	font-size: 16px;
+	font-weight: 600;
+	color: #172B4D;
+	line-height: 22px;
+}
+%font-form-info-title {
+	font-family: $font-family;
+	font-size: 14px;
+	font-weight: 600;
+	color: #172B4D;
+	line-height: 20px;
+}
+%font-main-text {
+	font-family: $font-family;
+	font-size: 14px;
+	font-weight: normal;
+	color: #172B4D;
+	line-height: 20px;
+}
+%font-help-text {
+	font-family: $font-family;
+	font-size: 14px;
+	font-weight: normal;
+	color: #6B778C;
+	line-height: 20px;
+}
+%font-minimum-text {
+	font-family: $font-family;
+	font-size: 12px;
+	font-weight: normal;
+	color: #6B778C;
+	line-height: 16px;
+}
+%font-system-level-link {
+	font-family: $font-family;
+	font-size: 14px;
+	font-weight: normal;
+	color: #3172E0;
+	line-height: 20px;
+}
+%font-product-level-link {
+	font-family: $font-family;
+	font-size: 14px;
+	font-weight: normal;
+	color: #80AEFF;
+	line-height: 20px;
+}
+%font-form-unfilled-text {
+	font-family: $font-family;
+	font-size: 14px;
+	font-weight: normal;
+	color:  #7A869A;
+	line-height: 20px;
+}
+%font-form-filled-text {
+	font-family: $font-family;
+	font-size: 14px;
+	font-weight: normal;
+	color:  #253858;
+	line-height: 20px;
+}
+%font-form-disabled-text {
+	font-family: $font-family;
+	font-size: 14px;
+	font-weight: normal;
+	color: #A5ADBA;
+	line-height: 20px;
+}
