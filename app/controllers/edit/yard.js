@@ -36,7 +36,7 @@ export default Controller.extend({
 
             let yard = null;
             if (this.isPushing) {
-                let region = this.store.peekRecord('bmregion', '1')
+                let region = this.store.peekRecord('bm-region', '1')
                 yard = this.store.createRecord('bmyard', {
                     id: this.guid()
                 })
@@ -57,8 +57,8 @@ export default Controller.extend({
             if (this.yard_selected_province) region.set('province', this.yard_selected_province);
             if (this.yard_selected_city) region.set('city', this.yard_selected_city);
             if (this.yard_selected_government_areas) region.set('governmentArea', this.yard_selected_government_areas);
-            
-            
+
+
             // TODO: 其他一些属性的修改
 
             if (this.isPushing) {

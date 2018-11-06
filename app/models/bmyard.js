@@ -5,7 +5,7 @@ export default DS.Model.extend({
     title: DS.attr('string'),
     cover: DS.attr('string'),
     detail_address: DS.attr('string'),
-    region: DS.belongsTo('bmregion', { async: false }),
+    region: DS.belongsTo('bm-region', { async: false }),
     description: DS.attr('string'),
     around: DS.attr('string'),
     ardes: DS.attr('string'),

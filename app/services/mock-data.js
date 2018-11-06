@@ -112,7 +112,7 @@ export default Service.extend({
       //     day: 1
       // })
       let dob_stud_01 = "2016-07-01";
-      let person_stud_01 = this.store.createRecord('bmperson', {
+      let person_stud_01 = this.store.createRecord('BmPerson', {
         id: 'i am stud person 01',
         icon: '../images/stud-normal.png',
         name: '王大锤',
@@ -129,7 +129,7 @@ export default Service.extend({
       })
       stud01.set('me', person_stud_01);
 
-      let person_parent_01 = this.store.createRecord('bmperson', {
+      let person_parent_01 = this.store.createRecord('BmPerson', {
         id: 'i am stud parent 01',
         icon: '../images/stud-normal.png',
         name: '王巨锤',
@@ -140,7 +140,7 @@ export default Service.extend({
         wechat: 'father_BigHam',
         register_date: new Date(),
       })
-      let guardian_01 = this.store.createRecord('bmguardian', {
+      let guardian_01 = this.store.createRecord('BmGuardian', {
         id: 'i am stud guardian 01',
         rs: '父子',
         address: '天上人间158号'
@@ -149,7 +149,7 @@ export default Service.extend({
       guardian_01.set('me', person_parent_01);
       guardian_01.set('guad', stud01);
 
-      let person_urgent_01 = this.store.createRecord('bmperson', {
+      let person_urgent_01 = this.store.createRecord('BmPerson', {
         id: 'i am stud urgent 01',
         icon: '../images/stud-normal.png',
         name: '王锤子妈',
@@ -176,7 +176,7 @@ export default Service.extend({
       //     day: 1
       // })
       let dob_stud_02 = "2017-08-01"
-      let person_stud_02 = this.store.createRecord('bmperson', {
+      let person_stud_02 = this.store.createRecord('BmPerson', {
         id: 'i am stud person 02',
         icon: '../images/stud-normal.png',
         name: '莫小贝',
@@ -193,7 +193,7 @@ export default Service.extend({
       })
       stud02.set('me', person_stud_02);
 
-      let person_parent_02 = this.store.createRecord('bmperson', {
+      let person_parent_02 = this.store.createRecord('BmPerson', {
         id: 'i am stud parent 02',
         icon: '../images/stud-normal.png',
         name: '莫大老先生',
@@ -204,7 +204,7 @@ export default Service.extend({
         wechat: 'TheManInJiangHu',
         register_date: new Date(),
       })
-      let guardian_02 = this.store.createRecord('bmguardian', {
+      let guardian_02 = this.store.createRecord('BmGuardian', {
         id: 'i am stud guardian 02',
         rs: '母子',
         address: '衡山剑派001号'
@@ -213,7 +213,7 @@ export default Service.extend({
       guardian_02.set('me', person_parent_02);
       guardian_02.set('guad', stud02);
 
-      let person_urgent_02 = this.store.createRecord('bmperson', {
+      let person_urgent_02 = this.store.createRecord('BmPerson', {
         id: 'i am stud urgent 02',
         icon: '../images/stud-normal.png',
         name: '衡山的臭尼姑',
@@ -239,7 +239,7 @@ export default Service.extend({
     let tech_lst = this.store.peekAll('bmtech');
     if (tech_lst.length == 0) {
       let dob_tech_01 = "2011-08-01"
-      let person_tech_01 = this.store.createRecord('bmperson', {
+      let person_tech_01 = this.store.createRecord('BmPerson', {
         id: 'i am tech person 01',
         icon: '../images/avatar_defautl_96px @1x.png',
         name: '司徒钟',
@@ -259,7 +259,7 @@ export default Service.extend({
       tech_01.set('me', person_tech_01);
 
             let dob_tech_02 = "2011-08-01"
-            let person_tech_02 = this.store.createRecord('bmperson', {
+            let person_tech_02 = this.store.createRecord('BmPerson', {
                 id: 'i am tech person 02',
                 icon: '../images/avatar_defautl_96px @1x.png',
                 name: '李逍遥',
@@ -300,7 +300,7 @@ export default Service.extend({
             let rg_area_02 = this.store.peekRecord('bmgovernment-areas', "2");
 
 
-            let rg_01_01 = this.store.createRecord('bmregion', {
+            let rg_01_01 = this.store.createRecord('bm-region', {
                 id: '1',
                 province,
                 city,
@@ -357,7 +357,7 @@ export default Service.extend({
                 facilities: A(['停车场']),
             });
 
-            let rg_01_02 = this.store.createRecord('bmregion', {
+            let rg_01_02 = this.store.createRecord('bm-region', {
                 id: '2',
                 province,
                 city,
@@ -670,7 +670,7 @@ export default Service.extend({
       apply_01.set('apply_yard', yard_01);
       apply_01.set('apply_course', course_01);
 
-      let attendee_01 = this.store.createRecord('bmperson', {
+      let attendee_01 = this.store.createRecord('BmPerson', {
         id: 'i am person attendee 01',
         icon: '../images/stud-normal.png',
         name: '刘备',
@@ -682,7 +682,7 @@ export default Service.extend({
         dob: new Date('184-01-01')
       });
 
-      let applyee_01 = this.store.createRecord('bmperson', {
+      let applyee_01 = this.store.createRecord('BmPerson', {
         id: 'i am person applyee 01',
         icon: '../images/stud-normal.png',
         name: '刘邦',
@@ -706,7 +706,7 @@ export default Service.extend({
       apply_02.set('apply_yard', yard_02);
       apply_02.set('apply_activity', activity_02);
 
-      let attendee_02 = this.store.createRecord('bmperson', {
+      let attendee_02 = this.store.createRecord('BmPerson', {
         id: 'i am person attendee 02',
         icon: '../images/stud-normal.png',
         name: '关羽',
@@ -718,7 +718,7 @@ export default Service.extend({
         dob: new Date('189-01-01')
       });
 
-      let applyee_02 = this.store.createRecord('bmperson', {
+      let applyee_02 = this.store.createRecord('BmPerson', {
         id: 'i am person applyee 02',
         icon: '../images/stud-normal.png',
         name: '秦琼',

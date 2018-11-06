@@ -54,60 +54,125 @@ export default Controller.extend({
       //   alert('必填项不能为空！');
       //   return;
       // }
-
-      let stud = null;
+      //
+      let attendee = null;
       if (this.isPushing) {
-        stud = this.store.createRecord('bmstud', {
-          id: this.guid()
-        })
-        let per_stud = this.store.createRecord('bmperson', {
-          id: this.guid()
-        })
-        let per_gard = this.store.createRecord('bmperson', {
-          id: this.guid()
-        })
-        let per_urg = this.store.createRecord('bmperson', {
-          id: this.guid()
-        })
-        let gard = this.store.createRecord('bmguardian', {
-          id: this.guid()
-        })
-        let urg = this.store.createRecord('bmurgent', {
-          id: this.guid()
-        })
-        gard.set('me', per_gard);
-        urg.set('me', per_urg);
-        stud.set('me', per_stud);
-        stud.set('urgent', urg);
-        stud.set('guardian', gard)
+          attendee = this.get('pmController').get('Store').createModel('bm-attendee', {
+              id: this.guid(),
+              intro: '你才是新来的',
+              status: 'candidate',
+              lesson_count: 18
+          });
+          let person = this.get('pmController').get('Store').createModel('bm-person', {
+              id: this.guid(),
+              name: this.chd_name,
+              nickname: '仮面ライダーシリーズ',
+              icon: 'https://sjbz-fd.zol-img.com.cn/t_s320x510c/g5/M00/07/03/ChMkJljlp7mIVS74AAZe51VcP4AAAbZEQJ0SDoABl7_286.jpg',
+              gender: 0,
+          });
+
+          let person_1 = this.get('pmController').get('Store').createModel('bm-person', {
+              id: this.guid(),
+              name: '李逍遥',
+              nickname: '逍遥',
+              icon: 'https://sjbz-fd.zol-img.com.cn/t_s320x510c/g5/M00/07/03/ChMkJljlp7mIVS74AAZe51VcP4AAAbZEQJ0SDoABl7_286.jpg',
+              gender: 0,
+          });
+
+          let person_2 = this.get('pmController').get('Store').createModel('bm-person', {
+              id: this.guid(),
+              name: '黑寡妇',
+              nickname: '寡妇',
+              icon: 'https://sjbz-fd.zol-img.com.cn/t_s320x510c/g5/M00/07/03/ChMkJljlp7mIVS74AAZe51VcP4AAAbZEQJ0SDoABl7_286.jpg',
+              gender: 1,
+          });
+          attendee.set('person', person);
+
+          attendee.get('guardians').pushObject(this.get('pmController').get('Store').createModel('BmGuardian', {
+              id: this.guid(),
+              relation_ship: '兄弟',
+              person: person_1
+          }))
+
+          attendee.get('guardians').pushObject(this.get('pmController').get('Store').createModel('BmGuardian', {
+              id: this.guid(),
+              relation_ship: '姊妹',
+              person: person_2
+          }))
+
+          // this.get('logger').log(attendee)
+          let json = this.get('pmController').get('Store').object2JsonApi(attendee)
+          this.get('logger').log('this is json')
+          this.get('logger').log(json)
+
+          this.get('pmController').get('Store').transaction('/api/v1/insertattendee/0', 'bm-attendee', json)
+            .then(data => {
+                this.get('logger').log("data")
+                this.get('logger').log(data)
+            })
+            .catch(data => {
+                this.get('logger').log(data)
+            })
       } else {
-        stud = this.model.stud;
+          this.get('logger').log('Error');
       }
-      // this.model.stud.me.set('name', this.chd_name);
-      stud.me.set('name', this.chd_name);
-      stud.me.set('nickname', this.chd_nickname);
-      stud.me.set('gender', this.chd_gender);
-      stud.me.set('dob', this.stud_date)
-      stud.set('school', this.chd_school);
 
-      stud.guardian.me.set('name', this.par_name);
-      stud.guardian.me.set('nickname', this.par_nickname);
-      stud.guardian.set('rs', this.par_rs);
-      stud.guardian.me.set('contact', this.par_contact);
-      stud.guardian.me.set('wechat', this.par_wechat);
-      stud.guardian.set('address', this.par_address);
 
-      stud.urgent.me.set('name', this.urg_name);
-      stud.urgent.me.set('nickname', this.urg_nickname);
-      stud.urgent.set('rs', this.urg_rs);
-      stud.urgent.me.set('contact', this.urg_contact);
-      // TODO: 其他的一些属性的修改都在这里解决
-
+      // let stud = null;
+      // if (this.isPushing) {
+      //   stud = this.store.createRecord('bmattendee', {
+      //     id: this.guid();
+      //   })
+      //   let per_stud = this.store.createRecord('bmperson', {
+      //     id: this.guid()
+      //   })
+      //   let per_gard = this.store.createRecord('bmperson', {
+      //     id: this.guid()
+      //   })
+      //   let per_urg = this.store.createRecord('bmperson', {
+      //     id: this.guid()
+      //   })
+      //   let gard = this.store.createRecord('BmGuardian', {
+      //     id: this.guid()
+      //   })
+      //   let urg = this.store.createRecord('bmurgent', {
+      //     id: this.guid()
+      //   })
+      //   gard.set('me', per_gard);
+      //   urg.set('me', per_urg);
+      //   stud.set('me', per_stud);
+      //   stud.set('urgent', urg);
+      //   stud.set('guardian', gard)
+      // } else {
+      //   stud = this.model.stud;
+      // }
+      // // this.model.stud.me.set('name', this.chd_name);
+      // stud.me.set('name', this.chd_name);
+      // stud.me.set('nickname', this.chd_nickname);
+      // stud.me.set('gender', this.chd_gender);
+      // stud.me.set('dob', this.stud_date)
+      // stud.set('school', this.chd_school);
+      //
+      // stud.guardian.me.set('name', this.par_name);
+      // stud.guardian.me.set('nickname', this.par_nickname);
+      // stud.guardian.set('rs', this.par_rs);
+      // stud.guardian.me.set('contact', this.par_contact);
+      // stud.guardian.me.set('wechat', this.par_wechat);
+      // stud.guardian.set('address', this.par_address);
+      //
+      // stud.urgent.me.set('name', this.urg_name);
+      // stud.urgent.me.set('nickname', this.urg_nickname);
+      // stud.urgent.set('rs', this.urg_rs);
+      // stud.urgent.me.set('contact', this.urg_contact);
+      // // TODO: 其他的一些属性的修改都在这里解决
+      //
       if (this.isPushing) {
         this.transitionToRoute('stud');
       } else {
         this.transitionToRoute('detail.stud', stud.id);
       }
+
+
     },
 
   },

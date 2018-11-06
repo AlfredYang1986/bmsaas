@@ -1,4 +1,4 @@
-{{!-- <ul class="nav">
+<ul class="nav">
     <li class="nav-item">
         <a class="nav-link active brand_name" href="#">编辑-学员信息</a>
     </li>
@@ -16,7 +16,7 @@
             <button class="nav_save_btn menu_button_between" {{action 'saveInputBtnClicked'}}>保存</button>
         </div>
     </li>
-</ul> --}}
+</ul>
 {{#layout-push direction='row' split=true classNames='edit_nav' }}
   <span>编辑-学员信息</span>
   <span>
@@ -53,7 +53,8 @@
       {{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
         <p class="edit_title">出生日期</p>
         {{#layout-push direction="row" split=false classNames='date_choose' }}
-          {{date-choose data=stud_date}}
+          {{!-- {{date-choose data=stud_date}} --}}
+          {{bm-lay-date}}
         {{/layout-push}}
       {{/layout-push}}
       {{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}

@@ -9,6 +9,8 @@ export default Route.extend({
   model(params) {
     this.mock_data.sureStud();
     let stud = this.store.peekRecord('bmstud', params.studid);
+
+    
     if (stud == null && params.studid != 'stud/push') {
       this.transitionTo('home');
     }
