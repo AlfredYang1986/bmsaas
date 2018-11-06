@@ -33,6 +33,7 @@ $color-no-bg: transparent;
 $color-select-bg-dafault: #FAFBFC;
 $color-select-bg-hover: #F0F2F5;
 $color-border-none: 1px solid transparent;
+$color-border-checkbox: 1px solid #DFE1E5;
 
 $padding-button-top-and-bottom: 6px;
 $padding-button-left-and-right: 12px;
@@ -40,6 +41,12 @@ $padding-button-icon-left: 6px;
 $padding-button-icon-right: 2px;
 $padding-select-dropdown-left: 16px;
 $padding-select-dropdown-right: 32px;
+$padding-checkbox-around: 6px;
+$no-margin-or-padding: 0;
+$margin-checkbox-left: 20px;
+$margin-checkbox-right: 4px;
+$margin-checkbox-item-bottom: 10px;
+$margin-checkbox-item-right: 30px;
 
 $height-button: 32px;
 $width-button: 80px;
@@ -52,3 +59,6 @@ $border-radius-button-product: 4px;
 $border-radius-icon-only: 3px;
 $width-select-dropdown: 360px;
 $height-select-dropdown: 32px;
+$width-height-checkbox: 14px;
+$width-checkbox-boxtitle: 63px;
+$height-checkbox: 24px;

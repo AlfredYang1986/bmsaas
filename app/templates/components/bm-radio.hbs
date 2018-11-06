@@ -1,0 +1,11 @@
+{{yield}}
+{{#layout-push direction='row' classNames="check-box"}}
+    <p class={{checkboxTitle}}>{{title}}</p>
+    {{#layout-push direction="column" classNames="box-content"}}
+        {{#each checkboxItem as |item|}}
+            {{#layout-push direction="row" classNames="box-item"}}
+                <input type="radio" name="labels" id="labels" value="" class="checkbox">{{item}}
+            {{/layout-push}}
+        {{/each}}
+    {{/layout-push}}
+{{/layout-push}}

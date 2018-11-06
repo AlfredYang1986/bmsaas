@@ -1,3 +1,17 @@
-{{outlet}}
-<p>测试</p>
-{{checkbox-label}}
+<div class="detail_content_top">
+    <div class="detail_page">
+        <div class="content_page arrange-class">
+            {{#layout-push direction="row" split=true}}
+                <p class="arrange-class-title">排课</p>
+                {{!-- <p>添加排课</p> --}}
+            {{/layout-push}}
+            {{#layout-push direction="row" split=true}}
+                {{#layout-push direction='row' classNames="options"}}
+                    <p class="title">选择场地</p>
+                    {{bm-checkbox title="多选框" checkboxItem=checkboxItem checkboxTitle="box-title"}}
+                    {{bm-radio title="单选框" checkboxTitle="box-title" checkboxItem=checkboxItem}}
+                {{/layout-push}}
+            {{/layout-push}}
+        </div>
+    </div>
+</div>
