@@ -463,3 +463,78 @@
     height: 32px;
     text-align: center;
 }
+input.data-picker {
+    width: 163px;
+    height: 32px;
+    background: #FAFBFC;
+    margin-bottom: 0;
+    border: none;
+    box-shadow: none;
+    background: url('../images/icon_date@1x.png') no-repeat right center;
+    background-color: #FAFBFC;
+}
+input.data-picker:focus {
+    width: 163px;
+    height: 32px;
+    background: #FAFBFC;
+    margin-bottom: 0;
+    border: none;
+    box-shadow: none;
+    background: url('../images/icon_date@1x.png') no-repeat right center;
+    background-color: #FAFBFC;
+}
+.layui-laydate {
+    width: 312px;
+    // height: 285px;
+    .layui-laydate-header {
+        width: 312px;
+        font-family: PingFangSC-Medium;
+        font-size: 14px;
+        color: #172B4D;
+    }
+    .layui-laydate-header {
+        border-bottom: none;
+        span:hover {
+            color: #172B4D;
+        }
+    }
+
+    .layui-laydate-content {
+        padding-bottom: 50px;
+        table {
+            border: none;
+            width: 290px;
+            height: 200px;
+            thead {
+            background-color: #fff;
+            th {
+                font-family: PingFangSC-Regular;
+                font-size: 14px;
+                color: #7A869A;
+                text-align: left;
+            }
+
+            }
+            tr {
+                background-color: #fff;
+            }
+            td {
+                font-family: PingFangSC-Medium;
+                font-size: 14px;
+                color: #172B4D;
+            }
+            td.laydate-day-prev, td.laydate-day-next {
+                color: #253858;
+                opacity: 0.6;
+            }
+        }
+        .layui-this {
+            background: #42526E !important;
+            border-radius: 3px;
+        }
+
+    }
+    .layui-laydate-footer {
+        display: none;
+    }
+}
