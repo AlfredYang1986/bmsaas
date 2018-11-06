@@ -27,8 +27,11 @@
     font-size: 14px;
     color: #FFFFFF;
     letter-spacing: 2px;
-
     padding: 8px 24px;
+}
+.tech_add_btn:hover {
+    text-decoration: none;
+    color: #FFFFFF;
 }
 .stud_container {
   // @extend %dd_content_basic;

@@ -1,14 +1,16 @@
 @import "args";
 
 .stud_card {
-  width: 230px;
-  height: 143px;
-  background: #FFFFFF;
-  box-shadow: 2px 2px 6px 0 #CAD5E1;
-  border-radius: 4px;
- margin: 12px;
-  padding: 16px;
-
+    width: 230px;
+    height: 143px;
+    background: #FFFFFF;
+    box-shadow: 2px 2px 6px 0 #CAD5E1;
+    border-radius: 4px;
+    margin: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   .stud_card_name {
     font-family: $font-brand;
     font-size: 14px;
