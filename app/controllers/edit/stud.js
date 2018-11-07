@@ -78,7 +78,6 @@ export default Controller.extend({
               icon: 'https://sjbz-fd.zol-img.com.cn/t_s320x510c/g5/M00/07/03/ChMkJljlp7mIVS74AAZe51VcP4AAAbZEQJ0SDoABl7_286.jpg',
               gender: 0,
           });
-
           let person_2 = this.get('pmController').get('Store').createModel('bm-person', {
               id: this.guid(),
               name: '黑寡妇',
@@ -100,7 +99,7 @@ export default Controller.extend({
               person: person_2
           }))
 
-          // this.get('logger').log(attendee)
+          this.get('logger').log(attendee)
           let json = this.get('pmController').get('Store').object2JsonApi(attendee)
           this.get('logger').log('this is json')
           this.get('logger').log(json)

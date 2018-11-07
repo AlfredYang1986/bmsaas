@@ -8,7 +8,7 @@ export default Component.extend({
     needhours: false,
     tagName: '',
     years: Array.from(new Array(9), (val,index) => (index + 2010).toString()),
-    months: Array.from(new Array(12),(val,index)=> { 
+    months: Array.from(new Array(12),(val,index)=> {
         let m = (index + 1).toString();
         if (m < 10) return "0" + m;
         return m;
@@ -50,7 +50,7 @@ export default Component.extend({
         if (this.get('data')) {
             return this.get('data').split('-')[1];
         }
-        
+
     }),
     selectedDay: computed('data', function() {
         if (this.get('data')) {
