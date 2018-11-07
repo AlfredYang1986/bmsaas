@@ -55,64 +55,77 @@ export default Controller.extend({
       //
       let attendee = null;
       if (this.isPushing) {
-          attendee = this.get('pmController').get('Store').createModel('bm-attendee', {
+          attendee = this.get('pmController').get('Store').createModel('BmAttendee', {
               id: this.guid(),
               intro: '你才是新来的',
               status: 'candidate',
               lesson_count: 18
           });
-          let person = this.get('pmController').get('Store').createModel('bm-person', {
+          let region = this.get('pmController').get('Store').createModel('BmRegion', {
+              province: '北京',
+              city: '北京',
+              district: '朝阳区',
+          })
+          let address = this.get('pmController').get('Store').createModel('BmAddress', {
+              detail: '详情',
+              Region: region
+          })
+          let person = this.get('pmController').get('Store').createModel('BmPerson', {
               id: this.guid(),
               name: this.chd_name,
               nickname: '仮面ライダーシリーズ',
               icon: 'https://sjbz-fd.zol-img.com.cn/t_s320x510c/g5/M00/07/03/ChMkJljlp7mIVS74AAZe51VcP4AAAbZEQJ0SDoABl7_286.jpg',
               gender: 0,
               dob: 1470220594000,
+              Address: address
           });
 
-          let person_1 = this.get('pmController').get('Store').createModel('bm-person', {
+          let person_1 = this.get('pmController').get('Store').createModel('BmPerson', {
               id: this.guid(),
               name: this.par_name,
               nickname: '逍遥',
               icon: 'https://sjbz-fd.zol-img.com.cn/t_s320x510c/g5/M00/07/03/ChMkJljlp7mIVS74AAZe51VcP4AAAbZEQJ0SDoABl7_286.jpg',
               gender: 0,
               dob: 1470220594000,
+              Address: address
           });
-          let person_2 = this.get('pmController').get('Store').createModel('bm-person', {
+          let person_2 = this.get('pmController').get('Store').createModel('BmPerson', {
               id: this.guid(),
               name: this.par_name,
               nickname: '寡妇',
               icon: 'https://sjbz-fd.zol-img.com.cn/t_s320x510c/g5/M00/07/03/ChMkJljlp7mIVS74AAZe51VcP4AAAbZEQJ0SDoABl7_286.jpg',
               gender: 1,
               dob: 1470220594000,
+              Address: address
           });
-          attendee.set('person', person);
 
-          attendee.get('guardians').pushObject(this.get('pmController').get('Store').createModel('BmGuardian', {
-              id: this.guid(),
-              relation_ship: '兄弟',
-              person: person_1
-          }))
-
-          attendee.get('guardians').pushObject(this.get('pmController').get('Store').createModel('BmGuardian', {
-              id: this.guid(),
-              relation_ship: '姊妹',
-              person: person_2
-          }))
-
-          this.get('logger').log(attendee)
-          let json = this.get('pmController').get('Store').object2JsonApi(attendee)
-          this.get('logger').log('this is json')
-          this.get('logger').log(json)
-
-          this.get('pmController').get('Store').transaction('/api/v1/insertattendee/0', 'bm-attendee', json)
-            .then(data => {
-                this.get('logger').log("data")
-                this.get('logger').log(data)
-            })
-            .catch(data => {
-                this.get('logger').log(data)
-            })
+          debugger
+          attendee.set('Person', person);
+          //
+          // attendee.get('Guardians').pushObject(this.get('pmController').get('Store').createModel('BmGuardian', {
+          //     id: this.guid(),
+          //     relation_ship: '兄弟',
+          //     person: person_1
+          // }))
+          //
+          // attendee.get('Guardians').pushObject(this.get('pmController').get('Store').createModel('BmGuardian', {
+          //     id: this.guid(),
+          //     relation_ship: '姊妹',
+          //     person: person_2
+          // }))
+          //
+          // let json = this.get('pmController').get('Store').object2JsonApi(attendee, false)
+          // this.get('logger').log('this is json')
+          // this.get('logger').log(json)
+          //
+          // this.get('pmController').get('Store').transaction('/api/v1/insertattendee/0', 'bm-attendee', json)
+          //   .then(data => {
+          //       this.get('logger').log("data")
+          //       this.get('logger').log(data)
+          //   })
+          //   .catch(data => {
+          //       this.get('logger').log(data)
+          //   })
       } else {
           this.get('logger').log('Error');
       }

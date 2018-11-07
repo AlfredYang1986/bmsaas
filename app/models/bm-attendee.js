@@ -4,6 +4,6 @@ export default DS.Model.extend({
     intro: DS.attr('string', { defaultValue: '新来的'}),
     status: DS.attr('string', { defaultValue: 'candidate' }),
     lesson_count: DS.attr('number', { defaultValue: 0}),
-    person: DS.belongsTo('bm-person', { async: false }),
-    guardians: DS.hasMany('bm-guardian', { async: false }),
+    Person: DS.belongsTo('BmPerson', { async: false }),
+    Guardians: DS.hasMany('BmGuardian', { async: false }),
 });

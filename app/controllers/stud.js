@@ -7,17 +7,20 @@ export default Controller.extend({
         let request = this.get('pmController').get('Store').createModel('request', {
             id: this.guid(),
             res: 'BmAttendee',
+            fmcond: this.get('pmController').get('Store').createModel('fmcond', {
+                id: this.guid(),
+                skip: 0,
+                take: 0
+            })
         });
-        request.get('FmCond').pushObject(this.get('pmController').get('Store').createModel('FmCond', {
-            id: this.guid(),
-        }));
-        let json = this.get('pmController').get('Store').object2JsonApi(request);
-        this.get('logger').log(json)
 
-        this.get('pmController').get('Store').transaction('/api/v1/findattendeemulti/0', 'request', json)
+        let json = this.get('pmController').get('Store').object2JsonApi(request);
+        this.get('logger').log(json);
+
+        this.get('pmController').get('Store').queryObject('/api/v1/findattendeemulti/0', 'bm-attendees', json)
             .then(data => {
                 this.get('logger').log('this is query stud data');
-                this.get('logger').log(data.attendees);
+                this.get('logger').log(data.Attendees);
             })
             .catch(data => {
                 this.get('logger').log(data);

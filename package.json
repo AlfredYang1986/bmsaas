@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "ember-cli-sass": "^8.0.1",
-    "pharbers-emberbasis-library": "^1.0.4",
+    "pharbers-emberbasis-library": "^1.0.7",
     "sass": "^1.14.0"
   }
 }
