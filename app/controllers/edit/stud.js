@@ -31,7 +31,7 @@ export default Controller.extend({
   urg_rs: '',
   urg_contact: '',
 
-  stud_date: '',
+  stud_date: 1470220594000,
 
   isPushing: false,
   address_length: computed('par_address', function() {
@@ -48,8 +48,6 @@ export default Controller.extend({
   }),
   actions: {
     saveInputBtnClicked() {
-      console.log('save the date');
-
       // if (!this.studValidate()) {
       //   alert('必填项不能为空！');
       //   return;
@@ -69,21 +67,24 @@ export default Controller.extend({
               nickname: '仮面ライダーシリーズ',
               icon: 'https://sjbz-fd.zol-img.com.cn/t_s320x510c/g5/M00/07/03/ChMkJljlp7mIVS74AAZe51VcP4AAAbZEQJ0SDoABl7_286.jpg',
               gender: 0,
+              dob: 1470220594000,
           });
 
           let person_1 = this.get('pmController').get('Store').createModel('bm-person', {
               id: this.guid(),
-              name: '李逍遥',
+              name: this.par_name,
               nickname: '逍遥',
               icon: 'https://sjbz-fd.zol-img.com.cn/t_s320x510c/g5/M00/07/03/ChMkJljlp7mIVS74AAZe51VcP4AAAbZEQJ0SDoABl7_286.jpg',
               gender: 0,
+              dob: 1470220594000,
           });
           let person_2 = this.get('pmController').get('Store').createModel('bm-person', {
               id: this.guid(),
-              name: '黑寡妇',
+              name: this.par_name,
               nickname: '寡妇',
               icon: 'https://sjbz-fd.zol-img.com.cn/t_s320x510c/g5/M00/07/03/ChMkJljlp7mIVS74AAZe51VcP4AAAbZEQJ0SDoABl7_286.jpg',
               gender: 1,
+              dob: 1470220594000,
           });
           attendee.set('person', person);
 
