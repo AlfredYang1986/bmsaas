@@ -11,7 +11,7 @@ export default Route.extend({
         // let tech = this.store.peekRecord('bmtech', params.techid);
         // if (tech == null) {
             // this.transitionTo('home');
-        // } 
+        // }
 
         let request = this.get('pmController').get('Store').createModel('request', {
             id: this.guid(),

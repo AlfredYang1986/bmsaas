@@ -22,25 +22,30 @@ export default Route.extend({
             res: 'BmAttendee',
         });
 
-        let eqValues = [
-            { id: 1, type: 'eqcond', key: "id", val: this.guid()},
-        ]
-        eqValues.forEach((elem) => {
-            request.get(elem.type).pushObject(this.get('pmController').get('Store').createModel(elem.type, {
-                id: elem.id,
-                key: elem.key,
-                val: elem.val,
-            }))
-        });
+        // let eqValues = [
+        //     { id: 2, type: 'eqcond', key: "id", val: params.studid},
+        // ]
+        let eqd = this.get('pmController').get('Store').createModel('eqcond', {
+            id: this.guid(),
+            type: 'eqcond',
+            key: 'id',
+            val: params.studid
+        })
+        request.get('eqcond').pushObject(eqd);
+
         let json = this.get('pmController').get('Store').object2JsonApi(request);
-        this.get('logger').log(json)
-        return this.get('pmController').get('Store').queryObject('/api/v1/findattendee/0', 'bm-attendees', json)
+        this.get('logger').log(json);
+
+        let stud = this.get('pmController').get('Store').queryObject('/api/v1/findattendee/0', 'bm-attendees', json)
             .then(data => {
                 this.get('logger').log(data);
                 return data;
             })
             .catch(data => {
                 this.get('logger').log(data);
+            })
+        return RSVP.hash({
+                stud: stud
             })
     },
     guid() {
