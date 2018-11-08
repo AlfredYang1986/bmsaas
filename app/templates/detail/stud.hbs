@@ -16,7 +16,7 @@
       <div class="basis_margin">
         {{#layout-push direction='col' mid=true classNames='stud_detail_basis' }}
 
-          <p class="basis_name">{{model.stud.me.name}}</p>
+          <p class="basis_name">{{model.name}}</p>
           {{#layout-push direction='row' mid=true}}
             <span class="basis_sex_age">
                   {{#if isFemale}}
@@ -24,11 +24,11 @@
                   {{else}}
                       男♂
                   {{/if}}
-                {{model.stud.me.age}}岁
+                {{model.stud.age}}岁
             </span>
           {{/layout-push}}
           {{#layout-push direction='row' mid=true classNames='basis_dob' }}
-            <span>出生日期  {{model.stud.me.dob}}</span>
+            <span>出生日期  {{model.dob}}</span>
           {{/layout-push}}
         {{/layout-push }}
 
@@ -36,30 +36,30 @@
       {{#layout-push direction='col' mid=true classNames='stud_detail_other' }}
         <div class="other_self">
           {{#layout-push direction='row' mid=false classNames='self_container' }}
-            <span>昵称</span><span>{{model.stud.me.nickname}}</span>
+            <span>昵称</span><span>{{model.nickname}}</span>
           {{/layout-push}}
           {{#layout-push direction='row' mid=false classNames='self_container' }}
-            <span>绑定手机号</span><span>{{model.stud.me.contact}}</span>
+            <span>绑定手机号</span><span>{{model.contact}}</span>
           {{/layout-push}}
           {{#layout-push direction='row' mid=false classNames='self_container' }}
-            <span>就读学校</span><span>{{model.stud.school}}</span>
+            <span>就读学校</span><span>{{model.school}}</span>
           {{/layout-push}}
           {{#layout-push direction='row' mid=false classNames='self_container' }}
-            <span>注册时间</span><span>{{bmdobformat model.stud.me.register_date}}</span>
+            <span>注册时间</span><span>{{bmdobformat model.reg_date}}</span>
           {{/layout-push}}
           <div class="line"></div>
           <p class="parent_info">家长信息</p>
           {{#layout-push direction='row' mid=false classNames='self_container' }}
-            <span>家长姓名</span><span>{{model.stud.guardian.me.name}}</span>
+            <span>家长姓名</span><span>{{model.guardian.name}}</span>
           {{/layout-push}}
           {{#layout-push direction='row' mid=false classNames='self_container' }}
-            <span>关系</span><span>{{model.stud.guardian.rs}}</span>
+            <span>关系</span><span>{{model.guardian.rs}}</span>
           {{/layout-push}}
           {{#layout-push direction='row' mid=false classNames='self_container' }}
-            <span>联系方式</span><span>{{model.stud.guardian.me.contact}}</span>
+            <span>联系方式</span><span>{{model.guardian.contact}}</span>
           {{/layout-push}}
           {{#layout-push direction='row' mid=false classNames='self_container' }}
-            <span>微信</span><span>{{model.stud.guardian.me.wechat}}</span>
+            <span>微信</span><span>{{model.guardian.wechat}}</span>
           {{/layout-push}}
           {{#layout-push direction='row' mid=false classNames='self_container' }}
             <span>地址</span><span>{{model.stud.guardian.address}}</span>

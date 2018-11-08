@@ -6,9 +6,10 @@ import { inject as service } from '@ember/service';
 export default Route.extend({
     mock_data: service(),
 
-    model() {
+    model(params) {
         // this.mock_data.sureStud();
-        // let stud = this.store.peekRecord('bmstud', params.studid);
+        // // let stud = this.store.peekRecord('bmstud', params.studid);
+        // let stud = "detail.stud";
         // if (stud == null) {
         //     this.transitionTo('home');
         // }
@@ -22,7 +23,7 @@ export default Route.extend({
         });
 
         let eqValues = [
-            { id: 1, type: 'eqcond', key: "id", val: "5be3d1528fb8072c92fa757a" },
+            { id: 1, type: 'eqcond', key: "id", val: this.guid()},
         ]
         eqValues.forEach((elem) => {
             request.get(elem.type).pushObject(this.get('pmController').get('Store').createModel(elem.type, {
@@ -33,7 +34,7 @@ export default Route.extend({
         });
         let json = this.get('pmController').get('Store').object2JsonApi(request);
         this.get('logger').log(json)
-        return this.get('pmController').get('Store').queryMultipleObject('/api/v1/findattendee/0', 'bm-attendees', json)
+        return this.get('pmController').get('Store').queryObject('/api/v1/findattendee/0', 'bm-attendees', json)
             .then(data => {
                 this.get('logger').log(data);
                 return data;
@@ -41,7 +42,6 @@ export default Route.extend({
             .catch(data => {
                 this.get('logger').log(data);
             })
-        // let json = this.get('pmController').get('Store').object2JsonApi(request);
     },
     guid() {
       function s4() {
