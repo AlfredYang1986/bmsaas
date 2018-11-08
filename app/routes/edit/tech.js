@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
-import { computed } from '@ember/object';
+// import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default Route.extend({
@@ -8,10 +8,14 @@ export default Route.extend({
 
     model(params) {
         this.mock_data.sureTech();
+        debugger
+        this.get('logger').log(params.techid);
         let tech = this.store.peekRecord('bmtech', params.techid);
         if (tech == null && params.techid != 'tech/push') {
             this.transitionTo('home');
         } 
+
+
 
         return RSVP.hash({
                 tech : tech

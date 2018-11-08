@@ -11,8 +11,8 @@
         {{#layout-push direction="row"}}
             <div class='detail_panel detail_panel_col_between tech_info_card' >
                 {{#layout-push direction="col" classNames="tech_info_base"}}
-                    <img src={{model.tech.me.icon}} class='detail_panel_img' />
-                    <span class="detail_panel_role_name">{{model.tech.me.name}}</span>
+                    <img src={{model.tech.icon}} class='detail_panel_img' />
+                    <span class="detail_panel_role_name">{{model.tech.name}}</span>
                     {{#layout-push direction="row"}}
                         <span class="detail_panel_role_des">
                             {{#if isFemale}}
@@ -24,21 +24,21 @@
                                 <img src="../images/icon_male@2x.png" alt="" class="sex-icon">
                             {{/if}}
                         </span>
-                        <span class="detail_panel_role_des">{{model.tech.me.age}}岁</span>
+                        <span class="detail_panel_role_des">{{bmdob/bmdob2age model.tech.dob}}岁</span>
                     {{/layout-push}}
                 {{/layout-push}}
                 {{#layout-push direction="col" classNames="tech_info_other"}}
                     {{#layout-push direction="row" classNames="tech_info_other_list"}}
                         <p>联系方式</p>
-                        <span class='detail_panel_des_02'>{{model.tech.me.contact}}</span>
+                        <span class='detail_panel_des_02'>{{model.tech.contact}}</span>
                     {{/layout-push}}
                     {{#layout-push direction="row" classNames="tech_info_other_list"}}
                         <p>微信</p>
-                        <span class='detail_panel_des_02'>{{model.tech.me.contact}}</span>
+                        <span class='detail_panel_des_02'>{{model.tech.wechat}}</span>
                     {{/layout-push}}
                     {{#layout-push direction="row" classNames="tech_info_other_list"}}
                         <p>地址</p>
-                        <span class='detail_panel_des_02'>{{model.tech.address}}</span>
+                        <span class='detail_panel_des_02'>{{model.tech.contact}}</span>
                     {{/layout-push}}
                 {{/layout-push}}
             </div>
@@ -46,15 +46,15 @@
                 {{#layout-push direction="col" classNames="tech_info_area"}}
                     {{#layout-push direction="row"}}
                         <p>昵称</p>
-                        <span class='detail_panel_des_02'>{{model.tech.me.nickname}}</span>
+                        <span class='detail_panel_des_02'>{{model.tech.nickname}}</span>
                     {{/layout-push}}
                     {{#layout-push direction="row"}}
                         <p>出生日期</p>
-                        <span class='detail_panel_des_02'>{{model.tech.me.dob}}</span>
+                        <span class='detail_panel_des_02'>{{bmdob/bmdobformat model.tech.dob}}</span>
                     {{/layout-push}}
                     {{#layout-push direction="row"}}
                         <p>来自城市</p>
-                        <span class='detail_panel_des_02'>{{model.tech.homeland}}</span>
+                        <span class='detail_panel_des_02'>{{model.tech.nickname}}</span>
                     {{/layout-push}}
                 {{/layout-push}}
                 {{#layout-push direction="col" classNames="tech_info_area"}}
@@ -81,129 +81,6 @@
                 {{/layout-push}}
             </div>
         {{/layout-push}}
-
-
-
-        {{!-- <div class="detail_panel detail_panel_col_between" >
-            {{#layout-push direction='col' mid=true}}
-                <span class='detail_panel_head'>详细信息</span>
-            {{/layout-push}}
-        </div> --}}
-
-        {{!-- <div class="detail_panel detail_panel_col_between" > --}}
-            {{!-- {{#layout-push direction='col'}}
-                {{#layout-push direction='col'}}
-                    {{#layout-push direction="row" split=true}}
-                        <div class="v_end" >
-                            <span class='detail_panel_title'>基础资料</span>
-                        </div>
-                        {{#link-to 'edit.tech' model.tech.id classNames='detail_panel_edit_btn'}}
-                            编辑
-                        {{/link-to}}
-                    {{/layout-push}}
-                    {{#layout-push direction='row' mid=true }}
-                        {{#layout-push direction='row' classNames='detail_panel_des_container'}}
-                            {{#layout-push direction='row' classNames='line_half detail_panel_des_between detail_panel_des_underline'}}
-                                <span class='detail_panel_des_01'>姓名</span>
-                                <span class='detail_panel_des_02'>{{model.tech.me.name}}</span>
-                            {{/layout-push}}
-                            {{#layout-push direction='row' classNames='line_half detail_panel_des_underline'}}
-                                <span class='detail_panel_des_01'>昵称</span>
-                                <span class='detail_panel_des_02'>{{model.tech.me.nickname}}</span>
-                            {{/layout-push}}
-                        {{/layout-push}}
-                    {{/layout-push}}
-                    {{#layout-push direction='row' mid=true classNames='detail_panel_des_container_between'}}
-                        {{#layout-push direction='row' classNames='detail_panel_des_container'}}
-                            {{#layout-push direction='row' classNames='line_half detail_panel_des_between detail_panel_des_underline'}}
-                                <span class='detail_panel_des_01'>出生日期</span>
-                                <span class='detail_panel_des_02'>
-                                    {{model.tech.me.dob}}
-                                    </span>
-                            {{/layout-push}}
-                            {{#layout-push direction='row' classNames='line_half detail_panel_des_underline'}}
-                                <span class='detail_panel_des_01'>年龄</span>
-                                <span class='detail_panel_des_02'>{{model.tech.me.age}}</span>
-                            {{/layout-push}}
-                        {{/layout-push}}
-                    {{/layout-push}}
-                    {{#layout-push direction='row' mid=true classNames='detail_panel_des_container_between'}}
-                        {{#layout-push direction='row' classNames='detail_panel_des_container'}}
-                            {{#layout-push direction='row' classNames='line_half detail_panel_des_between detail_panel_des_underline'}}
-                                <span class='detail_panel_des_01'>性别</span>
-                                <span class='detail_panel_des_02'>
-                                    {{#if isFemale}}
-                                        女
-                                    {{/if}}
-                                    {{#if isMale}}
-                                        男
-                                    {{/if}}
-                                </span>
-                            {{/layout-push}}
-                            {{#layout-push direction='row' classNames='line_half detail_panel_des_underline'}}
-                                <span class='detail_panel_des_01'>来自</span>
-                                <span class='detail_panel_des_02'>{{model.tech.homeland}}</span>
-                            {{/layout-push}}
-                        {{/layout-push}}
-                    {{/layout-push}}
-                    {{#layout-push direction='row' mid=true classNames='detail_panel_des_container_between'}}
-                        {{#layout-push direction='row' classNames='detail_panel_des_container'}}
-                            {{#layout-push direction='row' classNames='line_half detail_panel_des_between detail_panel_des_underline'}}
-                                <span class='detail_panel_des_01'>电话</span>
-                                <span class='detail_panel_des_02'>{{model.tech.me.contact}}</span>
-                            {{/layout-push}}
-                            {{#layout-push direction='row' classNames='line_half detail_panel_des_underline'}}
-                                <span class='detail_panel_des_01'>微信</span>
-                                <span class='detail_panel_des_02'>{{model.tech.me.wechat}}</span>
-                            {{/layout-push}}
-                        {{/layout-push}}
-                    {{/layout-push}}
-                    {{#layout-push direction='row' mid=true classNames='detail_panel_des_container_between'}}
-                        {{#layout-push direction='row' classNames='detail_panel_des_container'}}
-                            {{#layout-push direction='row' classNames='line_half detail_panel_des_between detail_panel_des_underline'}}
-                                <span class='detail_panel_des_01'>地址</span>
-                                <span class='detail_panel_des_02'>{{model.tech.address}}</span>
-                            {{/layout-push}}
-                        {{/layout-push}}
-                    {{/layout-push}}
-
-                    {{#layout-push direction="row" classNames='detail_panel_des_container_between'}}
-                        <span class='detail_panel_title'>教育经历</span>
-                    {{/layout-push}}
-
-                    {{#layout-push direction='col' classNames='detail_inner_panel'}}
-                        {{#layout-push direction='row' split=true classNames='detail_inner_content_line'}}
-                            <span class='detail_inner_left'>学校名称</span>
-                        {{/layout-push}}
-                        {{#layout-push direction='row' split=true classNames='detail_inner_content_line'}}
-                            <span class='detail_inner_left'>学历*专业</span>
-                            <span class='detail_inner_right'>2008-06-08</span>
-                        {{/layout-push}}
-                        {{#layout-push direction='row' split=true classNames='detail_inner_content_line'}}
-                            <span class='detail_inner_left'>一段关于学习的描述</span>
-                        {{/layout-push}}
-                    {{/layout-push}}
-
-                    {{#layout-push direction="row" classNames='detail_panel_des_container_between'}}
-                        <span class='detail_panel_title'>工作经历</span>
-                    {{/layout-push}}
-
-                    {{#layout-push direction='col' classNames='detail_inner_panel'}}
-                        {{#layout-push direction='row' split=true classNames='detail_inner_content_line'}}
-                            <span class='detail_inner_left'>学校名称</span>
-                        {{/layout-push}}
-                        {{#layout-push direction='row' split=true classNames='detail_inner_content_line'}}
-                            <span class='detail_inner_left'>学历*专业</span>
-                            <span class='detail_inner_right'>2008-06-08</span>
-                        {{/layout-push}}
-                        {{#layout-push direction='row' split=true classNames='detail_inner_content_line'}}
-                            <span class='detail_inner_left'>一段关于学习的描述</span>
-                        {{/layout-push}}
-                    {{/layout-push}}
-
-                {{/layout-push}}
-            {{/layout-push}} --}}
-        {{!-- </div> --}}
     </div>
 </div>
 
