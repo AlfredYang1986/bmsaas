@@ -6645,9 +6645,9 @@ pharbers-ember-event-handle@latest:
     ember-cli-babel "^6.6.0"
     ember-cli-htmlbars "^2.0.1"
 
-pharbers-emberbasis-library@^1.0.7:
-  version "1.0.7"
-  resolved "https://registry.npmjs.org/pharbers-emberbasis-library/-/pharbers-emberbasis-library-1.0.7.tgz#d4fe1981f53eec386fe5d929cc14c5b4bfb41a13"
+pharbers-emberbasis-library@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.npmjs.org/pharbers-emberbasis-library/-/pharbers-emberbasis-library-1.0.8.tgz#e9ac3283fd01f6e8cc5fe1de97a49ab49ab00f30"
   dependencies:
     ember-auto-import "^1.2.13"
     ember-cli-babel "^7.1.2"
