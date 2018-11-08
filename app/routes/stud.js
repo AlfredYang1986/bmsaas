@@ -24,19 +24,18 @@ export default Route.extend({
         });
 
         let json = this.get('pmController').get('Store').object2JsonApi(request);
-        this.get('logger').log(json);
 
         return this.get('pmController').get('Store').queryMultipleObject('/api/v1/findattendeemulti/0', 'bm-attendees', json)
             .then(data => {
-
-                data.forEach(index => {
-                    let dob = index.Person.dob;
-                    let age = this.getAge(dob);
-                    this.get('logger').log(age);
-                    this.set(index.Person.dob, age)
+                let dabs = [];
+                data.forEach((a, index) => {
+                    let age = this.getAge(a.dob);
+                    dabs.push(age);
+                    return age;
                 })
-                // this.set('data', data);
-                // this.get('logger').log(data.firstObject.Person.dob);
+
+                this.get('logger').log(dabs);
+                this.get('logger').log(data);
                 return data;
             })
             .catch(data => {

@@ -31,7 +31,9 @@ export default Controller.extend({
   urg_rs: '',
   urg_contact: '',
 
-  stud_date: 1470220594000,
+  stud_date: computed('stud_date', function() {
+    return stud_date.getTime();
+}),
 
   isPushing: false,
   address_length: computed('par_address', function() {
@@ -52,62 +54,44 @@ export default Controller.extend({
       //   alert('必填项不能为空！');
       //   return;
       // }
-      //
+
       let attendee = null;
       if (this.isPushing) {
           attendee = this.get('pmController').get('Store').createModel('bm-attendee', {
-              id: this.guid(),
-              intro: '你才是新来的',
-              status: 'candidate',
-              lesson_count: 18
-          });
-          // let region = this.get('pmController').get('Store').createModel('BmRegion', {
-          //     province: '北京',
-          //     city: '北京',
-          //     district: '朝阳区',
-          // })
-          // let address = this.get('pmController').get('Store').createModel('BmAddress', {
-          //     detail: '详情',
-          //     Region: region
-          // })
-          let person = this.get('pmController').get('Store').createModel('bm-person', {
               id: this.guid(),
               name: this.chd_name,
               nickname: '仮面ライダーシリーズ',
               icon: 'https://sjbz-fd.zol-img.com.cn/t_s320x510c/g5/M00/07/03/ChMkJljlp7mIVS74AAZe51VcP4AAAbZEQJ0SDoABl7_286.jpg',
               gender: 0,
               dob: 1470220594000,
+              reg_date: 222,
+              contact: '110',
+              intro: '新来的',
+              status: 'candidate',
+              lesson_count: 18,
           });
-
-          let person_1 = this.get('pmController').get('Store').createModel('bm-person', {
-              id: this.guid(),
-              name: this.par_name,
-              nickname: '逍遥',
-              icon: 'https://sjbz-fd.zol-img.com.cn/t_s320x510c/g5/M00/07/03/ChMkJljlp7mIVS74AAZe51VcP4AAAbZEQJ0SDoABl7_286.jpg',
-              gender: 0,
-              dob: 1470220594000,
-          });
-          let person_2 = this.get('pmController').get('Store').createModel('bm-person', {
-              id: this.guid(),
-              name: this.par_name,
-              nickname: '寡妇',
-              icon: 'https://sjbz-fd.zol-img.com.cn/t_s320x510c/g5/M00/07/03/ChMkJljlp7mIVS74AAZe51VcP4AAAbZEQJ0SDoABl7_286.jpg',
-              gender: 1,
-              dob: 1470220594000,
-          });
-
-          attendee.set('Person', person);
-          //
           attendee.get('Guardians').pushObject(this.get('pmController').get('Store').createModel('bm-guardian', {
               id: this.guid(),
               relation_ship: '兄弟',
-              person: person_1
+              name: this.par_name,
+              nickname: '仮面ライダーシリーズ',
+              icon: 'https://sjbz-fd.zol-img.com.cn/t_s320x510c/g5/M00/07/03/ChMkJljlp7mIVS74AAZe51VcP4AAAbZEQJ0SDoABl7_286.jpg',
+              gender: 0,
+              dob: 1470220594000,
+              reg_date: 222,
+              contact: this.par_contact,
           }))
 
           attendee.get('Guardians').pushObject(this.get('pmController').get('Store').createModel('bm-guardian', {
               id: this.guid(),
               relation_ship: '姊妹',
-              person: person_2
+              name: this.par_name,
+              nickname: '仮面ライダーシリーズ',
+              icon: 'https://sjbz-fd.zol-img.com.cn/t_s320x510c/g5/M00/07/03/ChMkJljlp7mIVS74AAZe51VcP4AAAbZEQJ0SDoABl7_286.jpg',
+              gender: 0,
+              dob: 1470220594000,
+              reg_date: 222,
+              contact: this.par_contact,
           }))
           //
           let json = this.get('pmController').get('Store').object2JsonApi(attendee)
@@ -189,12 +173,12 @@ export default Controller.extend({
   studValidate() {
     let valiFlag = true;
     if (this.chd_name.length == 0 ||
-      this.chd_nickname.length == 0 ||
+      // this.chd_nickname.length == 0 ||
       this.chd_gender_str.length == 0 ||
       this.chd_school.length == 0 ||
       this.par_name.length == 0 ||
-      this.par_nickname.length == 0 ||
-      this.par_rs.length == 0 ||
+      // this.par_nickname.length == 0 ||
+      // this.par_rs.length == 0 ||
       this.par_contact.length == 0) {
       valiFlag = false;
     }

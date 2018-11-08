@@ -11,7 +11,7 @@ export default DS.Model.extend({
   reg_date: DS.attr('date-to-yyyy-mm-dd-hh-mm-ss', {
       defaultValue() { return new Date().getTime(); }
   }),
-  Address: DS.belongsTo('bm-address', {async: false}),
+  // Address: DS.belongsTo('bm-address', {async: false}),
   // age: DS.attr('number'),
   // contact: DS.attr('string'),
   // wechat: DS.attr('string'),
