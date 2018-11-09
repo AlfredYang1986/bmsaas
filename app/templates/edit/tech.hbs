@@ -50,7 +50,9 @@
         {{#layout-push direction='row' split=true classNames="tech-infos-container"}}
             <div class="tech-avatar">
                 <p class="title">教师头像</p>
-                <img class="edit_logo_img" src="../images/avatar_defautl_96px @1x.png" />
+                <input type="file" id="imgPicker">
+                <img id="preview">
+                {{!-- <img class="edit_logo_img" src="../images/avatar_defautl_96px @1x.png" /> --}}
             </div>
             <div class="tech-basis-info">
                 {{#layout-push direction='row' split=false classNames=" area-margin-bottom"}}

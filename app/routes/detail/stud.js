@@ -8,15 +8,11 @@ export default Route.extend({
 
     model(params) {
         // this.mock_data.sureStud();
-        // // let stud = this.store.peekRecord('bmstud', params.studid);
-        // let stud = "detail.stud";
+        // let stud = this.store.peekRecord('bmstud', params.studid);
         // if (stud == null) {
         //     this.transitionTo('home');
         // }
-        //
-        // return RSVP.hash({
-        //         stud: stud
-        //     })
+
         let request = this.get('pmController').get('Store').createModel('request', {
             id: this.guid(),
             res: 'BmAttendee',
@@ -36,7 +32,7 @@ export default Route.extend({
         let json = this.get('pmController').get('Store').object2JsonApi(request);
         this.get('logger').log(json);
 
-        let stud = this.get('pmController').get('Store').queryObject('/api/v1/findattendee/0', 'bm-attendees', json)
+        let studs = this.get('pmController').get('Store').queryObject('/api/v1/findattendee/0', 'bm-attendees', json)
             .then(data => {
                 this.get('logger').log(data);
                 return data;
@@ -44,8 +40,10 @@ export default Route.extend({
             .catch(data => {
                 this.get('logger').log(data);
             })
+        console.log(studs)
+        console.log("qqqqq")
         return RSVP.hash({
-                stud: stud
+                studs: studs
             })
     },
     guid() {

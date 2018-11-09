@@ -28,35 +28,77 @@ export default Controller.extend({
     surroundings: ['社区', '商圈', '校区', '写字楼', '户外', '露天', '闹市区'],
     actions: {
         saveYardBtnClicked() {
-            console.log('save tech editing');
-            if (!this.yardValidate()) {
-                alert('something wrong !');
-                return;
-            }
+            // if (!this.yardValidate()) {
+            //     alert('something wrong !');
+            //     return;
+            // }
 
             let yard = null;
             if (this.isPushing) {
-                let region = this.store.peekRecord('bm-region', '1')
-                yard = this.store.createRecord('bmyard', {
-                    id: this.guid()
-                })
-                yard.set('region', region)
+                // let region = this.store.peekRecord('bm-region', '1')
+                // yard = this.store.createRecord('bmyard', {
+                //     id: this.guid()
+                // })
+                // yard.set('region', region)
+                yard = this.get('pmController').get('Store').createModel('bm-yard', {
+                    id: this.guid(),
+                    title: this.yard_title,
+                    cover: this.yard_cover,
+                    dercription: this.yard_des,
+                    around:  this.yard_around,
+                    facilities: this.yard_facilities,
+                    province: this.yard_selected_province,
+                    city: this.yard_selected_city,
+                    district: this.yard_selected_government_areas,
+                    detail: this.yard_detail_address,
+                });
+                yard.get('Rooms').pushObject(this.get('pmController').get('Store').createModel('bm-room', {
+                    id: this.guid(),
+                    title: "哈哈哈",
+                    capacity: 111,
+                }))
+                yard.get('Rooms').pushObject(this.get('pmController').get('Store').createModel('bm-room', {
+                    id: this.guid(),
+                    title: "eee",
+                    capacity: 222,
+                }))
+                yard.get('Tagimgs').pushObject(this.get('pmController').get('Store').createModel('bm-tag-img', {
+                    id: this.guid(),
+                    img: "111.jpeg",
+                    tag: "lol",
+                }))
+                yard.get('Tagimgs').pushObject(this.get('pmController').get('Store').createModel('bm-tag-img', {
+                    id: this.guid(),
+                    img: "222.jpeg",
+                    tag: "olo",
+                }))
+
+                 let json = this.get('pmController').get('Store').object2JsonApi(yard)
+                 this.get('logger').log(json);
+
+                 this.get('pmController').get('Store').transaction('/api/v1/pushyard/0', 'bm-yard', json)
+                    .then(data => {
+                        this.get('logger').log(data);
+                    })
+                    .catch(data => {
+                        this.get('logger').log(data);
+                    })
             } else {
-                yard = this.model.yard;
+                this.get('logger').log('Error');
             }
 
             // TODO: 其他一些属性的修改
-            yard.set('title', this.yard_title);
-            yard.set('description', this.yard_des);
-            yard.set('ardes', this.yard_ardes);
-            yard.set('around', this.yard_around);
-            yard.set('parking', this.yard_parking);
-            yard.set('embag', this.yard_embag);
-            yard.set('detail_address', this.yard_detail_address);
-            let region = yard.region;
-            if (this.yard_selected_province) region.set('province', this.yard_selected_province);
-            if (this.yard_selected_city) region.set('city', this.yard_selected_city);
-            if (this.yard_selected_government_areas) region.set('governmentArea', this.yard_selected_government_areas);
+            // yard.set('title', this.yard_title);
+            // yard.set('description', this.yard_des);
+            // yard.set('ardes', this.yard_ardes);
+            // yard.set('around', this.yard_around);
+            // yard.set('parking', this.yard_parking);
+            // yard.set('embag', this.yard_embag);
+            // yard.set('detail_address', this.yard_detail_address);
+            // let region = yard.region;
+            // if (this.yard_selected_province) region.set('province', this.yard_selected_province);
+            // if (this.yard_selected_city) region.set('city', this.yard_selected_city);
+            // if (this.yard_selected_government_areas) region.set('governmentArea', this.yard_selected_government_areas);
 
 
             // TODO: 其他一些属性的修改

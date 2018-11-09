@@ -11,7 +11,7 @@
             {{/layout-push}}
         {{/layout-push}}
         {{#layout-push direction='row' classNames='course_warp_content'}}
-            {{#each model.course as |item|}}
+            {{#each model as |item|}}
                 {{course-card onCourseCardClicked=(action 'cardClicked') course=item}}
             {{/each}}
         {{/layout-push}}

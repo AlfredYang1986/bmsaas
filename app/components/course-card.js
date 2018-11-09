@@ -7,12 +7,13 @@ export default Component.extend({
         return this.course != null;
     }),
     cover: computed(function(){
-        let tmp = this.course.get('imgs');
-        if (tmp.length > 0) {
-            return tmp.objectAt(0).get('img_src');
-        } else {
-            return '/images/cover_pic_2.jpeg';
-        }
+        // let tmp = this.course.get('imgs');
+        // if (tmp.length > 0) {
+        //     return tmp.objectAt(0).get('img_src');
+        // } else {
+        //     return '/images/cover_pic_2.jpeg';
+        // }
+        return '/images/cover_pic_2.jpeg';
     }),
     click() {
         this.onCourseCardClicked(this.course.get('id'));

@@ -39,10 +39,10 @@ export default Controller.extend({
         saveTechBtnClicked() {
             console.log('save tech editing');
 
-            if (!this.techValidate()) {
-                alert('必填项不能为空！');
-                return;
-            }
+            // if (!this.techValidate()) {
+            //     alert('必填项不能为空！');
+            //     return;
+            // }
 
             let tech = null;
             if (this.isPushing) {
@@ -83,7 +83,30 @@ export default Controller.extend({
             } else {
                 this.transitionToRoute('detail.tech', tech.id);
             }
-        }
+        },
+
+        pushImg() {
+            document
+                .querySelector('#imgPicker')
+                .addEventListener('change', function(){
+                    //当没选中图片时，清除预览
+                    if(this.files.length === 0){
+                    document.querySelector('#preview').src = '';
+                    return;
+                    }
+
+                    //实例化一个FileReader
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                    //当reader加载时，把图片的内容赋值给
+                    document.querySelector('#preview').src = e.target.result;
+                    };
+
+                //读取选中的图片，并转换成dataURL格式
+                reader.readAsDataURL(this.files[0]);
+                }, false);
+            }
     },
 
     techValidate() {

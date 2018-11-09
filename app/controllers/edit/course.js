@@ -54,41 +54,70 @@ export default Controller.extend({
     actions: {
         saveCourseBtnClicked() {
             console.log('save course editing')
-            if (!this.courseValidate()) {
-                alert('something wrong !')
-                return;
-            }
+            // if (!this.courseValidate()) {
+            //     alert('something wrong !')
+            //     return;
+            // }
 
             let course = null;
-            if (this.isPushing) {
-                course = this.store.createRecord('bmcourseinfo', {
-                    id: this.guid()
+            if(this.isPushing) {
+                course = this.get('pmController').get('Store').createModel('bm-session-info', {
+                    id: this.guid(),
+                    title: this.crs_name,
+                    alb: this.crs_alb,
+                    aub: this.crs_aub,
+                    level: this.crs_level,
+                    Count: this.crs_count,
+                    Length: this.crs_length,
+                    Cat: this.get('pmController').get('Store').createModel('bm-category', {
+                        id: this.guid(),
+                        title: this.crs_cat,
+                        subtitle: this.crs_subcat,
+                    })
                 })
-                let cat = this.store.createRecord('bmcat', {
-                    id: this.guid()
-                })
-                course.set('category', cat);
+                let json = this.get('pmController').get('Store').object2JsonApi(course);
+                this.get('logger').log(json);
 
-            } else {
+                this.get('pmController').get('Store').transaction('/api/v1/pushsessioninfo/0', 'bm-session-info', json)
+                    .then(data => {
+                        this.get('logger').log(data)
+                    })
+                    .catch(data => {
+                        this.get('logger').log(data);
+                    })
+            }
+            else {
                 course = this.model.course;
             }
+            // if (this.isPushing) {
+            //     course = this.store.createRecord('bmcourseinfo', {
+            //         id: this.guid()
+            //     })
+            //     let cat = this.store.createRecord('bmcat', {
+            //         id: this.guid()
+            //     })
+            //     course.set('category', cat);
+            //
+            // } else {
+            //     course = this.model.course;
+            // }
 
-            course.set('name', this.crs_name);
-            course.set('level', this.crs_level);
-            course.set('count', this.crs_count);
-            course.set('length', this.crs_length);
-            course.set('tags', this.crs_tags);
-            course.set('target', this.crs_target);
-            course.set('planning', this.crs_plan);
-            course.set('ccontent', this.crs_content);
-         
-            let cat = course.get('category');
-            cat.set('cat', this.crs_cat);
-            cat.set('sub', this.crs_subcat);
-            course.set('category', cat);
-
-            course.set('alb', this.crs_alb);
-            course.set('aub', this.crs_aub);
+            // course.set('name', this.crs_name);
+            // course.set('level', this.crs_level);
+            // course.set('count', this.crs_count);
+            // course.set('length', this.crs_length);
+            // course.set('tags', this.crs_tags);
+            // course.set('target', this.crs_target);
+            // course.set('planning', this.crs_plan);
+            // course.set('ccontent', this.crs_content);
+            //
+            // let cat = course.get('category');
+            // cat.set('cat', this.crs_cat);
+            // cat.set('sub', this.crs_subcat);
+            // course.set('category', cat);
+            //
+            // course.set('alb', this.crs_alb);
+            // course.set('aub', this.crs_aub);
 
             if (this.isPushing) {
                 this.transitionToRoute('course');
@@ -102,6 +131,7 @@ export default Controller.extend({
         catChanged() {
             let sel = document.getElementById('catselected');
             this.set('crs_cat', sel.options[sel.selectedIndex].value);
+            this.get('logger').log(this.crs_cat);
         },
         subChanged() {
             let sel = document.getElementById('subselected');
@@ -109,9 +139,9 @@ export default Controller.extend({
         }
 
     },
-    
+
     courseValidate() {
-        
+
         return (this.crs_name.length == 0 ||
           this.crs_level.length == 0 ||
           this.crs_count > 0 ||

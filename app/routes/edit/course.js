@@ -11,12 +11,12 @@ export default Route.extend({
         let course = this.store.peekRecord('bmcourseinfo', params.courseid);
         if (course == null && params.courseid != 'course/push') {
             this.transitionTo('home');
-        } 
+        }
 
         return RSVP.hash({
                 course : course
             })
-    },  
+    },
 
     setupController(controller, model) {
         this._super(controller, model);
@@ -49,7 +49,7 @@ export default Route.extend({
             controller.set('crs_content', ''),
             controller.set('crs_imgs', []),
             controller.set('crs_tags', []),
-          
+
             controller.set('isPushing', true);
         }
 

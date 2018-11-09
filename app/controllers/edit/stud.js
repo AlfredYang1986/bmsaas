@@ -4,7 +4,7 @@ import { computed } from '@ember/object';
 export default Controller.extend({
   chd_name: '',
   chd_nickname: '',
-  chd_gender: 0,
+  chd_gender: undefined,
   chd_gender_str: computed('chd_gender', function() {
     if (this.chd_gender == 0) return '女';
     else return '男';
@@ -110,6 +110,12 @@ export default Controller.extend({
           this.get('logger').log('Error');
       }
 
+      if (this.isPushing) {
+        this.transitionToRoute('stud');
+      } else {
+        this.transitionToRoute('detail.stud', stud.id);
+      }
+
 
       // let stud = null;
       // if (this.isPushing) {
@@ -139,31 +145,27 @@ export default Controller.extend({
       // } else {
       //   stud = this.model.stud;
       // }
-      // // this.model.stud.me.set('name', this.chd_name);
-      // stud.me.set('name', this.chd_name);
-      // stud.me.set('nickname', this.chd_nickname);
-      // stud.me.set('gender', this.chd_gender);
-      // stud.me.set('dob', this.stud_date)
-      // stud.set('school', this.chd_school);
-      //
-      // stud.guardian.me.set('name', this.par_name);
-      // stud.guardian.me.set('nickname', this.par_nickname);
-      // stud.guardian.set('rs', this.par_rs);
-      // stud.guardian.me.set('contact', this.par_contact);
-      // stud.guardian.me.set('wechat', this.par_wechat);
-      // stud.guardian.set('address', this.par_address);
-      //
-      // stud.urgent.me.set('name', this.urg_name);
-      // stud.urgent.me.set('nickname', this.urg_nickname);
-      // stud.urgent.set('rs', this.urg_rs);
-      // stud.urgent.me.set('contact', this.urg_contact);
-      // // TODO: 其他的一些属性的修改都在这里解决
-      //
-      if (this.isPushing) {
-        this.transitionToRoute('stud');
-      } else {
-        this.transitionToRoute('detail.stud', stud.id);
-      }
+      // this.model.stud.me.set('name', this.chd_name);
+      stud.me.set('name', this.chd_name);
+      stud.me.set('nickname', this.chd_nickname);
+      stud.me.set('gender', this.chd_gender);
+      stud.me.set('dob', this.stud_date)
+      stud.set('school', this.chd_school);
+
+      stud.guardian.me.set('name', this.par_name);
+      stud.guardian.me.set('nickname', this.par_nickname);
+      stud.guardian.set('rs', this.par_rs);
+      stud.guardian.me.set('contact', this.par_contact);
+      stud.guardian.me.set('wechat', this.par_wechat);
+      stud.guardian.set('address', this.par_address);
+
+      stud.urgent.me.set('name', this.urg_name);
+      stud.urgent.me.set('nickname', this.urg_nickname);
+      stud.urgent.set('rs', this.urg_rs);
+      stud.urgent.me.set('contact', this.urg_contact);
+      // TODO: 其他的一些属性的修改都在这里解决
+
+
 
 
     },

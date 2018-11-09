@@ -8,12 +8,11 @@ export default Route.extend({
 
     model(params) {
         this.mock_data.sureTech();
-        debugger
         this.get('logger').log(params.techid);
         let tech = this.store.peekRecord('bmtech', params.techid);
         if (tech == null && params.techid != 'tech/push') {
             this.transitionTo('home');
-        } 
+        }
 
 
 
@@ -32,7 +31,7 @@ export default Route.extend({
             controller.set('tech_contact', model.tech.me.get('contact'));
             controller.set('tech_wechat', model.tech.me.get('wechat'));
             controller.set('tech_address', model.tech.get('address'));
-            
+
             controller.set('isPushing', false);
         } else {
             controller.set('tech_name', '');
@@ -42,7 +41,7 @@ export default Route.extend({
             controller.set('tech_contact', '');
             controller.set('tech_wechat', '');
             controller.set('tech_address', '');
-          
+
             controller.set('isPushing', true);
         }
     }

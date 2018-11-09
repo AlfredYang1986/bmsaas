@@ -60,7 +60,7 @@
 
     .alt_course_cover {
         width: 191px;
-        height: 185px;
+        min-height: 185px;
         border-radius: 4px;
     }
 
@@ -78,6 +78,7 @@
         }
 
         .alt_course_title {
+            margin-top: 5px;
             font-family: $font-nav-acc;
             font-size: 14px;
             color: #172B4D;
