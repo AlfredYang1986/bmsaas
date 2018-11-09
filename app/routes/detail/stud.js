@@ -40,8 +40,6 @@ export default Route.extend({
             .catch(data => {
                 this.get('logger').log(data);
             })
-        console.log(studs)
-        console.log("qqqqq")
         return RSVP.hash({
                 studs: studs
             })

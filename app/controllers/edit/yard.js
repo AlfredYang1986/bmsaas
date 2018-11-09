@@ -44,7 +44,7 @@ export default Controller.extend({
                     id: this.guid(),
                     title: this.yard_title,
                     cover: this.yard_cover,
-                    dercription: this.yard_des,
+                    description: this.yard_des,
                     around:  this.yard_around,
                     facilities: this.yard_facilities,
                     province: this.yard_selected_province,

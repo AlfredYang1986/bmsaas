@@ -3,7 +3,7 @@ import DS from 'ember-data';
 export default DS.Model.extend({
     title: DS.attr('string'),
     cover: DS.attr('string'),
-    dercription: DS.attr('string'),
+    description: DS.attr('string'),
     around: DS.attr('string'),
     facilities: DS.attr(),
     province: DS.attr('string'),

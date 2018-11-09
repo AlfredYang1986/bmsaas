@@ -51,6 +51,10 @@
     font-size: 12px;
     color: #767A80;
     letter-spacing: 1.71px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .detail_yard_inner_content_line {
@@ -79,6 +83,11 @@
 .detail_yarn_panel_left {
     padding: 16px 22px;
     margin-right: 8px;
+    min-width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .detail_yard_right_panel_layout {
@@ -87,6 +96,7 @@
 
 .detail_yarn_panel_right {
     padding: 16px 22px;
+    width: 100%;
 }
 
 .detail_yard_pintu {

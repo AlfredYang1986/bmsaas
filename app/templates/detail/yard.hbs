@@ -25,20 +25,20 @@
               {{/layout-push}}
             </div>
 
-              {{#layout-push direction='row' split=true}}
+              {{#layout-push direction='row'}}
 
                   <div class="detail_panel detail_panel_col_between detail_yarn_panel_left">
                     {{#layout-push direction='col' classNames='detail_yard_title_mid_panel'}}
-                        <span class='detail_yard_title_mid'>{{model.yard.title}}</span>
-                        <span class='detail_panel_ls_subheading'>{{model.yard.address}}</span>
+                        <span class='detail_yard_title_mid'>{{model.title}}</span>
+                        <span class='detail_panel_ls_subheading'>{{model.detail}}</span>
                     {{/layout-push}}
 
-                    <!-- <div class="line_conatainer_warp detail_card_container" >
+                    {{!-- <div class="line_conatainer_warp detail_card_container" >
                         {{#each model.yard.imgs as |item|}}
                             {{detail-card card=item}}
                         {{/each}}
-                    </div> -->
-                    <!-- <div class="detail_yard_pintu" >
+                    </div>
+                    <div class="detail_yard_pintu" >
                         {{#layout-push direction='row' }}
                             <img src="../images/cover_pic_1.jpg" class="detail_yard_pintu_left" alt="Responsive image">
                             {{#layout-push direction='col' }}
@@ -48,9 +48,10 @@
                                 </div>
                             {{/layout-push}}
                         {{/layout-push}}
-                    </div> -->
-                    <div class="detail_yard_pintu" >
-                        {{#layout-push direction='row' }}
+                    </div> --}}
+
+                    {{!-- <div class="detail_yard_pintu" > --}}
+                        {{!-- {{#layout-push direction='row' }}
                             <img src={{bmgetpintuimgurl model.yard.imgs namedArgs="left"}} class="detail_yard_pintu_left" alt="Responsive image">
                             {{#layout-push direction='col' }}
                                 <img src={{bmgetpintuimgurl model.yard.imgs namedArgs="top"}} class="detail_yard_pintu_top" alt="Responsive image">
@@ -58,8 +59,8 @@
                                     <a href="#" class="detail_yard_pintu_content">查看更多</a>
                                 </div>
                             {{/layout-push}}
-                        {{/layout-push}}
-                    </div>
+                        {{/layout-push}} --}}
+                    {{!-- </div> --}}
 
                   </div>
 
@@ -75,7 +76,7 @@
                           {{#layout-push direction='col' classNames='detail_yard_title_mid_panel'}}
                               {{#layout-push direction='row' split=true classNames='detail_yard_inner_content_line'}}
                                   <span class='detail_inner_left'>
-                                      {{model.yard.description}}
+                                      {{model.description}}
                                   </span>
                               {{/layout-push}}
                           {{/layout-push}}
@@ -89,7 +90,7 @@
                           {{#layout-push direction='col' classNames='detail_yard_title_mid_panel'}}
                               {{#layout-push direction='row' split=true classNames='detail_yard_inner_content_line'}}
                                   <span class='detail_inner_left'>
-                                      {{model.yard.around}}
+                                      {{model.around}}
                                   </span>
                               {{/layout-push}}
                           {{/layout-push}}
@@ -102,7 +103,7 @@
 
                           {{#layout-push direction='col' classNames='detail_yard_title_mid_panel'}}
                               {{#layout-push direction='row' split=true classNames='detail_yard_inner_content_line'}}
-                                  {{#each model.yard.facilities as |item|}}
+                                  {{#each model.facilities as |item|}}
                                   <span class='detail_inner_left'>
                                       {{item}}
                                   </span>
@@ -116,7 +117,7 @@
                         {{/layout-push}}
 
                         <div class="line_conatainer_warp detail_card_container" >
-                            {{#each model.yard.qualifications as |item|}}
+                            {{#each model.Tagimgs.img as |item|}}
                                 {{detail-card card=item}}
                             {{/each}}
                         </div>

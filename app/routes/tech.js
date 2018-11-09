@@ -23,7 +23,6 @@ export default Route.extend({
             //     Vy: "fackid"
             // })
         });
-
         let json = this.get('pmController').get('Store').object2JsonApi(request);
 
         let techs = this.get('pmController').get('Store').queryMultipleObject('/api/v1/findteachermulti/0', 'bm-teacher', json)
