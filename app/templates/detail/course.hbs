@@ -1,7 +1,7 @@
 <section class='alt_course_selection'>
     {{#layout-push direction='col' classNames='alt_course_container'}}
         {{#link-to 'course' class="alt_href_link"}}
-            返回
+            返回 
         {{/link-to}}
         {{#layout-push direction='row' split=true classNames='alt_course_panel'}}
             {{#layout-push direction='col' mid=true}}
@@ -20,7 +20,7 @@
                     {{model.title}}
                 {{/layout-push}}
                 {{#layout-push direction='row' mid=true classNames='alt_course_detail_cat'}}
-                    {{model.Cat.title}}·{{model.Cat.subtitle}}
+                    {{model.Cate.title}}·{{model.Cate.subtitle}}
                 {{/layout-push}}
                 {{#layout-push direction='row' mid=true classNames='alt_course_detail_line'}}
                     {{#layout-push direction='row' mid=true classNames='alt_course_detail_half'}}
@@ -92,7 +92,7 @@
             {{/layout-push}}
 
             {{#layout-push direction='col' classNames='alt_course_panel alt_course_right_panel'}}
-                {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
+                {{!-- {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
                     <span class='alt_right_panel_perperty_title'>教育理念和模式</span>
                     {{#layout-push direction='row'}}
                         {{#each model.tags as |item|}}
@@ -101,18 +101,18 @@
                             {{/layout-push}}
                         {{/each}}
                     {{/layout-push}}
-                {{/layout-push}}
-                {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
+                {{/layout-push}} --}}
+                {{!-- {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
                     <span class='alt_right_panel_perperty_title'>课程目标</span>
                     <span class='alt_right_panel_perperty_des'>{{model.course.target}}</span>
-                {{/layout-push}}
+                {{/layout-push}} --}}
                 {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
                     <span class='alt_right_panel_perperty_title'>课程计划</span>
                     <span class='alt_right_panel_perperty_des'>{{model.course.planning}}</span>
                 {{/layout-push}}
                 {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
                     <span class='alt_right_panel_perperty_title'>课程内容</span>
-                    <span class='alt_right_panel_perperty_des'>{{model.course.ccontent}}</span>
+                    <span class='alt_right_panel_perperty_des'>{{model.description}}</span>
                 {{/layout-push}}
 
             {{/layout-push}}

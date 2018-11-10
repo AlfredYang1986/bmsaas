@@ -37,13 +37,13 @@ export default Controller.extend({
 
   isPushing: false,
   address_length: computed('par_address', function() {
-    return this.get('par_address').length;
+    // return this.get('par_address').length;
   }),
   par_name_length: computed('par_name', function() {
     return this.get('par_name').length;
   }),
   school_length: computed('chd_school', function() {
-    return this.get('chd_school').length;
+    // return this.get('chd_school').length;
   }),
   chd_name_length: computed('chd_name', function() {
     return this.get('chd_name').length;
@@ -55,9 +55,9 @@ export default Controller.extend({
       //   return;
       // }
 
-      let attendee = null;
+      let stud = null;
       if (this.isPushing) {
-          attendee = this.get('pmController').get('Store').createModel('bm-attendee', {
+          stud = this.get('pmController').get('Store').createModel('bm-attendee', {
               id: this.guid(),
               name: this.chd_name,
               nickname: '仮面ライダーシリーズ',
@@ -65,14 +65,14 @@ export default Controller.extend({
               gender: 0,
               dob: 1470220594000,
               reg_date: 222,
-              contact: '110',
+              contact: this.par_contact,
               intro: '新来的',
               status: 'candidate',
               lesson_count: 18,
           });
-          attendee.get('Guardians').pushObject(this.get('pmController').get('Store').createModel('bm-guardian', {
+          stud.get('Guardians').pushObject(this.get('pmController').get('Store').createModel('bm-guardian', {
               id: this.guid(),
-              relation_ship: '兄弟',
+              relation_ship: this.par_rs,
               name: this.par_name,
               nickname: '仮面ライダーシリーズ',
               icon: 'https://sjbz-fd.zol-img.com.cn/t_s320x510c/g5/M00/07/03/ChMkJljlp7mIVS74AAZe51VcP4AAAbZEQJ0SDoABl7_286.jpg',
@@ -82,9 +82,9 @@ export default Controller.extend({
               contact: this.par_contact,
           }))
 
-          attendee.get('Guardians').pushObject(this.get('pmController').get('Store').createModel('bm-guardian', {
+          stud.get('Guardians').pushObject(this.get('pmController').get('Store').createModel('bm-guardian', {
               id: this.guid(),
-              relation_ship: '姊妹',
+              relation_ship: this.par_rs,
               name: this.par_name,
               nickname: '仮面ライダーシリーズ',
               icon: 'https://sjbz-fd.zol-img.com.cn/t_s320x510c/g5/M00/07/03/ChMkJljlp7mIVS74AAZe51VcP4AAAbZEQJ0SDoABl7_286.jpg',
@@ -94,26 +94,60 @@ export default Controller.extend({
               contact: this.par_contact,
           }))
           //
-          let json = this.get('pmController').get('Store').object2JsonApi(attendee)
-          // this.get('logger').log('this is json')
+          let json = this.get('pmController').get('Store').object2JsonApi(stud)
           this.get('logger').log(json)
           //
           this.get('pmController').get('Store').transaction('/api/v1/insertattendee/0', 'bm-attendee', json)
             .then(data => {
-                this.get('logger').log("data")
                 this.get('logger').log(data)
             })
             .catch(data => {
                 this.get('logger').log(data)
             })
       } else {
-          this.get('logger').log('Error');
+          // this.get('logger').log('Error');
+          debugger
+          stud = this.get('pmController').get('Store').createModel('request', {
+              id: this.guid(),
+              res: "BmAttendee",
+          });
+          stud.get('eqcond').pushObject(this.get('pmController').get('Store').createModel('eqcond', {
+              id: this.guid(),
+              type: 'eqcond',
+              key: 'id',
+              val: this.model.stud.get('id'),
+              category: "BmAttendee",
+          }));
+          stud.get('upcond').pushObject(this.get('pmController').get('Store').createModel('upcond', {
+              id: this.guid(),
+              type: 'upcond',
+              key: 'intro',
+              val: '牛',
+              category: "BmAttendee",
+          }));
+          stud.get('upcond').pushObject(this.get('pmController').get('Store').createModel('upcond', {
+              id: this.guid(),
+              type: 'upcond',
+              key: 'name',
+              val: this.chd_name,
+              category: "BmAttendee",
+          }));
+          let json = this.get('pmController').get('Store').object2JsonApi(stud);
+          this.get('logger').log(json)
+          this.get('pmController').get('Store').transaction('/api/v1/updateattendee/0', 'request', json)
+            .then(data => {
+                this.get('logger').log(data)
+            })
+            .catch(data => {
+                this.get('logger').log(data)
+            })
       }
 
       if (this.isPushing) {
         this.transitionToRoute('stud');
       } else {
-        this.transitionToRoute('detail.stud', attendee.id);
+          this.get('logger').log(stud.id);
+        this.transitionToRoute('detail.stud', this.model.stud.get('id'));
       }
 
 
@@ -146,27 +180,20 @@ export default Controller.extend({
       //   stud = this.model.stud;
       // }
       // this.model.stud.me.set('name', this.chd_name);
-      stud.me.set('name', this.chd_name);
-      stud.me.set('nickname', this.chd_nickname);
-      stud.me.set('gender', this.chd_gender);
-      stud.me.set('dob', this.stud_date)
-      stud.set('school', this.chd_school);
+      // stud.me.set('name', this.chd_name);
+      // stud.me.set('nickname', this.chd_nickname);
+      // stud.me.set('gender', this.chd_gender);
+      // stud.me.set('dob', this.stud_date)
+      // stud.set('school', this.chd_school);
+      //
+      // stud.guardian.me.set('name', this.par_name);
+      // stud.guardian.me.set('nickname', this.par_nickname);
+      // stud.guardian.set('rs', this.par_rs);
+      // stud.guardian.me.set('contact', this.par_contact);
+      // stud.guardian.me.set('wechat', this.par_wechat);
+      // stud.guardian.set('address', this.par_address);
 
-      stud.guardian.me.set('name', this.par_name);
-      stud.guardian.me.set('nickname', this.par_nickname);
-      stud.guardian.set('rs', this.par_rs);
-      stud.guardian.me.set('contact', this.par_contact);
-      stud.guardian.me.set('wechat', this.par_wechat);
-      stud.guardian.set('address', this.par_address);
-
-      stud.urgent.me.set('name', this.urg_name);
-      stud.urgent.me.set('nickname', this.urg_nickname);
-      stud.urgent.set('rs', this.urg_rs);
-      stud.urgent.me.set('contact', this.urg_contact);
       // TODO: 其他的一些属性的修改都在这里解决
-
-
-
 
     },
 

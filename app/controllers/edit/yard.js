@@ -50,7 +50,7 @@ export default Controller.extend({
                     province: this.yard_selected_province,
                     city: this.yard_selected_city,
                     district: this.yard_selected_government_areas,
-                    detail: this.yard_detail_address,
+                    traffic_info: this.yard_detail_address,
                     attribute: '室内',
                     scenario: "",
                     address: "",
@@ -75,16 +75,6 @@ export default Controller.extend({
                     id: this.guid(),
                     img: "222.jpeg",
                     tag: "olo",
-                }))
-                yard.get('Certifications').pushObject(this.get('pmController').get('Store').createModel('bm-certification', {
-                    id: this.guid(),
-                    img: "1111.jpg",
-                    tag: "资质认真1",
-                }))
-                yard.get('Certifications').pushObject(this.get('pmController').get('Store').createModel('bm-certification', {
-                    id: this.guid(),
-                    img: "2222.jpg",
-                    tag: "资质认真2",
                 }))
 
                  let json = this.get('pmController').get('Store').object2JsonApi(yard)

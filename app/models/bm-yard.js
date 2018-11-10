@@ -9,12 +9,11 @@ export default DS.Model.extend({
     province: DS.attr('string'),
     city: DS.attr('string'),
     district: DS.attr('string'),
-    detail: DS.attr('string'),
+    traffic_info: DS.attr('string'),
     attribute: DS.attr('string'),
     scenario: DS.attr('string'),
     address: DS.attr('string'),
     friendly: DS.attr(''),
     Rooms: DS.hasMany('bm-room', { async: false }),
     Tagimgs: DS.hasMany('bm-tag-img', { async: false }),
-    Certifications: DS.hasMany('bm-certification', { async: false }),
 });

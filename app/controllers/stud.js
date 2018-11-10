@@ -8,6 +8,7 @@ export default Controller.extend({
     },
     actions: {
         cardClicked(idx) {
+            this.get('logger').log(idx);
             this.transitionToRoute('detail.stud', idx);
         },
         addStudClicked() {
