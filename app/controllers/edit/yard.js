@@ -46,11 +46,15 @@ export default Controller.extend({
                     cover: this.yard_cover,
                     description: this.yard_des,
                     around:  this.yard_around,
-                    facilities: this.yard_facilities,
+                    facilities: ["场地友好性","是啥"],
                     province: this.yard_selected_province,
                     city: this.yard_selected_city,
                     district: this.yard_selected_government_areas,
                     detail: this.yard_detail_address,
+                    attribute: '室内',
+                    scenario: "",
+                    address: "",
+                    friendly: ["场地友好性","是啥"]
                 });
                 yard.get('Rooms').pushObject(this.get('pmController').get('Store').createModel('bm-room', {
                     id: this.guid(),
@@ -72,10 +76,19 @@ export default Controller.extend({
                     img: "222.jpeg",
                     tag: "olo",
                 }))
+                yard.get('Certifications').pushObject(this.get('pmController').get('Store').createModel('bm-certification', {
+                    id: this.guid(),
+                    img: "1111.jpg",
+                    tag: "资质认真1",
+                }))
+                yard.get('Certifications').pushObject(this.get('pmController').get('Store').createModel('bm-certification', {
+                    id: this.guid(),
+                    img: "2222.jpg",
+                    tag: "资质认真2",
+                }))
 
                  let json = this.get('pmController').get('Store').object2JsonApi(yard)
                  this.get('logger').log(json);
-
                  this.get('pmController').get('Store').transaction('/api/v1/pushyard/0', 'bm-yard', json)
                     .then(data => {
                         this.get('logger').log(data);

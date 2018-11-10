@@ -7,5 +7,6 @@ export default DS.Model.extend({
     level: DS.attr('string'),
     Count: DS.attr('number'),
     Length: DS.attr('number'),
+
     Cat: DS.belongsTo('BmCategory', {async: false}),
 });

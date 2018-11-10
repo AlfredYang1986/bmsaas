@@ -113,7 +113,7 @@ export default Controller.extend({
       if (this.isPushing) {
         this.transitionToRoute('stud');
       } else {
-        this.transitionToRoute('detail.stud', stud.id);
+        this.transitionToRoute('detail.stud', attendee.id);
       }
 
 

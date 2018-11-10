@@ -24,8 +24,10 @@ export default Route.extend({
         })
         let json = this.get('pmController').get('Store').object2JsonApi(request);
         this.get('logger').log(json)
+
         return this.get('pmController').get('Store').queryMultipleObject('/api/v1/findyardmulti/0', 'bm-yard', json)
             .then(data => {
+                this.get('logger').log('qqqqqqqqqqqqqqqqqqqqq')
                 this.get('logger').log(data);
                 return data;
             })

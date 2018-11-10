@@ -1,10 +1,10 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
-import { computed } from '@ember/object';
-import { inject as service } from '@ember/service';
+// import { computed } from '@ember/object';
+// import { inject as service } from '@ember/service';
 
 export default Route.extend({
-    mock_data: service(),
+    // mock_data: service(),
 
     model(params) {
         // this.mock_data.sureStud();
@@ -40,16 +40,17 @@ export default Route.extend({
             .catch(data => {
                 this.get('logger').log(data);
             })
-        return RSVP.hash({
+
+            return RSVP.hash({
                 studs: studs
             })
-    },
-    guid() {
-      function s4() {
-        return Math.floor((1 + Math.random()) * 0x10000)
-          .toString(16)
-          .substring(1);
-      }
-      return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-    }
+        },
+        guid() {
+          function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+              .toString(16)
+              .substring(1);
+          }
+          return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+        }
 });
