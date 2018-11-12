@@ -1,44 +1,10 @@
 import Controller from '@ember/controller';
-import { computed } from '@ember/object';
+// import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default Controller.extend({
-    tech_name: '',
-    tech_nickname: '',
-    tech_gender: 0,
-    tech_gender_male: computed('tech_gender', function(){
-        if (this.tech_gender == 0) return false;
-        else return true;
-    }),
-    tech_gender_female: computed('tech_gender', function(){
-        if (this.tech_gender == 0) return true;
-        else return false;
-    }),
-    // tech_gender_current: computed('tech_gender_male', 'tech_gender_female', function(){
-    //     if (this.tech_gender_male) return 1;
-    //     else return 0;
-    // }),
-    // tech_homeland: '',
-    tech_dob: '',
-    tech_contact: '',
-    tech_wechat: '',
-    tech_address: '',
-    tech_nativePlace: '',
-    // tech_date:'',
-    // edu_name:'',
-    // edu_category:'',
-    // ca_company:'',
-    // ca_name:'',
-    // tech_date: computed('tech_dob', function() {
-    //     return this.tech_dob.getTime();
-    // }),
-    
-    isPushing: false,
-    tech_name_length: computed('tech_name', function() {
-        return this.get('tech_name').length;
-    }),
-    tech_nickname_length: computed('tech_nickname', function() {
-        return this.get('tech_nickname').length;
-    }),
+    bm_tech_update_service: service(),
+
     actions: {
         saveTechBtnClicked() {
             // console.log('save tech editing');
@@ -169,9 +135,6 @@ export default Controller.extend({
                 this.transitionToRoute('detail.tech', this.model.tech.get('id'));
             }
 
-
-
-
             // let tech = null;
             // if (this.isPushing) {
             //     tech = this.store.createRecord('bmtech', {
@@ -212,29 +175,6 @@ export default Controller.extend({
             //     this.transitionToRoute('detail.tech', tech.id);
             // }
         },
-
-        pushImg() {
-            document
-                .querySelector('#imgPicker')
-                .addEventListener('change', function(){
-                    //当没选中图片时，清除预览
-                    if(this.files.length === 0){
-                    document.querySelector('#preview').src = '';
-                    return;
-                    }
-
-                    //实例化一个FileReader
-                    var reader = new FileReader();
-
-                    reader.onload = function (e) {
-                    //当reader加载时，把图片的内容赋值给
-                    document.querySelector('#preview').src = e.target.result;
-                    };
-
-                //读取选中的图片，并转换成dataURL格式
-                reader.readAsDataURL(this.files[0]);
-                }, false);
-            }
     },
 
     techValidate() {
@@ -248,13 +188,4 @@ export default Controller.extend({
         return valiFlag;
         // return this.tech_name.length != 0;
     },
-
-    guid() {
-        function s4() {
-          return Math.floor((1 + Math.random()) * 0x10000)
-            .toString(16)
-            .substring(1);
-        }
-        return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-    }
 });

@@ -9,7 +9,7 @@
                     取消
                 {{/link-to}}
             {{else}}
-                {{#link-to 'detail.tech' model.tech.id class="nav_cancel_btn menu_button_between"}}
+                {{#link-to 'detail.tech' bm_tech_update_service.tech.id class="nav_cancel_btn menu_button_between"}}
                     取消
                 {{/link-to}}
             {{/if}}
@@ -25,7 +25,7 @@
               取消
           {{/link-to}}
       {{else}}
-          {{#link-to 'detail.tech' model.tech.id class="edit_nav_btn btn_cacel"}}
+          {{#link-to 'detail.tech' bm_tech_update_service.tech.id class="edit_nav_btn btn_cacel"}}
               取消
           {{/link-to}}
       {{/if}}
@@ -48,29 +48,24 @@
   <div class="input_container">
     <section id="tech-info" class="tech-infos tech_section">
         {{#layout-push direction='row' split=true classNames="tech-infos-container"}}
-            <div class="tech-avatar">
-                <p class="title">教师头像</p>
-                <input type="file" id="imgPicker">
-                <img id="preview">
-                {{!-- <img class="edit_logo_img" src="../images/avatar_defautl_96px @1x.png" /> --}}
-            </div>
+            {{bmcom/bm-img-uploader needTag=false canEdit=true }}
             <div class="tech-basis-info">
                 {{#layout-push direction='row' split=false classNames=" area-margin-bottom"}}
                     {{#layout-push direction="col" split=false classNames='input_area' }}
                       <p class="edit_title">姓名</p>
-                      {{input type="text" class="edit_input kid_school" maxlength='8' value=tech_name}}
-                      <span class="edit_hint">{{tech_name_length}}/8</span>
+                      {{input type="text" class="edit_input kid_school" maxlength='8' value=bm_tech_update_service.tech.name}}
+                      {{!-- <span class="edit_hint">{{tech_name_length}}/8</span> --}}
                     {{/layout-push}}
                     {{#layout-push direction="col" split=true classNames='input_area area-margin-left' }}
                       <p class="edit_title">昵称<span class="sub_title">(选填)</span></p>
-                      {{input type="text" class="edit_input kid_school" maxlength='8' value=tech_nickname}}
-                      <span class="edit_hint">{{tech_nickname_length}}/8</span>
+                      {{input type="text" class="edit_input kid_school" maxlength='8' value=bm_tech_update_service.tech.nickname}}
+                      {{!-- <span class="edit_hint">{{tech_nickname_length}}/8</span> --}}
                     {{/layout-push}}
                 {{/layout-push}}
                 {{#layout-push direction="col" split=true classNames='input_area  area-margin-bottom' }}
                     <p class="edit_title">出生日期</p>
                     {{#layout-push direction="row" split=false classNames='date_choose' }}
-                        {{bm-lay-date value=tech_dob}}
+                        {{bm-lay-date inputVal=bm_tech_update_service.tech.dob}}
                     {{/layout-push}}
                     {{!-- {{#layout-push direction="row" split=false classNames='date_choose' }} --}}
                     {{!-- {{date-choose data=stud_date}} --}}
@@ -82,32 +77,32 @@
                   <p class="edit_title">性别</p>
                   <div class="">
                     <span class="radio-inline">
-                        <input type="radio" name="sex" value="male" checked={{tech_gender_male}}/>
+                        <input type="radio" name="sex" value="male" checked={{bmeq bm_tech_update_service.tech.gender 1 }}/>
                         <label for="man">男</label>
                     </span>
                     <span class="radio-inline">
-                        <input type="radio" name="sex" value="female" checked={{tech_gender_female}}/>
+                        <input type="radio" name="sex" value="female" checked={{bmeq bm_tech_update_service.tech.gender 0}}/>
                         <label for="woman">女</label>
                     </span>
                   </div>
                 {{/layout-push}}
                 {{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
                   <p class="edit_title">来自城市</p>
-                  {{input type="text" class="edit_input input_100" maxlength='8' value=tech_nativePlace}}
+                  {{input type="text" class="edit_input input_100" maxlength='8' value=bm_tech_update_service.tech.nativePlace}}
                 {{/layout-push}}
                 {{#layout-push direction='row' split=false classNames=" area-margin-bottom"}}
                     {{#layout-push direction="col" split=false classNames='input_area' }}
                       <p class="edit_title">联系方式</p>
-                      {{input type="text" class="edit_input kid_school" maxlength='8' value=tech_contact}}
+                      {{input type="text" class="edit_input kid_school" maxlength='8' value=bm_tech_update_service.tech.contact}}
                     {{/layout-push}}
                     {{#layout-push direction="col" split=true classNames='input_area area-margin-left' }}
                       <p class="edit_title">微信</p>
-                      {{input type="text" class="edit_input kid_school" maxlength='8' value=tech_wechat}}
+                      {{input type="text" class="edit_input kid_school" maxlength='8' value=bm_tech_update_service.tech.wechat}}
                     {{/layout-push}}
                 {{/layout-push}}
                 {{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
                   <p class="edit_title">地址<span class="sub_title">(选填)</span></p>
-                  {{input type="text" class="edit_input input_100" maxlength='8' value=tech_address}}
+                  {{input type="text" class="edit_input input_100" maxlength='8' value=bm_tech_update_service.tech.address}}
                 {{/layout-push}}
             </div>
         {{/layout-push}}
@@ -161,260 +156,4 @@
   </div>
 {{/layout-push}}
 
-
-
-{{!--
-<ul class="edit_left_bar">
-    <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right">
-            <a class="edit_left_menu_text" href="#tech-info">基本信息</a>
-        </div>
-    </li>
-    <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right">
-            <a class="edit_left_menu_text" href="#tech-edc">教育信息</a>
-        </div>
-    </li>
-    <li class="left_bar_item" >
-        <div class="edit_left_menu_mid menu_margin_right">
-            <a class="edit_left_menu_text" href="#tech-story">工作经历</a>
-        </div>
-    </li>
-</ul>
-
-<section id="tech-info" class="line_container_mid edit_page_top_margin">
-    <div class="edit_panel v_push edit_first_panel">
-        {{#layout-push direction="row"}}
-            <span class="edit_title">基础信息</span>
-        {{/layout-push}}
-
-        {{#layout-push direction="row"}}
-            <div class="edit_logo_container">
-                <div class="v_mid">
-                    <span class="edit_logo_des">点击上传</span>
-                </div>
-                <img class="edit_logo_img" src="" />
-            </div>
-            <div class="v_end edit_logo_right" >
-                <span>144px*144px</span>
-                <span>支持jpg、jpeg、png，小于100 KB</span>
-            </div>
-        {{/layout-push}}
-
-        {{#layout-push direction='row' split=true}}
-            {{bm-edit-line title="姓名" isNeeded=true maxCount=8 inputVal=tech_name classNames='line_half' }}
-            {{bm-edit-line title="昵称" isNeeded=true maxCount=8 inputVal=tech_nickname classNames='line_half' }}
-        {{/layout-push}}
-
-        {{#layout-push direction='row' split=true}}
-            {{#layout-push direction='col' classNames='line_half'}}
-                <div class="line_container_split" >
-                    <div class="line_container" >
-                        <span class="edit_subtitle" >出生日期</span>
-                        <div class="v_end">
-                            <span class="edit_required" >* 必填</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="line_container" > --}}
-
-                    {{!-- <select class="start-time" name="">
-                        <option value="">年</option>
-                        <option value="">2018</option>
-                    </select>
-                    <select class="start-time" name="">
-                        <option value="">月</option>
-                        <option value="">01</option>
-                    </select>
-                    <select class="start-time" name="">
-                        <option value="">日</option>
-                        <option value="">01</option>
-                    </select> --}}
-{{!--
-                    {{date-choose data=model.tech.me.dob}}
-                </div>
-            {{/layout-push}}
-
-            {{bm-edit-line title="性别" isNeeded=true maxCount=1 inputVal=tech_gender_str classNames='line_half'}}
-        {{/layout-push}}
-
-        {{#layout-push direction='row' split=true}}
-            {{bm-edit-line title="来自(城市)" inputVal=tech_homeland classNames='line_half' }}
-        {{/layout-push}}
-
-        {{#layout-push direction='row' split=true}}
-            {{bm-edit-line title="联系方式" isNeeded=true inputVal=tech_contact classNames='line_half'}}
-            {{bm-edit-line title="微信 Wechat" inputVal=tech_wechat classNames='line_half'}}
-        {{/layout-push}}
-        {{bm-edit-line title="地址" maxCount=30 inputVal=tech_address}}
-    </div>
-</section>
-
-<section id="tech-info" class="line_container_mid">
-    <div class="edit_panel v_push edit_first_panel">
-        {{#layout-push direction="row"}}
-            <span class="edit_title">教育经历</span>
-        {{/layout-push}}
-
-        {{bm-edit-line title="学校名称" inputVal=edu_name}}
-
-        {{#layout-push direction='col' classNames='line_half select-school'}}
-            <div class="line_container_split" >
-                <div class="line_container" >
-                    <span class="edit_subtitle">学校</span>
-                </div>
-            </div>
-            <div class="line_container" >
-                <select class="start-time" name="">
-                    <option value="">年</option>
-                    <option value="">2018</option>
-                </select>
-            </div>
-        {{/layout-push}}
-
-
-        {{bm-edit-line title="所学专业" inputVal=edu_category}}
-
-        {{#layout-push direction='row' split=true}}
-            {{#layout-push direction='row' classNames='line_half'}}
-                <div class="time-cycle">
-                    <div class="line_container_split" >
-                        <div class="line_container" >
-                            <span class="edit_subtitle" >开始时间</span>
-                        </div>
-                    </div>
-                    <div class="line_container" >
-                        <select class="start-time" name="">
-                            <option value="">年</option>
-                            <option value="">2018</option>
-                        </select>
-                        <select class="start-time" name="">
-                            <option value="">月</option>
-                            <option value="">01</option>
-                        </select> --}}
-
-                        {{!-- {{date-choose data=model.tech.edu.start}} --}}
-{{!--
-                    </div>
-                </div>
-            {{/layout-push}}
-            {{#layout-push direction='row' classNames='line_half'}}
-                <div class="">
-                    <div class="line_container_split">
-                        <div class="line_container">
-                            <span class="edit_subtitle">结束时间</span>
-                        </div>
-                    </div>
-                    <div class="line_container" >
-                        <select class="start-time" name="">
-                            <option value="">年</option>
-                            <option value="">2018</option>
-                        </select>
-                        <select class="start-time" name="">
-                            <option value="">月</option>
-                            <option value="">01</option>
-                        </select>
---}}
-                        {{!-- {{date-choose data=model.tech.edu.end}} --}}
-{{!--
-                    </div>
-                </div>
-            {{/layout-push}}
-        {{/layout-push}}
-
-        {{#layout-push direction='row'}}
-            <div class="add-decide-btn">
-                <button type="button" class="btn">确定</button>
-                <button type="button" class="btn">取消</button>
-            </div>
-        {{/layout-push}}
-
-        {{#layout-push direction='col' classNames='edit_inner_panel'}}
-            {{#layout-push direction='row' split=true classNames='edit_inner_content_line'}}
-                {{#layout-push direction="col" mid=true}}
-                    <p>学校名称</p>
-                    <p>学业.所学专业</p>
-                {{/layout-push}}
-                {{#layout-push direction="col" mid=true}}
-                    <a>修改</a>
-                    <p>2017.4 -2018.4 </p>
-                {{/layout-push}}
-            {{/layout-push}}
-        {{/layout-push}}
-    </div>
-</section> --}}
-
-{{!--
-<section id="tech-info" class="line_container_mid">
-    <div class="edit_panel v_push edit_first_panel">
-        {{#layout-push direction="row"}}
-            <span class="edit_title">工作经历</span>
-        {{/layout-push}}
-
-        {{bm-edit-line title="工作单位" inputVal=ca_name}}
-
-        {{bm-edit-line title="职位" inputVal=ca_company}}
-
-        {{#layout-push direction='row' split=true}}
-            {{#layout-push direction='row' classNames='line_half'}}
-                <div class="time-cycle">
-                    <div class="line_container_split" >
-                        <div class="line_container" >
-                            <span class="edit_subtitle" >开始时间</span>
-                        </div>
-                    </div>
-                    <div class="line_container" >
-                        <select class="start-time" name="">
-                            <option value="">年</option>
-                            <option value="">2018</option>
-                        </select>
-                        <select class="start-time" name="">
-                            <option value="">月</option>
-                            <option value="">01</option>
-                        </select>
-                    </div>
-                </div>
-            {{/layout-push}}
-            {{#layout-push direction='row' classNames='line_half'}}
-                <div class="">
-                    <div class="line_container_split">
-                        <div class="line_container">
-                            <span class="edit_subtitle">结束时间</span>
-                        </div>
-                    </div>
-                    <div class="line_container" >
-                        <select class="start-time" name="">
-                            <option value="">年</option>
-                            <option value="">2018</option>
-                        </select>
-                        <select class="start-time" name="">
-                            <option value="">月</option>
-                            <option value="">01</option>
-                        </select>
-                    </div>
-                </div>
-            {{/layout-push}}
-        {{/layout-push}}
-
-        {{#layout-push direction='row'}}
-            <div class="add-decide-btn">
-                <button type="button" class="btn">确定</button>
-                <button type="button" class="btn">取消</button>
-            </div>
-        {{/layout-push}}
-
-        {{#layout-push direction='col' classNames='edit_inner_panel'}}
-            {{#layout-push direction='row' split=true classNames='edit_inner_content_line'}}
-                {{#layout-push direction="col" mid=true}}
-                    <p>工作单位</p>
-                    <p>职业</p>
-                {{/layout-push}}
-                {{#layout-push direction="col" mid=true}}
-                    <a>修改</a>
-                    <p>2017.4 -2018.4 </p>
-                {{/layout-push}}
-            {{/layout-push}}
-        {{/layout-push}}
-    </div>
-</section> --}}
 {{outlet}}

@@ -2,11 +2,12 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 
 export default Component.extend({
-    positionalParams: ['lang', 'pickType', 'range'],
+    positionalParams: ['lang', 'pickType', 'range', 'inputVal'],
     lang: 'zh',
     pickType: 'date',
     range: false,
-    inputVal: '',
+    inputVal: new Date().getTime(),
+
     gid: computed(function(){
         return this.guid();
     }),
@@ -19,6 +20,7 @@ export default Component.extend({
             type: this.pickType,
             range: this.range,
             lang: this.lang,
+            value: new Date(this.inputVal)
         });
     },
     guid() {
