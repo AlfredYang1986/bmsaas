@@ -5,10 +5,6 @@ export default Controller.extend({
     tech_name: '',
     tech_nickname: '',
     tech_gender: 0,
-    tech_gender_str: computed('tech_gender', function(){
-        if (this.tech_gender == 0) return '女';
-        else return '男';
-    }),
     tech_gender_male: computed('tech_gender', function(){
         if (this.tech_gender == 0) return false;
         else return true;
@@ -17,6 +13,10 @@ export default Controller.extend({
         if (this.tech_gender == 0) return true;
         else return false;
     }),
+    // tech_gender_current: computed('tech_gender_male', 'tech_gender_female', function(){
+    //     if (this.tech_gender_male) return 1;
+    //     else return 0;
+    // }),
     // tech_homeland: '',
     tech_dob: '',
     tech_contact: '',
@@ -47,7 +47,7 @@ export default Controller.extend({
             //     alert('必填项不能为空！');
             //     return;
             // }
-            // this.get('logger').log(this.tech_date)
+            this.get('logger').log(this.tech_dob)
 
             let tech = null;
             if (this.isPushing) {

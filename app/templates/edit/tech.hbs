@@ -1,6 +1,6 @@
 <ul class="nav">
     <li class="nav-item">
-        <a class="nav-link active brand_name" href="#">编辑-老师信息</a>
+        <a class="nav-link active brand_name tech-nav-title" href="#">编辑-老师信息</a>
     </li>
     <li class="nav-item menu_mid">
         <div class="menu_container">
@@ -13,7 +13,7 @@
                     取消
                 {{/link-to}}
             {{/if}}
-            <button class="nav_save_btn menu_button_between" {{action 'saveTechBtnClicked'}}>保存</button>
+            <button class="nav_save_btn menu_button_between tech-nav-savebtn" {{action 'saveTechBtnClicked'}}>保存</button>
         </div>
     </li>
 </ul>
@@ -70,7 +70,7 @@
                 {{#layout-push direction="col" split=true classNames='input_area  area-margin-bottom' }}
                     <p class="edit_title">出生日期</p>
                     {{#layout-push direction="row" split=false classNames='date_choose' }}
-                        {{bm-lay-date data=tech_dob}}
+                        {{bm-lay-date value=tech_dob}}
                     {{/layout-push}}
                     {{!-- {{#layout-push direction="row" split=false classNames='date_choose' }} --}}
                     {{!-- {{date-choose data=stud_date}} --}}
