@@ -6,39 +6,39 @@ export default Service.extend({
   init() {
     this._super(...arguments);
     this.regionSource();
-    this.sureBrand();
-    this.sureStud();
-    this.sureTech();
-    this.sureYard();
-    this.sureCourse();
-    this.sureReserve();
-    this.sureActivity();
-    this.sureClasses();
-    this.sureApplies();
-    this.sureClsSession();
+    // this.sureBrand();
+    // this.sureStud();
+    // this.sureTech();
+    // this.sureYard();
+    // this.sureCourse();
+    // this.sureReserve();
+    // this.sureActivity();
+    // this.sureClasses();
+    // this.sureApplies();
+    // this.sureClsSession();
   },
   store: service(),
   regionSource() {
     window.console.info('sure regionSource');
     let provinces = ['北京'];
-    let citys = ['北京'];
+    let citys = ['北京市'];
     let governmentArea = ["密云区", "延庆区", "朝阳区", "丰台区", "石景山区", "海淀区", "门头沟区", "房山区", "通州区", "顺义区", "昌平区", "大兴区", "怀柔区", "平谷区", "东城区", "西城区"]
     provinces.forEach((name, index) => {
       this.store.createRecord('bmprovinces', {
         id: (index + 1),
-        name
+        name: name
       })
     });
     citys.forEach((name, index) => {
       this.store.createRecord('bmcitys', {
         id: (index + 1),
-        name
+        name: name
       })
     });
     governmentArea.forEach((name, index) => {
       this.store.createRecord('bmgovernment-areas', {
         id: (index + 1),
-        name
+        name: name
       })
     })
   },

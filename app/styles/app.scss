@@ -54,6 +54,13 @@ a:hover {
     justify-content: flex-end;
 }
 
+.r_end {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
 .line_container {
     display: flex;
     flex-wrap: nowrap;

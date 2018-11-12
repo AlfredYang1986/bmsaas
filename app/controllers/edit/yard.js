@@ -1,4 +1,6 @@
 import Controller from '@ember/controller';
+import { computed } from '@ember/object';
+import { A } from '@ember/array';
 
 export default Controller.extend({
 
@@ -6,26 +8,27 @@ export default Controller.extend({
     yard_detail_address: '',
     yard_cover: '',
     yard_des: '',
-    yard_around: '',
-    yard_ardes: '',
-    yard_facilities: '',
-    yard_parking: '',
-    yard_embag: '',
 
-    yard_awards: null,
+    yard_attr: '',
+    yard_scenario: '',
+    yard_traffic: '',
+    yard_tagimgs: A([]),
+    
+    yard_selected_province: '',
+    yard_selected_city: '',
+    yard_selected_government_areas: '',
 
     yard_provinces: null,
     yard_citys: null,
     yard_government_areas: null,
 
-    yard_selected_province: null,
-    yard_selected_city: null,
-    yard_selected_government_areas: null,
-
     isPushing: false,
+    current_idx: 0,
 
     yardCandidate: ['室内', '室外', '室内 + 室外'],
     surroundings: ['社区', '商圈', '校区', '写字楼', '户外', '露天', '闹市区'],
+    tagsCandi: ['阅读区', '教学区', '家长休息区', '生活区', '寄存区', '户外活动区', '室内活动区'],
+
     actions: {
         saveYardBtnClicked() {
             // if (!this.yardValidate()) {
@@ -34,7 +37,7 @@ export default Controller.extend({
             // }
 
             let yard = null;
-            if (this.isPushing) {
+            if (!this.isPushing) {
                 // let region = this.store.peekRecord('bm-region', '1')
                 // yard = this.store.createRecord('bmyard', {
                 //     id: this.guid()
@@ -123,6 +126,7 @@ export default Controller.extend({
                   })
                   .catch(data => {
                       this.get('logger').log(data)
+                      this.transitionToRoute('home')
                   })
 
             }
@@ -149,24 +153,24 @@ export default Controller.extend({
                 this.transitionToRoute('detail.yard',this.model.yard.get('id'));
             }
         },
-        changeProvinces(value) {
-            let province = this.store.peekRecord('bmprovinces', value);
-            this.set('yard_selected_province', province);
-            // let region = this.model.yard.region;
-            // region.set('province', province);
-        },
-        changeCitys(value) {
-            let city = this.store.peekRecord('bmcitys', value);
-            this.set('yard_selected_city', city);
-            // let region = this.model.yard.region;
-            // region.set('city', city);
-        },
-        changeGovernmentAreas(value) {
-            let area = this.store.peekRecord('bmgovernment-areas', value);
-            this.set('yard_selected_government_areas', area);
-            // let region = this.model.yard.region;
-            // region.set('governmentArea', area);
-        }
+        // changeProvinces(value) {
+        //     let province = this.store.peekRecord('bmprovinces', value);
+        //     this.set('yard_selected_province', province);
+        //     // let region = this.model.yard.region;
+        //     // region.set('province', province);
+        // },
+        // changeCitys(value) {
+        //     let city = this.store.peekRecord('bmcitys', value);
+        //     this.set('yard_selected_city', city);
+        //     // let region = this.model.yard.region;
+        //     // region.set('city', city);
+        // },
+        // changeGovernmentAreas(value) {
+        //     let area = this.store.peekRecord('bmgovernment-areas', value);
+        //     this.set('yard_selected_government_areas', area);
+        //     // let region = this.model.yard.region;
+        //     // region.set('governmentArea', area);
+        // }
     },
 
     yardValidate() {
