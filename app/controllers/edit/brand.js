@@ -24,22 +24,21 @@ export default Controller.extend({
                 category: "BmBrand",
             }));
             brand.get('upcond').pushObject(this.get('pmController').get('Store').createModel('upcond', {
-                id: this.model.brand.get('id'),
+                id: this.guid(),
                 type: 'upcond',
                 key: 'title',
-                val: 'TEST',
+                val: this.title,
                 category: "BmBrand",
             }));
             brand.get('upcond').pushObject(this.get('pmController').get('Store').createModel('upcond', {
-                id: this.model.brand.get('id'),
+                id: this.guid(),
                 type: 'upcond',
                 key: 'subtitle',
-                val: "test",
+                val: this.subtitle,
                 category: "BmBrand",
             }));
             let json = this.get('pmController').get('Store').object2JsonApi(brand);
             this.get('logger').log(json)
-            debugger
             this.get('pmController').get('Store').transaction('/api/v1/updatebrand/0', 'request', json)
               .then(data => {
                   this.get('logger').log(data)

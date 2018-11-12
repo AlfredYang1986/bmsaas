@@ -1,0 +1,37 @@
+.bm-upload-form {
+    div.bm-upload-container {
+        position: relative;
+
+        width: 200px;
+        height: auto;
+
+        img {
+            position: absolute;
+
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+        }
+
+        input {
+            position: absolute;
+
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+
+            opacity: 0;
+        }
+    }
+}
+
+.bm-upload-tag {
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #172B4D;
+    text-align: left;
+
+    margin-top: 216px;
+}

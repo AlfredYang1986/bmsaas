@@ -120,9 +120,9 @@
             .alt_course_detail_panel {
                 margin: 24px;
                 // width: 100%;
-                min-height: 140px;
+                min-height: 40px;
 
-                border-bottom: 1px solid #00000055;
+                border-bottom: 1px solid #00000020;
 
                 .alt_right_panel_perperty_title {
                     font-family: PingFangSC-Medium;
@@ -143,6 +143,7 @@
                 .alt_course_detail_tag {
                     width: 106px;
                     height: 32px;
+                    line-height: 32px;
 
                     font-family: PingFangSC-Regular;
                     font-size: 14px;
@@ -245,4 +246,11 @@
             text-align: left;
         }
     }
+}
+
+.alt-course-tag-img-adjust {
+    margin-left: 20px;
+
+    margin-top: 24px;
+    margin-bottom: 24px;
 }
