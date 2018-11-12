@@ -8,16 +8,13 @@ export default Component.extend({
     area: '',
     actions: {
         changeProvinces(value) {
-            // this.sendAction('changeProvinces', value)
-            this.province = value
+            this.set('province', value);
         },
         changeCitys(value) {
-            // this.sendAction('changeCitys', value)
-            this.city = value
+            this.set('city', value);
         },
         changeGovernmentAreas(value) {
-            // this.sendAction('changeGovernmentAreas', value) 
-            this.area = value
+            this.set('area', value);
         }
     }
 });

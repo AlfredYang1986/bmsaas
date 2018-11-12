@@ -1,4 +1,5 @@
 .bm-upload-form {
+
     div.bm-upload-container {
         position: relative;
 
@@ -12,6 +13,9 @@
             left: 0;
             width: 200px;
             height: 200px;
+    
+            border: 1px dashed #D2D4D9;
+            border-radius: 4px;
         }
 
         input {

@@ -19,6 +19,11 @@ export default Service.extend({
   },
   store: service(),
   regionSource() {
+    // debugger
+    // let tmp = this.store.peekAll('bmprovinces');
+    // if (tmp != null && tmp.length > 0) {
+    //   return;
+    // }
     window.console.info('sure regionSource');
     let provinces = ['北京'];
     let citys = ['北京市'];

@@ -8,7 +8,7 @@
                 <span class='alt_course_title'>场地详情</span>
             {{/layout-push}}
             {{#layout-push direction='col' mid=true}}
-                {{#link-to 'edit.yard' model.yard.id classNames='alt_course_btn'}}
+                {{#link-to 'edit.yard' bm_yard_update_service.yard.id classNames='alt_course_btn'}}
                     编辑
                 {{/link-to}}
             {{/layout-push}}
@@ -18,10 +18,10 @@
             {{#layout-push direction='col' classNames='alt_course_left_panel'}}
                 {{#layout-push direction='col' classNames='alt_course_panel'}}
                     {{#layout-push direction='row' mid=true classNames='alt_course_deltail_title'}}
-                        {{model.yard.title}}
+                        {{bm_yard_update_service.yard.title}}
                     {{/layout-push}}
                     {{#layout-push direction='row' mid=true classNames='alt_course_detail_cat'}}
-                        {{model.yard.address}}
+                        {{bm_yard_update_service.yard.address}}
                     {{/layout-push}}
 
                     <div class="detail_course_pintu" >
@@ -44,35 +44,35 @@
 
                 {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
                     <span class='alt_right_panel_perperty_title'>场地详情</span>
-                    {{#if (bmcom/bm-nil-string model.yard.description)}}
+                    {{#if (bmcom/bm-nil-string bm_yard_update_service.yard.description)}}
                         {{#layout-push direction='row' mid=true}}
                             <span class='alt_right_panel_perperty_des'>请上传信息</span>
                         {{/layout-push}}
                     {{else}}
-                        <span class='alt_right_panel_perperty_des'>{{model.yard.description}}</span>
+                        <span class='alt_right_panel_perperty_des'>{{bm_yard_update_service.yard.description}}</span>
                     {{/if}}
                 {{/layout-push}}
 
                 {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
                     <span class='alt_right_panel_perperty_title'>周边交通信息</span>
-                    {{#if (bmcom/bm-nil-string model.yard.traffic_info)}}
+                    {{#if (bmcom/bm-nil-string bm_yard_update_service.yard.traffic_info)}}
                         {{#layout-push direction='row' mid=true}}
                             <span class='alt_right_panel_perperty_des'>请上传信息</span>
                         {{/layout-push}}
                     {{else}}
-                        <span class='alt_right_panel_perperty_des'>{{model.yard.traffic_info}}</span>
+                        <span class='alt_right_panel_perperty_des'>{{bm_yard_update_service.yard.traffic_info}}</span>
                     {{/if}}
                 {{/layout-push}}
 
                 {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
                     <span class='alt_right_panel_perperty_title'>场地设施</span>
-                    {{#if (bmcom/bm-nil-array model.yard.facilities)}}
+                    {{#if (bmcom/bm-nil-array bm_yard_update_service.yard.facilities)}}
                         {{#layout-push direction='row' mid=true}}
                             <span class='alt_right_panel_perperty_des'>请上传信息</span>
                         {{/layout-push}}
                     {{else}}
                         {{#layout-push direction='row'}}
-                            {{#each model.yard.facilities as |item|}}
+                            {{#each bm_yard_update_service.yard.facilities as |item|}}
                                 <span class='alt_course_detail_tag'>{{item}}</span>
                             {{/each}}
                         {{/layout-push}}
@@ -81,17 +81,14 @@
 
                 {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
                     <span class='alt_right_panel_perperty_title'>场地图片</span>
-                    {{#if (bmcom/bm-nil-array model.yard.Tagimgs)}}
-                        {{#layout-push direction='row' mid=true}}
-                            <span class='alt_right_panel_perperty_des'>请上传信息</span>
-                        {{/layout-push}}
-                    {{else}}
-                        {{#layout-push direction='row'}}
-                            {{#each model.yard.Tagimgs as |item|}}
+                    <div class='line_conatainer_warp'>
+                        {{#each bm_yard_update_service.yard.Tagimgs as |item|}}
+                            {{#if (bmcom/bm-nil-string item.img)}}
+                            {{else}}
                                 {{bmcom/bm-img-uploader needTag=true canEdit=false img=item.img tag=item.tag classNames='alt-course-tag-img-adjust'}}
-                            {{/each}}
-                        {{/layout-push}}
-                    {{/if}}
+                            {{/if}}
+                        {{/each}}
+                    </div>
                 {{/layout-push}}
             {{/layout-push}}
         {{/layout-push}}

@@ -1,10 +1,11 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
-import { computed } from '@ember/object';
+// import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default Route.extend({
-    mock_data: service(),
+    // mock_data: service(),
+    bm_yard_update_service: service(),
 
     model(params) {
         // this.mock_data.sureYard();
@@ -13,29 +14,11 @@ export default Route.extend({
         //     this.transitionTo('home');
         // }
         //
-        let request = this.get('pmController').get('Store').createModel('request', {
-            id: this.guid(),
-            res: "BmYard",
-        });
-        request.get('eqcond').pushObject(this.get('pmController').get('Store').createModel('eqcond', {
-            id: this.guid(),
-            type: 'eqcond',
-            key: 'id',
-            val: params.yardid
-        }));
-        let json = this.get('pmController').get('Store').object2JsonApi(request);
-        this.get('logger').log(json)
-        let yard =  this.get('pmController').get('Store').queryObject('/api/v1/findyard/0', 'bm-yard', json)
-            .then(data => {
-                this.get('logger').log(data);
-                return data;
-            })
-            .catch(data => {
-                this.get('logger').log(data);
-            })
+        this.bm_yard_update_service.set('yardid', params.yardid);
+  
         return RSVP.hash({
-                yard: yard
-            })
+            yardid: params.yardid,
+        })
     },
     guid() {
         function s4() {
@@ -44,5 +27,19 @@ export default Route.extend({
             .substring(1);
         }
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+    },
+    setupController(controller, model) {
+        this._super(controller, model);
+        controller.set('yard_provinces', this.store.peekAll('bmprovinces'));
+        controller.set('yard_citys', this.store.peekAll('bmcitys'));
+        controller.set('yard_government_areas', this.store.peekAll('bmgovernment-areas'));
+
+        if (model.yard != null) {
+            controller.set('isPushing', false);
+        } else {
+            controller.set('isPushing', true);
+        }
+        // this.controller.set('current_idx', 0);
+        this.bm_yard_update_service.set('refresh_token', this.bm_yard_update_service.guid());
     },
 });
