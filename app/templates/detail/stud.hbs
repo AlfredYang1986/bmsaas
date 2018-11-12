@@ -1,247 +1,71 @@
 <div class="detail_content_top">
-  <div class="detail_page">
-    <p class="detail_stud_nav">
-      {{#link-to 'stud' class="detail_href_ref" }}
-        返回
-      {{/link-to}}
-      {{!-- <span>学生详情</span> --}}
-    </p>
-    {{#layout-push direction='row' split=true class="detail_title" }}
-      <span class="title_text">学员详情</span>
-      {{#link-to 'edit.stud' model.studs.id classNames='detail_panel_edit_btn' }}
-        编辑
-      {{/link-to}}
-    {{/layout-push}}
-    {{#layout-push direction='row' split=true classNames='stud_detail' }}
-      <div class="basis_margin">
-        {{#layout-push direction='col' mid=true classNames='stud_detail_basis' }}
-
-          <p class="basis_name">{{model.studs.name}}</p>
-          {{#layout-push direction='row' mid=true}}
-            <span class="basis_sex_age">
-                  {{#if isFemale}}
-                      女 ♀
-                  {{else}}
-                      男 ♂
-                  {{/if}}
-                {{bmdob/bmdob2age model.studs.age}}岁
-            </span>
-          {{/layout-push}}
-          {{#layout-push direction='row' mid=true classNames='basis_dob' }}
-            <span>出生日期  {{bmdob/bmdob2age model.studs.dob}}</span>
-          {{/layout-push}}
-        {{/layout-push }}
-
-      </div>
-      {{#layout-push direction='col' mid=true classNames='stud_detail_other' }}
-        <div class="other_self">
-          {{#layout-push direction='row' mid=false classNames='self_container' }}
-            <span>昵称</span><span>{{model.studs.nickname}}</span>
-          {{/layout-push}}
-          {{#layout-push direction='row' mid=false classNames='self_container' }}
-            <span>绑定手机号</span><span>{{model.studs.contact}}</span>
-          {{/layout-push}}
-          {{#layout-push direction='row' mid=false classNames='self_container' }}
-            <span>就读学校</span><span>{{model.studs.school}}</span>
-          {{/layout-push}}
-          {{#layout-push direction='row' mid=false classNames='self_container' }}
-            <span>注册时间</span><span>{{model.studs.reg_date}}</span>
-          {{/layout-push}}
-          <div class="line"></div>
-          <p class="parent_info">家长信息</p>
-          {{#layout-push direction='row' mid=false classNames='self_container' }}
-            <span>家长姓名</span><span>{{model.studs.Guardians.firstObject.name}}</span>
-          {{/layout-push}}
-          {{#layout-push direction='row' mid=false classNames='self_container' }}
-            <span>关系</span><span>{{model.studs.Guardians.firstObject.relation_ship}}</span>
-          {{/layout-push}}
-          {{#layout-push direction='row' mid=false classNames='self_container' }}
-            <span>联系方式</span><span>{{model.studs.Guardians.firstObject.contact}}</span>
-          {{/layout-push}}
-          {{#layout-push direction='row' mid=false classNames='self_container' }}
-            <span>微信</span><span>{{model.studs.Guardians.firstObject.wechat}}</span>
-          {{/layout-push}}
-          {{#layout-push direction='row' mid=false classNames='self_container' }}
-            <span>地址</span><span>{{model.studs.Guardians.firstObject.address}}</span>
-          {{/layout-push}}
-        </div>
-
-      {{/layout-push }}
-    {{/layout-push }}
-    {{!-- <div class='detail_panel' >
-            {{#layout-push direction='row' }}
-                {{#layout-push direction='col' mid=true classNames='detail_panel_img_right_margin'}}
-                    <img src={{model.stud.me.icon}} class='detail_panel_img' />
-                {{/layout-push}}
-
-                {{#layout-push direction='col' mid=true }}
-                    {{#layout-push direction='col'}}
-                        <span class="detail_panel_role_name">{{model.stud.me.name}}</span>
-                        {{#layout-push direction='row'}}
-                            <span class="detail_panel_role_des">年龄 : {{model.stud.me.age}}岁</span>
-                            <span class="detail_panel_role_des">
-                                {{#if isFemale}}
-                                    性别 : 女
-                                {{/if}}
-                                {{#if isMale}}
-                                    性别 : 男
-                                {{/if}}
-                            </span>
-                        {{/layout-push}}
-                    {{/layout-push}}
-                {{/layout-push}}
-            {{/layout-push}}
-        </div>
-
-        <div class="detail_panel detail_panel_col_between" >
-            {{#layout-push direction='col' mid=true}}
-                <span class='detail_panel_head'>详细信息</span>
-            {{/layout-push}}
-        </div>
-
-        <div class="detail_panel detail_panel_col_between" >
-            {{#layout-push direction='col'}}
-                {{#layout-push direction='col'}}
-                    {{#layout-push direction="row" split=true}}
-                        <div class="v_end" >
-                            <span class='detail_panel_title'>基础资料</span>
-                        </div>
-                        {{#link-to 'edit.stud' model.stud.id classNames='detail_panel_edit_btn'}}
-                            编辑
-                        {{/link-to}}
-                    {{/layout-push}}
-                    {{#layout-push direction='row' mid=true }}
-                        {{#layout-push direction='row' classNames='detail_panel_des_container'}}
-                            {{#layout-push direction='row' classNames='line_half detail_panel_des_between detail_panel_des_underline'}}
-                                <span class='detail_panel_des_01'>姓名</span>
-                                <span class='detail_panel_des_02'>{{model.stud.me.name}}</span>
-                            {{/layout-push}}
-                            {{#layout-push direction='row' classNames='line_half detail_panel_des_underline'}}
-                                <span class='detail_panel_des_01'>昵称</span>
-                                <span class='detail_panel_des_02'>{{model.stud.me.nickname}}</span>
-                            {{/layout-push}}
-                        {{/layout-push}}
-                    {{/layout-push}}
-                    {{#layout-push direction='row' mid=true classNames='detail_panel_des_container_between'}}
-                        {{#layout-push direction='row' classNames='detail_panel_des_container'}}
-                            {{#layout-push direction='row' classNames='line_half detail_panel_des_between detail_panel_des_underline'}}
-                                <span class='detail_panel_des_01'>出生日期</span>
-                                <span class='detail_panel_des_02'>
-                                    {{model.stud.me.dob}}
-                                </span>
-                            {{/layout-push}}
-                            {{#layout-push direction='row' classNames='line_half detail_panel_des_underline'}}
-                                <span class='detail_panel_des_01'>年龄</span>
-                                <span class='detail_panel_des_02'>{{model.stud.me.age}}</span>
-                            {{/layout-push}}
-                        {{/layout-push}}
-                    {{/layout-push}}
-                    {{#layout-push direction='row' mid=true classNames='detail_panel_des_container_between'}}
-                        {{#layout-push direction='row' classNames='detail_panel_des_container'}}
-                            {{#layout-push direction='row' classNames='line_half detail_panel_des_between detail_panel_des_underline'}}
-                                <span class='detail_panel_des_01'>性别</span>
-                                <span class='detail_panel_des_02'>
-                                    {{#if isFemale}}女{{/if}}
-                                    {{#if isMale}}男{{/if}}
-                                </span>
-                            {{/layout-push}}
-                            {{#layout-push direction='row' classNames='line_half detail_panel_des_underline'}}
-                                <span class='detail_panel_des_01'>就读学校</span>
-                                <span class='detail_panel_des_02'>{{model.stud.school}}</span>
-                            {{/layout-push}}
-                        {{/layout-push}}
-                    {{/layout-push}}
-                {{/layout-push}}
-
-                {{#layout-push direction='col' classNames='detail_panel_des_info_between'}}
-                    <span class='detail_panel_title'>家长信息</span>
-                    {{#layout-push direction='row' mid=true }}
-                        {{#layout-push direction='row' classNames='detail_panel_des_container detail_panel_des_container_between'}}
-                            <span class='detail_panel_subtitle' >监护人</span>
-                        {{/layout-push}}
-                    {{/layout-push}}
-                    {{#layout-push direction='row' mid=true classNames='detail_panel_des_container_between'}}
-                        {{#layout-push direction='row' classNames='detail_panel_des_container'}}
-                            {{#layout-push direction='row' classNames='line_half detail_panel_des_between detail_panel_des_underline'}}
-                                <span class='detail_panel_des_01'>姓名</span>
-                                <span class='detail_panel_des_02'>{{model.stud.guardian.me.name}}</span>
-                            {{/layout-push}}
-                            {{#layout-push direction='row' classNames='line_half detail_panel_des_underline'}}
-                                <span class='detail_panel_des_01'>昵称</span>
-                                <span class='detail_panel_des_02'>{{model.stud.guardian.me.nickname}}</span>
-                            {{/layout-push}}
-                        {{/layout-push}}
-                    {{/layout-push}}
-                    {{#layout-push direction='row' mid=true classNames='detail_panel_des_container_between'}}
-                        {{#layout-push direction='row' classNames='detail_panel_des_container'}}
-                            {{#layout-push direction='row' classNames='line_half detail_panel_des_between detail_panel_des_underline'}}
-                                <span class='detail_panel_des_01'>关系</span>
-                                <span class='detail_panel_des_02'>{{model.stud.guardian.rs}}</span>
-                            {{/layout-push}}
-                            {{#layout-push direction='row' classNames='line_half detail_panel_des_underline'}}
-                                <span class='detail_panel_des_01'>联系方式</span>
-                                <span class='detail_panel_des_02'>{{model.stud.guardian.me.contact}}</span>
-                            {{/layout-push}}
-                        {{/layout-push}}
-                    {{/layout-push}}
-                    {{#layout-push direction='row' mid=true classNames='detail_panel_des_container_between'}}
-                        {{#layout-push direction='row' classNames='detail_panel_des_container'}}
-                            {{#layout-push direction='row' classNames='line_half detail_panel_des_between detail_panel_des_underline'}}
-                                <span class='detail_panel_des_01'>微信</span>
-                                <span class='detail_panel_des_02'></span>
-                            {{/layout-push}}
-                            {{#layout-push direction='row' classNames='line_half detail_panel_des_underline'}}
-                                <span class='detail_panel_des_01'>地址 </span>
-                                <span class='detail_panel_des_02'>{{model.stud.guardian.address}}</span>
-                            {{/layout-push}}
-                        {{/layout-push}}
-                    {{/layout-push}}
-
-                    {{#layout-push direction='row' mid=true }}
-                        {{#layout-push direction='row' classNames='detail_panel_des_container detail_panel_des_container_between'}}
-                            <span class='detail_panel_subtitle' >紧急联系人</span>
-                        {{/layout-push}}
-                    {{/layout-push}}
-                    {{#layout-push direction='row' mid=true classNames='detail_panel_des_container_between'}}
-                        {{#layout-push direction='row' classNames='detail_panel_des_container'}}
-                            {{#layout-push direction='row' classNames='line_half detail_panel_des_between detail_panel_des_underline'}}
-                                <span class='detail_panel_des_01'>姓名</span>
-                                <span class='detail_panel_des_02'>{{model.stud.urgent.me.name}}</span>
-                            {{/layout-push}}
-                            {{#layout-push direction='row' classNames='line_half detail_panel_des_underline'}}
-                                <span class='detail_panel_des_01'>昵称</span>
-                                <span class='detail_panel_des_02'>{{model.stud.urgent.me.nickname}}</span>
-                            {{/layout-push}}
-                        {{/layout-push}}
-                    {{/layout-push}}
-                    {{#layout-push direction='row' mid=true classNames='detail_panel_des_container_between'}}
-                        {{#layout-push direction='row' classNames='detail_panel_des_container'}}
-                            {{#layout-push direction='row' classNames='line_half detail_panel_des_between detail_panel_des_underline'}}
-                                <span class='detail_panel_des_01'>关系</span>
-                                <span class='detail_panel_des_02'>{{model.stud.urgent.rs}}</span>
-                            {{/layout-push}}
-                            {{#layout-push direction='row' classNames='line_half detail_panel_des_underline'}}
-                                <span class='detail_panel_des_01'>联系方式</span>
-                                <span class='detail_panel_des_02'>{{model.stud.urgent.me.contact}}</span>
-                            {{/layout-push}}
-                        {{/layout-push}}
-                    {{/layout-push}}
-                {{/layout-push}}
-
-                {{#layout-push direction='col' classNames='detail_panel_des_info_between'}}
-                    <span class='detail_panel_title'>系统信息</span>
-                    {{#layout-push direction='row' mid=true classNames='detail_panel_des_container_between'}}
-                        {{#layout-push direction='row' classNames='detail_panel_des_container'}}
-                            {{#layout-push direction='row' classNames='line_half detail_panel_des_between detail_panel_des_underline'}}
-                                <span class='detail_panel_des_01'>注册时间</span>
-                                <span class='detail_panel_des_02'>{{registerDate}}</span>
-                            {{/layout-push}}
-                        {{/layout-push}}
-                    {{/layout-push}}
-                {{/layout-push}}
-            {{/layout-push}}
-        </div> --}}
-  </div>
+	<div class="detail_page">
+		<p class="detail_stud_nav">
+			{{#link-to 'stud' class="detail_href_ref" }}
+				返回
+			{{/link-to}}
+			{{!-- <span>学生详情</span> --}}
+		</p>
+		{{#layout-push direction='row' split=true class="detail_title" }}
+			<span class="title_text">学员详情</span>
+			{{#link-to 'edit.stud' bm_stud_update_service.stud.id classNames='detail_panel_edit_btn' }}
+				编辑
+			{{/link-to}}
+		{{/layout-push}}
+		{{#layout-push direction='row' split=true classNames='stud_detail' }}
+			<div class="basis_margin">
+				{{#layout-push direction='col' mid=true classNames='stud_detail_basis' }}
+					<p class="basis_name">{{bm_stud_update_service.stud.name}}</p>
+					{{#layout-push direction='row' mid=true}}
+						<span class="basis_sex_age">
+							{{#if (bmeq bm_stud_update_service.stud.gender 0)}}
+								女 ♀
+							{{else}}
+								男 ♂
+							{{/if}}
+							{{bmdob/bmdob2age bm_stud_update_service.stud.dob}}岁
+						</span>
+					{{/layout-push}}
+					{{#layout-push direction='row' mid=true classNames='basis_dob' }}
+						<span>出生日期  {{bmdob/bmdobformat bm_stud_update_service.stud.dob}}</span>
+					{{/layout-push}}
+				{{/layout-push }}
+			</div>
+			{{#layout-push direction='col' mid=true classNames='stud_detail_other' }}
+				<div class="other_self">
+					{{#layout-push direction='row' mid=false classNames='self_container' }}
+						<span>昵称</span><span>{{bm_stud_update_service.stud.nickname}}</span>
+					{{/layout-push}}
+					{{#layout-push direction='row' mid=false classNames='self_container' }}
+						<span>绑定手机号</span><span>{{bm_stud_update_service.stud.contact}}</span>
+					{{/layout-push}}
+					{{#layout-push direction='row' mid=false classNames='self_container' }}
+						<span>就读学校</span><span>{{bm_stud_update_service.stud.school}}</span>
+					{{/layout-push}}
+					{{#layout-push direction='row' mid=false classNames='self_container' }}
+						<span>注册时间</span><span>{{bmdob/bmdobformat bm_stud_update_service.stud.reg_date}}</span>
+					{{/layout-push}}
+					<div class="line"></div>
+					<p class="parent_info">家长信息</p>
+					{{#layout-push direction='row' mid=false classNames='self_container' }}
+						<span>家长姓名</span><span>{{bm_stud_update_service.stud.Guardians.firstObject.name}}</span>
+					{{/layout-push}}
+					{{#layout-push direction='row' mid=false classNames='self_container' }}
+						<span>关系</span><span>{{bm_stud_update_service.stud.Guardians.firstObject.relation_ship}}</span>
+					{{/layout-push}}
+					{{#layout-push direction='row' mid=false classNames='self_container' }}
+						<span>联系方式</span><span>{{bm_stud_update_service.stud.Guardians.firstObject.contact}}</span>
+					{{/layout-push}}
+					{{#layout-push direction='row' mid=false classNames='self_container' }}
+						<span>微信</span><span>{{bm_stud_update_service.stud.Guardians.firstObject.wechat}}</span>
+					{{/layout-push}}
+					{{#layout-push direction='row' mid=false classNames='self_container' }}
+						<span>地址</span><span>{{bm_stud_update_service.stud.Guardians.firstObject.address}}</span>
+					{{/layout-push}}
+				</div>
+			{{/layout-push }}
+		{{/layout-push }}
+	</div>
 </div>
 
 {{outlet}}
