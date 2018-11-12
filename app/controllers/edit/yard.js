@@ -50,10 +50,10 @@ export default Controller.extend({
                     province: this.yard_selected_province,
                     city: this.yard_selected_city,
                     district: this.yard_selected_government_areas,
-                    traffic_info: this.yard_detail_address,
+                    traffic_info: this.yard_around,
                     attribute: '室内',
                     scenario: "",
-                    address: "",
+                    address: this.yard_detail_address,
                     friendly: ["场地友好性","是啥"]
                 });
                 yard.get('Rooms').pushObject(this.get('pmController').get('Store').createModel('bm-room', {
@@ -87,21 +87,58 @@ export default Controller.extend({
                         this.get('logger').log(data);
                     })
             } else {
-                this.get('logger').log('Error');
+                // this.get('logger').log('Error');
+                yard = this.get('pmController').get('Store').createModel('request', {
+                    id: this.guid(),
+                    res: "BmYard",
+                });
+                yard.get('eqcond').pushObject(this.get('pmController').get('Store').createModel('eqcond', {
+                    id: this.guid(),
+                    type: 'eqcond',
+                    key: 'id',
+                    val: this.model.yard.get('id'),
+                    category: "BmYard",
+                }));
+
+                yard.get('upcond').pushObject(this.get('pmController').get('Store').createModel('upcond', {
+                    id: this.guid(),
+                    type: 'upcond',
+                    key: 'scenario',
+                    val: '购物中zz牛',
+                    category: "BmYard",
+                }));
+                yard.get('upcond').pushObject(this.get('pmController').get('Store').createModel('upcond', {
+                    id: this.guid(),
+                    type: 'upcond',
+                    key: 'description',
+                    val: this.yard_des,
+                    category: "BmYard",
+                }));
+                let json = this.get('pmController').get('Store').object2JsonApi(yard);
+                this.get('logger').log(json)
+                this.get('pmController').get('Store').transaction('/api/v1/updateyard/0', 'request', json)
+                  .then(data => {
+                      this.get('logger').log(data)
+                      yard.set('title', this.yard_title);
+                  })
+                  .catch(data => {
+                      this.get('logger').log(data)
+                  })
+
             }
 
-            // TODO: 其他一些属性的修改
-            // yard.set('title', this.yard_title);
-            // yard.set('description', this.yard_des);
-            // yard.set('ardes', this.yard_ardes);
-            // yard.set('around', this.yard_around);
-            // yard.set('parking', this.yard_parking);
-            // yard.set('embag', this.yard_embag);
-            // yard.set('detail_address', this.yard_detail_address);
-            // let region = yard.region;
-            // if (this.yard_selected_province) region.set('province', this.yard_selected_province);
-            // if (this.yard_selected_city) region.set('city', this.yard_selected_city);
-            // if (this.yard_selected_government_areas) region.set('governmentArea', this.yard_selected_government_areas);
+            //TODO: 其他一些属性的修改
+            yard.set('title', this.yard_title);
+            yard.set('description', this.yard_des);
+            yard.set('ardes', this.yard_ardes);
+            yard.set('around', this.yard_around);
+            yard.set('parking', this.yard_parking);
+            yard.set('embag', this.yard_embag);
+            yard.set('detail_address', this.yard_detail_address);
+            let region = yard.region;
+            if (this.yard_selected_province) region.set('province', this.yard_selected_province);
+            if (this.yard_selected_city) region.set('city', this.yard_selected_city);
+            if (this.yard_selected_government_areas) region.set('governmentArea', this.yard_selected_government_areas);
 
 
             // TODO: 其他一些属性的修改
@@ -109,7 +146,7 @@ export default Controller.extend({
             if (this.isPushing) {
                 this.transitionToRoute('yard');
             } else {
-                this.transitionToRoute('detail.yard', yard.id);
+                this.transitionToRoute('detail.yard',this.model.yard.get('id'));
             }
         },
         changeProvinces(value) {

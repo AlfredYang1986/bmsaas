@@ -29,8 +29,8 @@
 
                   <div class="detail_panel detail_panel_col_between detail_yarn_panel_left">
                     {{#layout-push direction='col' classNames='detail_yard_title_mid_panel'}}
-                        <span class='detail_yard_title_mid'>{{model.title}}</span>
-                        <span class='detail_panel_ls_subheading'>{{model.detail}}</span>
+                        <span class='detail_yard_title_mid'>{{model.yard.title}}</span>
+                        <span class='detail_panel_ls_subheading'>{{model.yard.address}}</span>
                     {{/layout-push}}
 
                     {{!-- <div class="line_conatainer_warp detail_card_container" >
@@ -76,7 +76,7 @@
                           {{#layout-push direction='col' classNames='detail_yard_title_mid_panel'}}
                               {{#layout-push direction='row' split=true classNames='detail_yard_inner_content_line'}}
                                   <span class='detail_inner_left'>
-                                      {{model.description}}
+                                      {{model.yard.description}}
                                   </span>
                               {{/layout-push}}
                           {{/layout-push}}
@@ -90,7 +90,7 @@
                           {{#layout-push direction='col' classNames='detail_yard_title_mid_panel'}}
                               {{#layout-push direction='row' split=true classNames='detail_yard_inner_content_line'}}
                                   <span class='detail_inner_left'>
-                                      {{model.around}}
+                                      {{model.yard.around}}
                                   </span>
                               {{/layout-push}}
                           {{/layout-push}}
@@ -103,7 +103,7 @@
 
                           {{#layout-push direction='col' classNames='detail_yard_title_mid_panel'}}
                               {{#layout-push direction='row' split=true classNames='detail_yard_inner_content_line'}}
-                                  {{#each model.facilities as |item|}}
+                                  {{#each model.yard.facilities as |item|}}
                                   <span class='detail_inner_left'>
                                       {{item}}
                                   </span>
@@ -117,7 +117,7 @@
                         {{/layout-push}}
 
                         <div class="line_conatainer_warp detail_card_container" >
-                            {{#each model.Certifications.img as |item|}}
+                            {{#each model.yard.Tagimg as |item|}}
                                 {{detail-card card=item}}
                             {{/each}}
                         </div>
