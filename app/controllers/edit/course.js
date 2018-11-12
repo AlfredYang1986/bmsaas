@@ -4,22 +4,9 @@ import { inject as service } from '@ember/service';
 
 export default Controller.extend({
     mock_data: service(),
+    bm_session_update_service: service(),
 
     cur_page_idx: 0,
-
-    crs_name: '',
-    crs_alb: 0,
-    crs_aub: 0,
-    crs_level: '',
-    crs_count: 0,
-    crs_length: 0,
-    crs_cat: '',
-    crs_subcat: '',
-    crs_target: '',
-    crs_plan: '',
-    crs_content: '',
-    crs_imgs: [],
-    crs_tags: [],
 
     isPushing: false,
     refresh_token: 'start-data',
@@ -161,13 +148,4 @@ export default Controller.extend({
           this.crs_subcat.length == 0 ||
           this.crs_content.length == 0)
     },
-
-    guid() {
-        function s4() {
-          return Math.floor((1 + Math.random()) * 0x10000)
-            .toString(16)
-            .substring(1);
-        }
-        return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-    }
 });

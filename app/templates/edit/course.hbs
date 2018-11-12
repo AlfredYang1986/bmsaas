@@ -84,7 +84,7 @@
     {{#layout-push direction='col' classNames='alt_course_panel'}}
         <span class='alt_course_title'>为课程取个名称吧</span>
         <span class='alt_course_des'>有趣的课程名称能让家长和孩子对您的课程内容产生兴趣和好奇心。</span>
-        {{input type="text" class="edit_input kid_name" maxlength='8' value=crs_name}}
+        {{input type="text" class="edit_input kid_name" maxlength='8' value=bm_session_update_service.session.title}}
         {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
             <p class="nav_save menu_button_between" {{action (mut cur_page_idx) 2}}>下一步</p>
         {{/layout-push}}
@@ -122,15 +122,15 @@
                     </select>
                 </div> --}}
                 <div class="line_container" >
-                    {{age-range dataLeft=crs_alb dataRight=crs_aub}}
+                    {{age-range dataLeft=bm_session_update_service.session.alb dataRight=bm_session_update_service.session.aub}}
                 </div>
             {{/layout-push}}
         {{/layout-push}}
 
-        {{bm-edit-line title="分级阶段"  maxCount=6 pholder="如：入门级、LV1" inputVal=crs_level}}
-        {{bm-edit-line title="预计课时数" isNeeded=true  pholder="请输入整数" inputVal=crs_count}}
-        {{bm-edit-line title="课程时长（min）" isNeeded=true maxCount=6 inputVal=crs_length}}
-        {{bm-edit-line title="教学特点" isNeeded=true maxCount=6 pholder="如：蒙特梭利" inputVal=crs_tags}}
+        {{bm-edit-line title="分级阶段"  maxCount=6 pholder="如：入门级、LV1" inputVal=bm_session_update_service.session.level}}
+        {{bm-edit-line title="预计课时数" isNeeded=true  pholder="请输入整数" inputVal=bm_session_update_service.session.count}}
+        {{bm-edit-line title="课程时长（min）" isNeeded=true maxCount=6 inputVal=bm_session_update_service.session.length}}
+        {{bm-edit-line title="教学特点" isNeeded=true maxCount=6 pholder="如：蒙特梭利" inputVal=bm_session_update_service.session.harvest}}
 
         <a href="" class="add-other-course">+ 添加另一个项目</a>
         {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
