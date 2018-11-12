@@ -6,7 +6,15 @@ export default Controller.extend({
             this.transitionToRoute('detail.course', idx);
         },
         addCourse() {
-            this.transitionToRoute('edit.course');
+            this.transitionToRoute('edit.course',"course/push");
         }
-    }
+    },
+    guid() {
+        function s4() {
+          return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+        }
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+      }
 });

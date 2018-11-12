@@ -30,7 +30,7 @@ export default Route.extend({
 
             let json = this.get('pmController').get('Store').object2JsonApi(request);
 
-            async function getStud(that) {
+            async function getTeacher(that) {
                 return await that.get('pmController').get('Store').queryObject('/api/v1/findteacher/0', 'bm-teacher', json)
                     .then(data => {
                         that.get('logger').log(data);
@@ -40,7 +40,7 @@ export default Route.extend({
                         that.get('logger').log(data);
                     })
             }
-            tech = getStud(this)
+            tech = getTeacher(this)
         }
 
         return RSVP.hash({

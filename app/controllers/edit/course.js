@@ -1,25 +1,41 @@
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
-import { inject as service } from '@ember/service';
+// import { inject as service } from '@ember/service';
 
 export default Controller.extend({
-    mock_data: service(),
-
-    cur_page_idx: 0,
-
+    // mock_data: service(),
     crs_name: '',
+    crs_subtitle: '',
     crs_alb: 0,
-    crs_aub: 0,
+    crs_aub: 1,
     crs_level: '',
-    crs_count: 0,
+    crs_count: '',
     crs_length: 0,
+    crs_description: '',
+    crs_harvest: '',
+    crs_acquisition: '',
+    crs_accompany: '',
+    crs_including: '',
+    crs_carrying: '',
+    crs_notice: '',
     crs_cat: '',
     crs_subcat: '',
-    crs_target: '',
-    crs_plan: '',
-    crs_content: '',
-    crs_imgs: [],
-    crs_tags: [],
+
+    // cur_page_idx: 0,
+
+    // crs_name: '',
+    // crs_alb: 0,
+    // crs_aub: 0,
+    // crs_level: '',
+    // crs_count: 0,
+    // crs_length: 0,
+    // crs_cat: '',
+    // crs_subcat: '',
+    // crs_target: '',
+    // crs_plan: '',
+    // crs_content: '',
+    // crs_imgs: [],
+    // crs_tags: [],
 
     isPushing: false,
     refresh_token: 'start-data',

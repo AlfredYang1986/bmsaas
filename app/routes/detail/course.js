@@ -1,10 +1,10 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
-import { computed } from '@ember/object';
-import { inject as service } from '@ember/service';
+// import { computed } from '@ember/object';
+// import { inject as service } from '@ember/service';
 
 export default Route.extend({
-    mock_data: service(),
+    // mock_data: service(),
 
     model(params) {
         // this.mock_data.sureCourse();
@@ -28,7 +28,7 @@ export default Route.extend({
         }));
         let json = this.get('pmController').get('Store').object2JsonApi(request);
 
-        return this.get('pmController').get('Store').queryObject('/api/v1/findsessioninfo/0', 'bm-session-info', json)
+        let course =  this.get('pmController').get('Store').queryObject('/api/v1/findsessioninfo/0', 'bm-session-info', json)
             .then(data => {
                 this.get('logger').log(data);
                 return data;
@@ -37,6 +37,9 @@ export default Route.extend({
                 this.get('logger').log(data)
             })
 
+            return RSVP.hash({
+                course: course
+            })
     },
     guid() {
         function s4() {
