@@ -1,0 +1,21 @@
+{{#layout-push direction='col'}}
+    <form id={{upid}} enctype="multipart/form-data" class='bm-upload-form'>
+        <div class='bm-upload-container'>
+            {{#if canEdit}}
+                {{#if isNull}}
+                    <img src='/images/image@2x.png' class='' />
+                {{else}}
+                    <img src={{concertImgPath}} class='' />
+                {{/if}}
+                <input type='file' name='file' value='file' multiple=false class='' onchange={{action 'inputChanged'}} />
+            {{else}}
+                <img src={{concertImgPath}} class='' />
+            {{/if}}
+        </div>
+    </form>
+    {{#layout-push direction='row' mid=true}}
+        {{#if needTag}}
+            <span>{{tag}}</span>
+        {{/if}}
+    {{/layout-push}}
+{{/layout-push}}
