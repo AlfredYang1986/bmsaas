@@ -18,6 +18,8 @@
 @import 'bm-layouts/bm_layouts_item';
 @import 'bm-saas-standard/bm-check-box';
 @import 'bm-saas-standard/bm-radio-box';
+@import 'bm-saas-standard/bm-saas-typography';
+@import 'bm-saas-standard/bm-saas-button';
 
 @import 'bm-img-uploader';
 
@@ -28,7 +30,9 @@ body {
 p {
     margin-bottom: 0;
 }
-
+a:hover {
+    text-decoration: none;
+}
 .v_mid {
     display: flex;
     flex-wrap: nowrap;

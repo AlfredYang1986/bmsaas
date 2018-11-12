@@ -9,7 +9,7 @@
     box-shadow: 0 2px 2px 0 #F4F5F7;
     width: 240px;
     height: 100%;
-    padding-top: 76px;
+    padding-top: 88px;
     position: fixed;
     overflow-x: hidden;
     overflow-y: hidden;
@@ -23,7 +23,6 @@
         justify-content: space-between;
         flex-wrap: nowrap;
         cursor: pointer;
-
         .left-bar-info {
             display: flex;
             flex-direction: row;

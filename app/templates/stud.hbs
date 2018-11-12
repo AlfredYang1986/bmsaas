@@ -3,7 +3,7 @@
 		{{#layout-push direction='row' split=true}}
 			<span class="stud_title">学生</span>
 			<span class="qr-code">
-					{{#link-to 'edit.stud' 'stud/push' classNames='tech_add_btn'}}+ 添加学生{{/link-to}}
+				{{#link-to 'edit.stud' 'stud/push' classNames='stud_add_btn'}}+ 添加学生{{/link-to}}
 			</span>
 		{{/layout-push}}
 		{{#layout-push direction="row" wrap=true classNames="card-wrap" }}
@@ -15,7 +15,7 @@
 		{{/layout-push}}
 	{{/layout-push}}
 </div>
-<div local-class="modal-dialog">
+{{!-- <div local-class="modal-dialog">
 	{{#bs-modal open=studCode onHidden=(action (mut studCode) false) as |modal|}}
 		<div class="stud-modal">
 			{{#modal.body classNames="stud-modal-body" }}
@@ -28,6 +28,6 @@
 			{{/modal.footer}}
 		</div>
 	{{/bs-modal}}
-</div>
+</div> --}}
 
 {{outlet}}

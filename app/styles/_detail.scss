@@ -6,6 +6,10 @@
 @import 'detail-yard-jeorch';
 @import 'detail-course-jeorch';
 @import 'detail-experience-frank';
+
+@import 'bm-saas-standard/bm-saas-typography';
+@import 'bm-saas-standard/bm-saas-button';
+
 %detail_content_basic {
     padding-left: 240px;
 }
@@ -427,10 +431,7 @@ span.list-status {
 }
 
 .detail_href_ref {
-    font-family: $font-href;
-    font-size: 14px;
-    color: #6E7CD4;
-    letter-spacing: 2px;
+    @extend %font-main-text;
 }
 
 %detail_panel_basic {

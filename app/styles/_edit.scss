@@ -1,10 +1,17 @@
 @import "args";
 @import 'edit-stud-frank';
 @import "left-menu";
+@import 'bm-saas-standard/bm-saas-typography';
+@import 'bm-saas-standard/bm-saas-button';
 
 .edit_nav {
-  height: 64px;
-  background-color: #FFF;
+    position: fixed;
+    justify-content: space-between;
+    z-index: 4;
+    width: 100%;
+    height: 64px;
+    background-color: #FFF;
+    box-shadow: 2px 2px 6px 0 #CAD5E1;
 }
 
 .edit_page_top_margin {
@@ -140,14 +147,6 @@ span.select-time-subtitle {
       margin-right: 14px;
     }
   }
-
-  .edit_title {
-    font-family: $font-brand;
-    font-size: 16px;
-    color: #172B4D;
-    letter-spacing: 2.57px;
-  }
-
   p.edit_subtitle {
     margin-top: 0;
     margin-bottom: 16px;
@@ -732,7 +731,7 @@ span.select-time-subtitle {
 
 .edit_left_bar {
   @extend .left_bar;
-  background: #FFFFFF;
+  background: #f7f8fa;
   border-right: none;
   padding-top: 88px;
 
@@ -750,13 +749,6 @@ span.select-time-subtitle {
     flex-wrap: nowrap;
     justify-content: space-around;
     flex-direction: row;
-
-    .edit_left_menu_text {
-      font-family: $font-brand;
-      font-size: 14px;
-      color: #767A80;
-      letter-spacing: 2px;
-    }
   }
 }
 /*逐条添加样式*/
