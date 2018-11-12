@@ -23,16 +23,16 @@
 .edit_container {
     padding-top: 64px;
     font-family: $font-brand;
-  .edit_left_nav {
-      padding-top: 24px;
-      z-index: 3;
-      background-color: #f7f8fa;
-      flex: 0 0 240px;
+
+    .edit_left_nav {
+        padding-top: 24px;
+        z-index: 3;
+        background-color: #FFF;
+        flex: 0 0 240px;
     li {
         text-align: center;
         height: 40px;
         a.edit_left_menu_text {
-
             @extend %font-form-info-title;
         }
 
