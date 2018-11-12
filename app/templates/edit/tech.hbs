@@ -1,6 +1,6 @@
 <ul class="nav">
     <li class="nav-item">
-        <a class="nav-link active brand_name" href="#">编辑-老师信息</a>
+        <a class="nav-link active brand_name tech-nav-title" href="#">编辑-老师信息</a>
     </li>
     <li class="nav-item menu_mid">
         <div class="menu_container">
@@ -13,7 +13,7 @@
                     取消
                 {{/link-to}}
             {{/if}}
-            <button class="nav_save_btn menu_button_between" {{action 'saveTechBtnClicked'}}>保存</button>
+            <button class="nav_save_btn menu_button_between tech-nav-savebtn" {{action 'saveTechBtnClicked'}}>保存</button>
         </div>
     </li>
 </ul>
@@ -68,12 +68,15 @@
                     {{/layout-push}}
                 {{/layout-push}}
                 {{#layout-push direction="col" split=true classNames='input_area  area-margin-bottom' }}
-                  <p class="edit_title">出生日期</p>
-                  {{#layout-push direction="row" split=false classNames='date_choose' }}
+                    <p class="edit_title">出生日期</p>
+                    {{#layout-push direction="row" split=false classNames='date_choose' }}
+                        {{bm-lay-date value=tech_dob}}
+                    {{/layout-push}}
+                    {{!-- {{#layout-push direction="row" split=false classNames='date_choose' }} --}}
                     {{!-- {{date-choose data=stud_date}} --}}
                     {{!-- {{date-choose data=model.tech.me.dob}} --}}
-                    <p>1980-10-23</p>
-                  {{/layout-push}}
+                    {{!-- <p>1980-10-23</p> --}}
+                    {{!-- {{/layout-push}} --}}
                 {{/layout-push}}
                 {{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
                   <p class="edit_title">性别</p>
@@ -90,7 +93,7 @@
                 {{/layout-push}}
                 {{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
                   <p class="edit_title">来自城市</p>
-                  {{input type="text" class="edit_input input_100" maxlength='8' value=tech_homeland}}
+                  {{input type="text" class="edit_input input_100" maxlength='8' value=tech_nativePlace}}
                 {{/layout-push}}
                 {{#layout-push direction='row' split=false classNames=" area-margin-bottom"}}
                     {{#layout-push direction="col" split=false classNames='input_area' }}

@@ -1,3 +1,4 @@
+@import './bm-saas-standard/args';
 .edit_nav {
     margin-bottom: 24px;
     padding: 16px 24px;
@@ -45,7 +46,7 @@
     section.stu_section {
       margin: 0 24px 8px;
       padding: 24px;
-      background-color: #FFF;
+      background-color: $color-neutral-N000;
 
       .input_area {
           &.area-margin-bottom {
@@ -53,6 +54,7 @@
           }
 
         .edit_title {
+          font-family: $font-family;
             margin-bottom: 16px;
             @extend %font-form-info-title;
             span.sub_title {
@@ -66,13 +68,13 @@
           width: 144px;
           height: 32px;
           border: 0 solid #DFE1E5;
-          border-radius: 4px;
+          border-radius: $border-radius-button-product;
         }
 
         .edit_hint {
-          font-family: $font-brand;
+          font-family: $font-family;
           font-size: 11px;
-          color: #6B778C;
+          color: $color-neutral-N200;
         }
 
         .date_choose {
@@ -81,8 +83,8 @@
             padding: 0 8px;
             width: 120px;
             height: 32px;
-            background: #FAFBFC;
-            border-radius: 4px;
+            background: $color-select-bg-dafault;
+            border-radius: $border-radius-button-product;
           }
         }
         &.area-margin-bottom:last-child {
@@ -93,7 +95,7 @@
     section.tech_section {
         margin: 0 24px 8px;
         padding: 24px;
-        background-color: #FFF;
+        background-color: $color-neutral-N000;
         .area-margin-bottom {
             margin-bottom: 40px;
         }
@@ -103,6 +105,14 @@
         .tech-infos-container {
             .tech-avatar {
                 flex: 0 0 272px;
+                p{
+                    height: 22px;
+                    margin-bottom: 16px;
+                }
+                input{
+                    height: 32px;
+                    line-height: 26px;
+                }
                 img {
                     width: 272px;
                     height: 272px;
@@ -116,13 +126,16 @@
         .input_area {
 
           .edit_title {
-              margin-bottom: 16px;
-              @extend %font-form-info-title;
+            margin-bottom: 16px;
+            font-family: $font-family;
+            font-size: $font-size-main;
+            font-weight: 700;
+            color: $color-neutral-N800;
 
-              span.sub_title {
-                  font-size: 11px;
-                  color: #6B778C;
-              }
+            span.sub_title {
+              font-size: 11px;
+              color: $color-neutral-N200;
+            }
           }
 
           input.edit_input {
@@ -130,16 +143,16 @@
             width: 144px;
             height: 32px;
             border: 0 solid #DFE1E5;
-            border-radius: 4px;
+            border-radius: $border-radius-button-product;
           }
           input.input_100 {
               width: 100%;
           }
 
           .edit_hint {
-            font-family: $font-brand;
+            font-family: $font-family;
             font-size: 11px;
-            color: #6B778C;
+            color: $color-neutral-N200;
           }
 
           .date_choose {
@@ -148,8 +161,8 @@
               padding: 0 8px;
               width: 120px;
               height: 32px;
-              background: #FAFBFC;
-              border-radius: 4px;
+              background: $color-select-bg-dafault;
+              border-radius: $border-radius-button-product;
             }
           }
           &.area-margin-bottom:last-child {
@@ -159,15 +172,15 @@
         &.edu-lifes,&.work-lifes {
             display: none;
 
-            font-family: $font-brand;
+            font-family: $font-family;
             .edu_exper_nav {
                 // padding: 0 24px;
                 height: 32px;
                 line-height: 32px;
                 span:first-child {
                   font-weight: 700;
-                  font-size: 16px;
-                  color: #172B4D;
+                  font-size: $font-size-dialog;
+                  color: $color-neutral-N800;
                 }
 
                 .btn_addedu {
@@ -176,8 +189,8 @@
                     height: 32px;
                     background: rgba(9,30,66,0.04);
                     border-radius: 3px;
-                    font-size: 14px;
-                    color: #A5ADBA;
+                    font-size: $font-size-main;
+                    color: $color-neutral-N070;
                     text-align: center;
                 }
             }
@@ -186,8 +199,8 @@
                 .edu_exper_left {
                     flex: 0 1 120px;
                     opacity: 0.7;
-                    font-size: 14px;
-                    color: #6B778C;
+                    font-size: $font-size-main;
+                    color: $color-neutral-N200;
                 }
                 .edu_exper_change {
                     flex: 0 1 120px;
@@ -198,8 +211,8 @@
                     p {
                         margin-bottom: 8px;
                         line-height: 20px;
-                        font-size: 14px;
-                        color: #172B4D;
+                        font-size: $font-size-main;
+                        color: $color-neutral-N800;
                         letter-spacing: 1px;
                     }
 
