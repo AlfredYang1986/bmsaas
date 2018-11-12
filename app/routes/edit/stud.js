@@ -9,7 +9,7 @@ export default Route.extend({
   model(params) {
     // this.mock_data.sureStud();
     // let stud = this.store.peekRecord('bmstud', params.studid);
-
+    this.get('logger').log(params);
     let stud = null;
     if (params.studid != 'stud/push') {
         let request = this.get('pmController').get('Store').createModel('request', {

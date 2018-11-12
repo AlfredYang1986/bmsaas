@@ -16,16 +16,16 @@
                 {{#layout-push direction="col" classNames="brand_info_card"}}
                     {{#layout-push direction="col" classNames="brand_info_card_head"}}
                         <img class="brand_logo" src="../images/brand_demo.png" />
-                        <p class="brand_title">{{model.title}}</p>
+                        <p class="brand_title">{{model.brand.title}}</p>
                     {{/layout-push}}
                     {{#layout-push direction="col" classNames="brand_info_card_content"}}
                         {{#layout-push direction="row" classNames="brand_info_card_list"}}
                             <p>成立时间</p>
-                            <span class="detail_content ">{{model.brand_display_name}}</span>
+                            <span class="detail_content ">{{model.brand.brand_display_name}}</span>
                         {{/layout-push}}
                         {{#layout-push direction="row" classNames=""}}
                             <p>一句话介绍</p>
-                            <span class="brand_subtitle">{{model.subtitle}}</span>
+                            <span class="brand_subtitle">{{model.brand.subtitle}}</span>
                         {{/layout-push}}
                     {{/layout-push}}
                 {{/layout-push}}
@@ -35,7 +35,7 @@
             {{#layout-push direction="col"  classNames="brand_detail_info"}}
                 <p class="brand_detail_list_title">品牌亮点</p>
                 {{#layout-push direction="row"}}
-                    {{#each model.brand_tags as |item|}}
+                    {{#each model.brand.brand_tags as |item|}}
                         {{#layout-push direction='col' mid=true classNames="brand_tags brand_tag_margin"}}
                             <span>{{item}}</span>
                         {{/layout-push}}
@@ -44,16 +44,16 @@
             {{/layout-push}}
             {{#layout-push direction="col" classNames="brand_detail_info"}}
                 <p class="brand_detail_list_title">初心故事</p>
-                <span class="brand_detail_list_content">{{model.foundStory}}</span>
+                <span class="brand_detail_list_content">{{model.brand.foundStory}}</span>
             {{/layout-push}}
             {{#layout-push direction="col" classNames="brand_detail_info"}}
                 <p class="brand_detail_list_title">师资团队</p>
-                <span class="brand_detail_list_content">{{model.edu_idea}}</span>
+                <span class="brand_detail_list_content">{{model.brand.edu_idea}}</span>
             {{/layout-push}}
             {{#layout-push direction="col" classNames="brand_detail_info"}}
                 <p class="brand_detail_list_title">品牌荣誉</p>
                 {{#layout-push direction="row" classNames="detail_reward_content"}}
-                    {{#each model.Honors as |item|}}
+                    {{#each model.brand.Honors as |item|}}
                         {{#layout-push direction="col" mid=true classNames="detail_reward"}}
                             <img src={{item.img}} class="detail_reward_img" />
                             <div class="detail_reward_title">
@@ -66,7 +66,7 @@
             {{#layout-push direction="col" classNames="brand_detail_info"}}
                 <p class="brand_detail_list_title">资质认证</p>
                 {{#layout-push direction="row" classNames="detail_reward_content"}}
-                    {{#each model.Certifications as |item|}}
+                    {{#each model.brand.Certifications as |item|}}
                         {{#layout-push direction="col" mid=true classNames="detail_reward"}}
                             <img src={{item.img}} class="detail_reward_img" />
                             <div class="detail_reward_title">

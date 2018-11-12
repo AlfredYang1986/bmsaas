@@ -7,14 +7,41 @@ export default Route.extend({
     mock_data: service(),
 
     model(params) {
-        this.mock_data.sureTech();
-        this.get('logger').log(params.techid);
-        let tech = this.store.peekRecord('bmtech', params.techid);
-        if (tech == null && params.techid != 'tech/push') {
-            this.transitionTo('home');
+        // this.mock_data.sureTech();
+        // this.get('logger').log(params.techid);
+        // let tech = this.store.peekRecord('bmtech', params.techid);
+        // if (tech == null && params.techid != 'tech/push') {
+        //     this.transitionTo('home');
+        // }
+
+        let tech = null;
+        if(params.techid != 'tech/push') {
+            let request = this.get('pmController').get('Store').createModel('request', {
+                id: this.guid(),
+                res: 'BmTeacher',
+            });
+            let eqd = this.get('pmController').get('Store').createModel('eqcond', {
+                id: this.guid(),
+                type: 'eqcond',
+                key: 'id',
+                val: params.techid
+            })
+            request.get('eqcond').pushObject(eqd);
+
+            let json = this.get('pmController').get('Store').object2JsonApi(request);
+
+            async function getStud(tmp) {
+                return await tmp.get('pmController').get('Store').queryObject('/api/v1/findteacher/0', 'bm-teacher', json)
+                    .then(data => {
+                        this.get('logger').log(data);
+                        return data;
+                    })
+                    .catch(data => {
+                        this.get('logger').log(data);
+                    })
+            }
+            tech = getStud(this)
         }
-
-
 
         return RSVP.hash({
                 tech : tech

@@ -18,9 +18,6 @@ export default Route.extend({
             res: 'BmAttendee',
         });
 
-        // let eqValues = [
-        //     { id: 2, type: 'eqcond', key: "id", val: params.studid},
-        // ]
         let eqd = this.get('pmController').get('Store').createModel('eqcond', {
             id: this.guid(),
             type: 'eqcond',
