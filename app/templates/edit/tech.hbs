@@ -68,12 +68,15 @@
                     {{/layout-push}}
                 {{/layout-push}}
                 {{#layout-push direction="col" split=true classNames='input_area  area-margin-bottom' }}
-                  <p class="edit_title">出生日期</p>
-                  {{#layout-push direction="row" split=false classNames='date_choose' }}
+                    <p class="edit_title">出生日期</p>
+                    {{#layout-push direction="row" split=false classNames='date_choose' }}
+                        {{bm-lay-date data=tech_dob}}
+                    {{/layout-push}}
+                    {{!-- {{#layout-push direction="row" split=false classNames='date_choose' }} --}}
                     {{!-- {{date-choose data=stud_date}} --}}
                     {{!-- {{date-choose data=model.tech.me.dob}} --}}
-                    <p>1980-10-23</p>
-                  {{/layout-push}}
+                    {{!-- <p>1980-10-23</p> --}}
+                    {{!-- {{/layout-push}} --}}
                 {{/layout-push}}
                 {{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
                   <p class="edit_title">性别</p>
@@ -90,7 +93,7 @@
                 {{/layout-push}}
                 {{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
                   <p class="edit_title">来自城市</p>
-                  {{input type="text" class="edit_input input_100" maxlength='8' value=tech_homeland}}
+                  {{input type="text" class="edit_input input_100" maxlength='8' value=tech_comefrom}}
                 {{/layout-push}}
                 {{#layout-push direction='row' split=false classNames=" area-margin-bottom"}}
                     {{#layout-push direction="col" split=false classNames='input_area' }}
