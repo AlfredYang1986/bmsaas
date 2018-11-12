@@ -68,6 +68,7 @@ export default Route.extend({
       controller.set('stud_date', model.stud.get('dob'));
 
       controller.set('par_name', model.stud.Guardians.firstObject.get('name'));
+      this.get('logger').log(model.stud.Guardians.firstObject.get('name'))
       controller.set('par_nickname', model.stud.Guardians.firstObject.get('nickname'));
       controller.set('par_rs', model.stud.Guardians.firstObject.get('relation_ship'));
       controller.set('par_contact', model.stud.Guardians.firstObject.get('contact'));

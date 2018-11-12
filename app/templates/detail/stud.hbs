@@ -20,15 +20,15 @@
           {{#layout-push direction='row' mid=true}}
             <span class="basis_sex_age">
                   {{#if isFemale}}
-                      女♀
+                      女 ♀
                   {{else}}
-                      男♂
+                      男 ♂
                   {{/if}}
-                {{model.studs.age}}岁
+                {{bmdob/bmdob2age model.studs.age}}岁
             </span>
           {{/layout-push}}
           {{#layout-push direction='row' mid=true classNames='basis_dob' }}
-            <span>出生日期  {{model.studs.dob}}</span>
+            <span>出生日期  {{bmdob/bmdob2age model.studs.dob}}</span>
           {{/layout-push}}
         {{/layout-push }}
 

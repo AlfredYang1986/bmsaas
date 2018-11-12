@@ -9,6 +9,7 @@ export default DS.Model.extend({
     icon: DS.attr('string'),
     gender: DS.attr('number'),
     contact: DS.attr('string'),
+    address: DS.attr('string'),
     dob: DS.attr('number',{
         defaultValue() { return new Date().getTime(); }
     }),
