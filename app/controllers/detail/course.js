@@ -1,9 +1,6 @@
 import Controller from '@ember/controller';
+import { inject as service } from '@ember/service';
 
 export default Controller.extend({
-    actions: {
-        editCourse() {
-            this.transitionToRoute('edit.course');
-        }
-    }
+    bm_session_update_service: service(),
 });

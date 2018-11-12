@@ -8,7 +8,7 @@
                 <span class='alt_course_title'>课程详情</span>
             {{/layout-push}}
             {{#layout-push direction='col' mid=true}}
-                {{#link-to 'edit.course' model.course.id classNames='alt_course_btn'}}
+                {{#link-to 'edit.course' bm_session_update_service.session.id classNames='alt_course_btn'}}
                     编辑
                 {{/link-to}}
             {{/layout-push}}
@@ -17,16 +17,16 @@
             {{#layout-push direction='col' classNames='alt_course_left_panel'}}
                 {{#layout-push direction='col' classNames='alt_course_panel'}}
                 {{#layout-push direction='row' mid=true classNames='alt_course_deltail_title'}}
-                    {{model.title}}
+                    {{bm_session_update_service.session.title}}
                 {{/layout-push}}
                 {{#layout-push direction='row' mid=true classNames='alt_course_detail_cat'}}
-                    {{model.Cate.title}}·{{model.Cate.subtitle}}
+                    {{bm_session_update_service.session.Cate.title}}·{{bm_session_update_service.session.Cate.subtitle}}
                 {{/layout-push}}
                 {{#layout-push direction='row' mid=true classNames='alt_course_detail_line'}}
                     {{#layout-push direction='row' mid=true classNames='alt_course_detail_half'}}
                         {{#layout-push direction='col' mid=true }}
                             {{#layout-push direction='row' mid=true }}
-                                <span class='alt_course_detail_perperty'>{{model.alb}}-{{model.aub}} 岁</span>
+                                <span class='alt_course_detail_perperty'>{{bm_session_update_service.session.alb}}-{{bm_session_update_service.session.aub}} 岁</span>
                             {{/layout-push}}
                             {{#layout-push direction='row' mid=true }}
                                 <span class='alt_course_detail_perperty_des'>适应年龄</span>
@@ -36,7 +36,7 @@
                     {{#layout-push direction='row' mid=true classNames='alt_course_detail_half'}}
                         {{#layout-push direction='col' mid=true }}
                             {{#layout-push direction='row' mid=true }}
-                                <span class='alt_course_detail_perperty'>{{model.level}}</span>
+                                <span class='alt_course_detail_perperty'>{{bm_session_update_service.session.level}}</span>
                             {{/layout-push}}
                             {{#layout-push direction='row' mid=true }}
                                 <span class='alt_course_detail_perperty_des'>等级</span>
@@ -49,7 +49,7 @@
                     {{#layout-push direction='row' mid=true classNames='alt_course_detail_half'}}
                         {{#layout-push direction='col' mid=true }}
                             {{#layout-push direction='row' mid=true }}
-                                <span class='alt_course_detail_perperty'>{{model.count}} 课时</span>
+                                <span class='alt_course_detail_perperty'>{{bm_session_update_service.session.count}} 课时</span>
                             {{/layout-push}}
                             {{#layout-push direction='row' mid=true }}
                                 <span class='alt_course_detail_perperty_des'>预计课时数</span>
@@ -59,7 +59,7 @@
                     {{#layout-push direction='row' mid=true classNames='alt_course_detail_half'}}
                         {{#layout-push direction='col' mid=true }}
                             {{#layout-push direction='row' mid=true }}
-                                <span class='alt_course_detail_perperty'>{{model.length}} 分钟</span>
+                                <span class='alt_course_detail_perperty'>{{bm_session_update_service.session.length}} 分钟</span>
                             {{/layout-push}}
                             {{#layout-push direction='row' mid=true }}
                                 <span class='alt_course_detail_perperty_des'>课程时长</span>
@@ -108,11 +108,11 @@
                 {{/layout-push}} --}}
                 {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
                     <span class='alt_right_panel_perperty_title'>课程计划</span>
-                    <span class='alt_right_panel_perperty_des'>{{model.course.planning}}</span>
+                    <span class='alt_right_panel_perperty_des'>{{bm_session_update_service.session.planning}}</span>
                 {{/layout-push}}
                 {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
                     <span class='alt_right_panel_perperty_title'>课程内容</span>
-                    <span class='alt_right_panel_perperty_des'>{{model.description}}</span>
+                    <span class='alt_right_panel_perperty_des'>{{bm_session_update_service.session.description}}</span>
                 {{/layout-push}}
 
             {{/layout-push}}
