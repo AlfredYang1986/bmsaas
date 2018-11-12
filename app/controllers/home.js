@@ -1,14 +1,6 @@
 import Controller from '@ember/controller';
+import { inject as service } from '@ember/service';
 
 export default Controller.extend({
-    collapsed: true,
-    actions: {
-        expendMenu() {
-
-        },
-        toggle() {
-            if (this.collapsed) this.collapsed = false;
-            else this.collapsed = true;
-        }
-    }
+    bm_brand_update_service: service(),
 });

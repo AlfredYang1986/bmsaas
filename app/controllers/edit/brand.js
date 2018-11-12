@@ -1,12 +1,8 @@
 import Controller from '@ember/controller';
+import { inject as service } from '@ember/service';
 
 export default Controller.extend({
-    title: "",
-    subtitle: "",
-    brand_story: "",
-    team_des: "",
-    slogan: "",
-    brand_tags: "",
+    bm_brand_update_service: service(),
 
     actions: {
         saveBrand() {
@@ -58,12 +54,4 @@ export default Controller.extend({
             this.transitionToRoute('home');
         }
     },
-    guid() {
-      function s4() {
-        return Math.floor((1 + Math.random()) * 0x10000)
-          .toString(16)
-          .substring(1);
-      }
-      return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-    }
 });

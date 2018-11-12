@@ -21,7 +21,7 @@ export default Route.extend({
         } else {
             controller.set('isPushing', true);
         }
-        this.set('cur_page_idx', 0);
+        controller.set('cur_page_idx', 0);
         this.bm_session_update_service.set('refresh_token', this.bm_session_update_service.guid());
     },
 });

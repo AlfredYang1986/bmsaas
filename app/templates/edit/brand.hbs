@@ -65,9 +65,9 @@
             </div>
         {{/layout-push }}
 
-        {{bm-edit-line title="品牌名称" isNeeded=true maxCount=15 pholder="如：Black Mirror Tech" inputVal=title}}
-        {{bm-edit-line title="品牌简称" isNeeded=true maxCount=15 pholder="简称更容易让大家记住您的品牌喔！如：Black Mirror" inputVal=subtitle}}
-        {{bm-edit-line title="一句话介绍(slogan)" isNeeded=true maxCount=15 pholder="请用一句话想家长和孩子们传递您的品牌理念" inputVal=slogan}}
+        {{bm-edit-line title="品牌名称" isNeeded=true maxCount=15 pholder="如：Black Mirror Tech" inputVal=bm_brand_update_service.brand.title}}
+        {{bm-edit-line title="品牌简称" isNeeded=true maxCount=15 pholder="简称更容易让大家记住您的品牌喔！如：Black Mirror" inputVal=bm_brand_update_service.brand.subtitle}}
+        {{bm-edit-line title="一句话介绍(slogan)" isNeeded=true maxCount=15 pholder="请用一句话想家长和孩子们传递您的品牌理念" inputVal=bm_brand_update_service.brand.slogan}}
 
         {{#layout-push direction='row' split=true}}
             {{#layout-push direction='row' }}
@@ -103,7 +103,7 @@
             {{/bs-dropdown}}
         </div>
 
-        {{bm-edit-line title="品牌亮点(最多三个)" isNeeded=true maxCount=15 pholder="如：双语教学" inputVal=brand_tags}}
+        {{bm-edit-line title="品牌亮点(最多三个)" isNeeded=true maxCount=15 pholder="如：双语教学" inputVal=bm_brand_update_service.brand.brand_tangs}}
     {{/layout-push }}
 </section>
 
@@ -114,7 +114,7 @@
         subtitle="请描述品牌的成立宗旨、教学理念、发展历程与未来期许，让家长们了解您的用户的用心与坚持。初心故事将作为品牌介绍将展示在小程序、app中。"
         maxCount=400
         isNeeded=true
-        inputVal=brand_story}}
+        inputVal=bm_brand_update_service.brand.foundStory}}
 </section>
 
 <section id="brand-reward" class="line_container_mid " >
@@ -175,7 +175,7 @@
         maxCount=400
         isNeeded=true
         rowsAmount=5
-        inputVal=team_des}}
+        inputVal=bm_brand_update_service.brand.about_us}}
 </section>
 
 {{outlet}}
