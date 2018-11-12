@@ -2,12 +2,12 @@
   <div class="detail_page">
     <p class="detail_stud_nav">
       {{#link-to 'stud' class="detail_href_ref" }}
-        学生 /
+        返回
       {{/link-to}}
-      <span>学生详情</span>
+      {{!-- <span>学生详情</span> --}}
     </p>
     {{#layout-push direction='row' split=true class="detail_title" }}
-      <span class="title_text">学生详情</span>
+      <span class="title_text">学员详情</span>
       {{#link-to 'edit.stud' model.studs.id classNames='detail_panel_edit_btn' }}
         编辑
       {{/link-to}}

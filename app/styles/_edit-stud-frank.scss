@@ -1,51 +1,39 @@
 @import './bm-saas-standard/args';
 .edit_nav {
-  margin-bottom: 24px;
-  padding: 16px 24px;
-  height: 64px;
-  font-family: $font-family;
-
-  background-color: $color-neutral-N000;
-
-  span:first-child {
-    font-weight: 700;
-    font-size: $font-size-header;
-    color: $color-neutral-N800;
-  }
-
-  span:last-child {
-    a {
-      display: inline-block;
-      width: 68px;
-      text-align: center;
-      font-size: $font-size-main;
-      color: $color-neutral-N800;
+    margin-bottom: 24px;
+    padding: 16px 24px;
+    height: 64px;
+    font-family: $font-brand;
+    background-color: #FFF;
+    span:first-child {
+        @extend %font-page-header-title;
     }
 
-    .btn_save {
-      padding: 0;
-      width: 80px;
-      height: 32px;
-      background: rgba(9,30,66,0.04);
-      border-radius: 3px;
-      font-family: $font-family;
-      font-size: $font-size-main;
-      color: $color-neutral-N070;
-      text-align: center;
+    span:last-child {
+        a {
+          @extend %button-system-subtle-default;
+        }
+
+        .btn_save {
+          @extend %button-system-disabled;
+        }
     }
-  }
 }
 
 .edit_container {
-    font-family: $font-family;
+    padding-top: 64px;
+    font-family: $font-brand;
   .edit_left_nav {
-    flex: 0 0 240px;
+      padding-top: 24px;
+      z-index: 3;
+      background-color: #f7f8fa;
+      flex: 0 0 240px;
     li {
         text-align: center;
         height: 40px;
-        a {
-            font-size: $font-size-main;
-            color: $color-neutral-N800;
+        a.edit_left_menu_text {
+
+            @extend %font-form-info-title;
         }
 
     }
@@ -53,6 +41,7 @@
 
   .input_container {
     flex: 1;
+    padding-top: 24px;
     padding-bottom: 40px;
     section.stu_section {
       margin: 0 24px 8px;
@@ -65,16 +54,13 @@
           }
 
         .edit_title {
-          margin-bottom: 16px;
           font-family: $font-family;
-          font-size: $font-size-main;
-          font-weight: 700;
-          color: $color-neutral-N800;
-
-          span.sub_title {
-            font-size: 11px;
-            color: $color-neutral-N200;
-          }
+            margin-bottom: 16px;
+            @extend %font-form-info-title;
+            span.sub_title {
+                font-size: 11px;
+                color: #6B778C;
+            }
         }
 
         input.edit_input {
