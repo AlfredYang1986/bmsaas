@@ -202,18 +202,32 @@
         margin-bottom: 40px;
         min-height: 100px;
         border-bottom: 1px solid rgba(0,0,0,0.12);
-        img.detail_reward_img {
-            margin-bottom: 17px;
-            width: 160px;
-            height: 106px;
-        }
-        .detail_reward_title {
-            margin-bottom: 40px;
-            span {
-                font-family: PingFangSC-Regular;
-                font-size: 14px;
-                color: #172B4D;
-                text-align: center;
+        vertical-align: top;
+        .detail_reward_content {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            .detail_reward {
+                margin-right: 25px;
+                max-width: 160px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                img.detail_reward_img {
+                    margin-bottom: 17px;
+                    width: 160px;
+                    height: 106px;
+                }
+                .detail_reward_title {
+                    margin-bottom: 40px;
+                    text-align: center;
+                    span {
+                        font-family: PingFangSC-Regular;
+                        font-size: 14px;
+                        color: #172B4D;
+
+                    }
+                }
             }
         }
         p.brand_detail_list_title {
@@ -231,9 +245,9 @@
         }
         .brand_tags {
             margin-bottom: 40px;
+            padding: 7px 25px;
             min-width: 106px;
             height: 32px;
-            line-height: 32px;
             text-align: center;
             background: #e4effe;
             border-radius: 4px;
@@ -242,6 +256,7 @@
             color: #172B4D;
             text-align: center;
             border: none
+
         }
     }
 }
@@ -396,6 +411,7 @@
 
     .detail_reward {
         margin-top: 8px;
+        max-width: 160px;
     }
 
     .detail_reward_img {

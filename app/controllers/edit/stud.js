@@ -106,7 +106,6 @@ export default Controller.extend({
             })
       } else {
           // this.get('logger').log('Error');
-          debugger
           stud = this.get('pmController').get('Store').createModel('request', {
               id: this.guid(),
               res: "BmAttendee",

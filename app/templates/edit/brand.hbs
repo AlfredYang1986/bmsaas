@@ -66,8 +66,8 @@
         {{/layout-push }}
 
         {{bm-edit-line title="品牌名称" isNeeded=true maxCount=15 pholder="如：Black Mirror Tech" inputVal=title}}
-        {{bm-edit-line title="品牌简称" isNeeded=true maxCount=15 pholder="简称更容易让大家记住您的品牌喔！如：Black Mirror" }}
-        {{bm-edit-line title="一句话介绍(slogan)" isNeeded=true maxCount=15 pholder="请用一句话想家长和孩子们传递您的品牌理念" inputVal=subtitle}}
+        {{bm-edit-line title="品牌简称" isNeeded=true maxCount=15 pholder="简称更容易让大家记住您的品牌喔！如：Black Mirror" inputVal=subtitle}}
+        {{bm-edit-line title="一句话介绍(slogan)" isNeeded=true maxCount=15 pholder="请用一句话想家长和孩子们传递您的品牌理念" inputVal=slogan}}
 
         {{#layout-push direction='row' split=true}}
             {{#layout-push direction='row' }}
@@ -103,7 +103,7 @@
             {{/bs-dropdown}}
         </div>
 
-        {{bm-edit-line title="品牌亮点(最多三个)" isNeeded=true maxCount=15 pholder="如：双语教学"}}
+        {{bm-edit-line title="品牌亮点(最多三个)" isNeeded=true maxCount=15 pholder="如：双语教学" inputVal=brand_tags}}
     {{/layout-push }}
 </section>
 
