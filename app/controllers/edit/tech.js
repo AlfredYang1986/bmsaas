@@ -2,7 +2,6 @@ import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 
 export default Controller.extend({
-
     tech_name: '',
     tech_nickname: '',
     tech_gender: 0,
