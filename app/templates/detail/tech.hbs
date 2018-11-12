@@ -3,7 +3,7 @@
         <div class='detail_panel' >
             {{#layout-push direction="row" split=true }}
                 <p class="detail_head_name">教师详情</p>
-                {{#link-to 'edit.tech' model.tech.id classNames='more_btn'}}
+                {{#link-to 'edit.tech' bm_tech_update_service.tech.id classNames='more_btn'}}
                     更多
                 {{/link-to}}
             {{/layout-push}}
@@ -11,8 +11,8 @@
         {{#layout-push direction="row"}}
             <div class='detail_panel detail_panel_col_between tech_info_card' >
                 {{#layout-push direction="col" classNames="tech_info_base"}}
-                    <img src={{model.tech.icon}} class='detail_panel_img' />
-                    <span class="detail_panel_role_name">{{model.tech.name}}</span>
+                    <img src={{bm_tech_update_service.tech.icon}} class='detail_panel_img' />
+                    <span class="detail_panel_role_name">{{bm_tech_update_service.tech.name}}</span>
                     {{#layout-push direction="row"}}
                         <span class="detail_panel_role_des">
                             {{#if isFemale}}
@@ -24,21 +24,21 @@
                                 <img src="../images/icon_male@2x.png" alt="" class="sex-icon">
                             {{/if}}
                         </span>
-                        <span class="detail_panel_role_des">{{bmdob/bmdob2age model.tech.dob}}岁</span>
+                        <span class="detail_panel_role_des">{{bmdob/bmdob2age bm_tech_update_service.tech.dob}}岁</span>
                     {{/layout-push}}
                 {{/layout-push}}
                 {{#layout-push direction="col" classNames="tech_info_other"}}
                     {{#layout-push direction="row" classNames="tech_info_other_list"}}
                         <p>联系方式</p>
-                        <span class='detail_panel_des_02'>{{model.tech.contact}}</span>
+                        <span class='detail_panel_des_02'>{{bm_tech_update_service.tech.contact}}</span>
                     {{/layout-push}}
                     {{#layout-push direction="row" classNames="tech_info_other_list"}}
                         <p>微信</p>
-                        <span class='detail_panel_des_02'>{{model.tech.wechat}}</span>
+                        <span class='detail_panel_des_02'>{{bm_tech_update_service.tech.wechat}}</span>
                     {{/layout-push}}
                     {{#layout-push direction="row" classNames="tech_info_other_list"}}
                         <p>地址</p>
-                        <span class='detail_panel_des_02'>{{model.tech.address}}</span>
+                        <span class='detail_panel_des_02'>{{bm_tech_update_service.tech.address}}</span>
                     {{/layout-push}}
                 {{/layout-push}}
             </div>
@@ -46,15 +46,15 @@
                 {{#layout-push direction="col" classNames="tech_info_area"}}
                     {{#layout-push direction="row"}}
                         <p>昵称</p>
-                        <span class='detail_panel_des_02'>{{model.tech.nickname}}</span>
+                        <span class='detail_panel_des_02'>{{bm_tech_update_service.tech.nickname}}</span>
                     {{/layout-push}}
                     {{#layout-push direction="row"}}
                         <p>出生日期</p>
-                        <span class='detail_panel_des_02'>{{bmdob/bmdobformat model.tech.dob}}</span>
+                        <span class='detail_panel_des_02'>{{bmdob/bmdobformat bm_tech_update_service.tech.dob}}</span>
                     {{/layout-push}}
                     {{#layout-push direction="row"}}
                         <p>来自城市</p>
-                        <span class='detail_panel_des_02'>{{model.tech.nativePlace}}</span>
+                        <span class='detail_panel_des_02'>{{bm_tech_update_service.tech.nativePlace}}</span>
                     {{/layout-push}}
                 {{/layout-push}}
                 {{!-- {{#layout-push direction="col" classNames="tech_info_area"}}

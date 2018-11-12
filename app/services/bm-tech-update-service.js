@@ -6,55 +6,53 @@ export default Service.extend({
 
     init() {
         this._super(...arguments);
-        this.addObserver('refresh_token', this, 'queryYard');
+        this.addObserver('refresh_token', this, 'queryTech');
     },
 
-    yardid: '',
+    techid: '',
     refresh_token: '',
-    yard: null,
+    tech: null,
 
-    queryYard() {
+    queryTech() {
         if (this.yard != null) {
-            this.store.unloadRecord(this.yard);
-            this.store.unloadAll('bm-tag-img');
+            this.store.unloadRecord(this.tech);
         }
 
-        if(this.yardid != 'yard/push') {
+        if(this.techid != 'tech/push') {
             let request = this.get('pmController').get('Store').createModel('request', {
                 id: this.guid(),
-                res: "BmYard",
+                res: "BmTeacher",
             });
             request.get('eqcond').pushObject(this.get('pmController').get('Store').createModel('eqcond', {
                 id: this.guid(),
                 type: 'eqcond',
                 key: 'id',
-                val: this.yardid
+                val: this.techid
             }));
             let json = this.get('pmController').get('Store').object2JsonApi(request);
             this.get('logger').log(json)
 
-            async function getRemoteYard(tmp) {
-                return await tmp.get('pmController').get('Store').queryObject('/api/v1/findyard/0', 'bm-yard', json)
+            async function getRemoteTech(tmp) {
+                return await tmp.get('pmController').get('Store').queryObject('/api/v1/findteacher/0', 'bm-teacher', json)
                     .then(data => {
                         tmp.get('logger').log(data);
-                        tmp.set('yard', data);
+                        tmp.set('tech', data);
                     })
                     .catch(data => {
                         tmp.get('logger').log(data);
                         tmp.transitionToRoute('home');
                     })
             }
-            getRemoteYard(this);
+            getRemoteTech(this);
         }
     },
 
     guid() {
         function s4() {
-          return Math.floor((1 + Math.random()) * 0x10000)
+            return Math.floor((1 + Math.random()) * 0x10000)
             .toString(16)
             .substring(1);
         }
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
     },
-
 });

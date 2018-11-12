@@ -30,16 +30,6 @@ export default Route.extend({
     },
     setupController(controller, model) {
         this._super(controller, model);
-        controller.set('yard_provinces', this.store.peekAll('bmprovinces'));
-        controller.set('yard_citys', this.store.peekAll('bmcitys'));
-        controller.set('yard_government_areas', this.store.peekAll('bmgovernment-areas'));
-
-        if (model.yard != null) {
-            controller.set('isPushing', false);
-        } else {
-            controller.set('isPushing', true);
-        }
-        // this.controller.set('current_idx', 0);
         this.bm_yard_update_service.set('refresh_token', this.bm_yard_update_service.guid());
     },
 });
