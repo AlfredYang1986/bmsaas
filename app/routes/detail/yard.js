@@ -33,7 +33,6 @@ export default Route.extend({
             .catch(data => {
                 this.get('logger').log(data);
             })
-
         return RSVP.hash({
                 yard: yard
             })
