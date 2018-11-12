@@ -116,6 +116,14 @@
             margin-left: 40px;
         }
         .tech-infos-container {
+            p{
+                height: 22px;
+                margin-bottom: 16px;
+            }
+            input{
+                height: 32px;
+                line-height: 26px;
+            }
             .tech-avatar {
                 flex: 0 0 272px;
                 img {
