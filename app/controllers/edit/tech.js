@@ -22,7 +22,7 @@ export default Controller.extend({
     tech_contact: '',
     tech_wechat: '',
     tech_address: '',
-    tech_comefrom: '',
+    tech_nativePlace: '',
     // tech_date:'',
     // edu_name:'',
     // edu_category:'',
@@ -66,7 +66,7 @@ export default Controller.extend({
                     contact: this.tech_contact,
                     wechat: this.tech_wechat,
                     address: this.tech_address,
-                    comefrom: this.tech_comefrom,
+                    nativePlace: this.tech_nativePlace,
                 });
 
                 //
@@ -136,20 +136,20 @@ export default Controller.extend({
                     val: this.tech_wechat,
                     category: "BmTeacher",
                 }));
-                // tech.get('upcond').pushObject(this.get('pmController').get('Store').createModel('upcond', {
-                //     id: this.guid(),
-                //     type: 'upcond',
-                //     key: 'address',
-                //     val: this.tech_address,
-                //     category: "BmTeacher",
-                // }));
-                // tech.get('upcond').pushObject(this.get('pmController').get('Store').createModel('upcond', {
-                //     id: this.guid(),
-                //     type: 'upcond',
-                //     key: 'comefrom',
-                //     val: this.tech_comefrom,
-                //     category: "BmTeacher",
-                // }));
+                tech.get('upcond').pushObject(this.get('pmController').get('Store').createModel('upcond', {
+                    id: this.guid(),
+                    type: 'upcond',
+                    key: 'address',
+                    val: this.tech_address,
+                    category: "BmTeacher",
+                }));
+                tech.get('upcond').pushObject(this.get('pmController').get('Store').createModel('upcond', {
+                    id: this.guid(),
+                    type: 'upcond',
+                    key: 'nativePlace',
+                    val: this.tech_nativePlace,
+                    category: "BmTeacher",
+                }));
                 let json = this.get('pmController').get('Store').object2JsonApi(tech);
                 this.get('logger').log(json)
                 this.get('pmController').get('Store').transaction('/api/v1/updateteacher/0', 'request', json)

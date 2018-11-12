@@ -12,6 +12,6 @@ export default DS.Model.extend({
     reg_date: DS.attr('number'),
     contact: DS.attr('string'),
     wechat: DS.attr('string'),
-    // address: DS.attr('string'),
-    // comefrom: DS.attr('string')
+    address: DS.attr('string'),
+    nativePlace: DS.attr('string')
 });

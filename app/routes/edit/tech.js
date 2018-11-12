@@ -68,7 +68,7 @@ export default Route.extend({
             controller.set('tech_contact', model.tech.get('contact'));
             controller.set('tech_wechat', model.tech.get('wechat'));
             controller.set('tech_address', model.tech.get('address'));
-            controller.set('tech_comefrom', model.tech.get('comefrom'));
+            controller.set('tech_nativePlace', model.tech.get('nativePlace'));
             controller.set('tech_date', model.tech.get('dob'));
 
             controller.set('isPushing', false);
@@ -81,7 +81,7 @@ export default Route.extend({
             controller.set('tech_contact', '');
             controller.set('tech_wechat', '');
             controller.set('tech_address', '');
-            controller.set('tech_comefrom', '');
+            controller.set('tech_nativePlace', '');
             controller.set('tech_date');
 
             controller.set('isPushing', true);
