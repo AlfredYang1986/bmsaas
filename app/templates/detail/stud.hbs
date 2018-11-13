@@ -23,11 +23,13 @@
 							{{else}}
 								男 ♂
 							{{/if}}
+						</span>
+						<span class="basis_sex_age">
 							{{bmdob/bmdob2age bm_stud_service.stud.dob}}岁
 						</span>
 					{{/layout-push}}
 					{{#layout-push direction='row' mid=true classNames='basis_dob' }}
-						<span>出生日期  {{bmdob/bmdobformat bm_stud_service.stud.dob}}</span>
+						<span>出生日期</span><span>{{bmdob/bmdobformat bm_stud_service.stud.dob}}</span>
 					{{/layout-push}}
 				{{/layout-push }}
 			</div>

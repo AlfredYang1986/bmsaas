@@ -2,8 +2,13 @@
  * 学生详情界面
 */
 .detail_stud_nav {
+  height: 16px;
+  line-height: 16px;
+  margin-bottom: 16px;
+
   a {
     @extend %font-system-level-link;
+    font-size: 12px!important;
   }
 
   span {
@@ -13,7 +18,7 @@
 }
 
 .detail_title {
-  margin: 8px 0;
+  margin-bottom: 8px;
   padding: 0 24px;
   height: 64px;
   line-height: 64px;
@@ -43,22 +48,29 @@
     .basis_name {
       margin-bottom: 16px;
       @extend %font-page-header-title;
+      height: 28px;
+      line-height: 28px;
     }
 
     .basis_sex_age {
       @extend %font-help-text;
+      margin:0 8px;
     }
 
     .basis_dob {
         margin-top: 24px;
         font-size: 0;
-        span:first-child {
-            padding-right: 16px;
-            @extend %font-help-text;
+        span{
+          padding: 0 8px;
+          @extend %font-help-text;
         }
-        span:last-child {
-            @extend %font-main-text;
-        }
+        // span:first-child {
+        //     padding-right: 16px;
+        //     @extend %font-help-text;
+        // }
+        // span:last-child {
+        //     @extend %font-main-text;
+        // }
     }
 }
   }
@@ -87,6 +99,10 @@
         span:last-child {
             @extend %font-main-text;
         }
+      }
+
+      .self_container:nth-last-child(1) {
+        margin-bottom: 0;
       }
 
       .line {

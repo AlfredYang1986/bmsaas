@@ -1,10 +1,11 @@
 <div class="stud_container">
 	{{#layout-push direction="col" classNames="stud_content" }}
-		{{#layout-push direction='row' split=true}}
-			<span class="stud_title">学生</span>
-			<span class="qr-code">
+		{{#layout-push direction='row' split=true classNames="stud-title-flex"}}
+			<p class="page_title">学生</p>
+			{{!-- <span class="qr-code">
 				{{#link-to 'edit.stud' 'stud/push' classNames='stud_add_btn'}}+ 添加学生{{/link-to}}
-			</span>
+			</span> --}}
+			{{#link-to 'edit.stud' 'stud/push' classNames='stud_add_btn'}}+ 添加学生{{/link-to}}
 		{{/layout-push}}
 		{{#layout-push direction="row" wrap=true classNames="card-wrap" }}
 			{{#each bm_stud_service.studs as |item|}}
