@@ -76,7 +76,7 @@ export default Service.extend({
         let json = this.get('pmController').get('Store').object2JsonApi(request);
         this.get('logger').log(json)
 
-        async function getRemoteYards(tmp){
+        async function getRemoteAttendees(tmp){
             return await tmp.get('pmController').get('Store').queryMultipleObject('/api/v1/findattendeemulti/0', 'bm-attendee', json)
                 .then(data => {
                     tmp.get('logger').log(data);
@@ -86,7 +86,7 @@ export default Service.extend({
                     tmp.get('logger').log(data);
                 })
         }
-        getRemoteYards(this);
+        getRemoteAttendees(this);
     },
     genIdQuery() {
         let eq = this.guid();

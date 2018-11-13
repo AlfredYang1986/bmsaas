@@ -68,7 +68,7 @@ export default Service.extend({
         let json = this.get('pmController').get('Store').object2JsonApi(request);
         this.get('logger').log(json)
 
-        async function getRemoteYards(tmp){
+        async function getRemoteTechs(tmp){
             return await tmp.get('pmController').get('Store').queryMultipleObject('/api/v1/findteachermulti/0', 'bm-teacher', json)
                 .then(data => {
                     tmp.get('logger').log(data);
@@ -78,7 +78,7 @@ export default Service.extend({
                     tmp.get('logger').log(data);
                 })
         }
-        getRemoteYards(this);
+        getRemoteTechs(this);
     },
 
     guid() {
