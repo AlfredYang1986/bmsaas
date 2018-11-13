@@ -2,7 +2,7 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 
 export default Controller.extend({
-    bm_brand_update_service: service(),
+    bm_brand_service: service(),
 
     actions: {
         saveBrand() {

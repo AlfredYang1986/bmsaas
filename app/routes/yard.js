@@ -1,17 +1,10 @@
 import Route from '@ember/routing/route';
-import RSVP from 'rsvp';
-import { computed } from '@ember/object';
-import { inject as service } from '@ember/service';
 
 export default Route.extend({
-    mock_data: service(),
     model() {
-        // this.mock_data.sureYard();
-        // let yards = this.store.peekAll('bmyard');
-        //
-        // return RSVP.hash({
-        //         yards: yards
-        //     })
+        // this.store.unloadAll('bm-yard');
+        // this.store.unloadAll('bm-room');
+        // this.store.unloadAll('bm-tag-img');
 
         let request = this.get('pmController').get('Store').createModel('request', {
             id: this.guid(),
@@ -27,7 +20,6 @@ export default Route.extend({
 
         return this.get('pmController').get('Store').queryMultipleObject('/api/v1/findyardmulti/0', 'bm-yard', json)
             .then(data => {
-                this.get('logger').log('qqqqqqqqqqqqqqqqqqqqq')
                 this.get('logger').log(data);
                 return data;
             })

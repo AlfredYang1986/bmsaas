@@ -43,7 +43,6 @@ Router.map(function() {
   this.route('courseReserve');
   this.route('classes');
   this.route('arrange-class');
-  this.route('test');
   this.route('demo');
 });
 

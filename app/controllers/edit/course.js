@@ -4,7 +4,7 @@ import { inject as service } from '@ember/service';
 
 export default Controller.extend({
     mock_data: service(),
-    bm_session_update_service: service(),
+    bm_session_service: service(),
 
     cur_page_idx: 0,
 
