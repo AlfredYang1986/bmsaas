@@ -23,6 +23,9 @@ export default Service.extend({
         this.set('tech', null);
 
         if (this.techid.length == 0 || this.techid == 'tech/push') {
+            let query_payload = this.genPushQuery();
+            let result = this.bmstore.sync(query_payload);
+            this.set('tech', result);
             return;
         }
 
@@ -121,5 +124,62 @@ export default Service.extend({
                     }
                 ]
             }
+    },
+    genPushQuery() {
+        let gid01 = this.guid();
+        let now = new Date().getTime();
+        return {
+            data: {
+                id: this.guid(),
+                type: "BmTeacher",
+                attributes: {
+                    intro: '',
+                    brandId: '5be6a00b8fb80736e2ec9ba5',
+                    name: '',
+                    nickname: '',
+                    icon: '',
+                    dob: now,
+                    gender: 0,
+                    reg_date: now,
+                    contact: '',
+                    wechat: '',
+                    address: '',
+                    nativePlace: '',
+                },
+            }
+        }
+    },
+    saveUpdate(callback) {
+
+        if (!this.isValidate) {
+            return ;
+        }
+
+        let rd = this.tech;
+        let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
+        // let inc = rd.Guardians[0].serialize();
+        rd_tmp['included'] = [];
+        let dt = JSON.stringify(rd_tmp); 
+
+        let that = this
+        Ember.$.ajax({
+            method: 'POST',
+            url: '/api/v1/pushteacher/0',
+            headers: {
+                'Content-Type': 'application/json', // 默认值
+                'Accept': 'application/json',
+                'Authorization': 'bearer ce6af788112b26331e9789b0b2606cce'
+            },
+            data: dt,
+            success: function(res) {
+                callback.onSuccess();
+            },
+            error: function(err) {
+                callback.onFail(err);
+            },
+        })
+    },
+    isValidate() {
+        return this.tech.name.length > 0 && this.tech.icon.length > 0 && this.tech.contact.length > 0;
     }
 });

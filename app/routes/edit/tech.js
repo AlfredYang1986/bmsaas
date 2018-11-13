@@ -16,11 +16,6 @@ export default Route.extend({
 
     setupController(controller, model) {
         this._super(controller, model);
-        if (model.tech != null) {
-            controller.set('isPushing', false);
-        } else {
-            controller.set('isPushing', true);
-        }
         this.bm_tech_service.set('refresh_token', this.bm_tech_service.guid());
     }
 });

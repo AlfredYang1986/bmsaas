@@ -5,27 +5,20 @@ import { inject as service } from '@ember/service';
 export default Controller.extend({
     bm_stud_service: service(),
 
-    isPushing: false,
+    genderCheck: ['男', '女'],
 
     actions: {
         saveInputBtnClicked() {
-            // TODO: ...
+            let that = this
+            let callback = {
+                onSuccess: function() {
+                    that.transitionToRoute('stud');
+                },
+                onFail: function(err) {
+                    console.log('error');
+                }
+            }
+            this.bm_stud_service.saveUpdate(callback);
         },
-    },
-
-    studValidate() {
-        let valiFlag = true;
-        if (this.chd_name.length == 0 ||
-            // this.chd_nickname.length == 0 ||
-            this.chd_gender_str.length == 0 ||
-            this.chd_school.length == 0 ||
-            this.par_name.length == 0 ||
-            // this.par_nickname.length == 0 ||
-            // this.par_rs.length == 0 ||
-            this.par_contact.length == 0) {
-            valiFlag = false;
-        }
-        return valiFlag;
-        // return this.chd_name.length != 0;
     },
 });

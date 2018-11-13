@@ -23,6 +23,9 @@ export default Service.extend({
         this.set('tech', null);
 
         if (this.studid.length == 0 || this.studid == 'stud/push') {
+            let query_payload = this.genPushQuery();
+            let result = this.bmstore.sync(query_payload);
+            this.set('stud', result);
             return;
         }
 
@@ -119,5 +122,90 @@ export default Service.extend({
                     }
                 ]
             }
+    },
+
+    genPushQuery() {
+        let gid01 = this.guid();
+        let now = new Date().getTime();
+        return {
+            data: {
+                id: this.guid(),
+                type: "BmAttendee",
+                attributes: {
+                    name: "",
+                    nickname: "",
+                    icon: "",
+                    dob: now,
+                    gender: 0,
+                    reg_date: now,
+                    contact: "",
+                    intro: "",
+                    status: "candidate",
+                    lesson_count: 0,
+                    school: ''
+                },
+                relationships: {
+                    Guardians: {
+                        data: [
+                            {
+                                id: gid01,
+                                type: "BmGuardian"
+                            }
+                        ]
+                    }
+                }
+            },
+            included: [
+                {
+                    id: gid01,
+                    type: "BmGuardian",
+                    attributes: {
+                        relation_ship: "",
+                        contact: "",
+                        name: "",
+                        nickname: "",
+                        icon: "",
+                        dob: now,
+                        gender: 0,
+                        reg_date: now,
+                        addr: ''
+                    },
+                }
+            ]
+        }
+    },
+    saveUpdate(callback) {
+
+        if (!this.isValidate) {
+            return ;
+        }
+
+        let rd = this.stud;
+        let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
+        let inc = rd.Guardians[0].serialize();
+        rd_tmp['included'] = [inc.data];
+        let dt = JSON.stringify(rd_tmp); 
+
+        let that = this
+        Ember.$.ajax({
+            method: 'POST',
+            url: '/api/v1/insertattendee/0',
+            headers: {
+                'Content-Type': 'application/json', // 默认值
+                'Accept': 'application/json',
+                'Authorization': 'bearer ce6af788112b26331e9789b0b2606cce'
+            },
+            data: dt,
+            success: function(res) {
+                callback.onSuccess();
+            },
+            error: function(err) {
+                callback.onFail(err);
+            },
+        })
+    },
+    isValidate() {
+        return this.stud.name.length > 0 && this.stud.icon.length > 0 && this.stud.contact.length > 0;
     }
+
 });

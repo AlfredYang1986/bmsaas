@@ -11,16 +11,22 @@ export default Component.extend({
     gid: computed(function(){
         return this.guid();
     }),
-    init() {
-        this._super(...arguments);
-    },
     didInsertElement() {
+        let that = this
         window.laydate.render({
             elem: window.document.getElementById(this.gid), //指定元素
             type: this.pickType,
             range: this.range,
             lang: this.lang,
-            value: new Date(this.inputVal)
+            value: new Date(this.get('inputVal')),
+            done: function(value, date){ //监听日期被切换
+                let tmp = new Date();
+                let lst = value.split('-')
+                tmp.setFullYear(parseInt(lst[0]));
+                tmp.setMonth(parseInt(lst[1]) - 1);
+                tmp.setDate(parseInt(lst[2]));
+                that.set('inputVal', tmp.getTime());
+            }
         });
     },
     guid() {
@@ -30,5 +36,5 @@ export default Component.extend({
             .substring(1);
         }
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-    }
+    },
 });

@@ -10,7 +10,7 @@ export default Component.extend({
     canEdit: false,
     needTag: false,
     isNull: computed('img', function(){
-        return this.img.length == 0; 
+        return this.img == null || this.img.length == 0; 
     }),
     concertImgPath: computed('img', function(){
         let client = this.bmOss.get('ossClient');

@@ -11,7 +11,10 @@
         {{#layout-push direction="row"}}
             <div class='detail_panel detail_panel_col_between tech_info_card' >
                 {{#layout-push direction="col" classNames="tech_info_base"}}
-                    <img src={{bm_tech_service.tech.icon}} class='detail_panel_img' />
+                    {{#if (bmcom/bm-nil-obj bm_tech_service.tech)}}
+                    {{else}}
+                    {{bmcom/bm-img-uploader needTag=false canEdit=false img=bm_tech_service.tech.icon}}
+                    {{/if}}
                     <span class="detail_panel_role_name">{{bm_tech_service.tech.name}}</span>
                     {{#layout-push direction="row"}}
                         <span class="detail_panel_role_des">

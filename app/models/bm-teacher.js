@@ -7,7 +7,9 @@ export default DS.Model.extend({
     name: DS.attr('string'),
     nickname: DS.attr('string'),
     icon: DS.attr('string'),
-    dob: DS.attr('number'),
+    dob: DS.attr('number',{
+        defaultValue() { return new Date().getTime(); }
+    }),
     gender: DS.attr('number'),
     reg_date: DS.attr('number'),
     contact: DS.attr('string'),

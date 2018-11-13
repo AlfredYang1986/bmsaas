@@ -13,6 +13,5 @@ export default DS.Model.extend({
     reg_date: DS.attr('date-to-yyyy-mm-dd-hh-mm-ss', {
         defaultValue() { return new Date().getTime(); }
     }),
-    // Address: DS.belongsTo('bm-address', {async: false}),
-    // person: DS.belongsTo('bm-person', { async: false })
+    addr: DS.attr('string')
 });
