@@ -22,43 +22,6 @@ export default Service.extend({
     yard: null,
     yards: A([]),
 
-    queryUpYard() {
-        // this.bmupstore.reset();
-        // this.set('upyard', null);
-        this.bmstore.reset();
-        this.set('yard', null);
-
-        if (this.yardid.length == 0) {
-            return;
-        }
-
-        let query_yard_payload = this.genIdQuery();
-        let rd = this.bmstore.sync(query_yard_payload);
-        let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
-        let inc = rd.Eqcond[0].serialize();
-        rd_tmp['included'] = [inc.data];
-        let dt = JSON.stringify(rd_tmp);
-       
-        let that = this
-        Ember.$.ajax({
-            method: 'POST',
-            url: '/api/v1/findyard/0',
-            headers: {
-                'Content-Type': 'application/json', // 默认值
-                'Accept': 'application/json',
-                'Authorization': 'bearer ce6af788112b26331e9789b0b2606cce'
-            },
-            data: dt,
-            success: function(res) {
-                let result = that.bmupstore.sync(res)
-                that.set('yard', result);
-            },
-            error: function(err) {
-                console.log('error is : ', err);
-            },
-        })
-    },
-
     queryYard() {
 
         this.bmstore.reset();
