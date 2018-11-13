@@ -9,7 +9,7 @@
             {{/link-to}}
         {{/layout-push}}
         {{#layout-push direction="row" wrap=true classNames="card-wrap"}}
-            {{#each model as |item|}}
+            {{#each bm_yard_service.yards as |item|}}
                 <div class="line_container_warp yard_card_container" >
                     {{yard-card onYardCardClicked=(action 'cardClicked') yard=item}}
                 </div>

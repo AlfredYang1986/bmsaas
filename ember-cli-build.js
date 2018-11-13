@@ -18,6 +18,9 @@ module.exports = function(defaults) {
     }
   });
 
+  app.import('bower_components/jsonapi-datastore/dist/jsonapi-datastore.js');
+  app.import('vendor/shims/jsonapi-datastore.js');
+
     app.import("vendor/laydate/theme/default/font/iconfont.eot", {
     destDir: '/assets/laydate/fonts'
     })
