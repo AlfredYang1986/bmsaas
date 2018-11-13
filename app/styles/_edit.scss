@@ -3,6 +3,7 @@
 @import "left-menu";
 @import 'bm-saas-standard/bm-saas-typography';
 @import 'bm-saas-standard/bm-saas-button';
+@import 'edit-yard';
 
 .edit_nav {
 	position: fixed;
@@ -64,7 +65,7 @@ span.select-time-subtitle {
 }
 
 .edit_first_panel {
-	margin-top: 24px !important;
+	margin-top: 24px;
 
 	.detail-address {
 		margin-top: -15px;

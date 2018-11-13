@@ -1,39 +1,57 @@
+@import './bm-saas-standard/args';
 @import 'args';
 
 @import "yard-card";
 
 %yard_content_basic {
-    padding-left: 202px;
+    padding-left: 240px;
 }
 
 .yard_content_top {
     @extend %yard_content_basic;
-    padding-top: 50px;
+    height: 100vh;
+    padding-top: 64px;
 }
 
 .yard_content {
-    margin-left: 24px;
-    padding: 32px;
+    background: $color-neutral-N000;
+    padding: 0;
+    margin: 24px;
+    margin-bottom: 0;
+    height: calc(100% - 24px);
 
-    .yard_content_title {
-        font-family: "SimHei";
-        font-weight: 500;
-        font-size: 26px;
-        color: #000000;
+    .yard-title-flex{
+        align-items: center;
+        height: 72px;
+        padding: 20px 24px;
+
+        p.page_title {
+            font-size: 24px;
+            color: $color-neutral-N800;
+            line-height: 28px;
+            height: 32px;
+            
+        }
+        .yard_add_btn {
+            background: $color-theme-T100;
+            border-radius: 100px;
+            font-family: $font-family;
+            font-size: $font-size-main;
+            color: $color-neutral-N000;
+            letter-spacing: 2px;
+            height: 32px;
+            line-height: 16px;
+            padding: 8px 24px;
+
+        }
     }
+    .yard-card-wrap{
+        flex-wrap: wrap;
+        padding: 24px;
 
-    .yard_add_btn {
-        background: #6E7CD4;
-        border-radius: 100px;
-        font-family: $font-nav-acc;
-        font-size: 14px;
-        color: #FFFFFF;
-        letter-spacing: 2px;
+        .yard_card_container {
+            // margin-top: 46px;
 
-        padding: 8px 24px;
-    }
-
-    .yard_card_container {
-        margin-top: 16px;
+        }
     }
 }

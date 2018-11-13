@@ -52,19 +52,19 @@
     padding-bottom: 40px;
     margin-left: 240px;
 
-    .tech-infos-container{
+    // .tech-infos-container{
         
-        .tech-infos-icon{
+    //     .tech-infos-icon{
             
-            .edit_title{
-                margin-bottom: 16px;
-                font-family: $font-family;
-                font-size: 14px;
-                font-weight: 700;
-                color: #172B4D;
-            }
-        }
-    }
+    //         .edit_title{
+    //             margin-bottom: 16px;
+    //             font-family: $font-family;
+    //             font-size: 14px;
+    //             font-weight: 700;
+    //             color: #172B4D;
+    //         }
+    //     }
+    // }
     section.stu_section {
       margin: 0 24px 8px;
       padding: 24px;
@@ -129,6 +129,16 @@
             margin-left: 40px;
         }
         .tech-infos-container {
+            .tech-infos-icon{
+            
+                .edit_title{
+                    margin-bottom: 16px;
+                    font-family: $font-family;
+                    font-size: 14px;
+                    font-weight: 700;
+                    color: #172B4D;
+                }
+            }
             .tech-avatar {
                 flex: 0 0 272px;
                 p{

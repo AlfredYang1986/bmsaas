@@ -84,6 +84,7 @@
                     <div class='line_conatainer_warp'>
                         {{#each bm_yard_service.yard.Tagimgs as |item|}}
                             {{#if (bmcom/bm-nil-string item.img)}}
+                                <span class='alt_right_panel_perperty_des'>请上传信息</span>
                             {{else}}
                                 {{bmcom/bm-img-uploader needTag=true canEdit=false img=item.img tag=item.tag classNames='alt-course-tag-img-adjust'}}
                             {{/if}}
