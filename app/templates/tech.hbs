@@ -5,7 +5,7 @@
             {{#link-to 'edit.tech' 'tech/push' classNames='tech_add_btn'}}+ 添加老师{{/link-to}}
         {{/layout-push}}
         {{#layout-push direction="row" wrap=true classNames="tech-card-wrap"}}
-            {{#each model.techs as |item|}}
+            {{#each bm_tech_service.techs as |item|}}
                 <div class="line_container_warp tech_card_container" >
                     {{tech-card onTechCardClicked=(action 'cardClicked') tech=item}}
                 </div>

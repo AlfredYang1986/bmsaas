@@ -5,20 +5,17 @@ import { A } from '@ember/array';
 export default Service.extend({
     store: service(),
     bmstore: new JsonApiDataStore(),
-    // bmupstore: new JsonApiDataStore(),
 
     init() {
         this._super(...arguments);
         this.addObserver('refresh_token', this, 'queryYard');
         this.addObserver('refresh_all_token', this, 'queryMultiObjects');
-        // this.addObserver('refresh_up_token', this, 'queryUpYard');
     },
 
     yardid: '',
     refresh_all_token: '',
     refresh_token: '',
-    // refresh_up_token: '',
-    // upyard: null,
+
     yard: null,
     yards: A([]),
 
@@ -27,7 +24,7 @@ export default Service.extend({
         this.bmstore.reset();
         this.set('yard', null);
 
-        if (this.yardid.length == 0) {
+        if (this.yardid.length == 0 || this.yardid == 'yard/push') {
             return;
         }
 

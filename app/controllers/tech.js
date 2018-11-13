@@ -1,7 +1,8 @@
 import Controller from '@ember/controller';
+import { inject as service } from '@ember/service';
 
 export default Controller.extend({
-    classNames: "tech",
+    bm_tech_service: service(),
     actions: {
         cardClicked(idx) {
             this.transitionToRoute('detail.tech', idx);
@@ -10,12 +11,4 @@ export default Controller.extend({
             this.transitionToRoute('edit.tech',"tech/push")
         }
     },
-    guid() {
-        function s4() {
-          return Math.floor((1 + Math.random()) * 0x10000)
-            .toString(16)
-            .substring(1);
-        }
-        return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-      }
 });
