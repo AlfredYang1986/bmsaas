@@ -44,15 +44,15 @@
             </div>
             <div class='detail_panel detail_panel_col_between tech_info_detail' >
                 {{#layout-push direction="col" classNames="tech_info_area"}}
-                    {{#layout-push direction="row"}}
+                    {{#layout-push direction="row" classNames="tech_info_area-item"}}
                         <p>昵称</p>
                         <span class='detail_panel_des_02'>{{bm_tech_service.tech.nickname}}</span>
                     {{/layout-push}}
-                    {{#layout-push direction="row"}}
+                    {{#layout-push direction="row" classNames="tech_info_area-item"}}
                         <p>出生日期</p>
                         <span class='detail_panel_des_02'>{{bmdob/bmdobformat bm_tech_service.tech.dob}}</span>
                     {{/layout-push}}
-                    {{#layout-push direction="row"}}
+                    {{#layout-push direction="row" classNames="tech_info_area-item"}}
                         <p>来自城市</p>
                         <span class='detail_panel_des_02'>{{bm_tech_service.tech.nativePlace}}</span>
                     {{/layout-push}}

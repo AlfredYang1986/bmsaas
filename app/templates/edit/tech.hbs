@@ -18,7 +18,7 @@
     </li>
 </ul>
 {{#layout-push direction='row' split=true classNames='edit_nav' }}
-  <span>编辑-老师信息</span>
+  <span>编辑教师信息</span>
   <span>
       {{#if isPushing}}
           {{#link-to 'home' class="edit_nav_btn btn_cacel"}}
@@ -48,9 +48,12 @@
   <div class="input_container">
     <section id="tech-info" class="tech-infos tech_section">
         {{#layout-push direction='row' split=true classNames="tech-infos-container"}}
-            {{bmcom/bm-img-uploader needTag=false canEdit=true }}
+            {{#layout-push direction='col' classNames="tech-infos-icon"}}
+                <p class="edit_title">教师头像</p>
+                {{bmcom/bm-img-uploader needTag=false canEdit=true }}
+            {{/layout-push}}
             <div class="tech-basis-info">
-                {{#layout-push direction='row' split=false classNames=" area-margin-bottom"}}
+                {{#layout-push direction='row' split=false classNames="area-margin-bottom"}}
                     {{#layout-push direction="col" split=false classNames='input_area' }}
                       <p class="edit_title">姓名</p>
                       {{input type="text" class="edit_input kid_school" maxlength='8' value=bm_tech_service.tech.name}}

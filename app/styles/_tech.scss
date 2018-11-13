@@ -9,15 +9,17 @@
 
 .tech_content_top {
     @extend %tech_content_basic;
+    height: 100vh;
     padding-top: 64px;
 }
 
 .tech_content {
     // padding: 22px 24px;
+    background: $color-neutral-N000;
     padding: 0;
     margin: 24px;
-    background: $color-neutral-N000;
-    height: 100%;
+    margin-bottom: 0;
+    height: calc(100% - 24px);
 
     .tech-title-flex{
         align-items: center;
