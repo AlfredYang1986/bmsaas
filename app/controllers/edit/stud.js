@@ -3,7 +3,7 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 
 export default Controller.extend({
-    bm_stud_update_service: service(),
+    bm_stud_service: service(),
 
     isPushing: false,
 

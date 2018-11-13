@@ -5,10 +5,10 @@ import { inject as service } from '@ember/service';
 
 export default Route.extend({
     // mock_data: service(),
-    bm_stud_update_service: service(),
+    bm_stud_service: service(),
 
     model(params) {
-        this.bm_stud_update_service.set('studid', params.studid);
+        this.bm_stud_service.set('studid', params.studid);
 
         return RSVP.hash({
             studid: params.studid 
@@ -16,6 +16,6 @@ export default Route.extend({
     },
     setupController(controller, model) {
         this._super(controller, model);
-        this.bm_stud_update_service.set('refresh_token', this.bm_stud_update_service.guid());
+        this.bm_stud_service.set('refresh_token', this.bm_stud_service.guid());
     },
 });
