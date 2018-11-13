@@ -1,11 +1,9 @@
 import Controller from '@ember/controller';
 import EmberObject from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default Controller.extend({
-    init() {
-        this._super(...arguments);
-
-    },
+    bm_stud_service: service(),
     actions: {
         cardClicked(idx) {
             this.get('logger').log(idx);
@@ -15,12 +13,4 @@ export default Controller.extend({
             this.transitionToRoute('edit.stud', "stud/push");
         }
     },
-    guid() {
-      function s4() {
-        return Math.floor((1 + Math.random()) * 0x10000)
-          .toString(16)
-          .substring(1);
-      }
-      return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-    }
 });
