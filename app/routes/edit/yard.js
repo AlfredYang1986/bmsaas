@@ -3,11 +3,11 @@ import RSVP from 'rsvp';
 import { inject as service } from '@ember/service';
 
 export default Route.extend({
-    mock_data: service(),
-    bm_yard_update_service: service(),
+    // mock_data: service(),
+    bm_yard_service: service(),
 
     model(params) {
-        this.bm_yard_update_service.set('yardid', params.yardid);
+        this.bm_yard_service.set('yardid', params.yardid);
         // this.mock_data.regionSource();
         return RSVP.hash({
                 yardid: params.yardid,
@@ -35,6 +35,6 @@ export default Route.extend({
             controller.set('isPushing', true);
         }
         this.controller.set('current_idx', 0);
-        this.bm_yard_update_service.set('refresh_token', this.bm_yard_update_service.guid());
+        this.bm_yard_service.set('refresh_token', this.bm_yard_service.guid());
     },
 });

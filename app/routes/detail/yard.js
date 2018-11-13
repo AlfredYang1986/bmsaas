@@ -5,7 +5,7 @@ import { inject as service } from '@ember/service';
 
 export default Route.extend({
     // mock_data: service(),
-    bm_yard_update_service: service(),
+    bm_yard_service: service(),
 
     model(params) {
         // this.mock_data.sureYard();
@@ -14,7 +14,7 @@ export default Route.extend({
         //     this.transitionTo('home');
         // }
         //
-        this.bm_yard_update_service.set('yardid', params.yardid);
+        this.bm_yard_service.set('yardid', params.yardid);
   
         return RSVP.hash({
             yardid: params.yardid,
@@ -30,6 +30,6 @@ export default Route.extend({
     },
     setupController(controller, model) {
         this._super(controller, model);
-        this.bm_yard_update_service.set('refresh_token', this.bm_yard_update_service.guid());
+        this.bm_yard_service.set('refresh_token', this.bm_yard_service.guid());
     },
 });

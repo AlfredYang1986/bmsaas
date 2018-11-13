@@ -3,7 +3,7 @@ import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 
 export default Controller.extend({
-    bm_yard_update_service: service(),
+    bm_yard_service: service(),
 
     yard_provinces: null,
     yard_citys: null,
