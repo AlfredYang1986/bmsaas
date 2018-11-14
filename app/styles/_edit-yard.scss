@@ -146,6 +146,33 @@
 				&.edit_fifth_panel {
                     min-height: 0;
 
+                    .line_conatainer_warp{
+                        
+                        .alt-yard-edit-tag-img-adjust {
+                            margin-right: 24px;
+                            margin-bottom: 40px;
+                            width: 272px;
+                            height: 308px;
+                        
+                            .bm-upload-form{
+                        
+                                div.bm-upload-container{
+                                    // margin-top: 16px;
+                        
+                                    img{
+                                        width: 272px;
+                                        height: 272px;
+
+                                    }
+                                }
+                                
+                            }
+                            .bm-upload-tag{
+                                margin-top: 288px;
+                                justify-content: flex-start;
+                            }
+                        }
+                    }
 				}
 			}
 		}
