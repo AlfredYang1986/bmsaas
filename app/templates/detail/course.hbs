@@ -75,7 +75,7 @@
                           {{#layout-push direction='col' classNames='detail_course_pintu_right'}}
                               <img src={{bmgetpintuimgurl model.course.imgs namedArgs="top"}} class="detail_course_pintu_top" alt="Responsive image">
                               <div class="detail_course_pintu_bottom" style="background: url({{bmgetpintuimgurl model.course.imgs namedArgs='bottom'}}) no-repeat; background-size: cover;background-position: center;">
-                                  <a href="#" class="detail_yard_pintu_content">查看更多</a>
+                                  <a href="#" class="detail_course_pintu_content">查看更多</a>
                               </div>
                           {{/layout-push}}
                       {{/layout-push}}
@@ -83,7 +83,6 @@
                 </div>
 
                 {{/layout-push}}
-                <div class='alt_course_deatil_split_line'> </div>
 
 
                 {{!-- {{#layout-push direction='row' mid=true class='alt_course_detail_gallery'}} --}}
@@ -92,23 +91,33 @@
             {{/layout-push}}
 
             {{#layout-push direction='col' classNames='alt_course_panel alt_course_right_panel'}}
-                {{!-- {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
+                {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
                     <span class='alt_right_panel_perperty_title'>教育理念和模式</span>
-                    {{#layout-push direction='row'}}
-                        {{#each model.tags as |item|}}
-                            {{#layout-push direction='col' mid=true classNames='alt_course_detail_tag'}}
-                                {{item}}
-                            {{/layout-push}}
-                        {{/each}}
-                    {{/layout-push}}
-                {{/layout-push}} --}}
-                {{!-- {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
+                    {{#if (bmcom/bm-nil-array bm_session_service.session.tags)}}
+                        {{#layout-push direction='row' mid=true}}
+                            <span class='alt_right_panel_perperty_des'>请上传信息</span>
+                        {{/layout-push}}
+                    {{else}}
+                        {{#layout-push direction='row'}}
+                            {{#each bm_session_service.session.tags as |item|}}
+                                <span class='alt_yard_detail_tag'>{{item}}</span>
+                            {{/each}}
+                        {{/layout-push}}
+                    {{/if}}
+                {{/layout-push}}
+                {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
                     <span class='alt_right_panel_perperty_title'>课程目标</span>
                     <span class='alt_right_panel_perperty_des'>{{model.course.target}}</span>
-                {{/layout-push}} --}}
+                {{/layout-push}}
                 {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
                     <span class='alt_right_panel_perperty_title'>课程计划</span>
                     <span class='alt_right_panel_perperty_des'>{{bm_session_service.session.planning}}</span>
+                    {{!-- <span class='alt_right_panel_perperty_des_dot'>
+                        <div>
+                            <span class='alt_right_panel_perperty_dot'></span>
+                        </div>
+                        <span class='alt_right_panel_perperty_des'>123</span>
+                    </span> --}}
                 {{/layout-push}}
                 {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
                     <span class='alt_right_panel_perperty_title'>课程内容</span>
