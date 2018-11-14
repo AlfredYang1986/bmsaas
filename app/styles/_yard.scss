@@ -55,3 +55,265 @@
         }
     }
 }
+
+.alt_yard_selection {
+    padding-top: 64px;
+    padding-left: 240px;
+
+    .alt_href_link {
+        font-family: PingFangSC-Medium;
+        font-size: 12px;
+        color: #6B778C;
+        line-height: 16px;
+        margin-bottom: 16px;
+        margin-left: 24px;
+    }
+
+    .alt_yard_container {
+        // padding: 12px;
+        margin: 24px;
+        // width: 100%;
+    
+        .alt_yard_panel {
+            // margin: 12px;
+            margin-bottom: 8px;
+            background: #FFF;
+            min-height: 64px;
+
+            .alt_yard_title {
+                font-family: $font-nav-acc;
+                font-size: 16px;
+                color: #172B4D;
+
+                margin-left: 24px;
+            }
+
+            .alt_yard_btn {
+                padding: 6px 26px;
+                background: rgba(9,30,66,0.04);
+                border-radius: 3px;
+
+                font-family: $font-nav-acc;
+                font-size: 14px;
+                color: #42526E;
+                text-align: center;
+
+                margin-right: 24px;
+            }
+        }
+
+        .alt_yard_right_panel {
+            width: 66.6666%;
+            margin-bottom: 0;
+            padding: 24px;
+            height: fit-content;
+
+            .alt_yard_detail_panel {
+                // margin: 24px;
+                // width: 100%;
+                min-height: 40px;
+                margin-bottom: 40px;
+                border-bottom: 1px solid #00000020;
+
+                .alt_right_panel_perperty_title {
+                    font-family: PingFangSC-Medium;
+                    font-size: 14px;
+                    color: #172B4D;
+                    margin-bottom: 24px;
+                }
+
+                .alt_right_panel_perperty_des_dot {
+                    height: 20px;
+
+                    div{
+                        // position: relative;
+                        height: 20px;
+                        width: 20px;
+                        display: inline-block;
+
+                        .alt_right_panel_perperty_dot {
+                            background-color: #98A0AF;
+                            width: 4px;
+                            height: 4px;
+                            border-radius: 50%;
+                            display: inline-block;
+                            position: relative;
+                            top: -7px;
+                            left: 8px;
+                        }
+                    }
+                }
+
+                .alt_right_panel_perperty_des {
+                    font-family: PingFangSC-Regular;
+                    font-size: 14px;
+                    color: #172B4D;
+                    text-align: left;
+                    margin-bottom: 40px;
+
+                }
+
+                &:nth-last-child(1){
+
+                    .alt_right_panel_perperty_des {
+                        margin-bottom: 0;
+                    }
+                }
+                
+                .alt_yard_detail_tag {
+                    width: 106px;
+                    height: 32px;
+                    line-height: 32px;
+
+                    font-family: PingFangSC-Regular;
+                    font-size: 14px;
+                    color: #172B4D;
+                    text-align: center;
+
+                    background: #80AEFF55;
+                    border-radius: 4px;
+
+                    margin: 0 8px 40px 0;
+                }
+            }
+            .alt_yard_detail_panel:nth-last-child(1){
+                min-height: 0;
+                margin-bottom: 0;
+                border-bottom: none;
+
+                .alt_right_panel_perperty_title{
+                    margin-bottom: 30px;
+                }
+            }
+        }
+
+        .alt_yard_left_panel {
+            width: 33.3333%;
+            margin-right: 8px;
+            padding: 24px;
+            margin-bottom: 0;
+            background-color: #FFFFFF;
+            height: fit-content;
+
+            .alt_yard_panel{
+                margin-bottom: 0;
+            }
+
+            .alt_yard_deatil_split_line{
+                opacity: 0.12;
+                border: 0.5px solid #00000020;
+            }
+
+            .alt_yard_deltail_title {
+                font-family: $font-nav-acc;
+                font-size: 16px;
+                color: #172B4D;
+                height: 28px;
+                line-height: 28px;
+                // margin-top: 24px;
+                margin-bottom: 16px;
+            }
+
+            .alt_yard_detail_cat {
+                font-family: $font-brand;
+                font-size: 14px;
+                color: #6B778C;
+                text-align: left;
+                // margin-top: 8px;
+                line-height: 20px;
+                height: 20px;
+                margin-bottom: 24px;
+            }
+
+            .alt_yard_detail_line {
+                width: 100%
+            }
+
+            .alt_yard_detail_half {
+                width: 50%
+            }
+
+            .alt_yard_detail_perperty {
+                font-family: $font-brand;
+                font-size: 14px;
+                color: #172B4D;
+                text-align: left;
+
+                margin-top: 24px;
+            }
+
+            .alt_yard_detail_perperty_des {
+                font-family: $font-brand;
+                font-size: 11px;
+                color: #6B778C;
+
+                margin-bottom: 24px;
+            }
+
+            .alt_yard_detail_split_line {
+                opacity: 0.12;
+                border: 1px solid #000000;
+                height: 1px;
+                width: 100%
+            }
+
+            .alt_yard_detail_gallery {
+                width: 248px;
+            }
+        }
+    }
+}
+
+.alt_yard_edit_btn_margin {
+    margin-top: 24px;
+    justify-content: flex-end;
+}
+
+.alt_yard_section {
+    padding-top: 64px;
+    padding-left: 240px;
+
+    .alt_yard_panel {
+        margin: 24px;
+        background: #FFF;
+
+        padding: 24px;
+
+        .alt_yard_title {
+            font-family: PingFangSC-Medium;
+            font-size: 14px;
+            color: #172B4D;
+        }
+
+        .alt_yard_des {
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #6B778C;
+            text-align: left;
+        }
+    }
+}
+
+.alt-yard-tag-img-adjust {
+    margin-right: 40px;
+    margin-bottom: 24px;
+    width: 160px;
+    height: 142px;
+
+    .bm-upload-form{
+
+        div.bm-upload-container{
+            // margin-top: 16px;
+
+            img{
+                width: 160px;
+                height: 106px;
+                
+            }
+        }
+        
+    }
+    .bm-upload-tag{
+        margin-top: 122px;
+    }
+}
