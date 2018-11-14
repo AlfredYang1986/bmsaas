@@ -88,24 +88,77 @@
                     box-shadow: none;
                 }
 
+                .course-edit-check + .course-edit-check {
+                    margin-top: 8px;
+                }
+
+                .course-edit-check-low {
+                    margin-top: 42px;
+                }
+
+                .course-edit-check-high {
+                    margin-top: 16px;
+                }
+
+                .course-edit-check-age {
+                    margin-top: 8px;
+                    margin-bottom: 40px;
+                }
+
+                input[type=checkbox] {
+                    margin-left: 0;
+                    height: 15px;
+                }
+                input[type=checkbox] + label{
+                    margin-left: 0;
+                    font-family: PingFangSC-Regular;
+                    font-size: 14px;
+                    color: #172B4D;
+                    text-align: left;
+                }
+
 				&.edit_first_panel {
 
 				}
 
 				&.edit_second_panel {
-
+                    .alt_course_title_age{
+                        margin-top: 40px;
+                    }
 				}
 
 				&.edit_third_panel {
+                    .alt-course-age-group{
+                        justify-content: flex-start;
+    
+                        .alt_course_des{
+                            position: relative;
+                            left: -22px;
+                            line-height: 58px;
+                            height: 32px;
+                        }
+                        .input-group{
+                            width:200px;
+    
+                            .edit_input_age{
+                                width: 110px;
+                            }
+                            .input-group-append{
+                                height: 32px;
+                                position: relative;
+                                top: 16px;
+                                left: -40px;
+                            }
+                        }
+                    }
 
-                    
                 }
 
 				&.edit_fourth_panel {
 
 				}
 
-				&.edit_fifth_panel {
+				&.edit_seventh_panel {
                     min-height: 0;
 
                     .line_conatainer_warp{
@@ -146,6 +199,10 @@
                 width: calc(100% - 48px);
                 padding: 24px;
 
+                .alt_course_big_title{
+                    margin-bottom: 40px;
+                    font-size: 20px;
+                }
                 .alt_course_title{
                     // margin-bottom: 4px;
                 }
