@@ -1,0 +1,72 @@
+<div class="detail_content_top">
+    <div class="detail_page">
+        {{#link-to 'courseReserve' class="reserve_detail_href_ref"}}
+            返回
+        {{/link-to}}
+        <div class='detail_panel detail_margin_top' >
+            {{#layout-push direction='row' split=true classNames="reserve-detail-head"}}
+                {{#layout-push direction='col' mid=true }}
+                    {{#layout-push direction='col'}}
+                        <span class="detail_panel_role_name">{{bm_exp_service.exp.SessionInfo.title}}</span>
+                        {{#layout-push direction='row'}}
+                        {{!-- <p class="detail_panel_role_num">累计预约人数&nbsp;&nbsp;{{reserve_number}}</p> --}}
+                        {{/layout-push}}
+                    {{/layout-push}}
+                {{/layout-push}}
+                {{#layout-push direction="row" classNames="reserve-detail-btn"}}
+                    <p class="reserve-more-btn"></p>
+                    {{!-- {{#bs-button onClick=(action (mut courseCode) true) classNames="reserve-code-btn"}}{{/bs-button}} --}}
+                    {{#bs-button classNames="reserve-code-btn"}}{{/bs-button}} 
+                    <div local-class="modal-dialog">
+                        {{#bs-modal open=courseCode onHidden=(action (mut courseCode) false) as |modal|}}
+                            <div class="stud-modal">
+                                {{#modal.body classNames="stud-modal-body"}}
+                                  <img src="" local-class="code-img" alt="">
+                                  <p local-class="title">课程预约详情</p>
+                                {{/modal.body}}
+                                {{#modal.footer classNames="stud-modal-footer"}}
+                                  {{#bs-button onClick=(action modal.close)}}取消{{/bs-button}}
+                                  {{#bs-button type="success" onClick=(action modal.submit)}}保存图片{{/bs-button}}
+                                {{/modal.footer}}
+                            </div>
+                        {{/bs-modal}}
+                    </div>
+                {{/layout-push}}
+            {{/layout-push}}
+        </div>
+
+        {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs}}
+
+        {{#if (bmeq cur_idx 0)}}
+        <table class='ib_table_head'>
+            <tr>
+                {{#each model.title as |item|}}
+                    <th class='ib_table_item'>{{item}}</th>
+                {{/each}}
+            </tr>
+            {{#each model.res.reserve_records as |item|}}
+            <tr>
+                <td class='ib_table_content_item'>{{bmdobformat item.res_date}}</td>
+                <td class='ib_table_content_item'>{{item.yard.address}}</td>
+                <td class="ib_table_content_item">{{bmattendeename item}}</td>
+                <td class="ib_table_content_item">{{bmattendeecontact item}}</td>
+                <td class="ib_table_content_item">签到</td>
+            </tr>
+            {{/each}}
+        </table>
+        {{/if}}
+
+        {{#if (bmeq cur_idx 1)}}
+        <section class='alt_course_selection'>
+            {{#layout-push direction='col' classNames='alt_course_container'}}
+                {{#bmpage/bm-session-info session=bm_exp_service.exp.SessionInfo}}
+                    {{#link-to 'edit.exp.info' bm_exp_service.exp.SessionInfo.id classNames='alt_course_btn'}}
+                        编辑
+                    {{/link-to}}
+                {{/bmpage/bm-session-info}}
+            {{/layout-push}}
+        </section>
+        {{/if}}
+    </div>
+</div>
+{{outlet}}

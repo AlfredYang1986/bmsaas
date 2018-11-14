@@ -1,168 +1,97 @@
 @import "args";
 @import 'stud-frank';
 @import "stud-card";
+@import 'bm-saas-standard/bm-saas-typography';
+@import 'bm-saas-standard/bm-saas-button';
 
 %stud_content_basic {
-  padding-left: 240px;
+    padding-left: 240px;
 }
-// .stud_content_top {
-//   @extend %dd_content_basic;
-//   padding-top: 50px;
-// }
-.btn_save {
-  padding: 0;
-  width: 80px;
-  height: 32px;
-  background: rgba(9,30,66,0.04);
-  border-radius: 3px;
-  font-family: $font-brand;
-  font-size: 14px;
-  color: #A5ADBA;
-  text-align: center;
-}
-.tech_add_btn {
-    background: #80AEFF;
-    border-radius: 100px;
-    font-family: $font-nav-acc;
-    font-size: 14px;
-    color: #FFFFFF;
-    letter-spacing: 2px;
-    padding: 8px 24px;
-}
-.tech_add_btn:hover {
-    text-decoration: none;
-    color: #FFFFFF;
-}
+
 .stud_container {
-  // @extend %dd_content_basic;
-  padding-left: 240px;
-  padding-top: 64px;
-}
-
-.modal-dialog {
-  margin-top: 150px;
-
-  .modal-content {
-    background: transparent;
-    border: none;
-  }
-
-  .stud-modal {
-    padding-top: 40px;
-    margin-left: 85px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 463px;
-    width: 330px;
-    background: #fff;
-
-    .stud-modal-body {
-      img {
-        width: 237px;
-        height: 237px;
-        background: red;
-        border: 1px solid #979797;
-      }
-
-      p {
-        margin-top: 29px;
-        text-align: center;
-        font-family: PingFangSC-Medium;
-        font-size: 18px;
-        color: #767A80;
-        letter-spacing: 1.5px;
-      }
-    }
-
-    .stud-modal-footer {
-      display: flex;
-      justify-content: space-between;
-      width: 237px;
-      border-top: none;
-      padding-left: 0;
-      padding-right: 0;
-      padding-bottom: 30px;
-
-      .btn-secondary {
-        width: 80px;
-        height: 35px;
-        font-family: PingFangSC-Medium;
-        font-size: 14px;
-        color: #767A80;
-        background: #fff;
-        border: 1px solid #979797;
-        border-radius: 4px;
-        letter-spacing: 1.17px;
-      }
-
-      .btn-success {
-        width: 80px;
-        height: 35px;
-        font-family: PingFangSC-Medium;
-        font-size: 14px;
-        color: #fff;
-        background: #6E7CD4;
-        border: 1px solid #6E7CD4;
-        border-radius: 4px;
-        letter-spacing: 1.17px;
-      }
-    }
-  }
+    @extend %stud_content_basic;
+    height: 100vh;
+    padding-top: 64px;
 }
 
 .stud_content {
-  margin: 26px 24px 0;
-  height: 100%;
-  background-color: #FFF;
+    background: $color-neutral-N000;
+    padding: 0;
+    margin: 24px;
+    margin-bottom: 0;
+    height: calc(100% - 24px);
 
-  .stud_title {
-    padding: 0 24px;
-    height: 72px;
-    line-height: 72px;
-    font-family: $font-brand;
-    font-size: 24px;
-    color: #172B4D;
-  }
+    .stud-title-flex{
+        align-items: center;
+        height: 72px;
+        padding: 20px 24px;
 
-  .qr-code {
-    margin-right: 8px;
-    height: 72px;
-    line-height: 72px;
+        p.page_title {
+            font-size: 24px;
+            color: $color-neutral-N800;
+            line-height: 28px;
+            height: 32px;
+            
+        }
+        .stud_add_btn {
+            background: $color-theme-T100;
+            border-radius: 100px;
+            font-family: $font-family;
+            font-size: $font-size-main;
+            color: $color-neutral-N000;
+            letter-spacing: 2px;
+            height: 32px;
+            line-height: 16px;
+            padding: 8px 24px;
 
-    img {
-      height: 32px;
-      width: 32px;
+        }
     }
-  }
-
-  .card-wrap {
-    padding: 24px;
-  }
-
-  .stud_qrcod_btn {
-    font-family: $font-brand;
-    font-size: 14px;
-    color: #FFFFFF;
-    letter-spacing: 2px;
-    background: #6E7CD4;
-    border-radius: 100px;
-    padding: 8px 9px;
-    margin-right: 20px;
-    min-width: 135px;
-  }
-
-  .stud_remind {
-    font-family: $font-brand;
-    font-size: 14px;
-    color: #6E7CD4;
-    letter-spacing: 2px;
-    margin-top: 16px;
-  }
-
-  .stud_card_container {
-    width: 260px;
-    // margin-top: 16px;
-  }
+    .stud_title {
+        @extend %font-page-header-title;
+    }
+    // .qr-code {
+    //     .stud_add_btn {
+    //         background: #80AEFF;
+    //         border-radius: 100px;
+    //         font-family: $font-nav-acc;
+    //         font-size: 14px;
+    //         color: #FFFFFF;
+    //         letter-spacing: 2px;
+    //         padding: 8px 24px;
+    //     }
+    //     .stud_add_btn:hover {
+    //         text-decoration: none;
+    //         color: #FFFFFF;
+    //     }
+    //     img {
+    //         height: 32px;
+    //         width: 32px;
+    //     }
+    // }
+    .card-wrap {
+        // margin-top: 34px;
+        flex-wrap: wrap;
+        padding: 24px;
+    }
+    // .stud_qrcod_btn {
+    //     font-family: $font-brand;
+    //     font-size: 14px;
+    //     color: #FFFFFF;
+    //     letter-spacing: 2px;
+    //     background: #6E7CD4;
+    //     border-radius: 100px;
+    //     padding: 8px 9px;
+    //     margin-right: 20px;
+    //     min-width: 135px;
+    // }
+    // .stud_remind {
+    //     font-family: $font-brand;
+    //     font-size: 14px;
+    //     color: #6E7CD4;
+    //     letter-spacing: 2px;
+    //     margin-top: 16px;
+    // }
+    // .stud_card_container {
+    //     width: 260px;
+    // }
 }

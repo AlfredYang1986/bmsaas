@@ -3,23 +3,19 @@ import RSVP from 'rsvp';
 import { inject as service } from '@ember/service';
 
 export default Route.extend({
-    mock_data: service(),
-    model() {
-        this.mock_data.sureBrand();
-        let tmp = this.store.peekRecord('bmbrand', 'i am a brand');
-    
+    // mock_data: service(),
+    bm_brand_service: service(),
+    model(params) {
+
+        this.bm_brand_service.set('brandid', '5be6a00b8fb80736e2ec9ba5');
         return RSVP.hash({
-            brand: tmp
+            brandid: "5be6a00b8fb80736e2ec9ba5",
         });
     },
 
     setupController(controller, model) {
-        // Call _super for default behavior
         this._super(controller, model);
-        // Implement your custom setup after
-        controller.set('title', model.brand.get('title'));
-        controller.set('subtitle', model.brand.get('subtitle'));
-        controller.set('brand_story', model.brand.get('found_stroy'));
-        controller.set('team_des', model.brand.get('team_des'));
+        controller.set('cur_idx', 0);
+        this.bm_brand_service.set('refresh_token', this.bm_brand_service.guid());
     },
 });

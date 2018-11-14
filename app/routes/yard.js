@@ -1,17 +1,10 @@
 import Route from '@ember/routing/route';
-import RSVP from 'rsvp';
-import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default Route.extend({
-    mock_data: service(),
-    model() {
-        this.mock_data.sureYard();
-        let yards = this.store.peekAll('bmyard');
-
-        return RSVP.hash({
-                yards: yards
-            })
-    },
-
+    bm_yard_service: service(),
+    setupController(controller, model) {
+        this._super(controller, model);
+        this.bm_yard_service.set('refresh_all_token', this.bm_yard_service.guid());
+    }
 });

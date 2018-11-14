@@ -1,20 +1,21 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
-import { computed } from '@ember/object';
+// import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default Route.extend({
-    mock_data: service(),
+    // mock_data: service(),
+    bm_stud_service: service(),
 
     model(params) {
-        this.mock_data.sureStud();
-        let stud = this.store.peekRecord('bmstud', params.studid);
-        if (stud == null) {
-            this.transitionTo('home');
-        }
+        this.bm_stud_service.set('studid', params.studid);
 
         return RSVP.hash({
-                stud: stud
-            })
+            studid: params.studid 
+        })
+    },
+    setupController(controller, model) {
+        this._super(controller, model);
+        this.bm_stud_service.set('refresh_token', this.bm_stud_service.guid());
     },
 });

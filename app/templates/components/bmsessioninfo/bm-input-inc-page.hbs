@@ -1,0 +1,14 @@
+<section id="start-story" class="alt_course_section" >
+    {{#layout-push direction='col' classNames='alt_course_panel edit_panel edit_fifth_panel'}}
+        <span class='alt_course_title alt_course_big_title'>将为宝贝提供</span>
+        <span class='alt_course_des'>如:教学用具、水、咖啡、小吃等</span>
+        {{input type="text" class="edit_input" maxlength='8' value=inc}}
+        <div class="course-edit-check course-edit-check-low">
+            <span class="radio-inline">
+                <input type="checkbox" name="rel" />
+                <label for="female">暂无提供物品</label>
+            </span>
+        </div>
+        {{yield}}
+    {{/layout-push}}
+</section>

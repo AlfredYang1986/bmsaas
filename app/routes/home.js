@@ -1,20 +1,18 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
-import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default Route.extend({
-    mock_data: service(),
-    model() {
+    bm_brand_service: service(),
+    model(params) {
 
-        this.mock_data.sureBrand();
-        let brand = this.store.peekRecord('bmbrand', 'i am a brand');
-
+        this.bm_brand_service.set('brandid', '5be6a00b8fb80736e2ec9ba5');
         return RSVP.hash({
-            brand: brand,
-            brand_display_name: computed('brand', function(){
-                return brand.found_date.get('year')+ '年' + brand.found_date.get('month')+ '月';
-            })
+            brandid: "5be6a00b8fb80736e2ec9ba5",
         });
+    },
+    setupController(controller, model) {
+        this._super(controller, model);
+        this.bm_brand_service.set('refresh_token', this.bm_brand_service.guid());
     },
 });

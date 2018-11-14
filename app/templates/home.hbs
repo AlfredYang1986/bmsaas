@@ -3,8 +3,11 @@
         <div class="dd_container dd_container_margin">
             {{#layout-push direction="row" split=true classNames="brand_panel_head"}}
                 <p class="brand_panel_head_title">品牌主页</p>
-                <a href="edit/brand" class="edit_brand">编辑</a>
-                {{bm-lay-date}}
+                {{#link-to 'edit.brand'  classNames="edit_brand"}}
+                    编辑
+                {{/link-to}}
+                {{!-- {{bm-lay-date}} --}}
+                {{!-- {{bmcom/bm-img-uploader needTag=true canEdit=true }} --}}
             {{/layout-push}}
         </div>
     </div>
@@ -13,17 +16,20 @@
             <div class="dd_container dd_container_margin">
                 {{#layout-push direction="col" classNames="brand_info_card"}}
                     {{#layout-push direction="col" classNames="brand_info_card_head"}}
-                        <img class="brand_logo" src="../images/brand_demo.png" />
-                        <p class="brand_title">{{model.brand.title}}</p>
+                        {{#if (bmcom/bm-nil-obj bm_brand_service.brand)}}
+                        {{else}}
+                            <img class="brand_logo" src={{logoPath}} />
+                        {{/if}}
+                        <p class="brand_title">{{bm_brand_service.brand.title}}</p>
                     {{/layout-push}}
                     {{#layout-push direction="col" classNames="brand_info_card_content"}}
                         {{#layout-push direction="row" classNames="brand_info_card_list"}}
                             <p>成立时间</p>
-                            <span class="detail_content ">{{model.brand_display_name}}</span>
+                            <span class="detail_content ">{{bm_brand_service.brand.foundDate}}</span>
                         {{/layout-push}}
                         {{#layout-push direction="row" classNames=""}}
                             <p>一句话介绍</p>
-                            <span class="brand_subtitle">{{model.brand.subtitle}}</span>
+                            <span class="brand_subtitle">{{bm_brand_service.brand.slogan}}</span>
                         {{/layout-push}}
                     {{/layout-push}}
                 {{/layout-push}}
@@ -33,7 +39,7 @@
             {{#layout-push direction="col"  classNames="brand_detail_info"}}
                 <p class="brand_detail_list_title">品牌亮点</p>
                 {{#layout-push direction="row"}}
-                    {{#each model.brand.brand_tags as |item|}}
+                    {{#each bm_brand_service.brand.brand_tags as |item|}}
                         {{#layout-push direction='col' mid=true classNames="brand_tags brand_tag_margin"}}
                             <span>{{item}}</span>
                         {{/layout-push}}
@@ -42,39 +48,28 @@
             {{/layout-push}}
             {{#layout-push direction="col" classNames="brand_detail_info"}}
                 <p class="brand_detail_list_title">初心故事</p>
-                <span class="brand_detail_list_content">{{model.brand.found_stroy}}</span>
+                <span class="brand_detail_list_content">{{bm_brand_service.brand.foundStory}}</span>
             {{/layout-push}}
             {{#layout-push direction="col" classNames="brand_detail_info"}}
                 <p class="brand_detail_list_title">师资团队</p>
-                <span class="brand_detail_list_content">{{model.brand.team_des}}</span>
+                <span class="brand_detail_list_content">{{bm_brand_service.brand.edu_idea}}</span>
             {{/layout-push}}
             {{#layout-push direction="col" classNames="brand_detail_info"}}
                 <p class="brand_detail_list_title">品牌荣誉</p>
-                {{#layout-push direction="row" split=true}}
-                    {{#each model.brand.rewards as |item|}}
-                        {{#layout-push direction="col" mid=true classNames="detail_reward card-wrap"}}
-                            <img src={{item.img_src}} class="detail_reward_img" />
-                            <div class="detail_reward_title">
-                                <span>{{item.reward_des}}</span>
-                            </div>
-                        {{/layout-push }}
+                {{#layout-push direction="row" classNames="detail_reward_content"}}
+                    {{#each bm_brand_service.brand.Honors as |item|}}
+                        {{bmcom/bm-img-uploader needTag=true canEdit=false img=item.img tag=item.tag classNames='detail_reward_content_honor'}}
                     {{/each}}
                 {{/layout-push}}
             {{/layout-push}}
             {{#layout-push direction="col" classNames="brand_detail_info"}}
                 <p class="brand_detail_list_title">资质认证</p>
-                {{#layout-push direction="row" split=true}}
-                    {{#each model.brand.rewards as |item|}}
-                        {{#layout-push direction="col" mid=true classNames="detail_reward card-wrap"}}
-                            <img src={{item.img_src}} class="detail_reward_img" />
-                            <div class="detail_reward_title">
-                                <span>{{item.reward_des}}</span>
-                            </div>
-                        {{/layout-push }}
+                {{#layout-push direction="row" classNames="detail_reward_content"}}
+                    {{#each bm_brand_service.brand.Certifications as |item|}}
+                        {{bmcom/bm-img-uploader needTag=true canEdit=false img=item.img tag=item.tag classNames='detail_reward_content_cert'}}
                     {{/each}}
                 {{/layout-push}}
             {{/layout-push}}
         </div>
     {{/layout-push}}
-
 </div>

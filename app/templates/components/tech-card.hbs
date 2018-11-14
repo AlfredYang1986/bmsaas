@@ -1,15 +1,15 @@
-{{#layout-push direction='row' split=true classNames='tech_card'}}
+{{#layout-push direction='row' classNames='tech_card'}}
     {{#layout-push direction='col' mid=true }}
-        <img class="tech_card_icon" src={{tech.me.icon}} />
+        <img class="tech_card_icon" src={{iconImg}} />
     {{/layout-push }}
     {{#layout-push direction='col' mid=true classNames='tech_card_content'}}
         {{#layout-push direction='col' midt=true }}
             {{#layout-push direction='row' classNames='tech_card_content_line'}}
-                <span class="tech_card_text">{{tech.me.name}}</span>
+                <span class="tech_card_text">{{tech.name}}</span>
             {{/layout-push }}
             {{#layout-push direction='row' classNames='tech_card_content_line'}}
                 <img src="../images/icon_phone@2x.png" alt="" class="tel_icon">
-                <span class="tech_card_tel">{{tech.me.contact}}</span>
+                <span class="tech_card_tel">{{tech.contact}}</span>
             {{/layout-push }}
         {{/layout-push }}
     {{/layout-push }}

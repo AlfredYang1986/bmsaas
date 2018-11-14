@@ -2,12 +2,22 @@
     <p class={{titlecss}}>{{title}}</p>
     {{#layout-push direction="row" classNames="sort-sub-checkbox"}}
         {{#each candidate as |item|}}
-            {{checkbox-item text=item
-                    titlecss='edit_sub_title'
-                    btncss='form-check-label'
-                    onUnselected=(action 'onOneUnselected')
-                    onSelected=(action 'onOneSelected')
-                    }}
+            {{#if (bmeq item curSel)}}
+                {{checkbox-item text=item
+                        isSelected=true
+                        titlecss='edit_sub_title'
+                        btncss='form-check-label'
+                        onUnselected=(action 'onOneUnselected')
+                        onSelected=(action 'onOneSelected')
+                }}
+            {{else}}
+                {{checkbox-item text=item
+                        titlecss='edit_sub_title'
+                        btncss='form-check-label'
+                        onUnselected=(action 'onOneUnselected')
+                        onSelected=(action 'onOneSelected')
+                }}
+            {{/if}}
         {{/each}}
     {{/layout-push}}
 {{/layout-push}}

@@ -1,93 +1,125 @@
+@import './bm-saas-standard/args';
 .edit_nav {
-  margin-bottom: 24px;
-  padding: 16px 24px;
-  height: 64px;
-  font-family: $font-brand;
-
-  background-color: #FFF;
-
-  span:first-child {
-    font-weight: 700;
-    font-size: 24px;
-    color: #172B4D;
-  }
-
-  span:last-child {
-    a {
-      display: inline-block;
-      width: 68px;
-      text-align: center;
-      font-size: 14px;
-      color: #172B4D;
+    margin-bottom: 24px;
+    padding: 16px 24px;
+    height: 64px;
+    font-family: $font-brand;
+    background-color: #FFF;
+    span:first-child {
+        @extend %font-page-header-title;
     }
 
-    .btn_save {
-      padding: 0;
-      width: 80px;
-      height: 32px;
-      background: rgba(9,30,66,0.04);
-      border-radius: 3px;
-      font-family: $font-brand;
-      font-size: 14px;
-      color: #A5ADBA;
-      text-align: center;
+    span:last-child {
+        a {
+          @extend %button-system-subtle-default;
+        }
+
+        .btn_save {
+          @extend %button-system-disabled;
+        }
     }
-  }
 }
 
 .edit_container {
+    padding-top: 64px;
     font-family: $font-brand;
-  .edit_left_nav {
-    flex: 0 0 240px;
-    li {
-        text-align: center;
-        height: 40px;
-        a {
-            font-size: 14px;
-            color: #172B4D;
+
+    .edit_left_nav {
+        position: fixed;
+    	padding-top: 24px;
+    	z-index: 3;
+    	background-color: #f7f8fa;
+        flex: 0 0 240px;
+        margin-bottom: 0;
+        height: calc(100vh - 64px);
+        width: 240px;
+
+        li.left_bar_title{
+            padding-left: 24px;
+            margin-top: 32px;
+
+            &:nth-child(1){
+                margin-top: 0;
+            }
+
+            .edit_left_menu_text {
+                color: #6B778C;
+            }
         }
 
+    	li {
+            padding-left: 40px;
+            text-align: left;
+            height: 40px;
+
+    		a.edit_left_menu_text {
+                line-height: 40px;
+    			@extend %font-form-info-title;
+    		}
+
+    	}
     }
-  }
 
   .input_container {
     flex: 1;
+    padding-top: 24px;
     padding-bottom: 40px;
+    margin-left: 240px;
+
+    // .tech-infos-container{
+        
+    //     .tech-infos-icon{
+            
+    //         .edit_title{
+    //             margin-bottom: 16px;
+    //             font-family: $font-family;
+    //             font-size: 14px;
+    //             font-weight: 700;
+    //             color: #172B4D;
+    //         }
+    //     }
+    // }
     section.stu_section {
-      margin: 0 24px 8px;
-      padding: 24px;
-      background-color: #FFF;
+        margin: 0 24px 8px;
+        padding: 24px;
+        background-color: $color-neutral-N000;
 
       .input_area {
-          &.area-margin-bottom {
-              margin-bottom: 40px;
-          }
+
+        input[type=radio] {
+
+            & + label{
+                margin-left: 0;
+                margin-right: 32px;
+            }
+        }
+        &.area-margin-bottom {
+            margin-bottom: 40px;
+        }
 
         .edit_title {
-          margin-bottom: 16px;
-          font-family: $font-brand;
-          font-size: 14px;
-          font-weight: 700;
-          color: #172B4D;
-
-          span.sub_title {
-            font-size: 11px;
-            color: #6B778C;
-          }
+          font-family: $font-family;
+            margin-bottom: 16px;
+            @extend %font-form-info-title;
+            span.sub_title {
+                font-size: 11px;
+                color: #6B778C;
+            }
         }
 
         input.edit_input {
-          margin-bottom: 4px;
-          width: 144px;
-          height: 32px;
-          border: 0 solid #DFE1E5;
-          border-radius: 4px;
+            margin-bottom: 4px;
+            width: 144px;
+            height: 32px;
+            border: 1px solid #DFE1E5;
+            border-radius: $border-radius-button-product;
+            box-shadow: none;
         }
 
         .edit_hint {
-          font-family: $font-brand;
+          font-family: $font-family;
           font-size: 11px;
-          color: #6B778C;
+          color: $color-neutral-N200;
         }
 
         .date_choose {
@@ -96,8 +128,8 @@
             padding: 0 8px;
             width: 120px;
             height: 32px;
-            background: #FAFBFC;
-            border-radius: 4px;
+            background: $color-select-bg-dafault;
+            border-radius: $border-radius-button-product;
           }
         }
         &.area-margin-bottom:last-child {
@@ -108,7 +140,7 @@
     section.tech_section {
         margin: 0 24px 8px;
         padding: 24px;
-        background-color: #FFF;
+        background-color: $color-neutral-N000;
         .area-margin-bottom {
             margin-bottom: 40px;
         }
@@ -116,8 +148,26 @@
             margin-left: 40px;
         }
         .tech-infos-container {
+            .tech-infos-icon{
+            
+                .edit_title{
+                    margin-bottom: 16px;
+                    font-family: $font-family;
+                    font-size: 14px;
+                    font-weight: 700;
+                    color: #172B4D;
+                }
+            }
             .tech-avatar {
                 flex: 0 0 272px;
+                p{
+                    height: 22px;
+                    margin-bottom: 16px;
+                }
+                input{
+                    height: 32px;
+                    line-height: 26px;
+                }
                 img {
                     width: 272px;
                     height: 272px;
@@ -130,34 +180,43 @@
         }
         .input_area {
 
+            input[type=radio] {
+
+                & + label{
+                    margin-left: 0;
+                    margin-right: 32px;
+                }
+            }
+
           .edit_title {
             margin-bottom: 16px;
-            font-family: $font-brand;
-            font-size: 14px;
+            font-family: $font-family;
+            font-size: $font-size-main;
             font-weight: 700;
-            color: #172B4D;
+            color: $color-neutral-N800;
 
             span.sub_title {
               font-size: 11px;
-              color: #6B778C;
+              color: $color-neutral-N200;
             }
           }
 
           input.edit_input {
-            margin-bottom: 4px;
-            width: 144px;
-            height: 32px;
-            border: 0 solid #DFE1E5;
-            border-radius: 4px;
+          margin-bottom: 4px;
+          width: 144px;
+          height: 32px;
+          border: 1px solid #DFE1E5;
+          border-radius: $border-radius-button-product;
+          box-shadow: none;
           }
           input.input_100 {
               width: 100%;
           }
 
           .edit_hint {
-            font-family: $font-brand;
+            font-family: $font-family;
             font-size: 11px;
-            color: #6B778C;
+            color: $color-neutral-N200;
           }
 
           .date_choose {
@@ -166,8 +225,8 @@
               padding: 0 8px;
               width: 120px;
               height: 32px;
-              background: #FAFBFC;
-              border-radius: 4px;
+              background: $color-select-bg-dafault;
+              border-radius: $border-radius-button-product;
             }
           }
           &.area-margin-bottom:last-child {
@@ -177,15 +236,15 @@
         &.edu-lifes,&.work-lifes {
             display: none;
 
-            font-family: $font-brand;
+            font-family: $font-family;
             .edu_exper_nav {
                 // padding: 0 24px;
                 height: 32px;
                 line-height: 32px;
                 span:first-child {
                   font-weight: 700;
-                  font-size: 16px;
-                  color: #172B4D;
+                  font-size: $font-size-dialog;
+                  color: $color-neutral-N800;
                 }
 
                 .btn_addedu {
@@ -194,8 +253,8 @@
                     height: 32px;
                     background: rgba(9,30,66,0.04);
                     border-radius: 3px;
-                    font-size: 14px;
-                    color: #A5ADBA;
+                    font-size: $font-size-main;
+                    color: $color-neutral-N070;
                     text-align: center;
                 }
             }
@@ -204,8 +263,8 @@
                 .edu_exper_left {
                     flex: 0 1 120px;
                     opacity: 0.7;
-                    font-size: 14px;
-                    color: #6B778C;
+                    font-size: $font-size-main;
+                    color: $color-neutral-N200;
                 }
                 .edu_exper_change {
                     flex: 0 1 120px;
@@ -216,8 +275,8 @@
                     p {
                         margin-bottom: 8px;
                         line-height: 20px;
-                        font-size: 14px;
-                        color: #172B4D;
+                        font-size: $font-size-main;
+                        color: $color-neutral-N800;
                         letter-spacing: 1px;
                     }
 

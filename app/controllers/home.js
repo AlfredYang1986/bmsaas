@@ -1,14 +1,14 @@
 import Controller from '@ember/controller';
+import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
 
 export default Controller.extend({
-    collapsed: true,
-    actions: {
-        expendMenu() {
+    bm_brand_service: service(),
+    bmOss: service(),
+    logoPath: computed(function(){
+        let client = this.bmOss.get('ossClient');
 
-        },
-        toggle() {
-            if (this.collapsed) this.collapsed = false;
-            else this.collapsed = true;
-        }
-    }
+        let url = client.signatureUrl(this.bm_brand_service.brand.logo);
+        return url;
+    })
 });

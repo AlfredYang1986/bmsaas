@@ -1,0 +1,233 @@
+@import './bm-saas-standard/args';
+
+.edit_container {
+
+	.input_container {
+		flex: 1;
+		padding-top: 24px;
+		padding-bottom: 0;
+		margin-left: 240px;
+
+        section.brand_section{
+            padding: 0 24px 24px 24px;
+
+			.edit_panel {
+                min-height: 0;
+				padding: 24px;
+				margin: 0;
+				box-shadow: none;
+                width: 100%;
+                
+                .brand-logo-continer {
+                    width: 272px;
+                    .bm-upload-container{
+                        margin-top: 16px;
+                        width: 272px;
+                        height: 272px;
+                    }
+                    img {
+                        width: 272px;
+                        height: 272px;
+                    }
+                }
+                .brand-base-info-continer {
+                    padding-left: 56px;
+                    width: 100%;
+
+                    .brand-setup-time{
+                        margin-top: 40px;
+                    }
+                }
+                
+                .edit_input_small {
+                    width: 242px;
+                }
+
+                .edit_input_medium {
+                    width: 388px;
+                }
+
+                .edit_input_big {
+                    width: 592px;
+                }
+
+                .brand-input-group {
+                    margin-top: 40px;
+                    .edit_title {
+                        font-family: PingFangSC-Medium;
+                        font-size: 14px;
+                        color: #172B4D;
+                        letter-spacing: 0;
+    
+                    }
+                    .edit_subtitle {
+                        font-family: PingFangSC-Regular;
+                        font-size: 14px;
+                        color: #6B778C;
+                        letter-spacing: 0;
+                        margin-top: 4px;
+                        
+                    }
+                    &:nth-child(1){
+                        margin-top: 0px;
+                    }
+                }
+                .edit_title {
+                	font-family: PingFangSC-Medium;
+                	font-size: 14px;
+                	color: #172B4D;
+                    letter-spacing: 0;
+
+                }
+                .edit_subtitle {
+                	font-family: PingFangSC-Regular;
+                	font-size: 14px;
+                	color: #6B778C;
+                    letter-spacing: 0;
+                    margin-top: 4px;
+
+                }
+
+                .alt-edit-title {
+                    color: #172B4D;
+                    margin-bottom: 16px;
+                }
+
+                .alt-edit-only-margin {
+                    margin-top: 20px;
+                    
+                    .alt-edit-title-des {
+                        margin-bottom: 4px;
+                    }
+                }
+                
+                .line_half {
+                    height: 32px;
+                    margin-bottom: 32px;
+                }
+
+                .alt-edit-up-hit {
+                    width: 600px;
+                    margin: 0;
+                    margin-bottom: 16px;
+                }
+
+                .alt-edit-line {
+                    width: 600px;
+                    margin: 0;
+                    margin-bottom: 16px;
+                }
+                
+                .alt-edit-half-line {
+                    width: 300px;
+                    margin: 0;
+                    margin-bottom: 16px;
+                }
+
+                .alt-edit-text-area {
+                    width: 600px;
+                    margin: 0;
+                    margin-top: 16px;
+                    border: 1px solid #DFE1E5;
+                    border-radius: 4px;
+                }
+
+                .alt-edit-step-btn {
+                    margin-top: 40px;
+                    width: 85px;
+                    height: 32px;
+                    line-height: 18px;
+                }
+                
+                input[type=text] {
+                    margin: 0;
+                    margin-top: 16px;
+                    height: 32px;
+                    border: 1px solid #DFE1E5;
+                    border-radius: 4px;
+                    box-shadow: none;
+                }
+
+				&.edit_first_panel {
+
+				}
+
+				&.edit_second_panel {
+
+				}
+
+				&.edit_third_panel {
+
+                    .line_conatainer_warp{
+                        margin-top: 16px;
+                        
+                        .brand-honor-pic-upload {
+                            margin-right: 24px;
+                            margin-bottom: 40px;
+                            width: 272px;
+                            height: 218px;
+                        
+                            .bm-upload-form{
+                        
+                                div.bm-upload-container{
+                                    width: 272px;
+                        
+                                    img{
+                                        width: 272px;
+                                        height: 182px;
+
+                                    }
+                                }
+                                
+                            }
+                            .bm-upload-tag{
+                                max-width: none;
+                                margin-top: 198px;
+                                // justify-content: flex-start;
+                            }
+                        }
+                    }
+                }
+
+				&.edit_fourth_panel {
+
+                    .line_conatainer_warp{
+                        margin-top: 16px;
+                        
+                        .brand-cert-pic-upload {
+                            margin-right: 24px;
+                            margin-bottom: 40px;
+                            width: 272px;
+                            height: 218px;
+                        
+                            .bm-upload-form{
+                        
+                                div.bm-upload-container{
+                                    width: 272px;
+                        
+                                    img{
+                                        width: 272px;
+                                        height: 182px;
+
+                                    }
+                                }
+                                
+                            }
+                            .bm-upload-tag{
+                                max-width: none;
+                                margin-top: 198px;
+                                // justify-content: flex-start;
+                            }
+                        }
+                    }
+				}
+
+				&.edit_fifth_panel {
+
+
+				}
+            }
+
+		}
+	}
+}

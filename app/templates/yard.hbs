@@ -1,21 +1,16 @@
 <div class="yard_content_top" >
     {{#layout-push direction="col" classNames="yard_content"}}
-        {{#layout-push direction="row" split=true}}
-            <span class="yard_content_title" >
-            场地
-            </span>
-            {{#link-to 'edit.yard' 'yard/push' classNames='yard_add_btn'}}
-                + 添加场地
-            {{/link-to}}
+        {{#layout-push direction="row" split=true classNames="yard-title-flex"}}
+            <p class="page_title">场地</p>
+            {{#link-to 'edit.yard' 'yard/push' classNames='yard_add_btn'}}+ 添加场地{{/link-to}}
         {{/layout-push}}
-        {{#layout-push direction="row" wrap=true classNames="card-wrap"}}
-            {{#each model.yards as |item|}}
+        {{#layout-push direction="row" wrap=true classNames="yard-card-wrap"}}
+            {{#each bm_yard_service.yards as |item|}}
                 <div class="line_container_warp yard_card_container" >
                     {{yard-card onYardCardClicked=(action 'cardClicked') yard=item}}
                 </div>
             {{/each}}
         {{/layout-push}}
-
     {{/layout-push}}
 </div>
 

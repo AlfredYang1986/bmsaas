@@ -1,3 +1,4 @@
+@import './bm-saas-standard/args';
 @import 'args';
 
 @import 'tech-card';
@@ -8,32 +9,61 @@
 
 .tech_content_top {
     @extend %tech_content_basic;
-    padding-top: 50px;
+    height: 100vh;
+    padding-top: 64px;
 }
 
 .tech_content {
-    padding: 22px 24px;
+    // padding: 22px 24px;
+    background: $color-neutral-N000;
+    padding: 0;
     margin: 24px;
-    margin-top: 38px;
-    background: #fff;
-    height: 100%;
-    p.page_title {
-        font-size: 24px;
-        color: #172B4D;
-        line-height: 28px;
-    }
-    .tech_add_btn {
-        background: #80AEFF;
-        border-radius: 100px;
-        font-family: $font-nav-acc;
-        font-size: 14px;
-        color: #FFFFFF;
-        letter-spacing: 2px;
+    margin-bottom: 0;
+    height: calc(100% - 24px);
 
-        padding: 8px 24px;
-    }
+    .tech-title-flex{
+        align-items: center;
+        height: 72px;
+        padding: 20px 24px;
 
-    .tech_card_container {
-        margin-top: 46px;
+        p.page_title {
+            font-size: 24px;
+            color: $color-neutral-N800;
+            line-height: 28px;
+            height: 32px;
+            
+        }
+        .tech_add_btn {
+            background: $color-theme-T100;
+            border-radius: 100px;
+            font-family: $font-family;
+            font-size: $font-size-main;
+            color: $color-neutral-N000;
+            letter-spacing: 2px;
+            height: 32px;
+            line-height: 16px;
+            padding: 8px 24px;
+
+        }
+    }
+    .tech-card-wrap{
+        flex-wrap: wrap;
+        padding: 24px;
+
+        .tech_card_container {
+            // margin-top: 46px;
+
+        }
+    }
+}
+
+// 编辑页导航栏位置修正
+.nav .nav-item{
+    
+    .nav-link.active.brand_name.tech-nav-title{
+        padding: 0;
+    }
+    .nav_save_btn.menu_button_between.tech-nav-savebtn{
+        padding: 0;
     }
 }

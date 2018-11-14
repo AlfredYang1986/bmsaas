@@ -1,0 +1,23 @@
+<section id="basic-info" class="alt_course_section" >
+    {{#layout-push direction='col' classNames="alt_course_panel edit_panel edit_third_panel"}}
+        <span class='alt_course_title alt_course_big_title'>描述一下体验课的内容吧</span>
+        {{#layout-push direction="col" classNames="alt-course-input-group"}}
+            <span class='alt_course_title'>体验课时长（min）</span>
+            {{#layout-push direction="row" classNames="alt-course-age-group"}}
+            <div class="input-group">
+                {{input value=session.length class="edit_input_age" type="text"}}
+                <div class="input-group-append">
+                    <span class="input-group-text">分钟</span>
+                </div>
+            </div>
+            {{/layout-push}}
+            {{!-- {{input type="text" class="edit_input" value=session.length}} --}}
+        {{/layout-push}}
+        {{#layout-push direction="col" classNames='alt-course-input-group'}}
+            <span class="alt-edit-title alt-edit-title-des">体验课內容</span>
+            <span class='alt-edit-up-hit'>介绍体验课具体场景及内容，有趣、详细的內容介绍会引起参与者的极大兴趣。</span>
+            {{textarea value=session.description classNames='alt-edit-text-area' rows=5}}
+        {{/layout-push}}
+        {{yield}}
+    {{/layout-push }}
+</section>

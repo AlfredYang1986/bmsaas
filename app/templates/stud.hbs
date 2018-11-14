@@ -1,55 +1,20 @@
-{{!-- <div class="stud_content_top" >
-		{{#layout-push direction="col" classNames="stud_content"}}
-				{{#layout-push direction="row"}}
-						{{#bs-button class="stud_qrcod_btn" onClick=(action (mut studCode) true)}}学员注册二维码{{/bs-button}}
-						{{#bs-button class="stud_qrcod_btn" onClick=(action 'addStudClicked')}}直接添加{{/bs-button}}
-				{{/layout-push}}
-				<span class="stud_remind">温馨提示：提示新用户在扫码后进入小程序我的页面中进行注册。</span>
-				{{#layout-push direction="row" wrap=true classNames="card-wrap"}}
-						{{#each model.studs as |item|}}
-								<div class="line_container_warp stud_card_container" >
-										{{stud-card onStudCardClicked=(action 'cardClicked') stud=item}}
-								</div>
-						{{/each}}
-				{{/layout-push}}
-		{{/layout-push}}
-</div> --}}
 <div class="stud_container">
 	{{#layout-push direction="col" classNames="stud_content" }}
-		{{#layout-push direction='row' split=true}}
-			<span class="stud_title">学生</span>
-			<span class="qr-code">
-					{{!-- <img src="../images/activities_normal.png"  alt=""> --}}
-					{{#link-to 'edit.stud' 'stud/push' classNames='tech_add_btn'}}+ 添加学生{{/link-to}}
-			</span>
+		{{#layout-push direction='row' split=true classNames="stud-title-flex"}}
+			<p class="page_title">学生</p>
+			{{!-- <span class="qr-code">
+				{{#link-to 'edit.stud' 'stud/push' classNames='stud_add_btn'}}+ 添加学生{{/link-to}}
+			</span> --}}
+			{{#link-to 'edit.stud' 'stud/push' classNames='stud_add_btn'}}+ 添加学生{{/link-to}}
 		{{/layout-push}}
-		{{!-- {{#layout-push direction="row"}}
-						{{#bs-button class="stud_qrcod_btn" onClick=(action (mut studCode) true)}}学员注册二维码{{/bs-button}}
-						{{#bs-button class="stud_qrcod_btn" onClick=(action 'addStudClicked')}}直接添加{{/bs-button}}
-				{{/layout-push}} --}}
-		{{!-- <span class="stud_remind">温馨提示：提示新用户在扫码后进入小程序我的页面中进行注册。</span> --}}
 		{{#layout-push direction="row" wrap=true classNames="card-wrap" }}
-			{{#each model.studs as |item|}}
+			{{#each bm_stud_service.studs as |item|}}
 				<div class="line_container_warp stud_card_container">
 					{{stud-card onStudCardClicked=(action 'cardClicked') stud=item}}
 				</div>
 			{{/each}}
 		{{/layout-push}}
 	{{/layout-push}}
-</div>
-<div local-class="modal-dialog">
-	{{#bs-modal open=studCode onHidden=(action (mut studCode) false) as |modal|}}
-		<div class="stud-modal">
-			{{#modal.body classNames="stud-modal-body" }}
-				<img src="" local-class="code-img" alt="">
-				<p local-class="title">品牌小程序</p>
-			{{/modal.body}}
-			{{#modal.footer classNames="stud-modal-footer" }}
-				{{#bs-button onClick=(action modal.close)}}取消{{/bs-button}}
-				{{#bs-button type="success" onClick=(action modal.submit)}}保存图片{{/bs-button}}
-			{{/modal.footer}}
-		</div>
-	{{/bs-modal}}
 </div>
 
 {{outlet}}

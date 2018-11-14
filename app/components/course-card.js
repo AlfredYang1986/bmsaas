@@ -1,18 +1,16 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
     positionalParams: ['course'],
-    hasSetCourse: computed(function(){
-        return this.course != null;
-    }),
-    cover: computed(function(){
-        let tmp = this.course.get('imgs');
-        if (tmp.length > 0) {
-            return tmp.objectAt(0).get('img_src');
-        } else {
-            return '/images/cover_pic_2.jpeg';
-        }
+    bmOss: service(),
+    cover: computed('course', function(){
+        let client = this.bmOss.get('ossClient');
+
+        let url = client.signatureUrl(this.course.get('cover'));
+        console.log(url);
+        return url;
     }),
     click() {
         this.onCourseCardClicked(this.course.get('id'));

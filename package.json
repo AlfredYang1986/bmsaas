@@ -51,7 +51,9 @@
     "node": "6.* || 8.* || >= 10.*"
   },
   "dependencies": {
+    "ali-oss": "^6.0.1",
     "ember-cli-sass": "^8.0.1",
+    "pharbers-emberbasis-library": "^1.0.8",
     "sass": "^1.14.0"
   }
 }

@@ -1,16 +1,10 @@
 import Route from '@ember/routing/route';
-import RSVP from 'rsvp';
-import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default Route.extend({
-    mock_data: service(),
-    model() {
-        this.mock_data.sureTech();
-        let techs = this.store.peekAll('bmtech');
-
-        return RSVP.hash({
-                techs: techs
-            })
-    },
+    bm_tech_service: service(),
+    setupController(controller, model) {
+        this._super(controller, model);
+        this.bm_tech_service.set('refresh_all_token', this.bm_tech_service.guid());
+    }
 });
