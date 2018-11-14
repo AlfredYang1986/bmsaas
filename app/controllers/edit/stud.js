@@ -6,6 +6,7 @@ export default Controller.extend({
     bm_stud_service: service(),
 
     genderCheck: ['男', '女'],
+    isPushing: false,
 
     actions: {
         saveInputBtnClicked() {

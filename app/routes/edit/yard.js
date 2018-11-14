@@ -21,10 +21,10 @@ export default Route.extend({
         controller.set('yard_citys', this.store.peekAll('bmcitys'));
         controller.set('yard_government_areas', this.store.peekAll('bmgovernment-areas'));
 
-        if (model.yard != null) {
-            controller.set('isPushing', false);
-        } else {
+        if (model.yardid == 'yard/push') {
             controller.set('isPushing', true);
+        } else {
+            controller.set('isPushing', false);
         }
         this.controller.set('current_idx', 0);
         this.bm_yard_service.set('refresh_token', this.bm_yard_service.guid());
