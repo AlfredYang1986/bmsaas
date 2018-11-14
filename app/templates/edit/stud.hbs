@@ -35,14 +35,25 @@
 			{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
 				<p class="edit_title">出生日期</p>
 				{{#layout-push direction="row" split=false classNames='date_choose' }}
-                {{#if (bmcom/bm-nil-obj bm_tech_service.tech)}}
+                {{#if (bmcom/bm-nil-obj bm_stud_service.stud)}}
                 {{else}}
 					{{bm-lay-date inputVal=bm_stud_service.stud.dob}}
                 {{/if}}
 				{{/layout-push}}
 			{{/layout-push}}
 			{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
-				{{bm-radio title="单选框" checkboxTitle="box-title" checkboxItem=genderCheck}}
+				<p class="edit_title">性别</p>
+				<div class="">
+					<span class="radio-inline">
+						<input type="radio" name="rel" value="fa" checked={{bmeq item.gender 1}}/>
+						<label for="male">男</label>
+					</span>
+					<span class="radio-inline">
+						<input type="radio" name="rel" value="ma" checked={{bmeq item.gender 0}}/>
+						<label for="female">女</label>
+					</span>
+				</div>
+				{{!-- {{bm-radio title="单选框" checkboxTitle="box-title" checkboxItem=genderCheck}} --}}
 			{{/layout-push}}
 			{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
 				<p class="edit_title">就读学校<span class="sub_title">(选填)</span></p>
