@@ -13,7 +13,7 @@ export default DS.Model.extend({
     attribute: DS.attr('string'),
     scenario: DS.attr('string'),
     address: DS.attr('string'),
-    friendly: DS.attr(''),
+    brandId: DS.attr('string'),
     Rooms: DS.hasMany('bm-room', { async: false }),
     Tagimgs: DS.hasMany('bm-tag-img', { async: false }),
 });

@@ -3,15 +3,14 @@ import RSVP from 'rsvp';
 import { inject as service } from '@ember/service';
 
 export default Route.extend({
-    // mock_data: service(),
+    mock_data: service(),
     bm_yard_service: service(),
 
     model(params) {
+        this.mock_data.regionSource();
         this.bm_yard_service.set('yardid', params.yardid);
-        // this.mock_data.regionSource();
         return RSVP.hash({
                 yardid: params.yardid,
-                yard: this.yard
             })
     },
 

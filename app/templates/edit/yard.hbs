@@ -199,12 +199,12 @@
             {{#layout-push direction='row' mid=true}}
                 <div class='line_conatainer_warp'>
                     {{#each bm_yard_service.yard.Tagimgs as |item|}}
-                        {{bmcom/bm-img-uploader needTag=true canEdit=true img=item.img tag=item.tag classNames='alt-course-tag-img-adjust'}}
+                        {{bmcom/bm-img-uploader needTag=true canEdit=true img=item.img tag=item.tag}}
                     {{/each}}
                 </div>
             {{/layout-push}}
             {{#layout-push classNames='r_end' direction='row'}}
-                <button class='alt-edit-step-btn' {{action (mut current_idx) 5}}>下一步</button>
+                <button class='alt-edit-step-btn' {{action 'saveYardBtnClicked'}}>完成</button>
             {{/layout-push}}
         {{/layout-push }}
     </section>

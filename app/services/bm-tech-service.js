@@ -161,7 +161,6 @@ export default Service.extend({
         rd_tmp['included'] = [];
         let dt = JSON.stringify(rd_tmp); 
 
-        let that = this
         Ember.$.ajax({
             method: 'POST',
             url: '/api/v1/pushteacher/0',

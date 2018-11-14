@@ -186,7 +186,6 @@ export default Service.extend({
         rd_tmp['included'] = [inc.data];
         let dt = JSON.stringify(rd_tmp); 
 
-        let that = this
         Ember.$.ajax({
             method: 'POST',
             url: '/api/v1/insertattendee/0',
