@@ -20,16 +20,16 @@ export default Component.extend({
 
         {
             icon: '/images/navbar_booking_normal@2x.png',
-            title: '课程预约',
+            title: '活动',
             expond: false,
-            pageUrl:'courseReserve',
+            pageUrl:'actv',
 
         },
         {
             icon: '/images/navbar_activity_normal@2x.png',
-            title: '体验开放',
+            title: '体验课',
             expond: false,
-            pageUrl:'experienceOpen',
+            pageUrl:'exp',
             isSpace: true,
         },
 

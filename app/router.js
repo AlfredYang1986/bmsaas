@@ -44,6 +44,8 @@ Router.map(function() {
   this.route('classes');
   this.route('arrange-class');
   this.route('demo');
+  this.route('exp');
+  this.route('actv');
 });
 
 export default Router;
