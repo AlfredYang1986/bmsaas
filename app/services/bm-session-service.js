@@ -122,5 +122,55 @@ export default Service.extend({
                     }
                 ]
             }
-    }
+    },
+    genPushQuery() {
+        let gid01 = this.guid();
+        let now = new Date().getTime();
+        return {
+            data: {
+                id: this.guid(),
+                type: "BmSessionInfo",
+                attributes: {
+                    name: "",
+                    nickname: "",
+                    icon: "",
+                    dob: now,
+                    gender: 0,
+                    reg_date: now,
+                    contact: "",
+                    intro: "",
+                    status: "candidate",
+                    lesson_count: 0,
+                    school: ''
+                },
+                relationships: {
+                    Guardians: {
+                        data: [
+                            {
+                                id: gid01,
+                                type: "BmGuardian"
+                            }
+                        ]
+                    }
+                }
+            },
+            included: [
+                {
+                    id: gid01,
+                    type: "BmGuardian",
+                    attributes: {
+                        relation_ship: "",
+                        contact: "",
+                        name: "",
+                        nickname: "",
+                        icon: "",
+                        dob: now,
+                        gender: 0,
+                        reg_date: now,
+                        addr: ''
+                    },
+                }
+            ]
+        }
+    },
 });

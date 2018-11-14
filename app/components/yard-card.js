@@ -1,9 +1,18 @@
 import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
     positionalParams: ['yard', 'canChecked'],
+    bmOss: service(),
     canChecked: false,
     checked: false,
+    iconImg: computed('yard', function(){
+        let client = this.bmOss.get('ossClient');
+
+        let url = client.signatureUrl(this.yard.get('cover'));
+        return url;
+    }),
     click() {
         if (this.canChecked) {
             if (this.checked) {

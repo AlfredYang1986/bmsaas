@@ -7,7 +7,7 @@ export default Component.extend({
     bmOss: service(),
     canChecked: false,
     checked: false,
-    iconImg: computed('yard', function(){
+    iconImg: computed('tech', function(){
         let client = this.bmOss.get('ossClient');
 
         let url = client.signatureUrl(this.tech.get('icon'));

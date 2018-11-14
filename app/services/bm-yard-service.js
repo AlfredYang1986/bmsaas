@@ -263,16 +263,18 @@ export default Service.extend({
             return ;
         }
 
-        debugger
         let rd = this.yard;
-        let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
 
         let arr = [];
         for (let idx = 0; idx < rd.Tagimgs.length; idx++) {
             let tmp = rd.Tagimgs[idx].serialize();
+            if (rd.cover.length == 0 && rd.Tagimgs[idx].img.length > 0) {
+                rd.cover = rd.Tagimgs[idx].img;
+            }
             arr.push(tmp.data);
         }
-        // let inc = rd.Guardians[0].serialize();
+
+        let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
         rd_tmp['included'] = arr;
         let dt = JSON.stringify(rd_tmp); 
 
