@@ -155,7 +155,7 @@ export default Service.extend({
                     harvest: "",
                     acquisition: "",
                     accompany: 0,
-                    including: "",
+                    inc: "",
                     carrying: "",
                     notice: "",
                     cover: "",

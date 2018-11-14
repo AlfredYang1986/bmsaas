@@ -12,7 +12,7 @@ export default DS.Model.extend({
     harvest: DS.attr('string'),     // 虚拟收获
     acquisition: DS.attr('string'), // 奖品
     accompany: DS.attr('number'),   // 家长陪同
-    including: DS.attr('string'),
+    inc: DS.attr('string'),
     carrying: DS.attr('string'),
     notice: DS.attr('string'),
     Cate: DS.belongsTo('BmCategory', {async: false}),

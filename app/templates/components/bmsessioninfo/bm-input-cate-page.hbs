@@ -1,0 +1,13 @@
+<section id="start-story" class="alt_course_section" >
+    {{#layout-push direction='col' classNames='alt_course_panel edit_panel edit_first_panel'}}
+        <span class='alt_course_title alt_course_big_title'>您的体验课属于哪一个分类</span>
+        <span class='alt_course_des'>为体验课选择详细类目，这样便于用户快速查找您的体验服务。</span>
+        {{#layout-push direction="row"}}
+            {{#if (bmcom/bm-nil-obj bm_session_service.session)}}
+            {{else}}
+            {{bm-cate-choose crs_cat=bm_session_service.session.Cate.title crs_sub_cat=bm_session_service.session.Cate.subtitle}}
+            {{/if}}
+        {{/layout-push}}
+        {{yield}}
+    {{/layout-push}}
+</section>
