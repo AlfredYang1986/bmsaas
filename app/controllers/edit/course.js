@@ -6,7 +6,7 @@ export default Controller.extend({
 
     bm_session_service: service(),
 
-    cur_page_idx: 0,
+    // cur_page_idx: 0,
 
     isPushing: false,
 

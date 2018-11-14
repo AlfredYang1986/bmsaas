@@ -31,6 +31,7 @@ Router.map(function() {
     this.route('experience', { path: '/:actid' });
     this.route('actarrangement', { path: '/:actactid/:perid' });
     this.route('exp', { path: '/:expid' });
+    this.route('actv', { path: '/:actvid' });
   });
 
   this.route('stud');

@@ -1,102 +1,11 @@
-{{#layout-push direction='row' split=true classNames='edit_nav' }}
-  <span>新建-课程信息</span>
-  <span>
-      {{#if isPushing}}
-          {{#link-to 'course' class="edit_nav_btn btn_cacel"}}
-              取消
-          {{/link-to}}
-      {{else}}
-          {{#link-to 'detail.course' bm_session_service.session.id class="edit_nav_btn btn_cacel"}}
-              取消
-          {{/link-to}}
-      {{/if}}
-      <button class="edit_nav_btn btn_save" {{action 'saveCourseBtnClicked'}}>保存</button>
-  </span>
-{{/layout-push}}
-
-{{#layout-push direction='row' split=true classNames='edit_container' }}
-    {{bmsessioninfo/bm-input-menu cur_page_idx=cur_page_idx}}
-
-    <div class="input_container">
-        {{#if (bmeq cur_page_idx 0)}}
-            {{#bmsessioninfo/bm-input-cate-page}}
-                {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    <p class="nav_save menu_button_between" {{action (mut cur_page_idx) 1}}>下一步</p>
-                {{/layout-push}}
-            {{/bmsessioninfo/bm-input-cate-page}}
-        {{/if}}
-
-        {{#if (bmeq cur_page_idx 1)}}
-            {{#bmsessioninfo/bm-input-basic-page}}
-                {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    <p class="nav_save menu_button_between" {{action (mut cur_page_idx) 2}}>下一步</p>
-                {{/layout-push}}
-            {{/bmsessioninfo/bm-input-basic-page}}
-        {{/if}}
-
-        {{#if (bmeq cur_page_idx 2)}}
-            {{#bmsessioninfo/bm-input-content-page}}
-                {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    <p class="nav_save menu_button_between" {{action (mut cur_page_idx) 3}}>下一步</p>
-                {{/layout-push}}
-            {{/bmsessioninfo/bm-input-content-page}}
-        {{/if}}
-
-        {{#if (bmeq cur_page_idx 3)}}
-            {{#bmsessioninfo/bm-input-inter-page}}
-                {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    <p class="nav_save menu_button_between" {{action (mut cur_page_idx) 4}}>下一步</p>
-                {{/layout-push}}
-            {{/bmsessioninfo/bm-input-inter-page}}
-        {{/if}}
-
-        {{#if (bmeq cur_page_idx 4)}}
-            {{#bmsessioninfo/bm-input-inc-page}}
-                {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    <p class="nav_save menu_button_between" {{action (mut cur_page_idx) 5}}>下一步</p>
-                {{/layout-push}}
-            {{/bmsessioninfo/bm-input-inc-page}}
-        {{/if}}
-
-        {{#if (bmeq cur_page_idx 5)}}
-            {{#bmsessioninfo/bm-input-acq-page}}
-                {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    <p class="nav_save menu_button_between" {{action (mut cur_page_idx) 6}}>下一步</p>
-                {{/layout-push}}
-            {{/bmsessioninfo/bm-input-acq-page}}
-        {{/if}}
-
-        {{#if (bmeq cur_page_idx 6)}}
-            {{#bmsessioninfo/bm-input-img-page}}
-                {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    <p class="nav_save menu_button_between" {{action (mut cur_page_idx) 7}}>下一步</p>
-                {{/layout-push}}
-            {{/bmsessioninfo/bm-input-img-page}}
-        {{/if}}
-
-        {{#if (bmeq cur_page_idx 7)}}
-            {{#bmsessioninfo/bm-input-acc-page}}
-                {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    <p class="nav_save menu_button_between" {{action (mut cur_page_idx) 8}}>下一步</p>
-                {{/layout-push}}
-            {{/bmsessioninfo/bm-input-acc-page}}
-        {{/if}}
-
-        {{#if (bmeq cur_page_idx 8)}}
-            {{#bmsessioninfo/bm-input-carry-page}}
-                {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    <p class="nav_save menu_button_between" {{action (mut cur_page_idx) 9}}>下一步</p>
-                {{/layout-push}}
-            {{/bmsessioninfo/bm-input-carry-page}}
-        {{/if}}
-
-        {{#if (bmeq cur_page_idx 9)}}
-            {{#bmsessioninfo/bm-input-note-page}}
-                {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    <p class="nav_save menu_button_between" {{action 'saveCourseBtnClicked'}}>完成</p>
-                {{/layout-push}}
-            {{/bmsessioninfo/bm-input-note-page}}
-        {{/if}}
-    </div>
-{{/layout-push}}
-{{outlet}}
+{{#bmpage/bm-session-edit session=bm_session_service.session onSaveSessionBtnClicked=(action 'saveCourseBtnClicked')}}
+    {{#if isPushing}}
+        {{#link-to 'course' class="edit_nav_btn btn_cacel"}}
+            取消
+        {{/link-to}}
+    {{else}}
+        {{#link-to 'detail.course' session.id class="edit_nav_btn btn_cacel"}}
+            取消
+        {{/link-to}}
+    {{/if}}
+{{/bmpage/bm-session-edit}}

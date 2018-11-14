@@ -5,7 +5,7 @@ export default Controller.extend({
     bm_actv_service: service(),
     actions: {
         cardClicked(idx) {
-            // this.transitionToRoute('detail.course', idx);
+            this.transitionToRoute('detail.actv', idx);
         },
         addCourse() {
             // this.transitionToRoute('edit.course');

@@ -36,7 +36,7 @@ export default Service.extend({
         let inc = rd.Eqcond[0].serialize();
         rd_tmp['included'] = [inc.data];
         let dt = JSON.stringify(rd_tmp);
-       
+      
         let that = this
         Ember.$.ajax({
             method: 'POST',
@@ -121,7 +121,7 @@ export default Service.extend({
                         type: "Eqcond",
                         attributes: {
                             key: "status",
-                            val: 1
+                            val: 0
                         }
                     }
                 ]
@@ -154,7 +154,7 @@ export default Service.extend({
                         type: "Eqcond",
                         attributes: {
                             key: "id",
-                            val: this.expid
+                            val: this.actvid
                         }
                     }
                 ]
