@@ -188,6 +188,33 @@
                 .edit_input{
                     width: 300px;
                 }
+                .select-age{
+                    margin-bottom: 40px;
+
+                    .alt-course-age-group{
+                        justify-content: flex-start;
+    
+                        .alt_course_des{
+                            position: relative;
+                            left: -22px;
+                            line-height: 58px;
+                            height: 32px;
+                        }
+                        .input-group{
+                            width:125px;
+    
+                            .edit_input_age{
+                                width: 80px;
+                            }
+                            .input-group-append{
+                                height: 32px;
+                                position: relative;
+                                top: 16px;
+                                left: -40px;
+                            }
+                        }
+                    }
+                }
                 .alt-course-input-group{
                     margin-bottom: 40px;
                 }

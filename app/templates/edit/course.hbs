@@ -131,7 +131,7 @@
         {{!-- {{#layout-push direction='row'}}
             <span class="edit_title">分类/标签</span>
         {{/layout-push }} --}}
-        {{#layout-push direction='col' classNames='select-school'}}
+        {{#layout-push direction='col' classNames='select-age'}}
             {{!-- <div class="line_container_split" >
                 <div class="line_container" >
                     <span class="edit-course-subtitle">适宜年龄</span>
@@ -141,7 +141,7 @@
                 </div>
             </div> --}}
             <span class='alt_course_title'>适宜年龄</span>
-            {{#layout-push direction="row"}}
+            {{#layout-push direction="row" classNames="alt-course-age-group"}}
                 {{!-- <div class="line_container" >
                     <select class="start-time" name="">
                         <option value="">年</option>
@@ -155,30 +155,43 @@
                         <option value="">2018</option>
                     </select>
                 </div> --}}
-                <div class="line_container" >
+                {{!-- <div class="line_container" >
                     {{age-range dataLeft=bm_session_service.session.alb dataRight=bm_session_service.session.aub}}
+                </div> --}}
+                <div class="input-group">
+                    <input value={{bm_session_service.session.alb}} class="edit_input_age" type="text">
+                    <div class="input-group-append">
+                        <span class="input-group-text">岁</span>
+                    </div>
+                </div>
+                <span class="alt_course_des">至</span>
+                <div class="input-group">
+                    <input value={{bm_session_service.session.aub}} class="edit_input_age" type="text">
+                    <div class="input-group-append">
+                        <span class="input-group-text">岁</span>
+                    </div>
                 </div>
             {{/layout-push}}
         {{/layout-push}}
         {{#layout-push direction="col" classNames="alt-course-input-group"}}
             <span class='alt_course_title'>分级阶段</span>
             <span class='alt_course_des'>如：入门级、LV1</span>
-            {{input type="text" class="" value=bm_session_service.session.level}}
+            {{input type="text" class="edit_input" value=bm_session_service.session.level}}
         {{/layout-push}}
         {{#layout-push direction="col" classNames="alt-course-input-group"}}
             <span class='alt_course_title'>预计课时数</span>
             <span class='alt_course_des'>请输入整数</span>
-            {{input type="text" class="" value=bm_session_service.session.count}}
+            {{input type="text" class="edit_input" value=bm_session_service.session.count}}
         {{/layout-push}}
         {{#layout-push direction="col" classNames="alt-course-input-group"}}
             <span class='alt_course_title'>课程时长（min）</span>
             <span class='alt_course_des'>分级阶段</span>
-            {{input type="text" class="" value=bm_session_service.session.length}}
+            {{input type="text" class="edit_input" value=bm_session_service.session.length}}
         {{/layout-push}}
         {{#layout-push direction="col" classNames="alt-course-input-group"}}
             <span class='alt_course_title'>教学特点</span>
             <span class='alt_course_des'>如：蒙特梭利</span>
-            {{input type="text" class="" value=bm_session_service.session.harvest}}
+            {{input type="text" class="edit_input" value=bm_session_service.session.harvest}}
         {{/layout-push}}
         {{!-- {{bm-edit-line title="分级阶段"  maxCount=6 pholder="如：入门级、LV1" inputVal=bm_session_service.session.level}}
         {{bm-edit-line title="预计课时数" isNeeded=true  pholder="请输入整数" inputVal=bm_session_service.session.count}}
