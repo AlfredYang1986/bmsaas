@@ -36,7 +36,7 @@ export default Service.extend({
         let inc = rd.Eqcond[0].serialize();
         rd_tmp['included'] = [inc.data];
         let dt = JSON.stringify(rd_tmp);
-       
+      
         let that = this
         Ember.$.ajax({
             method: 'POST',
@@ -49,7 +49,7 @@ export default Service.extend({
             data: dt,
             success: function(res) {
                 let result = that.bmstore.sync(res)
-                that.set('session', result);
+                that.set('exp', result);
             },
             error: function(err) {
                 console.log('error is : ', err);

@@ -22,14 +22,15 @@ Router.map(function() {
   });
 
   this.route('detail', function() {
-      this.route('stud', { path: '/:studid' });
-      this.route('tech', { path: '/:techid' });
-      this.route('yard', { path: '/:yardid' });
-      this.route('course', { path: '/:courseid' });
-      this.route('classes', { path: '/:clsid'} );
-      this.route('course-reserve', { path: '/:reid' });
-      this.route('experience', { path: '/:actid' });
-      this.route('actarrangement', { path: '/:actactid/:perid' });
+    this.route('stud', { path: '/:studid' });
+    this.route('tech', { path: '/:techid' });
+    this.route('yard', { path: '/:yardid' });
+    this.route('course', { path: '/:courseid' });
+    this.route('classes', { path: '/:clsid'} );
+    this.route('course-reserve', { path: '/:reid' });
+    this.route('experience', { path: '/:actid' });
+    this.route('actarrangement', { path: '/:actactid/:perid' });
+    this.route('exp', { path: '/:expid' });
   });
 
   this.route('stud');

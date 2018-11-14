@@ -13,20 +13,20 @@ export default Service.extend({
         this.addObserver('refresh_all_token', this, 'queryMultiObjects');
     },
 
-    expid: '',
+    actvid: '',
     refresh_token: '',
     refresh_all_token: '',
-    exp: null,
-    exps: A([]),
+    actv: null,
+    actvs: A([]),
 
     queryActvInfo() {
         this.bmstore.reset();
-        this.set('exp', null);
+        this.set('actv', null);
 
-        if (this.expid.length == 0 || this.sessionid == 'actv/push') {
+        if (this.actvid.length == 0 || this.sessionid == 'actv/push') {
             let query_payload = this.genPushQuery();
             let result = this.bmstore.sync(query_payload);
-            this.set('exp', result);
+            this.set('actv', result);
             return;
         }
 
@@ -49,7 +49,7 @@ export default Service.extend({
             data: dt,
             success: function(res) {
                 let result = that.bmstore.sync(res)
-                that.set('session', result);
+                that.set('actv', result);
             },
             error: function(err) {
                 console.log('error is : ', err);
@@ -87,7 +87,7 @@ export default Service.extend({
             data: dt,
             success: function(res) {
                 let result = that.bmmulti.sync(res)
-                that.set('exps', result);
+                that.set('actvs', result);
             },
             error: function(err) {
                 console.log('error is : ', err);
@@ -355,7 +355,7 @@ export default Service.extend({
             return ;
         }
 
-        let ft = this.exp;
+        let ft = this.actv;
         let rd = ft.SessionInfo;
 
         let arr = [];
