@@ -195,18 +195,77 @@
     padding: 24px;
     margin-left: -16px;
     margin-right: 24px;
+    margin-bottom: 24px;
     min-height: 338px;
     width: 100%;
     background: #fff;
+
     .brand_detail_info {
         margin-bottom: 40px;
         min-height: 100px;
         border-bottom: 1px solid rgba(0,0,0,0.12);
         vertical-align: top;
+
+        &:nth-last-child(1) {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
         .detail_reward_content {
             display: flex;
             flex-direction: row;
             align-items: flex-start;
+
+            .detail_reward_content_honor {
+                margin-right: 24px;
+                margin-bottom: 40px;
+                width: 150px;
+                height: 186px;
+            
+                .bm-upload-form{
+            
+                    div.bm-upload-container{
+                        width: 150px;
+            
+                        img{
+                            width: 150px;
+                            height: 150px;
+
+                        }
+                    }
+                    
+                }
+                .bm-upload-tag{
+                    margin-top: 166px;
+                    justify-content: center;
+                }
+            }
+
+            .detail_reward_content_cert {
+                margin-right: 24px;
+                margin-bottom: 40px;
+                width: 160px;
+                height: 142px;
+            
+                .bm-upload-form{
+            
+                    div.bm-upload-container{
+                        // margin-top: 16px;
+                        width: 160px;
+            
+                        img{
+                            width: 160px;
+                            height: 106px;
+                            
+                        }
+                    }
+                    
+                }
+                .bm-upload-tag{
+                    margin-top: 122px;
+                }
+            }
+
             .detail_reward {
                 margin-right: 25px;
                 max-width: 160px;

@@ -1,4 +1,4 @@
-<ul class="nav">
+{{!-- <ul class="nav">
     <li class="nav-item">
         <a class="nav-link active brand_name" href="#">编辑-品牌主页</a>
     </li>
@@ -6,17 +6,50 @@
         <div class="menu_container">
             {{#link-to 'home' class="nav_cancel_btn menu_button_between"}}
                 取消
-            {{/link-to}}
+            {{/link-to}} --}}
             {{!-- {{#link-to 'home' class="nav_save_btn menu_button_between"}} --}}
                 {{!-- 保存 --}}
             {{!-- {{/link-to}} --}}
             {{!-- <button class="nav_cancel_btn menu_button_between">取消</button> --}}
-            <button class="nav_save_btn menu_button_between" {{action 'saveBrand'}}>保存</button>
+            {{!-- <button class="nav_save_btn menu_button_between" {{action 'saveBrand'}}>保存</button>
         </div>
     </li>
-</ul>
+</ul> --}}
+{{#layout-push direction='row' split=true classNames='edit_nav' }}
+  <span>编辑-品牌主页</span>
+  <span>
+        {{#link-to 'home' class="edit_nav_btn btn_cacel"}}
+            取消
+        {{/link-to}}
+        {{!-- {{#if isPushing}}
+        {{else}}
+            {{#link-to 'detail.yard' bm_yard_service.yard.id class="edit_nav_btn btn_cacel"}}
+                取消
+            {{/link-to}}
+        {{/if}} --}}
+      <button class="edit_nav_btn btn_save" {{action 'saveBrand'}}>保存</button>
+  </span>
+{{/layout-push}}
+{{#layout-push direction='row' split=true classNames='edit_container' }}
+    <ul class="edit_left_nav">
+        <li class="left_bar_item">
+            <a class="edit_left_menu_text" href="#basic-info" {{action (mut cur_idx) 0}}>基础信息</a>
+        </li>
+        <li class="left_bar_item">
+            <a class="edit_left_menu_text" href="#start-story" {{action (mut cur_idx) 1}}>初心故事</a>
+        </li>
+        <li class="left_bar_item">
+            <a class="edit_left_menu_text" href="#brand-reward" {{action (mut cur_idx) 2}}>品牌荣誉</a>
+        </li>
+        <li class="left_bar_item">
+            <a class="edit_left_menu_text" href="#cert" {{action (mut cur_idx) 3}}>资质认证</a>
+        </li>
+        <li class="left_bar_item">
+            <a class="edit_left_menu_text" href="#about-tech" {{action (mut cur_idx) 4}}>师资介绍</a>
+        </li>
+    </ul>
 
-<ul class="edit_left_bar">
+{{!-- <ul class="edit_left_bar">
     <li class="left_bar_item" >
         <div class="edit_left_menu_mid menu_margin_right">
             <a class="edit_left_menu_text" href="#basic-info" {{action (mut cur_idx) 0}} >基础信息</a>
@@ -42,54 +75,76 @@
             <a class="edit_left_menu_text" href="#about-tech" {{action (mut cur_idx) 4}}>师资介绍</a>
         </div>
     </li>
-</ul>
+</ul> --}}
 
+
+<div class="input_container">
 {{#if (bmeq cur_idx 0)}}
-<section id="basic-info" class="line_container_mid edit_page_top_margin" >
-    {{#layout-push direction='col' classNames="edit_panel edit_first_panel"}}
-        {{#layout-push direction='row'}}
-            <span class="edit_title">基础信息</span>
-        {{/layout-push }}
-        {{#layout-push direction='row'}}
-            <span class="edit_subtitle" >品牌logo</span>
-        {{/layout-push }}
-        {{bmcom/bm-img-uploader needTag=false canEdit=true img=bm_brand_service.brand.logo classNames='alt-yard-edit-tag-img-adjust'}}
-
-        {{bm-edit-line title="品牌名称" isNeeded=true maxCount=15 pholder="如：Black Mirror Tech" inputVal=bm_brand_service.brand.title}}
-        {{bm-edit-line title="品牌简称" isNeeded=true maxCount=15 pholder="简称更容易让大家记住您的品牌喔！如：Black Mirror" inputVal=bm_brand_service.brand.subtitle}}
-        {{bm-edit-line title="一句话介绍(slogan)" isNeeded=true maxCount=15 pholder="请用一句话想家长和孩子们传递您的品牌理念" inputVal=bm_brand_service.brand.slogan}}
-
-        {{#layout-push direction='row' split=true}}
-            {{#layout-push direction='row' }}
-                <span class="edit_subtitle" >成立时间</span>
-                <div class="v_end">
-                    <span class="edit_required" >* 必填</span>
-                </div>
+<section id="basic-info" class="brand_section" >
+    {{#layout-push direction='row' classNames="edit_panel edit_first_panel"}}
+        {{#layout-push direction='col' classNames="brand-logo-continer"}}
+            {{!-- <span class="edit_title">基础信息</span> --}}
+            {{#layout-push direction='row'}}
+                <span class="edit_title" >品牌logo</span>
             {{/layout-push }}
+            {{bmcom/bm-img-uploader needTag=false canEdit=true img=bm_brand_service.brand.logo classNames='alt-yard-edit-tag-img-adjust'}}
         {{/layout-push }}
-        {{#if (bmcom/bm-nil-obj bm_brand_service.brand)}}
-        {{else}}
-            {{bm-lay-date inputVal=bm_brand_service.brand.found}}
-        {{/if}}
+        {{#layout-push direction='col' classNames="brand-base-info-continer"}}
+            {{!-- {{bm-edit-line title="品牌名称" isNeeded=true maxCount=15 pholder="如：Black Mirror Tech" inputVal=bm_brand_service.brand.title}}
+            {{bm-edit-line title="品牌简称" isNeeded=true maxCount=15 pholder="简称更容易让大家记住您的品牌喔！如：Black Mirror" inputVal=bm_brand_service.brand.subtitle}}
+            {{bm-edit-line title="一句话介绍(slogan)" isNeeded=true maxCount=15 pholder="请用一句话想家长和孩子们传递您的品牌理念" inputVal=bm_brand_service.brand.slogan}} --}}
+            {{#layout-push direction="col" classNames='brand-input-group'}}
+                <span class="edit_title">品牌名称</span>
+                <span class='edit_subtitle'></span>
+                {{input type="text" class="edit_input_small" value=bm_brand_service.brand.subtitle}}
+            {{/layout-push}}
+            {{#layout-push direction="col" classNames='brand-input-group'}}
+                <span class="edit_title">一句话介绍</span>
+                <span class='edit_subtitle'>请您⽤⼀句话向家长和孩子们传递您的品牌理念</span>
+                {{input type="text" class="edit_input_medium" value=bm_brand_service.brand.slogan}}
+            {{/layout-push}}
 
-        {{bm-edit-line title="品牌亮点(最多三个)" isNeeded=true maxCount=15 pholder="如：双语教学" inputVal=bm_brand_service.brand.brand_tangs}}
-        {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-            <p class="nav_save menu_button_between" {{action (mut cur_idx) 1}}>下一步</p>
+            {{#layout-push direction='row' split=true}}
+                {{#layout-push direction='row' classNames="brand-setup-time"}}
+                    <span class="edit_title" >成立时间</span>
+                    {{!-- <div class="v_end">
+                        <span class="edit_required" >* 必填</span>
+                    </div> --}}
+                {{/layout-push }}
+            {{/layout-push }}
+            {{#if (bmcom/bm-nil-obj bm_brand_service.brand)}}
+            {{else}}
+                {{bm-lay-date inputVal=bm_brand_service.brand.found}}
+            {{/if}}
+            {{#layout-push direction="col" classNames='brand-input-group'}}
+                <span class="edit_title">品牌亮点</span>
+                <span class='edit_subtitle'>限6个字 至多3个</span>
+                {{input type="text" class="edit_input_medium" value=bm_brand_service.brand.brand_tangs}}
+            {{/layout-push}}
+            {{!-- {{bm-edit-line title="品牌亮点(最多三个)" isNeeded=true maxCount=15 pholder="如：双语教学" inputVal=bm_brand_service.brand.brand_tangs}} --}}
+            {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
+                <p class="nav_save menu_button_between" {{action (mut cur_idx) 1}}>下一步</p>
+            {{/layout-push}}
         {{/layout-push}}
     {{/layout-push }}
 </section>
 {{/if}}
 
 {{#if (bmeq cur_idx 1)}}
-<section id="start-story" class="line_container_mid edit_page_top_margin" >
-    {{#layout-push direction='col' classNames='edit_first_panel'}}
-    {{bm-edit-area
+<section id="start-story" class="brand_section" >
+    {{#layout-push direction='col' classNames='edit_panel edit_second_panel'}}
+    {{!-- {{bm-edit-area
         classNames='edit_panel'
         title="初心故事"
         subtitle="请描述品牌的成立宗旨、教学理念、发展历程与未来期许，让家长们了解您的用户的用心与坚持。初心故事将作为品牌介绍将展示在小程序、app中。"
         maxCount=400
         isNeeded=true
-        inputVal=bm_brand_service.brand.foundStory}}
+        inputVal=bm_brand_service.brand.foundStory}} --}}
+        {{#layout-push direction="col" classNames='brand-input-group'}}
+                <span class="edit_title">初心故事</span>
+                <span class='edit_subtitle edit_input_big'>请描述品牌的成立宗旨、教学理念、发展历程与未来期许，让家长们了解您的用户的用心与坚持。初心故事将作为品牌介绍将展示在小程序、app中</span>
+                {{textarea value=bm_brand_service.brand.foundStory classNames='edit_input_big alt-edit-text-area' rows=4}}
+        {{/layout-push}}
     {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
         <p class="nav_save menu_button_between" {{action (mut cur_idx) 2}}>下一步</p>
     {{/layout-push}}
@@ -98,14 +153,19 @@
 {{/if}}
 
 {{#if (bmeq cur_idx 2)}}
-<section id="brand-reward" class="line_container_mid edit_page_top_margin" >
-    {{#layout-push direction='col' classNames='edit_panel edit_reward_panel edit_first_panel'}}
+<section id="brand-reward" class="brand_section" >
+    {{#layout-push direction='col' classNames='edit_panel edit_reward_panel edit_third_panel'}}
         {{#layout-push direction='row' }}
             <span class="edit_title">品牌荣誉</span>
         {{/layout-push }}
+        <span class="edit_subtitle edit_input_big">请上传证书、奖状等证明，并注明“成立时间-奖项标题”成立时间-奖项标题。</span>
+        <span class="edit_subtitle edit_input_big">展示品牌在教学上获得的殊荣。</span>
+        <span class="edit_subtitle edit_input_big">上传的教学成绩将被展示于品牌小程序中，有助于用户更加了解您的品牌。</span>
+        <span class="edit_subtitle edit_input_big">如：国际艺术教育联合会常务理事单位（成立时间-选填）</span>
+
         <div class='line_conatainer_warp'>
             {{#each bm_brand_service.brand.Honors as |item|}}
-                {{bmcom/bm-img-uploader needTag=true canEdit=true img=item.img tag=item.tag classNames='alt-yard-edit-tag-img-adjust'}}
+                {{bmcom/bm-img-uploader needTag=true canEdit=true img=item.img tag=item.tag classNames='brand-honor-pic-upload'}}
             {{/each}}
         </div>
 
@@ -117,12 +177,12 @@
 {{/if}}
 
 {{#if (bmeq cur_idx 3)}}
-<section id="cert" class="line_container_mid edit_page_top_margin" >
-    {{#layout-push direction='col' classNames='edit_panel edit_reward_panel edit_first_panel'}}
+<section id="cert" class="brand_section" >
+    {{#layout-push direction='col' classNames='edit_panel edit_reward_panel edit_fourth_panel'}}
         {{#layout-push direction='row' }}
             <span class="edit_title">资质认证</span>
         {{/layout-push }}
-        {{#layout-push direction='row' classNames='edit_title_des_between'}}
+        {{!-- {{#layout-push direction='row' classNames='edit_title_des_between'}}
             <div class="edit_des">
                 <span>请上传您获得的相关资质认证</span>
                 <br>
@@ -131,11 +191,13 @@
                 <br>
                 <span>每张图片小于100 KB</span>
             </div>
-        {{/layout-push }}
+        {{/layout-push }} --}}
+        <span class="edit_subtitle edit_input_big">请上传您获得的相关资质认证</span>
+        <span class="edit_subtitle edit_input_big">如：国际艺术教育联合会常务理事单位</span>
 
         <div class='line_conatainer_warp'>
             {{#each bm_brand_service.brand.Certifications as |item|}}
-                {{bmcom/bm-img-uploader needTag=true canEdit=true img=item.img tag=item.tag classNames='alt-yard-edit-tag-img-adjust'}}
+                {{bmcom/bm-img-uploader needTag=true canEdit=true img=item.img tag=item.tag classNames='brand-cert-pic-upload'}}
             {{/each}}
         </div>
     {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
@@ -146,21 +208,29 @@
 {{/if}}
 
 {{#if (bmeq cur_idx 4)}}
-<section id="about-tech" class="line_container_mid edit_page_top_margin" >
-    {{#layout-push direction='col' classNames='edit_first_panel'}}
-    {{bm-edit-area
+<section id="about-tech" class="brand_section" >
+    {{#layout-push direction='col' classNames='edit_panel edit_fifth_panel'}}
+    {{!-- {{bm-edit-area
         classNames='edit_panel'
         title="师资介绍"
         subtitle="师资组成一直是家长们关心的内容，向家长们简单介绍您品牌下的师资队伍，让家长们更加了解您的品牌。"
         maxCount=400
         isNeeded=true
         rowsAmount=5
-        inputVal=bm_brand_service.brand.about_us}}
+        inputVal=bm_brand_service.brand.about_us}} --}}
+        {{#layout-push direction="col" classNames='brand-input-group'}}
+                <span class="edit_title">师资介绍</span>
+                <span class='edit_subtitle edit_input_big'>师资组成一直是家长们关心的内容，向家长们简单介绍您品牌下的师资队伍，让家长们更加了解您的品牌。</span>
+                {{textarea value=bm_brand_service.brand.about_us classNames='edit_input_big alt-edit-text-area' rows=4}}
+        {{/layout-push}}
     {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
         <p class="nav_save menu_button_between" {{action 'saveBrand'}}>完成</p>
     {{/layout-push}}
     {{/layout-push}}
 </section>
 {{/if}}
+
+    </div>
+{{/layout-push}}
 
 {{outlet}}
