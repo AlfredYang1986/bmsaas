@@ -23,6 +23,9 @@ export default Service.extend({
         this.set('session', null);
 
         if (this.sessionid.length == 0 || this.sessionid == 'course/push') {
+            let query_payload = this.genPushQuery();
+            let result = this.bmstore.sync(query_payload);
+            this.set('session', result);
             return;
         }
 
@@ -125,52 +128,204 @@ export default Service.extend({
     },
     genPushQuery() {
         let gid01 = this.guid();
+        let gid02 = this.guid();
+        let gid03 = this.guid();
+        let gid04 = this.guid();
+        let gid05 = this.guid();
+        let gid06 = this.guid();
+        let gid07 = this.guid();
+        let gid08 = this.guid();
+        let gid09 = this.guid();
+        let cate = this.guid();
         let now = new Date().getTime();
+
         return {
             data: {
                 id: this.guid(),
-                type: "BmSessionInfo",
+                type: "BmYard",
                 attributes: {
-                    name: "",
-                    nickname: "",
-                    icon: "",
-                    dob: now,
-                    gender: 0,
-                    reg_date: now,
-                    contact: "",
-                    intro: "",
-                    status: "candidate",
-                    lesson_count: 0,
-                    school: ''
+                    title: "科学小屋",
+                    subtitle: "天空之城",
+                    alb: 3,
+                    aub: 10,
+                    level: "2阶1",
+                    count: 1,
+                    length: 45,
+                    description: "联想家的基本组成，思考房间的属性是如何定义的，初识平面图的概念；设计自己的家居空间；训练在脑中想象物体从平面到立体的转化能力；学会使用微缩模型和抽象图形表达自己对居家生活的想象。认识和理解模块化思维以及模块化在建筑中的应用；学习拼插结构的设计搭建方法；组合片状模块成为建筑模型。",
+                    harvest: "提高孩子的逻辑思維能力",
+                    acquisition: "玩具套盒",
+                    accompany: 0,
+                    including: "",
+                    carrying: "",
+                    notice: "",
+                    cover: "",
+                    brandId: "5be6a00b8fb80736e2ec9ba5",
                 },
                 relationships: {
-                    Guardians: {
+                    Cate: {
+                        data: {
+                            "id": cate,
+                            "type": "BmCategory"
+                        }
+                    },
+                    Tagimgs: {
                         data: [
                             {
                                 id: gid01,
-                                type: "BmGuardian"
-                            }
+                                type: "BmTagImg"
+                            },
+                            {
+                                id: gid02,
+                                type: "BmTagImg"
+                            },
+                            {
+                                id: gid03,
+                                type: "BmTagImg"
+                            },
+                            {
+                                id: gid04,
+                                type: "BmTagImg"
+                            },
+                            {
+                                id: gid05,
+                                type: "BmTagImg"
+                            },
+                            {
+                                id: gid06,
+                                type: "BmTagImg"
+                            },
+                            {
+                                id: gid07,
+                                type: "BmTagImg"
+                            },
                         ]
                     }
                 }
             },
             included: [
                 {
-                    id: gid01,
-                    type: "BmGuardian",
+                    id: cate,
+                    type: "BmCategory",
                     attributes: {
-                        relation_ship: "",
-                        contact: "",
-                        name: "",
-                        nickname: "",
-                        icon: "",
-                        dob: now,
-                        gender: 0,
-                        reg_date: now,
-                        addr: ''
+                        title: "数理与逻辑##语言与人文",
+                        subtitle: "体验课 Trial-class"
+                    }
+                },
+                {
+                    id: gid01,
+                    type: "BmTagImg",
+                    attributes: {
+                        img: "",
+                        tag: "主题-能突显课程主题的图片",
                     },
-                }
+                },
+                {
+                    id: gid02,
+                    type: "BmTagImg",
+                    attributes: {
+                        img: "",
+                        tag: "往期回顾-以往体验的真实情况",
+                    },
+                },
+                {
+                    id: gid03,
+                    type: "BmTagImg",
+                    attributes: {
+                        img: "",
+                        tag: "课程特色-课程主打或与众不同的內容",
+                    },
+                },
+                {
+                    id: gid04,
+                    type: "BmTagImg",
+                    attributes: {
+                        img: "",
+                        tag: "教学-与课程、教学有关的精彩画面",
+                    },
+                },
+                {
+                    id: gid05,
+                    type: "BmTagImg",
+                    attributes: {
+                        img: "",
+                        tag: "成果-孩子课程的收获",
+                    },
+                },
+                {
+                    id: gid06,
+                    type: "BmTagImg",
+                    attributes: {
+                        img: "",
+                        tag: "互动-家长老师在课程中与孩子的互动",
+                    },
+                },
+                {
+                    id: gid07,
+                    type: "BmTagImg",
+                    attributes: {
+                        img: "",
+                        tag: "教具-能体现专业的教学用具。如:生物实验需要显微镜",
+                    },
+                },
+                {
+                    id: gid08,
+                    type: "BmTagImg",
+                    attributes: {
+                        img: "",
+                        tag: "其他",
+                    },
+                },
+                {
+                    id: gid09,
+                    type: "BmTagImg",
+                    attributes: {
+                        img: "",
+                        tag: "其他",
+                    },
+                },
             ]
         }
     },
+
+    saveUpdate(callback) {
+
+        if (!this.isValidate) {
+            return ;
+        }
+
+        let rd = this.session;
+
+        let arr = [];
+        for (let idx = 0; idx < rd.Tagimgs.length; idx++) {
+            let tmp = rd.Tagimgs[idx].serialize();
+            arr.push(tmp.data);
+        }
+
+        let c = rd.Cate.serialize();
+        arr.push(c.data);
+
+        let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
+        rd_tmp['included'] = arr;
+        let dt = JSON.stringify(rd_tmp); 
+
+        Ember.$.ajax({
+            method: 'POST',
+            url: '/api/v1/pushsessioninfo/0',
+            headers: {
+                'Content-Type': 'application/json', // 默认值
+                'Accept': 'application/json',
+                'Authorization': 'bearer ce6af788112b26331e9789b0b2606cce'
+            },
+            data: dt,
+            success: function(res) {
+                callback.onSuccess();
+            },
+            error: function(err) {
+                callback.onFail(err);
+            },
+        })
+    },
+    isValidate() {
+        return this.session.title.length > 0;
+    }
 });

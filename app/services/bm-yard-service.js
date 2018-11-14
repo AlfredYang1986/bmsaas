@@ -264,6 +264,7 @@ export default Service.extend({
         }
 
         let rd = this.yard;
+        rd.cover = "";
 
         let arr = [];
         for (let idx = 0; idx < rd.Tagimgs.length; idx++) {
@@ -296,6 +297,6 @@ export default Service.extend({
         })
     },
     isValidate() {
-        return this.yard.name.length > 0 && this.yard.cover.length > 0;
+        return this.yard.title.length > 0;
     }
 });

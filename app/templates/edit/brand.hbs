@@ -19,31 +19,32 @@
 <ul class="edit_left_bar">
     <li class="left_bar_item" >
         <div class="edit_left_menu_mid menu_margin_right">
-            <a class="edit_left_menu_text" href="#basic-info">基础信息</a>
+            <a class="edit_left_menu_text" href="#basic-info" {{action (mut cur_idx) 0}} >基础信息</a>
         </div>
     </li>
     <li class="left_bar_item" >
         <div class="edit_left_menu_mid menu_margin_right">
-            <a class="edit_left_menu_text" href="#start-story">初心故事</a>
+            <a class="edit_left_menu_text" href="#start-story" {{action (mut cur_idx) 1}}>初心故事</a>
         </div>
     </li>
     <li class="left_bar_item" >
         <div class="edit_left_menu_mid menu_margin_right">
-            <a class="edit_left_menu_text" href="#brand-reward">品牌荣誉</a>
+            <a class="edit_left_menu_text" href="#brand-reward" {{action (mut cur_idx) 2}}>品牌荣誉</a>
         </div>
     </li>
     <li class="left_bar_item" >
         <div class="edit_left_menu_mid menu_margin_right">
-            <a class="edit_left_menu_text" href="#cert">资质认证</a>
+            <a class="edit_left_menu_text" href="#cert" {{action (mut cur_idx) 3}}>资质认证</a>
         </div>
     </li>
     <li class="left_bar_item" >
         <div class="edit_left_menu_mid menu_margin_right">
-            <a class="edit_left_menu_text" href="#about-tech">师资介绍</a>
+            <a class="edit_left_menu_text" href="#about-tech" {{action (mut cur_idx) 4}}>师资介绍</a>
         </div>
     </li>
 </ul>
 
+{{#if (bmeq cur_idx 0)}}
 <section id="basic-info" class="line_container_mid edit_page_top_margin" >
     {{#layout-push direction='col' classNames="edit_panel edit_first_panel"}}
         {{#layout-push direction='row'}}
@@ -52,22 +53,11 @@
         {{#layout-push direction='row'}}
             <span class="edit_subtitle" >品牌logo</span>
         {{/layout-push }}
-        {{#layout-push direction='row'}}
-            <div class="edit_logo_container">
-                {{#layout-push direction='col' mid=true}}
-                    <span class="edit_logo_des">点击上传</span>
-                {{/layout-push }}
-                <img class="edit_logo_img" src="" />
-            </div>
-            <div class="v_end edit_logo_right" >
-                <span>144px*144px</span>
-                <span>支持jpg、jpeg、png，小于100 KB</span>
-            </div>
-        {{/layout-push }}
+        {{bmcom/bm-img-uploader needTag=false canEdit=true img=bm_brand_service.brand.logo classNames='alt-yard-edit-tag-img-adjust'}}
 
-        {{bm-edit-line title="品牌名称" isNeeded=true maxCount=15 pholder="如：Black Mirror Tech" inputVal=bm_brand_update_service.brand.title}}
-        {{bm-edit-line title="品牌简称" isNeeded=true maxCount=15 pholder="简称更容易让大家记住您的品牌喔！如：Black Mirror" inputVal=bm_brand_update_service.brand.subtitle}}
-        {{bm-edit-line title="一句话介绍(slogan)" isNeeded=true maxCount=15 pholder="请用一句话想家长和孩子们传递您的品牌理念" inputVal=bm_brand_update_service.brand.slogan}}
+        {{bm-edit-line title="品牌名称" isNeeded=true maxCount=15 pholder="如：Black Mirror Tech" inputVal=bm_brand_service.brand.title}}
+        {{bm-edit-line title="品牌简称" isNeeded=true maxCount=15 pholder="简称更容易让大家记住您的品牌喔！如：Black Mirror" inputVal=bm_brand_service.brand.subtitle}}
+        {{bm-edit-line title="一句话介绍(slogan)" isNeeded=true maxCount=15 pholder="请用一句话想家长和孩子们传递您的品牌理念" inputVal=bm_brand_service.brand.slogan}}
 
         {{#layout-push direction='row' split=true}}
             {{#layout-push direction='row' }}
@@ -77,72 +67,58 @@
                 </div>
             {{/layout-push }}
         {{/layout-push }}
-        <div class="line_container" >
-            {{#bs-dropdown as |dd|}}
-                {{#dd.button classNames="edit_dropdown_btn"}}年<span class="caret"></span>{{/dd.button}}
-                {{#dd.menu as |menu|}}
-                    {{#menu.item}}
-                        {{#menu.link-to "home"}}Home{{/menu.link-to}}
-                    {{/menu.item}}
-                    {{#menu.item}}
-                        {{#menu.link-to "home"}}Dropdowns{{/menu.link-to}}
-                    {{/menu.item}}
-                {{/dd.menu}}
-            {{/bs-dropdown}}
+        {{#if (bmcom/bm-nil-obj bm_brand_service.brand)}}
+        {{else}}
+            {{bm-lay-date inputVal=bm_brand_service.brand.found}}
+        {{/if}}
 
-            {{#bs-dropdown as |dd|}}
-                {{#dd.button classNames="edit_dropdown_btn"}}月<span class="caret"></span>{{/dd.button}}
-                {{#dd.menu as |menu|}}
-                    {{#menu.item}}
-                        {{#menu.link-to "home"}}Home{{/menu.link-to}}
-                    {{/menu.item}}
-                    {{#menu.item}}
-                        {{#menu.link-to "home"}}Dropdowns{{/menu.link-to}}
-                    {{/menu.item}}
-                {{/dd.menu}}
-            {{/bs-dropdown}}
-        </div>
-
-        {{bm-edit-line title="品牌亮点(最多三个)" isNeeded=true maxCount=15 pholder="如：双语教学" inputVal=bm_brand_update_service.brand.brand_tangs}}
+        {{bm-edit-line title="品牌亮点(最多三个)" isNeeded=true maxCount=15 pholder="如：双语教学" inputVal=bm_brand_service.brand.brand_tangs}}
+        {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
+            <p class="nav_save menu_button_between" {{action (mut cur_idx) 1}}>下一步</p>
+        {{/layout-push}}
     {{/layout-push }}
 </section>
+{{/if}}
 
-<section id="start-story" class="line_container_mid" >
+{{#if (bmeq cur_idx 1)}}
+<section id="start-story" class="line_container_mid edit_page_top_margin" >
+    {{#layout-push direction='col' classNames='edit_first_panel'}}
     {{bm-edit-area
         classNames='edit_panel'
         title="初心故事"
         subtitle="请描述品牌的成立宗旨、教学理念、发展历程与未来期许，让家长们了解您的用户的用心与坚持。初心故事将作为品牌介绍将展示在小程序、app中。"
         maxCount=400
         isNeeded=true
-        inputVal=bm_brand_update_service.brand.foundStory}}
+        inputVal=bm_brand_service.brand.foundStory}}
+    {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
+        <p class="nav_save menu_button_between" {{action (mut cur_idx) 2}}>下一步</p>
+    {{/layout-push}}
+    {{/layout-push}}
 </section>
+{{/if}}
 
-<section id="brand-reward" class="line_container_mid " >
-    {{#layout-push direction='col' classNames='edit_panel edit_reward_panel'}}
+{{#if (bmeq cur_idx 2)}}
+<section id="brand-reward" class="line_container_mid edit_page_top_margin" >
+    {{#layout-push direction='col' classNames='edit_panel edit_reward_panel edit_first_panel'}}
         {{#layout-push direction='row' }}
             <span class="edit_title">品牌荣誉</span>
         {{/layout-push }}
-        {{#layout-push direction='row' classNames='edit_title_des_between'}}
-            <div class="edit_des">
-                <span>请上传证书、奖状等证明，并注明”成立时间-奖项标题“（成立时间-选填），展示品牌在教学上获得的殊荣。上传的教学成绩将被展示于品牌小程序中，有助于用户更加了解您的品牌。</span>
-                <br>
-                <br>
-                <span>每张图片小于100 KB</span>
-            </div>
-        {{/layout-push }}
-
-        <div class="line_container_warp">
-            <div class="edit_logo_container">
-                {{#layout-push direction='col' mid=true }}
-                    <span class="edit_logo_des">点击上传</span>
-                {{/layout-push }}
-            </div>
+        <div class='line_conatainer_warp'>
+            {{#each bm_brand_service.brand.Honors as |item|}}
+                {{bmcom/bm-img-uploader needTag=true canEdit=true img=item.img tag=item.tag classNames='alt-yard-edit-tag-img-adjust'}}
+            {{/each}}
         </div>
+
+    {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
+        <p class="nav_save menu_button_between" {{action (mut cur_idx) 3}}>下一步</p>
+    {{/layout-push}}
     {{/layout-push }}
 </section>
+{{/if}}
 
-<section id="cert" class="line_container_mid " >
-    {{#layout-push direction='col' classNames='edit_panel edit_reward_panel'}}
+{{#if (bmeq cur_idx 3)}}
+<section id="cert" class="line_container_mid edit_page_top_margin" >
+    {{#layout-push direction='col' classNames='edit_panel edit_reward_panel edit_first_panel'}}
         {{#layout-push direction='row' }}
             <span class="edit_title">资质认证</span>
         {{/layout-push }}
@@ -157,17 +133,21 @@
             </div>
         {{/layout-push }}
 
-        <div class="line_container_warp">
-            <div class="edit_logo_container">
-                {{#layout-push direction='col' mid=true}}
-                    <span class="edit_logo_des">点击上传</span>
-                {{/layout-push }}
-            </div>
+        <div class='line_conatainer_warp'>
+            {{#each bm_brand_service.brand.Certifications as |item|}}
+                {{bmcom/bm-img-uploader needTag=true canEdit=true img=item.img tag=item.tag classNames='alt-yard-edit-tag-img-adjust'}}
+            {{/each}}
         </div>
+    {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
+        <p class="nav_save menu_button_between" {{action (mut cur_idx) 4}}>下一步</p>
+    {{/layout-push}}
     {{/layout-push }}
 </section>
+{{/if}}
 
-<section id="about-tech" class="line_container_mid" >
+{{#if (bmeq cur_idx 4)}}
+<section id="about-tech" class="line_container_mid edit_page_top_margin" >
+    {{#layout-push direction='col' classNames='edit_first_panel'}}
     {{bm-edit-area
         classNames='edit_panel'
         title="师资介绍"
@@ -175,7 +155,12 @@
         maxCount=400
         isNeeded=true
         rowsAmount=5
-        inputVal=bm_brand_update_service.brand.about_us}}
+        inputVal=bm_brand_service.brand.about_us}}
+    {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
+        <p class="nav_save menu_button_between" {{action 'saveBrand'}}>完成</p>
+    {{/layout-push}}
+    {{/layout-push}}
 </section>
+{{/if}}
 
 {{outlet}}

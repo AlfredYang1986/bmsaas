@@ -7,6 +7,7 @@ export default DS.Model.extend({
     slogan: DS.attr('string'),
     brand_tags: DS.attr(),
     foundStory: DS.attr('string'),
+    found: DS.attr('number'),
     edu_idea: DS.attr('string'),
     about_us: DS.attr('string'),
     Honors: DS.hasMany('BmHonor', {async: false}),

@@ -16,7 +16,10 @@
             <div class="dd_container dd_container_margin">
                 {{#layout-push direction="col" classNames="brand_info_card"}}
                     {{#layout-push direction="col" classNames="brand_info_card_head"}}
-                        <img class="brand_logo" src="../images/brand_demo.png" />
+                        {{#if (bmcom/bm-nil-obj bm_brand_service.brand)}}
+                        {{else}}
+                            <img class="brand_logo" src={{logoPath}} />
+                        {{/if}}
                         <p class="brand_title">{{bm_brand_service.brand.title}}</p>
                     {{/layout-push}}
                     {{#layout-push direction="col" classNames="brand_info_card_content"}}
