@@ -60,7 +60,7 @@
         <section class='alt_course_selection'>
             {{#layout-push direction='col' classNames='alt_course_container'}}
                 {{#bmpage/bm-session-info session=bm_actv_service.actv.SessionInfo}}
-                    {{#link-to 'home'  classNames='alt_course_btn'}}
+                    {{#link-to 'edit.actv.info' bm_actv_service.actv.SessionInfo.id  classNames='alt_course_btn'}}
                         编辑
                     {{/link-to}}
                 {{/bmpage/bm-session-info}}
