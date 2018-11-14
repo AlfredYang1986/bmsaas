@@ -23,5 +23,6 @@ export default Route.extend({
         }
         controller.set('cur_page_idx', 0);
         this.bm_session_service.set('refresh_token', this.bm_session_service.guid());
+        controller.set('refresh_token', this.bm_session_service.guid());
     },
 });

@@ -15,24 +15,6 @@
   </span>
 {{/layout-push}}
 {{#layout-push direction='row' split=true classNames='edit_container' }}
-    {{!-- <ul class="edit_left_nav">
-        <li class="left_bar_item">
-            <a class="edit_left_menu_text" {{action (mut cur_page_idx) 0}}>课程类别</a>
-        </li>
-        <li class="left_bar_item">
-            <a class="edit_left_menu_text" {{action (mut cur_page_idx) 1}}>课程标题</a>
-        </li>
-        <li class="left_bar_item">
-            <a class="edit_left_menu_text" {{action (mut cur_page_idx) 2}}>基础信息</a>
-        </li>
-        <li class="left_bar_item">
-            <a class="edit_left_menu_text" {{action (mut cur_page_idx) 3}}>课程详情</a>
-        </li>
-        <li class="left_bar_item">
-            <a class="edit_left_menu_text" {{action (mut cur_page_idx) 4}}>课程图片</a>
-        </li>
-    </ul> --}}
-
     <ul class="edit_left_nav">
         <li class="left_bar_title">
             <a class="edit_left_menu_text" {{action (mut cur_page_idx) 0}}>体验课描述</a>
@@ -80,23 +62,10 @@
         <span class='alt_course_title alt_course_big_title'>您的体验课属于哪一个分类</span>
         <span class='alt_course_des'>为体验课选择详细类目，这样便于用户快速查找您的体验服务。</span>
         {{#layout-push direction="row"}}
-            <div class="line_container" >
-                <select class="start-time" name="" id='catselected' onchange={{action 'catChanged'}}>
-                    <option value="">请选择</option>
-                    {{#each cat_candi as |item|}}
-                        <option value={{item}}>{{item}}</option>
-                    {{/each}}
-                </select>
-            </div>
-            <div class="line_container" >
-                <select class="start-time" name="" id='subselected' onchange={{action 'subChanged'}}>
-                    <option value="">请选择</option>
-                    {{#each sub_candi as |item|}}
-                        <option value={{item}}>{{item}}</option>
-                    {{/each}}
-                </select>
-            </div>
-            {{cat_refresh}}
+            {{#if (bmcom/bm-nil-obj bm_session_service.session)}}
+            {{else}}
+            {{bm-cate-choose crs_cat=bm_session_service.session.Cate.title crs_sub_cat=bm_session_service.session.Cate.subtitle}}
+            {{/if}}
         {{/layout-push}}
         {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
             <p class="nav_save menu_button_between" {{action (mut cur_page_idx) 1}}>下一步</p>
@@ -159,48 +128,6 @@
 {{#if (bmeq cur_page_idx 2)}}
 <section id="basic-info" class="alt_course_section" >
     {{#layout-push direction='col' classNames="alt_course_panel edit_panel edit_third_panel"}}
-        {{!-- {{#layout-push direction='col' classNames='select-age'}}
-            <span class='alt_course_title'>适宜年龄</span>
-            {{#layout-push direction="row" classNames="alt-course-age-group"}}
-                <div class="input-group">
-                    <input value={{bm_session_service.session.alb}} class="edit_input_age" type="text">
-                    <div class="input-group-append">
-                        <span class="input-group-text">岁</span>
-                    </div>
-                </div>
-                <span class="alt_course_des">至</span>
-                <div class="input-group">
-                    <input value={{bm_session_service.session.aub}} class="edit_input_age" type="text">
-                    <div class="input-group-append">
-                        <span class="input-group-text">岁</span>
-                    </div>
-                </div>
-            {{/layout-push}}
-        {{/layout-push}}
-        {{#layout-push direction="col" classNames="alt-course-input-group"}}
-            <span class='alt_course_title'>分级阶段</span>
-            <span class='alt_course_des'>如：入门级、LV1</span>
-            {{input type="text" class="edit_input" value=bm_session_service.session.level}}
-        {{/layout-push}}
-        {{#layout-push direction="col" classNames="alt-course-input-group"}}
-            <span class='alt_course_title'>预计课时数</span>
-            <span class='alt_course_des'>请输入整数</span>
-            {{input type="text" class="edit_input" value=bm_session_service.session.count}}
-        {{/layout-push}}
-        {{#layout-push direction="col" classNames="alt-course-input-group"}}
-            <span class='alt_course_title'>课程时长（min）</span>
-            <span class='alt_course_des'>分级阶段</span>
-            {{input type="text" class="edit_input" value=bm_session_service.session.length}}
-        {{/layout-push}}
-        {{#layout-push direction="col" classNames="alt-course-input-group"}}
-            <span class='alt_course_title'>教学特点</span>
-            <span class='alt_course_des'>如：蒙特梭利</span>
-            {{input type="text" class="edit_input" value=bm_session_service.session.harvest}}
-        {{/layout-push}}
-        <a href="" class="add-other-course">+ 添加另一个项目</a>
-        {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-            <p class="nav_save menu_button_between" {{action (mut cur_page_idx) 3}}>下一步</p>
-        {{/layout-push}} --}}
         <span class='alt_course_title alt_course_big_title'>描述一下体验课的内容吧</span>
         {{#layout-push direction="col" classNames="alt-course-input-group"}}
             <span class='alt_course_title'>体验课时长（min）</span>
@@ -217,7 +144,7 @@
         {{#layout-push direction="col" classNames='alt-course-input-group'}}
                 <span class="alt-edit-title alt-edit-title-des">体验课內容</span>
                 <span class='alt-edit-up-hit'>介绍体验课具体场景及内容，有趣、详细的內容介绍会引起参与者的极大兴趣。</span>
-                {{textarea value=bm_yard_service.yard.description classNames='alt-edit-text-area' rows=5}}
+                {{textarea value=bm_session_service.session.description classNames='alt-edit-text-area' rows=5}}
         {{/layout-push}}
         {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
             <p class="nav_save menu_button_between" {{action (mut cur_page_idx) 3}}>下一步</p>
@@ -233,29 +160,11 @@
         {{#layout-push direction="col" classNames='alt-course-input-group'}}
             <span class="alt-edit-title alt-edit-title-des">描述互动环节</span>
             <span class='alt-edit-up-hit'>丰富且有细节的描述让孩子和家长同时期待这次参与</span>
-            {{textarea value="" classNames='alt-edit-text-area' rows=5}}
+            {{textarea value=bm_session_service.session.play_children classNames='alt-edit-text-area' rows=5}}
         {{/layout-push}}
         {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
             <p class="nav_save menu_button_between" {{action (mut cur_page_idx) 4}}>下一步</p>
         {{/layout-push}}
-            {{!-- {{#layout-push direction="col" classNames='alt-course-input-group'}}
-                <span class="alt-edit-title alt-edit-title-des">课程目标</span>
-                <span class='alt-edit-up-hit'>向家长清楚准确地描述课程的目标和带给孩子们的收获，能让家长产生深入了解课程的愿望和参与的想法喔！</span>
-                {{textarea value=bm_yard_service.yard.description classNames='alt-edit-text-area' rows=5}}
-            {{/layout-push}}
-            {{#layout-push direction="col" classNames='alt-course-input-group'}}
-                <span class="alt-edit-title alt-edit-title-des">课程计划</span>
-                <span class='alt-edit-up-hit'>按条目介绍您的课程计划能让家长感受到品牌的专业性</span>
-                {{textarea value=bm_yard_service.yard.description classNames='alt-edit-text-area' rows=5}}
-            {{/layout-push}}
-            {{#layout-push direction="col" classNames='alt-course-input-group'}}
-                <span class="alt-edit-title alt-edit-title-des">课程内容</span>
-                <span class='alt-edit-up-hit'>丰富精彩的课程内容加上准确的描述，让家长产生向让孩子参与的欲望，同时也增加了对您品牌的了解与信任。</span>
-                {{textarea value=bm_yard_service.yard.description classNames='alt-edit-text-area' rows=5}}
-            {{/layout-push}}
-        {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-            <p class="nav_save menu_button_between" {{action (mut cur_page_idx) 4}}>下一步</p>
-        {{/layout-push}} --}}
     {{/layout-push}}
 </section>
 {{/if}}
@@ -266,7 +175,7 @@
     {{#layout-push direction='col' classNames='alt_course_panel edit_panel edit_fifth_panel'}}
         <span class='alt_course_title alt_course_big_title'>将为宝贝提供</span>
         <span class='alt_course_des'>如:教学用具、水、咖啡、小吃等</span>
-        {{input type="text" class="edit_input" maxlength='8' value=""}}
+        {{input type="text" class="edit_input" maxlength='8' value=bm_session_service.including}}
         <div class="course-edit-check course-edit-check-low">
             <span class="radio-inline">
                 <input type="checkbox" name="rel" value="ma" checked={{bmeq item.gender 0}}/>
@@ -287,10 +196,10 @@
         <span class='alt_course_title alt_course_big_title'>宝贝将获得什么呢？</span>
         <span class='alt_course_title'>结束后，宝贝将获得什么实质性的成果呢？</span>
         <span class='alt_course_des'>如：小礼物、手作機器人等…</span>
-        {{input type="text" class="edit_input" maxlength='10' value=""}}
+        {{input type="text" class="edit_input" maxlength='10' value=bm_session_service.session.acquisition}}
         <div class="course-edit-check course-edit-check-low">
             <span class="radio-inline">
-                <input type="checkbox" name="rel" value="ma" checked={{bmeq item.gender 0}}/>
+                <input type="checkbox" name="rel" />
                 <label for="female">暂无获得物</label>
             </span>
         </div>
@@ -342,13 +251,13 @@
         <span class='alt_course_title'>是否需要家长陪同？</span>
         <div class="course-edit-check course-edit-check-high">
             <span class="radio-inline">
-                <input type="checkbox" name="rel" value="ma" checked={{bmeq item.gender 0}}/>
+                <input type="checkbox" name="rel" checked={{bmeq bm_session_service.session.accompany 0}}/>
                 <label for="female">不需要家长陪同</label>
             </span>
         </div>
         <div class="course-edit-check course-edit-check-high">
             <span class="radio-inline">
-                <input type="checkbox" name="rel" value="ma" checked={{bmeq item.gender 0}}/>
+                <input type="checkbox" name="rel" checked={{bmeq bm_session_service.session.accompany 1}}/>
                 <label for="female">需要家长陪同</label>
             </span>
         </div>
@@ -366,10 +275,10 @@
         <span class='alt_course_title alt_course_big_title'>参与者需自带的东西</span>
         <span class='alt_course_title'>参与者要带些什么东西？</span>
         <span class='alt_course_des'>如:画笔工具</span>
-        {{input type="text" class="edit_input" maxlength='10' value=""}}
+        {{input type="text" class="edit_input" maxlength='10' value=bm_session_service.session.carrying}}
         <div class="course-edit-check course-edit-check-low">
             <span class="radio-inline">
-                <input type="checkbox" name="rel" value="ma" checked={{bmeq item.gender 0}}/>
+                <input type="checkbox" name="rel" />
                 <label for="female">当前无需参与者自行准备</label>
             </span>
         </div>
@@ -387,41 +296,19 @@
         <span class='alt_course_title alt_course_big_title'>须知</span>
         <span class='alt_course_title'>参与者须知</span>
         <span class='alt_course_des'>详细说明可以让参与者做好充分准备。如：着装建议、身体情况限制、 接送说明等。</span>
-        {{input type="text" class="edit_input" maxlength='10' value=""}}
+        {{input type="text" class="edit_input" maxlength='10' value=bm_session_service.session.notice}}
         <div class="course-edit-check course-edit-check-low">
             <span class="radio-inline">
-                <input type="checkbox" name="rel" value="ma" checked={{bmeq item.gender 0}}/>
+                <input type="checkbox" name="rel" />
                 <label for="female">无须知说明</label>
             </span>
         </div>
         {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-            <p class="nav_save menu_button_between" {{action 'saveCourseBtnClicked'}}>下一步</p>
+            <p class="nav_save menu_button_between" {{action 'saveCourseBtnClicked'}}>完成</p>
         {{/layout-push}}
     {{/layout-push}}
 </section>
 {{/if}}
-
-{{!-- {{#if (bmeq cur_page_idx 4)}}
-<section id="brand-reward" class="alt_course_section" >
-    {{#layout-push direction='col' classNames='alt_course_panel edit_panel edit_reward_panel edit_fifth_panel'}}
-        {{#layout-push direction="row"}}
-            <span class="alt-edit-title">课程图片</span>
-        {{/layout-push}}
-        <span class='alt-edit-up-hit'>请上传证书、奖状等证明，并注明”成立时间-奖项标题“（成立时间-选填），展示品牌在教学上获得的殊荣。上传的教学成绩将被展示于品牌小程序中，有助于用户更加了解您的品牌。</span>
-        <span class='alt-edit-up-hit'>每张图片小于100KB</span>
-        {{#layout-push direction='row' mid=true}}
-            <div class='line_conatainer_warp'>
-                {{#each bm_course_service.course.Tagimgs as |item|}}
-                    {{bmcom/bm-img-uploader needTag=true canEdit=true img=item.img tag=item.tag classNames='alt-course-edit-tag-img-adjust'}}
-                {{/each}}
-            </div>
-        {{/layout-push}}
-        {{#layout-push classNames='r_end' direction='row'}}
-            <button class='alt-edit-step-btn' {{action 'saveCourseBtnClicked'}}>完成</button>
-        {{/layout-push}}
-    {{/layout-push }}
-</section>
-{{/if}} --}}
 </div>
 {{/layout-push}}
 {{outlet}}

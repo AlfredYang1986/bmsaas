@@ -142,18 +142,18 @@ export default Service.extend({
         return {
             data: {
                 id: this.guid(),
-                type: "BmYard",
+                type: "BmSessionInfo",
                 attributes: {
-                    title: "科学小屋",
-                    subtitle: "天空之城",
-                    alb: 3,
-                    aub: 10,
-                    level: "2阶1",
-                    count: 1,
-                    length: 45,
-                    description: "联想家的基本组成，思考房间的属性是如何定义的，初识平面图的概念；设计自己的家居空间；训练在脑中想象物体从平面到立体的转化能力；学会使用微缩模型和抽象图形表达自己对居家生活的想象。认识和理解模块化思维以及模块化在建筑中的应用；学习拼插结构的设计搭建方法；组合片状模块成为建筑模型。",
-                    harvest: "提高孩子的逻辑思維能力",
-                    acquisition: "玩具套盒",
+                    title: "",
+                    subtitle: "",
+                    alb: 0,
+                    aub: 0,
+                    level: "",
+                    count: 0,
+                    length: 0,
+                    description: "",
+                    harvest: "",
+                    acquisition: "",
                     accompany: 0,
                     including: "",
                     carrying: "",
@@ -207,8 +207,8 @@ export default Service.extend({
                     id: cate,
                     type: "BmCategory",
                     attributes: {
-                        title: "数理与逻辑##语言与人文",
-                        subtitle: "体验课 Trial-class"
+                        title: "",
+                        subtitle: ""
                     }
                 },
                 {
@@ -305,6 +305,10 @@ export default Service.extend({
         arr.push(c.data);
 
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
+        rd_tmp.data.attributes.count = parseInt(rd.count);
+        rd_tmp.data.attributes.length = parseInt(rd.length);
+        rd_tmp.data.attributes.alb = parseInt(rd.aub);
+        rd_tmp.data.attributes.aub = parseInt(rd.alb);
         rd_tmp['included'] = arr;
         let dt = JSON.stringify(rd_tmp); 
 

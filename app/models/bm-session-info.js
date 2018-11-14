@@ -9,9 +9,9 @@ export default DS.Model.extend({
     count: DS.attr('number'),
     length: DS.attr('number'),
     description: DS.attr('string'),
-    harvest: DS.attr('string'),
-    acquisition: DS.attr('string'),
-    accompany: DS.attr('number'),
+    harvest: DS.attr('string'),     // 虚拟收获
+    acquisition: DS.attr('string'), // 奖品
+    accompany: DS.attr('number'),   // 家长陪同
     including: DS.attr('string'),
     carrying: DS.attr('string'),
     notice: DS.attr('string'),
