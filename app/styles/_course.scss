@@ -252,7 +252,11 @@
             margin-bottom: 0;
             background-color: #FFFFFF;
             height: fit-content;
-            
+
+            .alt_course_panel{
+                margin-bottom: 0;
+            }
+
             .alt_course_deatil_split_line{
                 opacity: 0.12;
                 border: 0.5px solid #00000020;
@@ -264,7 +268,8 @@
                 color: #172B4D;
                 height: 28px;
                 line-height: 28px;
-                margin-top: 24px;
+                // margin-top: 24px;
+                margin-bottom: 16px;
             }
 
             .alt_course_detail_cat {
@@ -272,10 +277,10 @@
                 font-size: 14px;
                 color: #6B778C;
                 text-align: left;
-                margin-top: 8px;
+                // margin-top: 8px;
                 line-height: 20px;
                 height: 20px;
-                // margin-bottom: 40px;
+                margin-bottom: 24px;
             }
 
             .alt_course_detail_line {
@@ -349,6 +354,7 @@
 
 .alt-course-tag-img-adjust {
     margin-right: 40px;
+    margin-bottom: 24px;
     width: 160px;
     height: 142px;
 
@@ -369,3 +375,4 @@
         margin-top: 122px;
     }
 }
+

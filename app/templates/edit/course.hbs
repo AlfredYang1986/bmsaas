@@ -1,4 +1,4 @@
-<ul class="nav">
+{{!-- <ul class="nav">
     <li class="nav-item">
         <a class="nav-link active brand_name" href="#">新建-课程信息</a>
     </li>
@@ -16,9 +16,42 @@
             {{#bs-button classNames="nav_save_btn menu_button_between" onClick=(action 'saveCourseBtnClicked')}}保存{{/bs-button}}
         </div>
     </li>
-</ul>
+</ul> --}}
+{{#layout-push direction='row' split=true classNames='edit_nav' }}
+  <span>新建-课程信息</span>
+  <span>
+      {{#if isPushing}}
+          {{#link-to 'course' class="edit_nav_btn btn_cacel"}}
+              取消
+          {{/link-to}}
+      {{else}}
+          {{#link-to 'detail.course' bm_session_service.session.id class="edit_nav_btn btn_cacel"}}
+              取消
+          {{/link-to}}
+      {{/if}}
+      <button class="edit_nav_btn btn_save" {{action 'saveCourseBtnClicked'}}>保存</button>
+  </span>
+{{/layout-push}}
+{{#layout-push direction='row' split=true classNames='edit_container' }}
+    <ul class="edit_left_nav">
+        <li class="left_bar_item">
+            <a class="edit_left_menu_text" {{action (mut cur_page_idx) 0}}>课程类别</a>
+        </li>
+        <li class="left_bar_item">
+            <a class="edit_left_menu_text" {{action (mut cur_page_idx) 1}}>课程标题</a>
+        </li>
+        <li class="left_bar_item">
+            <a class="edit_left_menu_text" {{action (mut cur_page_idx) 2}}>基础信息</a>
+        </li>
+        <li class="left_bar_item">
+            <a class="edit_left_menu_text" {{action (mut cur_page_idx) 3}}>课程详情</a>
+        </li>
+        <li class="left_bar_item">
+            <a class="edit_left_menu_text" {{action (mut cur_page_idx) 4}}>课程图片</a>
+        </li>
+    </ul>
 
-<ul class="edit_left_bar">
+{{!-- <ul class="edit_left_bar">
     <li class="left_bar_item" >
         <div class="edit_left_menu_mid menu_margin_right">
             <a class="edit_left_menu_text" onclick={{action (mut cur_page_idx) 0}}>课程类别</a>
@@ -44,12 +77,12 @@
             <a class="edit_left_menu_text" onclick={{action (mut cur_page_idx) 4}}>课程图片</a>
         </div>
     </li>
-</ul>
-
+</ul> --}}
+<div class="input_container">
 {{#if (bmeq cur_page_idx 0)}}
 
 <section id="start-story" class="alt_course_section" >
-    {{#layout-push direction='col' classNames='alt_course_panel'}}
+    {{#layout-push direction='col' classNames='alt_course_panel edit_panel'}}
         <span class='alt_course_title'>您的课程属于哪一个分类</span>
         <span class='alt_course_des'>明确的分类，能让家长们对课程有明确的初步印象。</span>
         {{#layout-push direction="row"}}
@@ -81,7 +114,7 @@
 {{#if (bmeq cur_page_idx 1)}}
 
 <section id="start-story" class="alt_course_section" >
-    {{#layout-push direction='col' classNames='alt_course_panel'}}
+    {{#layout-push direction='col' classNames='alt_course_panel edit_panel'}}
         <span class='alt_course_title'>为课程取个名称吧</span>
         <span class='alt_course_des'>有趣的课程名称能让家长和孩子对您的课程内容产生兴趣和好奇心。</span>
         {{input type="text" class="edit_input kid_name" maxlength='8' value=bm_session_service.session.title}}
@@ -93,20 +126,21 @@
 {{/if}}
 
 {{#if (bmeq cur_page_idx 2)}}
-<section id="basic-info" class="line_container_mid edit_page_top_margin " >
-    {{#layout-push direction='col' classNames="edit_panel edit_first_panel"}}
-        {{#layout-push direction='row'}}
+<section id="basic-info" class="alt_course_section" >
+    {{#layout-push direction='col' classNames="alt_course_panel edit_panel edit_first_panel"}}
+        {{!-- {{#layout-push direction='row'}}
             <span class="edit_title">分类/标签</span>
-        {{/layout-push }}
+        {{/layout-push }} --}}
         {{#layout-push direction='col' classNames='select-school'}}
-            <div class="line_container_split" >
+            {{!-- <div class="line_container_split" >
                 <div class="line_container" >
                     <span class="edit-course-subtitle">适宜年龄</span>
                     <div class="v_end">
                         <span class="edit-course-required" >* 必填</span>
                     </div>
                 </div>
-            </div>
+            </div> --}}
+            <span class='alt_course_title'>适宜年龄</span>
             {{#layout-push direction="row"}}
                 {{!-- <div class="line_container" >
                     <select class="start-time" name="">
@@ -126,11 +160,30 @@
                 </div>
             {{/layout-push}}
         {{/layout-push}}
-
-        {{bm-edit-line title="分级阶段"  maxCount=6 pholder="如：入门级、LV1" inputVal=bm_session_service.session.level}}
+        {{#layout-push direction="col" classNames="alt-course-input-group"}}
+            <span class='alt_course_title'>分级阶段</span>
+            <span class='alt_course_des'>如：入门级、LV1</span>
+            {{input type="text" class="" value=bm_session_service.session.level}}
+        {{/layout-push}}
+        {{#layout-push direction="col" classNames="alt-course-input-group"}}
+            <span class='alt_course_title'>预计课时数</span>
+            <span class='alt_course_des'>请输入整数</span>
+            {{input type="text" class="" value=bm_session_service.session.count}}
+        {{/layout-push}}
+        {{#layout-push direction="col" classNames="alt-course-input-group"}}
+            <span class='alt_course_title'>课程时长（min）</span>
+            <span class='alt_course_des'>分级阶段</span>
+            {{input type="text" class="" value=bm_session_service.session.length}}
+        {{/layout-push}}
+        {{#layout-push direction="col" classNames="alt-course-input-group"}}
+            <span class='alt_course_title'>教学特点</span>
+            <span class='alt_course_des'>如：蒙特梭利</span>
+            {{input type="text" class="" value=bm_session_service.session.harvest}}
+        {{/layout-push}}
+        {{!-- {{bm-edit-line title="分级阶段"  maxCount=6 pholder="如：入门级、LV1" inputVal=bm_session_service.session.level}}
         {{bm-edit-line title="预计课时数" isNeeded=true  pholder="请输入整数" inputVal=bm_session_service.session.count}}
         {{bm-edit-line title="课程时长（min）" isNeeded=true maxCount=6 inputVal=bm_session_service.session.length}}
-        {{bm-edit-line title="教学特点" isNeeded=true maxCount=6 pholder="如：蒙特梭利" inputVal=bm_session_service.session.harvest}}
+        {{bm-edit-line title="教学特点" isNeeded=true maxCount=6 pholder="如：蒙特梭利" inputVal=bm_session_service.session.harvest}} --}}
 
         <a href="" class="add-other-course">+ 添加另一个项目</a>
         {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
@@ -141,9 +194,9 @@
 {{/if}}
 
 {{#if (bmeq cur_page_idx 3)}}
-<section id="about-tech" class="line_container_mid edit_page_top_margin" >
-    {{#layout-push direction="col" classNames='edit_first_panel'}}
-        {{bm-edit-area
+<section id="about-tech" class="alt_course_section" >
+    {{#layout-push direction="col" classNames='alt_course_panel edit_panel edit_first_panel'}}
+        {{!-- {{bm-edit-area
             classNames='edit_panel'
             title="课程详情"
             subtitle="课程目标"
@@ -169,7 +222,22 @@
             isNeeded=true
             rowsAmount=5
             inputVal=crs_content
-        }}
+        }} --}}
+            {{#layout-push direction="col" classNames='alt-course-input-group'}}
+                <span class="alt-edit-title alt-edit-title-des">课程目标</span>
+                <span class='alt-edit-up-hit'>向家长清楚准确地描述课程的目标和带给孩子们的收获，能让家长产生深入了解课程的愿望和参与的想法喔！</span>
+                {{textarea value=bm_yard_service.yard.description classNames='alt-edit-text-area' rows=5}}
+            {{/layout-push}}
+            {{#layout-push direction="col" classNames='alt-course-input-group'}}
+                <span class="alt-edit-title alt-edit-title-des">课程计划</span>
+                <span class='alt-edit-up-hit'>按条目介绍您的课程计划能让家长感受到品牌的专业性</span>
+                {{textarea value=bm_yard_service.yard.description classNames='alt-edit-text-area' rows=5}}
+            {{/layout-push}}
+            {{#layout-push direction="col" classNames='alt-course-input-group'}}
+                <span class="alt-edit-title alt-edit-title-des">课程内容</span>
+                <span class='alt-edit-up-hit'>丰富精彩的课程内容加上准确的描述，让家长产生向让孩子参与的欲望，同时也增加了对您品牌的了解与信任。</span>
+                {{textarea value=bm_yard_service.yard.description classNames='alt-edit-text-area' rows=5}}
+            {{/layout-push}}
         {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
             <p class="nav_save menu_button_between" {{action (mut cur_page_idx) 4}}>下一步</p>
         {{/layout-push}}
@@ -178,8 +246,8 @@
 {{/if}}
 
 {{#if (bmeq cur_page_idx 4)}}
-<section id="brand-reward" class="line_container_mid edit_page_top_margin" >
-    {{#layout-push direction='col' classNames='edit_panel edit_reward_panel edit_first_panel'}}
+<section id="brand-reward" class="alt_course_section" >
+    {{!-- {{#layout-push direction='col' classNames='alt_course_panel edit_panel edit_reward_panel edit_first_panel'}}
         {{#layout-push direction='row' }}
             <span class="edit_title">课程图片</span>
         {{/layout-push }}
@@ -199,6 +267,26 @@
                 {{/layout-push }}
             </div>
         </div>
+    {{/layout-push }} --}}
+    {{#layout-push direction='col' classNames='alt_course_panel edit_panel edit_reward_panel edit_fifth_panel'}}
+        {{#layout-push direction="row"}}
+            <span class="alt-edit-title">课程图片</span>
+        {{/layout-push}}
+        <span class='alt-edit-up-hit'>请上传证书、奖状等证明，并注明”成立时间-奖项标题“（成立时间-选填），展示品牌在教学上获得的殊荣。上传的教学成绩将被展示于品牌小程序中，有助于用户更加了解您的品牌。</span>
+        <span class='alt-edit-up-hit'>每张图片小于100KB</span>
+        {{#layout-push direction='row' mid=true}}
+            <div class='line_conatainer_warp'>
+                {{#each bm_course_service.course.Tagimgs as |item|}}
+                    {{bmcom/bm-img-uploader needTag=true canEdit=true img=item.img tag=item.tag classNames='alt-course-edit-tag-img-adjust'}}
+                {{/each}}
+            </div>
+        {{/layout-push}}
+        {{#layout-push classNames='r_end' direction='row'}}
+            <button class='alt-edit-step-btn' {{action 'saveCourseBtnClicked'}}>完成</button>
+        {{/layout-push}}
     {{/layout-push }}
 </section>
 {{/if}}
+</div>
+{{/layout-push}}
+{{outlet}}
