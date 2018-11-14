@@ -2,7 +2,7 @@
     {{#layout-push direction="col" classNames="course_content"}}
         {{#layout-push direction="row" split=true classNames="course-title-flex"}}
             <p class="page_title">体验课</p>
-            {{!-- {{#link-to 'edit.exp' 'exp/push' classNames='course_add_btn'}}+ 创建体验课{{/link-to}} --}}
+            {{#link-to 'edit.exp.rsb' classNames='course_add_btn'}}+ 创建体验课{{/link-to}}
         {{/layout-push}}
         {{#layout-push direction="row" wrap=true classNames="course-card-wrap"}}
             {{#each bm_exp_service.exps as |item|}}

@@ -9,14 +9,14 @@
             <span class='alt_course_title alt_course_title_age'>适宜年龄</span>
             {{#layout-push direction="row" classNames="alt-course-age-group"}}
                 <div class="input-group">
-                    <input value={{session.alb}} class="edit_input_age" type="text">
+                    {{input value=session.alb class="edit_input_age" type="text"}}
                     <div class="input-group-append">
                         <span class="input-group-text">岁</span>
                     </div>
                 </div>
                 <span class="alt_course_des">至</span>
                 <div class="input-group">
-                    <input value={{session.aub}} class="edit_input_age" type="text">
+                    {{input value=session.aub class="edit_input_age" type="text"}}
                     <div class="input-group-append">
                         <span class="input-group-text">岁</span>
                     </div>

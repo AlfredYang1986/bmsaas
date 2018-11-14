@@ -20,12 +20,14 @@ Router.map(function() {
       this.route('experience', { path: '/:epid' });
       this.route('session', { path: '/:actid'});
 
-      this.route('exp', function() {
-          this.route('info', { path: '/:sessionid' });
-      });
-
       this.route('actv', function() {
         this.route('info', { path: '/:sessionid' });
+        this.route('rsb');
+      });
+
+      this.route('exp', function() {
+        this.route('info', { path: '/:sessionid' });
+        this.route('rsb');
       });
     });
 

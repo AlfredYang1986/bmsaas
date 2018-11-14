@@ -23,7 +23,7 @@ export default Service.extend({
         this.bmstore.reset();
         this.set('exp', null);
 
-        if (this.expid.length == 0 || this.sessionid == 'exp/push') {
+        if (this.expid.length == 0 || this.expid == 'exp/push') {
             let query_payload = this.genPushQuery();
             let result = this.bmstore.sync(query_payload);
             this.set('exp', result);
@@ -171,6 +171,7 @@ export default Service.extend({
         let gid08 = this.guid();
         let gid09 = this.guid();
         let cate = this.guid();
+        let sinfo = this.guid();
         let now = new Date().getTime();
 
         return {
@@ -185,18 +186,18 @@ export default Service.extend({
                     relationships: {
                         SessionInfo: {
                             data: {
-                                "id": "5bebbc258fb8074f6440dc6f",
-                                "type": "BmSessionInfo"
+                                id: sinfo,
+                                type: "BmSessionInfo"
                             }
                         },
                         Yards: {
-                            "data": []
+                            data: []
                         }
                     }
                 },
                 included: [
                     {
-                        id: "5bebbc258fb8074f6440dc6f",
+                        id: sinfo,
                         type: "BmSessionInfo",
                         attributes: {
                             brandId: "5be6a00b8fb80736e2ec9ba5",
@@ -205,8 +206,8 @@ export default Service.extend({
                             alb: 0,
                             aub: 0,
                             level: "",
-                            count: 1,
-                            length: 45,
+                            count: 0,
+                            length: 0,
                             description: "",
                             harvest: "",
                             acquisition: "",
@@ -364,24 +365,24 @@ export default Service.extend({
             arr.push(tmp.data);
         }
 
-        let c = session.Cate.serialize();
+        let c = rd.Cate.serialize();
         arr.push(c.data);
 
-        let rd_tmp = JSON.parse(JSON.stringify(session.serialize()));
+        let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
         rd_tmp.data.attributes.count = parseInt(rd.count);
         rd_tmp.data.attributes.length = parseInt(rd.length);
-        rd_tmp.data.attributes.alb = parseInt(rd.aub);
-        rd_tmp.data.attributes.aub = parseInt(rd.alb);
+        rd_tmp.data.attributes.alb = parseInt(rd.alb);
+        rd_tmp.data.attributes.aub = parseInt(rd.aub);
 
         arr.push(rd_tmp.data)
 
-        let ft_tmp = JSON.parse(JSON.stringify(session.serialize()));
+        let ft_tmp = JSON.parse(JSON.stringify(ft.serialize()));
         ft_tmp['included'] = arr;
         let dt = JSON.stringify(ft_tmp); 
 
         Ember.$.ajax({
             method: 'POST',
-            url: '/api/v1/pushsessioninfo/0',
+            url: '/api/v1/pushreservable/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',

@@ -2,7 +2,7 @@
     {{#layout-push direction="col" classNames="course_content"}}
         {{#layout-push direction="row" split=true classNames="course-title-flex"}}
             <p class="page_title">活动</p>
-            {{!-- {{#link-to 'edit.actv' 'actv/push' classNames='course_add_btn'}}+ 创建体验课{{/link-to}} --}}
+            {{#link-to 'edit.actv.rsb' classNames='course_add_btn'}}+ 创建活动{{/link-to}}
         {{/layout-push}}
         {{#layout-push direction="row" wrap=true classNames="course-card-wrap"}}
             {{#each bm_actv_service.actvs as |item|}}

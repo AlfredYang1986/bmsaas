@@ -307,8 +307,8 @@ export default Service.extend({
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
         rd_tmp.data.attributes.count = parseInt(rd.count);
         rd_tmp.data.attributes.length = parseInt(rd.length);
-        rd_tmp.data.attributes.alb = parseInt(rd.aub);
-        rd_tmp.data.attributes.aub = parseInt(rd.alb);
+        rd_tmp.data.attributes.alb = parseInt(rd.alb);
+        rd_tmp.data.attributes.aub = parseInt(rd.aub);
         rd_tmp['included'] = arr;
         let dt = JSON.stringify(rd_tmp); 
 

@@ -83,7 +83,7 @@
         {{/if}}
 
         {{#if (bmeq cur_page_idx 9)}}
-            {{#bmsessioninfo/bm-input-note-page session}}
+            {{#bmsessioninfo/bm-input-note-page session=session}}
                 {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
                     <p class="nav_save menu_button_between" {{action 'saveCourseBtnClicked'}}>完成</p>
                 {{/layout-push}}
