@@ -3,20 +3,22 @@
         {{#link-to 'courseReserve' class="reserve_detail_href_ref"}}
             返回
         {{/link-to}}
-        <div class='detail_panel detail_margin_top' >
+        <div class='detail_panel detail_margin_top detail_margin_top_big' >
             {{#layout-push direction='row' split=true classNames="reserve-detail-head"}}
                 {{#layout-push direction='col' mid=true }}
-                    {{#layout-push direction='col'}}
+                    {{#layout-push direction='col' classNames="detail_margin_top_left"}}
                         <span class="detail_panel_title_name">{{bm_actv_service.actv.SessionInfo.title}}</span>
                         {{#layout-push direction='row'}}
                         {{!-- <p class="detail_panel_role_num">累计预约人数&nbsp;&nbsp;{{reserve_number}}</p> --}}
+                        <p class="detail_panel_role_num">{{reserve_number}}</p>
                         {{/layout-push}}
                     {{/layout-push}}
                 {{/layout-push}}
                 {{#layout-push direction="row" classNames="reserve-detail-btn"}}
-                    <p class="reserve-more-btn"></p>
-                    {{!-- {{#bs-button onClick=(action (mut courseCode) true) classNames="reserve-code-btn"}}{{/bs-button}} --}}
                     {{#bs-button classNames="reserve-code-btn"}}{{/bs-button}} 
+                    <p class="reserve-more-btn"></p>
+                    {{!-- {{#link-to 'edit.course' classNames='course_add_btn'}}+ 创建活动{{/link-to}} --}}
+                    {{!-- {{#bs-button onClick=(action (mut courseCode) true) classNames="reserve-code-btn"}}{{/bs-button}} --}}
                     <div local-class="modal-dialog">
                         {{#bs-modal open=courseCode onHidden=(action (mut courseCode) false) as |modal|}}
                             <div class="stud-modal">

@@ -57,9 +57,7 @@ Router.map(function() {
   this.route('actv');
 
   this.route('', function() {
-    this.route('detail', function() {
-      this.route('course-more-pic');
-    });
+    this.route('detail', function() {});
   });
 });
 

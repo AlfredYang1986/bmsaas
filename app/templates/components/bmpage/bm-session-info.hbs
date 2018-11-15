@@ -76,34 +76,101 @@
             {{/layout-push}}
         {{/layout-push}}
     {{/layout-push}}
-
-    {{#layout-push direction='col' classNames='alt_course_panel alt_course_right_panel'}}
-        {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
-            <span class='alt_right_panel_perperty_title'>教育理念和模式</span>
-            {{#if (bmcom/bm-nil-array session.tags)}}
-                {{#layout-push direction='row' mid=true}}
+    {{#layout-push direction='col' classNames='alt_course_right_panel_group'}}
+        {{#layout-push direction='col' classNames='alt_course_panel alt_course_right_panel'}}
+            {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
+                <span class='alt_right_panel_perperty_title'>体验内容</span>
+                {{#if (eq session.description "")}}
                     <span class='alt_right_panel_perperty_des'>请上传信息</span>
-                {{/layout-push}}
-            {{else}}
-                {{#layout-push direction='row'}}
-                    {{#each session.tags as |item|}}
-                        <span class='alt_yard_detail_tag'>{{item}}</span>
-                    {{/each}}
-                {{/layout-push}}
-            {{/if}}
+                {{else}}
+                    <span class='alt_right_panel_perperty_des'>{{session.description}}</span>
+                {{/if}}
+            {{/layout-push}}
+            {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
+                <span class='alt_right_panel_perperty_title'>与孩子互动</span>
+                {{#if (eq session.play_children "")}}
+                    <span class='alt_right_panel_perperty_des'>请上传信息</span>
+                {{else}}
+                    <span class='alt_right_panel_perperty_des'>{{session.play_children}}</span>
+                {{/if}}
+            {{/layout-push}}
+            {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
+                <span class='alt_right_panel_perperty_title'>将为宝贝提供</span>
+                {{#if (eq session.inc "")}}
+                    <span class='alt_right_panel_perperty_des'>请上传信息</span>
+                {{else}}
+                    <span class='alt_right_panel_perperty_des'>{{session.inc}}</span>
+                {{/if}}
+            {{/layout-push}}
         {{/layout-push}}
-        {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
-            <span class='alt_right_panel_perperty_title'>课程目标</span>
-            <span class='alt_right_panel_perperty_des'>{{session.target}}</span>
+
+        {{#layout-push direction='col' classNames='alt_course_panel alt_course_right_panel'}}
+            {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
+                <span class='alt_right_panel_perperty_title'>宝贝将获得</span>
+                {{#if (eq session.acquisition "")}}
+                    <span class='alt_right_panel_perperty_des'>请上传信息</span>
+                {{else}}
+                    <span class='alt_right_panel_perperty_des'>{{session.acquisition}}</span>
+                {{/if}}
+            {{/layout-push}}
+            {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
+                <span class='alt_right_panel_perperty_title'>陪同说明</span>
+                {{#if (eq session.accompany "")}}
+                    <span class='alt_right_panel_perperty_des'>请上传信息</span>
+                {{else}}
+                    {{#if (eq session.accompany 1)}}
+                        <span class='alt_right_panel_perperty_des'>需家长陪同</span>
+                    {{else}}
+                        <span class='alt_right_panel_perperty_des'>不需家长陪同</span>
+                    {{/if}}
+                {{/if}}
+            {{/layout-push}}
+            {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
+                <span class='alt_right_panel_perperty_title'>参与者需自带</span>
+                {{#if (eq session.carrying "")}}
+                    <span class='alt_right_panel_perperty_des'>请上传信息</span>
+                {{else}}
+                    <span class='alt_right_panel_perperty_des'>{{session.carrying}}</span>
+                {{/if}}
+            {{/layout-push}}
+            {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
+                <span class='alt_right_panel_perperty_title'>须知</span>
+                {{#if (eq session.notice "")}}
+                    <span class='alt_right_panel_perperty_des'>请上传信息</span>
+                {{else}}
+                    <span class='alt_right_panel_perperty_des'>{{session.notice}}</span>
+                {{/if}}
+            {{/layout-push}}
         {{/layout-push}}
-        {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
-            <span class='alt_right_panel_perperty_title'>课程计划</span>
-            <span class='alt_right_panel_perperty_des'>{{session.planning}}</span>
-        {{/layout-push}}
-        {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
-            <span class='alt_right_panel_perperty_title'>课程内容</span>
-            <span class='alt_right_panel_perperty_des'>{{session.description}}</span>
-        {{/layout-push}}
+
+        {{!-- {{#layout-push direction='col' classNames='alt_course_panel alt_course_right_panel'}}
+            {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
+                <span class='alt_right_panel_perperty_title'>教育理念和模式</span>
+                {{#if (eqsadasd session "".tags)}}
+                    {{#layout-push direction='row' mid=true}}
+                        <span class='alt_right_panel_perperty_des'>请上传信息</span>
+                    {{/layout-push}}
+                {{else}}
+                    {{#layout-push direction='row'}}
+                        {{#each session.tags as |item|}}
+                            <span class='alt_yard_detail_tag'>{{item}}</span>
+                        {{/each}}
+                    {{/layout-push}}
+                {{/if}}
+            {{/layout-push}}
+            {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
+                <span class='alt_right_panel_perperty_title'>课程目标</span>
+                <span class='alt_right_panel_perperty_des'>{{session.target}}</span>
+            {{/layout-push}}
+            {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
+                <span class='alt_right_panel_perperty_title'>课程计划</span>
+                <span class='alt_right_panel_perperty_des'>{{session.planning}}</span>
+            {{/layout-push}}
+            {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
+                <span class='alt_right_panel_perperty_title'>课程内容</span>
+                <span class='alt_right_panel_perperty_des'>{{session.description}}</span>
+            {{/layout-push}}
+        {{/layout-push}} --}}
 
     {{/layout-push}}
 {{/layout-push}}
