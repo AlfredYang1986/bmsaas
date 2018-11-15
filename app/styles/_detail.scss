@@ -311,6 +311,14 @@ span.list-status {
 .detail_page {
     padding: 24px;
     margin-top: 14px;
+
+    .alt_course_selection {
+        .alt_course_container{
+            margin: 24px 0;
+
+        }
+    }
+
     .class_detail_tab {
         background: transparent;
         height: 28px;
