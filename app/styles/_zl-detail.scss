@@ -239,8 +239,10 @@ a.reserve_detail_href_ref {
 }
 .detail_margin_top {
     margin-top: 24px;
+    height: 72px;
 }
 .reserve-detail-head {
+    height: 40px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -260,6 +262,13 @@ a.reserve_detail_href_ref {
         font-family: PingFangSC-Medium;
         font-size: 24px;
         color: #172B4D;
+    }
+    .detail_panel_title_name {
+        // margin-bottom: 10px;
+        font-family: PingFangSC-Semibold, Helvetica, sans-serif;
+        font-size: 24px;
+        color: #172B4D;
+        line-height: 28px;
     }
     p.detail_panel_role_num {
 

@@ -7,9 +7,8 @@ export default Component.extend({
     bmOss: service(),
     cover: computed('course', function(){
         let client = this.bmOss.get('ossClient');
-
+        
         let url = client.signatureUrl(this.course.get('cover'));
-        console.log(url);
         return url;
     }),
     click() {

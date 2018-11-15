@@ -1,7 +1,7 @@
 @import './bm-saas-standard/args';
 @import 'args';
-
 @import "course-card";
+@import 'more-pic-modal';
 
 %course_content_basic {
     padding-left: 240px;
@@ -163,11 +163,15 @@
             }
         }
 
+        .alt_course_top_panel{
+            min-width: 912px;
+        }
         .alt_course_right_panel {
             width: 66.6666%;
             margin-bottom: 0;
             padding: 24px;
             height: fit-content;
+            min-width: 608px;
 
             .alt_course_detail_panel {
                 // margin: 24px;
@@ -255,9 +259,55 @@
             margin-bottom: 0;
             background-color: #FFFFFF;
             height: fit-content;
+            min-width: 296px;
 
             .alt_course_panel{
                 margin-bottom: 0;
+
+                .alt_course_detail_pic {
+                    margin-top: 16px;
+
+                    .alt_course_detail_pic_left{
+                        margin-right: 8px;
+
+                        .img_left {
+                            border-radius: 4px;
+                            width: 120px;
+                            height: 154px;
+                        }
+                    }
+                    .alt_course_detail_pic_right{
+
+                        .img_right {
+                            border-radius: 4px;
+                            width: 120px;
+                            height: 73px;
+                        }
+                        .alt_course_detail_pic_right_top{
+                            margin-bottom: 8px;
+                        }
+                        .alt_course_detail_pic_right_bottom{
+                            position: relative;
+
+                            .more-pic-link{
+                                width: 120px;
+                                height: 73px;
+                                position: absolute;
+                                // opacity: 0.4;
+                                // background: #172B4D;
+                                background-color: rgba(23,43,77,0.4);
+                                border-radius: 4px;
+                                font-family: PingFangSC-Medium;
+                                font-size: 14px;
+                                color: #FFFFFF;
+
+                                &:focus{
+                                    outline: none;
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
             .alt_course_deatil_split_line{

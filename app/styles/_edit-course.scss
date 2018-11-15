@@ -162,7 +162,7 @@
                     min-height: 0;
 
                     .line_conatainer_warp{
-                        
+                        margin-top: 12px;
                         .alt-course-edit-tag-img-adjust {
                             margin-right: 24px;
                             margin-bottom: 40px;
@@ -183,6 +183,10 @@
                                 
                             }
                             .bm-upload-tag{
+                                text-align: left;
+                                color: #6B778C;
+                                max-width: none;
+                                width: 100%;
                                 margin-top: 288px;
                                 justify-content: flex-start;
                             }
