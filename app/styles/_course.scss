@@ -1,7 +1,7 @@
 @import './bm-saas-standard/args';
 @import 'args';
-
 @import "course-card";
+@import 'more-pic-modal';
 
 %course_content_basic {
     padding-left: 240px;
@@ -287,7 +287,24 @@
                             margin-bottom: 8px;
                         }
                         .alt_course_detail_pic_right_bottom{
+                            position: relative;
 
+                            .more-pic-link{
+                                width: 120px;
+                                height: 73px;
+                                position: absolute;
+                                // opacity: 0.4;
+                                // background: #172B4D;
+                                background-color: rgba(23,43,77,0.4);
+                                border-radius: 4px;
+                                font-family: PingFangSC-Medium;
+                                font-size: 14px;
+                                color: #FFFFFF;
+
+                                &:focus{
+                                    outline: none;
+                                }
+                            }
                         }
                     }
                 }

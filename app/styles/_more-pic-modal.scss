@@ -1,0 +1,157 @@
+// 标准化modal弹窗样式
+.more-pic-modal {
+    
+    .modal-dialog {
+        display: flex;
+        margin: 0;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+
+
+        .modal-content {
+            border: none;
+            border-radius: 0;
+            box-shadow: 0 3px 10px 0 rgba(85,85,85,0.50);
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            // max-width: 1000px;
+            // max-height: 700px;
+            // background-color: rgba(0,0,0,0);
+            background-color: #9ea6b4;
+
+            .modal-header {
+                border: none;
+                border-bottom: none;
+                padding: 0;
+                margin: 0;
+                height: 0;
+                
+                .modal-title {
+                    color: #fff;
+                    font-size: 14px;
+                    line-height: 25px;
+                    margin: 0;
+                }
+                .close {
+                    display: none;
+                }
+            }
+            
+            .modal-body.more-pic-modal-body {
+                border: none;
+                color: #fff;
+                font-size: 14px;
+                margin: 0;
+                padding: 0 16px;
+                min-height: 100px;
+                display: flex;
+                margin: 0;
+                justify-content: center;
+                align-items: center;
+
+
+                .more-pic-outer{
+                    width: 852px;
+
+                    .more-pic-title{
+                        justify-content: flex-end;
+
+                        .close-more-pic-btn{
+                            background-color: rgba(0,0,0,0);
+                            padding: 0;
+                            font-size: 48px;
+                            height: 48px;
+                            line-height: 48px;
+                            width: 48px;
+                            position: relative;
+                            left: -16px;
+                        }
+                    }
+                    .more-pic-main{
+
+                        .img-main{
+                            width: 724px;
+                            height: 447px;
+                            border-radius: 4px;
+                        }
+                    }
+                    .more-pic-list{
+                        margin-top: 24px;
+
+                        .more-pic-list-left{
+                            align-items: center;
+                            .close-more-pic-btn{
+                                background-color: rgba(0,0,0,0);
+                                padding: 0;
+                                font-size: 48px;
+                                height: 48px;
+                                line-height: 48px;
+                                width: 48px;
+                                position: relative;
+                                
+                            }
+                        }
+                        .more-pic-list-mid{
+                            width: 724px;
+                            height: 129px;
+
+                            .more-pic-list-each{
+                                margin-right: 16px;
+                                justify-content: center;
+
+                                &:nth-last-child(1){
+                                    margin-right: 0;
+                                }
+
+                                .list-each-img{
+                                    width: 169px;
+                                    height: 101px;
+                                    border-radius: 4px;
+
+                                }
+                                .list-each-img-des{
+                                    text-align: center;
+                                    margin-top: 8px;
+                                    font-family: PingFangSC-Regular;
+                                    font-size: 14px;
+                                    color: #FFFFFF;
+                                }
+                            }
+                        }
+                        .more-pic-list-right{
+                            align-items: center;
+                            .close-more-pic-btn{
+                                background-color: rgba(0,0,0,0);
+                                padding: 0;
+                                font-size: 48px;
+                                height: 48px;
+                                line-height: 48px;
+                                width: 48px;
+                                position: relative;
+                                
+                            }
+                        }
+                    }
+                }
+            }
+            
+            .modal-footer {
+                border: none;
+                border-top: none;
+                color: #fff;
+                font-size: 14px;
+                padding: 0;
+                margin: 0;
+                height: 0;
+            }
+        }
+    }
+}
