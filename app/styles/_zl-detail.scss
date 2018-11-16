@@ -1,4 +1,4 @@
-
+@import 'bm-saas-standard/bm-select-box';
 .class-teacher-card {
     .class-card-head-area {
         display: flex;
@@ -293,6 +293,19 @@ a.reserve_detail_href_ref {
         background-repeat: no-repeat;
         background-size: cover;
     }
+    .add_btn {
+        border: none;
+        background: $color-theme-T100;
+        border-radius: 100px;
+        font-family: $font-family;
+        font-size: $font-size-main;
+        color: $color-neutral-N000;
+        letter-spacing: 2px;
+        height: 32px;
+        line-height: 16px;
+        padding: 8px 24px;
+
+    }
 }
 .reserve-table-header {
     margin-top: -20px;
@@ -307,4 +320,104 @@ a.reserve_detail_href_ref {
         text-align: center;
     }
 }
+.modal-content {
+    border: none;
+    .session-modal  {
+        padding: 24px 8px;
+        background: #fff;
+        width: 512px;
+        .line-list {
+            margin-bottom: 24px;
+        }
+        .line-area {
+            margin-top: 16px;
+            .subtitle {
+                line-height: 20px;
+            }
+            input[type=text] {
+                margin-bottom: 0;
+                height: 32px;
+                width: 118px;
+                border: 1px solid #DFE1E5;
+                border-radius: 4px;
+            }
+        }
+        .title {
+            margin-bottom: 30px;
+            font-family: PingFangSC-Medium;
+            font-size: 16px;
+            color: #172B4D;
+        }
+        .subtitle {
+            margin-right: 16px;
+            min-width: 20px;
+            line-height: 32px;
+            font-family: PingFangSC-Medium;
+            font-size: 14px;
+            color: #172B4D;
+        }
+        .radio-col {
+            margin-bottom: 10px;
+            .session-modal-select {
+                width: 330px;
+                height: 35px;
+                border: none;
+                border-radius: 4px;
+                line-height: 20px;
+                font-family: PingFangSC-Regular;
+                font-size: 14px;
+                color: #A5ADBA;
+                text-align: left;
+                // background: url("../img/chevron_down_normal@2x.png") no-repeat right center transparent;
+                // @extend %select-box-dropdown-default;
+            }
+            label {
+                font-family: SFUIText-Regular;
+                font-size: 14px;
+                color: #172B4D;
+                text-align: left;
+                line-height: 20px;
+            }
+        }
 
+    }
+    .session-modal-footer {
+        .cancel {
+            margin-right: 4px;
+            width: 80px;
+            height: 32px;
+            background: none;
+            border: none;
+            font-family: PingFangSC-Medium;
+            font-size: 14px;
+            color: #42526E;
+            text-align: center;
+        }
+        .save {
+            width: 80px;
+            height: 32px;
+            background: rgba(9,30,66,0.04);
+            border-radius: 3px;
+            border: none;
+            font-family: PingFangSC-Medium;
+            font-size: 14px;
+            color: #A5ADBA;
+            text-align: center;
+        }
+    }
+
+}
+a.btn_sign {
+    padding: 6px 12px;
+    background: #80AEFF;
+    border-radius: 4px;
+    font-family: PingFangSC-Medium;
+    font-size: 14px;
+    color: #FFFFFF !important;
+    letter-spacing: 0;
+    text-align: center;
+}
+.session-list {
+    height: 56px;
+    line-height: 56px;
+}

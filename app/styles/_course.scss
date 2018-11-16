@@ -30,7 +30,7 @@
             color: $color-neutral-N800;
             line-height: 28px;
             height: 32px;
-            
+
         }
         .course_add_btn {
             background: $color-theme-T100;
@@ -55,64 +55,6 @@
         }
     }
 }
-// .course_content {
-//     padding: 32px;
-
-//     .course_add_btn {
-//         background: #6E7CD4;
-//         border-radius: 100px;
-//         font-family: $font-nav-acc;
-//         font-size: 14px;
-//         color: #FFFFFF;
-//         letter-spacing: 2px;
-
-//         padding: 8px 24px;
-//     }
-
-//     .course_card_container {
-//         margin-top: 16px;
-//     }
-// }
-
-// .course_selection {
-//     padding-top: 64px;
-//     padding-left: 240px;
-
-//     .course_panel {
-//         margin: 24px;
-//         background: #FFFFFF;
-//         .course_head {
-//             height: 72px;
-
-//             .course_text {
-//                 font-family: $font-nav-acc;
-//                 font-size: 24px;
-//                 color: #172B4D;
-
-//                 margin-left: 24px;
-//             }
-
-//             .course_add_btn {
-//                 padding: 6px 12px;
-//                 height: 32px;
-//                 border-radius: 16px;
-//                 background: #80AEFF;
-
-//                 font-family: $font-brand;
-//                 font-size: 14px;
-//                 color: #FFFFFF;
-
-//                 margin-right: 24px;
-//             }
-//         }
-
-//         .course_warp_content {
-//             flex-wrap: wrap;
-
-//             padding: 24px 12px;
-//         }
-//     }
-// }
 
 .alt_course_padding {
     padding-top: 64px;
@@ -134,7 +76,7 @@
         // padding: 12px;
         margin: 24px;
         // width: 100%;
-    
+
         .alt_course_panel {
             // margin: 12px;
             margin-bottom: 8px;
@@ -231,7 +173,7 @@
                         margin-bottom: 0;
                     }
                 }
-                
+
                 .alt_course_detail_tag {
                     width: 106px;
                     height: 32px;
@@ -427,10 +369,10 @@
             img{
                 width: 160px;
                 height: 106px;
-                
+
             }
         }
-        
+
     }
     .bm-upload-tag{
         margin-top: 122px;

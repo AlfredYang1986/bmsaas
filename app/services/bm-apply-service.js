@@ -168,6 +168,7 @@ export default Service.extend({
             },
             data: dt,
             success: function(res) {
+                console.log(res)
                 let result = that.bmmulti.sync(res)
                 that.set('applies', result);
             },
