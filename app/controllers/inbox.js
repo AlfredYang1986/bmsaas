@@ -3,7 +3,12 @@ import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default Controller.extend({
+    bm_apply_service: service(),
     mock_data: service(),
+
+    cur_tab_idx: 0,
+    tabs: ['今天', '以前'],
+
     today_apply_count: computed(function(){
         return this.mock_data.todayApplies().length;
     }),
@@ -78,7 +83,6 @@ export default Controller.extend({
         }
     },
     signCoureReserve() {
-        // debugger
         let course = this.store.peekRecord('bmreservable', this.sr);
         let yard = this.store.peekRecord('bmyard', this.sy);
         let attendee = this.current_apply.attendee;

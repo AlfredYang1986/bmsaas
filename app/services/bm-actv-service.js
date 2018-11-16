@@ -1,9 +1,8 @@
 import Service from '@ember/service';
-import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 
 export default Service.extend({
-    store: service(),
+    // store: service(),
     bmstore: new JsonApiDataStore(),
     bmmulti: new JsonApiDataStore(),
 
@@ -398,7 +397,7 @@ export default Service.extend({
         })
     },
     isValidate() {
-        return this.exp.title.length > 0;
+        return this.actv.title.length > 0;
     }
 
 });

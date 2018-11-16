@@ -1,29 +1,16 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
-import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default Route.extend({
-    mock_data: service(),
-    model() {
-        this.mock_data.sureApplies();
-        let applies = this.store.peekAll('bmapply');
+    bm_apply_service: service(),
 
+    model() {
         return RSVP.hash({
-            applies: applies,
-            title: [{
-                title:"时间"
-            },{
-                title:"标题"
-            },{
-                title:"场地"
-            },{
-                title:"参与者"
-            },{
-                title:"联系方式"
-            },{
-                title:"操作"
-            }]
+            title: ["孩子","类别","内容","期望时间","申请人", "联系方式", "操作"]
         })
+    },
+    activate() {
+        this.bm_apply_service.set('refresh_all_token', this.bm_apply_service.guid());
     }
 });
