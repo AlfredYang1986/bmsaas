@@ -65,8 +65,8 @@ export default Component.extend({
         }
     },
 
-    display_apply_date: computed(function(){
+    display_apply_date: computed(function(ele){
         let d = new Date(this.apply.apply_time);
-        return d.getFullYear() + '/' + (d.getMonth() + 1) + '/' + d.getDate();
+        return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
     })
 });

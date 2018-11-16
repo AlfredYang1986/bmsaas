@@ -3,4 +3,5 @@ import { computed } from '@ember/object';
 
 export default Component.extend({
 	positionalParams: ['kid'],
+	classNames:"card-infos"
 });

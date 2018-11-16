@@ -19,8 +19,8 @@ export default Controller.extend({
     current_apply: null,
     showcomfirmdlg: false,
 
-    sr : null, 
-    sy: null, 
+    sr : null,
+    sy: null,
     dt: '2018-10-01',
 
     sa: null,
@@ -36,6 +36,7 @@ export default Controller.extend({
             },500);
         },
         setCurrentApply(item) {
+            console.log(item)
             this.set('sr', null);
             this.set('sy', null);
             this.set('sa', null);
@@ -43,6 +44,7 @@ export default Controller.extend({
             this.set('isV', false);
             this.set('current_apply', item);
             this.set('showhandledlg', true);
+
         },
         successSave() {
             this.set('saveInfo',false);

@@ -1,19 +1,22 @@
    {{#layout-push direction=col}}
         {{#layout-push direction=col classNames="course-reserve-content"}}
-            {{#layout-push direction=row classNames="line_container"}}
-                <p class="course-reserve-label">提交信息时间</p>
-                <p>{{display_apply_date}}</p>
+            {{#layout-push direction=row classNames="line-list"}}
+                <p class="course-reserve-label"><span class="base-info">提交时间 {{display_apply_date}}</span></p>
+                {{get display_apply_date}}
             {{/layout-push}}
             {{#if courseReserve}}
                 {{#layout-push direction=col}}
 
-                    {{#layout-push direction=row classNames="line_container"}}
-                        <p class="course-reserve-label">类型</p>
-                        <p class="btn btn-primary course-reserve-btn"  {{action 'courseReserve'}}>课程预约</p>
-                        <p class="btn btn-primary experience-apply-btn" {{action 'experienceApply'}}>体验报名</p>
+                    {{#layout-push direction=row classNames="line-area"}}
+                        {{#layout-push direction=row classNames="line-list"}}
+                            <p class="course-reserve-label"><span class="base-info">请与参与者确认参与内容及安排</span></p>
+                        {{/layout-push}}
+                        <p class="btn btn-primary experience-apply-btn" {{action 'experienceApply'}}>活动</p>
+                        <p class="btn btn-primary course-reserve-btn"  {{action 'courseReserve'}}>体验课</p>
+
                     {{/layout-push}}
-                    {{#layout-push direction=row classNames="line_container"}}
-                        <p class="course-reserve-label">课程</p>
+                    {{#layout-push direction=row classNames="line-list"}}
+                        <p class="course-reserve-label list-title">参与内容</p>
                             <select class="course-reserve-modal-select" id='reservableselect' name="" onChange={{action 'reservableChanged'}}>
                                 <option value="">课程标题</option>
                                 {{#each course_lst as |item|}}
@@ -21,8 +24,8 @@
                                 {{/each}}
                             </select>
                     {{/layout-push}}
-                    {{#layout-push direction=row classNames="line_container"}}
-                        <p class="course-reserve-label">场地</p>
+                    {{#layout-push direction=row classNames="line-area"}}
+                        <p class="course-reserve-label list-title">期望时间</p>
                             <select class="course-reserve-modal-select" id='yardselect' name="" onChange={{action 'yardChanged'}}>
                                 <option value="">场地位置</option>
                                 {{#each yard_lst as |item|}}
@@ -30,50 +33,52 @@
                                 {{/each}}
                             </select>
                     {{/layout-push}}
-                    {{#layout-push direction=row classNames="line_container"}}
+                    {{!-- {{#layout-push direction=row classNames="line_container"}}
                         <p class="course-reserve-label">时间</p>
 					    {{bm-lay-date inputVal=apply.apply_time}}
-                        {{!-- {{date-choose needday=true data=selectedDate}} --}}
-                    {{/layout-push}}
-                    {{#layout-push direction=row classNames="line_container"}}
-                        <p class="course-reserve-label">申请人</p>
-                        {{apply.Applyee.name}}                    
-                    {{/layout-push}}
-                    {{#layout-push direction=row classNames="line_container"}}
+                    {{/layout-push}} --}}
+                    {{#layout-push direction=row classNames="line_container line-list"}}
                         <p class="course-reserve-label">联系方式</p>
-                        {{apply.contact}}
+                        <p class="course-reserve-content">{{apply.contact}}</p>
                     {{/layout-push}}
-                    {{#layout-push direction=row classNames="line_container"}}
-                        <p class="course-reserve-label">参与者</p>
-                        {{#each apply.Kids as |item|}}
-                            {{bmcard/bm-kid-card kid=item}}
-                        {{/each}}
+                    {{#layout-push direction=row classNames="line_container line-list"}}
+                        <p class="course-reserve-label">申请者</p>
+                        <p class="course-reserve-content">{{apply.Applyee.name}}</p>
+                    {{/layout-push}}
+
+                    <p class="course-reserve-label list-title">参与者信息</p>
+                    {{#layout-push direction=row classNames="line-list line_container"}}
+                            {{#each apply.Kids as |item|}}
+                                {{bmcard/bm-kid-card kid=item classNames="card-info"}}
+                            {{/each}}
                     {{/layout-push}}
                 {{/layout-push}}
             {{/if}}
             {{#if experienceApply}}
                 {{#layout-push direction=col}}
-                    {{!-- {{#layout-push direction=row classNames="line_container"}}
-                        <p class="course-reserve-title">参与內容</p>
-                        <p class="apply-points">温馨提示：请与参与者确认参与内容。</p>
-                    {{/layout-push}} --}}
 
-                    {{#layout-push direction=row classNames="line_container"}}
-                        <p class="course-reserve-label">类型</p>
-                        <p class="btn btn-primary experience-apply-btn" {{action 'courseReserve'}}>课程预约</p>
-                        <p class="btn btn-primary course-reserve-btn " {{action 'experienceApply'}}>体验报名</p>
+                    {{#layout-push direction=row classNames="line-area"}}
+                        {{#layout-push direction=row classNames="line-list"}}
+                            <p class="course-reserve-label"><span class="base-info">请与参与者确认参与内容及安排</span></p>
+                        {{/layout-push}}
+                        {{!-- <p class="btn btn-primary experience-apply-btn" {{action 'experienceApply'}}></p>
+                        <p class="btn btn-primary course-reserve-btn"  {{action 'courseReserve'}}></p> --}}
+                        <p class="btn btn-primary course-reserve-btn " {{action 'experienceApply'}}>活动</p>
+                        <p class="btn btn-primary experience-apply-btn" {{action 'courseReserve'}}>体验课</p>
+
+
                     {{/layout-push}}
-                    {{#layout-push direction=row classNames="line_container"}}
-                        <p class="course-reserve-label">体验</p>
+                    {{#layout-push direction=row classNames="line-list"}}
+                        <p class="course-reserve-label list-title">参与内容</p>
                             <select class="course-reserve-modal-select" id='actselect' name="" onChange={{action 'activityChanged'}}>
-                                <option value="">体验</option>
+                                <option value="">活动标题</option>
                                 {{#each activity_lst as |item|}}
                                     <option value={{item.id}}>{{item.name}}</option>
                                 {{/each}}
                             </select>
                     {{/layout-push}}
-                    {{#layout-push direction=row classNames="line_container"}}
-                        <p class="course-reserve-label">场次</p>
+                    {{#layout-push direction=row classNames="line-area"}}
+                        <p class="course-reserve-label list-title">期望时间</p>
                             <select class="course-reserve-modal-select" id='sessionselect' name="" onChange={{action 'sessionChanged'}}>
                                 <option value="">场地位置</option>
                                 {{#each session_lst as |item|}}
@@ -81,12 +86,25 @@
                                 {{/each}}
                             </select>
                     {{/layout-push}}
-                {{/layout-push}}
-                {{#layout-push direction=row classNames="line_container"}}
-                    <p class="course-reserve-label">参与者</p>
-                    {{#each apply.Kids as |item|}}
-                        {{bmcard/bm-kid-card kid=item}}
-                    {{/each}}
+                    {{!-- {{#layout-push direction=row classNames="line_container"}}
+                        <p class="course-reserve-label">时间</p>
+                        {{bm-lay-date inputVal=apply.apply_time}}
+                    {{/layout-push}} --}}
+                    {{#layout-push direction=row classNames="line_container line-list"}}
+                        <p class="course-reserve-label">联系方式</p>
+                        <p class="course-reserve-content">{{apply.contact}}</p>
+                    {{/layout-push}}
+                    {{#layout-push direction=row classNames="line_container line-list"}}
+                        <p class="course-reserve-label">申请者</p>
+                        <p class="course-reserve-content">{{apply.Applyee.name}}</p>
+                    {{/layout-push}}
+
+                    <p class="course-reserve-label list-title">参与者信息</p>
+                    {{#layout-push direction=row classNames="line-list line_container"}}
+                        {{#each apply.Kids as |item|}}
+                            {{bmcard/bm-kid-card kid=item classNames="card-info"}}
+                        {{/each}}
+                    {{/layout-push}}
                 {{/layout-push}}
             {{/if}}
         {{/layout-push}}

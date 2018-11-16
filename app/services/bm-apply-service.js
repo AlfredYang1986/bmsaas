@@ -4,7 +4,7 @@ import { A } from '@ember/array';
 export default Service.extend({
     bmstore: new JsonApiDataStore(),
     bmmulti: new JsonApiDataStore(),
-    
+
     init() {
         this._super(...arguments);
         this.addObserver('refresh_token', this, 'queryApplyInfo');
@@ -93,7 +93,7 @@ export default Service.extend({
                             val: this.applyid
                         }
                     },
-                   
+
                 ]
             }
     },
@@ -143,7 +143,7 @@ export default Service.extend({
                         }
                     }
                 ]
-            } 
+            }
     },
 
     queryMultiObjects() {
@@ -200,7 +200,7 @@ export default Service.extend({
 
         let ft_tmp = JSON.parse(JSON.stringify(ft.serialize()));
         ft_tmp['included'] = arr;
-        let dt = JSON.stringify(ft_tmp); 
+        let dt = JSON.stringify(ft_tmp);
 
         Ember.$.ajax({
             method: 'POST',
