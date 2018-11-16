@@ -241,8 +241,15 @@ a.reserve_detail_href_ref {
     margin-top: 24px;
     height: 72px;
 }
+
+.detail_margin_top.detail_margin_top_big {
+    height: 110px;
+    padding: 24px;
+
+}
+
 .reserve-detail-head {
-    height: 40px;
+    height: 62px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -257,6 +264,7 @@ a.reserve_detail_href_ref {
         background-image: url('../images/icon_QR.png');
         background-position: center;
         background-size: cover;
+        margin-right: 16px;
     }
     .detail_panel_role_name {
         font-family: PingFangSC-Medium;
@@ -271,7 +279,7 @@ a.reserve_detail_href_ref {
         line-height: 28px;
     }
     p.detail_panel_role_num {
-
+        margin-top: 8px;
         font-size: 14px;
         color: #6B778C;
         text-align: left;
@@ -299,3 +307,4 @@ a.reserve_detail_href_ref {
         text-align: center;
     }
 }
+

@@ -166,19 +166,26 @@
         .alt_course_top_panel{
             min-width: 912px;
         }
-        .alt_course_right_panel {
+        .alt_course_right_panel_group{
             width: 66.6666%;
+            min-width: 608px;
+
+        .alt_course_right_panel {
             margin-bottom: 0;
             padding: 24px;
             height: fit-content;
-            min-width: 608px;
+
+            & + .alt_course_right_panel{
+                margin-top: 8px;
+            }
+
 
             .alt_course_detail_panel {
                 // margin: 24px;
                 // width: 100%;
                 min-height: 40px;
                 margin-bottom: 40px;
-                border-bottom: 1px solid #00000020;
+                // border-bottom: 1px solid #00000020;
 
                 .alt_right_panel_perperty_title {
                     font-family: PingFangSC-Medium;
@@ -214,7 +221,7 @@
                     font-size: 14px;
                     color: #172B4D;
                     text-align: left;
-                    margin-bottom: 40px;
+                    margin-bottom: 0;
 
                 }
 
@@ -247,10 +254,11 @@
                 border-bottom: none;
 
                 .alt_right_panel_perperty_title{
-                    margin-bottom: 30px;
+                    // margin-bottom: 30px;
                 }
             }
         }
+    }
 
         .alt_course_left_panel {
             width: 33.3333%;
@@ -428,4 +436,3 @@
         margin-top: 122px;
     }
 }
-
