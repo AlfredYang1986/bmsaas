@@ -285,6 +285,8 @@ a.reserve_detail_href_ref {
         text-align: left;
     }
     .reserve-more-btn {
+        background-color: #FFFFFF;
+        border: none;
         margin-right: 16px;
         width: 32px;
         height: 32px;
@@ -292,6 +294,14 @@ a.reserve_detail_href_ref {
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
+
+        &:focus {
+            box-shadow: none;
+        }
+        &:active {
+            background-color: #FFFFFF!important;
+            box-shadow: none;
+        }
     }
     .add_btn {
         border: none;
@@ -419,7 +429,7 @@ a.btn_sign {
 }
 
 .actv_table, .exp_table, .inbox_table{
-
+    
     & tr:nth-of-type(even){
         background-color: #FFFFFF;
     }
@@ -430,5 +440,32 @@ a.btn_sign {
         line-height: 72px;
         border-bottom: 1px solid #f7f8fa;
         background-color: #FFFFFF;
+
+        .reserve-more-btn {
+            background-color: #FFFFFF;
+            border: none;
+            margin-right: 16px;
+            width: 32px;
+            height: 32px;
+            background: url('../images/btn_more_default@2x.png');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+            &:focus {
+                box-shadow: none;
+            }
+            &:active {
+                background-color: #FFFFFF!important;
+                box-shadow: none;
+            }
+        }
+    }
+}
+
+.detail_page {
+
+    .exp_table {
+        margin-top: 24px;
     }
 }

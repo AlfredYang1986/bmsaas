@@ -16,7 +16,8 @@
                 {{/layout-push}}
                 {{#layout-push direction="row" classNames="reserve-detail-btn"}}
                     {{#bs-button classNames="reserve-code-btn"}}{{/bs-button}} 
-                    <p class="reserve-more-btn"></p>
+
+                    {{#bs-button class="reserve-more-btn"}}{{/bs-button}}
                     {{!-- {{#link-to 'edit.course' classNames='course_add_btn'}}+ 创建活动{{/link-to}} --}}
                     {{!-- {{#bs-button onClick=(action (mut courseCode) true) classNames="reserve-code-btn"}}{{/bs-button}} --}}
                     {{#bs-button classNames="add_btn" onClick=(action (mut add_session) true)}}<span>+ 添加场次</span>{{/bs-button}}
@@ -98,7 +99,7 @@
             {{/layout-push}}
         </div>
 
-        {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs}}
+        {{!-- {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs}} --}}
 
         {{!-- {{#if (bmeq cur_idx 0)}}
         <table class='ib_table_head'>
@@ -119,7 +120,7 @@
         </table>
         {{/if}} --}}
 
-        {{#if (bmeq cur_idx 0)}}
+        {{!-- {{#if (bmeq cur_idx 0)}} --}}
         <table class='ib_table_head exp_table'>
             <tr>
                 {{#each tableTitle as |item|}}
@@ -132,16 +133,17 @@
                 <td class='ib_table_content_item'>{{item.kid}}</td>
                 <td class="ib_table_content_item">{{item.birt}}</td>
                 <td class="ib_table_content_item">{{item.sex}}</td>
-                <td class="ib_table_content_item">{{item.num}}</td>
-                <td class="ib_table_content_item">{{item.func}}</td>
-                {{!-- <td class="ib_table_content_item">{{item.contact}}</td> --}}
+                <td class="ib_table_content_item">{{item.contact}}</td>
+                <td class="ib_table_content_item">{{item.channels}}</td>
+                {{!-- <td class="ib_table_content_item">{{item.func}}</td> --}}
+                <td class="ib_table_content_item">{{#bs-button class="reserve-more-btn"}}{{/bs-button}}</td>
                 <td  class="ib_table_content_item"><a class="btn_sign">点击签到</a> </td>
             </tr>
             {{/each}}
         </table>
-        {{/if}}
+        {{!-- {{/if}} --}}
 
-        {{#if (bmeq cur_idx 1)}}
+        {{!-- {{#if (bmeq cur_idx 1)}}
         <section class='alt_course_selection'>
             {{#layout-push direction='col' classNames='alt_course_container'}}
                 {{#bmpage/bm-session-info session=bm_exp_service.exp.SessionInfo}}
@@ -151,7 +153,7 @@
                 {{/bmpage/bm-session-info}}
             {{/layout-push}}
         </section>
-        {{/if}}
+        {{/if}} --}}
     </div>
 </div>
 {{outlet}}
