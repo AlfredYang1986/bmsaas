@@ -399,6 +399,11 @@ export default Service.extend({
     },
     isValidate() {
         return this.exp.title.length > 0;
-    }
+    },
 
+    queryLocalMultiObject() {
+        if (this.exps.length == 0) {
+            this.queryMultiObjects()    
+        }
+    } 
 });

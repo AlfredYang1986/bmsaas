@@ -398,6 +398,11 @@ export default Service.extend({
     },
     isValidate() {
         return this.actv.title.length > 0;
-    }
+    },
 
+    queryLocalMultiObject() {
+        if (this.actvs.length == 0) {
+            this.queryMultiObjects()    
+        }
+    } 
 });

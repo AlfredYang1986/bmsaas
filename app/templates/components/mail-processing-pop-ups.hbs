@@ -19,8 +19,9 @@
                         <p class="course-reserve-label list-title">参与内容</p>
                             <select class="course-reserve-modal-select" id='reservableselect' name="" onChange={{action 'reservableChanged'}}>
                                 <option value="">课程标题</option>
-                                {{#each course_lst as |item|}}
-                                    <option value={{item.id}}>{{item.course.name}}</option>
+                                {{!-- {{#each course_lst as |item|}} --}}
+                                {{#each bm_exp_service.exps as |item|}}
+                                    <option value={{item.id}}>{{item.SessionInfo.title}}</option>
                                 {{/each}}
                             </select>
                     {{/layout-push}}
@@ -28,7 +29,8 @@
                         <p class="course-reserve-label list-title">期望时间</p>
                             <select class="course-reserve-modal-select" id='yardselect' name="" onChange={{action 'yardChanged'}}>
                                 <option value="">场地位置</option>
-                                {{#each yard_lst as |item|}}
+                                {{!-- {{#each yard_lst as |item|}} --}}
+                                {{#each bm_yard_service.yards as |item|}}
                                     <option value={{item.id}}>{{item.address}}</option>
                                 {{/each}}
                             </select>
@@ -72,17 +74,24 @@
                         <p class="course-reserve-label list-title">参与内容</p>
                             <select class="course-reserve-modal-select" id='actselect' name="" onChange={{action 'activityChanged'}}>
                                 <option value="">活动标题</option>
-                                {{#each activity_lst as |item|}}
-                                    <option value={{item.id}}>{{item.name}}</option>
+                                {{!-- {{#each activity_lst as |item|}} --}}
+                                {{#each bm_actv_service.actvs as |item|}}
+                                    <option value={{item.id}}>{{item.SessionInfo.title}}</option>
                                 {{/each}}
                             </select>
                     {{/layout-push}}
                     {{#layout-push direction=row classNames="line-area"}}
                         <p class="course-reserve-label list-title">期望时间</p>
-                            <select class="course-reserve-modal-select" id='sessionselect' name="" onChange={{action 'sessionChanged'}}>
+                            {{!-- <select class="course-reserve-modal-select" id='sessionselect' name="" onChange={{action 'sessionChanged'}}>
                                 <option value="">场地位置</option>
                                 {{#each session_lst as |item|}}
                                     <option value={{item.id}}>{{item.yard.address}}</option>
+                                {{/each}}
+                            </select> --}}
+                            <select class="course-reserve-modal-select" id='sessionselect' name="" onChange={{action 'sessionChanged'}}>
+                                <option value="">场地</option>
+                                {{#each bm_yard_service.yards as |item|}}
+                                    <option value={{item.id}}>{{item.address}}</option>
                                 {{/each}}
                             </select>
                     {{/layout-push}}

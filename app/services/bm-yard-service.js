@@ -69,7 +69,7 @@ export default Service.extend({
                 id: this.guid(),
                 skip: 0,
                 take: 0,
-            })
+            }),
         })
         let json = this.get('pmController').get('Store').object2JsonApi(request);
         this.get('logger').log(json)
@@ -298,5 +298,11 @@ export default Service.extend({
     },
     isValidate() {
         return this.yard.title.length > 0;
-    }
+    },
+
+    queryLocalMultiObject() {
+        if (this.yards.length == 0) {
+            this.queryMultiObjects()    
+        }
+    } 
 });

@@ -3,20 +3,32 @@ import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default Component.extend({
+
+    init() {
+        this._super(...arguments);
+        this.bm_actv_service.queryLocalMultiObject();
+        this.bm_exp_service.queryLocalMultiObject();
+        this.bm_yard_service.queryLocalMultiObject();
+    },
+
     mock_data: service(),
+    bm_actv_service: service(),
+    bm_exp_service: service(),
+    bm_yard_service: service(),
     store: service(),
+
     positionalParams: ['apply', 'selectedReservable', 'selectedYard', 'selectedDate', 'selectedActivity', 'selectedSession', 'innerCat'],
     courseReserve: true,
     experienceApply: false,
     course_lst: computed(function(){
         return this.mock_data.courseCandi();
     }),
-    yard_lst: computed(function(){
-        return this.mock_data.yardCondi();
-    }),
-    activity_lst: computed(function(){
-        return this.mock_data.activityCandi();
-    }),
+    // yard_lst: computed(function(){
+    //     return this.mock_data.yardCondi();
+    // }),
+    // activity_lst: computed(function(){
+    //     return this.mock_data.activityCandi();
+    // }),
     session_lst: computed('selectedActivity', function(){
         return this.mock_data.sessionCandi(this.selectedActivity);
     }),

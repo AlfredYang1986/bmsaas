@@ -1,0 +1,24 @@
+{{!-- {{yield}} --}}
+<table class='ib_table_head exp_table'>
+    <tr>
+        {{#each titles as |item|}}
+            <th class='ib_table_item'>{{item}}</th>
+        {{/each}}
+    </tr>
+    {{!-- {{bm_sessionable_service.sessionables.length}} --}}
+    {{#each bm_sessionable_service.sessionables as |item index|}}
+        {{item.Attendees}}
+        {{item.Attendees.length}}
+    <tr class="session-list">
+        <td class='ib_table_content_item'>{{index}}</td>
+        <td class='ib_table_content_item'>{{bmdob/bmdobformat item.start_date}}</td>
+        <td class="ib_table_content_item"></td>
+        {{#if (bmcom/bm-nil-obj item.Attendees)}}
+        <td class="ib_table_content_item">0</td>
+        {{else}}
+        <td class="ib_table_content_item">{{item.Attendees.length}}</td>
+        {{/if}}
+        <td  class="ib_table_content_item"><a class="btn_sign">查看详情</a></td>
+    </tr>
+    {{/each}}
+</table>

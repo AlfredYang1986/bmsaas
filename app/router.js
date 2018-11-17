@@ -40,6 +40,7 @@ Router.map(function() {
     this.route('exp', { path: '/:expid' });
     this.route('exp-field', { path: '/:fieldid' });
     this.route('actv', { path: '/:actvid' });
+    this.route('expsession', { path: '/:eid/:sid' });
   });
 
   this.route('stud');
