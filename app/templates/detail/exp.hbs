@@ -39,7 +39,7 @@
 
         {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs}}
 
-        {{#if (bmeq cur_idx 0)}}
+        {{!-- {{#if (bmeq cur_idx 0)}}
         <table class='ib_table_head'>
             <tr>
                 {{#each model.title as |item|}}
@@ -53,6 +53,28 @@
                 <td class="ib_table_content_item">{{bmattendeename item}}</td>
                 <td class="ib_table_content_item">{{bmattendeecontact item}}</td>
                 <td class="ib_table_content_item">签到</td>
+            </tr>
+            {{/each}}
+        </table>
+        {{/if}} --}}
+
+        {{#if (bmeq cur_idx 0)}}
+        <table class='ib_table_head'>
+            <tr>
+                {{#each tableTitle as |item|}}
+                    <th class='ib_table_item'>{{item}}</th>
+                {{/each}}
+            </tr>
+            {{#each tableContent as |item|}}
+            <tr class="session-list">
+                <td class='ib_table_content_item'>{{item.ind}}</td>
+                <td class='ib_table_content_item'>{{item.kid}}</td>
+                <td class="ib_table_content_item">{{item.birt}}</td>
+                <td class="ib_table_content_item">{{item.sex}}</td>
+                <td class="ib_table_content_item">{{item.num}}</td>
+                <td class="ib_table_content_item">{{item.func}}</td>
+                {{!-- <td class="ib_table_content_item">{{item.contact}}</td> --}}
+                <td  class="ib_table_content_item"><a class="btn_sign">点击签到</a> </td>
             </tr>
             {{/each}}
         </table>
