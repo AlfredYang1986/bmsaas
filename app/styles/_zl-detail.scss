@@ -417,7 +417,18 @@ a.btn_sign {
     letter-spacing: 0;
     text-align: center;
 }
-.session-list {
-    height: 56px;
-    line-height: 56px;
+
+.actv_table, .exp_table, .inbox_table{
+
+    & tr:nth-of-type(even){
+        background-color: #FFFFFF;
+    }
+    .session-list {
+        // height: 56px;
+        // line-height: 56px;
+        height: 72px;
+        line-height: 72px;
+        border-bottom: 1px solid #f7f8fa;
+        background-color: #FFFFFF;
+    }
 }

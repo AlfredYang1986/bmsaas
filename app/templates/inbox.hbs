@@ -8,14 +8,14 @@
         {{bmcom/bm-tabs-bar cur_idx=cur_tab_idx titles=tabs}}
 
         {{#if (bmeq cur_tab_idx 0)}}
-        <table class='ib_table_head'>
+        <table class='ib_table_head inbox_table'>
             <tr>
                 {{#each model.title as |item|}}
                     <th class='ib_table_item'>{{item}}</th>
                 {{/each}}
             </tr>
             {{#each bm_apply_service.applies as |item|}}
-            <tr>
+            <tr class="session-list">
                 <td class='ib_table_content_item'>
                     {{#each item.Kids as |kd|}}
                         {{kd.name}}
@@ -53,14 +53,14 @@
         {{/if}}
 
         {{#if (bmeq cur_tab_idx 1)}}
-        <table class='ib_table_head'>
+        <table class='ib_table_head inbox_table'>
             <tr>
                 {{#each model.title as |item|}}
                     <th class='ib_table_item'>{{item}}</th>
                 {{/each}}
             </tr>
             {{#each bm_apply_service.applies as |item|}}
-            <tr>
+            <tr class="session-list">
                 <td class='ib_table_content_item'>
                     {{#each item.Kids as |kd|}}
                         {{kd.name}}
