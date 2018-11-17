@@ -182,14 +182,14 @@
     {{#modal.body class="more-pic-modal-body"}}
         {{#layout-push direction='col' classNames='more-pic-outer'}}
             {{#layout-push direction='row' classNames='more-pic-title'}}
-                <button class="close-more-pic-btn" {{action 'closeMorePic'}}>X</button>
+                {{#bs-button classNames="close-more-pic-btn" onClick=(action "closeMorePic")}}{{/bs-button}}
             {{/layout-push}}
             {{#layout-push direction='row' mid=true classNames='more-pic-main'}}
                 <img src={{cover}} class="img-main">
             {{/layout-push}}
-            {{#layout-push direction='row' mid=true classNames='more-pic-list'}}
+            {{#layout-push direction='row' split=true classNames='more-pic-list'}}
                 {{#layout-push direction='row' classNames='more-pic-list-left'}}
-                    <button class="close-more-pic-btn" {{action 'closeMorePic'}}>&lt;</button>
+                    {{#bs-button classNames="close-more-pic-btn" onClick=(action "closeMorePic")}}{{/bs-button}}
                 {{/layout-push}}
                 {{#layout-push direction='row' classNames='more-pic-list-mid'}}
                     {{#layout-push direction='col' split=true classNames='more-pic-list-each'}}
@@ -210,7 +210,7 @@
                     {{/layout-push}}
                 {{/layout-push}}
                 {{#layout-push direction='row' classNames='more-pic-list-right'}}
-                    <button class="close-more-pic-btn" {{action 'closeMorePic'}}>&gt;</button>
+                    {{#bs-button classNames="close-more-pic-btn" onClick=(action "closeMorePic")}}{{/bs-button}}
                 {{/layout-push}}
             {{/layout-push}}
         {{/layout-push}}
