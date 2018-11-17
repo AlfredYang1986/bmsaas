@@ -11,9 +11,9 @@
             {{/layout-push}}
         </div>
     </div>
-    {{#layout-push direction="row"}}
-        <div class="dd_content dd_content_margin_top">
-            <div class="dd_container dd_container_margin">
+    {{#layout-push direction="row" classNames="brand_detail_container"}}
+        <div class="dd_content dd_content_margin_top brand_detail_container_left">
+            <div class="dd_container brand_detail_container_left_inner">
                 {{#layout-push direction="col" classNames="brand_info_card"}}
                     {{#layout-push direction="col" classNames="brand_info_card_head"}}
                         {{#if (bmcom/bm-nil-obj bm_brand_service.brand)}}
@@ -35,7 +35,7 @@
                 {{/layout-push}}
             </div>
         </div>
-        <div class="dd_container dd_content_margin_top brand_detail">
+        <div class="dd_container dd_content_margin_top brand_detail brand_detail_container_right">
             {{#layout-push direction="col"  classNames="brand_detail_info"}}
                 <p class="brand_detail_list_title">品牌亮点</p>
                 {{#layout-push direction="row"}}

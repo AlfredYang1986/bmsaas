@@ -25,8 +25,8 @@
                     {{/layout-push}}
                     {{#layout-push direction='row' mid=true classNames='alt_yard_detail_pic'}}
                         {{#layout-push direction='row' mid=true classNames='alt_yard_detail_pic_left'}}
-                            {{#if (bmcom/bm-nil-obj bm_yard_service.yard)}}
-                                <img src="" class="img_left">
+                            {{#if (bmcom/bm-nil-string cover)}}
+                                <img src="asd" class="img_left">
                             {{else}}
                                 <img src={{cover}} class="img_left">
                             {{/if}}
