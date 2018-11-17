@@ -55,7 +55,9 @@ export default Controller.extend({
     showAddSessionDlg: false,
     
     generateSessionable() {
-        this.bm_sessionable_service.set('sessionableid', 'sessionable/push');
-        this.bm_sessionable_service.querySessionable();
+        if (this.showAddSessionDlg == true) {
+            this.bm_sessionable_service.set('sessionableid', 'sessionable/push');
+            this.bm_sessionable_service.querySessionable();
+        }
     }
 });
