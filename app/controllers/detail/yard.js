@@ -6,18 +6,21 @@ export default Controller.extend({
     bm_yard_service: service(),
     bmOss: service(),
     isMorePic: false,
-    cover: computed("bm_yard_service" ,function(){
+    cover: computed(function(){
         let client = this.bmOss.get('ossClient');
-        let yard = this.bm_yard_service.yard;
-        // console.log(yard);
-        if(yard !== null ) {
-            let url = client.signatureUrl(yard.cover);
-            // console.log(yard);
-            // console.log(yard.cover);
-            // console.log(url);
+        // let imgUrls;
+        let url;
+        if (this.bm_yard_service.yard !== null){
+            url = client.signatureUrl(this.bm_yard_service.yard.Tagimgs[0].img);
+            console.log(url)
             return url;
+        }else{
+            return "";
         }
-        
+        // for (let idx = 0; idx < this.bm_yard_service.yard.Tagimgs; idx++) {
+        //     imgUrls.push(url);
+        // }
+
     }),
     actions: {
         openMorePic() {
