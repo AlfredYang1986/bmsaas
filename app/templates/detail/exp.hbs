@@ -121,7 +121,7 @@
         {{/if}} --}}
 
         {{!-- {{#if (bmeq cur_idx 0)}} --}}
-        <table class='ib_table_head exp_table'>
+        {{!-- <table class='ib_table_head exp_table'>
             <tr>
                 {{#each tableTitle as |item|}}
                     <th class='ib_table_item'>{{item}}</th>
@@ -135,9 +135,25 @@
                 <td class="ib_table_content_item">{{item.sex}}</td>
                 <td class="ib_table_content_item">{{item.contact}}</td>
                 <td class="ib_table_content_item">{{item.channels}}</td>
-                {{!-- <td class="ib_table_content_item">{{item.func}}</td> --}}
                 <td class="ib_table_content_item">{{#bs-button class="reserve-more-btn"}}{{/bs-button}}</td>
                 <td  class="ib_table_content_item"><a class="btn_sign">点击签到</a> </td>
+            </tr>
+            {{/each}}
+        </table> --}}
+        <table class='ib_table_head exp_table'>
+            <tr>
+                {{#each tableTitle as |item|}}
+                    <th class='ib_table_item'>{{item}}</th>
+                {{/each}}
+            </tr>
+            {{#each tableContent as |item|}}
+            <tr class="session-list" {{action "linkToExpField" bm_exp_service.exp.SessionInfo.id}}>
+                <td class='ib_table_content_item'>{{item.no}}</td>
+                <td class='ib_table_content_item'>{{item.time}}</td>
+                <td class="ib_table_content_item">{{item.campus}}</td>
+                <td class="ib_table_content_item">{{item.already}}/{{item.total}}</td>
+                <td class="ib_table_content_item">{{#bs-button class="reserve-more-btn"}}{{/bs-button}}</td>
+                <td  class="ib_table_content_item"><a class="btn_sign">点击开放</a> </td>
             </tr>
             {{/each}}
         </table>

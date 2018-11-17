@@ -1,0 +1,87 @@
+<div class="detail_content_top">
+    <div class="detail_page">
+        {{#link-to 'courseReserve' class="reserve_detail_href_ref"}}
+            返回
+        {{/link-to}}
+        <div class='detail_panel detail_margin_top detail_margin_top_field' >
+            {{#layout-push direction='row' split=true classNames="reserve-detail-head"}}
+                {{#layout-push direction='col' mid=true }}
+                    {{#layout-push direction='col' classNames="detail_margin_top_left"}}
+                        {{!-- <span class="detail_panel_title_name">sda65f4d5f4ds65</span> --}}
+                        <span class="detail_panel_title_name">sda65f4d5f4ds65</span>
+                    {{/layout-push}}
+                {{/layout-push}}
+                {{#layout-push direction="row" classNames="reserve-detail-btn"}}
+                    {{#bs-button class="reserve-more-btn"}}{{/bs-button}}
+                    {{#bs-button classNames="add_btn" onClick=(action (mut add_session) true)}}<span>停止报名</span>{{/bs-button}}
+                {{/layout-push}}
+            {{/layout-push}}
+        </div>
+        <div class='detail_panel detail_margin_top detail_margin_top_field_des' >
+            {{#layout-push direction='row' split=true classNames="reserve-detail-head"}}
+                {{#layout-push direction='col' mid=true }}
+                    {{#layout-push direction='col' classNames="detail_margin_top_left"}}
+                        {{#layout-push direction='row' classNames="detail_margin_top_left_content"}}
+                            <span class="detail_panel_role_num">体验课</span>
+                            <span class="detail_panel_role_num">sda65f4d5f4ds65</span>
+                        {{/layout-push}}
+                        {{#layout-push direction='row' classNames="detail_margin_top_left_content"}}
+                            <span class="detail_panel_role_num">校区</span>
+                            <span class="detail_panel_role_num">sda65f4d5f4ds65</span>
+                        {{/layout-push}}
+                    {{/layout-push}}
+                {{/layout-push}}
+                {{#layout-push direction='row' classNames="detail_margin_top_right"}}
+                    <span class="detail_panel_role_num">38/100</span>
+                    <span class="detail_panel_role_num">报名人数</span>
+                {{/layout-push}}
+            {{/layout-push}}
+        </div>
+
+        {{!-- {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs}} --}}
+
+        {{!-- {{#if (bmeq cur_idx 0)}}
+        <table class='ib_table_head'>
+            <tr>
+                {{#each model.title as |item|}}
+                    <th class='ib_table_item'>{{item}}</th>
+                {{/each}}
+            </tr>
+            {{#each model.res.reserve_records as |item|}}
+            <tr>
+                <td class='ib_table_content_item'>{{bmdobformat item.res_date}}</td>
+                <td class='ib_table_content_item'>{{item.yard.address}}</td>
+                <td class="ib_table_content_item">{{bmattendeename item}}</td>
+                <td class="ib_table_content_item">{{bmattendeecontact item}}</td>
+                <td class="ib_table_content_item">签到</td>
+            </tr>
+            {{/each}}
+        </table>
+        {{/if}} --}}
+
+        <table class='ib_table_head exp_table'>
+            <tr>
+                {{#each tableTitle as |item|}}
+                    <th class='ib_table_item'>{{item}}</th>
+                {{/each}}
+            </tr>
+            {{#each tableContent as |item|}}
+            <tr class="session-list">
+                <td class='ib_table_content_item'>{{item.ind}}</td>
+                <td class='ib_table_content_item'>{{item.kid}}</td>
+                <td class="ib_table_content_item">{{item.birt}}</td>
+                <td class="ib_table_content_item">{{item.sex}}</td>
+                <td class="ib_table_content_item">{{item.contact}}</td>
+                <td class="ib_table_content_item">{{item.channels}}</td>
+                {{!-- <td class="ib_table_content_item">{{#bs-button class="reserve-more-btn"}}{{/bs-button}}</td> --}}
+                <td  class="ib_table_content_item"><a class="btn_sign">点击签到</a> </td>
+            </tr>
+            {{/each}}
+        </table>
+
+
+    </div>
+</div>
+{{outlet}}
+
+{{outlet}}
