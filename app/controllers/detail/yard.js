@@ -6,6 +6,7 @@ export default Controller.extend({
     bm_yard_service: service(),
     bmOss: service(),
     isMorePic: false,
+    mainPicIdx: 0,
     imgs: computed(function(){
         let client = this.bmOss.get('ossClient');
         let imgs = [];
@@ -18,6 +19,24 @@ export default Controller.extend({
         return imgs;
     }),
     actions: {
+        nextPic() {
+            let idx = this.get('mainPicIdx');
+            idx++;
+            if(idx >= (this.imgs.length - 1)) {
+                idx = this.imgs.length - 1;
+            }
+            console.log(idx)
+            this.set('mainPicIdx', idx);
+        },
+        prevPic() {
+            let idx = this.get('mainPicIdx');
+            idx--;
+            if(idx < 0) {
+                idx = 0;
+            }
+            console.log(idx)
+            this.set('mainPicIdx', idx);
+        },
         openMorePic() {
             this.set('isMorePic', true);
         },

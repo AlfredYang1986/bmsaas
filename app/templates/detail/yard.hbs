@@ -147,14 +147,14 @@
             {{/layout-push}}
             {{#layout-push direction='row' mid=true classNames='more-pic-main'}}
                 {{#each imgs as |item index|}}
-                    {{#if (eq index 0)}}
+                    {{#if (eq index mainPicIdx)}}
                         <img src={{item.url}} class="img-main">
                     {{/if}}
                 {{/each}}
             {{/layout-push}}
             {{#layout-push direction='row' mid=true classNames='more-pic-list'}}
                 {{#layout-push direction='row' classNames='more-pic-list-left'}}
-                    {{#bs-button classNames="close-more-pic-btn" onClick=(action "closeMorePic")}}{{/bs-button}}
+                    {{#bs-button classNames="close-more-pic-btn" onClick=(action "prevPic")}}{{/bs-button}}
                 {{/layout-push}}
                 {{#layout-push direction='row' classNames='more-pic-list-mid'}}
                     {{#each imgs as |item index|}}
@@ -167,7 +167,7 @@
                     {{/each}}
                 {{/layout-push}}
                 {{#layout-push direction='row' classNames='more-pic-list-right'}}
-                    {{#bs-button classNames="close-more-pic-btn" onClick=(action "closeMorePic")}}{{/bs-button}}
+                    {{#bs-button classNames="close-more-pic-btn" onClick=(action "nextPic")}}{{/bs-button}}
                 {{/layout-push}}
             {{/layout-push}}
         {{/layout-push}}
