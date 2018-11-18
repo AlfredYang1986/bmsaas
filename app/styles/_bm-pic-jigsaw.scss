@@ -1,0 +1,47 @@
+.pic-jigsaw {
+
+    .jigsaw_pic {
+        margin-top: 16px;
+
+        .jigsaw_pic_left{
+            margin-right: 8px;
+
+            .img_left {
+                border-radius: 4px;
+                width: 120px;
+                height: 154px;
+            }
+        }
+        .jigsaw_pic_right{
+
+            .img_right {
+                border-radius: 4px;
+                width: 120px;
+                height: 73px;
+            }
+            .jigsaw_pic_right_top{
+                margin-bottom: 8px;
+            }
+            .jigsaw_pic_right_bottom{
+                position: relative;
+
+                .more-pic-link{
+                    width: 120px;
+                    height: 73px;
+                    position: absolute;
+                    // opacity: 0.4;
+                    // background: #172B4D;
+                    background-color: rgba(23,43,77,0.4);
+                    border-radius: 4px;
+                    font-family: PingFangSC-Medium;
+                    font-size: 14px;
+                    color: #FFFFFF;
+
+                    &:focus{
+                        outline: none;
+                    }
+                }
+            }
+        }
+    }
+}
