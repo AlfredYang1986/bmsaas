@@ -2,26 +2,57 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 
 export default Controller.extend({
-    bm_actv_service: service(),
-    cur_session_idx: 0,
-    tableTitle: ["参与者","孩子","生日","性别", "联系方式", "渠道", "", "操作"],
-    tableContent: [
-        {
-            ind: "1",
-            kid: "牛牛",
-            birt: "1996-02-07",
-            sex: "男",
-            contact: "11111111111",
-            channels: "小程序",
-        },
-        {
-            ind: '2',
-            kid: "王二小",
-            birt: "1996-03-25",
-            sex: "男",
-            contact: "11111111111",
-            channels: "小程序",
-        }
-    ]
 
+    init() {
+        this._super(...arguments);
+        this.addObserver('showAddSessionDlg', this, 'generateSessionable');
+    },
+
+    bm_actv_service: service(),
+    bm_sessionable_service: service(),
+    bm_yard_service: service(),
+
+    cur_idx: 0,
+    cur_yard_id: '',
+
+    actions: {
+        cancelHandled() {
+            this.set('showAddSessionDlg', false);
+        },
+        successHandled() {
+            this.set('showAddSessionDlg', false);
+            console.log('success');
+            if (this.cur_yard_id.length == 0) {
+                alert('shold add yard')
+                return 
+            }
+            let callback = {
+                onSuccess: function() {
+                    console.log('push sessionable success')
+                },
+                onFail: function() {
+                    console.log('push sessionable fail')
+                }
+            }
+            
+            this.bm_sessionable_service.resetInfoAndYard(this.cur_yard_id, this.bm_actv_service.actv.SessionInfo.id);
+            this.bm_sessionable_service.resetTechs([]);
+            this.bm_sessionable_service.resetAttendee([]);
+            this.bm_sessionable_service.saveUpdate(callback);
+        },
+        reservableChanged() {
+            let sel = document.getElementById('reservableselect');
+            if (sel.selectedIndex != 0) {
+                this.set('cur_yard_id', sel.options[sel.selectedIndex].value);
+            }
+        }
+    },
+    showAddSessionDlg: false,
+    
+    generateSessionable() {
+        if (this.showAddSessionDlg == true) {
+            this.bm_sessionable_service.set('sessionableid', 'sessionable/push');
+            this.bm_sessionable_service.querySessionable();
+        }
+    }
 });

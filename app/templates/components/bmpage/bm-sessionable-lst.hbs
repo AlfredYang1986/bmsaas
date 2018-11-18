@@ -5,10 +5,7 @@
             <th class='ib_table_item'>{{item}}</th>
         {{/each}}
     </tr>
-    {{!-- {{bm_sessionable_service.sessionables.length}} --}}
     {{#each bm_sessionable_service.sessionables as |item index|}}
-        {{item.Attendees}}
-        {{item.Attendees.length}}
     <tr class="session-list">
         <td class='ib_table_content_item'>{{index}}</td>
         <td class='ib_table_content_item'>{{bmdob/bmdobformat item.start_date}}</td>

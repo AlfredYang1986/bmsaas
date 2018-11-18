@@ -126,7 +126,7 @@ export default Service.extend({
                         type: "Eqcond",
                         attributes: {
                             key: "id",
-                            val: this.expid
+                            val: this.sessionableid
                         }
                     }
                 ]
