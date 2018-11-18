@@ -385,6 +385,20 @@ a.reserve_detail_href_ref {
         padding: 8px 24px;
 
     }
+
+    .second_btn {
+        border: 1px solid;
+        background: $color-neutral-N000;
+        border-radius: 100px;
+        font-family: $font-family;
+        font-size: $font-size-main;
+        color: $color-theme-T100;
+        letter-spacing: 2px;
+        height: 32px;
+        line-height: 16px;
+        padding: 8px 24px;
+
+    }
 }
 .reserve-table-header {
     margin-top: -20px;

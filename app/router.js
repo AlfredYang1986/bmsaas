@@ -38,9 +38,10 @@ Router.map(function() {
     this.route('course-reserve', { path: '/:reid' });
     this.route('actarrangement', { path: '/:actactid/:perid' });
     this.route('exp', { path: '/:expid' });
-    this.route('exp-field', { path: '/:fieldid' });
+    this.route('exp-field', { path: '/:expfieldid' });
     this.route('actv', { path: '/:actvid' });
     this.route('expsession', { path: '/:eid/:sid' });
+    this.route('actv-field', { path: '/:actvfieldid' });
   });
 
   this.route('stud');

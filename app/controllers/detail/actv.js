@@ -16,6 +16,9 @@ export default Controller.extend({
     cur_yard_id: '',
 
     actions: {
+        linkToActvField(idx) {
+            this.transitionToRoute('detail.actv-field', idx);
+        },
         cancelHandled() {
             this.set('showAddSessionDlg', false);
         },

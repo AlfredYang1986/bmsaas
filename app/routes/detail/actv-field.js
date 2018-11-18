@@ -4,17 +4,17 @@ import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 
 export default Route.extend({
-    bm_exp_service: service(),
+    bm_actv_service: service(),
 
     model(params) {
-        this.bm_exp_service.set('expid', params.expfieldid);
+        this.bm_actv_service.set('expid', params.actvfieldid);
         return RSVP.hash({
-                expfieldid: params.expfieldid,
+                actvfieldid: params.actvfieldid,
                 tabs: A(['场次安排', '体验详情'])
             })
     },
     setupController(controller, model) {
         this._super(controller, model);
-        this.bm_exp_service.set('refresh_token', this.bm_exp_service.guid());
+        this.bm_actv_service.set('refresh_token', this.bm_actv_service.guid());
     },
 });
