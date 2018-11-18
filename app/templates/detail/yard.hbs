@@ -158,11 +158,13 @@
                 {{/layout-push}}
                 {{#layout-push direction='row' classNames='more-pic-list-mid'}}
                     {{#each imgs as |item index|}}
-                        {{#if (lt index 4)}}
-                            {{#layout-push direction='col' split=true classNames='more-pic-list-each'}}
-                                <img src={{item.url}} class="list-each-img">
-                                <p class="list-each-img-des">{{item.tag}}</p>
-                            {{/layout-push}}
+                        {{#if (gte index listPicIdxDown)}}
+                            {{#if (lte index listPicIdxUp)}}
+                                {{#layout-push direction='col' split=true classNames='more-pic-list-each'}}
+                                    <img src={{item.url}} class="list-each-img">
+                                    <p class="list-each-img-des">{{item.tag}}</p>
+                                {{/layout-push}}
+                            {{/if}}
                         {{/if}}
                     {{/each}}
                 {{/layout-push}}

@@ -7,6 +7,8 @@ export default Controller.extend({
     bmOss: service(),
     isMorePic: false,
     mainPicIdx: 0,
+    listPicIdxUp: 3,
+    listPicIdxDown: 0,
     imgs: computed(function(){
         let client = this.bmOss.get('ossClient');
         let imgs = [];
@@ -21,21 +23,41 @@ export default Controller.extend({
     actions: {
         nextPic() {
             let idx = this.get('mainPicIdx');
+            let up = this.get('listPicIdxUp');
+            let down = this.get('listPicIdxDown');
             idx++;
+            up++;
+            down++;
+            if(idx >= (this.imgs.length - 4)) {
+                up = this.imgs.length - 1;
+                down = this.imgs.length - 4;
+            }
             if(idx >= (this.imgs.length - 1)) {
                 idx = this.imgs.length - 1;
             }
-            console.log(idx)
+            console.log(idx,down,up)
             this.set('mainPicIdx', idx);
+            this.set('listPicIdxUp', up);
+            this.set('listPicIdxDown', down);
         },
         prevPic() {
             let idx = this.get('mainPicIdx');
+            let up = this.get('listPicIdxUp');
+            let down = this.get('listPicIdxDown');
             idx--;
+            up--;
+            down--;
+            if(idx < 3) {
+                up = 3;
+                down = 0;
+            }
             if(idx < 0) {
                 idx = 0;
             }
-            console.log(idx)
+            console.log(idx,down,up)
             this.set('mainPicIdx', idx);
+            this.set('listPicIdxUp', up);
+            this.set('listPicIdxDown', down);
         },
         openMorePic() {
             this.set('isMorePic', true);
