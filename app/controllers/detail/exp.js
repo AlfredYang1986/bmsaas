@@ -13,14 +13,12 @@ export default Controller.extend({
     bm_yard_service: service(),
 
     cur_idx: 0,
-    // actions: {
-    //     linkToExpField(idx) {
-    //         this.transitionToRoute('detail.exp-field', idx);
-    //     },
-    // },
     cur_yard_id: '',
     
     actions: {
+        linkToExpField(idx) {
+            this.transitionToRoute('detail.exp-field', idx);
+        },
         cancelHandled() {
             this.set('showAddSessionDlg', false);
         },
