@@ -87,13 +87,13 @@
             {{/layout-push}}
         </div>
 
-        {{!-- {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs}}
+        {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs}}
 
         {{#if (bmeq cur_idx 0)}}
-        {{/if}} --}}
             {{bmpage/bm-sessionable-lst titles=model.titles action="linkToExpField"}}
+        {{/if}}
 
-        {{!-- {{#if (bmeq cur_idx 1)}}
+        {{#if (bmeq cur_idx 1)}}
             <section class='alt_course_selection'>
                 {{#layout-push direction='col' classNames='alt_course_container'}}
                     {{#bmpage/bm-session-info session=bm_exp_service.exp.SessionInfo}}
@@ -103,7 +103,7 @@
                     {{/bmpage/bm-session-info}}
                 {{/layout-push}}
             </section>
-        {{/if}} --}}
+        {{/if}}
     </div>
 </div>
 {{outlet}}

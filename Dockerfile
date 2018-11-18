@@ -5,6 +5,7 @@ ADD . /app
 
 # Make the Ember app across the platform
 RUN npm rebuild node-sass
+RUN npm install
 
 # RUN yarn
 RUN ember b
@@ -13,4 +14,4 @@ RUN ember b
 EXPOSE 4200
 
 # Run command when the conatiner launches
-CMD ember s --production
+CMD ember s --environment production --proxy http://altlys.com:8081

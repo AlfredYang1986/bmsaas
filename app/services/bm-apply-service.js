@@ -14,7 +14,7 @@ export default Service.extend({
     },
 
     page: 0,
-    steps: 20,
+    steps: 50,
     applyid: '',
     refresh_token: '',
     refresh_all_token: '',
