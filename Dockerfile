@@ -1,17 +1,34 @@
-FROM alfredyang1986/ember:base
+FROM ubuntu:18.04
 
-# Copy the current directory contents into the container at /app
-ADD . /app
+RUN apt-get update && apt-get install -y && \
+	apt-get upgrade -y && \
+	apt-get install git -y && \
+	apt-get install curl wget -y && apt-get install -y && \
+	apt-get install gnupg -y && \
+	apt-get clean
 
-# Make the Ember app across the platform
-RUN npm rebuild node-sass
-RUN npm install
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
+	apt-get install -y nodejs
 
-# RUN yarn
+ENV EMBERVERSION 2.18.2
+ENV	BOWERVERSION 1.8.4
+
+RUN npm update && \
+	npm install -g ember-cli@${EMBERVERSION} && \
+	npm install -g bower@${BOWERVERSION}
+
+WORKDIR /app
+
+RUN git clone https://github.com/AlfredYang1986/bmsaas.git
+
+WORKDIR bmsaas
+
+RUN npm install && \
+	bower install foundation --allow-root && \
+	bower install jsonapi-datastore --allow-root
+
 RUN ember b
 
-# Make port 80 available to the world outside this container
 EXPOSE 4200
 
-# Run command when the conatiner launches
-CMD ember s --environment production --proxy http://altlys.com:8081
+ENTRYPOINT ["ember", "s"]
