@@ -10,7 +10,7 @@ export default Component.extend({
     iconImg: computed('tech', function(){
         let client = this.bmOss.get('ossClient');
 
-        let url = client.signatureUrl(this.tech.get('icon'));
+        let url = client.signatureUrl(this.tech.icon);
         console.log(url);
         return url;
     }),
@@ -22,9 +22,9 @@ export default Component.extend({
                 this.set('checked', true);
             }
 
-            this.onTechCardClicked(this.tech.get('id'), this.checked);
+            this.onTechCardClicked(this.tech.id, this.checked);
         } else {
-            this.onTechCardClicked(this.tech.get('id'));
+            this.onTechCardClicked(this.tech.id);
         }
     },
     classNameBindings: [

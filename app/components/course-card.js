@@ -8,10 +8,10 @@ export default Component.extend({
     cover: computed('course', function(){
         let client = this.bmOss.get('ossClient');
         
-        let url = client.signatureUrl(this.course.get('cover'));
+        let url = client.signatureUrl(this.course.cover);
         return url;
     }),
     click() {
-        this.onCourseCardClicked(this.course.get('id'));
+        this.onCourseCardClicked(this.course.id);
     }
 });

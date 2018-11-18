@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 
 export default Service.extend({
     store: service(),
+    bm_config: service(),
     bmstore: new JsonApiDataStore(),
 
     init() {
@@ -36,7 +37,7 @@ export default Service.extend({
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': 'bearer ce6af788112b26331e9789b0b2606cce'
+                'Authorization': this.bm_config.getToken(),
             },
             data: dt,
             success: function(res) {
@@ -122,7 +123,7 @@ export default Service.extend({
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': 'bearer ce6af788112b26331e9789b0b2606cce'
+                'Authorization': this.bm_config.getToken(),
             },
             data: dt,
             success: function(res) {
