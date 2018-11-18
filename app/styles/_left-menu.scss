@@ -14,15 +14,23 @@
     overflow-x: hidden;
     overflow-y: hidden;
     .left_bar_item {
-        padding-left: 26px;
+        padding-left: 12px;
+        padding-right: 12px;
         width: 208px;
-        height: 30px;
+        margin-right: 16px;
+        margin-left: 16px;
+        height: 40px;
         line-height: 40px;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         flex-wrap: nowrap;
         cursor: pointer;
+
+        .left_menu_actv {
+            
+        }
+
         .left-bar-info {
             display: flex;
             flex-direction: row;
@@ -44,9 +52,16 @@
             justify-content: space-around;
             flex-wrap: nowrap;
 
+            .active {
+
+                span.left_menu_text, span.left_menu_text_sub {
+                    color: #80AEFF;
+                }
+            }
+
             .left_menu_icon {
-                width: 18px;
-                height: 18px;
+                width: 24px;
+                height: 24px;
             }
 
             .left_menu_title {
@@ -59,21 +74,21 @@
             .left_menu_text {
                 font-family: $font-nav-acc;
                 font-size: 14px;
-                color: #42526E;
-                letter-spacing: 2px;
+                color: #172B4D;
+                // letter-spacing: 2px;
             }
             span.left_menu_text_sub {
-                margin-left: 70px;
+                margin-left: 40px;
                 font-family: $font-nav-acc;
                 font-size: 14px;
-                color: #42526E;
+                color: #172B4D;
                 letter-spacing: 2px;
             }
 
         }
 
         .menu_margin_right {
-            margin-right: 26px;
+            margin-right: 16px;
         }
 
         a:hover {
