@@ -60,20 +60,10 @@
                     {{/layout-push}}
                 {{/layout-push}}
             {{/layout-push}}
-            {{#layout-push direction='row' mid=true classNames='alt_course_detail_pic'}}
-                {{#layout-push direction='row' mid=true classNames='alt_course_detail_pic_left'}}
-                    <img src={{cover}} class="img_left">
-                {{/layout-push}}
-                {{#layout-push direction='col' classNames='alt_course_detail_pic_right'}}
-                    {{#layout-push direction='row' classNames='alt_course_detail_pic_right_top'}}
-                        <img src={{cover}} class="img_right">
-                    {{/layout-push}}
-                    {{#layout-push direction='row' classNames='alt_course_detail_pic_right_bottom'}}
-                        <img src={{cover}} class="img_right">
-                        <button class="more-pic-link" {{action 'openMorePic'}}>查看更多</button>
-                    {{/layout-push}}
-                {{/layout-push}}
-            {{/layout-push}}
+            {{#if (bmcom/bm-nil-obj session)}}
+            {{else}}
+                {{bmcom/bm-pic-jigsaw picData=session.Tagimgs}}
+            {{/if}}
         {{/layout-push}}
     {{/layout-push}}
     {{#layout-push direction='col' classNames='alt_course_right_panel_group'}}
@@ -174,48 +164,3 @@
 
     {{/layout-push}}
 {{/layout-push}}
-
-{{#bs-modal class="more-pic-modal" id="myModal" fade=false open=isMorePic onHidden=(action (mut isMorePic) false) as |modal|}}
-    {{#modal.header}}
-
-    {{/modal.header}}
-    {{#modal.body class="more-pic-modal-body"}}
-        {{#layout-push direction='col' classNames='more-pic-outer'}}
-            {{#layout-push direction='row' classNames='more-pic-title'}}
-                {{#bs-button classNames="close-more-pic-btn" onClick=(action "closeMorePic")}}{{/bs-button}}
-            {{/layout-push}}
-            {{#layout-push direction='row' mid=true classNames='more-pic-main'}}
-                <img src={{cover}} class="img-main">
-            {{/layout-push}}
-            {{#layout-push direction='row' split=true classNames='more-pic-list'}}
-                {{#layout-push direction='row' classNames='more-pic-list-left'}}
-                    {{#bs-button classNames="close-more-pic-btn" onClick=(action "closeMorePic")}}{{/bs-button}}
-                {{/layout-push}}
-                {{#layout-push direction='row' classNames='more-pic-list-mid'}}
-                    {{#layout-push direction='col' split=true classNames='more-pic-list-each'}}
-                        <img src={{cover}} class="list-each-img">
-                        <p class="list-each-img-des">123</p>
-                    {{/layout-push}}
-                    {{#layout-push direction='col' split=true classNames='more-pic-list-each'}}
-                        <img src={{cover}} class="list-each-img">
-                        <p class="list-each-img-des">123</p>
-                    {{/layout-push}}
-                    {{#layout-push direction='col' split=true classNames='more-pic-list-each'}}
-                        <img src={{cover}} class="list-each-img">
-                        <p class="list-each-img-des">123</p>
-                    {{/layout-push}}
-                    {{#layout-push direction='col' split=true classNames='more-pic-list-each'}}
-                        <img src={{cover}} class="list-each-img">
-                        <p class="list-each-img-des">123</p>
-                    {{/layout-push}}
-                {{/layout-push}}
-                {{#layout-push direction='row' classNames='more-pic-list-right'}}
-                    {{#bs-button classNames="close-more-pic-btn" onClick=(action "closeMorePic")}}{{/bs-button}}
-                {{/layout-push}}
-            {{/layout-push}}
-        {{/layout-push}}
-    {{/modal.body}}
-    {{#modal.footer}}
-
-    {{/modal.footer}}
-{{/bs-modal}}
