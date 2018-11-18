@@ -4,7 +4,9 @@ import { A } from '@ember/array';
 
 export default Service.extend({
     store: service(),
+    bm_config: service(),
     bmstore: new JsonApiDataStore(),
+    bmmulti: new JsonApiDataStore(),
 
     init() {
         this._super(...arguments);
@@ -43,7 +45,7 @@ export default Service.extend({
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': 'bearer ce6af788112b26331e9789b0b2606cce'
+                'Authorization': this.bm_config.getToken(),
             },
             data: dt,
             success: function(res) {
@@ -57,31 +59,35 @@ export default Service.extend({
     },
 
     queryMultiObjects() {
-        this.store.unloadAll('bm-tech');
+        this.bmmulti.reset();
 
-        let request = this.get('pmController').get('Store').createModel('request', {
-            id: this.guid(),
-            res: 'BmTeacher',
-            fmcond: this.get('pmController').get('Store').createModel('fmcond', {
-                id: this.guid(),
-                skip: 0,
-                take: 0,
-            })
+        let query_yard_payload = this.genMultiQuery();
+        let rd = this.bmmulti.sync(query_yard_payload);
+        let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
+        // let eq = rd.Eqcond[0].serialize();
+        // let fm = rd.Fmcond.serialize();
+        // rd_tmp['included'] = [eq.data, fm.data];
+        let dt = JSON.stringify(rd_tmp);
+
+        let that = this
+        Ember.$.ajax({
+            method: 'POST',
+            url: '/api/v1/findteachermulti/0',
+            headers: {
+                'Content-Type': 'application/json', // 默认值
+                'Accept': 'application/json',
+                'Authorization': this.bm_config.getToken(),
+            },
+            data: dt,
+            success: function(res) {
+                console.log(res)
+                let result = that.bmmulti.sync(res)
+                that.set('techs', result);
+            },
+            error: function(err) {
+                console.log('error is : ', err);
+            },
         })
-        let json = this.get('pmController').get('Store').object2JsonApi(request);
-        this.get('logger').log(json)
-
-        async function getRemoteTechs(tmp){
-            return await tmp.get('pmController').get('Store').queryMultipleObject('/api/v1/findteachermulti/0', 'bm-teacher', json)
-                .then(data => {
-                    tmp.get('logger').log(data);
-                    tmp.set('techs', tmp.store.peekAll('bm-teacher'));
-                })
-                .catch(data => {
-                    tmp.get('logger').log(data);
-                })
-        }
-        getRemoteTechs(this);
     },
 
     guid() {
@@ -91,6 +97,23 @@ export default Service.extend({
             .substring(1);
         }
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+    },
+
+    genMultiQuery() {
+        let eq = this.guid();
+        return {
+                data: {
+                    id: this.guid(),
+                    type: "Request",
+                    attributes: {
+                        res: "BmTeacher"
+                    },
+                    relationships: {
+                        Eqcond: {}
+                    }
+                },
+                included: []
+            } 
     },
 
     genIdQuery() {
@@ -167,7 +190,7 @@ export default Service.extend({
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': 'bearer ce6af788112b26331e9789b0b2606cce'
+                'Authorization': this.bm_config.getToken()
             },
             data: dt,
             success: function(res) {

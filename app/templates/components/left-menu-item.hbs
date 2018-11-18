@@ -1,4 +1,5 @@
 {{!-- {{#if clicks}} --}}
+
     <li class="left_bar_item" {{action "toggle2"}}>
         <div class="left-bar-info">
             <div class="left_menu_mid menu_margin_right">
@@ -15,7 +16,7 @@
 
 
         {{#if isInbox}}
-            {{!-- <span class="email-num">{{bminboxhelper 0}}</span> --}}
+            <span class="email-num">0</span>
             {{!-- <span class="email-num">{{bminboxhelper mock_data}}</span> --}}
         {{/if}}
         {{#if expendable}}
@@ -29,9 +30,76 @@
             </div>
         {{/if}}
     </li>
-    {{#if isSpace}}
-        <p class="item-space">space</p>
+
+
+
+    {{#if workClick}}
+        <li class="left_bar_item">
+            <div class="left_menu_mid menu_margin_right">
+                {{#link-to 'stud'}}
+                    <span class="left_menu_text_sub">学生</span>
+                {{/link-to}}
+            </div>
+        </li>
+        <li class="left_bar_item" >
+            <div class="left_menu_mid menu_margin_right">
+                {{#link-to 'classes'}}
+                    <span class="left_menu_text_sub">班级</span>
+                {{/link-to}}
+            </div>
+        </li>
+        <li class="left_bar_item">
+            <div class="left_menu_mid menu_margin_right">
+                {{#link-to 'arrange-class'}}
+                    <span class="left_menu_text_sub">排课</span>
+                {{/link-to}}
+            </div>
+        </li>
+        {{!-- <li class="left_bar_item">
+            <div class="left_menu_mid menu_margin_right">
+                {{#link-to 'home'}}
+                    <span class="left_menu_text_sub">品牌</span>
+                {{/link-to}}
+            </div>
+        </li> --}}
+        {{#if isSpace}}
+            <p class="item-space">space</p>
+        {{/if}}
     {{/if}}
+
+    {{#if expClick}}
+        <li class="left_bar_item">
+            <div class="left_menu_mid menu_margin_right">
+                {{#link-to 'exp'}}
+                    <span class="left_menu_text_sub">体验课</span>
+                {{/link-to}}
+            </div>
+        </li>
+        <li class="left_bar_item" >
+            <div class="left_menu_mid menu_margin_right">
+                {{#link-to 'actv'}}
+                    <span class="left_menu_text_sub">活动</span>
+                {{/link-to}}
+            </div>
+        </li>
+        {{!-- {{#if isSpace}}
+            <p class="item-space">space</p>
+        {{/if}} --}}
+    {{/if}}
+
+    {{#if teachClick}}
+        <li class="left_bar_item" >
+            <div class="left_menu_mid menu_margin_right">
+                {{#link-to 'course'}}
+                    <span class="left_menu_text_sub">课程</span>
+                {{/link-to}}
+            </div>
+        </li>
+        {{!-- {{#if isSpace}}
+            <p class="item-space">space</p>
+        {{/if}} --}}
+    {{/if}}
+
     {{#if manageClick}}
         <li class="left_bar_item" >
             <div class="left_menu_mid menu_margin_right">
@@ -47,43 +115,9 @@
                 {{/link-to}}
             </div>
         </li>
-        {{!-- <li class="left_bar_item" >
-            <div class="left_menu_mid menu_margin_right">
-                {{#link-to 'yard'}}
-                    <span class="left_menu_text_sub">收入</span>
-                {{/link-to}}
-            </div>
-        </li> --}}
-    {{/if}}
-    {{#if teachClick}}
-        <li class="left_bar_item">
-            <div class="left_menu_mid menu_margin_right">
-                {{#link-to 'stud'}}
-                    <span class="left_menu_text_sub">学生</span>
-                {{/link-to}}
-            </div>
-        </li>
-        <li class="left_bar_item" >
-            <div class="left_menu_mid menu_margin_right">
-                {{#link-to 'course'}}
-                    <span class="left_menu_text_sub">课程</span>
-                {{/link-to}}
-            </div>
-        </li>
-        <li class="left_bar_item">
-            <div class="left_menu_mid menu_margin_right">
-                {{#link-to 'classes'}}
-                    <span class="left_menu_text_sub">班级</span>
-                {{/link-to}}
-            </div>
-        </li>
-        <li class="left_bar_item">
-            <div class="left_menu_mid menu_margin_right">
-                {{#link-to 'arrange-class'}}
-                    <span class="left_menu_text_sub">排课</span>
-                {{/link-to}}
-            </div>
-        </li>
+        {{!-- {{#if isSpace}}
+            <p class="item-space">space</p>
+        {{/if}} --}}
     {{/if}}
 {{!-- {{/if}} --}}
 

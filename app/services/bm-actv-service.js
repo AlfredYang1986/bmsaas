@@ -1,9 +1,10 @@
 import Service from '@ember/service';
-import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
+import { inject as service } from '@ember/service';
 
 export default Service.extend({
-    store: service(),
+    // store: service(),
+    bm_config: service(),
     bmstore: new JsonApiDataStore(),
     bmmulti: new JsonApiDataStore(),
 
@@ -44,7 +45,7 @@ export default Service.extend({
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': 'bearer ce6af788112b26331e9789b0b2606cce'
+                'Authorization': this.bm_config.getToken(),
             },
             data: dt,
             success: function(res) {
@@ -82,7 +83,7 @@ export default Service.extend({
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': 'bearer ce6af788112b26331e9789b0b2606cce'
+                'Authorization': this.bm_config.getToken(),
             },
             data: dt,
             success: function(res) {
@@ -386,7 +387,7 @@ export default Service.extend({
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': 'bearer ce6af788112b26331e9789b0b2606cce'
+                'Authorization': this.bm_config.getToken(),
             },
             data: dt,
             success: function(res) {
@@ -398,7 +399,12 @@ export default Service.extend({
         })
     },
     isValidate() {
-        return this.exp.title.length > 0;
-    }
+        return this.actv.title.length > 0;
+    },
 
+    queryLocalMultiObject() {
+        if (this.actvs.length == 0) {
+            this.queryMultiObjects()    
+        }
+    } 
 });

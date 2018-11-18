@@ -4,7 +4,9 @@ import { A } from '@ember/array';
 
 export default Service.extend({
     store: service(),
+    bm_config: service(),
     bmstore: new JsonApiDataStore(),
+    bmmulti: new JsonApiDataStore(),
 
     init() {
         this._super(...arguments);
@@ -43,7 +45,7 @@ export default Service.extend({
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': 'bearer ce6af788112b26331e9789b0b2606cce'
+                'Authorization': this.bm_config.getToken(),
             },
             data: dt,
             success: function(res) {
@@ -65,32 +67,55 @@ export default Service.extend({
     },
 
     queryMultiObjects() {
-        this.store.unloadAll('bm-attendee');
 
-        let request = this.get('pmController').get('Store').createModel('request', {
-            id: this.guid(),
-            res: 'BmAttendee',
-            fmcond: this.get('pmController').get('Store').createModel('fmcond', {
-                id: this.guid(),
-                skip: 0,
-                take: 0,
-            })
+        this.bmmulti.reset();
+
+        let query_yard_payload = this.genMultiQuery();
+        let rd = this.bmmulti.sync(query_yard_payload);
+        let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
+        // let eq = rd.Eqcond[0].serialize();
+        // let fm = rd.Fmcond.serialize();
+        // rd_tmp['included'] = [eq.data, fm.data];
+        let dt = JSON.stringify(rd_tmp);
+
+        let that = this
+        Ember.$.ajax({
+            method: 'POST',
+            url: '/api/v1/findattendeemulti/0',
+            headers: {
+                'Content-Type': 'application/json', // 默认值
+                'Accept': 'application/json',
+                'Authorization': this.bm_config.getToken(),
+            },
+            data: dt,
+            success: function(res) {
+                console.log(res)
+                let result = that.bmmulti.sync(res)
+                that.set('studs', result);
+            },
+            error: function(err) {
+                console.log('error is : ', err);
+            },
         })
-        let json = this.get('pmController').get('Store').object2JsonApi(request);
-        this.get('logger').log(json)
-
-        async function getRemoteAttendees(tmp){
-            return await tmp.get('pmController').get('Store').queryMultipleObject('/api/v1/findattendeemulti/0', 'bm-attendee', json)
-                .then(data => {
-                    tmp.get('logger').log(data);
-                    tmp.set('studs', tmp.store.peekAll('bm-attendee'));
-                })
-                .catch(data => {
-                    tmp.get('logger').log(data);
-                })
-        }
-        getRemoteAttendees(this);
     },
+
+    genMultiQuery() {
+        let eq = this.guid();
+        return {
+                data: {
+                    id: this.guid(),
+                    type: "Request",
+                    attributes: {
+                        res: "BmAttendee"
+                    },
+                    relationships: {
+                        Eqcond: {}
+                    }
+                },
+                included: []
+            } 
+    },
+
     genIdQuery() {
         let eq = this.guid();
         return {
@@ -186,16 +211,19 @@ export default Service.extend({
         rd_tmp['included'] = [inc.data];
         let dt = JSON.stringify(rd_tmp); 
 
+        let that = this;
         Ember.$.ajax({
             method: 'POST',
             url: '/api/v1/insertattendee/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': 'bearer ce6af788112b26331e9789b0b2606cce'
+                'Authorization': this.bm_config.getToken(),
             },
             data: dt,
             success: function(res) {
+                let result = that.bmstore.sync(res);
+                that.set('stud', result);
                 callback.onSuccess();
             },
             error: function(err) {

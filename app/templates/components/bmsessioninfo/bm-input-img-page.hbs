@@ -4,7 +4,7 @@
         <span class='alt_course_title'>封面图片</span>
         <span class='alt_course_des'>挑选一张最具代表性的照片，这会是参与者浏览时看到的第一张照片</span>
         <span class='alt_course_des'>图片小于150KB</span>
-        {{#layout-push direction='row' mid=true}}
+        {{#layout-push direction='row'}}
             <div class='line_conatainer_warp'>
                 {{bmcom/bm-img-uploader needTag=false canEdit=true img=session.cover classNames='alt-course-edit-tag-img-adjust'}}
             </div>
@@ -12,7 +12,7 @@
         <span class='alt_course_title'>精彩时刻</span>
         <span class='alt_course_des'>添加最多9张照片</span>
         <span class='alt_course_des'>支持jpg、jpeg、gif、png，每张图片小于100KB</span>
-        {{#layout-push direction='row' mid=true}}
+        {{#layout-push direction='row'}}
             <div class='line_conatainer_warp'>
                 {{#each session.Tagimgs as |item|}}
                     {{bmcom/bm-img-uploader needTag=true canEdit=true img=item.img tag=item.tag classNames='alt-course-edit-tag-img-adjust'}}

@@ -9,7 +9,7 @@
 
 .tech_content_top {
     @extend %tech_content_basic;
-    height: 100vh;
+    height: fit-content;
     padding-top: 64px;
 }
 
@@ -19,7 +19,7 @@
     padding: 0;
     margin: 24px;
     margin-bottom: 0;
-    height: calc(100% - 24px);
+    min-height: calc(100vh - 88px);
 
     .tech-title-flex{
         align-items: center;

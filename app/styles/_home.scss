@@ -31,6 +31,7 @@
             border-radius: 4px;
         }
         a.brand-name {
+            font-family: PingFangSC-Medium;
             text-decoration: none;
             font-size: 14px;
             color: #172B4D;
@@ -107,10 +108,31 @@
     padding-top: 88px;
 }
 
-.dd_content {
-    @extend %dd_content_basic;
-}
+// .dd_content {
+//     @extend %dd_content_basic;
+// }
+.brand_detail_container{
+    padding-left: 240px;
 
+    .brand_detail_container_left{
+        width: 33.33%;
+        min-width: 296px;
+        margin-right: 8px;
+        margin-left: 24px;
+
+        .brand_detail_container_left_inner{
+
+            .brand_info_card{
+                width: 100%;
+                min-width: 296px;
+            }
+        }
+    }
+    .brand_detail_container_right{
+        width: 66.66%;
+        min-width: 608px;
+    }
+}
 .dd_content_margin_top {
     margin-top: 9px;
 }
@@ -176,6 +198,7 @@
         align-items: center;
         height: 64px;
         background: #fff;
+        min-width: 912px;
         p.brand_panel_head_title {
             font-size: 16px;
             color: #172B4D;
@@ -193,12 +216,13 @@
 }
 .brand_detail {
     padding: 24px;
-    margin-left: -16px;
+    // margin-left: -16px;
     margin-right: 24px;
     margin-bottom: 24px;
     min-height: 338px;
     width: 100%;
     background: #fff;
+    min-width: 608px;
 
     .brand_detail_info {
         margin-bottom: 40px;

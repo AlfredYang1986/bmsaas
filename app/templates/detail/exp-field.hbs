@@ -1,0 +1,65 @@
+<div class="detail_content_top">
+    <div class="detail_page">
+        {{#link-to 'courseReserve' class="reserve_detail_href_ref"}}
+            返回
+        {{/link-to}}
+        <div class='detail_panel detail_margin_top detail_margin_top_field' >
+            {{#layout-push direction='row' split=true classNames="reserve-detail-head"}}
+                {{#layout-push direction='col' mid=true }}
+                    {{#layout-push direction='col' classNames="detail_margin_top_left"}}
+                        {{!-- <span class="detail_panel_title_name">sda65f4d5f4ds65</span> --}}
+                        <span class="detail_panel_title_name">{{bmdob/bmdobformat bm_sessionable_service.sessionable.start_date}}</span>
+                    {{/layout-push}}
+                {{/layout-push}}
+                {{#layout-push direction="row" classNames="reserve-detail-btn"}}
+                    {{#bs-button class="reserve-more-btn"}}{{/bs-button}}
+                    {{#bs-button classNames="second_btn" onClick=(action (mut add_session) true)}}<span>停止报名</span>{{/bs-button}}
+                {{/layout-push}}
+            {{/layout-push}}
+        </div>
+        <div class='detail_panel detail_margin_top detail_margin_top_field_des' >
+            {{#layout-push direction='row' split=true classNames="reserve-detail-head"}}
+                {{#layout-push direction='col' mid=true }}
+                    {{#layout-push direction='col' classNames="detail_margin_top_left"}}
+                        {{#layout-push direction='row' classNames="detail_margin_top_left_content"}}
+                            <span class="detail_panel_role_num">体验课</span>
+                            <span class="detail_panel_role_num">{{bm_sessionable_service.sessionable.SessionInfo.title}}</span>
+                        {{/layout-push}}
+                        {{#layout-push direction='row' classNames="detail_margin_top_left_content"}}
+                            <span class="detail_panel_role_num">校区</span>
+                            <span class="detail_panel_role_num">{{bm_sessionable_service.sessionable.Yard.address}}</span>
+                        {{/layout-push}}
+                    {{/layout-push}}
+                {{/layout-push}}
+                {{#layout-push direction='row' classNames="detail_margin_top_right"}}
+                    <span class="detail_panel_role_num">{{bm_sessionable_service.sessionable.Attendees.length}}</span>
+                    <span class="detail_panel_role_num">报名人数</span>
+                {{/layout-push}}
+            {{/layout-push}}
+        </div>
+
+        <table class='ib_table_head exp_table'>
+            <tr>
+                {{#each tableTitle as |item|}}
+                    <th class='ib_table_item'>{{item}}</th>
+                {{/each}}
+            </tr>
+            {{#each bm_sessionable_service.sessionable.Attendees as |item index|}}
+            <tr class="session-list">
+                <td class='ib_table_content_item'>{{index}}</td>
+                <td class='ib_table_content_item'>{{item.name}}</td>
+                <td class="ib_table_content_item">{{bmdob/bmdobformat item.dob}}</td>
+                {{#if (bmeq item.gender 1)}}
+                男
+                {{else}}
+                女
+                {{/if}}
+                <td class="ib_table_content_item">{{item.contact}}</td>
+                <td class="ib_table_content_item">小程序</td>
+                {{!-- <td class="ib_table_content_item">{{#bs-button class="reserve-more-btn"}}{{/bs-button}}</td> --}}
+                <td  class="ib_table_content_item"><a class="btn_sign">点击签到</a> </td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+</div>

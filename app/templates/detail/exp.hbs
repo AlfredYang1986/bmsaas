@@ -3,34 +3,86 @@
         {{#link-to 'courseReserve' class="reserve_detail_href_ref"}}
             返回
         {{/link-to}}
-        <div class='detail_panel detail_margin_top' >
+        <div class='detail_panel detail_margin_top detail_margin_top_big' >
             {{#layout-push direction='row' split=true classNames="reserve-detail-head"}}
                 {{#layout-push direction='col' mid=true }}
-                    {{#layout-push direction='col'}}
-                        <span class="detail_panel_role_name">{{bm_exp_service.exp.SessionInfo.title}}</span>
+                    {{#layout-push direction='col' classNames="detail_margin_top_left"}}
+                        <span class="detail_panel_title_name">{{bm_exp_service.exp.SessionInfo.title}}</span>
                         {{#layout-push direction='row'}}
                         {{!-- <p class="detail_panel_role_num">累计预约人数&nbsp;&nbsp;{{reserve_number}}</p> --}}
+                        <p class="detail_panel_role_num">{{reserve_number}}</p>
                         {{/layout-push}}
                     {{/layout-push}}
                 {{/layout-push}}
                 {{#layout-push direction="row" classNames="reserve-detail-btn"}}
-                    <p class="reserve-more-btn"></p>
-                    {{!-- {{#bs-button onClick=(action (mut courseCode) true) classNames="reserve-code-btn"}}{{/bs-button}} --}}
                     {{#bs-button classNames="reserve-code-btn"}}{{/bs-button}} 
-                    <div local-class="modal-dialog">
-                        {{#bs-modal open=courseCode onHidden=(action (mut courseCode) false) as |modal|}}
-                            <div class="stud-modal">
-                                {{#modal.body classNames="stud-modal-body"}}
-                                  <img src="" local-class="code-img" alt="">
-                                  <p local-class="title">课程预约详情</p>
-                                {{/modal.body}}
-                                {{#modal.footer classNames="stud-modal-footer"}}
-                                  {{#bs-button onClick=(action modal.close)}}取消{{/bs-button}}
-                                  {{#bs-button type="success" onClick=(action modal.submit)}}保存图片{{/bs-button}}
-                                {{/modal.footer}}
+
+                    {{#bs-button class="reserve-more-btn"}}{{/bs-button}}
+                    {{!-- {{#link-to 'edit.course' classNames='course_add_btn'}}+ 创建活动{{/link-to}} --}}
+                    {{!-- {{#bs-button onClick=(action (mut courseCode) true) classNames="reserve-code-btn"}}{{/bs-button}} --}}
+                    {{#bs-button classNames="add_btn" onClick=(action (mut showAddSessionDlg) true)}}<span>+ 添加场次</span>{{/bs-button}}
+
+                    {{#bm-modal-container title="" mswitch=showAddSessionDlg
+                            successbtncss='course-reserve-card-save'
+                            cancelbtncss='course-reserve-card-cancel'
+                            canceltext='取消'
+                            onCancelBtnClicked=(action 'cancelHandled')
+                            onSuccessBtnClicked=(action 'successHandled')}}
+                            <div class="session-modal">
+                                {{#layout-push direction='col' }}
+                                    {{#layout-push direction='row'}}
+                                        <p class="title">编辑场次</p>
+                                    {{/layout-push}}
+                                    {{#layout-push direction='row' classNames="line-list"}}
+                                        <p class="subtitle">校区设置</p>
+                                        {{#layout-push direction='col' }}
+                                            <span class="radio-col">
+                                                <input type="radio" name="rel01" value="fa" checked/>
+                                                <label for="">
+                                                    {{#layout-push direction=row}}
+                                                        <select class="session-modal-select" id='reservableselect' name="" onchange={{action 'reservableChanged'}}>
+                                                            <option value="">选择已有场地</option>
+                                                            {{!-- {{#each course_lst as |item|}} --}}
+                                                            {{#each bm_yard_service.yards as |item|}}
+                                                                <option value={{item.id}}>{{item.address}}</option>
+                                                            {{/each}}
+                                                        </select>
+                                                    {{/layout-push}}
+                                                </label>
+                                            </span>
+                                            {{!-- <span class="radio-col">
+                                                <input type="radio" name="rel" value="ma"/>
+                                                <label for="">其他场地</label>
+                                            </span> --}}
+                                        {{/layout-push}}
+                                    {{/layout-push}}
+                                    {{#layout-push direction="row" classNames="line-list"}}
+                                        <p class="subtitle">日期设置</p>
+                                        {{!-- {{bm_sessionable_service.sessionable.start_date}} --}}
+                                        {{bm-lay-date inputVal=bm_sessionable_service.sessionable.start_date}}
+                                    {{/layout-push}}
+                                    {{#layout-push direction="row" classNames="line-list"}}
+                                        <p class="subtitle">时间设置</p>
+                                        {{bm-lay-date inputVal=bm_sessionable_service.sessionable.end_date pickType="time"}}
+                                    {{/layout-push}}
+                                    {{#layout-push direction='row' classNames="line-area "}}
+                                        <p class="subtitle">名额设置</p>
+                                        {{#layout-push direction='col' }}
+                                            <span class="radio-col">
+                                                <input type="radio" name="rel02" value="ma" checked/>
+                                                <label for="">不限制</label>
+                                            </span>
+                                            {{!-- <span class="radio-col">
+                                                <input type="radio" name="rel" value="fa"/>
+                                                <label for="">
+                                                    <input type="text" name="" value="">
+                                                </label>
+                                            </span> --}}
+                                        {{/layout-push}}
+                                    {{/layout-push}}
+                                {{/layout-push}}
                             </div>
-                        {{/bs-modal}}
-                    </div>
+                    {{/bm-modal-container}}
                 {{/layout-push}}
             {{/layout-push}}
         </div>
@@ -38,34 +90,19 @@
         {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs}}
 
         {{#if (bmeq cur_idx 0)}}
-        <table class='ib_table_head'>
-            <tr>
-                {{#each model.title as |item|}}
-                    <th class='ib_table_item'>{{item}}</th>
-                {{/each}}
-            </tr>
-            {{#each model.res.reserve_records as |item|}}
-            <tr>
-                <td class='ib_table_content_item'>{{bmdobformat item.res_date}}</td>
-                <td class='ib_table_content_item'>{{item.yard.address}}</td>
-                <td class="ib_table_content_item">{{bmattendeename item}}</td>
-                <td class="ib_table_content_item">{{bmattendeecontact item}}</td>
-                <td class="ib_table_content_item">签到</td>
-            </tr>
-            {{/each}}
-        </table>
+            {{bmpage/bm-sessionable-lst titles=model.titles action="linkToExpField"}}
         {{/if}}
 
         {{#if (bmeq cur_idx 1)}}
-        <section class='alt_course_selection'>
-            {{#layout-push direction='col' classNames='alt_course_container'}}
-                {{#bmpage/bm-session-info session=bm_exp_service.exp.SessionInfo}}
-                    {{#link-to 'edit.exp.info' bm_exp_service.exp.SessionInfo.id classNames='alt_course_btn'}}
-                        编辑
-                    {{/link-to}}
-                {{/bmpage/bm-session-info}}
-            {{/layout-push}}
-        </section>
+            <section class='alt_course_selection'>
+                {{#layout-push direction='col' classNames='alt_course_container'}}
+                    {{#bmpage/bm-session-info session=bm_exp_service.exp.SessionInfo}}
+                        {{#link-to 'edit.exp.info' bm_exp_service.exp.SessionInfo.id classNames='alt_course_btn'}}
+                            编辑
+                        {{/link-to}}
+                    {{/bmpage/bm-session-info}}
+                {{/layout-push}}
+            </section>
         {{/if}}
     </div>
 </div>

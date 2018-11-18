@@ -1,0 +1,20 @@
+{{#layout-push direction='col' classNames='stud_card' }}
+    {{#layout-push direction='row' split=true}}
+        <span class="stud_card_name">{{kid.name}}</span>
+        <span class="stud_card_other">
+            <span class="stud_card_other_sex">
+                {{#if (bmeq kid.gender 0)}}
+                    女 ♀
+                {{else}}
+                    男 ♂
+                {{/if}}
+            </span>
+        <span class="stud_card_other_age">{{bmdob/bmdob2age kid.dob}}岁</span>
+        </span>
+    {{/layout-push}}
+    {{#layout-push direction='col'}}
+        {{#layout-push direction='row' split=true}}
+            <span></span><span class="stud_card_from">来自小程序</span>
+        {{/layout-push}}
+    {{/layout-push}}
+{{/layout-push }}
