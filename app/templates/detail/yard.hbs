@@ -28,18 +28,35 @@
                     {{/layout-push}}
                     {{#layout-push direction='row' mid=true classNames='alt_yard_detail_pic'}}
                         {{#layout-push direction='row' mid=true classNames='alt_yard_detail_pic_left'}}
-                            {{#if (bmcom/bm-nil-string cover)}}
-                                <img src="asd" class="img_left">
+                            {{#if (bmcom/bm-nil-obj bm_yard_service.yard)}}
                             {{else}}
-                                <img src={{cover}} class="img_left">
+                                {{#each imgs as |item index|}}
+                                    {{#if (eq index 0)}}
+                                        <img src={{item.url}} class="img_left">
+                                    {{/if}}
+                                {{/each}}
                             {{/if}}
                         {{/layout-push}}
                         {{#layout-push direction='col' classNames='alt_yard_detail_pic_right'}}
                             {{#layout-push direction='row' classNames='alt_yard_detail_pic_right_top'}}
-                                <img src={{cover}} class="img_right">
+                                {{#if (bmcom/bm-nil-obj bm_yard_service.yard)}}
+                                {{else}}
+                                    {{#each imgs as |item index|}}
+                                        {{#if (eq index 1)}}
+                                            <img src={{item.url}} class="img_right">
+                                        {{/if}}
+                                    {{/each}}
+                                {{/if}}
                             {{/layout-push}}
                             {{#layout-push direction='row' classNames='alt_yard_detail_pic_right_bottom'}}
-                                <img src={{cover}} class="img_right">
+                                {{#if (bmcom/bm-nil-obj bm_yard_service.yard)}}
+                                {{else}}
+                                    {{#each imgs as |item index|}}
+                                        {{#if (eq index 2)}}
+                                            <img src={{item.url}} class="img_right">
+                                        {{/if}}
+                                    {{/each}}
+                                {{/if}}
                                 <button class="more-pic-link" {{action 'openMorePic'}}>查看更多</button>
                             {{/layout-push}}
                         {{/layout-push}}
@@ -106,7 +123,7 @@
                                 <span class='alt_right_panel_perperty_des'>请上传信息</span>
                         {{else}}
                             {{#each bm_yard_service.yard.Tagimgs as |item|}}
-                                {{bmcom/bm-img-uploader needTag=true canEdit=false img=item.img tag=item.tag classNames='alt-yard-tag-img-adjust'}}
+                                {{bmcom/bm-img-uploader needTag=true canEdit=false img=item.url tag=item.tag classNames='alt-yard-tag-img-adjust'}}
                             {{/each}}
                         {{/if}}
                         <img src={{cover}} class="img_cert">
@@ -129,29 +146,25 @@
                 {{#bs-button classNames="close-more-pic-btn" onClick=(action "closeMorePic")}}{{/bs-button}}
             {{/layout-push}}
             {{#layout-push direction='row' mid=true classNames='more-pic-main'}}
-                <img src={{cover}} class="img-main">
+                {{#each imgs as |item index|}}
+                    {{#if (eq index 0)}}
+                        <img src={{item.url}} class="img-main">
+                    {{/if}}
+                {{/each}}
             {{/layout-push}}
             {{#layout-push direction='row' mid=true classNames='more-pic-list'}}
                 {{#layout-push direction='row' classNames='more-pic-list-left'}}
                     {{#bs-button classNames="close-more-pic-btn" onClick=(action "closeMorePic")}}{{/bs-button}}
                 {{/layout-push}}
                 {{#layout-push direction='row' classNames='more-pic-list-mid'}}
-                    {{#layout-push direction='col' split=true classNames='more-pic-list-each'}}
-                        <img src={{cover}} class="list-each-img">
-                        <p class="list-each-img-des">123</p>
-                    {{/layout-push}}
-                    {{#layout-push direction='col' split=true classNames='more-pic-list-each'}}
-                        <img src={{cover}} class="list-each-img">
-                        <p class="list-each-img-des">123</p>
-                    {{/layout-push}}
-                    {{#layout-push direction='col' split=true classNames='more-pic-list-each'}}
-                        <img src={{cover}} class="list-each-img">
-                        <p class="list-each-img-des">123</p>
-                    {{/layout-push}}
-                    {{#layout-push direction='col' split=true classNames='more-pic-list-each'}}
-                        <img src={{cover}} class="list-each-img">
-                        <p class="list-each-img-des">123</p>
-                    {{/layout-push}}
+                    {{#each imgs as |item index|}}
+                        {{#if (lt index 4)}}
+                            {{#layout-push direction='col' split=true classNames='more-pic-list-each'}}
+                                <img src={{item.url}} class="list-each-img">
+                                <p class="list-each-img-des">{{item.tag}}</p>
+                            {{/layout-push}}
+                        {{/if}}
+                    {{/each}}
                 {{/layout-push}}
                 {{#layout-push direction='row' classNames='more-pic-list-right'}}
                     {{#bs-button classNames="close-more-pic-btn" onClick=(action "closeMorePic")}}{{/bs-button}}
