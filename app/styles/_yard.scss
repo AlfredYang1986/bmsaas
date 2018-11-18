@@ -119,6 +119,22 @@
                 margin-bottom: 40px;
                 border-bottom: 1px solid #00000020;
 
+                .line_conatainer_warp {
+
+                    img {
+                        width: 160px;
+                        height: 106px;
+                    }
+
+                    span {
+                        font-family: PingFangSC-Regular;
+                        font-size: 14px;
+                        height: 20px;
+                        color: #172B4D;
+                        margin-top: 16px;
+                    }
+                }
+
                 .alt_right_panel_perperty_title {
                     font-family: PingFangSC-Medium;
                     font-size: 14px;
@@ -256,12 +272,12 @@
 
             .alt_yard_deltail_title {
                 font-family: $font-nav-acc;
-                font-size: 16px;
+                font-size: 20px;
                 color: #172B4D;
                 height: 28px;
                 line-height: 28px;
                 // margin-top: 24px;
-                margin-bottom: 16px;
+                margin-bottom: 8px;
             }
 
             .alt_yard_detail_cat {
@@ -272,7 +288,28 @@
                 // margin-top: 8px;
                 line-height: 20px;
                 height: 20px;
+                margin-bottom: 16px;
+            }
+
+            .alt_yard_tag {
+                height: 24px;
                 margin-bottom: 24px;
+
+                p {
+                    font-family: PingFangSC-Regular;
+                    font-size: 14px;
+                    color: #172B4D;
+                    height: 24px;
+                    line-height: 20px;
+                    border: 1px solid #98A0AF;
+                    border-radius: 4px;
+                    min-width: 42px;
+                    text-align: center;
+
+                    & + p {
+                        margin-left: 16px;
+                    }
+                }
             }
 
             .alt_yard_detail_line {
