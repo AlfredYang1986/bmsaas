@@ -45,7 +45,7 @@ export default Service.extend({
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': 'bearer ce6af788112b26331e9789b0b2606cce'
+                'Authorization': this.bm_config.getToken(),
             },
             data: dt,
             success: function(res) {
@@ -211,16 +211,19 @@ export default Service.extend({
         rd_tmp['included'] = [inc.data];
         let dt = JSON.stringify(rd_tmp); 
 
+        let that = this;
         Ember.$.ajax({
             method: 'POST',
             url: '/api/v1/insertattendee/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': 'bearer ce6af788112b26331e9789b0b2606cce'
+                'Authorization': this.bm_config.getToken(),
             },
             data: dt,
             success: function(res) {
+                let result = that.bmstore.sync(res);
+                that.set('stud', result);
                 callback.onSuccess();
             },
             error: function(err) {

@@ -17,7 +17,8 @@ export default Controller.extend({
 
     actions: {
         linkToActvField(idx) {
-            this.transitionToRoute('detail.actv-field', idx);
+            this.transitionToRoute('detail.actv-field', idx, this.bm_actv_service.actv.id);
+            // this.transitionToRoute('detail.exp-field', idx, this.bm_exp_service.exp.id);
         },
         cancelHandled() {
             this.set('showAddSessionDlg', false);

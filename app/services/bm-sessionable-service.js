@@ -6,6 +6,7 @@ export default Service.extend({
     bm_config: service(),
     bmstore: new JsonApiDataStore(),
     bmmulti: new JsonApiDataStore(),
+    // bmupdate: new JsonApiDataStore(),
 
     bm_yard_service: service(),
     bm_session_service: service(),
@@ -25,7 +26,7 @@ export default Service.extend({
     sessionable: null,
     sessionables: A([]),
 
-    querySessionable() {
+    querySessionable(callback) {
         this.bmstore.reset();
         this.set('sessionable', null);
 
@@ -42,7 +43,7 @@ export default Service.extend({
         let inc = rd.Eqcond[0].serialize();
         rd_tmp['included'] = [inc.data];
         let dt = JSON.stringify(rd_tmp);
-      
+     
         let that = this
         Ember.$.ajax({
             method: 'POST',
@@ -50,7 +51,7 @@ export default Service.extend({
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToen(),
+                'Authorization': this.bm_config.getToken(),
             },
             data: dt,
             success: function(res) {
@@ -62,6 +63,51 @@ export default Service.extend({
             },
         })
     },
+
+    querySessionable2(callback) {
+        this.bmstore.reset();
+        this.set('sessionable', null);
+
+        if (this.sessionableid.length == 0 || this.sessionableid == 'sessionable/push') {
+            let query_payload = this.genPushQuery();
+            let result = this.bmstore.sync(query_payload);
+            this.set('sessionable', result);
+            return;
+        }
+
+        let query_yard_payload = this.genIdQuery();
+        let rd = this.bmstore.sync(query_yard_payload);
+        let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
+        let inc = rd.Eqcond[0].serialize();
+        rd_tmp['included'] = [inc.data];
+        let dt = JSON.stringify(rd_tmp);
+     
+        let that = this
+        Ember.$.ajax({
+            method: 'POST',
+            url: '/api/v1/findsessionable/0',
+            headers: {
+                'Content-Type': 'application/json', // 默认值
+                'Accept': 'application/json',
+                'Authorization': this.bm_config.getToken(),
+            },
+            data: dt,
+            success: function(res) {
+                let result = that.bmstore.sync(res)
+                that.set('sessionable', result);
+                if (callback) {
+                    callback.onSuccess();
+                }
+            },
+            error: function(err) {
+                console.log('error is : ', err);
+                if (callback) {
+                    callback.onFail();
+                }
+            },
+        })
+    },
+
     guid() {
         function s4() {
             return Math.floor((1 + Math.random()) * 0x10000)
@@ -188,6 +234,10 @@ export default Service.extend({
                 }
             }
         }
+        let yd = this.bmstore.find('BmYard', yardid);
+        this.bmstore.destroy(yd);
+        let bs = this.bmstore.find('BmSessionInfo', sinfoid);
+        this.bmstore.destroy(bs);
         this.sessionable.SessionInfo = this.bmstore.sync(sinfo);
         this.sessionable.Yard = this.bmstore.sync(yard);
     },
@@ -200,13 +250,13 @@ export default Service.extend({
                     id: techs[idx],
                     type: "BmTeacher",
                     attributes: {
-
+                        a:0
                     }
                 }
             }
             arr.push(this.bmstore.sync(tech))
         }
-        return arr;
+        this.sessionable.Teachers = arr;
     },
 
     resetAttendee(studs) {
@@ -217,13 +267,13 @@ export default Service.extend({
                     id: studs[idx],
                     type: "BmAttendee",
                     attributes: {
-
+                        a:0
                     }
                 }
             }
             arr.push(this.bmstore.sync(stud))
         }
-        return arr;
+        this.sessionable.Attendees = arr;
     },
 
     genMultiQuery() {
@@ -297,7 +347,7 @@ export default Service.extend({
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToen(),
+                'Authorization': this.bm_config.getToken(),
             },
             data: dt,
             success: function(res) {
