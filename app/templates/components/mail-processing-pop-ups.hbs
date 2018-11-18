@@ -30,9 +30,10 @@
                             <select class="course-reserve-modal-select" id='yardselect' name="" onChange={{action 'yardChanged'}}>
                                 <option value="">场地位置</option>
                                 {{!-- {{#each yard_lst as |item|}} --}}
-                                {{#each bm_yard_service.yards as |item|}}
-                                    <option value={{item.id}}>{{item.address}}</option>
+                                {{#each bm_sessionable_service.sessionables as |item|}}
+                                    <option value={{item.id}}>{{bmdob/bmdobformat item.start_date}} - {{item.Yard.address}}</option>
                                 {{/each}}
+                                {{exp_session_lst}}
                             </select>
                     {{/layout-push}}
                     {{!-- {{#layout-push direction=row classNames="line_container"}}
@@ -67,8 +68,6 @@
                         <p class="btn btn-primary course-reserve-btn"  {{action 'courseReserve'}}></p> --}}
                         <p class="btn btn-primary course-reserve-btn " {{action 'experienceApply'}}>活动</p>
                         <p class="btn btn-primary experience-apply-btn" {{action 'courseReserve'}}>体验课</p>
-
-
                     {{/layout-push}}
                     {{#layout-push direction=row classNames="line-list"}}
                         <p class="course-reserve-label list-title">参与内容</p>
@@ -90,9 +89,13 @@
                             </select> --}}
                             <select class="course-reserve-modal-select" id='sessionselect' name="" onChange={{action 'sessionChanged'}}>
                                 <option value="">场地</option>
-                                {{#each bm_yard_service.yards as |item|}}
-                                    <option value={{item.id}}>{{item.address}}</option>
+                                {{!-- {{#each bm_yard_service.yards as |item|}} --}}
+                                    {{!-- <option value={{item.id}}>{{item.address}}</option> --}}
+                                {{!-- {{/each}} --}}
+                                {{#each bm_sessionable_service.sessionables as |item|}}
+                                    <option value={{item.id}}>{{bmdob/bmdobformat item.start_date}} - {{item.Yard.address}}</option>
                                 {{/each}}
+                                {{act_session_lst}}
                             </select>
                     {{/layout-push}}
                     {{!-- {{#layout-push direction=row classNames="line_container"}}

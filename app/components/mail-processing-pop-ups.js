@@ -15,7 +15,7 @@ export default Component.extend({
     bm_actv_service: service(),
     bm_exp_service: service(),
     bm_yard_service: service(),
-    store: service(),
+    bm_sessionable_service: service(),
 
     positionalParams: ['apply', 'selectedReservable', 'selectedYard', 'selectedDate', 'selectedActivity', 'selectedSession', 'innerCat'],
     courseReserve: true,
@@ -29,9 +29,22 @@ export default Component.extend({
     // activity_lst: computed(function(){
     //     return this.mock_data.activityCandi();
     // }),
-    session_lst: computed('selectedActivity', function(){
-        return this.mock_data.sessionCandi(this.selectedActivity);
+    // session_lst: computed('selectedActivity', function(){
+        // return this.mock_data.sessionCandi(this.selectedActivity);
+    // }),
+
+    exp_session_lst: computed('selectedReservable', function(){
+        this.bm_sessionable_service.set('reservableid', this.selectedReservable);
+        this.bm_sessionable_service.set('refresh_all_token', this.bm_sessionable_service.guid());
+        return ''
     }),
+    
+    act_session_lst: computed("selectedActivity", function(){
+        this.bm_sessionable_service.set('reservableid', this.selectedActivity);
+        this.bm_sessionable_service.set('refresh_all_token', this.bm_sessionable_service.guid());
+        return ''
+    }),
+
     actions: {
         courseReserve() {
             this.set('courseReserve', true);
