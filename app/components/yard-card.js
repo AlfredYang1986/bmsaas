@@ -10,8 +10,11 @@ export default Component.extend({
     iconImg: computed('yard', function(){
         let client = this.bmOss.get('ossClient');
 
-        let url = client.signatureUrl(this.yard.get('cover'));
-        return url;
+        if (this.yard.cover) {
+            return client.signatureUrl(this.yard.cover);
+        } else {
+            return '';
+        }
     }),
     click() {
         if (this.canChecked) {

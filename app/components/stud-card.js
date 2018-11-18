@@ -6,7 +6,7 @@ export default Component.extend({
 	canChecked: false,
 	checked: false,
 	isFemale: computed('stud', function() {
-		return this.stud.get('gender') == 0;
+		return this.stud.gentder == 0
 	}),
 	click() {
 		if (this.canChecked) {
@@ -16,9 +16,9 @@ export default Component.extend({
 				this.set('checked', true);
 			}
 
-			this.onStudCardClicked(this.stud.get('id'), this.checked);
+			this.onStudCardClicked(this.stud.id, this.checked);
 		} else {
-			this.onStudCardClicked(this.stud.get('id'));
+			this.onStudCardClicked(this.stud.id);
 		}
 	},
 	classNameBindings: [
