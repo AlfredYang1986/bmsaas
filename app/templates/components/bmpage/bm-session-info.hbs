@@ -9,13 +9,13 @@
 {{#layout-push direction='row' split=true}}
     {{#layout-push direction='col' classNames='alt_course_left_panel'}}
         {{#layout-push direction='col' classNames='alt_course_panel'}}
-            {{#layout-push direction='row' mid=true classNames='alt_course_deltail_title'}}
+            {{!-- {{#layout-push direction='row' mid=true classNames='alt_course_deltail_title'}}
                 {{session.title}}
             {{/layout-push}}
             {{#layout-push direction='row' mid=true classNames='alt_course_detail_cat'}}
                 {{session.Cate.title}}·{{session.Cate.subtitle}}
-            {{/layout-push}}
-            {{#layout-push direction='row' mid=true classNames='alt_course_detail_line'}}
+            {{/layout-push}} --}}
+            {{!-- {{#layout-push direction='row' mid=true classNames='alt_course_detail_line'}}
                 {{#layout-push direction='row' mid=true classNames='alt_course_detail_half'}}
                     {{#layout-push direction='col' mid=true }}
                         {{#layout-push direction='row' mid=true }}
@@ -59,7 +59,14 @@
                         {{/layout-push}}
                     {{/layout-push}}
                 {{/layout-push}}
-            {{/layout-push}}
+            {{/layout-push}} --}}
+            {{#bmdetail/course-basis-left-title 
+                title=session.title
+                subTitle=session.Cate.title
+                subTitleBehind=session.Cate.subtitle}}
+            {{/bmdetail/course-basis-left-title}}
+            {{#bmdetail/course-basis-left-infocard infoCardData=session}}
+            {{/bmdetail/course-basis-left-infocard}}
             {{#if (bmcom/bm-nil-obj session)}}
             {{else}}
                 {{bmcom/bm-pic-jigsaw picData=session.Tagimgs}}
@@ -68,7 +75,11 @@
     {{/layout-push}}
     {{#layout-push direction='col' classNames='alt_course_right_panel_group'}}
         {{#layout-push direction='col' classNames='alt_course_panel alt_course_right_panel'}}
-            {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
+            {{#bmdetail/course-basis-right-info label="体验内容" content=session.description}}{{/bmdetail/course-basis-right-info}}
+            {{#bmdetail/course-basis-right-info label="与孩子互动" content=session.play_children}}{{/bmdetail/course-basis-right-info}}
+            {{#bmdetail/course-basis-right-info label="将为宝贝提供" content=session.inc}}{{/bmdetail/course-basis-right-info}}
+            
+            {{!-- {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
                 <span class='alt_right_panel_perperty_title'>体验内容</span>
                 {{#if (eq session.description "")}}
                     <span class='alt_right_panel_perperty_des'>请上传信息</span>
@@ -91,11 +102,20 @@
                 {{else}}
                     <span class='alt_right_panel_perperty_des'>{{session.inc}}</span>
                 {{/if}}
-            {{/layout-push}}
+            {{/layout-push}} --}}
         {{/layout-push}}
 
         {{#layout-push direction='col' classNames='alt_course_panel alt_course_right_panel'}}
-            {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
+            {{#bmdetail/course-basis-right-info label="宝贝将获得" content=session.acquisition}}{{/bmdetail/course-basis-right-info}}
+            {{#if (bmcom/bm-nil-string session.accompany)}}
+                {{#bmdetail/course-basis-right-info label="陪同说明" content="需家长陪同"}}{{/bmdetail/course-basis-right-info}}
+            {{else}}
+                {{#bmdetail/course-basis-right-info label="陪同说明" content="不需家长陪同"}}{{/bmdetail/course-basis-right-info}}
+            {{/if}}
+            {{#bmdetail/course-basis-right-info label="参与者需自带" content=session.carrying}}{{/bmdetail/course-basis-right-info}}
+            {{#bmdetail/course-basis-right-info label="须知" content=session.notice}}{{/bmdetail/course-basis-right-info}}
+
+            {{!-- {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
                 <span class='alt_right_panel_perperty_title'>宝贝将获得</span>
                 {{#if (eq session.acquisition "")}}
                     <span class='alt_right_panel_perperty_des'>请上传信息</span>
@@ -130,7 +150,7 @@
                 {{else}}
                     <span class='alt_right_panel_perperty_des'>{{session.notice}}</span>
                 {{/if}}
-            {{/layout-push}}
+            {{/layout-push}} --}}
         {{/layout-push}}
 
         {{!-- {{#layout-push direction='col' classNames='alt_course_panel alt_course_right_panel'}}

@@ -17,7 +17,13 @@
         {{#layout-push direction='row' split=true}}
             {{#layout-push direction='col' classNames='alt_yard_left_panel'}}
                 {{#layout-push direction='col' classNames='alt_yard_panel'}}
-                    {{#layout-push direction='row' mid=true classNames='alt_yard_deltail_title'}}
+                    {{#bmdetail/course-basis-left-title 
+                        title=bm_yard_service.yard.title
+                        subTitle=bm_yard_service.yard.address
+                        subTitleBehind=""}}
+                    {{/bmdetail/course-basis-left-title}}
+                    {{#bmdetail/yard-basis-left-tags tags=bm_yard_service.yard.attribute}}{{/bmdetail/yard-basis-left-tags}}
+                    {{!-- {{#layout-push direction='row' mid=true classNames='alt_yard_deltail_title'}}
                         {{bm_yard_service.yard.title}}
                     {{/layout-push}}
                     {{#layout-push direction='row' mid=true classNames='alt_yard_detail_cat'}}
@@ -25,7 +31,7 @@
                     {{/layout-push}}
                     {{#layout-push direction='row' mid=true classNames='alt_yard_tag'}}
                         <p>{{bm_yard_service.yard.attribute}}</p>
-                    {{/layout-push}}
+                    {{/layout-push}} --}}
                     {{#if (bmcom/bm-nil-obj bm_yard_service.yard)}}
                     {{else}}
                         {{bmcom/bm-pic-jigsaw picData=bm_yard_service.yard.Tagimgs}}
@@ -34,6 +40,7 @@
             {{/layout-push}}
 
             {{#layout-push direction='col' classNames='alt_yard_panel alt_yard_right_panel'}}
+                {{#bmdetail/course-basis-right-info label="交通路线" content=bm_yard_service.yard.traffic_info}}{{/bmdetail/course-basis-right-info}}
 
                 {{!-- {{#layout-push direction='col' classNames='alt_yard_detail_panel'}}
                     <span class='alt_right_panel_perperty_title'>校区详情</span>
@@ -44,7 +51,7 @@
                     {{else}}
                         <span class='alt_right_panel_perperty_des'>{{bm_yard_service.yard.description}}</span>
                     {{/if}}
-                {{/layout-push}} --}}
+                {{/layout-push}}
 
                 {{#layout-push direction='col' classNames='alt_yard_detail_panel'}}
                     <span class='alt_right_panel_perperty_title'>交通路线</span>
@@ -57,7 +64,7 @@
                     {{/if}}
                 {{/layout-push}}
 
-                {{!-- {{#layout-push direction='col' classNames='alt_yard_detail_panel'}}
+                {{#layout-push direction='col' classNames='alt_yard_detail_panel'}}
                     <span class='alt_right_panel_perperty_title'>校区设施</span>
                     {{#if (bmcom/bm-nil-array bm_yard_service.yard.facilities)}}
                         {{#layout-push direction='row' mid=true}}

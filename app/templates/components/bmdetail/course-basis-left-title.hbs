@@ -1,0 +1,12 @@
+{{yield}}
+
+{{#layout-push direction='row' mid=true classNames='deltail_title'}}
+    {{title}}
+{{/layout-push}}
+{{#layout-push direction='row' mid=true classNames='detail_cat'}}
+    {{subTitle}}
+    {{#if (bmcom/bm-nil-string subTitleBehind)}}
+    {{else}}
+    · {{subTitleBehind}}
+    {{/if}}
+{{/layout-push}}
