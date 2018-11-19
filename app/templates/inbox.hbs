@@ -8,7 +8,8 @@
         {{bmcom/bm-tabs-bar cur_idx=cur_tab_idx titles=tabs}}
 
         {{#if (bmeq cur_tab_idx 0)}}
-        <table class='ib_table_head inbox_table'>
+            {{#bmtable/bm-table-inbox title=model.title applies=bm_apply_service.applies action="setCurrentApply"}}{{/bmtable/bm-table-inbox}}
+        {{!-- <table class='ib_table_head inbox_table'>
             <tr>
                 {{#each model.title as |item|}}
                     <th class='ib_table_item'>{{item}}</th>
@@ -49,7 +50,7 @@
                 {{/if}}
             </tr>
             {{/each}}
-        </table>
+        </table> --}}
         {{/if}}
 
         {{#if (bmeq cur_tab_idx 1)}}

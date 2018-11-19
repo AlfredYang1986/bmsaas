@@ -37,8 +37,9 @@
                 {{/layout-push}}
             {{/layout-push}}
         </div>
+        {{#bmtable/bm-table-course-field  title=tableTitle attendees=bm_sessionable_service.sessionable.Attendees action=""}}{{/bmtable/bm-table-course-field }}
 
-        <table class='ib_table_head exp_table'>
+        {{!-- <table class='ib_table_head exp_table'>
             <tr>
                 {{#each tableTitle as |item|}}
                     <th class='ib_table_item'>{{item}}</th>
@@ -49,17 +50,18 @@
                 <td class='ib_table_content_item'>{{index}}</td>
                 <td class='ib_table_content_item'>{{item.name}}</td>
                 <td class="ib_table_content_item">{{bmdob/bmdobformat item.dob}}</td>
-                {{#if (bmeq item.gender 1)}}
-                男
-                {{else}}
-                女
-                {{/if}}
+                <td class="ib_table_content_item">
+                    {{#if (bmeq item.gender 1)}}
+                    男
+                    {{else}}
+                    女
+                    {{/if}}
+                </td>
                 <td class="ib_table_content_item">{{item.contact}}</td>
                 <td class="ib_table_content_item">小程序</td>
-                {{!-- <td class="ib_table_content_item">{{#bs-button class="reserve-more-btn"}}{{/bs-button}}</td> --}}
                 <td  class="ib_table_content_item"><a class="btn_sign">点击签到</a> </td>
             </tr>
             {{/each}}
-        </table>
+        </table> --}}
     </div>
 </div>
