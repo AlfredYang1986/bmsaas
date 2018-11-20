@@ -10,7 +10,7 @@
 		{{#layout-push direction="row" wrap=true classNames="card-wrap" }}
 			{{#each bm_stud_service.studs as |item|}}
 				<div class="line_container_warp stud_card_container">
-					{{stud-card onStudCardClicked=(action 'cardClicked') stud=item}}
+					{{bmcard/stud-card onStudCardClicked=(action 'cardClicked') stud=item}}
 				</div>
 			{{/each}}
 		{{/layout-push}}

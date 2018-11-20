@@ -111,7 +111,7 @@
                             {{#layout-push direction="row" classNames="card-wrap edit-teacher-list"}}
                                 {{#each tech_lst as |item|}}
                                     <div class="line_container_warp tech_card_container" >
-                                        {{tech-card  tech=item canChecked=true onTechCardClicked=(action 'oneTechChecked')}}
+                                        {{bmcard/tech-card  tech=item canChecked=true onTechCardClicked=(action 'oneTechChecked')}}
                                     </div>
                                 {{/each}}
                             {{/layout-push}}
@@ -168,7 +168,7 @@
                         {{#layout-push direction="row" classNames="card-wrap edit-teacher-list"}}
                             {{#each stud_lst as |item|}}
                                 <div class="line_container_warp stud_card_container" >
-                                    {{stud-card stud=item canChecked=true onStudCardClicked=(action 'oneStudChecked')}}
+                                    {{bmcard/stud-card stud=item canChecked=true onStudCardClicked=(action 'oneStudChecked')}}
                                 </div>
                             {{/each}}
                         {{/layout-push}}

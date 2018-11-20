@@ -52,7 +52,11 @@
 
         .tech_card_container {
             // margin-top: 46px;
+            // margin-bottom: 24px;
 
+            // & + .tech_card_container {
+            //     margin-left: 16px;
+            // }
         }
     }
 }

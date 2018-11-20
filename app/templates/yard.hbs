@@ -7,7 +7,7 @@
         {{#layout-push direction="row" wrap=true classNames="yard-card-wrap"}}
             {{#each bm_yard_service.yards as |item|}}
                 <div class="line_container_warp yard_card_container" >
-                    {{yard-card onYardCardClicked=(action 'cardClicked') yard=item}}
+                    {{bmcard/yard-card onYardCardClicked=(action 'cardClicked') yard=item}}
                 </div>
             {{/each}}
         {{/layout-push}}

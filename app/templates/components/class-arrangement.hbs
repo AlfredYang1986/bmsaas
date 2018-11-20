@@ -70,7 +70,7 @@
                             {{!-- <p>该班级老师人数共{{ssession_insert_cls.tech.length}}人</p> --}}
                             {{#layout-push direction="row"}}
                                 {{#each session_insert_cls.tech as |item|}}
-                                    {{tech-card tech=item canChecked=true onTechCardClicked=(action 'oneTechChecked')}}
+                                    {{bmcard/tech-card tech=item canChecked=true onTechCardClicked=(action 'oneTechChecked')}}
                                 {{/each}}
                             {{/layout-push}}
                         {{/layout-push}}
