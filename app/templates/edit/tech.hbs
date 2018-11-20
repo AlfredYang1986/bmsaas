@@ -70,7 +70,7 @@
                     {{#layout-push direction="row" split=false classNames='date_choose' }}
                     {{#if (bmcom/bm-nil-obj bm_tech_service.tech)}}
                     {{else}}
-				        {{bm-lay-date inputVal=bm_tech_service.tech.dob}}
+				        {{bmform/bm-lay-date inputVal=bm_tech_service.tech.dob}}
                     {{/if}}
                     {{/layout-push}}
                 {{/layout-push}}

@@ -5,7 +5,7 @@
         {{#layout-push direction="row"}}
             {{#if (bmcom/bm-nil-obj session)}}
             {{else}}
-            {{bm-cate-choose crs_cat=session.Cate.title crs_sub_cat=session.Cate.subtitle}}
+            {{bmform/bm-cate-choose crs_cat=session.Cate.title crs_sub_cat=session.Cate.subtitle}}
             {{/if}}
         {{/layout-push}}
         {{yield}}

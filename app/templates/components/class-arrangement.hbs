@@ -41,7 +41,7 @@
                 {{#layout-push direction="col" classNames="class-arrange-time-select"}}
                     <p class="arrange-course-class-title">开始时间</p>
                     {{#layout-push direction="row"}}
-                        {{date-choose data=session_insert_date}}
+                        {{bmform/date-choose data=session_insert_date}}
                         <select class="" name="" id='hourselect' onChange={{action 'hourChanged'}}>
                             <option value="">请选择开始时间</option>
                             <option value=8>08:00</option>
@@ -61,7 +61,7 @@
                     {{/layout-push}}
                 {{/layout-push}}
                 {{#layout-push direction="col" classNames="course-duration"}}
-                    {{bm-edit-line title='单次课程时长' isNeeded=true inputVal=session_insert_length}}
+                    {{bmform/bm-edit-line title='单次课程时长' isNeeded=true inputVal=session_insert_length}}
                 {{/layout-push}}
                 {{#layout-push direction="col" classNames="class-teacher-select"}}
                     {{#bs-button classNames="class-teacher-select-btn" onClick=(action (mut editTeacherCard) true)}}请为本次课选择授课老师{{/bs-button}}
