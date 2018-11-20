@@ -375,6 +375,7 @@
 .ib_tab_bar {
     border-bottom: 2px rgba(9,30,66,0.08) solid;
     width: 100%;
+    min-width: 912px;
     margin-top: 26px;
 
     .ib_tab_btn {
@@ -397,7 +398,7 @@
 .ib_table_head {
 
     margin-top: 8px;
-
+    min-width: 912px;
     border: none;
     background: transparent;
     width: 100%;
@@ -429,7 +430,7 @@
             border: none;
             background: #80AEFF;
             border-radius: 4px;
-            padding: 6px 26px;
+            padding: 6px 12px;
 
             font-family: $font-nav-acc;
             font-size: 14px;

@@ -5,7 +5,7 @@
             <th class='ib_table_item'>{{item}}</th>
         {{/each}}
     </tr>
-    {{#bmtable/bm-table-inner type="course" listData=bm_sessionable_service.sessionables action="onClick"}}{{/bmtable/bm-table-inner}}
+    {{bmtable/bm-table-inner type="course" listData=bm_sessionable_service.sessionables action="onClick"}}
     {{!-- {{#each bm_sessionable_service.sessionables as |item index|}}
     <tr class="session-list">
         <td class='ib_table_content_item'>{{index}}</td>

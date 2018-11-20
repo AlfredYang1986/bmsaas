@@ -95,9 +95,10 @@
         <section class='alt_course_selection'>
             {{#layout-push direction='col' classNames='alt_course_container'}}
                 {{#bmpage/bm-session-info session=bm_actv_service.actv.SessionInfo}}
-                    {{#link-to 'edit.actv.info' bm_actv_service.actv.SessionInfo.id  classNames='alt_course_btn'}}
+                    {{bmdetail/bm-top-title-panel title="课程详情" rightText="编辑" linkAddr='edit.actv.info' linkParam=bm_actv_service.actv.SessionInfo.id}}
+                    {{!-- {{#link-to 'edit.actv.info' bm_actv_service.actv.SessionInfo.id  classNames='alt_course_btn'}}
                         编辑
-                    {{/link-to}}
+                    {{/link-to}} --}}
                 {{/bmpage/bm-session-info}}
             {{/layout-push}}
         </section>

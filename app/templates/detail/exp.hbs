@@ -97,9 +97,10 @@
             <section class='alt_course_selection'>
                 {{#layout-push direction='col' classNames='alt_course_container'}}
                     {{#bmpage/bm-session-info session=bm_exp_service.exp.SessionInfo}}
-                        {{#link-to 'edit.exp.info' bm_exp_service.exp.SessionInfo.id classNames='alt_course_btn'}}
+                        {{bmdetail/bm-top-title-panel title="课程详情" rightText="编辑" linkAddr='edit.exp.info' linkParam=bm_exp_service.exp.SessionInfo.id}}
+                        {{!-- {{#link-to 'edit.exp.info' bm_exp_service.exp.SessionInfo.id classNames='alt_course_btn'}}
                             编辑
-                        {{/link-to}}
+                        {{/link-to}} --}}
                     {{/bmpage/bm-session-info}}
                 {{/layout-push}}
             </section>

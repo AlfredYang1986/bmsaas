@@ -1,11 +1,13 @@
-{{#layout-push direction='row' split=true classNames='alt_course_panel alt_course_top_panel'}}
+{{!-- {{#layout-push direction='row' split=true classNames='alt_course_panel alt_course_top_panel'}}
     {{#layout-push direction='col' mid=true}}
         <span class='alt_course_title'>课程详情</span>
     {{/layout-push}}
     {{#layout-push direction='col' mid=true}}
         {{yield}}
     {{/layout-push}}
-{{/layout-push}}
+{{/layout-push}} --}}
+
+{{yield}}
 {{#layout-push direction='row' split=true}}
     {{#layout-push direction='col' classNames='alt_course_left_panel'}}
         {{#layout-push direction='col' classNames='alt_course_panel'}}
@@ -60,13 +62,11 @@
                     {{/layout-push}}
                 {{/layout-push}}
             {{/layout-push}} --}}
-            {{#bmdetail/course-basis-left-title 
+            {{bmdetail/course-basis-left-title 
                 title=session.title
                 subTitle=session.Cate.title
                 subTitleBehind=session.Cate.subtitle}}
-            {{/bmdetail/course-basis-left-title}}
-            {{#bmdetail/course-basis-left-infocard infoCardData=session}}
-            {{/bmdetail/course-basis-left-infocard}}
+            {{bmdetail/course-basis-left-infocard infoCardData=session}}
             {{#if (bmcom/bm-nil-obj session)}}
             {{else}}
                 {{bmcom/bm-pic-jigsaw picData=session.Tagimgs}}
@@ -75,9 +75,9 @@
     {{/layout-push}}
     {{#layout-push direction='col' classNames='alt_course_right_panel_group'}}
         {{#layout-push direction='col' classNames='alt_course_panel alt_course_right_panel'}}
-            {{#bmdetail/course-basis-right-info label="体验内容" content=session.description}}{{/bmdetail/course-basis-right-info}}
-            {{#bmdetail/course-basis-right-info label="与孩子互动" content=session.play_children}}{{/bmdetail/course-basis-right-info}}
-            {{#bmdetail/course-basis-right-info label="将为宝贝提供" content=session.inc}}{{/bmdetail/course-basis-right-info}}
+            {{bmdetail/course-basis-right-info label="体验内容" content=session.description}}
+            {{bmdetail/course-basis-right-info label="与孩子互动" content=session.play_children}}
+            {{bmdetail/course-basis-right-info label="将为宝贝提供" content=session.inc}}
             
             {{!-- {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
                 <span class='alt_right_panel_perperty_title'>体验内容</span>
@@ -106,14 +106,14 @@
         {{/layout-push}}
 
         {{#layout-push direction='col' classNames='alt_course_panel alt_course_right_panel'}}
-            {{#bmdetail/course-basis-right-info label="宝贝将获得" content=session.acquisition}}{{/bmdetail/course-basis-right-info}}
+            {{bmdetail/course-basis-right-info label="宝贝将获得" content=session.acquisition}}
             {{#if (bmcom/bm-nil-string session.accompany)}}
-                {{#bmdetail/course-basis-right-info label="陪同说明" content="需家长陪同"}}{{/bmdetail/course-basis-right-info}}
+                {{bmdetail/course-basis-right-info label="陪同说明" content="需家长陪同"}}
             {{else}}
-                {{#bmdetail/course-basis-right-info label="陪同说明" content="不需家长陪同"}}{{/bmdetail/course-basis-right-info}}
+                {{bmdetail/course-basis-right-info label="陪同说明" content="不需家长陪同"}}
             {{/if}}
-            {{#bmdetail/course-basis-right-info label="参与者需自带" content=session.carrying}}{{/bmdetail/course-basis-right-info}}
-            {{#bmdetail/course-basis-right-info label="须知" content=session.notice}}{{/bmdetail/course-basis-right-info}}
+            {{bmdetail/course-basis-right-info label="参与者需自带" content=session.carrying}}
+            {{bmdetail/course-basis-right-info label="须知" content=session.notice}}
 
             {{!-- {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
                 <span class='alt_right_panel_perperty_title'>宝贝将获得</span>

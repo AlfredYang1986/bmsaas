@@ -3,7 +3,8 @@
         {{#link-to 'yard' class="alt_href_link"}}
             返回 
         {{/link-to}}
-        {{#layout-push direction='row' split=true classNames='alt_yard_panel'}}
+        {{bmdetail/bm-top-title-panel title="校区详情" rightText="编辑" linkAddr='edit.yard' linkParam=bm_yard_service.yard.id}}
+        {{!-- {{#layout-push direction='row' split=true classNames='alt_yard_panel'}}
             {{#layout-push direction='col' mid=true}}
                 <span class='alt_yard_title'>校区详情</span>
             {{/layout-push}}
@@ -12,17 +13,16 @@
                     编辑
                 {{/link-to}}
             {{/layout-push}}
-        {{/layout-push}}
+        {{/layout-push}} --}}
 
         {{#layout-push direction='row' split=true}}
             {{#layout-push direction='col' classNames='alt_yard_left_panel'}}
                 {{#layout-push direction='col' classNames='alt_yard_panel'}}
-                    {{#bmdetail/course-basis-left-title 
+                    {{bmdetail/course-basis-left-title 
                         title=bm_yard_service.yard.title
                         subTitle=bm_yard_service.yard.address
                         subTitleBehind=""}}
-                    {{/bmdetail/course-basis-left-title}}
-                    {{#bmdetail/yard-basis-left-tags tags=bm_yard_service.yard.attribute}}{{/bmdetail/yard-basis-left-tags}}
+                    {{bmdetail/yard-basis-left-tags tags=bm_yard_service.yard.attribute}}
                     {{!-- {{#layout-push direction='row' mid=true classNames='alt_yard_deltail_title'}}
                         {{bm_yard_service.yard.title}}
                     {{/layout-push}}
@@ -40,7 +40,7 @@
             {{/layout-push}}
 
             {{#layout-push direction='col' classNames='alt_yard_panel alt_yard_right_panel'}}
-                {{#bmdetail/course-basis-right-info label="交通路线" content=bm_yard_service.yard.traffic_info}}{{/bmdetail/course-basis-right-info}}
+                {{bmdetail/course-basis-right-info label="交通路线" content=bm_yard_service.yard.traffic_info}}
 
                 {{!-- {{#layout-push direction='col' classNames='alt_yard_detail_panel'}}
                     <span class='alt_right_panel_perperty_title'>校区详情</span>

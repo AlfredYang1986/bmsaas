@@ -1,13 +1,14 @@
 <div class="detail_content_top" >
     <div class="detail_page" >
-        <div class='detail_panel' >
+        {{bmdetail/bm-top-title-panel title="教师详情" rightText="编辑" linkAddr='edit.tech' linkParam=bm_tech_service.tech.id}}
+        {{!-- <div class='detail_panel' >
             {{#layout-push direction="row" split=true }}
                 <p class="detail_head_name">教师详情</p>
                 {{#link-to 'edit.tech' bm_tech_service.tech.id classNames='more_btn'}}
                     更多
                 {{/link-to}}
             {{/layout-push}}
-        </div>
+        </div> --}}
         {{#layout-push direction="row"}}
             <div class='detail_panel detail_panel_col_between tech_info_card' >
                 {{#layout-push direction="col" classNames="tech_info_base"}}
@@ -29,12 +30,12 @@
                         </span>
                         <span class="detail_panel_role_des">{{bmdob/bmdob2age bm_tech_service.tech.dob}}岁</span>
                     {{/layout-push}} --}}
-                    {{#bmdetail/stud-basis-left-subtitle gender=bm_tech_service.tech.gender dob=bm_tech_service.tech.dob}}{{/bmdetail/stud-basis-left-subtitle}}
+                    {{bmdetail/stud-basis-left-subtitle gender=bm_tech_service.tech.gender dob=bm_tech_service.tech.dob}}
                 {{/layout-push}}
                 {{#layout-push direction="col" classNames="tech_info_other"}}
-                    {{#bmdetail/tech-basis-left-info label="联系方式" content=bm_tech_service.tech.contact}}{{/bmdetail/tech-basis-left-info}}
-                    {{#bmdetail/tech-basis-left-info label="微信" content=bm_tech_service.tech.wechat}}{{/bmdetail/tech-basis-left-info}}
-                    {{#bmdetail/tech-basis-left-info label="地址" content=bm_tech_service.tech.address}}{{/bmdetail/tech-basis-left-info}}
+                    {{bmdetail/tech-basis-left-info label="联系方式" content=bm_tech_service.tech.contact}}
+                    {{bmdetail/tech-basis-left-info label="微信" content=bm_tech_service.tech.wechat}}
+                    {{bmdetail/tech-basis-left-info label="地址" content=bm_tech_service.tech.address}}
                     {{!-- {{#layout-push direction="row" classNames="tech_info_other_list"}}
                         <p>联系方式</p>
                         <span class='detail_panel_des_02'>{{bm_tech_service.tech.contact}}</span>
@@ -51,9 +52,9 @@
             </div>
             <div class='detail_panel detail_panel_col_between tech_info_detail' >
                 {{#layout-push direction="col" classNames="tech_info_area"}}
-                {{#bmdetail/tech-basis-right-info label="昵称" content=bm_tech_service.tech.nickname}}{{/bmdetail/tech-basis-right-info}}
-                {{#bmdetail/tech-basis-right-info label="出生日期" content=(bmdob/bmdobformat bm_tech_service.tech.dob)}}{{/bmdetail/tech-basis-right-info}}
-                {{#bmdetail/tech-basis-right-info label="来自城市" content=bm_tech_service.tech.nativePlace}}{{/bmdetail/tech-basis-right-info}}
+                {{bmdetail/tech-basis-right-info label="昵称" content=bm_tech_service.tech.nickname}}
+                {{bmdetail/tech-basis-right-info label="出生日期" content=(bmdob/bmdobformat bm_tech_service.tech.dob)}}
+                {{bmdetail/tech-basis-right-info label="来自城市" content=bm_tech_service.tech.nativePlace}}
                     {{!-- {{#layout-push direction="row" classNames="tech_info_area-item"}}
                         <p>昵称</p>
                         <span class='detail_panel_des_02'>{{bm_tech_service.tech.nickname}}</span>
