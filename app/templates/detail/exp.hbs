@@ -22,7 +22,7 @@
                     {{!-- {{#bs-button onClick=(action (mut courseCode) true) classNames="reserve-code-btn"}}{{/bs-button}} --}}
                     {{#bs-button classNames="add_btn" onClick=(action (mut showAddSessionDlg) true)}}<span>+ 添加场次</span>{{/bs-button}}
 
-                    {{#bm-modal-container title="" mswitch=showAddSessionDlg
+                    {{#bmcom/bm-modal-container title="" mswitch=showAddSessionDlg
                             successbtncss='course-reserve-card-save'
                             cancelbtncss='course-reserve-card-cancel'
                             canceltext='取消'
@@ -82,7 +82,7 @@
                                     {{/layout-push}}
                                 {{/layout-push}}
                             </div>
-                    {{/bm-modal-container}}
+                    {{/bmcom/bm-modal-container}}
                 {{/layout-push}}
             {{/layout-push}}
         </div>
