@@ -6,7 +6,8 @@
             <th class='ib_table_item'>{{item}}</th>
         {{/each}}
     </tr>
-    {{#each applies as |item|}}
+    {{#bmtable/bm-table-inner type="inbox" listData=applies action="setCurrentApply"}}{{/bmtable/bm-table-inner}}
+    {{!-- {{#each applies as |item|}}
     <tr class="session-list">
         <td class='ib_table_content_item'>
             {{#each item.Kids as |kd|}}
@@ -40,5 +41,5 @@
             <td class="ib_table_content_item">{{bmapplystatus item.status}}</td>
         {{/if}}
     </tr>
-    {{/each}}
+    {{/each}} --}}
 </table>
