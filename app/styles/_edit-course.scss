@@ -10,7 +10,7 @@
 
         section.alt_course_section{
             padding: 0;
-            
+
         // }
 
 		// section.course_section {
@@ -36,12 +36,12 @@
 
                 .alt-edit-only-margin {
                     margin-top: 20px;
-                    
+
                     .alt-edit-title-des {
                         margin-bottom: 4px;
                     }
                 }
-                
+
                 .line_half {
                     height: 32px;
                     margin-bottom: 32px;
@@ -58,7 +58,7 @@
                     margin: 0;
                     margin-bottom: 16px;
                 }
-                
+
                 .alt-edit-half-line {
                     width: 300px;
                     margin: 0;
@@ -71,14 +71,19 @@
                     border: 1px solid #DFE1E5;
                     border-radius: 4px;
                 }
-
+				.alt-edit-area {
+					margin: 0;
+					width: 600px;
+					border: 1px solid #DFE1E5;
+                    border-radius: 4px;
+				}
                 .alt-edit-step-btn {
                     margin-top: 40px;
                     width: 85px;
                     height: 32px;
                     line-height: 18px;
                 }
-                
+
                 input[type=text] {
                     margin: 0;
                     margin-top: 16px;
@@ -130,7 +135,7 @@
 				&.edit_third_panel {
                     .alt-course-age-group{
                         justify-content: flex-start;
-    
+
                         .alt_course_des{
                             position: relative;
                             left: -22px;
@@ -139,7 +144,7 @@
                         }
                         .input-group{
                             width:200px;
-    
+
                             .edit_input_age{
                                 width: 110px;
                             }
@@ -168,19 +173,19 @@
                             margin-bottom: 40px;
                             width: 272px;
                             height: 308px;
-                        
+
                             .bm-upload-form{
-                        
+
                                 div.bm-upload-container{
                                     width: 272px;
-                        
+
                                     img{
                                         width: 272px;
                                         height: 272px;
 
                                     }
                                 }
-                                
+
                             }
                             .bm-upload-tag{
                                 text-align: left;
@@ -197,7 +202,7 @@
                     }
 				}
             }
-            
+
             .alt_course_panel{
                 margin: 0 24px 24px 24px;
                 width: calc(100% - 48px);
@@ -222,7 +227,7 @@
 
                     .alt-course-age-group{
                         justify-content: flex-start;
-    
+
                         .alt_course_des{
                             position: relative;
                             left: -22px;
@@ -231,7 +236,7 @@
                         }
                         .input-group{
                             width:125px;
-    
+
                             .edit_input_age{
                                 width: 80px;
                             }
@@ -250,6 +255,7 @@
 
                 select {
                     margin-top: 16px;
+					margin-bottom: 24px;
                 }
             }
 		}

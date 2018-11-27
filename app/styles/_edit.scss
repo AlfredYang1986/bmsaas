@@ -196,8 +196,8 @@ span.select-time-subtitle {
 		color: #253858;
 		text-align: left;
 		line-height: 20px;
-		
-		margin-top: 16px;	
+
+		margin-top: 16px;
 	}
 
 	.alt-edit-half-line {
@@ -209,7 +209,7 @@ span.select-time-subtitle {
 		color: #253858;
 		text-align: left;
 		line-height: 20px;
-		
+
 		margin-top: 16px;
 		width: 50%;
 	}
@@ -250,14 +250,15 @@ span.select-time-subtitle {
 	select.start-time {
 		margin-right: 10px;
 		margin-top: 3px;
-		width: 140px;
-		height: 35px;
-		text-align: center;
-		border: 1px solid #DAD9D9;
-		border-radius: 4px;
-		font-size: 14px;
-		color: #767A80;
-		letter-spacing: 2px;
+		// width: 140px;
+		// height: 35px;
+		// text-align: center;
+		// border: 1px solid #DAD9D9;
+		// border-radius: 4px;
+		// font-size: 14px;
+		// color: #767A80;
+		// letter-spacing: 2px;
+		@extend %select-box-dropdown-default;
 	}
 
 	.add-decide-btn {
@@ -835,7 +836,10 @@ span.select-time-subtitle {
 		color: #767A80;
 		letter-spacing: 2px;
 		}
+
+
 	}
+	
 }
 /*逐条添加样式*/
 .edit_input_remove {

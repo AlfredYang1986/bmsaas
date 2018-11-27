@@ -1,11 +1,11 @@
 @import 'args';
 %select-box-dropdown-default {
-    background: url("../img/chevron_down_normal@2x.png") no-repeat right center transparent;
+    background: url("https://bmsass.oss-cn-beijing.aliyuncs.com/chevron_down_normal%402x.png?Expires=1543312925&OSSAccessKeyId=TMP.AQHX57coUP-8G2TO9U2po1twBT9baWCByiJUHdwWzmIy9rxXTky5hxm4y5AlMC4CFQCwU0hJJkcKq159nVrb1sgDcDiVMQIVAOIC_ZUlAyAl94oXXoy0WwfF4Z9j&Signature=eWrdSF2HqR%2Fr1rzPr4T1bHpHirs%3D") no-repeat right center transparent;
     border: $color-border-none;
     border-radius: $border-radius-button-product;
     background-size: $width-icon;
     width: $width-select-dropdown;
-    height: $height-select-dropdown;
+    // height: $height-select-dropdown;
     padding-left: $padding-select-dropdown-left;
     padding-right: $padding-select-dropdown-right;
     background-color: $color-select-bg-dafault;
