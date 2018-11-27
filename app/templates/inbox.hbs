@@ -8,7 +8,8 @@
         {{bmcom/bm-tabs-bar cur_idx=cur_tab_idx titles=tabs}}
 
         {{#if (bmeq cur_tab_idx 0)}}
-        <table class='ib_table_head inbox_table'>
+            {{bmtable/bm-table-inbox title=model.title applies=bm_apply_service.applies action="setCurrentApply"}}
+        {{!-- <table class='ib_table_head inbox_table'>
             <tr>
                 {{#each model.title as |item|}}
                     <th class='ib_table_item'>{{item}}</th>
@@ -49,11 +50,12 @@
                 {{/if}}
             </tr>
             {{/each}}
-        </table>
+        </table> --}}
         {{/if}}
 
         {{#if (bmeq cur_tab_idx 1)}}
-        <table class='ib_table_head inbox_table'>
+        {{bmtable/bm-table-inbox title=model.title applies=bm_apply_service.applies action="setCurrentApply"}}
+        {{!-- <table class='ib_table_head inbox_table'>
             <tr>
                 {{#each model.title as |item|}}
                     <th class='ib_table_item'>{{item}}</th>
@@ -94,10 +96,16 @@
                 {{/if}}
             </tr>
             {{/each}}
-        </table>
+        </table> --}}
         {{/if}}
 
-        {{#bm-modal-container title="处理通知" mswitch=showhandledlg
+        {{#if (bmeq cur_tab_idx -1)}}
+            {{bmtable/bm-table-inbox title=model.title applies=bm_apply_service.applies action="setCurrentApply"}}
+        {{/if}}
+
+        
+
+        {{#bmcom/bm-modal-container title="处理通知" mswitch=showhandledlg
                 successbtncss='course-reserve-card-save'
                 cancelbtncss='course-reserve-card-cancel'
                 canceltext='取消'
@@ -114,8 +122,8 @@
                         innerCat=isCourse
                         apply=current_apply}}
             {{/layout-push}}
-        {{/bm-modal-container}}
-        {{#bm-modal-container
+        {{/bmcom/bm-modal-container}}
+        {{#bmcom/bm-modal-container
                 mswitch=showcomfirmdlg
                 successbtncss='course-reserve-card-save'
                 onSuccessBtnClicked=(action 'successHandled')}}
@@ -126,7 +134,7 @@
                     <p>已确认参与者提交状态，参与者可在小程序>我的>我的服务中查看详情。</p>
                 {{/layout-push}}
             {{/layout-push}}
-        {{/bm-modal-container}}
+        {{/bmcom/bm-modal-container}}
     </div>
 </div>
 {{outlet}}

@@ -6,17 +6,18 @@
 			{{/link-to}}
 			{{!-- <span>学生详情</span> --}}
 		</p>
-		{{#layout-push direction='row' split=true class="detail_title" }}
+		{{!-- {{#layout-push direction='row' split=true class="detail_title" }}
 			<span class="title_text">学员详情</span>
 			{{#link-to 'edit.stud' bm_stud_service.stud.id classNames='detail_panel_edit_btn' }}
 				编辑
 			{{/link-to}}
-		{{/layout-push}}
+		{{/layout-push}} --}}
+		{{bmdetail/bm-top-title-panel title="学员详情" rightText="编辑" linkAddr='edit.stud' linkParam=bm_stud_service.stud.id}}
 		{{#layout-push direction='row' split=true classNames='stud_detail' }}
 			<div class="basis_margin">
 				{{#layout-push direction='col' mid=true classNames='stud_detail_basis' }}
 					<p class="basis_name">{{bm_stud_service.stud.name}}</p>
-					{{#layout-push direction='row' mid=true}}
+					{{!-- {{#layout-push direction='row' mid=true}}
 						<span class="basis_sex_age">
 							{{#if (bmeq bm_stud_service.stud.gender 0)}}
 								女 ♀
@@ -27,7 +28,8 @@
 						<span class="basis_sex_age">
 							{{bmdob/bmdob2age bm_stud_service.stud.dob}}岁
 						</span>
-					{{/layout-push}}
+					{{/layout-push}} --}}
+					{{bmdetail/stud-basis-left-subtitle gender=bm_stud_service.stud.gender dob=bm_stud_service.stud.dob}}
 					{{#layout-push direction='row' mid=true classNames='basis_dob' }}
 						<span>出生日期</span><span>{{bmdob/bmdobformat bm_stud_service.stud.dob}}</span>
 					{{/layout-push}}
@@ -35,7 +37,19 @@
 			</div>
 			{{#layout-push direction='col' mid=true classNames='stud_detail_other' }}
 				<div class="other_self">
-					{{#layout-push direction='row' mid=false classNames='self_container' }}
+					{{bmdetail/stud-basis-info label="昵称" content=bm_stud_service.stud.nickname}}
+					{{bmdetail/stud-basis-info label="绑定手机号" content=bm_stud_service.stud.contact}}
+					{{bmdetail/stud-basis-info label="就读学校" content=bm_stud_service.stud.school}}
+					{{bmdetail/stud-basis-info label="注册时间" content=bm_stud_service.stud.reg_date}}
+					<div class="line"></div>
+					<p class="parent_info">家长信息</p>
+					{{bmdetail/stud-basis-info label="家长姓名" content=bm_stud_service.stud.Guardians.firstObject.name}}
+					{{bmdetail/stud-basis-info label="关系" content=bm_stud_service.stud.Guardians.firstObject.relation_ship}}
+					{{bmdetail/stud-basis-info label="联系方式" content=bm_stud_service.stud.Guardians.firstObject.contact}}
+					{{bmdetail/stud-basis-info label="微信" content=bm_stud_service.stud.firstObject.wechat}}
+					{{bmdetail/stud-basis-info label="地址" content=bm_stud_service.stud.firstObject.Guardians.firstObject.addr}}
+					
+					{{!-- {{#layout-push direction='row' mid=false classNames='self_container' }}
 						<span>昵称</span><span>{{bm_stud_service.stud.nickname}}</span>
 					{{/layout-push}}
 					{{#layout-push direction='row' mid=false classNames='self_container' }}
@@ -46,10 +60,8 @@
 					{{/layout-push}}
 					{{#layout-push direction='row' mid=false classNames='self_container' }}
 						<span>注册时间</span><span>{{bmdob/bmdobformat bm_stud_service.stud.reg_date}}</span>
-					{{/layout-push}}
-					<div class="line"></div>
-					<p class="parent_info">家长信息</p>
-					{{#layout-push direction='row' mid=false classNames='self_container' }}
+					{{/layout-push}} --}}
+					{{!-- {{#layout-push direction='row' mid=false classNames='self_container' }}
 						<span>家长姓名</span><span>{{bm_stud_service.stud.Guardians.firstObject.name}}</span>
 					{{/layout-push}}
 					{{#layout-push direction='row' mid=false classNames='self_container' }}
@@ -63,7 +75,7 @@
 					{{/layout-push}}
 					{{#layout-push direction='row' mid=false classNames='self_container' }}
 						<span>地址</span><span>{{bm_stud_service.stud.Guardians.firstObject.addr}}</span>
-					{{/layout-push}}
+					{{/layout-push}} --}}
 				</div>
 			{{/layout-push }}
 		{{/layout-push }}

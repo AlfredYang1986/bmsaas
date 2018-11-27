@@ -5,7 +5,8 @@
             {{else}}
                 <img src={{brandlogo}} alt="">
             {{/if}}
-            <a class="brand-name" href="home">{{bm_brand_service.brand.title}}</a>
+            {{!-- <a class="brand-name" href="home">{{bm_brand_service.brand.title}}</a> --}}
+            {{#link-to 'home' classNames='brand-name'}}{{bm_brand_service.brand.title}}{{/link-to}}
         {{/layout-push}}
     </li>
     <li class="nav-item menu_mid">

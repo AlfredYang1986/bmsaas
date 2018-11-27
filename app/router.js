@@ -40,8 +40,8 @@ Router.map(function() {
     this.route('exp', { path: '/:expid' });
     this.route('exp-field', { path: '/:expfieldid/:reexpid' });
     this.route('actv', { path: '/:actvid' });
-    this.route('expsession', { path: '/:eid/:sid' });
     this.route('actv-field', { path: '/:actvfieldid/:reactvid' });
+    this.route('expsession', { path: '/:eid/:sid' });
   });
 
   this.route('stud');

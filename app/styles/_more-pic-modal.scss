@@ -113,11 +113,13 @@
                         }
                         .more-pic-list-mid{
                             width: 724px;
-                            height: 129px;
+                            // height: 129px;
+                            align-items: flex-start;
 
                             .more-pic-list-each{
                                 margin-right: 16px;
                                 justify-content: center;
+                                width: 169px;
 
                                 &:nth-last-child(1){
                                     margin-right: 0;

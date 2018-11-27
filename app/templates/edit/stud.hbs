@@ -37,7 +37,7 @@
 				{{#layout-push direction="row" split=false classNames='date_choose' }}
                 {{#if (bmcom/bm-nil-obj bm_stud_service.stud)}}
                 {{else}}
-					{{bm-lay-date inputVal=bm_stud_service.stud.dob}}
+					{{bmform/bm-lay-date inputVal=bm_stud_service.stud.dob}}
                 {{/if}}
 				{{/layout-push}}
 			{{/layout-push}}
@@ -53,7 +53,7 @@
 						<label for="female">女</label>
 					</span>
 				</div>
-				{{!-- {{bm-radio title="单选框" checkboxTitle="box-title" checkboxItem=genderCheck}} --}}
+				{{!-- {{bmform/bm-radio title="单选框" checkboxTitle="box-title" checkboxItem=genderCheck}} --}}
 			{{/layout-push}}
 			{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
 				<p class="edit_title">就读学校<span class="sub_title">(选填)</span></p>

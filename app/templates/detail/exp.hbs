@@ -1,6 +1,6 @@
 <div class="detail_content_top">
     <div class="detail_page">
-        {{#link-to 'courseReserve' class="reserve_detail_href_ref"}}
+        {{#link-to 'exp' class="reserve_detail_href_ref"}}
             返回
         {{/link-to}}
         <div class='detail_panel detail_margin_top detail_margin_top_big' >
@@ -22,7 +22,7 @@
                     {{!-- {{#bs-button onClick=(action (mut courseCode) true) classNames="reserve-code-btn"}}{{/bs-button}} --}}
                     {{#bs-button classNames="add_btn" onClick=(action (mut showAddSessionDlg) true)}}<span>+ 添加场次</span>{{/bs-button}}
 
-                    {{#bm-modal-container title="" mswitch=showAddSessionDlg
+                    {{#bmcom/bm-modal-container title="" mswitch=showAddSessionDlg
                             successbtncss='course-reserve-card-save'
                             cancelbtncss='course-reserve-card-cancel'
                             canceltext='取消'
@@ -59,11 +59,11 @@
                                     {{#layout-push direction="row" classNames="line-list"}}
                                         <p class="subtitle">日期设置</p>
                                         {{!-- {{bm_sessionable_service.sessionable.start_date}} --}}
-                                        {{bm-lay-date inputVal=bm_sessionable_service.sessionable.start_date}}
+                                        {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.start_date}}
                                     {{/layout-push}}
                                     {{#layout-push direction="row" classNames="line-list"}}
                                         <p class="subtitle">时间设置</p>
-                                        {{bm-lay-date inputVal=bm_sessionable_service.sessionable.end_date pickType="time"}}
+                                        {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.end_date pickType="time"}}
                                     {{/layout-push}}
                                     {{#layout-push direction='row' classNames="line-area "}}
                                         <p class="subtitle">名额设置</p>
@@ -82,7 +82,7 @@
                                     {{/layout-push}}
                                 {{/layout-push}}
                             </div>
-                    {{/bm-modal-container}}
+                    {{/bmcom/bm-modal-container}}
                 {{/layout-push}}
             {{/layout-push}}
         </div>
@@ -97,9 +97,10 @@
             <section class='alt_course_selection'>
                 {{#layout-push direction='col' classNames='alt_course_container'}}
                     {{#bmpage/bm-session-info session=bm_exp_service.exp.SessionInfo}}
-                        {{#link-to 'edit.exp.info' bm_exp_service.exp.SessionInfo.id classNames='alt_course_btn'}}
+                        {{bmdetail/bm-top-title-panel title="课程详情" rightText="编辑" linkAddr='edit.exp.info' linkParam=bm_exp_service.exp.SessionInfo.id}}
+                        {{!-- {{#link-to 'edit.exp.info' bm_exp_service.exp.SessionInfo.id classNames='alt_course_btn'}}
                             编辑
-                        {{/link-to}}
+                        {{/link-to}} --}}
                     {{/bmpage/bm-session-info}}
                 {{/layout-push}}
             </section>

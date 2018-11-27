@@ -7,7 +7,7 @@
         {{#layout-push direction="row" wrap=true classNames="course-card-wrap"}}
             {{#each bm_session_service.sessions as |item|}}
                 <div class="line_container_warp course_card_container" >
-                    {{course-card onCourseCardClicked=(action 'cardClicked') course=item}}
+                    {{bmcard/course-card onCourseCardClicked=(action 'cardClicked') course=item}}
                 </div>
             {{/each}}
         {{/layout-push}}

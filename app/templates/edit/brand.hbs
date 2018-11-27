@@ -90,9 +90,9 @@
             {{bmcom/bm-img-uploader needTag=false canEdit=true img=bm_brand_service.brand.logo classNames='alt-yard-edit-tag-img-adjust'}}
         {{/layout-push }}
         {{#layout-push direction='col' classNames="brand-base-info-continer"}}
-            {{!-- {{bm-edit-line title="品牌名称" isNeeded=true maxCount=15 pholder="如：Black Mirror Tech" inputVal=bm_brand_service.brand.title}}
-            {{bm-edit-line title="品牌简称" isNeeded=true maxCount=15 pholder="简称更容易让大家记住您的品牌喔！如：Black Mirror" inputVal=bm_brand_service.brand.subtitle}}
-            {{bm-edit-line title="一句话介绍(slogan)" isNeeded=true maxCount=15 pholder="请用一句话想家长和孩子们传递您的品牌理念" inputVal=bm_brand_service.brand.slogan}} --}}
+            {{!-- {{bmform/bm-edit-line title="品牌名称" isNeeded=true maxCount=15 pholder="如：Black Mirror Tech" inputVal=bm_brand_service.brand.title}}
+            {{bmform/bm-edit-line title="品牌简称" isNeeded=true maxCount=15 pholder="简称更容易让大家记住您的品牌喔！如：Black Mirror" inputVal=bm_brand_service.brand.subtitle}}
+            {{bmform/bm-edit-line title="一句话介绍(slogan)" isNeeded=true maxCount=15 pholder="请用一句话想家长和孩子们传递您的品牌理念" inputVal=bm_brand_service.brand.slogan}} --}}
             {{#layout-push direction="col" classNames='brand-input-group'}}
                 <span class="edit_title">品牌名称</span>
                 <span class='edit_subtitle'></span>
@@ -114,14 +114,14 @@
             {{/layout-push }}
             {{#if (bmcom/bm-nil-obj bm_brand_service.brand)}}
             {{else}}
-                {{bm-lay-date inputVal=bm_brand_service.brand.found}}
+                {{bmform/bm-lay-date inputVal=bm_brand_service.brand.found}}
             {{/if}}
             {{#layout-push direction="col" classNames='brand-input-group'}}
                 <span class="edit_title">品牌亮点</span>
                 <span class='edit_subtitle'>限6个字 至多3个</span>
                 {{input type="text" class="edit_input_medium" value=bm_brand_service.brand.brand_tangs}}
             {{/layout-push}}
-            {{!-- {{bm-edit-line title="品牌亮点(最多三个)" isNeeded=true maxCount=15 pholder="如：双语教学" inputVal=bm_brand_service.brand.brand_tangs}} --}}
+            {{!-- {{bmform/bm-edit-line title="品牌亮点(最多三个)" isNeeded=true maxCount=15 pholder="如：双语教学" inputVal=bm_brand_service.brand.brand_tangs}} --}}
             {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
                 <p class="nav_save menu_button_between" {{action (mut cur_idx) 1}}>下一步</p>
             {{/layout-push}}
@@ -133,7 +133,7 @@
 {{#if (bmeq cur_idx 1)}}
 <section id="start-story" class="brand_section" >
     {{#layout-push direction='col' classNames='edit_panel edit_second_panel'}}
-    {{!-- {{bm-edit-area
+    {{!-- {{bmform/bm-edit-area
         classNames='edit_panel'
         title="初心故事"
         subtitle="请描述品牌的成立宗旨、教学理念、发展历程与未来期许，让家长们了解您的用户的用心与坚持。初心故事将作为品牌介绍将展示在小程序、app中。"
@@ -210,7 +210,7 @@
 {{#if (bmeq cur_idx 4)}}
 <section id="about-tech" class="brand_section" >
     {{#layout-push direction='col' classNames='edit_panel edit_fifth_panel'}}
-    {{!-- {{bm-edit-area
+    {{!-- {{bmform/bm-edit-area
         classNames='edit_panel'
         title="师资介绍"
         subtitle="师资组成一直是家长们关心的内容，向家长们简单介绍您品牌下的师资队伍，让家长们更加了解您的品牌。"
