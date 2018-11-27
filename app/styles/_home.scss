@@ -245,19 +245,19 @@
                 margin-bottom: 40px;
                 width: 150px;
                 height: 186px;
-            
+
                 .bm-upload-form{
-            
+
                     div.bm-upload-container{
                         width: 150px;
-            
+
                         img{
                             width: 150px;
                             height: 150px;
 
                         }
                     }
-                    
+
                 }
                 .bm-upload-tag{
                     margin-top: 166px;
@@ -270,20 +270,20 @@
                 margin-bottom: 40px;
                 width: 160px;
                 height: 142px;
-            
+
                 .bm-upload-form{
-            
+
                     div.bm-upload-container{
                         // margin-top: 16px;
                         width: 160px;
-            
+
                         img{
                             width: 160px;
                             height: 106px;
-                            
+
                         }
                     }
-                    
+
                 }
                 .bm-upload-tag{
                     margin-top: 122px;
@@ -547,6 +547,7 @@
     height: 32px;
     line-height: 32px;
     text-align: center;
+    cursor: pointer;
 }
 .nav_save_btn {
     font-family: $font-brand;
