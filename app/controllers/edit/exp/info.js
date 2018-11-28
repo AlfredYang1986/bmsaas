@@ -9,6 +9,7 @@ export default Controller.extend({
 
     actions: {
         saveCourseBtnClicked() {
+            debugger
             let that = this
             let callback = {
                 onSuccess: function() {
@@ -18,7 +19,7 @@ export default Controller.extend({
                     console.log('error');
                 }
             }
-            this.bm_session_service.saveUpdate(callback); 
+            this.bm_session_service.saveUpdate(callback);
         },
         reserveCourse() {
             this.transitionToRoute('courseReserve');

@@ -9,9 +9,9 @@ export default Controller.extend({
     // cur_page_idx: 0,
 
     isPushing: false,
-
     actions: {
         saveCourseBtnClicked() {
+            debugger
             let that = this
             let callback = {
                 onSuccess: function() {
@@ -21,7 +21,7 @@ export default Controller.extend({
                     console.log('error');
                 }
             }
-            this.bm_exp_service.saveUpdate(callback); 
+            this.bm_exp_service.saveUpdate(callback);
         },
         reserveCourse() {
             this.transitionToRoute('courseReserve');

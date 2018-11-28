@@ -37,7 +37,7 @@ export default Service.extend({
         let inc = rd.Eqcond[0].serialize();
         rd_tmp['included'] = [inc.data];
         let dt = JSON.stringify(rd_tmp);
-       
+
         let that = this
         Ember.$.ajax({
             method: 'POST',
@@ -113,7 +113,7 @@ export default Service.extend({
                     }
                 },
                 included: []
-            } 
+            }
     },
 
     genIdQuery() {
@@ -168,8 +168,8 @@ export default Service.extend({
                 attributes: {
                     title: "",
                     subtitle: "",
-                    alb: 0,
-                    aub: 0,
+                    alb: 1,
+                    aub: 1,
                     level: "",
                     count: 0,
                     length: 0,
@@ -182,6 +182,7 @@ export default Service.extend({
                     notice: "",
                     cover: "",
                     brandId: "5be6a00b8fb80736e2ec9ba5",
+                    status: 1,
                 },
                 relationships: {
                     Cate: {
@@ -332,7 +333,7 @@ export default Service.extend({
         rd_tmp.data.attributes.alb = parseInt(rd.alb);
         rd_tmp.data.attributes.aub = parseInt(rd.aub);
         rd_tmp['included'] = arr;
-        let dt = JSON.stringify(rd_tmp); 
+        let dt = JSON.stringify(rd_tmp);
 
         Ember.$.ajax({
             method: 'POST',

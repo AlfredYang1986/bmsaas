@@ -92,13 +92,21 @@
                     border-radius: 4px;
                     box-shadow: none;
                 }
+				input[type=number] {
+                    margin: 0;
+                    margin-top: 16px;
+                    height: 32px;
+                    border: 1px solid #DFE1E5;
+                    border-radius: 4px;
+                    box-shadow: none;
+                }
 
                 .course-edit-check + .course-edit-check {
                     margin-top: 8px;
                 }
 
                 .course-edit-check-low {
-                    margin-top: 42px;
+                    // margin-top: 42px;
                 }
 
                 .course-edit-check-high {
@@ -223,7 +231,7 @@
                     width: 300px;
                 }
                 .select-age{
-                    margin-bottom: 40px;
+                    margin-bottom: 5px;
 
                     .alt-course-age-group{
                         justify-content: flex-start;
@@ -250,7 +258,7 @@
                     }
                 }
                 .alt-course-input-group{
-                    margin-bottom: 40px;
+                    margin-bottom: 10px;
                 }
 
                 select {

@@ -37,7 +37,7 @@ export default Service.extend({
         let inc = rd.Eqcond[0].serialize();
         rd_tmp['included'] = [inc.data];
         let dt = JSON.stringify(rd_tmp);
-      
+
         let that = this
         Ember.$.ajax({
             method: 'POST',
@@ -126,7 +126,7 @@ export default Service.extend({
                         }
                     }
                 ]
-            } 
+            }
     },
 
     genIdQuery() {
@@ -201,11 +201,12 @@ export default Service.extend({
                         id: sinfo,
                         type: "BmSessionInfo",
                         attributes: {
+                            status: 1,
                             brandId: "5be6a00b8fb80736e2ec9ba5",
                             title: '',
                             subtitle: "",
-                            alb: 0,
-                            aub: 0,
+                            alb: 1,
+                            aub: 1,
                             level: "",
                             count: 0,
                             length: 0,
@@ -379,7 +380,7 @@ export default Service.extend({
 
         let ft_tmp = JSON.parse(JSON.stringify(ft.serialize()));
         ft_tmp['included'] = arr;
-        let dt = JSON.stringify(ft_tmp); 
+        let dt = JSON.stringify(ft_tmp);
 
         Ember.$.ajax({
             method: 'POST',
@@ -404,7 +405,7 @@ export default Service.extend({
 
     queryLocalMultiObject() {
         if (this.exps.length == 0) {
-            this.queryMultiObjects()    
+            this.queryMultiObjects()
         }
-    } 
+    }
 });

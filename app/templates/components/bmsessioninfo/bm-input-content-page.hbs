@@ -1,21 +1,49 @@
 <section id="basic-info" class="alt_course_section" >
     {{#layout-push direction='col' classNames="alt_course_panel edit_panel edit_third_panel"}}
-        <span class='alt_course_title alt_course_big_title'>描述一下体验课的内容吧</span>
+        {{#if (bmeq session.status 1)}}
+            <span class='alt_course_title alt_course_big_title'>描述一下体验课的内容吧</span>
+        {{else}}
+            <span class='alt_course_title alt_course_big_title'>描述一下活动的内容吧</span>
+        {{/if}}
         {{#layout-push direction="col" classNames="alt-course-input-group"}}
-            <span class='alt_course_title'>体验课时长（min）</span>
+            {{#if (bmeq session.status 1)}}
+                <span class='alt_course_title'>体验课时长（min）</span>
+            {{else}}
+                <span class='alt_course_title'>活动时长（min）</span>
+            {{/if}}
             {{#layout-push direction="row" classNames="alt-course-age-group"}}
-            <div class="input-group">
-                {{input value=session.length class="edit_input_age" type="text"}}
-                <div class="input-group-append">
-                    <span class="input-group-text">分钟</span>
+                <div class="course-edit-check course-edit-check-low">
+                    <span class="radio-inline">
+                        <input type="radio" name="level" value="ma" checked={{bmeq item.gender 0}}/>
+                        <label for="female">
+                            <div class="input-group">
+                                {{input value=session.length class="edit_input_age" type="number"}}
+                                <div class="input-group-append">
+                                    <span class="input-group-text">分钟</span>
+                                </div>
+                            </div>
+                        </label>
+                    </span>
                 </div>
-            </div>
+
             {{/layout-push}}
+            <div class="course-edit-check course-edit-check-low">
+                <span class="radio-inline">
+                    <input type="radio" name="level" value="ma" checked={{bmeq item.gender 0}}/>
+                    <label for="female">没有时间限制</label>
+                </span>
+            </div>
             {{!-- {{input type="text" class="edit_input" value=session.length}} --}}
         {{/layout-push}}
         {{#layout-push direction="col" classNames='alt-course-input-group'}}
-            <span class="alt-edit-title alt-edit-title-des">体验课內容</span>
-            <span class='alt-edit-up-hit'>介绍体验课具体场景及内容，有趣、详细的內容介绍会引起参与者的极大兴趣。</span>
+            {{#if (bmeq session.status 1)}}
+                <span class="alt-edit-title alt-edit-title-des">体验课内容</span>
+                <span class='alt-edit-up-hit'>介绍体验课具体场景及内容，有趣、详细的內容介绍会引起参与者的极大兴趣。</span>
+            {{else}}
+                <span class="alt-edit-title alt-edit-title-des">活动内容</span>
+                <span class='alt-edit-up-hit'>介绍活动具体场景及内容，有趣、详细的內容介绍会引起参与者的极大兴趣。</span>
+            {{/if}}
+
             {{textarea value=session.description classNames='alt-edit-area' rows=5}}
         {{/layout-push}}
         {{yield}}

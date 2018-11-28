@@ -47,15 +47,18 @@
             }
         }
 
-    	li {
+    	li.left_bar_item {
             padding-left: 40px;
             text-align: left;
             height: 40px;
+            @extend %font-form-info-title;
 
     		a.edit_left_menu_text {
                 line-height: 40px;
-    			@extend %font-form-info-title;
     		}
+            a.active {
+                color: red;
+            }
 
     	}
     }
