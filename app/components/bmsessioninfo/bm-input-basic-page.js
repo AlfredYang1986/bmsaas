@@ -8,6 +8,28 @@ export default Component.extend({
     levelInput: true,
     levelInputRadio: 'checked',
     levelNoRadio: '',
+    positionalParams: ['session'],
+    inputChecked: 'checked',
+    inputNoChecked: '',
+    lengthIf: true,
+    init() {
+        this._super(...arguments);
+        if(this.session.alb == -1 & this.session.aub ==-1) {
+            this.set('ageInputChecked', '');
+            this.set('ageNoInput', 'checked');
+            this.set('ageInput', false);
+        }
+        if(this.session.level == '') {
+            this.set('levelInputRadio', '');
+            this.set('levelNoRadio', 'checked');
+            this.set('levelInput', false);
+        }
+        if(this.session.length == -1) {
+            this.set('lengthIf', false);
+            this.set('inputChecked', '');
+            this.set('inputNoChecked', 'checked');
+        }
+    },
     actions: {
         ageSelect() {
             if(this.ageInput == true) {
@@ -38,6 +60,22 @@ export default Component.extend({
                 this.set('levelInput', true);
                 this.set('levelInputRadio', 'checked');
                 this.set('levelNoRadio', '');
+            }
+        },
+        lengthInputSelected() {
+            if(this.inputChecked == '') {
+                this.set('lengthIf', true);
+                this.set('inputChecked', 'checked');
+                this.set('inputNoChecked', '');
+                this.set('session.length', 0)
+            }
+        },
+        lengthNoSelected() {
+            if(this.inputChecked == 'checked') {
+                this.set('lengthIf', false);
+                this.set('inputChecked', '');
+                this.set('inputNoChecked', 'checked');
+                this.set('session.length', -1)
             }
         },
     }

@@ -62,7 +62,7 @@
                     {{/layout-push}}
                 {{/layout-push}}
             {{/layout-push}} --}}
-            {{bmdetail/course-basis-left-title 
+            {{bmdetail/course-basis-left-title
                 title=session.title
                 subTitle=session.Cate.title
                 subTitleBehind=session.Cate.subtitle}}
@@ -78,7 +78,7 @@
             {{bmdetail/course-basis-right-info label="体验内容" content=session.description}}
             {{bmdetail/course-basis-right-info label="与孩子互动" content=session.play_children}}
             {{bmdetail/course-basis-right-info label="将为宝贝提供" content=session.inc}}
-            
+
             {{!-- {{#layout-push direction='col' classNames='alt_course_detail_panel'}}
                 <span class='alt_right_panel_perperty_title'>体验内容</span>
                 {{#if (eq session.description "")}}
@@ -107,7 +107,7 @@
 
         {{#layout-push direction='col' classNames='alt_course_panel alt_course_right_panel'}}
             {{bmdetail/course-basis-right-info label="宝贝将获得" content=session.acquisition}}
-            {{#if (bmcom/bm-nil-string session.accompany)}}
+            {{#if (bmeq session.accompany 1)}}
                 {{bmdetail/course-basis-right-info label="陪同说明" content="需家长陪同"}}
             {{else}}
                 {{bmdetail/course-basis-right-info label="陪同说明" content="不需家长陪同"}}

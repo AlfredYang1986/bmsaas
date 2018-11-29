@@ -3,15 +3,15 @@
         <span class='alt_course_title alt_course_big_title'>陪同说明</span>
         <span class='alt_course_title'>是否需要家长陪同？</span>
         <div class="course-edit-check course-edit-check-high">
-            <span class="radio-inline">
-                <input type="radio" name="rel" checked={{bmeq session.accompany 0}}/>
-                <label for="female">不需要家长陪同</label>
+            <span class="radio-inline" {{action 'needNoAcc'}}>
+                <input type="radio" name="acc" checked={{needNoAccSelected}}/>
+                <label for="acc">不需要家长陪同</label>
             </span>
         </div>
         <div class="course-edit-check course-edit-check-high">
-            <span class="radio-inline">
-                <input type="radio" name="rel" checked={{bmeq session.accompany 1}}/>
-                <label for="female">需要家长陪同</label>
+            <span class="radio-inline" {{action 'needAcc'}}>
+                <input type="radio" name="acc" checked={{needAccSelected}}/>
+                <label for="acc">需要家长陪同</label>
             </span>
         </div>
         {{yield}}

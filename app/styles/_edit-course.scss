@@ -105,8 +105,9 @@
                     margin-top: 8px;
                 }
 
-                .course-edit-check-low {
-                    // margin-top: 42px;
+                .no-inc-margin {
+                	margin-top: 40px;
+					margin-bottom: 20px;
                 }
 
                 .course-edit-check-high {
@@ -115,7 +116,7 @@
 
                 .course-edit-check-age {
                     margin-top: 8px;
-                    margin-bottom: 40px;
+
                 }
 
                 input[type=checkbox] {
@@ -137,6 +138,29 @@
 				&.edit_second_panel {
                     .alt_course_title_age{
                         margin-top: 40px;
+                    }
+					.alt-course-age-group{
+                        justify-content: flex-start;
+
+                        .alt_course_des{
+                            position: relative;
+                            left: -22px;
+                            line-height: 58px;
+                            height: 32px;
+                        }
+                        .input-group{
+                            width:200px;
+
+                            .edit_input_age{
+                                width: 110px;
+                            }
+                            .input-group-append{
+                                height: 32px;
+                                position: relative;
+                                top: 16px;
+                                left: -40px;
+                            }
+                        }
                     }
 				}
 
@@ -217,18 +241,19 @@
                 padding: 24px;
 
                 .alt_course_big_title{
-                    margin-bottom: 40px;
+                    // margin-bottom: 40px;
                     font-size: 20px;
                 }
                 .alt_course_title{
-                    // margin-bottom: 4px;
+                    margin-top: 40px;
                 }
                 .alt_course_des{
                     // margin-bottom: 16px;
                     margin-top: 4px;
                 }
-                .edit_input{
+                .edit_input[type=text]{
                     width: 300px;
+					// margin-bottom: 40px;
                 }
                 .select-age{
                     margin-bottom: 5px;

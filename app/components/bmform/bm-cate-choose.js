@@ -8,9 +8,9 @@ export default Component.extend({
     crs_cat: '',
     crs_sub_cat: '',
 
-    cat_candi: computed('crs_cat', function(){
-        return this.mock_data.queryCateCandidate();
-    }),
+    // cat_candi: computed('crs_cat', function(){
+    //     return this.mock_data.queryCateCandidate();
+    // }),
 
     sub_candi: computed('crs_cat', function(){
         return this.mock_data.querySubCatCondidate(this.crs_cat);

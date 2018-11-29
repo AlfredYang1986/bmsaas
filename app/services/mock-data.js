@@ -35,7 +35,7 @@ export default Service.extend({
       })
     }
   },
- 
+
   queryNotReservableCourse() {
     console.log('sure not reserve course');
     let lst = this.store.peekAll('bmcourseinfo');
@@ -343,8 +343,11 @@ export default Service.extend({
       ses_01.set('cls', cls);
     }
   },
-  queryCateCandidate() {
-    return A(['科学', '运动', '艺术']);
+  queryCateCandidateExp() {
+    return A(['数理与逻辑', '语⾔与⼈⽂']);
+  },
+  queryCateCandidateActv() {
+    return A(['展览', '工作坊', '游乐场', '赛事', '亲子', '演出', '讲座', '公益', '户外教学', '其他']);
   },
   querySubCatCondidate(cat) {
     if (cat == '科学') {
