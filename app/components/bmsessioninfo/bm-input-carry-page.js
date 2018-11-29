@@ -6,9 +6,14 @@ export default Component.extend({
     noInputChecked: '',
     init() {
         this._super(...arguments);
-        if(this.session.carrying == '') {
-            this.set('ifCarryInput', 'disabled');
-            this.set('noInputChecked', 'checked');
+        if(this.isCreate) {
+            this.set('ifCarryInput', '');
+            this.set('noInputChecked', '');
+        } else {
+            if(this.session.carrying == '') {
+                this.set('ifCarryInput', 'disabled');
+                this.set('noInputChecked', 'checked');
+            }
         }
     },
     actions: {

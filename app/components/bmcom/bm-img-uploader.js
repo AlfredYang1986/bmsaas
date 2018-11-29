@@ -25,7 +25,6 @@ export default Component.extend({
     }),
     actions: {
         inputChanged() {
-            this.get('logger').log('changed')
             let client = this.bmOss.get('ossClient');
 
             let form = document.getElementById(this.upid);

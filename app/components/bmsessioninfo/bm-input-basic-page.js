@@ -14,16 +14,23 @@ export default Component.extend({
     lengthIf: true,
     init() {
         this._super(...arguments);
+        if(this.isCreate) {
+            this.set('levelInputRadio', 'checked');
+            this.set('levelNoRadio', '');
+        } else {
+            if(this.session.level == '') {
+                this.set('levelInputRadio', '');
+                this.set('levelNoRadio', 'checked');
+                this.set('levelInput', false);
+            }
+        }
+
         if(this.session.alb == -1 & this.session.aub ==-1) {
             this.set('ageInputChecked', '');
             this.set('ageNoInput', 'checked');
             this.set('ageInput', false);
         }
-        if(this.session.level == '') {
-            this.set('levelInputRadio', '');
-            this.set('levelNoRadio', 'checked');
-            this.set('levelInput', false);
-        }
+
         if(this.session.length == -1) {
             this.set('lengthIf', false);
             this.set('inputChecked', '');

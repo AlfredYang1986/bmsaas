@@ -6,10 +6,16 @@ export default Component.extend({
     noInputChecked: '',
     init() {
         this._super(...arguments);
-        if(this.session.inc == '') {
-            this.set('ifIncInput', 'disabled');
-            this.set('noInputChecked', 'checked');
+        if(this.isCreate) {
+            this.set('ifIncInput', '');
+            this.set('noInputChecked', '');
+        } else {
+            if(this.session.inc == '') {
+                this.set('ifIncInput', 'disabled');
+                this.set('noInputChecked', 'checked');
+            }
         }
+
     },
     actions: {
         noInc() {

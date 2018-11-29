@@ -7,7 +7,7 @@ export default Controller.extend({
     bm_actv_service: service(),
 
     // cur_page_idx: 0,
-
+    isCreate: true,
     isPushing: false,
 
     actions: {
@@ -21,7 +21,7 @@ export default Controller.extend({
                     console.log('error');
                 }
             }
-            this.bm_actv_service.saveUpdate(callback); 
+            this.bm_actv_service.saveUpdate(callback);
         },
         reserveCourse() {
             this.transitionToRoute('courseReserve');

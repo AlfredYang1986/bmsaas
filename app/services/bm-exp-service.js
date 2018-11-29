@@ -217,7 +217,9 @@ export default Service.extend({
                             including: "",
                             carrying: "",
                             notice: "",
-                            cover: ""
+                            cover: "",
+                            inc: "",
+                            play_children: "",
                         },
                         relationships: {
                             Cate: {

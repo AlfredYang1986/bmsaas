@@ -8,6 +8,8 @@ export default Controller.extend({
 
     // cur_page_idx: 0,
 
+    isCreate: true,
+
     isPushing: false,
     actions: {
         saveCourseBtnClicked() {

@@ -5,6 +5,7 @@ export default Controller.extend({
 
     bm_session_service: service(),
 
+    isCreate: false,
     isPushing: false,
 
     actions: {
@@ -18,7 +19,7 @@ export default Controller.extend({
                     console.log('error');
                 }
             }
-            this.bm_session_service.saveUpdate(callback); 
+            this.bm_session_service.saveUpdate(callback);
         },
         reserveCourse() {
             this.transitionToRoute('courseReserve');
