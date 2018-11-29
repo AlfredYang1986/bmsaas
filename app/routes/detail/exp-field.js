@@ -9,9 +9,27 @@ export default Route.extend({
     model(params) {
         this.bm_sessionable_service.set('reservableid', params.reexpid);
         this.bm_sessionable_service.set('sessionableid', params.expfieldid);
+        console.log(params)
         return RSVP.hash({
                 expfieldid: params.expfieldid,
-                tabs: A(['场次安排', '体验详情'])
+                tabs: A(['场次安排', '体验详情']),
+                urls: A([
+                    {
+                        "pageName":"体验课开放",
+                        "link":"exp",
+                        "id":"",
+                    },
+                    {
+                        "pageName":"场次安排",
+                        "link":"detail.exp",
+                        "id":params.reexpid,
+                    },
+                    {
+                        "pageName":"场次详情",
+                        "link":"",
+                        "id":"",
+                    }
+                ]),
             })
     },
     setupController(controller, model) {
