@@ -12,15 +12,25 @@
                 {{#layout-push direction='col' mid=true }}
                     {{#layout-push direction='col' classNames="detail_margin_top_left"}}
                         <span class="detail_panel_title_name">{{bm_actv_service.actv.SessionInfo.title}}</span>
-                        {{#layout-push direction='row'}}
-                        {{!-- <p class="detail_panel_role_num">累计预约人数&nbsp;&nbsp;{{reserve_number}}</p> --}}
+                        {{!-- {{#layout-push direction='row'}}
                         <p class="detail_panel_role_num">{{reserve_number}}</p>
-                        {{/layout-push}}
+                        {{/layout-push}} --}}
                     {{/layout-push}}
                 {{/layout-push}}
                 {{#layout-push direction="row" classNames="reserve-detail-btn"}}
-                    {{#bs-button classNames="reserve-code-btn"}}{{/bs-button}}
-                    {{#bs-button class="reserve-more-btn"}}{{/bs-button}}
+                    {{!-- {{#bs-button classNames="reserve-code-btn"}}{{/bs-button}}
+                    {{#bs-button class="reserve-more-btn"}}{{/bs-button}} --}}
+                    {{#bs-dropdown class="btn-dropdown" as |dd|}}
+                        {{#dd.button class="reserve-more-btn"}}{{/dd.button}}
+                        {{#dd.menu align="right" as |menu|}}
+                            {{#menu.item align="right"}}
+                                {{#layout-push direction='col' classNames="dropdown-content"}}
+                                    <a onclick={{action "cancelHandled" item dd.closeDropdown}}>关闭报名</a>
+                                    <a class="warning" onclick={{action "cancelHandled" item dd.closeDropdown}}>删除活动</a>
+                                {{/layout-push}}
+                            {{/menu.item}}
+                        {{/dd.menu}}
+                    {{/bs-dropdown}}
                     {{#bs-button classNames="add_btn" onClick=(action (mut showAddSessionDlg) true)}}<span>+ 添加场次</span>{{/bs-button}}
 
                     {{#bmcom/bm-modal-container title="" mswitch=showAddSessionDlg

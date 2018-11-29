@@ -37,13 +37,26 @@
             <td class='ib_table_content_item'>{{index}}</td>
             <td class='ib_table_content_item'>{{bmdob/bmdobformat item.start_date}}</td>
             <td class="ib_table_content_item"></td>
-            {{#if (bmcom/bm-nil-obj item.Attendees)}}
-            <td class="ib_table_content_item">0</td>
+            {{!-- {{#if (bmcom/bm-nil-obj item.Attendees)}}
+                <td class="ib_table_content_item">0</td>
             {{else}}
-            <td class="ib_table_content_item">{{item.Attendees.length}}</td>
-            {{/if}}
+                <td class="ib_table_content_item">{{item.Attendees.length}}</td>
+            {{/if}} --}}
             <td  class="ib_table_content_item">
-                {{#bs-button classNames="ib_table_content_btn" onClick=(action 'onClickInner' item.id)}}<span>查看详情</span>{{/bs-button}}
+                {{#bs-dropdown class="btn-dropdown" as |dd|}}
+                    {{#dd.button class="reserve-more-btn"}}{{/dd.button}}
+                    {{#dd.menu align="right" as |menu|}}
+                        {{#menu.item align="right"}}
+                            {{#layout-push direction='col' classNames="dropdown-content"}}
+                                <a onclick={{action 'onClickInner' item.id item dd.closeDropdown}}>编辑场次</a>
+                                <a class="warning" onclick={{action 'onClickInner' item.id item dd.closeDropdown}}>删除场次</a>
+                            {{/layout-push}}
+                        {{/menu.item}}
+                    {{/dd.menu}}
+                {{/bs-dropdown}}
+            </td>
+            <td  class="ib_table_content_item">
+                {{#bs-button classNames="ib_table_content_link_btn" onClick=(action 'onClickInner' item.id)}}<span>查看</span>{{/bs-button}}
             </td>
         {{else if (bmeq type "courseInner")}}
             <td class='ib_table_content_item'>{{index}}</td>
@@ -58,9 +71,9 @@
             </td>
             <td class="ib_table_content_item">{{item.contact}}</td>
             <td class="ib_table_content_item">小程序</td>
-            <td  class="ib_table_content_item">
+            {{!-- <td  class="ib_table_content_item">
                 {{#bs-button classNames="ib_table_content_btn"}}<span>点击签到</span>{{/bs-button}}
-            </td>
+            </td> --}}
         {{/if}}
     </tr>
 {{/each}}
