@@ -14,7 +14,7 @@ export default Controller.extend({
 
     cur_idx: 0,
     cur_yard_id: '',
-    
+
     actions: {
         linkToExpField(idx) {
             this.transitionToRoute('detail.exp-field', idx, this.bm_exp_service.exp.id);
@@ -37,7 +37,7 @@ export default Controller.extend({
                     console.log('push sessionable fail')
                 }
             }
-            
+
             this.bm_sessionable_service.resetInfoAndYard(this.cur_yard_id, this.bm_exp_service.exp.SessionInfo.id);
             this.bm_sessionable_service.resetTechs([]);
             this.bm_sessionable_service.resetAttendee([]);
@@ -51,7 +51,7 @@ export default Controller.extend({
         }
     },
     showAddSessionDlg: false,
-    
+
     generateSessionable() {
         if (this.showAddSessionDlg == true) {
             this.bm_sessionable_service.set('sessionableid', 'sessionable/push');

@@ -51,7 +51,7 @@
             <div class="course-edit-check course-edit-check-low" {{action 'lengthNoSelected'}}>
                 <span class="radio-inline">
                     <input type="radio" name="length" value="ma" checked={{inputNoChecked}}/>
-                    <label for="female">没有时间限制</label>
+                    <label for="female">不限时长</label>
                 </span>
             </div>
             {{!-- {{input type="text" class="edit_input" value=session.length}} --}}
@@ -109,7 +109,7 @@
             {{#bmform/age-select-input alb=session.alb aub=session.aub ageSelect=(action 'ageSelect') checked=ageNoInput}}
             {{/bmform/age-select-input}}
         </div>
-        {{#layout-push direction="col" classNames="alt-course-input-group"}}
+        {{!-- {{#layout-push direction="col" classNames="alt-course-input-group"}}
             <span class='alt_course_title'>分级阶段</span>
             <span class='alt_course_des'>如：入门级、LV1</span>
             <div class="course-edit-check course-edit-check-low">
@@ -135,7 +135,7 @@
                 <input type="radio" name="level" checked={{levelNoRadio}} />
                 <label for="female">无分级阶段</label>
             </span>
-        </div>
+        </div> --}}
         {{yield}}
     {{/layout-push}}
 </section>
