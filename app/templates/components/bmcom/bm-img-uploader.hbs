@@ -6,6 +6,9 @@
                     <img src='/images/image@2x.png' class='' />
                 {{else}}
                     <img src={{concertImgPath}} class='' />
+                    <div class="delete" {{action 'deleteImg'}}>
+                        <img src={{deleteIcon}} class="delete-icon">
+                    </div>
                 {{/if}}
                 <input type='file' name='file' value='file' multiple=false class='' onchange={{action 'inputChanged'}} />
             {{else}}

@@ -2,7 +2,6 @@
 
     div.bm-upload-container {
         position: relative;
-
         width: 200px;
         height: auto;
 
@@ -13,20 +12,35 @@
             left: 0;
             width: 200px;
             height: 200px;
-    
+
             border: 1px dashed #D2D4D9;
             border-radius: 4px;
         }
 
         input {
             position: absolute;
-
             top: 0;
             left: 0;
             width: 200px;
             height: 200px;
-
             opacity: 0;
+        }
+        .delete {
+            width: 272px;
+            height: 24px;
+            background: rgba(0,0,0,0.5);
+            position: absolute;
+            top: 248px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            text-align: center;
+            img.delete-icon {
+                max-width: 24px;
+                max-height: 24px;
+                border: none;
+                margin-left: 119px;
+            }
         }
     }
 }
