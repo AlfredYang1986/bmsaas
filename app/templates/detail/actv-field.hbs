@@ -16,8 +16,19 @@
                     {{/layout-push}}
                 {{/layout-push}}
                 {{#layout-push direction="row" classNames="reserve-detail-btn"}}
-                    {{#bs-button class="reserve-more-btn"}}{{/bs-button}}
-                    {{#bs-button classNames="second_btn" onClick=(action (mut add_session) true)}}<span>停止报名</span>{{/bs-button}}
+                    {{#bs-dropdown class="btn-dropdown" as |dd|}}
+                        {{#dd.button class="reserve-more-btn"}}{{/dd.button}}
+                        {{#dd.menu align="right" as |menu|}}
+                            {{#menu.item align="right"}}
+                                {{#layout-push direction='col' classNames="dropdown-content"}}
+                                    <a onclick={{action "cancelHandled" item dd.closeDropdown}}>关闭报名</a>
+                                    <a class="warning" onclick={{action "cancelHandled" item dd.closeDropdown}}>删除体验课</a>
+                                {{/layout-push}}
+                            {{/menu.item}}
+                        {{/dd.menu}}
+                    {{/bs-dropdown}}
+                    {{!-- {{#bs-button class="reserve-more-btn"}}{{/bs-button}}
+                    {{#bs-button classNames="second_btn" onClick=(action (mut add_session) true)}}<span>停止报名</span>{{/bs-button}} --}}
                 {{/layout-push}}
             {{/layout-push}}
         </div>

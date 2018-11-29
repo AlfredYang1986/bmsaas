@@ -3,7 +3,7 @@ import { inject as service } from '@ember/service';
 
 export default Controller.extend({
     bm_sessionable_service: service(),
-    tableTitle: ["参与者","孩子","生日","性别", "联系方式", "渠道", "操作"],
+    tableTitle: ["参与者","孩子","生日","性别", "联系方式", "渠道"],
     tableContent: [
         {
             ind: "1",

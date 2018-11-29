@@ -438,5 +438,22 @@
             letter-spacing: 0;
             text-align: center;
         }
+        .ib_table_content_link_btn {
+            border: none;
+            background: transparent;
+            border-radius: 4px;
+            padding: 6px 0;
+            font-family: $font-nav-acc;
+            font-size: 14px;
+            color: #80AEFF;
+            letter-spacing: 0;
+            text-align: center;
+
+            &:active{
+                background-color: transparent;
+                border-color: transparent;
+                color: #80AEFF;
+            }
+        }
     }
 }
