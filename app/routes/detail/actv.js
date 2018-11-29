@@ -20,7 +20,19 @@ export default Route.extend({
         return RSVP.hash({
                 expid: params.actvid,
                 tabs: A(['场次安排', '体验详情']),
-                titles: A(["场次号","时间段","校区","报名人数", "操作"])
+                titles: A(["场次号","时间段","校区","报名人数", "操作"]),
+                urls: A([
+                    {
+                        "pageName":"活动",
+                        "link":"actv",
+                        "id":"",
+                    },
+                    {
+                        "pageName":"场次安排",
+                        "link":"",
+                        "id":"",
+                    }
+                ]),
             })
     },
     setupController(controller, model) {

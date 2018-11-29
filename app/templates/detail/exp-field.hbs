@@ -1,8 +1,12 @@
 <div class="detail_content_top">
     <div class="detail_page">
-        {{#link-to 'exp' class="reserve_detail_href_ref"}}
-            返回
-        {{/link-to}}
+        {{#bmcom/bm-breadcrumb urls=model.urls as |url|}}
+            {{#if (not-eq url.id "")}}
+                {{#link-to url.link url.id class="reserve_detail_href_ref"}}{{url.pageName}}{{/link-to}}
+            {{else}}
+                {{#link-to url.link class="reserve_detail_href_ref"}}{{url.pageName}}{{/link-to}}
+            {{/if}}
+        {{/bmcom/bm-breadcrumb}}
         <div class='detail_panel detail_margin_top detail_margin_top_field' >
             {{#layout-push direction='row' split=true classNames="reserve-detail-head"}}
                 {{#layout-push direction='col' mid=true }}
