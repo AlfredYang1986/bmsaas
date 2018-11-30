@@ -3,7 +3,7 @@
 {{#layout-push direction='col' classNames='right_detail_panel'}}
     <span class='right_panel_perperty_title'>{{label}}</span>
     {{#if (bmcom/bm-nil-string content)}}
-        <span class='right_panel_perperty_des'>请上传信息</span>
+        <span class='right_panel_perperty_des'>{{nocontent}}</span>
     {{else}}
         <span class='right_panel_perperty_des'>{{content}}</span>
     {{/if}}

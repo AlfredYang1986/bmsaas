@@ -3,13 +3,13 @@
 {{#layout-push direction='row' mid=true classNames='alt_course_detail_line'}}
     {{#layout-push direction='row' mid=true classNames='alt_course_detail_half'}}
         {{#layout-push direction='col' mid=true }}
-            {{#if haveAge}}
+            {{#if (bmeq infoCardData.alb -1)}}
                 {{#layout-push direction='row' mid=true }}
-                    <span class='alt_course_detail_perperty'>{{infoCardData.alb}}-{{infoCardData.aub}} 岁</span>
+                    <span class='alt_course_detail_perperty'>不限年龄</span>
                 {{/layout-push}}
             {{else}}
                 {{#layout-push direction='row' mid=true }}
-                    <span class='alt_course_detail_perperty'>不限年龄</span>
+                    <span class='alt_course_detail_perperty'>{{infoCardData.alb}}-{{infoCardData.aub}} 岁</span>
                 {{/layout-push}}
             {{/if}}
 
@@ -21,13 +21,13 @@
     <div class="border-span"></div>
     {{#layout-push direction='row' mid=true classNames='alt_course_detail_half'}}
         {{#layout-push direction='col' mid=true }}
-            {{#if haveLength}}
+            {{#if (bmeq infoCardData.length -1)}}
                 {{#layout-push direction='row' mid=true }}
-                    <span class='alt_course_detail_perperty'>{{infoCardData.length}} 分钟</span>
+                    <span class='alt_course_detail_perperty'>不限时长</span>
                 {{/layout-push}}
             {{else}}
                 {{#layout-push direction='row' mid=true }}
-                    <span class='alt_course_detail_perperty'>不限时长</span>
+                    <span class='alt_course_detail_perperty'>{{infoCardData.length}} 分钟</span>
                 {{/layout-push}}
             {{/if}}
 
