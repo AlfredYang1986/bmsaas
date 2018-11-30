@@ -10,10 +10,10 @@
     </span>
 {{/layout-push}}
 
-
-
 {{#layout-push direction='row' split=true classNames='edit_container' }}
-    {{bmsessioninfo/bm-input-menu cur_page_idx=cur_page_idx status=session.status}}
+    {{!-- {{bmsessioninfo/bm-input-menu cur_page_idx=cur_page_idx status=session.status}} --}}
+
+    {{bmsessioninfo/bm-input-menu-bar cur_page_idx=cur_page_idx describe=describe guide=guide  status=session.status}}
 
     <div class="input_container">
         {{#if (bmeq cur_page_idx 0)}}

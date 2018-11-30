@@ -7,7 +7,7 @@ export default Component.extend({
     actions: {
         saveCourseBtnClicked() {
             this.onSaveSessionBtnClicked();
-        }
+        },
     },
     didInsertElement() {
         this.set(this.cur_page_idx, 0);

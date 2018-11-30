@@ -1,5 +1,5 @@
 {{!-- {{yield}} --}}
-<ul class="edit_left_nav">
+<ul class="edit_left_nav" {{action 'itemClicked'}}>
     <li class="left_bar_title">
         {{#if (bmeq status 1)}}
             <a class="edit_left_menu_text" {{action (mut cur_page_idx) 0}}>体验课描述</a>
