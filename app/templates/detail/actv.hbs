@@ -25,14 +25,21 @@
                         {{#dd.menu align="right" as |menu|}}
                             {{#menu.item align="right"}}
                                 {{#layout-push direction='col' classNames="dropdown-content"}}
-                                    <a onclick={{action "cancelHandled" item dd.closeDropdown}}>关闭报名</a>
-                                    <a class="warning" onclick={{action "cancelHandled" item dd.closeDropdown}}>删除活动</a>
+                                    {{#if (eq bm_actv_service.actv.start_date -1)}}
+                                        {{#if (eq bm_actv_service.actv.end_date -1)}}
+                                            <a onclick={{action "onOpenActvClick" item dd.closeDropdown}}>开启报名</a>
+                                        {{else}}
+                                            <a onclick={{action (mut closeActvDlg) true dd.closeDropdown}}>关闭报名</a>
+                                        {{/if}}
+                                    {{else}}
+                                        <a onclick={{action (mut closeActvDlg) true dd.closeDropdown}}>关闭报名</a>
+                                    {{/if}}
+                                    <a class="warning" onclick={{action (mut deleteActvDlg) true dd.closeDropdown}}>删除活动</a>
                                 {{/layout-push}}
                             {{/menu.item}}
                         {{/dd.menu}}
                     {{/bs-dropdown}}
                     {{#bs-button classNames="add_btn" onClick=(action (mut showAddSessionDlg) true)}}<span>+ 添加场次</span>{{/bs-button}}
-
                     {{#bmcom/bm-modal-container title="" mswitch=showAddSessionDlg
                             successbtncss='course-reserve-card-save'
                             cancelbtncss='course-reserve-card-cancel'
@@ -76,25 +83,61 @@
                                         <p class="subtitle">时间设置</p>
                                         {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.end_date pickType="time"}}
                                     {{/layout-push}}
-                                    {{#layout-push direction='row' classNames="line-area "}}
+                                    {{!-- {{#layout-push direction='row' classNames="line-area "}}
                                         <p class="subtitle">名额设置</p>
                                         {{#layout-push direction='col' }}
                                             <span class="radio-col">
                                                 <input type="radio" name="rel02" value="ma" checked/>
                                                 <label for="">不限制</label>
-                                            </span>
+                                            </span> --}}
                                             {{!-- <span class="radio-col">
                                                 <input type="radio" name="rel" value="fa"/>
                                                 <label for="">
                                                     <input type="text" name="" value="">
                                                 </label>
                                             </span> --}}
-                                        {{/layout-push}}
-                                    {{/layout-push}}
+                                        {{!-- {{/layout-push}}
+                                    {{/layout-push}} --}}
                                 {{/layout-push}}
                             </div>
                     {{/bmcom/bm-modal-container}}
-
+                    {{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteActvDlg cancelHandled='cancelHandled' successHandled="onDeleteActvClick"}}
+                        <p class="warning-modal-body-content">您确定要删除活动「{{bm_actv_service.actv.SessionInfo.title}}」吗？</p>
+                        <p class="warning-modal-body-content">删除后所有场次信息都将删除。</p>
+                    {{/bmcom/bm-warning-modal}}
+                    {{#bmcom/bm-warning-modal title="关闭" mainBtnText="关闭" type="warning" switchParam=closeActvDlg cancelHandled='cancelHandled' successHandled="onShutdownActvClick"}}
+                        <p class="warning-modal-body-content">您确定要关闭活动吗？</p>
+                        <p class="warning-modal-body-content">关闭后活动将不在小程序中显示。</p>
+                    {{/bmcom/bm-warning-modal}}
+                    {{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteSessionDlg cancelHandled='cancelHandled' successHandled="onDeleteSessionClickOk"}}
+                        <p class="warning-modal-body-content">您确定要删除该场次吗？</p>
+                    {{/bmcom/bm-warning-modal}}
+                {{/layout-push}}
+            {{/layout-push}}
+        </div>
+        <div class='detail_panel detail_margin_top detail_margin_top_des' >
+            {{#layout-push direction='row' split=true classNames="reserve-detail-head"}}
+                {{#layout-push direction='row' mid=true classNames="detail_margin_top_left"}}
+                    {{#if (eq bm_actv_service.actv.start_date -1)}}
+                        {{#if (eq bm_actv_service.actv.end_date -1)}}
+                            <p class="status_before_dot_outer"><span class="status_before_dot_disable"></span></p>
+                            <span class="detail_panel_role_num">未开放</span>
+                        {{else}}
+                            <p class="status_before_dot_outer"><span class="status_before_dot"></span></p>
+                            <span class="detail_panel_role_num">开放中</span>
+                        {{/if}}
+                    {{else}}
+                        <p class="status_before_dot_outer"><span class="status_before_dot"></span></p>
+                        <span class="detail_panel_role_num">开放中</span>
+                    {{/if}}
+                {{/layout-push}}
+                {{#layout-push direction='row' classNames="detail_margin_top_right"}}
+                    {{#if (eq bm_sessionable_service.sessionables undefined)}}
+                        <span class="detail_panel_role_num">0</span>
+                    {{else}}
+                        <span class="detail_panel_role_num">{{bm_sessionable_service.sessionables.length}}</span>
+                    {{/if}}
+                    <span class="detail_panel_role_num">场次数</span>
                 {{/layout-push}}
             {{/layout-push}}
         </div>
@@ -102,7 +145,7 @@
         {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs}}
 
         {{#if (bmeq cur_idx 0)}}
-            {{bmpage/bm-sessionable-lst titles=model.titles action="linkToActvField"}}
+            {{bmpage/bm-sessionable-lst titles=model.titles action="linkToActvField" onEditSessionClick="onEditSessionClick" onDeleteSessionClick="onDeleteSessionClick"}}
         {{/if}}
 
         {{#if (bmeq cur_idx 1)}}

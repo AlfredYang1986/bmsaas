@@ -1,5 +1,6 @@
 {{yield}}
 {{#each listData as |item index|}}
+    {{log item}}
     <tr class="session-list">
         {{#if (bmeq type "inbox")}}
             <td class='ib_table_content_item'>
@@ -35,8 +36,11 @@
             {{/if}}
         {{else if (bmeq type "course")}}
             <td class='ib_table_content_item'>{{index}}</td>
-            <td class='ib_table_content_item'>{{bmdob/bmdobformat item.start_date}}</td>
-            <td class="ib_table_content_item"></td>
+            <td class='ib_table_content_item'>
+                {{bmdob/bmdobformat item.start_date}} {{bmdob/bmdob2weekday item.start_date}}<br/>
+                {{bmdob/bmdob2clocktime item.start_date}}-{{bmdob/bmdob2clocktime item.end_date}}
+            </td>
+            <td class="ib_table_content_item">{{item.Yard.title}}<br/>{{item.Yard.address}}</td>
             {{!-- {{#if (bmcom/bm-nil-obj item.Attendees)}}
                 <td class="ib_table_content_item">0</td>
             {{else}}
@@ -48,8 +52,8 @@
                     {{#dd.menu align="right" as |menu|}}
                         {{#menu.item align="right"}}
                             {{#layout-push direction='col' classNames="dropdown-content"}}
-                                <a onclick={{action 'onClickInner' item.id item dd.closeDropdown}}>编辑场次</a>
-                                <a class="warning" onclick={{action 'onClickInner' item.id item dd.closeDropdown}}>删除场次</a>
+                                <a onclick={{action 'onEditSessionClick' item dd.closeDropdown}}>编辑场次</a>
+                                <a class="warning" onclick={{action 'onDeleteSessionClick' item dd.closeDropdown}}>删除场次</a>
                             {{/layout-push}}
                         {{/menu.item}}
                     {{/dd.menu}}

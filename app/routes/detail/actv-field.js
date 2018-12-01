@@ -10,7 +10,8 @@ export default Route.extend({
         this.bm_sessionable_service.set('reservableid', params.reactvid);
         this.bm_sessionable_service.set('sessionableid', params.actvfieldid);
         return RSVP.hash({
-                expfieldid: params.expfieldid,
+                actvfieldid: params.actvfieldid,
+                reactvid: params.reactvid,
                 tabs: A(['场次安排', '体验详情']),
                 urls: A([
                     {

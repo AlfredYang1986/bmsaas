@@ -381,6 +381,8 @@ export default Service.extend({
         arr.push(rd_tmp.data)
 
         let ft_tmp = JSON.parse(JSON.stringify(ft.serialize()));
+        ft_tmp.data.attributes.start_date = ft.start_date
+        ft_tmp.data.attributes.end_date = ft.end_date
         ft_tmp['included'] = arr;
         let dt = JSON.stringify(ft_tmp);
 
@@ -401,6 +403,33 @@ export default Service.extend({
             },
         })
     },
+
+    deleteReservable(callback) {
+        let delete_reservable_payload = this.genIdQuery();
+        let rd = this.bmstore.sync(delete_reservable_payload);
+        let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
+        let inc = rd.Eqcond[0].serialize();
+        rd_tmp['included'] = [inc.data];
+        let dt = JSON.stringify(rd_tmp);
+
+        Ember.$.ajax({
+            method: 'POST',
+            url: '/api/v1/deletereservable/0',
+            headers: {
+                'Content-Type': 'application/json', // 默认值
+                'Accept': 'application/json',
+                'Authorization': this.bm_config.getToken(),
+            },
+            data: dt,
+            success: function(res) {
+                callback.onSuccess();
+            },
+            error: function(err) {
+                callback.onFail(err);
+            },
+        })
+    },
+
     isValidate() {
         return this.exp.title.length > 0;
     },

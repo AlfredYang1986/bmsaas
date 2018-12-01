@@ -671,3 +671,161 @@ a.btn_sign {
         }
     }
 }
+.modal-dialog {
+    .modal-content {
+        .exp-modal-delete {
+            font-family: PingFangSC-Semibold;
+            width: 80px;
+            height: 32px;
+            border: none;
+            border-radius: 4px;
+            background: #DE350B;
+            font-size: 14px;
+            color: #fff;
+        
+            &:active {
+                background-color: #DE350B;
+                color: #fff;
+                border: none;
+            }
+        
+            &:hover {
+                background-color: #DE350B;
+                color: #fff;
+                border: none;
+            }
+        
+            &:focus {
+                background-color: #DE350B;
+                color: #fff;
+                border: none;
+                box-shadow: none;
+            }
+        }
+
+        .exp-modal-warning{
+            font-family: PingFangSC-Semibold;
+            width: 80px;
+            height: 32px;
+            border: none;
+            border-radius: 4px;
+            background: #E9AC50;
+            font-size: 14px;
+            color: #fff;
+        
+            &:active {
+                background-color: #E9AC50;
+                color: #fff;
+                border: none;
+            }
+        
+            &:hover {
+                background-color: #E9AC50;
+                color: #fff;
+                border: none;
+            }
+        
+            &:focus {
+                background-color: #E9AC50;
+                color: #fff;
+                border: none;
+                box-shadow: none;
+            }
+        }
+        
+        .exp-modal-cancel {
+            font-family: PingFangSC-Semibold;
+            width: 80px;
+            height: 32px;
+            border: none;
+            border-radius: 4px;
+            background: transparent;
+            font-size: 14px;
+            color: #42526E;;
+        
+            &:active {
+                background-color: transparent;
+                color: #42526E;;
+                border: none;
+            }
+            
+            &:hover {
+                background-color: transparent;
+                color: #42526E;;
+                border: none;
+            }
+        
+            &:focus {
+                background-color: transparent;
+                color: #42526E;;
+                border: none;
+                box-shadow: none;
+            }
+
+            &:active:focus {
+                background-color: transparent;
+                color: #42526E;;
+                border: none;
+                box-shadow: none;
+            }
+        }
+    }
+}
+
+.warning-modal {
+    margin-top: 24px;
+
+    .warning-modal-title {
+        font-family: PingFangSC-Medium;
+        font-size: 20px;
+        height: 28px;
+        line-height: 28px;
+        color: #172B4D;
+        margin-bottom: 8px;
+
+        .warning-modal-title-pic {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+        }
+    }
+    .warning-modal-body {
+        font-family: PingFangSC-Regular;
+        font-size: 14px;
+        color: #172B4D;
+
+        .warning-modal-body-content {
+            height: 20px;
+            line-height: 20px;
+        }
+    }
+}
+
+#toast-container.toast-top-center {
+    top: 88px;
+
+    .toast {
+        width: 320px;
+        height: 56px;
+        border-radius: 4px;
+        box-shadow: none;
+        // background-image: url("/images/success.png")!important;
+        background-size: 24px 24px;
+        padding: 16px 16px 16px 56px;
+        opacity: 1;
+
+        .toast-title {
+            font-family: SFUIText-Semibold;
+            font-size: 14px;
+            color: #FFFFFF;
+            height: 24px;
+            line-height: 24px;
+        }
+        &:hover {
+            box-shadow: none;
+        }
+        &.toast-success{
+            background-color: #39BF5F 
+        }
+    }
+}
