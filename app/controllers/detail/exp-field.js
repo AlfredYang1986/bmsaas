@@ -6,13 +6,13 @@ export default Controller.extend({
     bm_exp_service: service(),
     bm_sessionable_service: service(),
     bm_yard_service: service(),
-    toast: service(),
-    toastOptions: {
-        closeButton: false,
-        positionClass: 'toast-top-center',
-        progressBar: false,
-        timeOut: '2000',
-    },
+    // toast: service(),
+    // toastOptions: {
+    //     closeButton: false,
+    //     positionClass: 'toast-top-center',
+    //     progressBar: false,
+    //     timeOut: '2000',
+    // },
 
     deleteSessionDlg: false,
     showEditSessionDlg: false,
@@ -24,7 +24,7 @@ export default Controller.extend({
                 onSuccess: function() {
                     that.set('deleteSessionDlg', false);
                     that.transitionToRoute('detail.exp', that.model.reexpid);
-                    that.toast.success('', '删除场次成功', that.toastOptions);
+                    // that.toast.success('', '删除场次成功', that.toastOptions);
                 },
                 onFail: function() {
                     console.log('delete　reservable　fail')
@@ -40,19 +40,19 @@ export default Controller.extend({
             let that = this;
             if (this.cur_yard_id.length == 0) {
                 alert('shold add yard')
-                return 
+                return
             }
-            
+
             let callback = {
                 onSuccess: function() {
                     that.bm_sessionable_service.set('refresh_token', that.bm_sessionable_service.guid());
-                    that.toast.success('', '修改场次成功', that.toastOptions);
+                    // that.toast.success('', '修改场次成功', that.toastOptions);
                 },
                 onFail: function() {
                     console.log('push sessionable fail')
                 }
             }
-            
+
             this.bm_sessionable_service.resetInfoAndYard(this.cur_yard_id, this.bm_exp_service.exp.SessionInfo.id);
             this.bm_sessionable_service.resetTechs([]);
             this.bm_sessionable_service.resetAttendee([]);

@@ -5,12 +5,12 @@
 			{{!-- <span class="qr-code">
 				{{#link-to 'edit.stud' 'stud/push' classNames='stud_add_btn'}}+ 添加学生{{/link-to}}
 			</span> --}}
-			{{#link-to 'edit.stud' 'stud/push' classNames='stud_add_btn'}}+ 添加学生{{/link-to}}
+			{{#link-to 'edit.stud' 'stud/push' classNames='stud_add_btn'}}+ 学生注册{{/link-to}}
 		{{/layout-push}}
-		{{#layout-push direction="row" wrap=true classNames="card-wrap" }}
+		{{#layout-push direction="row" wrap=true classNames="stud-list-area" }}
 			{{#each bm_stud_service.studs as |item|}}
-				<div class="line_container_warp stud_card_container">
-					{{bmcard/stud-card onStudCardClicked=(action 'cardClicked') stud=item}}
+				<div class="line_container_warp stud_list_container">
+					{{bmcard/stud-list onStudCardClicked=(action 'cardClicked') stud=item}}
 				</div>
 			{{/each}}
 		{{/layout-push}}

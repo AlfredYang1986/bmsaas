@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import { computed} from '@ember/object';
 
 export default Component.extend({
-    positionalParams: ['select_idx', 'select_idxs', 'index', 'indexs', 'start_index', 'describe', 'guide'],
+    positionalParams: ['select_idx', 'index', 'start_index', 'describe', 'guide'],
     tagName: 'span',
     selected: computed('select_idx', function(){
         return this.select_idx == this.index + this.start_index;

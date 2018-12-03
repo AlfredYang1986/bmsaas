@@ -80,14 +80,15 @@
     flex: 2;
 
     .other_self {
-      padding: 24px;
       background-color: #FFF;
       min-width: 608px;
-
+      .self_info {
+        padding: 24px;
+      }
       .self_container {
         font-size: 0;
         margin-bottom: 16px;
-        
+
         span {
           display: inline-block;
         }
@@ -108,12 +109,12 @@
       }
 
       .line {
-        margin: 40px 0;
-        border: 1px solid rgba(0,0,0,0.12);
+        // margin: 40px 0;
+        border-bottom: 8px solid #f7f8fa;
       }
 
       .parent_info {
-        margin-bottom: 16px;
+        padding: 24px 24px 0;
         height: 40px;
         @extend %font-dialog-title;
       }

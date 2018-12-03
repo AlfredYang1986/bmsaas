@@ -12,9 +12,11 @@
 
 {{#layout-push direction='row' split=true classNames='edit_container' }}
     {{!-- {{bmsessioninfo/bm-input-menu cur_page_idx=cur_page_idx status=session.status}} --}}
-
-    {{bmsessioninfo/bm-input-menu-bar cur_page_idx=cur_page_idx describe=describe guide=guide  status=session.status}}
-
+    {{#if (bmeq session.status 1)}}
+        {{bmsessioninfo/bm-input-menu-bar cur_page_idx=cur_page_idx describe=describe guide=guide  status=session.status}}
+    {{else}}
+        {{bmsessioninfo/bm-input-menu-bar-actv cur_page_idx=cur_page_idx describe=describe guide=guide  status=session.status}}
+    {{/if}}
     <div class="input_container">
         {{#if (bmeq cur_page_idx 0)}}
             {{#bmsessioninfo/bm-input-cate-page session=session  isCreate=isCreate}}
