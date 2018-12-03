@@ -1,4 +1,4 @@
-{{#bmpage/bm-session-edit session=bm_session_service.session onSaveSessionBtnClicked=(action 'saveCourseBtnClicked')}}
+{{#bmpage/bm-session-edit session=bm_session_service.session onSaveSessionBtnClicked=(action 'saveCourseBtnClicked') describe=model.describe guide=model.guide }}
     {{#link-to 'exp' class="edit_nav_btn btn_cacel"}}
         取消
     {{/link-to}}

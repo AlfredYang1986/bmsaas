@@ -12,7 +12,7 @@ export default Route.extend({
         this.bm_exp_service.set('expid', 'exp/push');
         return RSVP.hash({
                 expid: 'exp/push',
-                describe: A(["体验课分类","基本信息","内容介绍","与孩子互动", "体验图片", "将为宝贝提供","参与者需自带","宝贝将获得","陪同说明", "须知",]),
+                describe: A(["体验课分类","基本信息","内容介绍","与孩子互动", "体验图片",]),
                 guide: A(["宝贝将获得","将为宝贝提供","参与者需自带","陪同说明", "须知",]),
             })
     },

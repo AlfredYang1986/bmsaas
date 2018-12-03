@@ -1,5 +1,6 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
+import { A } from '@ember/array';
 // import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 
@@ -10,7 +11,9 @@ export default Route.extend({
     model(params) {
         this.bm_session_service.set('sessionid', params.sessionid);
         return RSVP.hash({
-                courseid : params.sessionid
+                courseid : params.sessionid,
+                describe: A(["体验课分类","基本信息","内容介绍","与孩子互动", "体验图片",]),
+                guide: A(["宝贝将获得","将为宝贝提供","参与者需自带","陪同说明", "须知",]),
             })
     },
 
