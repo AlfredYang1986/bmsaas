@@ -25,7 +25,7 @@ export default Component.extend({
                     this.set('expendable',false);
                     this.set('expands',true);
                 }
-            } else if(this.get('title') == "体验活动") {
+            } else if(this.get('title') == "营销管理") {
                 if(this.expClick) {
                     this.set('expClick', false);
                     this.set('expendable',true);

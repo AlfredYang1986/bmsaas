@@ -33,7 +33,7 @@
 
 
 
-    {{#if workClick}}
+    {{!-- {{#if workClick}}
         <li class="left_bar_item">
             <div class="left_menu_mid menu_margin_right">
                 {{#link-to 'stud'}}
@@ -41,31 +41,10 @@
                 {{/link-to}}
             </div>
         </li>
-        <li class="left_bar_item" >
-            <div class="left_menu_mid menu_margin_right">
-                {{#link-to 'classes'}}
-                    <span class="left_menu_text_sub">班级</span>
-                {{/link-to}}
-            </div>
-        </li>
-        <li class="left_bar_item">
-            <div class="left_menu_mid menu_margin_right">
-                {{#link-to 'arrange-class'}}
-                    <span class="left_menu_text_sub">排课</span>
-                {{/link-to}}
-            </div>
-        </li>
-        {{!-- <li class="left_bar_item">
-            <div class="left_menu_mid menu_margin_right">
-                {{#link-to 'home'}}
-                    <span class="left_menu_text_sub">品牌</span>
-                {{/link-to}}
-            </div>
-        </li> --}}
         {{#if isSpace}}
             <p class="item-space">space</p>
         {{/if}}
-    {{/if}}
+    {{/if}} --}}
 
     {{#if expClick}}
         <li class="left_bar_item">
@@ -95,6 +74,20 @@
                 {{/link-to}}
             </div>
         </li>
+        <li class="left_bar_item" >
+            <div class="left_menu_mid menu_margin_right">
+                {{#link-to 'classes'}}
+                    <span class="left_menu_text_sub">班级</span>
+                {{/link-to}}
+            </div>
+        </li>
+        <li class="left_bar_item">
+            <div class="left_menu_mid menu_margin_right">
+                {{#link-to 'arrange-class'}}
+                    <span class="left_menu_text_sub">排课</span>
+                {{/link-to}}
+            </div>
+        </li>
         {{!-- {{#if isSpace}}
             <p class="item-space">space</p>
         {{/if}} --}}
@@ -111,7 +104,7 @@
         <li class="left_bar_item" >
             <div class="left_menu_mid menu_margin_right">
                 {{#link-to 'yard'}}
-                    <span class="left_menu_text_sub">场地</span>
+                    <span class="left_menu_text_sub">校区</span>
                 {{/link-to}}
             </div>
         </li>

@@ -12,14 +12,14 @@ export default Component.extend({
         },
         {
             icon: '/images/icon_dashboard_normal@1x.png',
-            title: '工作台',
-            expond: true,
-            // pageUrl:'home',
+            title: '学生管理',
+            expond: false,
+            pageUrl:'stud',
             isSpace: true,
         },
         {
             icon: '/images/navbar_activity_normal@2x.png',
-            title: '体验活动',
+            title: '营销管理',
             expond: true,
             // pageUrl:'exp',
             isSpace: true,
