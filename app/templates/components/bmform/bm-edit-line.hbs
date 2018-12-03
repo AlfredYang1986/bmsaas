@@ -1,9 +1,9 @@
 {{#layout-push direction="row" split=true}}
-    {{#layout-push direction="row"}}
+    {{#layout-push direction="row" classNames="title-area"}}
         <span class="edit_subtitle" >{{title}}</span>
-        {{#if isNeeded}}
-            <div class="v_end">
-                <span class="edit_required" >* 必填</span>
+        {{#if notNeeded}}
+            <div class="v_end must">
+                <span class="edit_required" >(选填)</span>
             </div>
         {{/if}}
     {{/layout-push}}
@@ -18,15 +18,17 @@
              {{yield}}
         </div>
     {{/if}}
-    {{input classNames="edit_text_field" placeholder=pholder value=inputVal}}
+    {{#if largeInput}}
+        {{input classNames="edit_text_field_large" placeholder=pholder value=inputVal}}
+    {{else}}
+        {{input classNames="edit_text_field" placeholder=pholder value=inputVal}}
+    {{/if}}
     {{#if (eq group 'append')}}
-       <div class="input-group-append">
+        <div class="input-group-append">
             {{yield}}
-       </div>
+        </div>
     {{/if}}
     {{#if (eq group undefined)}}
        {{yield}}
     {{/if}}
 {{/layout-push}}
-
-

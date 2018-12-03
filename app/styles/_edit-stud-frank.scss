@@ -67,7 +67,9 @@
             a.active {
                 color: red;
             }
-
+            a.edit_left_menu_stud {
+                @extend %font-form-info-title;
+            }
     	}
     }
 
@@ -94,9 +96,15 @@
         margin: 0 24px 8px;
         padding: 24px;
         background-color: $color-neutral-N000;
-
+      .title-name {
+          margin-bottom: 45px;
+          @extend %font-dialog-title;
+      }
+      .name-area {
+          margin-right: 40px;
+      }
       .input_area {
-
+         
         input[type=radio] {
 
             & + label{
@@ -109,7 +117,6 @@
         }
 
         .edit_title {
-          font-family: $font-family;
             margin-bottom: 16px;
             @extend %font-form-info-title;
             span.sub_title {
@@ -121,6 +128,14 @@
         input.edit_input {
             margin-bottom: 4px;
             width: 144px;
+            height: 32px;
+            border: 1px solid #DFE1E5;
+            border-radius: $border-radius-button-product;
+            box-shadow: none;
+        }
+        input.kid_school {
+            width: 536px;
+            margin-bottom: 4px;
             height: 32px;
             border: 1px solid #DFE1E5;
             border-radius: $border-radius-button-product;
