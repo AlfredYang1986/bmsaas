@@ -57,6 +57,7 @@ export default Service.extend({
             success: function(res) {
                 let result = that.bmstore.sync(res)
                 that.set('sessionable', result);
+                console.log(that.sessionable)
             },
             error: function(err) {
                 console.log('error is : ', err);
@@ -235,11 +236,21 @@ export default Service.extend({
             }
         }
         let yd = this.bmstore.find('BmYard', yardid);
-        this.bmstore.destroy(yd);
         let bs = this.bmstore.find('BmSessionInfo', sinfoid);
-        this.bmstore.destroy(bs);
-        this.sessionable.SessionInfo = this.bmstore.sync(sinfo);
-        this.sessionable.Yard = this.bmstore.sync(yard);
+        if(bs != null){
+            this.bmstore.destroy(bs);
+        }
+        if(yd != null){
+            this.bmstore.destroy(yd);
+        }
+        console.log(yd)
+        console.log(bs)
+
+        // this.sessionable.SessionInfo = this.bmstore.sync(sinfo);
+        // this.sessionable.Yard = this.bmstore.sync(yard);
+        this.set("sessionable.SessionInfo",this.bmstore.sync(sinfo))
+        console.log(this.sessionable.SessionInfo)
+        this.set("sessionable.Yard",this.bmstore.sync(yard))
     },
 
     resetTechs(techs) {
@@ -256,10 +267,12 @@ export default Service.extend({
             }
             arr.push(this.bmstore.sync(tech))
         }
-        this.sessionable.Teachers = arr;
+        // this.sessionable.Teachers = arr;
+        this.set("sessionable.Teachers",arr)
     },
 
     resetAttendee(studs) {
+        
         let arr = []
         for (let idx = 0; idx < studs.length; idx++) {
             let stud = {
@@ -273,7 +286,8 @@ export default Service.extend({
             }
             arr.push(this.bmstore.sync(stud))
         }
-        this.sessionable.Attendees = arr;
+        // this.sessionable.Attendees = arr;
+        this.set("sessionable.Attendees",arr)
     },
 
     genMultiQuery() {
@@ -309,16 +323,18 @@ export default Service.extend({
             } 
     },
 
-    saveUpdate(callback) {
-
+    saveUpdate(callback,params) {
         if (!this.isValidate) {
             return ;
         }
 
         let ft = this.sessionable;
-
+        if(params){
+            ft.id = params.id;
+        }
         let arr = [];
         let s = ft.SessionInfo.serialize();
+        console.log(s)
         arr.push(s.data);
         
         let y = ft.Yard.serialize();
@@ -338,6 +354,7 @@ export default Service.extend({
 
         let ft_tmp = JSON.parse(JSON.stringify(ft.serialize()));
         ft_tmp['included'] = arr;
+        console.log(ft_tmp)
         let dt = JSON.stringify(ft_tmp); 
 
         let that = this;
@@ -351,15 +368,46 @@ export default Service.extend({
             },
             data: dt,
             success: function(res) {
-                let result = that.bmstore.sync(res);
-                console.log('result is: ' + result);
-                callback.onSuccess(result);
+                // let result = null;
+                // this.set("result", that.bmstore.sync(res));
+                // console.log('result is: ' + result);
+                callback.onSuccess(res);
             },
             error: function(err) {
                 callback.onFail(err);
             },
         })
     },
+
+    deleteSessionable(callback,params) {
+        let delete_sessionable_payload = this.genIdQuery();
+        let rd = this.bmstore.sync(delete_sessionable_payload);
+        let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
+        let inc = rd.Eqcond[0].serialize();
+        rd_tmp['included'] = [inc.data];
+        if(params){
+            rd_tmp['included'][0].attributes.val = params.id
+        }
+        let dt = JSON.stringify(rd_tmp);
+
+        Ember.$.ajax({
+            method: 'POST',
+            url: '/api/v1/deletesessionable/0',
+            headers: {
+                'Content-Type': 'application/json', // 默认值
+                'Accept': 'application/json',
+                'Authorization': this.bm_config.getToken(),
+            },
+            data: dt,
+            success: function(res) {
+                callback.onSuccess();
+            },
+            error: function(err) {
+                callback.onFail(err);
+            },
+        })
+    },
+
     isValidate() {
         return this.sessionable.title.length > 0;
     },

@@ -7,5 +7,11 @@ export default Component.extend({
 		onClickInner: function (params) {
 			this.sendAction("action", params);
 		},
+		onEditSessionClick: function (params) {
+			this.sendAction("onEditSessionClick", params);
+		},
+		onDeleteSessionClick: function (params) {
+			this.sendAction("onDeleteSessionClick", params);
+		},
 	}
 });

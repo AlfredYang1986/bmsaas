@@ -21,14 +21,12 @@
                         {{#dd.menu align="right" as |menu|}}
                             {{#menu.item align="right"}}
                                 {{#layout-push direction='col' classNames="dropdown-content"}}
-                                    <a onclick={{action "cancelHandled" item dd.closeDropdown}}>关闭报名</a>
-                                    <a class="warning" onclick={{action "cancelHandled" item dd.closeDropdown}}>删除体验课</a>
+                                    <a onclick={{action (mut showEditSessionDlg) true dd.closeDropdown}}>编辑场次</a>
+                                    <a class="warning" onclick={{action (mut deleteSessionDlg) true dd.closeDropdown}}>删除场次</a>
                                 {{/layout-push}}
                             {{/menu.item}}
                         {{/dd.menu}}
                     {{/bs-dropdown}}
-                    {{!-- {{#bs-button class="reserve-more-btn"}}{{/bs-button}}
-                    {{#bs-button classNames="second_btn" onClick=(action (mut add_session) true)}}<span>停止报名</span>{{/bs-button}} --}}
                 {{/layout-push}}
             {{/layout-push}}
         </div>
@@ -47,36 +45,79 @@
                     {{/layout-push}}
                 {{/layout-push}}
                 {{#layout-push direction='row' classNames="detail_margin_top_right"}}
-                    <span class="detail_panel_role_num">{{bm_sessionable_service.sessionable.Attendees.length}}</span>
+                    {{#if (eq bm_sessionable_service.Attendees undefined)}}
+                        <span class="detail_panel_role_num">0</span>
+                    {{else}}
+                        <span class="detail_panel_role_num">{{bm_sessionable_service.Attendees.length}}</span>
+                    {{/if}}
                     <span class="detail_panel_role_num">报名人数</span>
                 {{/layout-push}}
             {{/layout-push}}
         </div>
         {{bmtable/bm-table-course-field  title=tableTitle attendees=bm_sessionable_service.sessionable.Attendees action=""}}
-
-        {{!-- <table class='ib_table_head exp_table'>
-            <tr>
-                {{#each tableTitle as |item|}}
-                    <th class='ib_table_item'>{{item}}</th>
-                {{/each}}
-            </tr>
-            {{#each bm_sessionable_service.sessionable.Attendees as |item index|}}
-            <tr class="session-list">
-                <td class='ib_table_content_item'>{{index}}</td>
-                <td class='ib_table_content_item'>{{item.name}}</td>
-                <td class="ib_table_content_item">{{bmdob/bmdobformat item.dob}}</td>
-                <td class="ib_table_content_item">
-                    {{#if (bmeq item.gender 1)}}
-                    男
-                    {{else}}
-                    女
-                    {{/if}}
-                </td>
-                <td class="ib_table_content_item">{{item.contact}}</td>
-                <td class="ib_table_content_item">小程序</td>
-                <td  class="ib_table_content_item"><a class="btn_sign">点击签到</a> </td>
-            </tr>
-            {{/each}}
-        </table> --}}
     </div>
+    {{#bmcom/bm-modal-container title="" mswitch=showEditSessionDlg
+        successbtncss='course-reserve-card-save'
+        cancelbtncss='course-reserve-card-cancel'
+        canceltext='取消'
+        onCancelBtnClicked=(action 'cancelHandled')
+        onSuccessBtnClicked=(action 'successHandled')}}
+        <div class="session-modal">
+            {{#layout-push direction='col' }}
+                {{#layout-push direction='row'}}
+                    <p class="title">编辑场次</p>
+                {{/layout-push}}
+                {{#layout-push direction='row' classNames="line-list"}}
+                    <p class="subtitle">校区设置</p>
+                    {{#layout-push direction='col' }}
+                        <span class="radio-col">
+                            <input type="radio" name="rel01" value="fa" checked/>
+                            <label for="">
+                                {{#layout-push direction=row}}
+                                    <select class="session-modal-select" id='reservableselect' name="" onchange={{action 'reservableChanged'}}>
+                                        <option value="">选择已有场地</option>
+                                        {{!-- {{#each course_lst as |item|}} --}}
+                                        {{#each bm_yard_service.yards as |item|}}
+                                            <option value={{item.id}}>{{item.address}}</option>
+                                        {{/each}}
+                                    </select>
+                                {{/layout-push}}
+                            </label>
+                        </span>
+                        {{!-- <span class="radio-col">
+                            <input type="radio" name="rel" value="ma"/>
+                            <label for="">其他场地</label>
+                        </span> --}}
+                    {{/layout-push}}
+                {{/layout-push}}
+                {{#layout-push direction="row" classNames="line-list"}}
+                    <p class="subtitle">日期设置</p>
+                    {{!-- {{bm_sessionable_service.sessionable.start_date}} --}}
+                    {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.start_date}}
+                {{/layout-push}}
+                {{#layout-push direction="row" classNames="line-list"}}
+                    <p class="subtitle">时间设置</p>
+                    {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.end_date pickType="time"}}
+                {{/layout-push}}
+                {{!-- {{#layout-push direction='row' classNames="line-area "}}
+                    <p class="subtitle">名额设置</p>
+                    {{#layout-push direction='col' }}
+                        <span class="radio-col">
+                            <input type="radio" name="rel02" value="ma" checked/>
+                            <label for="">不限制</label>
+                        </span> --}}
+                        {{!-- <span class="radio-col">
+                            <input type="radio" name="rel" value="fa"/>
+                            <label for="">
+                                <input type="text" name="" value="">
+                            </label>
+                        </span> --}}
+                    {{!-- {{/layout-push}}
+                {{/layout-push}} --}}
+            {{/layout-push}}
+        </div>
+    {{/bmcom/bm-modal-container}}
+    {{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteSessionDlg cancelHandled='cancelHandled' successHandled="onDeleteSessionableClick"}}
+    <p class="warning-modal-body-content">您确定要删除该场次吗？</p>
+    {{/bmcom/bm-warning-modal}}
 </div>
