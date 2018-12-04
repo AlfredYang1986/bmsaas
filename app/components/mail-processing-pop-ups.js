@@ -16,13 +16,13 @@ export default Component.extend({
     bm_exp_service: service(),
     bm_yard_service: service(),
     bm_sessionable_service: service(),
-
-    positionalParams: ['apply', 'selectedReservable', 'selectedYard', 'selectedDate', 'selectedActivity', 'selectedSession', 'innerCat'],
+    positionalParams: ['apply', 'selectedReservable', 'selectedYard', 'selectedDate', 'selectedActivity', 'selectedSession', 'innerCat', 'courseType'],
     courseReserve: true,
     experienceApply: false,
     course_lst: computed(function(){
         return this.mock_data.courseCandi();
     }),
+
     // yard_lst: computed(function(){
     //     return this.mock_data.yardCondi();
     // }),
@@ -38,7 +38,7 @@ export default Component.extend({
         this.bm_sessionable_service.set('refresh_all_token', this.bm_sessionable_service.guid());
         return ''
     }),
-    
+
     act_session_lst: computed("selectedActivity", function(){
         this.bm_sessionable_service.set('reservableid', this.selectedActivity);
         this.bm_sessionable_service.set('refresh_all_token', this.bm_sessionable_service.guid());
@@ -91,7 +91,13 @@ export default Component.extend({
     },
 
     display_apply_date: computed(function(ele){
-        let d = new Date(this.apply.apply_time);
-        return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+        let date = new Date(this.apply.apply_time);
+        var Y = date.getFullYear() + '-';
+        var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+        var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate()) + ' ';
+        var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
+        var m = (date.getMinutes() <10 ? '0' + date.getMinutes() : date.getMinutes());
+        var s = (date.getSeconds() <10 ? '0' + date.getSeconds() : date.getSeconds());
+        return Y+M+D+h+m;
     })
 });

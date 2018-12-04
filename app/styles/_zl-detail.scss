@@ -259,7 +259,7 @@ a.reserve_detail_href_ref {
     .reserve-detail-head{
         height: 20px;
         align-items: flex-end;
-        
+
         .detail_margin_top_left{
             height: 20px;
 
@@ -337,7 +337,7 @@ a.reserve_detail_href_ref {
     .reserve-detail-head{
         height: 48px;
         align-items: flex-end;
-        
+
         .detail_margin_top_left{
             height: 48px;
 
@@ -569,9 +569,9 @@ a.btn_sign {
 }
 
 .actv_table, .exp_table, .inbox_table{
-    
+
     & tr:nth-of-type(even){
-        background-color: #FFFFFF;
+        // background-color: #FFFFFF;
     }
     .session-list {
         // height: 56px;
@@ -618,7 +618,7 @@ a.btn_sign {
     & + *{
         margin-left: 16px;
     }
-    
+
     .reserve-more-btn {
         background-color: #FFFFFF;
         border: none;
@@ -638,7 +638,7 @@ a.btn_sign {
         }
         &::after {
             display: none;
-        }            
+        }
     }
     .dropdown-menu {
         min-width: 0;
@@ -682,19 +682,19 @@ a.btn_sign {
             background: #DE350B;
             font-size: 14px;
             color: #fff;
-        
+
             &:active {
                 background-color: #DE350B;
                 color: #fff;
                 border: none;
             }
-        
+
             &:hover {
                 background-color: #DE350B;
                 color: #fff;
                 border: none;
             }
-        
+
             &:focus {
                 background-color: #DE350B;
                 color: #fff;
@@ -712,19 +712,19 @@ a.btn_sign {
             background: #E9AC50;
             font-size: 14px;
             color: #fff;
-        
+
             &:active {
                 background-color: #E9AC50;
                 color: #fff;
                 border: none;
             }
-        
+
             &:hover {
                 background-color: #E9AC50;
                 color: #fff;
                 border: none;
             }
-        
+
             &:focus {
                 background-color: #E9AC50;
                 color: #fff;
@@ -732,7 +732,7 @@ a.btn_sign {
                 box-shadow: none;
             }
         }
-        
+
         .exp-modal-cancel {
             font-family: PingFangSC-Semibold;
             width: 80px;
@@ -742,19 +742,19 @@ a.btn_sign {
             background: transparent;
             font-size: 14px;
             color: #42526E;;
-        
+
             &:active {
                 background-color: transparent;
                 color: #42526E;;
                 border: none;
             }
-            
+
             &:hover {
                 background-color: transparent;
                 color: #42526E;;
                 border: none;
             }
-        
+
             &:focus {
                 background-color: transparent;
                 color: #42526E;;
@@ -825,7 +825,7 @@ a.btn_sign {
             box-shadow: none;
         }
         &.toast-success{
-            background-color: #39BF5F 
+            background-color: #39BF5F
         }
     }
 }

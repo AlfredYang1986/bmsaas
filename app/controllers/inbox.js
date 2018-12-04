@@ -48,13 +48,11 @@ export default Controller.extend({
             this.set('isV', false);
             this.set('current_apply', item);
             this.set('showhandledlg', true);
-
         },
         successSave() {
             this.set('saveInfo',false);
         },
         successHandled() {
-            debugger
             console.log(this.isCourse);
             // if (this.checkValidate()) {
                 if (this.isCourse) {

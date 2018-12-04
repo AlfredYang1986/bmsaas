@@ -292,7 +292,7 @@
                 border-radius: 4px;
             }
             .course-reserve-btn {
-                margin-right: 25px;
+                margin-right: 8px;
                 width: 80px;
                 height: 32px;
                 background: #80AEFF;
@@ -369,16 +369,43 @@
 }
 
 .ib_title {
+    padding: 20px 24px;
+    background: #fff;
     font-family: $font-nav-acc;
     font-size: 24px;
     color: #172B4D;
+}
+.ib_table_select_area {
+    margin-top: 24px;
+    margin-bottom: 32px;
+    height: 32px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    span {
+        @extend %font-help-text;
+    }
+    .ib_table_select {
+        background: #f7f8fa;
+        background: url('https://bm-web.oss-cn-beijing.aliyuncs.com/chevron_down_normal%402x.png') no-repeat right center transparent;
+        border: $color-border-none;
+        border-radius: $border-radius-button-product;
+        background-size: $width-icon;
+        width: $width-select-dropdown;
+        width: 92px;
+        // height: 32px;
+        border: none;
+        @extend %font-help-text;
+    }
 }
 
 .ib_tab_bar {
     border-bottom: 2px rgba(9,30,66,0.08) solid;
     width: 100%;
     min-width: 912px;
-    margin-top: 26px;
+    margin-top: 24px;
 
     .ib_tab_btn {
         width: 84px;
@@ -395,7 +422,10 @@
         color: #3172E0;
         border-bottom: 2px #3172E0 solid;
     }
+
 }
+
+
 
 .ib_table_head {
 

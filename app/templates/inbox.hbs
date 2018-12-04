@@ -7,6 +7,14 @@
 
         {{bmcom/bm-tabs-bar cur_idx=cur_tab_idx titles=tabs}}
 
+        {{#layout-push direction='row' split=true classNames='ib_table_select_area'}}
+            <span class="ib_table_num">共5条</span>
+            <select class="ib_table_select" name="">
+                <option value="">今天</option>
+                <option value="">全部</option>
+            </select>
+        {{/layout-push}}
+
         {{#if (bmeq cur_tab_idx 0)}}
             {{bmtable/bm-table-inbox reserveType=true title=model.reserveTitle applies=bm_apply_service.reserveType action="setCurrentApply"}}
         {{/if}}
