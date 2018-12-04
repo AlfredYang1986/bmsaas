@@ -1,45 +1,20 @@
 {{yield}}
 
 <table class='ib_table_head inbox_table'>
-    <tr>
-        {{#each title as |item|}}
-            <th class='ib_table_item'>{{item}}</th>
-        {{/each}}
-    </tr>
-    {{bmtable/bm-table-inner type="inbox" listData=applies action="setCurrentApply"}}
-    {{!-- {{#each applies as |item|}}
-    <tr class="session-list">
-        <td class='ib_table_content_item'>
-            {{#each item.Kids as |kd|}}
-                {{kd.name}}
+    {{#if reserveType}}
+        <tr>
+            {{#each title as |item|}}
+                <th class='ib_table_item'>{{item}}</th>
             {{/each}}
-        </td>
-        <td class="ib_table_content_item">
-            {{#if (bmeq item.courseType 0)}}
-            活动
-            {{else}}
-            体验课
-            {{/if}}
-        </td>
-        <td class='ib_table_content_item'>{{item.courseName}}</td>
-        <td class="ib_table_content_item">{{bmdob/bmdobformat item.except_time}}</td>
-        <td class="ib_table_content_item">
-            {{#each item.Kids as |kd|}}
-                {{kd.guardian_role}}
+        </tr>
+        {{bmtable/bm-table-inner type="inbox" listData=applies action="setCurrentApply"}}
+    {{else}}
+        <tr>
+            {{#each title as |item|}}
+                <th class='ib_table_item'>{{item}}</th>
             {{/each}}
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            {{item.Applyee.name}}
-        </td>
-        <td class="ib_table_content_item">{{item.contact}}</td>
-        {{#if (bmeq item.status 0)}}
-            <td class='ib_table_content_item'>
-                {{#bs-button classNames="ib_table_content_btn" onClick=(action 'setCurrentApply' item)}}<span>点击处理</span>{{/bs-button}}
-            </td>
-        {{else}}
-            <td class="ib_table_content_item">{{bmapplystatus item.status}}</td>
-        {{/if}}
-    </tr>
-    {{/each}} --}}
+        </tr>
+        {{bmtable/bm-table-inner type="preRegister" listData=applies action="setCurrentApply"}}
+    {{/if}}
+
 </table>

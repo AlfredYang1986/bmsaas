@@ -11,7 +11,7 @@ export default Controller.extend({
     mock_data: service(),
 
     cur_tab_idx: 0,
-    tabs: ['今天', '以前'],
+    tabs: ['预约', '预注册'],
 
     today_apply_count: computed(function(){
         return this.mock_data.todayApplies().length;
@@ -54,6 +54,7 @@ export default Controller.extend({
             this.set('saveInfo',false);
         },
         successHandled() {
+            debugger
             console.log(this.isCourse);
             if (this.checkValidate()) {
                 if (this.isCourse) {
@@ -91,7 +92,7 @@ export default Controller.extend({
         var that = this;
         var reservableid = this.sr;
         var sessionableid = this.sy;
-      
+
         var setStud = {
             onSuccess: function() {
                 console.log('reset sessionable fail')
@@ -100,7 +101,7 @@ export default Controller.extend({
             },
             onFail: function() {
                 console.log('reset sessionable fail')
-            } 
+            }
         }
 
         let st2sess = {
@@ -128,7 +129,7 @@ export default Controller.extend({
                 }
 
                 that.bm_sessionable_service.resetInfoAndYard(
-                    that.bm_sessionable_service.sessionable.Yard.id, 
+                    that.bm_sessionable_service.sessionable.Yard.id,
                     that.bm_sessionable_service.sessionable.SessionInfo.id);
 
                 that.bm_sessionable_service.resetAttendee(arr);
@@ -160,7 +161,7 @@ export default Controller.extend({
         stud.gender = kid.gender;
         stud.reg_date = new Date().getTime();
         stud.dob = kid.dob;
-        
+
         stud.Guardians[0].name = this.current_apply.Applyee.name;
         stud.Guardians[0].gender = this.current_apply.Applyee.gender;
         stud.Guardians[0].contact = this.current_apply.contact;

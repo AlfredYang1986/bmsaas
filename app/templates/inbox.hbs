@@ -8,102 +8,16 @@
         {{bmcom/bm-tabs-bar cur_idx=cur_tab_idx titles=tabs}}
 
         {{#if (bmeq cur_tab_idx 0)}}
-            {{bmtable/bm-table-inbox title=model.title applies=bm_apply_service.applies action="setCurrentApply"}}
-        {{!-- <table class='ib_table_head inbox_table'>
-            <tr>
-                {{#each model.title as |item|}}
-                    <th class='ib_table_item'>{{item}}</th>
-                {{/each}}
-            </tr>
-            {{#each bm_apply_service.applies as |item|}}
-            <tr class="session-list">
-                <td class='ib_table_content_item'>
-                    {{#each item.Kids as |kd|}}
-                        {{kd.name}}
-                    {{/each}}
-                </td>
-                <td class="ib_table_content_item">
-                    {{#if (bmeq item.courseType 0)}}
-                    活动
-                    {{else}}
-                    体验课
-                    {{/if}}
-                </td>
-                <td class='ib_table_content_item'>{{item.courseName}}</td>
-                <td class="ib_table_content_item">{{bmdob/bmdobformat item.except_time}}</td>
-                <td class="ib_table_content_item">
-                    {{#each item.Kids as |kd|}}
-                        {{kd.guardian_role}}
-                    {{/each}}
-                    &nbsp;
-                    &nbsp;
-                    &nbsp;
-                    {{item.Applyee.name}}
-                </td>
-                <td class="ib_table_content_item">{{item.contact}}</td>
-                {{#if (bmeq item.status 0)}}
-                    <td class='ib_table_content_item'>
-                        {{#bs-button classNames="ib_table_content_btn" onClick=(action 'setCurrentApply' item)}}<span>处理</span>{{/bs-button}}
-                    </td>
-                {{else}}
-                    <td class="ib_table_content_item">{{bmapplystatus item.status}}</td>
-                {{/if}}
-            </tr>
-            {{/each}}
-        </table> --}}
+            {{bmtable/bm-table-inbox reserveType=true title=model.reserveTitle applies=bm_apply_service.reserveType action="setCurrentApply"}}
         {{/if}}
 
         {{#if (bmeq cur_tab_idx 1)}}
-        {{bmtable/bm-table-inbox title=model.title applies=bm_apply_service.applies action="setCurrentApply"}}
-        {{!-- <table class='ib_table_head inbox_table'>
-            <tr>
-                {{#each model.title as |item|}}
-                    <th class='ib_table_item'>{{item}}</th>
-                {{/each}}
-            </tr>
-            {{#each bm_apply_service.applies as |item|}}
-            <tr class="session-list">
-                <td class='ib_table_content_item'>
-                    {{#each item.Kids as |kd|}}
-                        {{kd.name}}
-                    {{/each}}
-                </td>
-                <td class="ib_table_content_item">
-                    {{#if (bmeq item.courseType 0)}}
-                    活动
-                    {{else}}
-                    体验课
-                    {{/if}}
-                </td>
-                <td class='ib_table_content_item'>{{item.courseName}}</td>
-                <td class="ib_table_content_item">{{bmdob/bmdobformat item.except_time}}</td>
-                <td class="ib_table_content_item">
-                    {{#each item.Kids as |kd|}}
-                        {{kd.guardian_role}}
-                    {{/each}}
-                    &nbsp;
-                    &nbsp;
-                    &nbsp;
-                    {{item.Applyee.name}}
-                </td>
-                <td class="ib_table_content_item">{{item.contact}}</td>
-                {{#if (bmeq item.status 0)}}
-                    <td class='ib_table_content_item'>
-                        {{#bs-button classNames="ib_table_content_btn" onClick=(action 'setCurrentApply' item)}}<span>处理</span>{{/bs-button}}
-                    </td>
-                {{else}}
-                    <td class="ib_table_content_item">{{bmapplystatus item.status}}</td>
-                {{/if}}
-            </tr>
-            {{/each}}
-        </table> --}}
+            {{bmtable/bm-table-inbox title=model.preRegisterTtitle applies=bm_apply_service.preRegister action="setCurrentApply"}}
         {{/if}}
 
-        {{#if (bmeq cur_tab_idx -1)}}
+        {{!-- {{#if (bmeq cur_tab_idx -1)}}
             {{bmtable/bm-table-inbox title=model.title applies=bm_apply_service.applies action="setCurrentApply"}}
-        {{/if}}
-
-        
+        {{/if}} --}}
 
         {{#bmcom/bm-modal-container title="处理通知" mswitch=showhandledlg
                 successbtncss='course-reserve-card-save'

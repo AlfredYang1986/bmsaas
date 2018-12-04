@@ -170,9 +170,23 @@ export default Service.extend({
             },
             data: dt,
             success: function(res) {
-                console.log(res)
                 let result = that.bmmulti.sync(res)
                 that.set('applies', result);
+                let reserveType = [];
+                let preRegister = [];
+                result.forEach((item,index)=>{
+                    if(item.courseType != -1) {
+                        item.kid = item.Kids[0];
+                        reserveType.push(item);
+                        return reserveType;
+                    } else {
+                        item.kid = item.Kids[0];
+                        preRegister.push(item);
+                        return preRegister;
+                    }
+                })
+                that.set('reserveType', reserveType);
+                that.set('preRegister', preRegister);
             },
             error: function(err) {
                 console.log('error is : ', err);

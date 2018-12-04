@@ -4,9 +4,10 @@
     <tr class="session-list">
         {{#if (bmeq type "inbox")}}
             <td class='ib_table_content_item'>
-                {{#each item.Kids as |kd|}}
+                {{!-- {{#each item.Kids as |kd|}}
                     {{kd.name}}
-                {{/each}}
+                {{/each}} --}}
+                {{item.kid.name}}
             </td>
             <td class="ib_table_content_item">
                 {{#if (bmeq item.courseType 0)}}
@@ -21,15 +22,56 @@
                 {{#each item.Kids as |kd|}}
                     {{kd.guardian_role}}
                 {{/each}}
-                &nbsp;
-                &nbsp;
-                &nbsp;
                 {{item.Applyee.name}}
             </td>
             <td class="ib_table_content_item">{{item.contact}}</td>
             {{#if (bmeq item.status 0)}}
                 <td class='ib_table_content_item'>
                     {{#bs-button classNames="ib_table_content_btn" onClick=(action 'onClickInner' item)}}<span>点击处理</span>{{/bs-button}}
+                </td>
+            {{else}}
+                <td class="ib_table_content_item">{{bmapplystatus item.status}}</td>
+            {{/if}}
+        {{else if (bmeq type "preRegister")}}
+            <td class='ib_table_content_item'>
+                {{!-- {{#each item.Kids as |kd|}}
+                    {{kd.name}}
+                {{/each}} --}}
+                {{item.kid.name}}
+            </td>
+            <td class="ib_table_content_item">
+                {{!-- {{#each item.Kids as |kd|}}
+                    {{#if (bmeq kd.gender 0)}}
+                        女
+                    {{else}}
+                        男
+                    {{/if}}
+                {{/each}} --}}
+                {{#if (bmeq item.kid.gender 0)}}
+                    女生
+                {{else}}
+                    男生
+                {{/if}}
+            </td>
+            <td class='ib_table_content_item'>
+                {{!-- {{#each item.Kids as |kd|}}
+                    {{bmdob/bmdobformat kd.dob}}
+                {{/each}} --}}
+                {{bmdob/bmdobformat item.kid.dob}}岁
+            </td>
+            <td class="ib_table_content_item">
+                {{item.Applyee.name}} &nbsp;&nbsp;
+                {{item.kid.guardian_role}}
+                {{!-- {{#each item.Kids as |kd|}}
+                    {{kd.guardian_role}}
+                {{/each}} --}}
+            </td>
+            <td class="ib_table_content_item">
+                {{item.contact}}
+            </td>
+            {{#if (bmeq item.status 0)}}
+                <td class='ib_table_content_item'>
+                    {{#bs-button classNames="ib_table_content_btn" onClick=(action 'onClickInner' item)}}<span>点击注册</span>{{/bs-button}}
                 </td>
             {{else}}
                 <td class="ib_table_content_item">{{bmapplystatus item.status}}</td>
