@@ -56,13 +56,14 @@ export default Controller.extend({
         successHandled() {
             debugger
             console.log(this.isCourse);
-            if (this.checkValidate()) {
+            // if (this.checkValidate()) {
                 if (this.isCourse) {
                     this.signCoureReserve();
                 } else {
-                    this.signActivityReserve();
+                    // this.signActivityReserve();
+                    this.signCoureReserve();
                 }
-            }
+            // }
             this.set('sr', null);
             this.set('sy', null);
             this.set('sa', null);

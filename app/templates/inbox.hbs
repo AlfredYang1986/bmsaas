@@ -19,7 +19,9 @@
             {{bmtable/bm-table-inbox title=model.title applies=bm_apply_service.applies action="setCurrentApply"}}
         {{/if}} --}}
 
-        {{#bmcom/bm-modal-container title="处理通知" mswitch=showhandledlg
+        {{#bmcom/bm-modal-container
+                needTitle=false
+                mswitch=showhandledlg
                 successbtncss='course-reserve-card-save'
                 cancelbtncss='course-reserve-card-cancel'
                 canceltext='取消'

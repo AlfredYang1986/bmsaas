@@ -87,7 +87,7 @@
 .modal-content {
     background: none;
     .modal-body {
-        padding: 0 1em;
+        padding: 0 24px;
     }
 }
 .modal-footer {
@@ -97,6 +97,18 @@
     width: 512px;
     height: auto;
     background: #fff;
+    .content-title-area {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-bottom: 24px;
+        .title {
+            @extend %font-dialog-title;
+        }
+        span.base-info {
+            @extend %font-minimum-text;
+        }
+    }
     .class-modal-content {
       margin: 64px 48px 48px;
 
@@ -183,8 +195,11 @@
         }
     }
     .course-reserve-modal-body {
-        padding: 8px 0;
+        padding: 24px 0 0;
         .course-reserve-content {
+            .card-area {
+                margin-top: 24px;
+            }
             .line-list {
                 margin-bottom: 24px;
             }
@@ -197,11 +212,6 @@
                 font-size: 14px;
                 color: #6B778C;
                 text-align: left;
-            }
-            p {
-                font-size: 14px;
-                color: #767A80;
-                letter-spacing: 2px;
             }
             p.course-reserve-title {
                 margin-right: 25px;
@@ -224,41 +234,26 @@
                 margin-right: 25px;
                 min-width: 70px;
                 text-align: left;
-                font-family: PingFangSC-Medium;
-                font-size: 14px;
-                color: #172B4D;
+                @extend %font-form-info-title;
                 span.base-info {
-                    font-family: PingFangSC-Regular;
-                    font-size: 14px;
-                    color: #6B778C;
-                    text-align: left;
+                    @extend %font-help-text;
                 }
             }
             p.course-reserve-content {
-                font-family: PingFangSC-Regular;
-                font-size: 14px;
-                color: #172B4D;
+                @extend %font-main-text;
             }
             .partner-name {
-                font-family: PingFangSC-Medium;
-                font-size: 14px;
-                color: #172B4D;
                 margin-right: 38px;
                 margin-bottom: 16px;
+                @extend %font-main-text;
             }
             .partner-sex {
                 margin-right: 32px;
                 margin-bottom: 16px;
-                font-family: PingFangSC-Regular;
-                font-size: 14px;
-                color: #6B778C;
-                text-align: left;
+                @extend %font-help-text;
             }
             .partner-age {
-                font-family: SFUIText-Regular;
-                font-size: 14px;
-                color: #6B778C;
-                text-align: left;
+                @extend %font-help-text;
             }
             .partner-tel {
                 margin-bottom: 10px;
@@ -290,20 +285,19 @@
             }
             .course-reserve-btn {
                 margin-right: 25px;
-                width: 100px;
-                height: 35px;
+                width: 80px;
+                height: 32px;
                 background: #80AEFF;
                 border: 1px solid  #80AEFF;
                 border-radius: 4px;
                 font-size: 14px;
                 color: #FFFFFF;
-                letter-spacing: 2px;
                 text-align: center;
             }
             .experience-apply-btn {
                 margin-right: 25px;
-                width: 100px;
-                height: 35px;
+                width: 80px;
+                height: 32px;
                 background: #e9ebee;
                 border: 1px solid #e9ebee;
                 border-radius: 4px;
@@ -312,9 +306,9 @@
                 text-align: center;
             }
             .course-reserve-modal-select {
-                font-size: 14px;
-                color: #767A80;
-                letter-spacing: 2px;
+                select {
+                    @extend %select-box-dropdown-default;
+                }
             }
             .course-participants {
                 p {
