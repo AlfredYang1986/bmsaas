@@ -17,7 +17,7 @@
                         {{/layout-push}}
                     {{/layout-push}}
                     {{#layout-push direction='col' classNames="line-list"}}
-                        <p class="course-reserve-label list-title">参与内容</p>
+                        <p class="course-reserve-label select-title">参与内容</p>
                         {{#bm-select/bm-select-box classNames='course-reserve-modal-select' id='reservableselect' onChange=(action 'reservableChanged')}}
                             <option value="">请选择参与内容</option>
                             {{#each bm_exp_service.exps as |item|}}
@@ -26,7 +26,7 @@
                         {{/bm-select/bm-select-box}}
                     {{/layout-push}}
                     {{#layout-push direction='col' classNames="line-area"}}
-                        <p class="course-reserve-label list-title">场次安排</p>
+                        <p class="course-reserve-label select-title">场次安排</p>
                         {{#bm-select/bm-select-box classNames='course-reserve-modal-select' id='yardselect' onChange=(action 'yardChanged')}}
                             <option value="">请选择场次安排</option>
                             {{#each bm_sessionable_service.sessionables as |item|}}
@@ -35,17 +35,17 @@
                             {{!-- {{exp_session_lst}} --}}
                         {{/bm-select/bm-select-box}}
                     {{/layout-push}}
-                    {{#layout-push direction='row' classNames="line_container line-list"}}
+                    {{#layout-push direction='row' classNames="line-container line-list"}}
                         <p class="course-reserve-label">申请者</p>
                         <p class="course-reserve-content">{{apply.Applyee.relation_ship}}&nbsp;&nbsp;{{apply.Applyee.name}}</p>
                     {{/layout-push}}
-                    {{#layout-push direction='row' classNames="line_container line-list"}}
+                    {{#layout-push direction='row' classNames="line-container line-list"}}
                         <p class="course-reserve-label">联系方式</p>
                         <p class="course-reserve-content">{{apply.contact}}</p>
                     {{/layout-push}}
 
                     <p class="course-reserve-label">参与者信息</p>
-                    {{#layout-push direction='row' classNames="line_container card-area"}}
+                    {{#layout-push direction='row' classNames="line-container card-area"}}
                             {{#each apply.Kids as |item|}}
                                 {{bmcard/bm-kid-card kid=item classNames="card-info"}}
                             {{/each}}
@@ -54,63 +54,49 @@
             {{/if}}
             {{#if experienceApply}}
                 {{#layout-push direction='col'}}
-
-                    {{#layout-push direction='row' classNames="line-area"}}
-                        {{#layout-push direction='row' classNames="line-list"}}
-                            <p class="course-reserve-label"><span class="base-info">请与参与者确认参与内容及安排</span></p>
-                        {{/layout-push}}
-                        {{!-- <p class="btn btn-primary experience-apply-btn" {{action 'experienceApply'}}></p>
-                        <p class="btn btn-primary course-reserve-btn"  {{action 'courseReserve'}}></p> --}}
+                    {{#layout-push direction='row' classNames="line-list"}}
+                        <p class="course-reserve-label"><span class="base-info">请与参与者确认参与内容及安排</span></p>
+                    {{/layout-push}}
+                    {{#layout-push direction='col' classNames="line-list"}}
+                        <p class="course-reserve-label list-title">类型</p>
+                        {{#layout-push direction='row'}}
                         <p class="btn btn-primary course-reserve-btn " {{action 'experienceApply'}}>活动</p>
                         <p class="btn btn-primary experience-apply-btn" {{action 'courseReserve'}}>体验课</p>
+                        {{/layout-push}}
                     {{/layout-push}}
-                    {{#layout-push direction='row' classNames="line-list"}}
-                        <p class="course-reserve-label list-title">参与内容</p>
-                            <select class="course-reserve-modal-select" id='actselect' name="" onChange={{action 'activityChanged'}}>
-                                <option value="">活动标题</option>
-                                {{!-- {{#each activity_lst as |item|}} --}}
-                                {{#each bm_actv_service.actvs as |item|}}
-                                    <option value={{item.id}}>{{item.SessionInfo.title}}</option>
-                                {{/each}}
-                            </select>
+                    {{#layout-push direction='col' classNames="line-list"}}
+                        <p class="course-reserve-label select-title">参与内容</p>
+                        {{#bm-select/bm-select-box classNames='course-reserve-modal-select' id='actselect' onChange=(action 'activityChanged')}}
+                            <option value="">请选择参与内容</option>
+                            {{#each bm_actv_service.actvs as |item|}}
+                                <option value={{item.id}}>{{item.SessionInfo.title}}</option>
+                            {{/each}}
+                        {{/bm-select/bm-select-box}}
                     {{/layout-push}}
-                    {{#layout-push direction='row' classNames="line-area"}}
-                        <p class="course-reserve-label list-title">期望时间</p>
-                            {{!-- <select class="course-reserve-modal-select" id='sessionselect' name="" onChange={{action 'sessionChanged'}}>
-                                <option value="">场地位置</option>
-                                {{#each session_lst as |item|}}
-                                    <option value={{item.id}}>{{item.yard.address}}</option>
-                                {{/each}}
-                            </select> --}}
-                            <select class="course-reserve-modal-select" id='sessionselect' name="" onChange={{action 'sessionChanged'}}>
-                                <option value="">场地</option>
-                                {{!-- {{#each bm_yard_service.yards as |item|}} --}}
-                                    {{!-- <option value={{item.id}}>{{item.address}}</option> --}}
-                                {{!-- {{/each}} --}}
-                                {{#each bm_sessionable_service.sessionables as |item|}}
-                                    <option value={{item.id}}>{{bmdob/bmdobformat item.start_date}} - {{item.Yard.address}}</option>
-                                {{/each}}
-                                {{act_session_lst}}
-                            </select>
+                    {{#layout-push direction='col' classNames="line-area"}}
+                        <p class="course-reserve-label select-title">场次安排</p>
+                        {{#bm-select/bm-select-box classNames='course-reserve-modal-select' id='sessionselect' onChange=(action 'sessionChanged')}}
+                            <option value="">请选择场次安排</option>
+                            {{#each bm_sessionable_service.sessionables as |item|}}
+                                <option value={{item.id}}>{{bmdob/bmdobformat item.start_date}} - {{item.Yard.address}}</option>
+                            {{/each}}
+                            {{!-- {{act_session_lst}} --}}
+                        {{/bm-select/bm-select-box}}
                     {{/layout-push}}
-                    {{!-- {{#layout-push direction=row classNames="line_container"}}
-                        <p class="course-reserve-label">时间</p>
-                        {{bmform/bm-lay-date inputVal=apply.apply_time}}
-                    {{/layout-push}} --}}
-                    {{#layout-push direction='row' classNames="line_container line-list"}}
+                    {{#layout-push direction='row' classNames="line-container line-list"}}
+                        <p class="course-reserve-label">申请者</p>
+                        <p class="course-reserve-content">{{apply.Applyee.relation_ship}}&nbsp;&nbsp;{{apply.Applyee.name}}</p>
+                    {{/layout-push}}
+                    {{#layout-push direction='row' classNames="line-container line-list"}}
                         <p class="course-reserve-label">联系方式</p>
                         <p class="course-reserve-content">{{apply.contact}}</p>
                     {{/layout-push}}
-                    {{#layout-push direction='row' classNames="line_container line-list"}}
-                        <p class="course-reserve-label">申请者</p>
-                        <p class="course-reserve-content">{{apply.Applyee.name}}</p>
-                    {{/layout-push}}
 
-                    <p class="course-reserve-label list-title">参与者信息</p>
-                    {{#layout-push direction='row' classNames="line-list line_container"}}
-                        {{#each apply.Kids as |item|}}
-                            {{bmcard/bm-kid-card kid=item classNames="card-info"}}
-                        {{/each}}
+                    <p class="course-reserve-label">参与者信息</p>
+                    {{#layout-push direction='row' classNames="line-container card-area"}}
+                            {{#each apply.Kids as |item|}}
+                                {{bmcard/bm-kid-card kid=item classNames="card-info"}}
+                            {{/each}}
                     {{/layout-push}}
                 {{/layout-push}}
             {{/if}}

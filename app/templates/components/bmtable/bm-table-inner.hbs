@@ -29,6 +29,10 @@
                 <td class='ib_table_content_item'>
                     {{#bs-button classNames="ib_table_content_btn" onClick=(action 'onClickInner' item)}}<span>点击处理</span>{{/bs-button}}
                 </td>
+            {{else if (bmeq item.status 1)}}
+                <td class='ib_table_content_item'>
+                    {{#bs-button classNames="ib_table_content_btn" onClick=(action 'onClickInner' item)}}<span>点击处理</span>{{/bs-button}}
+                </td>
             {{else}}
                 <td class="ib_table_content_item">{{bmapplystatus item.status}}</td>
             {{/if}}
@@ -69,7 +73,7 @@
             <td class="ib_table_content_item">
                 {{item.contact}}
             </td>
-            {{#if (bmeq item.status 0)}}
+            {{#if (bmeq item.status 1)}}
                 <td class='ib_table_content_item'>
                     {{#bs-button classNames="ib_table_content_btn" onClick=(action 'onClickInner' item)}}<span>点击注册</span>{{/bs-button}}
                 </td>
