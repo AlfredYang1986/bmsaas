@@ -318,6 +318,9 @@
                     @extend %select-box-dropdown-default;
                 }
             }
+            select.course-reserve-modal-select {
+                @extend %select-box-dropdown-default;
+            }
             .course-participants {
                 p {
                     font-size: 13px;

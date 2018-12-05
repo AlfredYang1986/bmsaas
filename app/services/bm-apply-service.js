@@ -195,6 +195,7 @@ export default Service.extend({
     },
 
     saveUpdate(callback) {
+        debugger
 
         if (!this.isValidate) {
             return ;

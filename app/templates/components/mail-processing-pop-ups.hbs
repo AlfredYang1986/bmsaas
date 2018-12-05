@@ -18,22 +18,36 @@
                     {{/layout-push}}
                     {{#layout-push direction='col' classNames="line-list"}}
                         <p class="course-reserve-label select-title">参与内容</p>
-                        {{#bm-select/bm-select-box classNames='course-reserve-modal-select' id='reservableselect' onChange=(action 'reservableChanged')}}
+                        {{!-- {{#bm-select/bm-select-box classNames='course-reserve-modal-select' id='reservableselect' onChange=(action 'reservableChanged')}}
                             <option value="">请选择参与内容</option>
                             {{#each bm_exp_service.exps as |item|}}
                                 <option value={{item.id}}>{{item.SessionInfo.title}}</option>
                             {{/each}}
-                        {{/bm-select/bm-select-box}}
+                        {{/bm-select/bm-select-box}} --}}
+                        <select class="course-reserve-modal-select" id='reservableselect' name="" onChange={{action 'reservableChanged'}}>
+                           <option value="">请选择参与内容</option>
+                           {{#each bm_exp_service.exps as |item|}}
+                               <option value={{item.id}}>{{item.SessionInfo.title}}</option>
+                           {{/each}}
+                       </select>
+
                     {{/layout-push}}
                     {{#layout-push direction='col' classNames="line-area"}}
                         <p class="course-reserve-label select-title">场次安排</p>
-                        {{#bm-select/bm-select-box classNames='course-reserve-modal-select' id='yardselect' onChange=(action 'yardChanged')}}
+                        {{!-- {{#bm-select/bm-select-box classNames='course-reserve-modal-select' id='yardselect' onChange=(action 'yardChanged')}}
                             <option value="">请选择场次安排</option>
                             {{#each bm_sessionable_service.sessionables as |item|}}
                                 <option value={{item.id}}>{{bmdob/bmdobformat item.start_date}} - {{item.Yard.address}}</option>
                             {{/each}}
-                            {{!-- {{exp_session_lst}} --}}
-                        {{/bm-select/bm-select-box}}
+                            {{exp_session_lst}}
+                        {{/bm-select/bm-select-box}} --}}
+                        <select class="course-reserve-modal-select" id='yardselect' name="" onChange={{action 'yardChanged'}}>
+                               <option value="">请选择场次安排</option>
+                               {{#each bm_sessionable_service.sessionables as |item|}}
+                                   <option value={{item.id}}>{{bmdob/bmdobformat item.start_date}} - {{item.Yard.address}}</option>
+                               {{/each}}
+                               {{exp_session_lst}}
+                           </select>
                     {{/layout-push}}
                     {{#layout-push direction='row' classNames="line-container line-list"}}
                         <p class="course-reserve-label">申请者</p>
@@ -66,22 +80,36 @@
                     {{/layout-push}}
                     {{#layout-push direction='col' classNames="line-list"}}
                         <p class="course-reserve-label select-title">参与内容</p>
-                        {{#bm-select/bm-select-box classNames='course-reserve-modal-select' id='actselect' onChange=(action 'activityChanged')}}
+                        {{!-- {{#bm-select/bm-select-box classNames='course-reserve-modal-select' id='actselect' onChange=(action 'activityChanged')}}
                             <option value="">请选择参与内容</option>
                             {{#each bm_actv_service.actvs as |item|}}
                                 <option value={{item.id}}>{{item.SessionInfo.title}}</option>
                             {{/each}}
-                        {{/bm-select/bm-select-box}}
+                        {{/bm-select/bm-select-box}} --}}
+                        <select class="course-reserve-modal-select" id='actselect' name="" onChange={{action 'activityChanged'}}>
+                           <option value="">请选择参与内容</option>
+                           {{#each bm_actv_service.actvs as |item|}}
+                               <option value={{item.id}}>{{item.SessionInfo.title}}</option>
+                           {{/each}}
+                       </select>
+
                     {{/layout-push}}
                     {{#layout-push direction='col' classNames="line-area"}}
                         <p class="course-reserve-label select-title">场次安排</p>
-                        {{#bm-select/bm-select-box classNames='course-reserve-modal-select' id='sessionselect' onChange=(action 'sessionChanged')}}
+                        {{!-- {{#bm-select/bm-select-box classNames='course-reserve-modal-select' id='sessionselect' onChange=(action 'sessionChanged')}}
                             <option value="">请选择场次安排</option>
                             {{#each bm_sessionable_service.sessionables as |item|}}
                                 <option value={{item.id}}>{{bmdob/bmdobformat item.start_date}} - {{item.Yard.address}}</option>
                             {{/each}}
-                            {{!-- {{act_session_lst}} --}}
-                        {{/bm-select/bm-select-box}}
+                            {{act_session_lst}}
+                        {{/bm-select/bm-select-box}} --}}
+                        <select class="course-reserve-modal-select" id='sessionselect' name="" onChange={{action 'sessionChanged'}}>
+                          <option value="">请选择场次安排</option>
+                          {{#each bm_sessionable_service.sessionables as |item|}}
+                              <option value={{item.id}}>{{bmdob/bmdobformat item.start_date}} - {{item.Yard.address}}</option>
+                          {{/each}}
+                          {{act_session_lst}}
+                      </select>
                     {{/layout-push}}
                     {{#layout-push direction='row' classNames="line-container line-list"}}
                         <p class="course-reserve-label">申请者</p>

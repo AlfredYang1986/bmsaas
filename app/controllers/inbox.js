@@ -53,13 +53,12 @@ export default Controller.extend({
             this.set('saveInfo',false);
         },
         successHandled() {
-            console.log(this.isCourse);
+            debugger
             // if (this.checkValidate()) {
-                if (this.isCourse) {
+                if (this.current_apply.courseType == 1) {
                     this.signCoureReserve();
-                } else {
-                    // this.signActivityReserve();
-                    this.signCoureReserve();
+                } else if(this.current_apply.courseType == 0){
+                    this.signActivityReserve();
                 }
             // }
             this.set('sr', null);
@@ -88,18 +87,17 @@ export default Controller.extend({
         }
     },
     signCoureReserve() {
+        debugger
         var that = this;
         var reservableid = this.sr;
         var sessionableid = this.sy;
 
         var setStud = {
             onSuccess: function() {
-                console.log('reset sessionable fail')
                 // that.current_apply.set('status', 1);
                 that.set('current_apply', null);
             },
             onFail: function() {
-                console.log('reset sessionable fail')
             }
         }
 
@@ -169,6 +167,16 @@ export default Controller.extend({
 
         this.bm_stud_service.set('stud', stud);
         this.bm_stud_service.saveUpdate(callback);
+
+        let callbackPush = {
+            onSuccess: function() {
+                let apply = this.current_apply;
+            },
+            onFail: function() {
+                console.log('pushapply fail')
+            }
+        }
+        this.bm_apply_service.saveUpdate(callbackPush);
     },
     signActivityReserve() {
         // let period = this.store.peekRecord('bmactperiod', this.ss);
@@ -184,6 +192,87 @@ export default Controller.extend({
         //     tmp.push(stud);
         // }
         // period.set('studs', tmp);
+
+        debugger
+        var that = this;
+        var reservableid = this.sa;
+        var sessionableid = this.ss;
+
+        var setStud = {
+            onSuccess: function() {
+                // that.current_apply.set('status', 1);
+                that.set('current_apply', null);
+            },
+            onFail: function() {
+            }
+        }
+
+        let st2sess = {
+            onSuccess: function() {
+                let ori = that.bm_sessionable_service.sessionable.Attendees;
+                let count = 0
+                if (ori) {
+                    count = ori.length;
+                }
+                let arr = []
+                for (let idx = 0; idx < count; idx++) {
+                    arr.push(ori[idx].id);
+                }
+                let studid = that.bm_stud_service.stud.id;
+                arr.push(studid);
+
+                let th = that.bm_sessionable_service.sessionable.Teachers;
+                let th_count = 0
+                if (th) {
+                    th_count = th.length;
+                }
+                let arr_th = []
+                for (let idx = 0; idx < th_count; idx++) {
+                    arr_th.push(th[idx].id);
+                }
+
+                that.bm_sessionable_service.resetInfoAndYard(
+                    that.bm_sessionable_service.sessionable.Yard.id,
+                    that.bm_sessionable_service.sessionable.SessionInfo.id);
+
+                that.bm_sessionable_service.resetAttendee(arr);
+                that.bm_sessionable_service.resetTechs(arr_th);
+                that.bm_sessionable_service.saveUpdate(setStud);
+            },
+            onFail: function() {
+                console.log('query sessionable fail')
+            }
+        }
+
+        let callback = {
+            onSuccess: function() {
+                that.bm_sessionable_service.set('reservableid', reservableid);
+                that.bm_sessionable_service.set('sessionableid', sessionableid);
+                that.bm_sessionable_service.querySessionable2(st2sess);
+            },
+            onFail: function() {
+                console.log('push stud fail')
+            }
+        }
+
+        let kid = this.current_apply.Kids[0];
+
+        let stud_data = this.bm_stud_service.genPushQuery();
+        let stud = this.bm_stud_service.bmstore.sync(stud_data);
+        stud.name = kid.name;
+        stud.nickname = kid.nickname;
+        stud.gender = kid.gender;
+        stud.reg_date = new Date().getTime();
+        stud.dob = kid.dob;
+
+        stud.Guardians[0].name = this.current_apply.Applyee.name;
+        stud.Guardians[0].gender = this.current_apply.Applyee.gender;
+        stud.Guardians[0].contact = this.current_apply.contact;
+        stud.Guardians[0].reg_date = new Date().getTime();
+        stud.Guardians[0].relation_ship = kid.guardian_role;
+
+        this.bm_stud_service.set('stud', stud);
+        this.bm_stud_service.saveUpdate(callback);
     },
     guid() {
         function s4() {

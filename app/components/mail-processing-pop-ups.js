@@ -17,6 +17,7 @@ export default Component.extend({
             this.set('courseReserve', false);
             this.set('experienceApply', true);
         }
+        debugger
     },
 
     mock_data: service(),
