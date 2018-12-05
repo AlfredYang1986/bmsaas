@@ -2,32 +2,13 @@
 
 <table class='ib_table_head inbox_table'>
     {{#if reserveType}}
-        {{!-- <tr class="ib_table_select_area">
-            <td colspan="6"><span class="ib_table_num">共5条</span></td>
-            <td>
-                <select class="ib_table_select" name="">
-                    <option value="">今天</option>
-                    <option value="">全部</option>
-                </select>
-            </td>
-        </tr> --}}
         <tr>
             {{#each title as |item|}}
                 <th class='ib_table_item'>{{item}}</th>
             {{/each}}
         </tr>
-
         {{bmtable/bm-table-inner type="inbox" listData=applies action="setCurrentApply"}}
     {{else}}
-        {{!-- <tr class="ib_table_select_area">
-            <td colspan="5"><span class="ib_table_num">共5条</span></td>
-            <td>
-                <select class="ib_table_select" name="">
-                    <option value="">今天</option>
-                    <option value="">全部</option>
-                </select>
-            </td>
-        </tr> --}}
         <tr>
             {{#each title as |item|}}
                 <th class='ib_table_item'>{{item}}</th>

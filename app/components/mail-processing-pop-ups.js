@@ -9,6 +9,14 @@ export default Component.extend({
         this.bm_actv_service.queryLocalMultiObject();
         this.bm_exp_service.queryLocalMultiObject();
         this.bm_yard_service.queryLocalMultiObject();
+        // this.bm_sessionable_service.queryMultiObjects();
+        if(this.apply.courseType == 1) {
+            this.set('courseReserve', true);
+            this.set('experienceApply', false);
+        } else if(this.apply.courseType == 0) {
+            this.set('courseReserve', false);
+            this.set('experienceApply', true);
+        }
     },
 
     mock_data: service(),
