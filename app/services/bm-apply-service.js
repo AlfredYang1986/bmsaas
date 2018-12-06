@@ -18,7 +18,7 @@ export default Service.extend({
     applyid: '',
     refresh_token: '',
     refresh_all_token: '',
-    apply: '',
+    apply: null,
     applies: A([]),
 
     queryApplyInfo() {
@@ -200,13 +200,14 @@ export default Service.extend({
         if (!this.isValidate) {
             return ;
         }
-
-        let ft = this.applies[0];
+        // this.set('apply',  this.reserveType[0]);
+        this.set('apply.status', 1);
+        let ft = this.apply;
         let rd = ft.Applyee;
 
         let arr = [];
         for (let idx = 0; idx < ft.Kids.length; idx++) {
-            let tmp = rd.Kids[idx].serialize();
+            let tmp = ft.Kids[idx].serialize();
             arr.push(tmp.data);
         }
 

@@ -6,5 +6,8 @@ export default Route.extend({
     setupController(controller, model) {
         this._super(controller, model);
         this.bm_stud_service.set('refresh_all_token', this.bm_stud_service.guid());
-    }
+    },
+    init() {
+        this._super(...arguments);
+    },
 });

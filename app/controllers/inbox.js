@@ -53,6 +53,7 @@ export default Controller.extend({
             this.set('saveInfo',false);
         },
         successHandled() {
+            debugger
             // if (this.checkValidate()) {
                 if (this.current_apply.courseType == 1) {
                     this.signCoureReserve();
@@ -86,6 +87,7 @@ export default Controller.extend({
         }
     },
     signCoureReserve() {
+        debugger
         var that = this;
         var reservableid = this.sr;
         var sessionableid = this.sy;
@@ -149,7 +151,7 @@ export default Controller.extend({
 
         let kid = this.current_apply.Kids[0];
 
-        let stud_data = this.bm_stud_service.genPushQuery();
+        let stud_data = this.bm_stud_service.genPushQueryApply();
         let stud = this.bm_stud_service.bmstore.sync(stud_data);
         stud.name = kid.name;
         stud.nickname = kid.nickname;
@@ -166,33 +168,21 @@ export default Controller.extend({
         this.bm_stud_service.set('stud', stud);
         this.bm_stud_service.saveUpdate(callback);
 
-        // console.log(this.bm_apply_service.applies[0].status);
-        // this.set('bm_apply_service.applies[0].status', 1);
-        // let callbackPush = {
-        //     onSuccess: function() {
-        //         let apply = this.current_apply;
-        //     },
-        //     onFail: function() {
-        //         console.log('pushapply fail')
-        //     }
-        // }
-        // this.bm_apply_service.saveUpdate(callbackPush);
+        // this.set('current_apply.status', 1);
+
+        let callbackPush = {
+            onSuccess: function() {
+                that.bm_apply_service.set('apply', this.current_apply);
+            },
+            onFail: function() {
+                console.log('push apply fail')
+            }
+        }
+        debugger
+        this.bm_apply_service.set('apply', this.current_apply);
+        this.bm_apply_service.saveUpdate(callbackPush);
     },
     signActivityReserve() {
-        // let period = this.store.peekRecord('bmactperiod', this.ss);
-        // let attendee = this.current_apply.attendee;
-        // let tmp = [];
-        // for (let idx = 0; idx < attendee.length; idx++) {
-        //     let person = attendee.objectAt(idx);
-        //     let stud = this.store.createRecord('bmstud', {
-        //         id: this.guid(),
-        //         school: ''
-        //     })
-        //     stud.set('me', person);
-        //     tmp.push(stud);
-        // }
-        // period.set('studs', tmp);
-
         var that = this;
         var reservableid = this.sa;
         var sessionableid = this.ss;
@@ -272,6 +262,18 @@ export default Controller.extend({
 
         this.bm_stud_service.set('stud', stud);
         this.bm_stud_service.saveUpdate(callback);
+
+        let callbackPush = {
+            onSuccess: function() {
+                console.log('push apply success')
+            },
+            onFail: function() {
+                console.log('push apply fail')
+            }
+        }
+        debugger
+        this.bm_apply_service.set('apply', this.current_apply);
+        this.bm_apply_service.saveUpdate(callbackPush);
     },
     guid() {
         function s4() {

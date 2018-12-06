@@ -454,13 +454,13 @@
     .ib_table_content_item {
         padding: 8px 20px;
 
-        font-family: $font-brand;
-        font-size: 14px;
-        color: #172B4D;
+        @extend %font-main-text;
         text-align: left;
 
         max-width: 200px;
-
+        span.dealed {
+            @extend %font-help-text;
+        }
         .ib_table_content_btn {
             border: none;
             background: #80AEFF;

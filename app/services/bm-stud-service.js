@@ -37,7 +37,7 @@ export default Service.extend({
         let inc = rd.Eqcond[0].serialize();
         rd_tmp['included'] = [inc.data];
         let dt = JSON.stringify(rd_tmp);
-       
+
         let that = this
         Ember.$.ajax({
             method: 'POST',
@@ -69,7 +69,6 @@ export default Service.extend({
     queryMultiObjects() {
 
         this.bmmulti.reset();
-
         let query_yard_payload = this.genMultiQuery();
         let rd = this.bmmulti.sync(query_yard_payload);
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
@@ -89,9 +88,14 @@ export default Service.extend({
             },
             data: dt,
             success: function(res) {
-                console.log(res)
                 let result = that.bmmulti.sync(res)
-                that.set('studs', result);
+                let studs = [];
+                result.forEach((stud,index) => {
+                    if(stud.status == 'stud') {
+                        studs.push(stud)
+                    }
+                })
+                that.set('studs', studs);
             },
             error: function(err) {
                 console.log('error is : ', err);
@@ -113,7 +117,7 @@ export default Service.extend({
                     }
                 },
                 included: []
-            } 
+            }
     },
 
     genIdQuery() {
@@ -165,6 +169,56 @@ export default Service.extend({
                     reg_date: now,
                     contact: "",
                     intro: "",
+                    status: "stud",
+                    lesson_count: 0,
+                    school: ''
+                },
+                relationships: {
+                    Guardians: {
+                        data: [
+                            {
+                                id: gid01,
+                                type: "BmGuardian"
+                            }
+                        ]
+                    }
+                }
+            },
+            included: [
+                {
+                    id: gid01,
+                    type: "BmGuardian",
+                    attributes: {
+                        relation_ship: "",
+                        contact: "",
+                        name: "",
+                        nickname: "",
+                        icon: "",
+                        dob: now,
+                        gender: 0,
+                        reg_date: now,
+                        addr: ''
+                    },
+                }
+            ]
+        }
+    },
+    genPushQueryApply() {
+        let gid01 = this.guid();
+        let now = new Date().getTime();
+        return {
+            data: {
+                id: this.guid(),
+                type: "BmAttendee",
+                attributes: {
+                    name: "",
+                    nickname: "",
+                    icon: "",
+                    dob: now,
+                    gender: 0,
+                    reg_date: now,
+                    contact: "",
+                    intro: "",
                     status: "candidate",
                     lesson_count: 0,
                     school: ''
@@ -199,6 +253,7 @@ export default Service.extend({
             ]
         }
     },
+
     saveUpdate(callback) {
 
         if (!this.isValidate) {
@@ -209,7 +264,7 @@ export default Service.extend({
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
         let inc = rd.Guardians[0].serialize();
         rd_tmp['included'] = [inc.data];
-        let dt = JSON.stringify(rd_tmp); 
+        let dt = JSON.stringify(rd_tmp);
 
         let that = this;
         Ember.$.ajax({

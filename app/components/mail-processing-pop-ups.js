@@ -55,16 +55,19 @@ export default Component.extend({
 
     actions: {
         courseReserve() {
+            debugger
             this.set('courseReserve', true);
             this.set('experienceApply', false);
             this.set('innerCat', true);
         },
         experienceApply() {
+            debugger
             this.set('experienceApply', true);
             this.set('courseReserve', false)
             this.set('innerCat', false);
         },
         reservableChanged() {
+            debugger
             var sel = document.getElementById("reservableselect");
             if (sel.selectedIndex == 0) {
                 this.set('selectedReservable', null);
@@ -73,6 +76,7 @@ export default Component.extend({
             }
         },
         yardChanged() {
+            debugger
             var sel = document.getElementById("yardselect");
             if (sel.selectedIndex == 0) {
                 this.set('selectedYard', null);
@@ -81,6 +85,7 @@ export default Component.extend({
             }
         },
         activityChanged() {
+            debugger
             var sel = document.getElementById('actselect');
             if (sel.selectedIndex == 0) {
                 this.set('selectedActivity', null);
@@ -89,6 +94,7 @@ export default Component.extend({
             }
         },
         sessionChanged() {
+            debugger
             var sel = document.getElementById('sessionselect');
             if (sel.selectedIndex == 0) {
                 this.set('selectedSession', null);

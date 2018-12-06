@@ -1,6 +1,5 @@
 {{yield}}
 {{#each listData as |item index|}}
-    {{log item}}
     <tr class="session-list">
         {{#if (bmeq type "inbox")}}
             <td class='ib_table_content_item'>
@@ -26,24 +25,13 @@
             </td>
             <td class="ib_table_content_item">{{item.contact}}</td>
             {{#if (bmeq item.status 0)}}
-                {{#if dealed}}
-                    <p>已处理</p>
-                {{else}}
-                    <td class='ib_table_content_item'>
-                        {{#bs-button classNames="ib_table_content_btn" onClick=(action 'onClickInner' item)}}<span>点击处理</span>{{/bs-button}}
-                    </td>
-                {{/if}}
-            {{else if (bmeq item.status 1)}}
-                {{#if dealed}}
-                    <p>已处理</p>
-                {{else}}
-                    <td class='ib_table_content_item'>
-                        {{#bs-button classNames="ib_table_content_btn" onClick=(action 'onClickInner' item)}}<span>点击处理</span>{{/bs-button}}
-                    </td>
-                {{/if}}
-
+                <td class='ib_table_content_item'>
+                    {{#bs-button classNames="ib_table_content_btn" onClick=(action 'onClickInner' item)}}<span>点击处理</span>{{/bs-button}}
+                </td>
             {{else}}
-                <td class="ib_table_content_item">{{bmapplystatus item.status}}</td>
+                <td class='ib_table_content_item'>
+                    <span class="dealed">已处理</span>
+                </td>
             {{/if}}
         {{else if (bmeq type "preRegister")}}
             <td class='ib_table_content_item'>
@@ -82,15 +70,11 @@
             <td class="ib_table_content_item">
                 {{item.contact}}
             </td>
-            {{#if (bmeq item.status 1)}}
-                <td class='ib_table_content_item'>
-                    {{#link-to 'edit.stud' 'stud/push'  classNames="ib_table_content_btn"}}
-                          <span>点击注册</span>
-                    {{/link-to}}
-                </td>
-            {{else}}
-                <td class="ib_table_content_item">{{bmapplystatus item.status}}</td>
-            {{/if}}
+            <td class='ib_table_content_item'>
+                {{#link-to 'edit.stud' 'stud/push'  classNames="ib_table_content_btn"}}
+                      <span>点击注册</span>
+                {{/link-to}}
+            </td>
         {{else if (bmeq type "course")}}
             <td class='ib_table_content_item'>{{index}}</td>
             <td class='ib_table_content_item'>
