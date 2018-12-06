@@ -13,7 +13,6 @@ export default Component.extend({
     ],
     actions: {
         itemClicked() {
-            debugger
             this.set('select_idx', this.cur_page_idx)
             console.log("222s");
         }

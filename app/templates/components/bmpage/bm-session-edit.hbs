@@ -85,11 +85,11 @@
         {{/if}}
 
         {{#if (bmeq cur_page_idx 8)}}
-        {{#bmsessioninfo/bm-input-acq-page session=session isCreate=isCreate}}
+        {{#bmsessioninfo/bm-input-acc-page session=session isCreate=isCreate}}
             {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
                 <p class="nav_save menu_button_between" {{action (mut cur_page_idx) 9}}>下一步</p>
             {{/layout-push}}
-        {{/bmsessioninfo/bm-input-acq-page}}
+        {{/bmsessioninfo/bm-input-acc-page}}
         {{/if}}
 
         {{#if (bmeq cur_page_idx 9)}}

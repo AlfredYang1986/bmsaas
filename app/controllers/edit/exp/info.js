@@ -9,7 +9,6 @@ export default Controller.extend({
 
     actions: {
         saveCourseBtnClicked() {
-            debugger
             let that = this
             let callback = {
                 onSuccess: function() {

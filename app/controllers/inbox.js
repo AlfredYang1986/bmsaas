@@ -53,7 +53,6 @@ export default Controller.extend({
             this.set('saveInfo',false);
         },
         successHandled() {
-            debugger
             // if (this.checkValidate()) {
                 if (this.current_apply.courseType == 1) {
                     this.signCoureReserve();
@@ -87,7 +86,6 @@ export default Controller.extend({
         }
     },
     signCoureReserve() {
-        debugger
         var that = this;
         var reservableid = this.sr;
         var sessionableid = this.sy;
@@ -168,15 +166,17 @@ export default Controller.extend({
         this.bm_stud_service.set('stud', stud);
         this.bm_stud_service.saveUpdate(callback);
 
-        let callbackPush = {
-            onSuccess: function() {
-                let apply = this.current_apply;
-            },
-            onFail: function() {
-                console.log('pushapply fail')
-            }
-        }
-        this.bm_apply_service.saveUpdate(callbackPush);
+        // console.log(this.bm_apply_service.applies[0].status);
+        // this.set('bm_apply_service.applies[0].status', 1);
+        // let callbackPush = {
+        //     onSuccess: function() {
+        //         let apply = this.current_apply;
+        //     },
+        //     onFail: function() {
+        //         console.log('pushapply fail')
+        //     }
+        // }
+        // this.bm_apply_service.saveUpdate(callbackPush);
     },
     signActivityReserve() {
         // let period = this.store.peekRecord('bmactperiod', this.ss);
@@ -193,7 +193,6 @@ export default Controller.extend({
         // }
         // period.set('studs', tmp);
 
-        debugger
         var that = this;
         var reservableid = this.sa;
         var sessionableid = this.ss;

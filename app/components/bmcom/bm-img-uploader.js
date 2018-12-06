@@ -9,7 +9,7 @@ export default Component.extend({
     tag: '',
     canEdit: false,
     needTag: false,
-    deleteIcon: 'https://bmsass.oss-cn-beijing.aliyuncs.com/icon_remove%402x.png?Expires=1543481647&OSSAccessKeyId=TMP.AQFoyUS5SkQ9dtsS9eiRXPN9vmx27HQ3njRa6SEdM-ar8dI0V-bJsSHHSM0sMC4CFQDo0s-rLpz2LjJWK1oiIw9RcC7cVgIVAJJNSLjdCHQTWEQWv2Nl12gu5bzu&Signature=hGPNSuhTGRuW0HnBNllcVAsAZn8%3D',
+    deleteIcon: 'https://bm-web.oss-cn-beijing.aliyuncs.com/icon_remove%402x.png',
     isNull: computed('img', function(){
         return this.img == null || this.img.length == 0;
     }),

@@ -13,7 +13,6 @@ export default Controller.extend({
     isPushing: false,
     actions: {
         saveCourseBtnClicked() {
-            debugger
             let that = this
             let callback = {
                 onSuccess: function() {

@@ -201,12 +201,12 @@ export default Service.extend({
             return ;
         }
 
-        let ft = this.apply;
+        let ft = this.applies[0];
         let rd = ft.Applyee;
 
         let arr = [];
-        for (let idx = 0; idx < ft.kids.length; idx++) {
-            let tmp = rd.kids[idx].serialize();
+        for (let idx = 0; idx < ft.Kids.length; idx++) {
+            let tmp = rd.Kids[idx].serialize();
             arr.push(tmp.data);
         }
 
