@@ -43,7 +43,7 @@ export default Service.extend({
         let inc = rd.Eqcond[0].serialize();
         rd_tmp['included'] = [inc.data];
         let dt = JSON.stringify(rd_tmp);
-     
+
         let that = this
         Ember.$.ajax({
             method: 'POST',
@@ -82,7 +82,7 @@ export default Service.extend({
         let inc = rd.Eqcond[0].serialize();
         rd_tmp['included'] = [inc.data];
         let dt = JSON.stringify(rd_tmp);
-     
+
         let that = this
         Ember.$.ajax({
             method: 'POST',
@@ -211,8 +211,8 @@ export default Service.extend({
                 }
             },
             included: []
-        } 
-            
+        }
+
         return sessionable;
     },
 
@@ -272,7 +272,7 @@ export default Service.extend({
     },
 
     resetAttendee(studs) {
-        
+
         let arr = []
         for (let idx = 0; idx < studs.length; idx++) {
             let stud = {
@@ -320,7 +320,7 @@ export default Service.extend({
                         }
                     }
                 ]
-            } 
+            }
     },
 
     saveUpdate(callback,params) {
@@ -336,8 +336,8 @@ export default Service.extend({
         let s = ft.SessionInfo.serialize();
         console.log(s)
         arr.push(s.data);
-        
-        let y = ft.Yard.serialize();
+
+        let y = ft.Yard.serialize();      
         arr.push(y.data);
 
         let ts = ft.Teachers
@@ -355,7 +355,7 @@ export default Service.extend({
         let ft_tmp = JSON.parse(JSON.stringify(ft.serialize()));
         ft_tmp['included'] = arr;
         console.log(ft_tmp)
-        let dt = JSON.stringify(ft_tmp); 
+        let dt = JSON.stringify(ft_tmp);
 
         let that = this;
         Ember.$.ajax({

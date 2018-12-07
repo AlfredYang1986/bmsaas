@@ -18,6 +18,12 @@ export default Component.extend({
             this.set('experienceApply', true);
         }
     },
+   //
+   //  didUpdateAttrs() {
+   //      debugger
+   //     this._super(...arguments);
+   //     this.set('selectedReservable', this.sel.options[this.sel.selectedIndex].value);
+   // },
 
     mock_data: service(),
     bm_actv_service: service(),
@@ -27,6 +33,7 @@ export default Component.extend({
     positionalParams: ['apply', 'selectedReservable', 'selectedYard', 'selectedDate', 'selectedActivity', 'selectedSession', 'innerCat', 'courseType'],
     courseReserve: true,
     experienceApply: false,
+    sel: null,
     course_lst: computed(function(){
         return this.mock_data.courseCandi();
     }),
@@ -55,20 +62,18 @@ export default Component.extend({
 
     actions: {
         courseReserve() {
-            debugger
             this.set('courseReserve', true);
             this.set('experienceApply', false);
             this.set('innerCat', true);
         },
         experienceApply() {
-            debugger
             this.set('experienceApply', true);
             this.set('courseReserve', false)
             this.set('innerCat', false);
         },
         reservableChanged() {
-            debugger
-            var sel = document.getElementById("reservableselect");
+            let sel = document.getElementById("reservableselect");
+            this.set('sel', sel)
             if (sel.selectedIndex == 0) {
                 this.set('selectedReservable', null);
             } else {
@@ -76,7 +81,6 @@ export default Component.extend({
             }
         },
         yardChanged() {
-            debugger
             var sel = document.getElementById("yardselect");
             if (sel.selectedIndex == 0) {
                 this.set('selectedYard', null);
@@ -85,7 +89,6 @@ export default Component.extend({
             }
         },
         activityChanged() {
-            debugger
             var sel = document.getElementById('actselect');
             if (sel.selectedIndex == 0) {
                 this.set('selectedActivity', null);
@@ -94,7 +97,6 @@ export default Component.extend({
             }
         },
         sessionChanged() {
-            debugger
             var sel = document.getElementById('sessionselect');
             if (sel.selectedIndex == 0) {
                 this.set('selectedSession', null);

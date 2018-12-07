@@ -9,14 +9,14 @@
 
         {{#layout-push direction='row' split=true classNames='ib_table_select_area'}}
             <span class="ib_table_num">共5条</span>
-            <select class="ib_table_select" name="">
+            <select class="ib_table_select" name="" id='selectReserve' onChange={{action 'reserveTypeChanged'}}>
                 <option value="">今天</option>
                 <option value="">全部</option>
             </select>
         {{/layout-push}}
 
         {{#if (bmeq cur_tab_idx 0)}}
-            {{bmtable/bm-table-inbox reserveType=true title=model.reserveTitle applies=bm_apply_service.reserveType action="setCurrentApply"}}
+            {{bmtable/bm-table-inbox reserveType=true title=model.reserveTitle applies=bm_apply_service.reserved action="setCurrentApply"}}
         {{/if}}
 
         {{#if (bmeq cur_tab_idx 1)}}
@@ -26,6 +26,7 @@
         {{#bmcom/bm-modal-container
                 needTitle=false
                 mswitch=showhandledlg
+                needSubmit=couldSubmit
                 successbtncss='course-reserve-card-save'
                 cancelbtncss='course-reserve-card-cancel'
                 canceltext='取消'

@@ -344,9 +344,12 @@
             }
         }
     }
+    .not-fill {
+        @extend %button-system-disabled;
+    }
     .course-reserve-card-cancel {
-        width: 100px;
-        height: 35px;
+        width: 80px;
+        height: 32px;
         border: 1px solid#80AEFF;
         border-radius: 3px;
         background: #fff;
@@ -355,8 +358,8 @@
         letter-spacing: 2px;
     }
     .course-reserve-card-save {
-        width: 100px;
-        height: 35px;
+        width: 90px;
+        height: 32px;
         border: 1px solid #80AEFF;
         border-radius: 3px;
         background: #80AEFF;

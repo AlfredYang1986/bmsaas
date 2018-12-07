@@ -172,9 +172,16 @@ export default Service.extend({
             success: function(res) {
                 let result = that.bmmulti.sync(res)
                 that.set('applies', result);
+                let date = new Date();
+                console.log(typeof(date))
+                var Y = date.getFullYear() + '-';
+                var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate());
+                let today = Y+M+D;
                 let reserveType = [];
                 let preRegister = [];
-                result.forEach((item,index)=>{
+                let reserveTypeToday = [];
+                result.forEach((item, index) => {
                     if(item.courseType != -1) {
                         item.kid = item.Kids[0];
                         reserveType.push(item);
@@ -185,8 +192,22 @@ export default Service.extend({
                         return preRegister;
                     }
                 })
+                reserveType.forEach((item, index) => {
+                    let applyTime = new Date(item.apply_time);
+                    console.log(typeof(applyTime))
+                    var Y = applyTime.getFullYear() + '-';
+                    var M = (applyTime.getMonth()+1 < 10 ? '0'+(applyTime.getMonth()+1) : applyTime.getMonth()+1) + '-';
+                    var D = (applyTime.getDate() < 10 ? '0' + (applyTime.getDate()) : applyTime.getDate());
+                    let apply_time = Y+M+D;
+                    if(apply_time == today) {
+                        reserveTypeToday.push(item);
+                        return reserveTypeToday;
+                    }
+                })
                 that.set('reserveType', reserveType);
                 that.set('preRegister', preRegister);
+                that.set('reserveTypeToday', reserveTypeToday);
+                that.set('reserved', reserveTypeToday)
             },
             error: function(err) {
                 console.log('error is : ', err);

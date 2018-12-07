@@ -1,5 +1,5 @@
 import Controller from '@ember/controller';
-import { computed } from '@ember/object';
+import { computed, observer } from '@ember/object';
 import { inject as service } from '@ember/service';
 import bmSessionableService from '../services/bm-sessionable-service';
 
@@ -30,7 +30,9 @@ export default Controller.extend({
     sa: null,
     ss: null,
     isCourse: true,
-
+    couldSubmit: computed('sy', 'sr', 'sa', 'ss', function() {
+        return this.sr != null && this.sy != null || this.sa != null && this.ss != null;
+    }),
     actions: {
         saveInfo() {
             this.set('modal3',false);
@@ -52,22 +54,34 @@ export default Controller.extend({
         successSave() {
             this.set('saveInfo',false);
         },
+        reserveTypeChanged() {
+            let sel = document.getElementById("selectReserve");
+            let that = this;
+            if (sel.selectedIndex == 0) {
+                that.set('bm_apply_service.reserved', that.bm_apply_service.reserveTypeToday);
+            } else {
+                that.set('bm_apply_service.reserved', that.bm_apply_service.reserveType);
+            }
+        },
         successHandled() {
-            debugger
-            // if (this.checkValidate()) {
+            if (this.checkValidate()) {
+                this.set('couldSubmit', true);
                 if (this.current_apply.courseType == 1) {
                     this.signCoureReserve();
                 } else if(this.current_apply.courseType == 0){
                     this.signActivityReserve();
                 }
-            // }
-            this.set('sr', null);
-            this.set('sy', null);
-            this.set('sa', null);
-            this.set('ss', null);
-            this.set('isV', false);
-            this.set('current_apply', null);
-            this.set('showhandledlg', false);
+                this.set('sr', null);
+                this.set('sy', null);
+                this.set('sa', null);
+                this.set('ss', null);
+                this.set('isV', false);
+                this.set('current_apply', null);
+                this.set('showhandledlg', false);
+            } else {
+                alert('请填写完整信息')
+            }
+
         },
         cancelHandled() {
             this.set('sr', null);
@@ -80,14 +94,14 @@ export default Controller.extend({
         },
     },
     checkValidate() {
-        if (this.isCourse) {
-            return this.sr != null && this.sy != null && this.dt.length > 0;
-        } else {
+        if (this.current_apply.courseType == 1) {
+            // return this.sr != null && this.sy != null && this.dt.length > 0;
+            return this.sr != null && this.sy != null
+        } else if(this.current_apply.courseType == 0) {
             return this.sa != null && this.ss != null;
         }
     },
     signCoureReserve() {
-        debugger
         var that = this;
         var reservableid = this.sr;
         var sessionableid = this.sy;
@@ -168,8 +182,6 @@ export default Controller.extend({
         this.bm_stud_service.set('stud', stud);
         this.bm_stud_service.saveUpdate(callback);
 
-        // this.set('current_apply.status', 1);
-
         let callbackPush = {
             onSuccess: function() {
                 that.bm_apply_service.set('apply', this.current_apply);
@@ -178,7 +190,6 @@ export default Controller.extend({
                 console.log('push apply fail')
             }
         }
-        debugger
         this.bm_apply_service.set('apply', this.current_apply);
         this.bm_apply_service.saveUpdate(callbackPush);
     },
@@ -246,7 +257,7 @@ export default Controller.extend({
 
         let kid = this.current_apply.Kids[0];
 
-        let stud_data = this.bm_stud_service.genPushQuery();
+        let stud_data = this.bm_stud_service.genPushQueryApply();
         let stud = this.bm_stud_service.bmstore.sync(stud_data);
         stud.name = kid.name;
         stud.nickname = kid.nickname;
@@ -271,7 +282,6 @@ export default Controller.extend({
                 console.log('push apply fail')
             }
         }
-        debugger
         this.bm_apply_service.set('apply', this.current_apply);
         this.bm_apply_service.saveUpdate(callbackPush);
     },
