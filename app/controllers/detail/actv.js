@@ -11,13 +11,13 @@ export default Controller.extend({
     bm_actv_service: service(),
     bm_sessionable_service: service(),
     bm_yard_service: service(),
-    // toast: service(),
-    // toastOptions: {
-    //     closeButton: false,
-    //     positionClass: 'toast-top-center',
-    //     progressBar: false,
-    //     timeOut: '2000',
-    // },
+    toast: service(),
+    toastOptions: {
+        closeButton: false,
+        positionClass: 'toast-top-center',
+        progressBar: false,
+        timeOut: '2000',
+    },
 
     cur_idx: 0,
     cur_yard_id: '',
@@ -34,7 +34,7 @@ export default Controller.extend({
             this.transitionToRoute('detail.actv-field', idx, this.bm_actv_service.actv.id);
         },
         onOpenActvClick() {
-            // this.toast.success('', '开启成功', this.toastOptions);
+            this.toast.success('', '开启成功', this.toastOptions);
             let callback = {
                 onSuccess: function() {
                     console.log('OpenActvsuccess')
@@ -52,7 +52,7 @@ export default Controller.extend({
             let callback = {
                 onSuccess: function() {
                     that.set('closeActvDlg', false);
-                    // that.toast.success('', '关闭成功', that.toastOptions);
+                    that.toast.success('', '关闭成功', that.toastOptions);
                     console.log('ShutdownActvsuccess')
                 },
                 onFail: function() {

@@ -586,53 +586,70 @@ input.data-picker:focus {
 .layui-laydate {
     width: 312px;
     // height: 285px;
-    .layui-laydate-header {
-        width: 312px;
-        font-family: PingFangSC-Medium;
-        font-size: 14px;
-        color: #172B4D;
-    }
-    .layui-laydate-header {
-        border-bottom: none;
-        span:hover {
+    .layui-laydate-main {
+        width: auto;
+        .layui-laydate-header {
+            width: 312px;
+            font-family: PingFangSC-Medium;
+            font-size: 14px;
             color: #172B4D;
         }
-    }
-
-    .layui-laydate-content {
-        padding-bottom: 50px;
-        table {
-            border: none;
-            width: 290px;
-            height: 200px;
-            thead {
-            background-color: #fff;
-            th {
-                font-family: PingFangSC-Regular;
-                font-size: 14px;
-                color: #7A869A;
-                text-align: left;
-            }
-
-            }
-            tr {
-                background-color: #fff;
-            }
-            td {
-                font-family: PingFangSC-Medium;
-                font-size: 14px;
+        .layui-laydate-header {
+            border-bottom: none;
+            span:hover {
                 color: #172B4D;
             }
-            td.laydate-day-prev, td.laydate-day-next {
-                color: #253858;
-                opacity: 0.6;
+        }
+    
+        .layui-laydate-content {
+            padding-bottom: 50px;
+            table {
+                border: none;
+                width: 290px;
+                height: 200px;
+                thead {
+                background-color: #fff;
+                th {
+                    font-family: PingFangSC-Regular;
+                    font-size: 14px;
+                    color: #7A869A;
+                    // text-align: left;
+                }
+    
+                }
+                tr {
+                    background-color: #fff;
+                }
+                td {
+                    font-family: PingFangSC-Medium;
+                    font-size: 14px;
+                    color: #172B4D;
+                }
+                td.laydate-day-prev, td.laydate-day-next {
+                    color: #253858;
+                    opacity: 0.6;
+                }
+            }
+            .layui-this {
+                background: #42526E !important;
+                border-radius: 3px;
+            }
+    
+        }
+        &.laydate-time-show {
+            .layui-laydate-content {
+                padding-bottom: 10px;
+                .laydate-time-list ol li {
+                    padding-left: 38px;
+                }
+            }
+            & + .layui-laydate-footer {
+                display: block;
+                .laydate-btns-clear {
+                    display: none;
+                }
             }
         }
-        .layui-this {
-            background: #42526E !important;
-            border-radius: 3px;
-        }
-
     }
     .layui-laydate-footer {
         display: none;
