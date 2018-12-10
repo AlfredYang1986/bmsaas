@@ -14,10 +14,16 @@ export default Controller.extend({
         timeOut: '2000',
     },
 
+    cur_yard_id: "",
+
     deleteSessionDlg: false,
     showEditSessionDlg: false,
 
     actions: {
+        onEditSessionable() {
+            this.set('cur_yard_id', this.bm_sessionable_service.sessionable.Yard.id);
+            this.set('showEditSessionDlg', true);
+        },
         onDeleteSessionableClick() {
             let that = this;
             let callback = {
@@ -65,6 +71,8 @@ export default Controller.extend({
             let sel = document.getElementById('reservableselect');
             if (sel.selectedIndex != 0) {
                 this.set('cur_yard_id', sel.options[sel.selectedIndex].value);
+            } else {
+                this.set('cur_yard_id', "");
             }
         },
     }

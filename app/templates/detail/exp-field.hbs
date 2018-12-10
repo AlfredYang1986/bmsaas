@@ -12,7 +12,11 @@
                 {{#layout-push direction='col' mid=true }}
                     {{#layout-push direction='col' classNames="detail_margin_top_left"}}
                         {{!-- <span class="detail_panel_title_name">sda65f4d5f4ds65</span> --}}
-                        <span class="detail_panel_title_name">{{bmdob/bmdobformat bm_sessionable_service.sessionable.start_date}}</span>
+                        <span class="detail_panel_title_name">
+                            {{bmdob/bmdobformat bm_sessionable_service.sessionable.start_date}} 
+                            {{bmdob/bmdob2weekday bm_sessionable_service.sessionable.start_date}} 
+                            {{bmdob/bmdob2clocktime bm_sessionable_service.sessionable.start_date}}-{{bmdob/bmdob2clocktime bm_sessionable_service.sessionable.end_date}}
+                        </span>
                     {{/layout-push}}
                 {{/layout-push}}
                 {{#layout-push direction="row" classNames="reserve-detail-btn"}}
@@ -21,7 +25,7 @@
                         {{#dd.menu align="right" as |menu|}}
                             {{#menu.item align="right"}}
                                 {{#layout-push direction='col' classNames="dropdown-content"}}
-                                    <a onclick={{action (mut showEditSessionDlg) true dd.closeDropdown}}>编辑场次</a>
+                                    <a onclick={{action "onEditSessionable" true dd.closeDropdown}}>编辑场次</a>
                                     <a class="warning" onclick={{action (mut deleteSessionDlg) true dd.closeDropdown}}>删除场次</a>
                                 {{/layout-push}}
                             {{/menu.item}}
@@ -80,7 +84,11 @@
                                         <option value="">选择已有场地</option>
                                         {{!-- {{#each course_lst as |item|}} --}}
                                         {{#each bm_yard_service.yards as |item|}}
-                                            <option value={{item.id}}>{{item.address}}</option>
+                                            {{#if (eq item.id bm_sessionable_service.sessionable.Yard.id)}}
+                                                <option selected="selected" value={{item.id}}>{{item.address}}</option>
+                                            {{else}}
+                                                <option value={{item.id}}>{{item.address}}</option>
+                                            {{/if}}
                                         {{/each}}
                                     </select>
                                 {{/layout-push}}
@@ -94,11 +102,11 @@
                 {{/layout-push}}
                 {{#layout-push direction="row" classNames="line-list"}}
                     <p class="subtitle">日期设置</p>
-                    {{!-- {{bm_sessionable_service.sessionable.start_date}} --}}
-                    {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.start_date}}
+                    {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.tmp_date}}
                 {{/layout-push}}
                 {{#layout-push direction="row" classNames="line-list"}}
                     <p class="subtitle">时间设置</p>
+                    {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.start_date pickType="time"}}
                     {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.end_date pickType="time"}}
                 {{/layout-push}}
                 {{!-- {{#layout-push direction='row' classNames="line-area "}}

@@ -57,6 +57,7 @@ export default Service.extend({
             success: function(res) {
                 let result = that.bmstore.sync(res)
                 that.set('sessionable', result);
+                that.set('sessionable.tmp_date', result.start_date);
                 console.log(that.sessionable)
             },
             error: function(err) {
@@ -140,6 +141,11 @@ export default Service.extend({
             data: dt,
             success: function(res) {
                 let result = that.bmmulti.sync(res)
+                if(result !== undefined){
+                    for(let idx = 0;idx < result.length;idx++){
+                        result[idx].tmp_date = result[idx].start_date;
+                    }
+                }
                 that.set('sessionables', result);
             },
             error: function(err) {
@@ -193,6 +199,7 @@ export default Service.extend({
                     status: 0,
                     start_date: now,
                     end_date: now,
+                    tmp_date: now,
                     reservableId: this.reservableid,
                 },
                 relationships: {
@@ -243,13 +250,10 @@ export default Service.extend({
         if(yd != null){
             this.bmstore.destroy(yd);
         }
-        console.log(yd)
-        console.log(bs)
 
         // this.sessionable.SessionInfo = this.bmstore.sync(sinfo);
         // this.sessionable.Yard = this.bmstore.sync(yard);
         this.set("sessionable.SessionInfo",this.bmstore.sync(sinfo))
-        console.log(this.sessionable.SessionInfo)
         this.set("sessionable.Yard",this.bmstore.sync(yard))
     },
 
@@ -323,6 +327,13 @@ export default Service.extend({
             }
     },
 
+    handleDate(date,time) {
+        let tmpDate = new Date(date)
+        let tmpTime = new Date(time)
+        let result = new Date(tmpDate.getFullYear(), tmpDate.getMonth(), tmpDate.getDate(), tmpTime.getHours(), tmpTime.getMinutes(), tmpTime.getSeconds())
+        return result.getTime();
+    },
+
     saveUpdate(callback,params) {
         if (!this.isValidate) {
             return ;
@@ -331,10 +342,12 @@ export default Service.extend({
         let ft = this.sessionable;
         if(params){
             ft.id = params.id;
+            ft.tmp_date = params.tmp_date
+            ft.start_date = params.start_date
+            ft.end_date = params.end_date
         }
         let arr = [];
         let s = ft.SessionInfo.serialize();
-        console.log(s)
         arr.push(s.data);
 
         let y = ft.Yard.serialize();      
@@ -353,8 +366,9 @@ export default Service.extend({
         }
 
         let ft_tmp = JSON.parse(JSON.stringify(ft.serialize()));
+        ft_tmp.data.attributes.start_date = this.handleDate(ft.tmp_date, ft.start_date)
+        ft_tmp.data.attributes.end_date = this.handleDate(ft.tmp_date, ft.end_date)
         ft_tmp['included'] = arr;
-        console.log(ft_tmp)
         let dt = JSON.stringify(ft_tmp);
 
         let that = this;

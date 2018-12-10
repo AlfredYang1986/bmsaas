@@ -91,6 +91,7 @@ export default Controller.extend({
         },
         onEditSessionClick(params) {
             this.set('tmpSessionable', params);
+            this.set('cur_yard_id', params.Yard.id);
             this.set('showAddSessionDlg', true);
             // let sel = document.getElementById('reservableselect');
             // console.log(sel)
@@ -122,6 +123,7 @@ export default Controller.extend({
             this.set('tmpSessionable', "");
         },
         cancelHandled() {
+            this.set('tmpSessionable', "");
             this.set('showAddSessionDlg', false);
             this.set('deleteExpDlg', false);
             this.set('closeExpDlg', false);
@@ -162,6 +164,8 @@ export default Controller.extend({
             let sel = document.getElementById('reservableselect');
             if (sel.selectedIndex != 0) {
                 this.set('cur_yard_id', sel.options[sel.selectedIndex].value);
+            } else {
+                this.set('cur_yard_id', "");
             }
         }
     },

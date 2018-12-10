@@ -80,6 +80,7 @@ export default Controller.extend({
         },
         onEditSessionClick(params) {
             this.set('tmpSessionable', params);
+            this.set('cur_yard_id', params.Yard.id);
             this.set('showAddSessionDlg', true);
             // let sel = document.getElementById('reservableselect');
             // console.log(sel)
@@ -111,6 +112,7 @@ export default Controller.extend({
             this.set('tmpSessionable', "");
         },
         cancelHandled() {
+            this.set('tmpSessionable', "");
             this.set('showAddSessionDlg', false);
             this.set('deleteActvDlg', false);
             this.set('closeActvDlg', false);
@@ -118,6 +120,7 @@ export default Controller.extend({
         },
         successHandled() {
             let that = this;
+            console.log(this.cur_yard_id)
             if (this.cur_yard_id.length == 0) {
                 alert('shold add yard')
                 return
@@ -151,6 +154,8 @@ export default Controller.extend({
             let sel = document.getElementById('reservableselect');
             if (sel.selectedIndex != 0) {
                 this.set('cur_yard_id', sel.options[sel.selectedIndex].value);
+            } else {
+                this.set('cur_yard_id', "");
             }
         }
     },
