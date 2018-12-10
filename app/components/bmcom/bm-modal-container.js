@@ -3,7 +3,7 @@ import { computed } from '@ember/object';
 import { observer } from '@ember/object';
 
 export default Component.extend({
-    positionalParams: ['title', 'mswitch', 'canceltext', 'successtext', 'cancelbtncss', 'successbtncss', 'needSubmit'],
+    positionalParams: ['title', 'mswitch', 'canceltext', 'successtext', 'cancelbtncss', 'successbtncss', 'needSubmit', 'contentSubmit'],
     needTitle: computed(function(){
         return this.title != null && this.title.length > 0;
     }),

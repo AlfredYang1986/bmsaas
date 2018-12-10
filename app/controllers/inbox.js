@@ -30,7 +30,14 @@ export default Controller.extend({
     sa: null,
     ss: null,
     isCourse: true,
-    couldSubmit: computed('sy', 'sr', 'sa', 'ss', function() {
+    contentSubmit: computed('sr', 'sa', function() {
+        let a = Date.parse( new Date());
+        console.log(a)
+        this.set('sy', null);
+        this.set('ss', null);
+        return this.sy == null && this.ss == null;
+    }),
+    couldSubmit: computed('sy', 'ss', function() {
         return this.sr != null && this.sy != null || this.sa != null && this.ss != null;
     }),
     actions: {
@@ -59,8 +66,21 @@ export default Controller.extend({
             let that = this;
             if (sel.selectedIndex == 0) {
                 that.set('bm_apply_service.reserved', that.bm_apply_service.reserveTypeToday);
+                that.set('bm_apply_service.amount', that.bm_apply_service.reserveTypeTodayAmount);
             } else {
                 that.set('bm_apply_service.reserved', that.bm_apply_service.reserveType);
+                that.set('bm_apply_service.amount', that.bm_apply_service.reserveTypeAmount);
+            }
+        },
+        preRegisterChanged() {
+            let sel = document.getElementById("selectReserve");
+            let that = this;
+            if (sel.selectedIndex == 0) {
+                that.set('bm_apply_service.preRegistered', that.bm_apply_service.preRegisterToday);
+                that.set('bm_apply_service.preAmount', that.bm_apply_service.preRegisterTodayAmount);
+            } else {
+                that.set('bm_apply_service.preRegistered', that.bm_apply_service.preRegister);
+                that.set('bm_apply_service.preAmount', that.bm_apply_service.preRegisterAmount);
             }
         },
         successHandled() {
