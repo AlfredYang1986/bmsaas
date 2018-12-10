@@ -101,12 +101,12 @@
                 {{/layout-push}}
                 {{#layout-push direction="row" classNames="line-list"}}
                     <p class="subtitle">日期设置</p>
-                    {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.tmp_date}}
+                    {{bmform/bm-lay-date inputVal=cur_tmp_date}}
                 {{/layout-push}}
                 {{#layout-push direction="row" classNames="line-list"}}
                     <p class="subtitle">时间设置</p>
-                    {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.start_date pickType="time"}}
-                    {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.end_date pickType="time"}}
+                    {{bmform/bm-lay-date inputVal=cur_start_date pickType="time"}}
+                    {{bmform/bm-lay-date inputVal=cur_end_date pickType="time"}}
                 {{/layout-push}}
                 {{!-- {{#layout-push direction='row' classNames="line-area "}}
                     <p class="subtitle">名额设置</p>

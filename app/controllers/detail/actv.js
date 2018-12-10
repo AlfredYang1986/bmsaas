@@ -21,6 +21,9 @@ export default Controller.extend({
 
     cur_idx: 0,
     cur_yard_id: '',
+    cur_tmp_date: "",
+    cur_start_date: "",
+    cur_end_date: "",
 
     tmpSessionable: '',
 
@@ -81,6 +84,9 @@ export default Controller.extend({
         onEditSessionClick(params) {
             this.set('tmpSessionable', params);
             this.set('cur_yard_id', params.Yard.id);
+            this.set('cur_tmp_date', params.tmp_date);
+            this.set('cur_start_date', params.start_date);
+            this.set('cur_end_date', params.end_date);
             this.set('showAddSessionDlg', true);
             // let sel = document.getElementById('reservableselect');
             // console.log(sel)
@@ -125,6 +131,10 @@ export default Controller.extend({
                 alert('shold add yard')
                 return
             }
+
+            this.set("tmpSessionable.tmp_date", this.cur_tmp_date);
+            this.set("tmpSessionable.start_date", this.cur_start_date);
+            this.set("tmpSessionable.end_date", this.cur_end_date);
 
             let callback = {
                 onSuccess: function() {

@@ -651,7 +651,7 @@ div.time {
             .layui-laydate-content {
                 padding-bottom: 10px;
                 .laydate-time-list {
-                    li:nth-last-child(1){
+                    & > li:nth-last-child(1){
                         display: none;
                     }
                     & > li {

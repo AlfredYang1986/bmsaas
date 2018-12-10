@@ -15,6 +15,9 @@ export default Controller.extend({
     },
 
     cur_yard_id: "",
+    cur_tmp_date: "",
+    cur_start_date: "",
+    cur_end_date: "",
 
     deleteSessionDlg: false,
     showEditSessionDlg: false,
@@ -22,6 +25,9 @@ export default Controller.extend({
     actions: {
         onEditSessionable() {
             this.set('cur_yard_id', this.bm_sessionable_service.sessionable.Yard.id);
+            this.set('cur_tmp_date', this.bm_sessionable_service.sessionable.tmp_date);
+            this.set('cur_start_date', this.bm_sessionable_service.sessionable.start_date);
+            this.set('cur_end_date', this.bm_sessionable_service.sessionable.end_date);
             this.set('showEditSessionDlg', true);
         },
         onDeleteSessionableClick() {
@@ -48,6 +54,10 @@ export default Controller.extend({
                 alert('shold add yard')
                 return
             }
+
+            this.set("bm_sessionable_service.sessionable.tmp_date", this.cur_tmp_date);
+            this.set("bm_sessionable_service.sessionable.start_date", this.cur_start_date);
+            this.set("bm_sessionable_service.sessionable.end_date", this.cur_end_date);
 
             let callback = {
                 onSuccess: function() {

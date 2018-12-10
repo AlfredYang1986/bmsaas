@@ -91,12 +91,12 @@
                                     {{else}}
                                         {{#layout-push direction="row" classNames="line-list"}}
                                             <p class="subtitle">日期设置</p>
-                                            {{bmform/bm-lay-date inputVal=tmpSessionable.tmp_date}}
+                                            {{bmform/bm-lay-date inputVal=cur_tmp_date}}
                                         {{/layout-push}}
                                         {{#layout-push direction="row" classNames="line-list"}}
                                             <p class="subtitle">时间设置</p>
-                                            {{bmform/bm-lay-date inputVal=tmpSessionable.start_date pickType="time"}}
-                                            {{bmform/bm-lay-date inputVal=tmpSessionable.end_date pickType="time"}}
+                                            {{bmform/bm-lay-date inputVal=cur_start_date pickType="time"}}
+                                            {{bmform/bm-lay-date inputVal=cur_end_date pickType="time"}}
                                         {{/layout-push}}
                                     {{/if}}
                                     {{!-- {{#layout-push direction='row' classNames="line-area "}}
