@@ -49,6 +49,7 @@ export default Component.extend({
         },
         deleteImg() {
             this.set('img', '');
+            document.getElementById('uploadImg').value = '';
         }
     },
     guid() {
