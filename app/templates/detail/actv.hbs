@@ -61,9 +61,12 @@
                                                     {{#layout-push direction=row}}
                                                         <select class="session-modal-select" id='reservableselect' name="" onchange={{action 'reservableChanged'}}>
                                                             <option value="">选择已有场地</option>
-                                                            {{!-- {{#each course_lst as |item|}} --}}
                                                             {{#each bm_yard_service.yards as |item|}}
-                                                                <option value={{item.id}}>{{item.address}}</option>
+                                                                {{#if (eq item.id tmpSessionable.Yard.id)}}
+                                                                    <option selected="selected" value={{item.id}}>{{item.address}}</option>
+                                                                {{else}}
+                                                                    <option value={{item.id}}>{{item.address}}</option>
+                                                                {{/if}}
                                                             {{/each}}
                                                         </select>
                                                     {{/layout-push}}
@@ -75,15 +78,27 @@
                                             </span> --}}
                                         {{/layout-push}}
                                     {{/layout-push}}
-                                    {{#layout-push direction="row" classNames="line-list"}}
-                                        <p class="subtitle">日期设置</p>
-                                        {{!-- {{bm_sessionable_service.sessionable.start_date}} --}}
-                                        {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.start_date}}
-                                    {{/layout-push}}
-                                    {{#layout-push direction="row" classNames="line-list"}}
-                                        <p class="subtitle">时间设置</p>
-                                        {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.end_date pickType="time"}}
-                                    {{/layout-push}}
+                                    {{#if (eq tmpSessionable "")}}
+                                        {{#layout-push direction="row" classNames="line-list"}}
+                                            <p class="subtitle">日期设置</p>
+                                            {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.tmp_date}}
+                                        {{/layout-push}}
+                                        {{#layout-push direction="row" classNames="line-list"}}
+                                            <p class="subtitle">时间设置</p>
+                                            {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.start_date pickType="time"}}
+                                            {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.end_date pickType="time"}}
+                                        {{/layout-push}}
+                                    {{else}}
+                                        {{#layout-push direction="row" classNames="line-list"}}
+                                            <p class="subtitle">日期设置</p>
+                                            {{bmform/bm-lay-date inputVal=cur_tmp_date}}
+                                        {{/layout-push}}
+                                        {{#layout-push direction="row" classNames="line-list"}}
+                                            <p class="subtitle">时间设置</p>
+                                            {{bmform/bm-lay-date inputVal=cur_start_date pickType="time"}}
+                                            {{bmform/bm-lay-date inputVal=cur_end_date pickType="time"}}
+                                        {{/layout-push}}
+                                    {{/if}}
                                     {{!-- {{#layout-push direction='row' classNames="line-area "}}
                                         <p class="subtitle">名额设置</p>
                                         {{#layout-push direction='col' }}

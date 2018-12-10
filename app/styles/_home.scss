@@ -583,6 +583,17 @@ input.data-picker:focus {
     background: url('../images/icon_date@1x.png') no-repeat right center;
     background-color: #FAFBFC;
 }
+div.time {
+    input.data-picker {
+        height: 32px;
+        background: url('../images/icon_time.png') no-repeat right center;
+        background-color: #FAFBFC;
+        background-size:24px;
+    }
+    & + div.time {
+        margin-left: 8px;
+    }
+}
 .layui-laydate {
     width: 312px;
     // height: 285px;
@@ -639,8 +650,16 @@ input.data-picker:focus {
         &.laydate-time-show {
             .layui-laydate-content {
                 padding-bottom: 10px;
-                .laydate-time-list ol li {
-                    padding-left: 38px;
+                .laydate-time-list {
+                    & > li:nth-last-child(1){
+                        display: none;
+                    }
+                    & > li {
+                        width: 50%;
+                    }
+                    & ol li {
+                        padding-left: 62px;
+                    }
                 }
             }
             & + .layui-laydate-footer {
