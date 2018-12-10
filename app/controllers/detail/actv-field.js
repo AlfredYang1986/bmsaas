@@ -39,6 +39,7 @@ export default Controller.extend({
                     that.toast.success('', '删除场次成功', that.toastOptions);
                 },
                 onFail: function() {
+                    that.toast.error('', '删除场次失败', that.toastOptions);
                     console.log('delete　reservable　fail')
                 }
             }
@@ -58,13 +59,14 @@ export default Controller.extend({
             this.set("bm_sessionable_service.sessionable.tmp_date", this.cur_tmp_date);
             this.set("bm_sessionable_service.sessionable.start_date", this.cur_start_date);
             this.set("bm_sessionable_service.sessionable.end_date", this.cur_end_date);
-            
+
             let callback = {
                 onSuccess: function() {
                     that.bm_sessionable_service.set('refresh_token', that.bm_sessionable_service.guid());
                     that.toast.success('', '修改场次成功', that.toastOptions);
                 },
                 onFail: function() {
+                    that.toast.error('', '修改场次失败', that.toastOptions);
                     console.log('push sessionable fail')
                 }
             }

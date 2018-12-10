@@ -39,6 +39,7 @@ export default Controller.extend({
                     that.toast.success('', '删除场次成功', that.toastOptions);
                 },
                 onFail: function() {
+                    that.toast.error('', '删除场次失败', that.toastOptions);
                     console.log('delete　reservable　fail')
                 }
             }
@@ -65,6 +66,7 @@ export default Controller.extend({
                     that.toast.success('', '修改场次成功', that.toastOptions);
                 },
                 onFail: function() {
+                    that.toast.error('', '修改场次失败', that.toastOptions);
                     console.log('push sessionable fail')
                 }
             }

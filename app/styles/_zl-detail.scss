@@ -741,7 +741,7 @@ a.btn_sign {
             border-radius: 4px;
             background: transparent;
             font-size: 14px;
-            color: #42526E;;
+            color: #42526E;
 
             &:active {
                 background-color: transparent;
@@ -809,7 +809,6 @@ a.btn_sign {
         height: 56px;
         border-radius: 4px;
         box-shadow: none;
-        // background-image: url("/images/success.png")!important;
         background-size: 24px 24px;
         padding: 16px 16px 16px 56px;
         opacity: 1;
@@ -825,7 +824,12 @@ a.btn_sign {
             box-shadow: none;
         }
         &.toast-success{
+            background-image: url("/images/icon_check-circle copy@2x.png")!important;
             background-color: #39BF5F
+        }
+        &.toast-error{
+            background-image: url("/images/icon_cross-circle copy@2x.png")!important;
+            background-color: #DE350B 
         }
     }
 }

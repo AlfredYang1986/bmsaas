@@ -1,7 +1,6 @@
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        {{log urls}}
         {{#each urls as |url|}}
             {{#if (eq url.link "")}}
                 <li class="breadcrumb-item active" aria-current="page">{{url.pageName}}</li>
