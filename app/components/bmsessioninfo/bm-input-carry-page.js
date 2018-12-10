@@ -4,15 +4,16 @@ export default Component.extend({
     positionalParams: ['session'],
     ifCarryInput: '',
     noInputChecked: '',
+    carryInput: true,
     init() {
         this._super(...arguments);
         if(this.isCreate) {
             this.set('ifCarryInput', '');
-            this.set('noInputChecked', '');
+            this.set('carryInput', true);
         } else {
             if(this.session.carrying == '') {
                 this.set('ifCarryInput', 'disabled');
-                this.set('noInputChecked', 'checked');
+                this.set('carryInput', false);
             }
         }
     },
@@ -22,9 +23,11 @@ export default Component.extend({
                 this.set('ifCarryInput', 'disabled');
                 this.set('noInputChecked', 'checked');
                 this.set('session.carrying', '');
+                this.set('carryInput', false);
             } else {
                 this.set('ifCarryInput', '');
                 this.set('noInputChecked', '');
+                this.set('carryInput', true);
             }
 
         }

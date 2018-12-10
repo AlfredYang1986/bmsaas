@@ -6,7 +6,12 @@
         {{input type="text" class="edit_input" value=session.notice disabled=ifNoteInput}}
         <div class="course-edit-check course-edit-check-low">
             <span class="radio-inline" {{action 'noNote'}}>
-                <input type="checkbox" name="rel" checked={{noInputChecked}}/>
+                {{#if noteInput}}
+                    <input type="checkbox" name="note"/>
+                {{else}}
+                    <input type="checkbox" name="note" checked='checked'/>
+                {{/if}}
+
                 <label for="female">无须知说明</label>
             </span>
         </div>

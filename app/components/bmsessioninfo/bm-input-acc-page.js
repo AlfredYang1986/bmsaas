@@ -4,26 +4,23 @@ export default Component.extend({
     positionalParams: ['session'],
     needNoAccSelected: '',
     needAccSelected: '',
+    noAcc: true,
     init() {
         this._super(...arguments);
         if(this.session.accompany == 0) {
-            this.set('needNoAccSelected', 'checked');
-            this.set('needAccSelected', '');
+            this.set('noAcc', true);
         } else if(this.session.accompany == 1) {
-            this.set('needNoAccSelected', '');
-            this.set('needAccSelected', 'checked');
+            this.set('noAcc', false)
         }
     },
     actions: {
         needNoAcc() {
+            this.set('noAcc', true);
             this.set('session.accompany', 0);
-            this.set('needAccSelected', '');
-            this.set('needNoAccSelected', 'checked')
         },
         needAcc() {
+            this.set('noAcc', false);
             this.set('session.accompany', 1)
-            this.set('needNoAccSelected', '')
-            this.set('needAccSelected', 'checked');
         }
     }
 });

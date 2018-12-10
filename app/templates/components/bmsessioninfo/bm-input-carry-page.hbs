@@ -6,7 +6,12 @@
         {{input type="text" class="edit_input" value=session.carrying disabled=ifCarryInput}}
         <div class="course-edit-check course-edit-check-low no-inc-margin">
             <span class="radio-inline" {{action 'noCarry'}}>
-                <input type="checkbox" name="rel" checked={{noInputChecked}}  />
+                {{#if carryInput}}
+                    <input type="checkbox" name="carry" />
+                {{else}}
+                    <input type="checkbox" name="carry" checked='checked'  />
+                {{/if}}
+
                 <label for="female">当前无需参与者自行准备</label>
             </span>
         </div>

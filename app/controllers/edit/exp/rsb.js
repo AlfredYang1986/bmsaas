@@ -12,11 +12,11 @@ export default Controller.extend({
 
     isPushing: false,
     actions: {
-        saveCourseBtnClicked() {
+        saveCourseBtnClicked(idx) {
             let that = this
             let callback = {
                 onSuccess: function() {
-                    that.transitionToRoute('exp');
+                    that.transitionToRoute('detail.exp', idx);
                 },
                 onFail: function(err) {
                     console.log('error');

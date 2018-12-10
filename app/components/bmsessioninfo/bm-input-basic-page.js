@@ -9,7 +9,7 @@ export default Component.extend({
     levelInputRadio: 'checked',
     levelNoRadio: '',
     positionalParams: ['session'],
-    inputChecked: 'checked',
+    inputChecked: '',
     inputNoChecked: '',
     lengthIf: true,
     init() {
@@ -41,49 +41,18 @@ export default Component.extend({
         ageSelect() {
             if(this.ageInput == true) {
                 this.set('ageInput', false);
-                this.set('ageInputChecked', '');
-                this.set('ageNoInput', 'checked');
-            }
-        },
-        ageInputSelect() {
-            if(this.ageInput == false) {
+            } else {
                 this.set('ageInput', true);
-                this.set('ageInputChecked', 'checked');
-                this.set('ageNoInput', '');
-                this.set('session.alb', 0);
-                this.set('session.aub', 0);
-            }
-        },
-        levelNoSelected() {
-            if(this.levelInput == true) {
-                this.set('levelInput', false);
-                this.set('levelInputRadio', '');
-                this.set('levelNoRadio', 'checked');
-                this.set('session.level', '');
-            }
-        },
-        levelInputSelected() {
-            if(this.levelInput == false) {
-                this.set('levelInput', true);
-                this.set('levelInputRadio', 'checked');
-                this.set('levelNoRadio', '');
-            }
-        },
-        lengthInputSelected() {
-            if(this.inputChecked == '') {
-                this.set('lengthIf', true);
-                this.set('inputChecked', 'checked');
-                this.set('inputNoChecked', '');
-                this.set('session.length', 0)
             }
         },
         lengthNoSelected() {
-            if(this.inputChecked == 'checked') {
+            if(this.lengthIf == true) {
                 this.set('lengthIf', false);
-                this.set('inputChecked', '');
-                this.set('inputNoChecked', 'checked');
                 this.set('session.length', -1)
+            } else {
+                this.set('lengthIf', true);
+                this.set('session.length', 0)
             }
-        },
+        }
     }
 });

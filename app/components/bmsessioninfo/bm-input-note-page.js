@@ -4,6 +4,7 @@ export default Component.extend({
     positionalParams: ['session'],
     ifNoteInput: '',
     noInputChecked: '',
+    noteInput: true,
     init() {
         this._super(...arguments);
         if(this.isCreate) {
@@ -12,7 +13,7 @@ export default Component.extend({
         } else {
             if(this.session.notice == '') {
                 this.set('ifNoteInput', 'disabled');
-                this.set('noInputChecked', 'checked');
+                this.set('noteInput', false)
             }
         }
     },
@@ -22,9 +23,11 @@ export default Component.extend({
                 this.set('ifNoteInput', 'disabled');
                 this.set('noInputChecked', 'checked');
                 this.set('session.notice', '');
+                this.set('noteInput', false);
             } else {
                 this.set('ifNoteInput', '');
                 this.set('noInputChecked', '');
+                this.set('noteInput', true);
             }
 
         }

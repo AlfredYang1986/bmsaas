@@ -6,7 +6,12 @@
         {{input type="text" class="edit_input" value=session.acquisition disabled=ifAcqInput}}
         <div class="course-edit-check course-edit-check-low">
             <span class="radio-inline" {{action 'noAcq'}}>
-                <input type="checkbox" name="rel" checked={{noInputChecked}} />
+                {{#if acqInput}}
+                    <input type="checkbox" name="acqInput"/>
+                {{else}}
+                    <input type="checkbox" name="acq" checked='checked' />
+                {{/if}}
+
                 <label for="female">暂无获得物</label>
             </span>
         </div>

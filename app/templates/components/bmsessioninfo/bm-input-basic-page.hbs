@@ -17,11 +17,10 @@
             {{else}}
                 <span class='alt_course_title'>活动时长（min）</span>
             {{/if}}
-            {{#layout-push direction="row" classNames="alt-course-age-group"}}
+            {{#layout-push direction="col" classNames="alt-course-age-group"}}
             {{#if lengthIf}}
-                <div class="course-edit-check course-edit-check-low" {{action 'lengthInputSelected'}}>
+                <div class="course-edit-check course-edit-check-low">
                     <span class="radio-inline">
-                        <input type="radio" name="length" value="ma" checked={{inputChecked}}/>
                         <label for="female">
                             <div class="input-group">
                                 {{input value=session.length class="edit_input_age" disabled='' type="number"}}
@@ -32,10 +31,15 @@
                         </label>
                     </span>
                 </div>
-            {{else}}
-                <div class="course-edit-check course-edit-check-low" {{action 'lengthInputSelected'}}>
+                <div class="course-edit-check course-edit-check-low" {{action 'lengthNoSelected'}}>
                     <span class="radio-inline">
-                        <input type="radio" name="length" value="ma" checked={{inputChecked}}/>
+                        <input type="checkbox" name="length" value="l"/>
+                        <label for="female">不限时长</label>
+                    </span>
+                </div>
+            {{else}}
+                <div class="course-edit-check course-edit-check-low">
+                    <span class="radio-inline">
                         <label for="female">
                             <div class="input-group">
                                 {{input value='' class="edit_input_age" disabled='disabled' type="number"}}
@@ -46,15 +50,14 @@
                         </label>
                     </span>
                 </div>
+                <div class="course-edit-check course-edit-check-low" {{action 'lengthNoSelected'}}>
+                    <span class="radio-inline">
+                        <input type="checkbox" name="length" value="ma" checked='checked'/>
+                        <label for="female">不限时长</label>
+                    </span>
+                </div>
             {{/if}}
             {{/layout-push}}
-            <div class="course-edit-check course-edit-check-low" {{action 'lengthNoSelected'}}>
-                <span class="radio-inline">
-                    <input type="radio" name="length" value="ma" checked={{inputNoChecked}}/>
-                    <label for="female">不限时长</label>
-                </span>
-            </div>
-            {{!-- {{input type="text" class="edit_input" value=session.length}} --}}
         {{/layout-push}}
 
         {{#layout-push direction='col' classNames='select-age'}}
@@ -62,7 +65,6 @@
             <div class="course-edit-check">
                 {{#if ageInput}}
                     <span class="radio-inline" {{action 'ageInputSelect'}}>
-                        <input type="radio" name="age" value="" checked={{ageInputChecked}}/>
                         <label for="age">
                             {{#layout-push direction="row" classNames="alt-course-age-group"}}
                                 <div class="input-group">
@@ -81,9 +83,12 @@
                             {{/layout-push}}
                         </label>
                     </span>
+                    <div class="course-edit-check course-edit-check-age">
+                        {{#bmform/age-select-input alb=session.alb aub=session.aub ageSelect=(action 'ageSelect')}}
+                        {{/bmform/age-select-input}}
+                    </div>
                 {{else}}
                     <span class="radio-inline" {{action 'ageInputSelect'}}>
-                        <input type="radio" name="age" value="" checked={{ageInputChecked}}/>
                         <label for="age">
                             {{#layout-push direction="row" classNames="alt-course-age-group"}}
                                 <div class="input-group">
@@ -102,40 +107,14 @@
                             {{/layout-push}}
                         </label>
                     </span>
+                    <div class="course-edit-check course-edit-check-age">
+                        {{#bmform/age-select-input alb=session.alb aub=session.aub ageSelect=(action 'ageSelect') checked='checked'}}
+                        {{/bmform/age-select-input}}
+                    </div>
                 {{/if}}
             </div>
         {{/layout-push}}
-        <div class="course-edit-check course-edit-check-age">
-            {{#bmform/age-select-input alb=session.alb aub=session.aub ageSelect=(action 'ageSelect') checked=ageNoInput}}
-            {{/bmform/age-select-input}}
-        </div>
-        {{!-- {{#layout-push direction="col" classNames="alt-course-input-group"}}
-            <span class='alt_course_title'>分级阶段</span>
-            <span class='alt_course_des'>如：入门级、LV1</span>
-            <div class="course-edit-check course-edit-check-low">
-                {{#if levelInput}}
-                    <span class="radio-inline"  {{action 'levelInputSelected'}} >
-                        <input type="radio" name="level" value="" checked={{levelInputRadio}}/>
-                        <label for="levet">
-                            {{input type="text" class="edit_input"  disabled='' value=session.level}}
-                        </label>
-                    </span>
-                {{else}}
-                    <span class="radio-inline" {{action 'levelInputSelected'}} >
-                        <input type="radio" name="level" value=""  checked={{levelInputRadio}}/>
-                        <label for="levet">
-                            {{input type="text" class="edit_input"  disabled="disabled" value=session.level}}
-                        </label>
-                    </span>
-                {{/if}}
-            </div>
-        {{/layout-push}}
-        <div class="course-edit-check course-edit-check-low">
-            <span class="radio-inline" {{action 'levelNoSelected'}}>
-                <input type="radio" name="level" checked={{levelNoRadio}} />
-                <label for="female">无分级阶段</label>
-            </span>
-        </div> --}}
+
         {{yield}}
     {{/layout-push}}
 </section>

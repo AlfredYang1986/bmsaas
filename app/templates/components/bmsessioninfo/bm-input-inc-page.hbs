@@ -5,7 +5,12 @@
         {{input type="text" class="edit_input" value=session.inc disabled=ifIncInput}}
         <div class="course-edit-check course-edit-check-low  no-inc-margin">
             <span class="radio-inline" {{action 'noInc'}}>
-                <input type="checkbox"  name="rel" checked={{noInputChecked}} />
+                {{#if incInput}}
+                    <input type="checkbox"  name="inc"/>
+                {{else}}
+                    <input type="checkbox"  name="inc" checked='checked' />
+                {{/if}}
+
                 <label for="female" class="">暂无提供物品</label>
             </span>
         </div>
