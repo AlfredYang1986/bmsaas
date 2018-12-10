@@ -181,6 +181,7 @@ export default Service.extend({
                 let reserveType = [];
                 let preRegister = [];
                 let reserveTypeToday = [];
+                let preRegisterToday = [];
                 result.forEach((item, index) => {
                     if(item.courseType != -1) {
                         item.kid = item.Kids[0];
@@ -204,10 +205,32 @@ export default Service.extend({
                         return reserveTypeToday;
                     }
                 })
+                preRegister.forEach((item, index) => {
+                    let applyTime = new Date(item.apply_time);
+                    console.log(typeof(applyTime))
+                    var Y = applyTime.getFullYear() + '-';
+                    var M = (applyTime.getMonth()+1 < 10 ? '0'+(applyTime.getMonth()+1) : applyTime.getMonth()+1) + '-';
+                    var D = (applyTime.getDate() < 10 ? '0' + (applyTime.getDate()) : applyTime.getDate());
+                    let apply_time = Y+M+D;
+                    if(apply_time == today) {
+                        preRegisterToday.push(item);
+                        return preRegisterToday;
+                    }
+                })
                 that.set('reserveType', reserveType);
-                that.set('preRegister', preRegister);
                 that.set('reserveTypeToday', reserveTypeToday);
+                that.set('reserveTypeAmount', reserveType.length);
+                that.set('reserveTypeTodayAmount', reserveTypeToday.length);
+
+                that.set('amount', reserveTypeToday.length);
                 that.set('reserved', reserveTypeToday)
+                that.set('preAmount', preRegisterToday.length);
+                that.set('preRegistered', preRegisterToday)
+
+                that.set('preRegister', preRegister);
+                that.set('preRegisterToday', preRegisterToday);
+                that.set('preRegisterAmount', preRegister.length);
+                that.set('preRegisterTodayAmount', preRegisterToday.length)
             },
             error: function(err) {
                 console.log('error is : ', err);
@@ -216,7 +239,6 @@ export default Service.extend({
     },
 
     saveUpdate(callback) {
-        debugger
 
         if (!this.isValidate) {
             return ;
