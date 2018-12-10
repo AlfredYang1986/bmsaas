@@ -12,13 +12,13 @@ export default Controller.extend({
     bm_exp_service: service(),
     bm_sessionable_service: service(),
     bm_yard_service: service(),
-    // toast: service(),
-    // toastOptions: {
-    //     closeButton: false,
-    //     positionClass: 'toast-top-center',
-    //     progressBar: false,
-    //     timeOut: '2000',
-    // },
+    toast: service(),
+    toastOptions: {
+        closeButton: false,
+        positionClass: 'toast-top-center',
+        progressBar: false,
+        timeOut: '2000',
+    },
 
     // openStatus: computed('bm_exp_service', function(){
     //     console.log(this.bm_exp_service.exp)
@@ -45,7 +45,7 @@ export default Controller.extend({
             this.transitionToRoute('detail.exp-field', idx, this.bm_exp_service.exp.id);
         },
         onOpenExpClick() {
-            // this.toast.success('', '开启成功', this.toastOptions);
+            this.toast.success('', '开启成功', this.toastOptions);
             let callback = {
                 onSuccess: function() {
                     console.log('OpenExpsuccess')
@@ -63,7 +63,7 @@ export default Controller.extend({
             let callback = {
                 onSuccess: function() {
                     that.set('closeExpDlg', false);
-                    // that.toast.success('', '关闭成功', that.toastOptions);
+                    that.toast.success('', '关闭成功', that.toastOptions);
                     console.log('ShutdownExpsuccess')
                 },
                 onFail: function() {
@@ -81,7 +81,7 @@ export default Controller.extend({
                     console.log('delete　reservable　success')
                     that.set('deleteExpDlg', false);
                     that.transitionToRoute('exp');
-                    // that.toast.success('', '删除体验课成功', that.toastOptions);
+                    that.toast.success('', '删除体验课成功', that.toastOptions);
                 },
                 onFail: function() {
                     console.log('delete　reservable　fail')
@@ -110,7 +110,7 @@ export default Controller.extend({
             let callback = {
                 onSuccess: function() {
                     that.bm_sessionable_service.set('refresh_all_token', that.bm_sessionable_service.guid());
-                    // that.toast.success('', '删除场次成功', that.toastOptions);
+                    that.toast.success('', '删除场次成功', that.toastOptions);
                     that.set('deleteSessionDlg', false);
                     console.log('delete　reservable　success')
                 },
@@ -137,7 +137,7 @@ export default Controller.extend({
             let callback = {
                 onSuccess: function() {
                     that.set('showAddSessionDlg', false);
-                    // that.toast.success('', '添加场次成功', that.toastOptions);
+                    that.toast.success('', '添加场次成功', that.toastOptions);
                     that.bm_sessionable_service.set('refresh_all_token', that.bm_sessionable_service.guid());
                     console.log('push sessionable success')
                 },
