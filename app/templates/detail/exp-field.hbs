@@ -49,10 +49,10 @@
                     {{/layout-push}}
                 {{/layout-push}}
                 {{#layout-push direction='row' classNames="detail_margin_top_right"}}
-                    {{#if (eq bm_sessionable_service.Attendees undefined)}}
+                    {{#if (bmcom/bm-nil-obj bm_sessionable_service.sessionable.Attendees)}}
                         <span class="detail_panel_role_num">0</span>
                     {{else}}
-                        <span class="detail_panel_role_num">{{bm_sessionable_service.Attendees.length}}</span>
+                        <span class="detail_panel_role_num">{{bm_sessionable_service.sessionable.Attendees.length}}</span>
                     {{/if}}
                     <span class="detail_panel_role_num">报名人数</span>
                 {{/layout-push}}

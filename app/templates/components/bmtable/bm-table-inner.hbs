@@ -83,11 +83,11 @@
                 {{bmdob/bmdob2clocktime item.start_date}}-{{bmdob/bmdob2clocktime item.end_date}}
             </td>
             <td class="ib_table_content_item">{{item.Yard.title}}<br/>{{item.Yard.address}}</td>
-            {{!-- {{#if (bmcom/bm-nil-obj item.Attendees)}}
+            {{#if (bmcom/bm-nil-obj item.Attendees)}}
                 <td class="ib_table_content_item">0</td>
             {{else}}
                 <td class="ib_table_content_item">{{item.Attendees.length}}</td>
-            {{/if}} --}}
+            {{/if}}
             <td  class="ib_table_content_item">
                 {{#bs-dropdown class="btn-dropdown" as |dd|}}
                     {{#dd.button class="reserve-more-btn"}}{{/dd.button}}
@@ -115,7 +115,11 @@
                 女
                 {{/if}}
             </td>
-            <td class="ib_table_content_item">{{item.contact}}</td>
+            <td class="ib_table_content_item">
+                {{#each item.Guardians as |gardianItem|}}
+                    {{gardianItem.contact}}<br/>
+                {{/each}}
+            </td>
             <td class="ib_table_content_item">小程序</td>
             {{!-- <td  class="ib_table_content_item">
                 {{#bs-button classNames="ib_table_content_btn"}}<span>点击签到</span>{{/bs-button}}
