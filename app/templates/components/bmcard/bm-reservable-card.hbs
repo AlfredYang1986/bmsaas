@@ -3,7 +3,7 @@
     {{#if (eq exp.start_date -1)}}
         {{#if (eq exp.end_date -1)}}
             <div class='alt_course_field_closed_info'>
-                <p class='alt_course_field_info_text'>已关闭</p>
+                <p class='alt_course_field_info_text'>未开放</p>
             </div>
         {{else}}
             <div class='alt_course_field_info'>
@@ -17,7 +17,7 @@
     {{/if}}
     {{#layout-push direction='col' mid=true classNames="alt_course_content"}}
         {{#layout-push direction='col'}}
-            <span class='alt_course_cat'>{{exp.SessionInfo.Cate.title}}·{{exp.SessionInfo.Cate.subtitle}}</span>
+            <span class='alt_course_cat'>{{exp.SessionInfo.Cate.title}}</span>
             <span class='alt_course_title'>{{exp.SessionInfo.title}}</span>
             <span class='alt_course_field_num'>个场次</span>
         {{/layout-push}}

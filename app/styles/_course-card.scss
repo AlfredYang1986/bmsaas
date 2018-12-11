@@ -50,8 +50,8 @@
 
 .alt_course_card {
     position: relative;
-    width: 191px;
-    height: 266px;
+    width: 176px;
+    height: 256px;
 
     background: #FFFFFF;
     box-shadow: 0 4px 8px -2px rgba(9,30,66,0.25);
@@ -61,9 +61,9 @@
     margin-bottom: 24px;
 
     .alt_course_cover {
-        width: 191px;
-        min-height: 185px;
-        border-radius: 4px;
+        width: 176px;
+        min-height: 160px;
+        border-radius: 4px 4px 0 0;
     }
 
     .alt_course_field_info {
@@ -95,8 +95,7 @@
 
     .alt_course_content {
         height: 100%;
-        padding-left: 17px;
-        padding-right: 22px;
+        padding: 16px;
 
         .alt_course_cat {
             font-family: $font-nav-acc;
@@ -104,13 +103,18 @@
             color: #6B778C;
             text-align: left;
             line-height: 20px;
+            height: 20px;
         }
 
         .alt_course_title {
-            margin-top: 5px;
             font-family: $font-nav-acc;
             font-size: 14px;
             color: #172B4D;
+            line-height: 20px;
+            height: 20px;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
         }
 
         .alt_course_field_num {
