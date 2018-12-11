@@ -222,10 +222,10 @@ export default Service.extend({
                 that.set('reserveTypeAmount', reserveType.length);
                 that.set('reserveTypeTodayAmount', reserveTypeToday.length);
 
-                that.set('amount', reserveTypeToday.length);
-                that.set('reserved', reserveTypeToday)
-                that.set('preAmount', preRegisterToday.length);
-                that.set('preRegistered', preRegisterToday)
+                that.set('amount', reserveType.length);
+                that.set('reserved', reserveType)
+                that.set('preAmount', preRegister.length);
+                that.set('preRegistered', preRegister)
 
                 that.set('preRegister', preRegister);
                 that.set('preRegisterToday', preRegisterToday);

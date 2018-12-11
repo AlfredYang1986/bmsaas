@@ -1,25 +1,27 @@
-{{#bs-modal open=mswitch onHidden=(action 'cancelBtnClicked') onSubmit=(action 'successBtnClicked') onClose=(action 'cancelBtnClicked') as |modal|}}
-    <div class="course-reserve-pop-ups">
-        {{#if needTitle}}
-            {{#modal.header classNames="course-reserve-modal-title"}}
-                <p class="modal-title">
-                    {{title}}
-                </p>
-            {{/modal.header}}
-        {{/if}}
-        {{#modal.body}}
-            {{yield}}
-        {{/modal.body}}
-        {{#modal.footer}}
-            {{#if needcancel}}
-                {{#bs-button type="cancel" classNames=cancelbtncss onClick=(action 'cancelBtnClicked') }}{{canceltext}}{{/bs-button}}
-            {{/if }}
-            {{#if needSubmit}}
-                {{#bs-button type="success" classNames=successbtncss onClick=(action 'successBtnClicked') }}{{successtext}}{{/bs-button}}
-            {{else}}
-                <button type="button" name="button" disabled='disabled' class="not-fill">{{successtext}}</button>
+<div class="modals" aria-hidden='true' data-backdrop='static'>
+    {{#bs-modal open=mswitch onHidden=(action 'cancelBtnClicked') onSubmit=(action 'successBtnClicked') as |modal|}}
+        <div class="course-reserve-pop-ups">
+            {{#if needTitle}}
+                {{#modal.header classNames="course-reserve-modal-title"}}
+                    <p class="modal-title">
+                        {{title}}
+                    </p>
+                {{/modal.header}}
             {{/if}}
+            {{#modal.body}}
+                {{yield}}
+            {{/modal.body}}
+            {{#modal.footer}}
+                {{#if needcancel}}
+                    {{#bs-button type="cancel" classNames=cancelbtncss onClick=(action 'cancelBtnClicked') }}{{canceltext}}{{/bs-button}}
+                {{/if }}
+                {{#if needSubmit}}
+                    {{#bs-button type="success" classNames=successbtncss onClick=(action 'successBtnClicked') }}{{successtext}}{{/bs-button}}
+                {{else}}
+                    <button type="button" name="button" disabled='disabled' class="not-fill">{{successtext}}</button>
+                {{/if}}
 
-        {{/modal.footer}}
-    </div>
-{{/bs-modal}}
+            {{/modal.footer}}
+        </div>
+    {{/bs-modal}}
+</div>

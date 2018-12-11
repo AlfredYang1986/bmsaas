@@ -64,7 +64,7 @@ export default Controller.extend({
         reserveTypeChanged() {
             let sel = document.getElementById("selectReserve");
             let that = this;
-            if (sel.selectedIndex == 0) {
+            if (sel.selectedIndex == 1) {
                 that.set('bm_apply_service.reserved', that.bm_apply_service.reserveTypeToday);
                 that.set('bm_apply_service.amount', that.bm_apply_service.reserveTypeTodayAmount);
             } else {
@@ -75,7 +75,7 @@ export default Controller.extend({
         preRegisterChanged() {
             let sel = document.getElementById("selectReserve");
             let that = this;
-            if (sel.selectedIndex == 0) {
+            if (sel.selectedIndex == 1) {
                 that.set('bm_apply_service.preRegistered', that.bm_apply_service.preRegisterToday);
                 that.set('bm_apply_service.preAmount', that.bm_apply_service.preRegisterTodayAmount);
             } else {

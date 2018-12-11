@@ -18,10 +18,11 @@
             <td class='ib_table_content_item'>{{item.courseName}}</td>
             <td class="ib_table_content_item">{{bmdob/bmdobformat item.except_time}}</td>
             <td class="ib_table_content_item">
+                {{item.Applyee.name}} &nbsp;&nbsp;
                 {{#each item.Kids as |kd|}}
                     {{kd.guardian_role}}
                 {{/each}}
-                {{item.Applyee.name}}
+
             </td>
             <td class="ib_table_content_item">{{item.contact}}</td>
             {{#if (bmeq item.status 0)}}
@@ -58,7 +59,7 @@
                 {{!-- {{#each item.Kids as |kd|}}
                     {{bmdob/bmdobformat kd.dob}}
                 {{/each}} --}}
-                {{bmdob/bmdobformat item.kid.dob}}岁
+                {{bmdob/bmdob2age item.kid.dob}}岁
             </td>
             <td class="ib_table_content_item">
                 {{item.Applyee.name}} &nbsp;&nbsp;

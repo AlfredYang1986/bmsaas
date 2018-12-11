@@ -11,14 +11,14 @@
             {{#if (bmeq cur_tab_idx 0)}}
                 <span class="ib_table_num">共{{bm_apply_service.amount}}条</span>
                 <select class="ib_table_select" name="" id='selectReserve' onChange={{action 'reserveTypeChanged'}}>
-                    <option value="">今天</option>
                     <option value="">全部</option>
+                    <option value="">今天</option>
                 </select>
             {{else if (bmeq cur_tab_idx 1)}}
                 <span class="ib_table_num">共{{bm_apply_service.preAmount}}条</span>
                 <select class="ib_table_select" name="" id='selectReserve' onChange={{action 'preRegisterChanged'}}>
-                    <option value="">今天</option>
                     <option value="">全部</option>
+                    <option value="">今天</option>
                 </select>
             {{/if}}
 
