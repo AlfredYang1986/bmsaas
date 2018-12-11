@@ -13,8 +13,8 @@ export default Controller.extend({
         saveCourseBtnClicked(idx) {
             let that = this
             let callback = {
-                onSuccess: function() {
-                    that.transitionToRoute('actv');
+                onSuccess: function(res) {
+                    that.transitionToRoute('detail.actv', res.data.id);
                 },
                 onFail: function(err) {
                     console.log('error');

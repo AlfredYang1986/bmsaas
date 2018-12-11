@@ -395,7 +395,7 @@ export default Service.extend({
             },
             data: dt,
             success: function(res) {
-                callback.onSuccess();
+                callback.onSuccess(res);
             },
             error: function(err) {
                 callback.onFail(err);

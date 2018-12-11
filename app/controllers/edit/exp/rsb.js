@@ -15,8 +15,8 @@ export default Controller.extend({
         saveCourseBtnClicked(idx) {
             let that = this
             let callback = {
-                onSuccess: function() {
-                    that.transitionToRoute('exp');
+                onSuccess: function(res) {
+                    that.transitionToRoute('detail.exp', res.data.id);
                 },
                 onFail: function(err) {
                     console.log('error');
