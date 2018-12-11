@@ -162,14 +162,16 @@ export default Controller.extend({
             }
             
             this.bm_sessionable_service.resetInfoAndYard(this.cur_yard_id, this.bm_actv_service.actv.SessionInfo.id);
-            this.bm_sessionable_service.resetTechs([]);
-            this.bm_sessionable_service.resetAttendee([]);
             if(this.tmpSessionable === ""){
+                this.bm_sessionable_service.resetTechs([]);
+                this.bm_sessionable_service.resetAttendee([]);
                 this.bm_sessionable_service.saveUpdate(callback);
             }else{
                 this.set("tmpSessionable.tmp_date", this.cur_tmp_date);
                 this.set("tmpSessionable.start_date", this.cur_start_date);
                 this.set("tmpSessionable.end_date", this.cur_end_date);
+                this.bm_sessionable_service.resetTechs(this.tmpSessionable.Teachers);
+                this.bm_sessionable_service.resetAttendee(this.tmpSessionable.Attendees);
                 this.bm_sessionable_service.saveUpdate(callback,this.tmpSessionable);
             }
 

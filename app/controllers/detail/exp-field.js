@@ -76,8 +76,9 @@ export default Controller.extend({
             }
 
             this.bm_sessionable_service.resetInfoAndYard(this.cur_yard_id, this.bm_exp_service.exp.SessionInfo.id);
-            this.bm_sessionable_service.resetTechs([]);
-            this.bm_sessionable_service.resetAttendee([]);
+            console.log(this.bm_sessionable_service.sessionable.Attendees)
+            this.bm_sessionable_service.resetTechs(this.bm_sessionable_service.sessionable.Teachers);
+            this.bm_sessionable_service.resetAttendee(this.bm_sessionable_service.sessionable.Attendees);
             this.bm_sessionable_service.saveUpdate(callback);
 
             this.set('cur_yard_id', "");
