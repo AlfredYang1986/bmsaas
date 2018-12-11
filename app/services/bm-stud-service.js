@@ -171,7 +171,8 @@ export default Service.extend({
                     intro: "",
                     status: "stud",
                     lesson_count: 0,
-                    school: ''
+                    school: '',
+                    applyId: '',
                 },
                 relationships: {
                     Guardians: {
@@ -221,7 +222,8 @@ export default Service.extend({
                     intro: "",
                     status: "candidate",
                     lesson_count: 0,
-                    school: ''
+                    school: '',
+                    applyId: '',
                 },
                 relationships: {
                     Guardians: {

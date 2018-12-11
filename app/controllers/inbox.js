@@ -187,11 +187,14 @@ export default Controller.extend({
 
         let stud_data = this.bm_stud_service.genPushQueryApply();
         let stud = this.bm_stud_service.bmstore.sync(stud_data);
+        debugger
         stud.name = kid.name;
         stud.nickname = kid.nickname;
         stud.gender = kid.gender;
         stud.reg_date = new Date().getTime();
         stud.dob = kid.dob;
+        stud.applyId = this.current_apply.id;
+
 
         stud.Guardians[0].name = this.current_apply.Applyee.name;
         stud.Guardians[0].gender = this.current_apply.Applyee.gender;
