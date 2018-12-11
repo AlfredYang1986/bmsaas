@@ -77,7 +77,7 @@
                 {{/link-to}}
             </td>
         {{else if (bmeq type "course")}}
-            <td class='ib_table_content_item'>{{index}}</td>
+            <td class='ib_table_content_item'>{{bmcom/bm-plus-one index}}</td>
             <td class='ib_table_content_item'>
                 {{bmdob/bmdobformat item.start_date}} {{bmdob/bmdob2weekday item.start_date}}<br/>
                 {{bmdob/bmdob2clocktime item.start_date}}-{{bmdob/bmdob2clocktime item.end_date}}
@@ -105,7 +105,7 @@
                 {{#bs-button classNames="ib_table_content_link_btn" onClick=(action 'onClickInner' item.id)}}<span>查看</span>{{/bs-button}}
             </td>
         {{else if (bmeq type "courseInner")}}
-            <td class='ib_table_content_item'>{{index}}</td>
+            {{!-- <td class='ib_table_content_item'>{{index}}</td> --}}
             <td class='ib_table_content_item'>{{item.name}}</td>
             <td class="ib_table_content_item">{{bmdob/bmdobformat item.dob}}</td>
             <td class="ib_table_content_item">

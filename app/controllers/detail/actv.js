@@ -1,5 +1,6 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
 
 export default Controller.extend({
 
@@ -25,6 +26,9 @@ export default Controller.extend({
     cur_start_date: "",
     cur_end_date: "",
     edit_flag_info: "",
+    couldSubmit: computed('cur_yard_id', function() {
+        return this.cur_yard_id != null && this.cur_yard_id != "";
+    }),
 
     tmpSessionable: '',
 
