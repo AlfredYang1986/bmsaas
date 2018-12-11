@@ -46,6 +46,7 @@ export default Controller.extend({
     deleteSessionDlg: false,
     actions: {
         linkToExpField(idx) {
+            console.log(this.model.expid)
             this.transitionToRoute('detail.exp-field', idx, this.bm_exp_service.exp.id);
         },
         onOpenExpClick() {
