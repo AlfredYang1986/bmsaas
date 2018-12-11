@@ -10,8 +10,11 @@
                     <p class="title">选择场地</p>
                     <form class="select-site">
                         <select name="cars" id='yardselect' onChange={{action 'yardChanged'}}>
-                            {{#each model.yards as |item|}}
+                            {{#each bm_yard_service.yards as |item idx|}}
                                 <option value={{item.id}}>{{item.address}}</option>
+                                {{#if (bmeq idx 0)}}
+                                    {{refreshSelected}}
+                                {{/if}}
                             {{/each}}
                         </select>
                     </form>
@@ -19,8 +22,8 @@
                 {{!-- <p>6日-12日</p> --}}
             {{/layout-push}}
 
-
-            {{class-arrangement xmargin=10 ymargin=10 yardid=selectedYard}}
+            {{!-- {{class-arrangement xmargin=10 ymargin=10 yardid=selectedYard}} --}}
+            {{bmcls/cls-arrangement}}
         </div>
     </div>
 </div>

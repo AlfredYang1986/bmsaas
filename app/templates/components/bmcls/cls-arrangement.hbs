@@ -1,0 +1,19 @@
+{{!-- {{yield}} --}}
+{{#layout-push direction='row'}}
+    {{#bmcls/cls-btn isPrev=true onBtnClicked=(action 'prevBtnClicked')}}
+        {{#layout-push direction='col' mid=true}}
+            <span>&lt;</span>
+        {{/layout-push}}
+    {{/bmcls/cls-btn}}
+    {{#bmcls/cls-btn isNext=true onBtnClicked=(action 'nextBtnClicked')}}
+        {{#layout-push direction='col' mid=true}}
+            <span>&gt;</span>
+        {{/layout-push}}
+    {{/bmcls/cls-btn}}        
+
+    {{#bmcls/cls-btn isNormal=true classNames='today-cls-btn' onBtnClicked=(action 'todayBtnClicked')}}
+        <span>Today</span>
+    {{/bmcls/cls-btn}}
+
+    {{bmcls/cls-week-display start_date=start_date end_date=end_date}}
+{{/layout-push}}
