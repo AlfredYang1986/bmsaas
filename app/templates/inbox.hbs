@@ -45,6 +45,12 @@
             {{#layout-push direction=row classNames="course-reserve-pop-ups-content"}}
                 {{mail-processing-pop-ups
                         classNames="course-reserve-modal-body"
+                        toggleAction=(action 'toggleAction')
+                        noteError=noteError
+                        noSr=noSr
+                        noSy=noSy
+                        noSa=noSa
+                        noSs=noSs
                         selectedReservable=sr
                         selectedYard=sy
                         selectedDate=dt

@@ -16,7 +16,14 @@
             border: 1px dashed #D2D4D9;
             border-radius: 4px;
         }
-
+        span#uploadSpan {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            opacity: 0;
+        }
         input {
             position: absolute;
             top: 0;

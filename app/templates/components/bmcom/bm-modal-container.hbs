@@ -15,12 +15,11 @@
             {{#if needcancel}}
                 {{#bs-button type="cancel" classNames=cancelbtncss onClick=(action 'cancelBtnClicked') }}{{canceltext}}{{/bs-button}}
             {{/if }}
-            {{#if needSubmit}}
+            {{!-- {{#if needSubmit}} --}}
                 {{#bs-button type="success" classNames=successbtncss onClick=(action 'successBtnClicked') }}{{successtext}}{{/bs-button}}
-            {{else}}
+            {{!-- {{else}}
                 <button type="button" name="button" disabled='disabled' class="not-fill">{{successtext}}</button>
-            {{/if}}
-
+            {{/if}} --}}
         {{/modal.footer}}
     </div>
 {{/bs-modal}}

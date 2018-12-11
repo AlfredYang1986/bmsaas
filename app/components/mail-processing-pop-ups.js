@@ -30,9 +30,10 @@ export default Component.extend({
     bm_exp_service: service(),
     bm_yard_service: service(),
     bm_sessionable_service: service(),
-    positionalParams: ['apply', 'selectedReservable', 'selectedYard', 'selectedDate', 'selectedActivity', 'selectedSession', 'innerCat', 'courseType'],
+    positionalParams: ['apply', 'selectedReservable', 'selectedYard', 'selectedDate', 'selectedActivity', 'selectedSession', 'innerCat', 'courseType', 'noteError', 'noSr', 'noSy', 'noSa', 'noSs'],
     courseReserve: true,
     experienceApply: false,
+    noteError: false,
     sel: null,
     course_lst: computed(function(){
         return this.mock_data.courseCandi();
@@ -61,15 +62,24 @@ export default Component.extend({
     }),
 
     actions: {
-        courseReserve() {
-            this.set('courseReserve', true);
-            this.set('experienceApply', false);
-            this.set('innerCat', true);
-        },
-        experienceApply() {
-            this.set('experienceApply', true);
-            this.set('courseReserve', false)
-            this.set('innerCat', false);
+        // courseReserve() {
+        //     debugger
+        //     this.set('courseReserve', true);
+        //     this.set('experienceApply', false);
+        //     this.set('innerCat', true);
+        // },
+        toggleAction() {
+            debugger
+
+            if(this.courseReserve) {
+                this.set('experienceApply', true);
+                this.set('courseReserve', false)
+            } else {
+                this.set('courseReserve', true);
+                this.set('experienceApply', false);
+            }
+            this.sendAction('toggleAction');
+
         },
         reservableChanged() {
             let sel = document.getElementById("reservableselect");

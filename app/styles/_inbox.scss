@@ -106,7 +106,7 @@
             @extend %font-dialog-title;
         }
         span.base-info {
-            @extend %font-minimum-text;
+            @extend %font-help-text;
         }
     }
     .class-modal-content {
@@ -206,10 +206,37 @@
             .card-area {
                 margin-top: 24px;
             }
+            .form-checked {
+                margin-bottom: 16px;
+                img.error {
+                    margin-right: 4px;
+                    width: 24px;
+                    height: 24px;
+                }
+                .error-info {
+                    font-family: PingFangSC-Regular;
+                    font-size: 14px;
+                    color: #DE350B;
+                }
+                .error-line {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                }
+            }
+            .error-note {
+                display: none;
+            }
             .line-list {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
                 margin-bottom: 24px;
             }
             .line-area {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
                 margin-bottom: 45px;
             }
             p.course-point {
@@ -239,8 +266,9 @@
                 flex-direction: row;
             }
             p.course-reserve-label {
-                margin-right: 25px;
-                min-width: 70px;
+                margin-bottom: 0;
+                margin-right: 16px;
+                min-width: 56px;
                 text-align: left;
                 @extend %font-form-info-title;
                 span.base-info {
@@ -313,10 +341,14 @@
                 color: #6B778C;
                 text-align: center;
             }
+
             .course-reserve-modal-select {
                 select {
                     @extend %select-box-dropdown-default;
                 }
+            }
+            select.error-border {
+                border: 1px solid #DE350B;
             }
             select.course-reserve-modal-select {
                 @extend %select-box-dropdown-default;

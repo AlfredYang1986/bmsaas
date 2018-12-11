@@ -30,6 +30,8 @@ export default Controller.extend({
     sa: null,
     ss: null,
     isCourse: true,
+    noteError: false,
+    noSr: false,
     contentSubmit: computed('sr', 'sa', function() {
         let a = Date.parse( new Date());
         console.log(a)
@@ -37,9 +39,9 @@ export default Controller.extend({
         this.set('ss', null);
         return this.sy == null && this.ss == null;
     }),
-    couldSubmit: computed('sy', 'ss', function() {
-        return this.sr != null && this.sy != null || this.sa != null && this.ss != null;
-    }),
+    // couldSubmit: computed('sy', 'ss', function() {
+    //     return this.sr != null && this.sy != null || this.sa != null && this.ss != null;
+    // }),
     actions: {
         saveInfo() {
             this.set('modal3',false);
@@ -57,6 +59,15 @@ export default Controller.extend({
             this.set('isV', false);
             this.set('current_apply', item);
             this.set('showhandledlg', true);
+        },
+        toggleAction() {
+            let that = this;
+            this.set('noteError', false);
+            if(this.current_apply.courseType == 1) {
+                that.set('current_apply.courseType', 0)
+            } else if (this.current_apply.courseType == 0) {
+                that.set('current_apply.courseType', 1)
+            }
         },
         successSave() {
             this.set('saveInfo',false);
@@ -84,8 +95,10 @@ export default Controller.extend({
             }
         },
         successHandled() {
+            debugger
             if (this.checkValidate()) {
                 this.set('couldSubmit', true);
+
                 if (this.current_apply.courseType == 1) {
                     this.signCoureReserve();
                 } else if(this.current_apply.courseType == 0){
@@ -99,7 +112,23 @@ export default Controller.extend({
                 this.set('current_apply', null);
                 this.set('showhandledlg', false);
             } else {
-                alert('请填写完整信息')
+                this.set('noteError', true);
+                if (this.current_apply.courseType == 1) {
+                    if( this.sr == null && this.sy == null ) {
+                        this.set('noSr', true);
+                        this.set('noSy', true);
+                    } else if(this.sy == null && this.sr != null) {
+                        this.set('noSy', true);
+                    }
+                } else {
+                    if(this.sa == null && this.ss == null) {
+                        this.set('noSa', true);
+                        this.set('noSs', true);
+                    } else if(this.sa != null && this.ss == null) {
+                        this.set('noSs', true);
+                    }
+                }
+
             }
 
         },
@@ -114,6 +143,7 @@ export default Controller.extend({
         },
     },
     checkValidate() {
+        debugger
         if (this.current_apply.courseType == 1) {
             // return this.sr != null && this.sy != null && this.dt.length > 0;
             return this.sr != null && this.sy != null
