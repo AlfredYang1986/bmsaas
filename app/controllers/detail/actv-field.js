@@ -1,5 +1,6 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
 
 export default Controller.extend({
     tableTitle: ["孩子","生日","性别", "联系方式", "渠道"],
@@ -18,6 +19,9 @@ export default Controller.extend({
     cur_tmp_date: "",
     cur_start_date: "",
     cur_end_date: "",
+    couldSubmit: computed('cur_yard_id', function() {
+        return this.cur_yard_id != null && this.cur_yard_id != "";
+    }),
 
     deleteSessionDlg: false,
     showEditSessionDlg: false,

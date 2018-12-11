@@ -39,7 +39,7 @@
                     {{/bs-dropdown}}
                     {{#bs-button classNames="add_btn" onClick=(action (mut showAddSessionDlg) true)}}<span>+ 添加场次</span>{{/bs-button}}
                     {{#bmcom/bm-modal-container title="" mswitch=showAddSessionDlg
-                            needSubmit=true
+                            needSubmit=couldSubmit
                             successbtncss='course-reserve-card-save'
                             cancelbtncss='course-reserve-card-cancel'
                             canceltext='取消'

@@ -31,11 +31,14 @@ export default Controller.extend({
 
 
     cur_idx: 0,
-    cur_yard_id: '',
+    cur_yard_id: "",
     cur_tmp_date: "",
     cur_start_date: "",
     cur_end_date: "",
     edit_flag_info: "",
+    couldSubmit: computed('cur_yard_id', function() {
+        return this.cur_yard_id != null && this.cur_yard_id != "";
+    }),
 
     tmpSessionable: '',
 
@@ -191,6 +194,7 @@ export default Controller.extend({
             } else {
                 this.set('cur_yard_id', "");
             }
+            console.log(this.cur_yard_id)
         }
     },
 
