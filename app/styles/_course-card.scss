@@ -49,6 +49,7 @@
 }
 
 .alt_course_card {
+    position: relative;
     width: 191px;
     height: 266px;
 
@@ -63,6 +64,33 @@
         width: 191px;
         min-height: 185px;
         border-radius: 4px;
+    }
+
+    .alt_course_field_info {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        background-color: #ABF5D1;
+        border-radius: 4px;
+        min-width: 50px;
+        height: 20px;
+        padding: 0 8px;
+    }
+    .alt_course_field_closed_info {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        background-color: #DFE1E6;
+        border-radius: 4px;
+        min-width: 50px;
+        height: 20px;
+        padding: 0 8px;
+    }
+    .alt_course_field_info_text {
+        font-family: PingFangSC-Medium;
+        font-size: 11px;
+        color: #172B4D;
+        height: 20px;
     }
 
     .alt_course_content {
@@ -83,6 +111,14 @@
             font-family: $font-nav-acc;
             font-size: 14px;
             color: #172B4D;
+        }
+
+        .alt_course_field_num {
+            margin-top: 8px;
+            font-family: PingFangSC-Regular;
+            font-size: 11px;
+            color: #6B778C;
+            height: 16px;
         }
     }
 }
