@@ -11,7 +11,7 @@ export default Controller.extend({
     isPushing: false,
 
     actions: {
-        saveCourseBtnClicked() {
+        saveCourseBtnClicked(idx) {
             let that = this
             let callback = {
                 onSuccess: function() {

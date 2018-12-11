@@ -153,7 +153,7 @@ export default Controller.extend({
                 return
             }
 
-            
+
             let callback = {
                 onSuccess: function() {
                     that.set('showAddSessionDlg', false);
@@ -166,7 +166,7 @@ export default Controller.extend({
                     console.log('push sessionable fail')
                 }
             }
-            
+
             this.bm_sessionable_service.resetInfoAndYard(this.cur_yard_id, this.bm_exp_service.exp.SessionInfo.id);
             this.bm_sessionable_service.resetTechs([]);
             this.bm_sessionable_service.resetAttendee([]);

@@ -16,13 +16,14 @@ export default Controller.extend({
             let that = this
             let callback = {
                 onSuccess: function() {
-                    that.transitionToRoute('detail.exp', idx);
+                    that.transitionToRoute('exp');
                 },
                 onFail: function(err) {
                     console.log('error');
                 }
             }
             this.bm_exp_service.saveUpdate(callback);
+
         },
         reserveCourse() {
             this.transitionToRoute('courseReserve');
