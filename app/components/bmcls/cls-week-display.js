@@ -15,13 +15,13 @@ export default Component.extend({
         let sd = this.getDateDate(sdt);
         let ed = this.getDateDate(edt);
 
-        let sy = this.getDateYear(sdt);
-        let ey = this.getDateYear(edt);
+        // let sy = this.getDateYear(sdt);
+        // let ey = this.getDateYear(edt);
 
         if (sm == em) {
-            return sm + " " + sd + "   ~    " + ed + " " + sy;
+            return sm + "月" + sd + "日   ~    " + ed + "日";
         } else {
-            return sm + " " + sd + " " + sy + "   ~    " + em + " " + ed + " " + ey; 
+            return sm + "月" + sd + "日" /*+ sy*/ + "   ~    " + em + "月" + ed + "日" /*+ ey*/; 
         }
     }),
 

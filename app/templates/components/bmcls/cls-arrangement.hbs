@@ -1,5 +1,27 @@
 {{!-- {{yield}} --}}
 {{#layout-push direction='row'}}
+
+    {{#layout-push direction="row" split=true}}
+        <p class="arrange-class-title">排课</p>
+        {{!-- <p>添加排课</p> --}}
+    {{/layout-push}}
+    {{#layout-push direction="row" split=true}}
+        {{#layout-push direction='row' classNames="options"}}
+            <p class="title">选择场地</p>
+            <form class="select-site">
+                <select name="cars" id='yardselect' onChange={{action 'yardChanged'}}>
+                    {{#each bm_yard_service.yards as |item idx|}}
+                        <option value={{item.id}}>{{item.address}}</option>
+                        {{#if (bmeq idx 0)}}
+                            {{refreshSelected}}
+                        {{/if}}
+                    {{/each}}
+                </select>
+            </form>
+        {{/layout-push}}
+        {{!-- <p>6日-12日</p> --}}
+    {{/layout-push}}
+
     {{#bmcls/cls-btn isPrev=true onBtnClicked=(action 'prevBtnClicked')}}
         {{#layout-push direction='col' mid=true}}
             <span>&lt;</span>

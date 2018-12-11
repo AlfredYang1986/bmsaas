@@ -1,31 +1,9 @@
 <div class="detail_content_top">
     <div class="detail_page">
-        <div class="content_page arrange-class">
-            {{#layout-push direction="row" split=true}}
-                <p class="arrange-class-title">排课</p>
-                {{!-- <p>添加排课</p> --}}
-            {{/layout-push}}
-            {{#layout-push direction="row" split=true}}
-                {{#layout-push direction='row' classNames="options"}}
-                    <p class="title">选择场地</p>
-                    <form class="select-site">
-                        <select name="cars" id='yardselect' onChange={{action 'yardChanged'}}>
-                            {{#each bm_yard_service.yards as |item idx|}}
-                                <option value={{item.id}}>{{item.address}}</option>
-                                {{#if (bmeq idx 0)}}
-                                    {{refreshSelected}}
-                                {{/if}}
-                            {{/each}}
-                        </select>
-                    </form>
-                {{/layout-push}}
-                {{!-- <p>6日-12日</p> --}}
-            {{/layout-push}}
-
-            {{!-- {{class-arrangement xmargin=10 ymargin=10 yardid=selectedYard}} --}}
+        <div class="content_page arrange-class"> 
             {{bmcls/cls-arrangement}}
-        </div>
-    </div>
+        </div> 
+    </div> 
 </div>
 
 {{outlet}}
