@@ -69,7 +69,6 @@ export default Component.extend({
         //     this.set('innerCat', true);
         // },
         toggleAction() {
-            debugger
 
             if(this.courseReserve) {
                 this.set('experienceApply', true);

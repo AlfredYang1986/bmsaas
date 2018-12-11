@@ -95,7 +95,6 @@ export default Controller.extend({
             }
         },
         successHandled() {
-            debugger
             if (this.checkValidate()) {
                 this.set('couldSubmit', true);
 
@@ -143,7 +142,6 @@ export default Controller.extend({
         },
     },
     checkValidate() {
-        debugger
         if (this.current_apply.courseType == 1) {
             // return this.sr != null && this.sy != null && this.dt.length > 0;
             return this.sr != null && this.sy != null
@@ -217,7 +215,6 @@ export default Controller.extend({
 
         let stud_data = this.bm_stud_service.genPushQueryApply();
         let stud = this.bm_stud_service.bmstore.sync(stud_data);
-        debugger
         stud.name = kid.name;
         stud.nickname = kid.nickname;
         stud.gender = kid.gender;
