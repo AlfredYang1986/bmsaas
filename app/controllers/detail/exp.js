@@ -36,9 +36,12 @@ export default Controller.extend({
     cur_start_date: "",
     cur_end_date: "",
     edit_flag_info: "",
-    couldSubmit: computed('cur_yard_id', function() {
-        return this.cur_yard_id != null && this.cur_yard_id != "";
-    }),
+    noteError: false,
+    // couldSubmit: computed('cur_yard_id', function() {
+    //     console.log(this.cur_yard_id)
+    //     console.log(this.cur_yard_id != null && this.cur_yard_id != "")
+    //     return this.cur_yard_id != null && this.cur_yard_id != "";
+    // }),
 
     tmpSessionable: '',
 
@@ -141,25 +144,28 @@ export default Controller.extend({
         },
         cancelHandled() {
             this.set('tmpSessionable', "");
+            this.set('noteError', false);
             this.set('showAddSessionDlg', false);
             this.set('deleteExpDlg', false);
             this.set('closeExpDlg', false);
             this.set('deleteSessionDlg', false);
         },
         successHandled() {
-            let that = this;
-            let edit_flag_info = "添加";
-            if (this.get('edit_flag_info')) {
-                edit_flag_info = this.get('edit_flag_info');
-            }
-            if (this.cur_yard_id.length == 0) {
-                alert('shold add yard')
-                return
-            }
+            if (this.checkValidate()) {
 
-
-            let callback = {
-                onSuccess: function() {
+                let that = this;
+                let edit_flag_info = "添加";
+                if (this.get('edit_flag_info')) {
+                    edit_flag_info = this.get('edit_flag_info');
+                }
+                if (this.cur_yard_id.length == 0) {
+                    alert('shold add yard')
+                    return
+                }
+                
+                
+                let callback = {
+                    onSuccess: function() {
                     that.set('showAddSessionDlg', false);
                     that.toast.success('', edit_flag_info + '场次成功', that.toastOptions);
                     that.bm_sessionable_service.set('refresh_all_token', that.bm_sessionable_service.guid());
@@ -170,7 +176,7 @@ export default Controller.extend({
                     console.log('push sessionable fail')
                 }
             }
-
+            
             this.bm_sessionable_service.resetInfoAndYard(this.cur_yard_id, this.bm_exp_service.exp.SessionInfo.id);
             if(this.tmpSessionable === ""){
                 this.bm_sessionable_service.resetTechs([]);
@@ -184,10 +190,13 @@ export default Controller.extend({
                 this.bm_sessionable_service.resetAttendee(this.tmpSessionable.Attendees);
                 this.bm_sessionable_service.saveUpdate(callback,this.tmpSessionable);
             }
-
+            
             this.set('edit_flag_info', "");
             this.set('tmpSessionable', "");
             this.set('cur_yard_id', "");
+        } else {
+            this.set('noteError', true);
+        }
         },
         reservableChanged() {
             let sel = document.getElementById('reservableselect');
@@ -200,7 +209,9 @@ export default Controller.extend({
         }
     },
 
-
+    checkValidate() {
+        return this.cur_yard_id != null && this.cur_yard_id != "";
+    },
     generateSessionable() {
         if (this.showAddSessionDlg == true) {
             this.bm_sessionable_service.set('sessionableid', 'sessionable/push');

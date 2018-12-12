@@ -9,9 +9,16 @@ export default Controller.extend({
     bm_stud_service: service(),
 
     mock_data: service(),
+    toast: service(),
 
     cur_tab_idx: 0,
     tabs: ['预约', '预注册'],
+    toastOptions: {
+        closeButton: false,
+        positionClass: 'toast-top-center',
+        progressBar: false,
+        timeOut: '2000',
+    },
 
     today_apply_count: computed(function(){
         return this.mock_data.todayApplies().length;
@@ -172,9 +179,9 @@ export default Controller.extend({
                 }
                 let arr = []
                 for (let idx = 0; idx < count; idx++) {
-                    arr.push(ori[idx].id);
+                    arr.push(ori[idx]);
                 }
-                let studid = that.bm_stud_service.stud.id;
+                let studid = {"id" : that.bm_stud_service.stud.id};
                 arr.push(studid);
 
                 let th = that.bm_sessionable_service.sessionable.Teachers;
@@ -205,8 +212,10 @@ export default Controller.extend({
                 that.bm_sessionable_service.set('reservableid', reservableid);
                 that.bm_sessionable_service.set('sessionableid', sessionableid);
                 that.bm_sessionable_service.querySessionable2(st2sess);
+                that.toast.success('', '预约成功', that.toastOptions);
             },
             onFail: function() {
+                that.toast.error('', '预约失败', that.toastOptions);
                 console.log('push stud fail')
             }
         }
@@ -299,9 +308,11 @@ export default Controller.extend({
                 that.bm_sessionable_service.set('reservableid', reservableid);
                 that.bm_sessionable_service.set('sessionableid', sessionableid);
                 that.bm_sessionable_service.querySessionable2(st2sess);
+                that.toast.success('', '预约成功', that.toastOptions);
             },
             onFail: function() {
                 console.log('push stud fail')
+                that.toast.error('', '预约成功', that.toastOptions);
             }
         }
 
