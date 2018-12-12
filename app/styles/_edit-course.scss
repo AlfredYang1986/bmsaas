@@ -23,7 +23,24 @@
 				padding: 0;
 				margin: 0;
 				box-shadow: none;
-				width: 100%;
+                width: 100%;
+                
+                .edit_between_btn {
+                    padding: 6px 12px;
+                    height: 32px;
+                    min-width: 80px;
+                    line-height: 20px;
+                    background: rgba(9, 30, 66, 0.04);
+                    font-family: PingFangSC-Medium;
+                    border-radius: 2px;
+                    font-size: 14px;
+                    color: #42526E;
+                    display: inline-block;
+                    white-space: nowrap;
+                    vertical-align: middle;
+                    text-align: center;
+                    outline: none;
+                }
 
                 .edit_sub_title{
                     margin: 0;
@@ -31,7 +48,7 @@
 
                 .alt-edit-title {
                     color: #172B4D;
-                    margin-bottom: 16px;
+                    margin-bottom: 8px;
                 }
 
                 .alt-edit-only-margin {
@@ -107,7 +124,7 @@
 
                 .no-inc-margin {
                 	margin-top: 40px;
-					margin-bottom: 20px;
+					margin-bottom: 16px;
                 }
 
                 .course-edit-check-high {
@@ -136,6 +153,10 @@
 				}
 
 				&.edit_second_panel {
+                    .alt-course-input-group {
+                        margin-top: 40px;
+                        margin-bottom: 0;
+                    }
                     .alt_course_title_age{
                         margin-top: 40px;
                     }
@@ -199,7 +220,7 @@
                     min-height: 0;
 
                     .line_conatainer_warp{
-                        margin-top: 12px;
+                        margin-top: 16px;
                         .alt-course-edit-tag-img-adjust {
                             margin-right: 24px;
                             margin-bottom: 40px;
@@ -232,6 +253,12 @@
                             margin-bottom: 0;
                         }
                     }
+                }
+                
+                &.edit_eighth_panel {
+                    .accompany-bottom-margin-div {
+                        margin-bottom: 56px;
+                    }
 				}
             }
 
@@ -240,16 +267,17 @@
                 width: calc(100% - 48px);
                 padding: 24px;
 
-                .alt_course_big_title{
-                    // margin-bottom: 40px;
+                .alt_course_title.alt_course_big_title{
+                    margin-bottom: 40px;
                     font-size: 20px;
                 }
                 .alt_course_title{
+                    margin-bottom: 4px;
                     // margin-top: 40px;
                 }
                 .alt_course_des{
                     // margin-bottom: 16px;
-                    margin-top: 4px;
+                    // margin-top: 4px;
                 }
                 .edit_input[type=text]{
                     width: 300px;
@@ -283,7 +311,7 @@
                     }
                 }
                 .alt-course-input-group{
-                    margin-bottom: 10px;
+                    margin-bottom: 16px;
                 }
 
                 select {
