@@ -52,6 +52,14 @@
                                     {{#layout-push direction='row'}}
                                         <p class="title">编辑场次</p>
                                     {{/layout-push}}
+                                    {{#if noteError}}
+                                        <div class="form-checked">
+                                            {{#layout-push direction='row' classNames="error-line"}}
+                                                <img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
+                                                <span class="error-info">请填写完整信息</span>
+                                            {{/layout-push}}
+                                        </div>
+                                    {{/if}}
                                     {{#layout-push direction='row' classNames="line-list"}}
                                         <p class="subtitle">校区设置</p>
                                         {{#layout-push direction='col' }}
@@ -168,7 +176,7 @@
         <section class='alt_course_selection'>
             {{#layout-push direction='col' classNames='alt_course_container'}}
                 {{#bmpage/bm-session-info session=bm_actv_service.actv.SessionInfo}}
-                    {{bmdetail/bm-top-title-panel title="课程详情" rightText="编辑" linkAddr='edit.actv.info' linkParam=bm_actv_service.actv.SessionInfo.id}}
+                    {{bmdetail/bm-top-title-panel title="活动详情" rightText="编辑" linkAddr='edit.actv.info' linkParam=bm_actv_service.actv.SessionInfo.id}}
                     {{!-- {{#link-to 'edit.actv.info' bm_actv_service.actv.SessionInfo.id  classNames='alt_course_btn'}}
                         编辑
                     {{/link-to}} --}}

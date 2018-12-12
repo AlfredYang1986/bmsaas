@@ -19,9 +19,10 @@ export default Controller.extend({
     cur_tmp_date: "",
     cur_start_date: "",
     cur_end_date: "",
-    couldSubmit: computed('cur_yard_id', function() {
-        return this.cur_yard_id != null && this.cur_yard_id != "";
-    }),
+    noteError: false,
+    // couldSubmit: computed('cur_yard_id', function() {
+    //     return this.cur_yard_id != null && this.cur_yard_id != "";
+    // }),
 
     deleteSessionDlg: false,
     showEditSessionDlg: false,
@@ -50,10 +51,12 @@ export default Controller.extend({
             this.bm_sessionable_service.deleteSessionable(callback);
         },
         cancelHandled() {
+            this.set('noteError', false);
             this.set('deleteSessionDlg', false);
             this.set('showEditSessionDlg', false);
         },
         successHandled() {
+            if (this.checkValidate()) {
             let that = this;
             if (this.cur_yard_id.length == 0) {
                 alert('shold add yard')
@@ -82,6 +85,9 @@ export default Controller.extend({
 
             this.set('cur_yard_id', "");
             this.set('showEditSessionDlg', false);
+        } else {
+            this.set('noteError', true);
+        }
         },
         reservableChanged() {
             let sel = document.getElementById('reservableselect');
@@ -91,5 +97,8 @@ export default Controller.extend({
                 this.set('cur_yard_id', "");
             }
         },
-    }
+    },
+    checkValidate() {
+        return this.cur_yard_id != null && this.cur_yard_id != "";
+    },
 });

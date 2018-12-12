@@ -472,10 +472,29 @@ a.reserve_detail_href_ref {
 }
 .modal-content {
     border: none;
+    
     .session-modal  {
         padding: 24px 8px;
         background: #fff;
         // width: 512px;
+        .form-checked {
+            margin-bottom: 16px;
+            img.error {
+                margin-right: 4px;
+                width: 24px;
+                height: 24px;
+            }
+            .error-info {
+                font-family: PingFangSC-Regular;
+                font-size: 14px;
+                color: #DE350B;
+            }
+            .error-line {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
+        }
         .line-list {
             margin-bottom: 24px;
         }

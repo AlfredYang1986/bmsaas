@@ -377,8 +377,10 @@ export default Service.extend({
         }
 
         let ft_tmp = JSON.parse(JSON.stringify(ft.serialize()));
-        ft_tmp.data.attributes.start_date = this.handleDate(ft.tmp_date, ft.start_date)
-        ft_tmp.data.attributes.end_date = this.handleDate(ft.tmp_date, ft.end_date)
+        if(params){
+            ft_tmp.data.attributes.start_date = this.handleDate(ft.tmp_date, ft.start_date)
+            ft_tmp.data.attributes.end_date = this.handleDate(ft.tmp_date, ft.end_date)
+        }
         ft_tmp['included'] = arr;
         let dt = JSON.stringify(ft_tmp);
 

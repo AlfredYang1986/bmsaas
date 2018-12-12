@@ -26,9 +26,10 @@ export default Controller.extend({
     cur_start_date: "",
     cur_end_date: "",
     edit_flag_info: "",
-    couldSubmit: computed('cur_yard_id', function() {
-        return this.cur_yard_id != null && this.cur_yard_id != "";
-    }),
+    noteError: false,
+    // couldSubmit: computed('cur_yard_id', function() {
+    //     return this.cur_yard_id != null && this.cur_yard_id != "";
+    // }),
 
     tmpSessionable: '',
 
@@ -131,12 +132,14 @@ export default Controller.extend({
         },
         cancelHandled() {
             this.set('tmpSessionable', "");
+            this.set('noteError', false);
             this.set('showAddSessionDlg', false);
             this.set('deleteActvDlg', false);
             this.set('closeActvDlg', false);
             this.set('deleteSessionDlg', false);
         },
         successHandled() {
+            if (this.checkValidate()) {
             let that = this;
             let edit_flag_info = "添加";
             if (this.get('edit_flag_info')) {
@@ -178,6 +181,9 @@ export default Controller.extend({
             this.set('edit_flag_info', "");
             this.set('tmpSessionable', "");
             this.set('cur_yard_id', "");
+        } else {
+            this.set('noteError', true);
+        }
         },
         reservableChanged() {
             let sel = document.getElementById('reservableselect');
@@ -189,7 +195,9 @@ export default Controller.extend({
         }
     },
 
-
+    checkValidate() {
+        return this.cur_yard_id != null && this.cur_yard_id != "";
+    },
     generateSessionable() {
         if (this.showAddSessionDlg == true) {
             this.bm_sessionable_service.set('sessionableid', 'sessionable/push');
