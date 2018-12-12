@@ -1,10 +1,13 @@
 {{!-- {{yield}} --}}
-{{#layout-push direction='row'}}
-
+{{#layout-push direction='row' split=true}}
     {{#layout-push direction="row" split=true}}
         <p class="arrange-class-title">排课</p>
-        {{!-- <p>添加排课</p> --}}
     {{/layout-push}}
+
+    {{#bs-button classNames="cls-arr-add-btn" onClick=(action (mut showAddSessionDlg) true)}}<span>+ 添加排课</span>{{/bs-button}}
+ {{/layout-push}}
+
+{{#layout-push direction='row' split=true}}
     {{#layout-push direction="row" split=true}}
         {{#layout-push direction='row' classNames="options"}}
             <p class="title">选择场地</p>
@@ -19,23 +22,23 @@
                 </select>
             </form>
         {{/layout-push}}
-        {{!-- <p>6日-12日</p> --}}
     {{/layout-push}}
 
-    {{#bmcls/cls-btn isPrev=true onBtnClicked=(action 'prevBtnClicked')}}
+    {{#layout-push direction='row'}}
         {{#layout-push direction='col' mid=true}}
-            <span>&lt;</span>
+            {{bmcls/cls-week-display start_date=start_date end_date=end_date}}
         {{/layout-push}}
-    {{/bmcls/cls-btn}}
-    {{#bmcls/cls-btn isNext=true onBtnClicked=(action 'nextBtnClicked')}}
-        {{#layout-push direction='col' mid=true}}
-            <span>&gt;</span>
-        {{/layout-push}}
-    {{/bmcls/cls-btn}}        
-
-    {{#bmcls/cls-btn isNormal=true classNames='today-cls-btn' onBtnClicked=(action 'todayBtnClicked')}}
-        <span>Today</span>
-    {{/bmcls/cls-btn}}
-
-    {{bmcls/cls-week-display start_date=start_date end_date=end_date}}
+        {{#bmcls/cls-btn isPrev=true onBtnClicked=(action 'prevBtnClicked')}}
+            {{#layout-push direction='col' mid=true}}
+                <span>&lt;</span>
+            {{/layout-push}}
+        {{/bmcls/cls-btn}}
+        {{#bmcls/cls-btn isNext=true onBtnClicked=(action 'nextBtnClicked')}}
+            {{#layout-push direction='col' mid=true}}
+                <span>&gt;</span>
+            {{/layout-push}}
+        {{/bmcls/cls-btn}}      
+    {{/layout-push}}
 {{/layout-push}}
+    
+{{bmcls/cls-week-calendar start_date=start_date end_date=end_date}}
