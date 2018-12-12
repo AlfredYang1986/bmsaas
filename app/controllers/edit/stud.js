@@ -12,8 +12,8 @@ export default Controller.extend({
         saveInputBtnClicked() {
             let that = this
             let callback = {
-                onSuccess: function() {
-                    that.transitionToRoute('stud');
+                onSuccess: function(res) {
+                    that.transitionToRoute('detail.stud', res.data.id);
                 },
                 onFail: function(err) {
                     console.log('error');

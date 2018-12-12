@@ -7,7 +7,6 @@ import { A } from '@ember/array';
 export default Route.extend({
     // mock_data: service(),
     bm_stud_service: service(),
-
     model(params) {
         this.bm_stud_service.set('studid', params.studid);
 

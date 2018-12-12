@@ -171,8 +171,14 @@ export default Service.extend({
                     intro: "",
                     status: "stud",
                     lesson_count: 0,
+                    address: '',
                     school: '',
                     applyId: '',
+                    teacherId: '',
+                    teacherName: '',
+                    idCardNo: '',
+                    sourceWay: '',
+                    wechat: '',
                 },
                 relationships: {
                     Guardians: {
@@ -198,7 +204,8 @@ export default Service.extend({
                         dob: now,
                         gender: 0,
                         reg_date: now,
-                        addr: ''
+                        address: '',
+                        idCardNo: '',
                     },
                 }
             ]
@@ -223,7 +230,13 @@ export default Service.extend({
                     status: "candidate",
                     lesson_count: 0,
                     school: '',
+                    address: '',
                     applyId: '',
+                    teacherId: '',
+                    teacherName: '',
+                    idCardNo: '',
+                    sourceWay: '',
+                    wechat: '',
                 },
                 relationships: {
                     Guardians: {
@@ -249,7 +262,8 @@ export default Service.extend({
                         dob: now,
                         gender: 0,
                         reg_date: now,
-                        addr: ''
+                        address: '',
+                        idCardNo: '',
                     },
                 }
             ]
@@ -257,7 +271,7 @@ export default Service.extend({
     },
 
     saveUpdate(callback) {
-
+        debugger
         if (!this.isValidate) {
             return ;
         }
@@ -281,7 +295,7 @@ export default Service.extend({
             success: function(res) {
                 let result = that.bmstore.sync(res);
                 that.set('stud', result);
-                callback.onSuccess();
+                callback.onSuccess(res);
             },
             error: function(err) {
                 callback.onFail(err);

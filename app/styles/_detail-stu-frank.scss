@@ -81,18 +81,26 @@
 
     .basis_dob {
         margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         font-size: 0;
         span{
           padding: 0 10px;
           @extend %font-main-text;
         }
         .basis_dob_title {
-            min-width: 72px;
+            min-width: 80px;
             text-align: left;
             @extend %font-form-info-title;
         }
-        .basis_contact {
+        .basis_contact_margin_bottom {
             margin-bottom: 24px;
+        }
+        .basis_contact {
+            min-width: 150px;
+            text-align: left;
+
         }
     }
 }

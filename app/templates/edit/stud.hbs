@@ -43,15 +43,15 @@
 				<p class="edit_title">性别</p>
 				{{#layout-push direction='row'}}
 					<span class="radio-inline">
-						<input type="radio" name="studSex" value="male" checked={{bmeq item.gender 1}}/>
+						{{input type="radio" name="studSex" checked=(bmeq bm_stud_service.stud.gender 1)}}
 						<label for="male">男</label>
 					</span>
 					<span class="radio-inline">
-						<input type="radio" name="studSex" value="female" checked={{bmeq item.gender 0}}/>
+						{{input type="radio" name="studSex"  checked=(bmeq bm_stud_service.stud.gender 0)}}
 						<label for="female">女</label>
 					</span>
 					<span class="radio-inline">
-						<input type="radio" name="studSex" value="other" checked={{bmeq item.gender 0}}/>
+						{{input type="radio" name="studSex" checked=(bmeq bm_stud_service.stud.gender -1)}}
 						<label for="female">未知</label>
 					</span>
 				{{/layout-push}}
@@ -102,6 +102,7 @@
 				{{/layout-push}}
 				{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
 					{{bmform/bm-edit-line title='联系方式'  inputVal=item.contact classNames='input_area area-margin-bottom'}}
+					{{bmform/bm-edit-line title='微信'  inputVal=bm_stud_service.stud.wechat classNames='input_area area-margin-bottom'}}
 				{{/layout-push}}
 				{{!-- {{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
 					{{bmform/bm-edit-line title='身份证号'  notNeeded=true inputVal=item.addr classNames='input_area area-margin-bottom'}}

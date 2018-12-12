@@ -27,16 +27,16 @@
 					</div>
 					<p class="basis_name">{{bm_stud_service.stud.name}}</p>
 					{{bmdetail/stud-basis-left-subtitle gender=bm_stud_service.stud.gender dob=bm_stud_service.stud.dob}}
-					{{#layout-push direction='col' mid=true classNames='basis_dob' }}
-						{{#layout-push direction='row' mid=true classNames="basis_contact"}}
-							<span class="basis_dob_title">联系方式</span><span>{{bm_stud_service.stud.Guardians.firstObject.contact}}</span>
+					{{!-- {{#layout-push direction='col' classNames='basis_dob' }} --}}
+						{{!-- {{#layout-push direction='row' classNames="basis_contact basis_contact_margin_bottom"}}
+							<span class="basis_dob_title">联系方式</span><span>{{bm_stud_service.stud.contact}}</span>
 						{{/layout-push}}
 
-						{{#layout-push direction='row' mid=true}}
-							<span class="basis_dob_title">微信</span><span>{{bm_stud_service.stud.Guardians.firstObject.wechat}}</span>
-						{{/layout-push}}
+						{{#layout-push direction='row' classNames="basis_contact"}}
+							<span class="basis_dob_title">微信</span><span>{{bm_stud_service.stud.wechat}}</span>
+						{{/layout-push}} --}}
 						{{!-- <span>出生日期</span><span>{{bmdob/bmdobformat bm_stud_service.stud.dob}}</span> --}}
-					{{/layout-push}}
+					{{!-- {{/layout-push}} --}}
 				{{/layout-push }}
 			</div>
 			{{#layout-push direction='col' mid=true classNames='stud_detail_other' }}
@@ -46,9 +46,9 @@
 						<p class="parent_info">孩子信息</p>
 						<div class="self_info">
 							{{bmdetail/stud-basis-info label="昵称" content=bm_stud_service.stud.nickname}}
-							{{bmdetail/stud-basis-info label="星座" content=bm_stud_service.stud.contact}}
+							{{bmdetail/stud-basis-info label="星座" content=bm_stud_service.stud.dob}}
 							{{bmdetail/stud-basis-info label="就读学校" content=bm_stud_service.stud.school}}
-							{{bmdetail/stud-basis-info label="住址" content=bm_stud_service.stud.firstObject.Guardians.firstObject.addr}}
+							{{bmdetail/stud-basis-info label="住址" content=bm_stud_service.stud.address}}
 							{{bmdetail/stud-basis-info label="注册时间" content=bm_stud_service.stud.reg_date}}
 						</div>
 					{{/layout-push}}
@@ -59,6 +59,7 @@
 							{{bmdetail/stud-basis-info label="姓名" content=bm_stud_service.stud.Guardians.firstObject.name}}
 							{{bmdetail/stud-basis-info label="关系" content=bm_stud_service.stud.Guardians.firstObject.relation_ship}}
 							{{bmdetail/stud-basis-info label="联系方式" content=bm_stud_service.stud.Guardians.firstObject.contact}}
+							{{bmdetail/stud-basis-info label="微信" content=bm_stud_service.stud.wechat}}
 						</div>
 					{{/layout-push}}
 					<div class="line"></div>
