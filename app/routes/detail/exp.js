@@ -19,7 +19,7 @@ export default Route.extend({
         this.bm_sessionable_service.set('reservableid', params.expid);
         return RSVP.hash({
                 expid: params.expid,
-                tabs: A(['场次安排', '体验详情']),
+                tabs: A(['场次安排', '体验课详情']),
                 titles: A(["场次号","时间段","校区","人数","", "操作"]),
                 urls: A([
                     {

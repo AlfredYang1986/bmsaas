@@ -433,7 +433,7 @@ a.reserve_detail_href_ref {
         border: none;
         background: $color-theme-T100;
         border-radius: 100px;
-        font-family: $font-family;
+        font-family: PingFangSC-Medium;
         font-size: $font-size-main;
         color: $color-neutral-N000;
         letter-spacing: 2px;
@@ -474,7 +474,7 @@ a.reserve_detail_href_ref {
     border: none;
     
     .session-modal  {
-        padding: 24px 8px;
+        padding: 24px 0 8px 0;
         background: #fff;
         // width: 512px;
         .form-checked {
@@ -497,6 +497,9 @@ a.reserve_detail_href_ref {
         }
         .line-list {
             margin-bottom: 24px;
+            &:nth-last-child(1) {
+                margin-bottom: 0;
+            }
         }
         .line-area {
             margin-top: 16px;
@@ -512,7 +515,7 @@ a.reserve_detail_href_ref {
             }
         }
         .title {
-            margin-bottom: 30px;
+            margin-bottom: 24px;
             font-family: PingFangSC-Medium;
             font-size: 16px;
             color: #172B4D;
@@ -526,7 +529,7 @@ a.reserve_detail_href_ref {
             color: #172B4D;
         }
         .radio-col {
-            margin-bottom: 10px;
+            margin-bottom: 0;
             .session-modal-select {
                 width: 320px;
                 height: 35px;
@@ -547,8 +550,15 @@ a.reserve_detail_href_ref {
                 text-align: left;
                 line-height: 20px;
             }
+            & + .radio-col{
+                margin-bottom: 8px;
+            }
         }
 
+    }
+    .modal-footer {
+        padding: 16px 24px 24px 24px; 
+        height: 80px;
     }
     .session-modal-footer {
         .cancel {
@@ -593,10 +603,10 @@ a.btn_sign {
         // background-color: #FFFFFF;
     }
     .session-list {
-        // height: 56px;
-        // line-height: 56px;
-        height: 72px;
-        line-height: 72px;
+        height: 56px;
+        line-height: 56px;
+        // height: 72px;
+        // line-height: 72px;
         border-bottom: 1px solid #f7f8fa;
         background-color: #FFFFFF;
 

@@ -470,10 +470,13 @@
     // height: 34px;
     // width: 143px;
 
-    .ib_table_item {
-        padding: 8px 20px;
+    .ib_table_title {
 
-        font-family: $font-nav-acc;
+    }
+    .ib_table_item {
+        padding: 0px 24px 8px 24px;
+
+        font-family: PingFangSC-Regular;;
         font-size: 12px;
         color: #6B778C;
         line-height: 16px;
@@ -482,9 +485,12 @@
     }
 
     .ib_table_content_item {
-        padding: 8px 20px;
-
-        @extend %font-main-text;
+        padding: 16px 24px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        // @extend %font-main-text;
+        font-family: PingFangSC-Regular;
         text-align: left;
 
         max-width: 200px;
