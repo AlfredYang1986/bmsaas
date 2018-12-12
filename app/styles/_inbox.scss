@@ -485,10 +485,10 @@
     }
 
     .ib_table_content_item {
-        padding: 16px 24px;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
+        padding: 8px 24px;
+        // white-space: nowrap;
+        // text-overflow: ellipsis;
+        // overflow: hidden;
         // @extend %font-main-text;
         font-family: PingFangSC-Regular;
         text-align: left;
@@ -513,7 +513,8 @@
             border: none;
             background: transparent;
             border-radius: 4px;
-            padding: 6px 0;
+            padding: 0;
+            margin: 6px 0;
             font-family: $font-nav-acc;
             font-size: 14px;
             color: #80AEFF;
