@@ -1,0 +1,16 @@
+{{yield}}
+
+<div class="self_info">
+    {{#layout-push direction='row' classNames='follower-info'}}
+        <div class="follower-head-img">
+            <img src="https://bm-web.oss-cn-beijing.aliyuncs.com/avatar_defautl_96px%20%401x.png" alt="">
+        </div>
+        {{#layout-push direction='col'}}
+            {{bmdetail/stud-basis-info label="姓名" content='老师名字'}}
+            {{bmdetail/stud-basis-info label="微信昵称" content='老师名字'}}
+            {{bmdetail/stud-basis-info label="关系" content='老师名字'}}
+            {{bmdetail/stud-basis-info label="联系方式" content='老师名字'}}
+        {{/layout-push}}
+    {{/layout-push}}
+</div>
+<div class="follower-line"></div>
