@@ -342,11 +342,6 @@
                 text-align: center;
             }
 
-            .course-reserve-modal-select {
-                select {
-                    @extend %select-box-dropdown-default;
-                }
-            }
             select.error-border {
                 border: 1px solid #DE350B;
             }
