@@ -12,7 +12,7 @@ export default Component.extend({
     },
     margin: 14,
     style: computed('margin', function(){
-        return 'border-right-width: 1px; margin-right: ' + this.margin + 'px'; 
+        return 'margin-right: ' + this.margin + 'px'; 
     }),
     cols: computed('start_date', 'end_date', function(){
         let cur = this.start_date;

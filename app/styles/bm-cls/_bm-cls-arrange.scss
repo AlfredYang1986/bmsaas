@@ -95,8 +95,12 @@
         margin: 0;
         padding: 0;
 
-        thead {
+        .bm-head {
             border-color: #e3eaef;
+        }
+
+        thead {
+            background: white;
         }
 
         thead tr td {
@@ -113,12 +117,13 @@
         //     vertical-align: top;
         // }
 
-        th.fc-widget-header {
+        th.bm-widget-header {
             background: #e3eaef;
             font-size: 13px;
             line-height: 20px;
             padding: 10px 0;
             text-transform: uppercase;
+            text-align: center;
         }
 
         .bm-axis {
@@ -135,10 +140,6 @@
         .bm-day-grid {
             position: relative;
             z-index: 2;
-
-            .bm-row {
-                min-height: 3em;
-            }
         }
 
         .bm-bg {
@@ -148,5 +149,14 @@
             right: 0;
         }
 
+        .bm-day {
+            background: white;
+        }
+
+        .bm-widget-content {
+            padding: 0;
+            vertical-align: top;
+            border: 1px solid #e3eaef;
+        }
     }
 }
