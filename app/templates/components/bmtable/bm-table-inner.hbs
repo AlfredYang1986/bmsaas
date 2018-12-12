@@ -19,8 +19,10 @@
             <td class="ib_table_content_item">{{bmdob/bmdobformat item.except_time}}</td>
             <td class="ib_table_content_item">
                 {{item.Applyee.name}} &nbsp;&nbsp;
-                {{#each item.Kids as |kd|}}
-                    {{kd.guardian_role}}
+                {{#each item.Kids as |kd kdIndex|}}
+                    {{#if (eq kdIndex 0)}}
+                        {{kd.guardian_role}}
+                    {{/if}}
                 {{/each}}
 
             </td>
