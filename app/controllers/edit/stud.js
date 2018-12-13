@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 // import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
+import { computed} from '@ember/object';
 
 export default Controller.extend({
     init() {
@@ -10,13 +11,41 @@ export default Controller.extend({
 
     bm_stud_service: service(),
     bm_tech_service: service(),
+    sex_idx: 0,
+    rela_idx: 0,
+    genderCheck: ['男', '女', '未知'],
+    relaChecked: ['父亲', '母亲', '其他'],
+    sex: computed('sex_idx', function() {
+        if(this.bm_stud_service.stud != null) {
+            if(this.sex_idx == 1) {
+                this.set('bm_stud_service.stud.gender', 0)
+            } else if(this.sex_idx == 0) {
+                this.set('bm_stud_service.stud.gender', 1)
+            } else {
+                this.set('bm_stud_service.stud.gender', 3)
+            }
+        }
 
-    genderCheck: ['男', '女'],
+    }),
+    rela: computed('rela_idx', function() {
+        if(this.bm_stud_service.stud.Guardians.length > 0) {
+            if(this.rela_idx == 0) {
+                this.bm_stud_service.stud.Guardians[0].relation_ship = "爸爸"
+            } else if(this.rela_idx == 1) {
+                this.bm_stud_service.stud.Guardians[0].relation_ship = '妈妈'
+            } else {
+                tthis.bm_stud_service.stud.Guardians[0].relation_ship = '其他'
+            }
+        }
+
+    }),
+
     isPushing: false,
     origin:['学员转介绍', '电话推广', '小程序', '闲暇活动推广', '其他'],
 
     actions: {
         saveInputBtnClicked() {
+            debugger
             if(this.isPushing) {
                 let that = this
                 let callback = {
