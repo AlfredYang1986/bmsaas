@@ -1,24 +1,24 @@
 {{!-- {{yield}} --}}
-{{#layout-push direction='row' mid=true classNames=''}}
+{{#layout-push direction='row' mid=true classNames='bm-pagination'}}
     <ul class="pagination">
         {{#if previousFlag}}
             <li class="page-item">
-                <button class="page-link"  {{action 'onFirstClick'}}>First</button>
+                <button class="page-link"  {{action 'onFirstClick'}}>首页</button>
             </li>
             <li class="page-item">
-                <button class="page-link"  {{action 'onPreviousClick'}}>Previous</button>
+                <button class="page-link"  {{action 'onPreviousClick'}}>上一页</button>
             </li>
         {{else}}
             <li class="page-item disabled">
-                <button class="page-link"  {{action 'onFirstClick'}}>First</button>
+                <button class="page-link"  {{action 'onFirstClick'}}>首页</button>
             </li>
             <li class="page-item disabled">
-                <button class="page-link"  {{action 'onPreviousClick'}}>Previous</button>
+                <button class="page-link"  {{action 'onPreviousClick'}}>上一页</button>
             </li>
         {{/if}}
         {{#each pageGroup as |item index|}}
             {{#if (eq curPage item.pageNum)}}
-                <li class="page-item active">
+                <li class="page-item page-num-item active">
                     <button class="page-link" {{action 'pagiOnClick' item.pageNum}}>{{item.pageNum}}</button>
                 </li>
             {{else}}
@@ -29,18 +29,19 @@
         {{/each}}
         {{#if nextFlag}}
             <li class="page-item">
-                <button class="page-link" {{action 'onNextClick'}}>Next</button>
+                <button class="page-link" {{action 'onNextClick'}}>下一页</button>
             </li>
             <li class="page-item">
-                <button class="page-link" {{action 'onLastClick'}}>Last</button>
+                <button class="page-link" {{action 'onLastClick'}}>尾页</button>
             </li>
         {{else}}
             <li class="page-item disabled">
-                <button class="page-link" {{action 'onNextClick'}}>Next</button>    
+                <button class="page-link" {{action 'onNextClick'}}>下一页</button>    
             </li>
             <li class="page-item disabled">
-                <button class="page-link" {{action 'onLastClick'}}>Last</button>
+                <button class="page-link" {{action 'onLastClick'}}>尾页</button>
             </li>
         {{/if}}
     </ul>
+    <p class="pagination-count">共{{pageCount}}页</p>
 {{/layout-push}}
