@@ -17,10 +17,19 @@ export default Component.extend({
         // return 'overflow: '+ this.overflow + '; height: ' + this.height + 'px;';
     }),
 
-    didInsertElement() {
-        let tmp = this.height;
-        let rows = this.bm_clsarr_service.units.length; // TODO: 七天里面最多的一天
-        tmp = rows * (30 + 3) + 3 + 1;
-        this.set('height', tmp);
+    actions: {
+        panelInserted() {
+           let tmp = this.height;
+            let rows = this.bm_clsarr_service.units.length; // TODO: 七天里面最多的一天
+            tmp = rows * (30 + 3) + 3 + 1;
+            this.set('height', tmp);
+        }
     }
+
+    // didInsertElement() {
+    //     let tmp = this.height;
+    //     let rows = this.bm_clsarr_service.units.length; // TODO: 七天里面最多的一天
+    //     tmp = rows * (30 + 3) + 3 + 1;
+    //     this.set('height', tmp);
+    // }
 });

@@ -12,5 +12,5 @@ export default Service.extend({
     yardid: '',
     refresh_all_token: '',
 
-    units: A(['a', 'b', 'c', 'd']),
+    units: A(['a']),
 });

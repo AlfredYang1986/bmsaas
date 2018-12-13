@@ -19,5 +19,6 @@ export default Component.extend({
     }),
     didInsertElement() {
         console.log('did insert panel');
+        this.onPanelInserted(this);
     }
 });

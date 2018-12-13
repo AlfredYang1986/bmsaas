@@ -10,7 +10,6 @@ export default Component.extend({
         console.log('insert all day bg');
     },
     style: computed('margin', 'height', function(){
-        // return 'margin-right:' + this.margin + 'px';
         return 'margin-right:' + this.margin + 'px;' + 'height:' + this.height + 'px';
     })
 });

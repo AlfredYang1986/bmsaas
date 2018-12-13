@@ -70,6 +70,7 @@ export default Component.extend({
         },
         successHandled() {
             this.set('showAddDlg', false);
+            this.bm_clsarr_service.units.pushObject('b');
         }        
     }
 });
