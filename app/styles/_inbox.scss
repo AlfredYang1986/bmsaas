@@ -405,10 +405,18 @@
     background-color: #fff;
 
     .ib_title {
-        font-family: PingFangSC-Medium;
-        font-size: 24px;
-        color: #172B4D;
-        height: 32px;
+        // font-family: PingFangSC-Medium;
+        // font-size: 24px;
+        // color: #172B4D;
+        // height: 32px;
+
+        p {
+            font-family: PingFangSC-Medium;
+            font-size: 24px;
+            color: #172B4D;
+            height: 32px;
+            line-height: 32px;
+        }
     }
 }
 .ib_table_select_area {
@@ -531,5 +539,59 @@
                 color: #80AEFF;
             }
         }
+    }
+}
+.bm-pagination {
+    .pagination {
+        margin: 0;
+
+        .page-item {
+            background-color: transparent;
+            border-radius: 4px;
+            height: 24px;
+            min-width: 24px;
+
+            .page-link {
+                font-family: SFUIText-Medium;
+                font-size: 14px;
+                color: #42526E;
+                letter-spacing: 0;
+                text-align: center;
+                height: 24px;
+                background-color: transparent;
+                border: none;
+                padding: 0 8px;
+                margin: 0;
+
+                &:focus {
+                    box-shadow: none;
+                }
+            }
+            &.active {
+                background-color: #42526E;
+
+                .page-link {
+                    color: #FFFFFF;
+                }
+            }
+            &.disabled {
+                .page-link {
+                    color: #A5ADBA;
+                }
+            }
+        }
+        .page-num-item {
+            width: 32px;
+            .page-link {
+                width: 32px;
+            }
+        }
+    }
+    .pagination-count {
+        font-family: SFUIText-Medium;
+        font-size: 14px;
+        color: #42526E;
+        height: 24px;
+        line-height: 24px;
     }
 }

@@ -346,7 +346,6 @@ export default Service.extend({
             },
             data: dt,
             success: function(res) {
-                debugger
 
                 that.bmstore.reset();
                 that.set('stud', null);

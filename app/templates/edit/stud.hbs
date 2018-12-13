@@ -41,7 +41,10 @@
 
 			{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
 				<p class="edit_title">性别</p>
-				{{#layout-push direction='row'}}
+
+				{{bmcom/bm-radio-inline cur_idx=sex_idx judge=sex titles=genderCheck}}
+
+				{{!-- {{#layout-push direction='row'}}
 					<span class="radio-inline">
 						{{input type="radio" name="studSex" checked=true}}
 						<label for="male">男</label>
@@ -54,7 +57,7 @@
 						{{input type="radio" name="studSex" checked=(bmeq bm_stud_service.stud.gender -1)}}
 						<label for="female">未知</label>
 					</span>
-				{{/layout-push}}
+				{{/layout-push}} --}}
 			{{/layout-push}}
 
 			{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
@@ -84,7 +87,8 @@
 
 				{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
 					<p class="edit_title">与孩子关系</p>
-					{{#layout-push direction='row'}}
+						{{bmcom/bm-radio-inline cur_idx=rela_idx titles=relaChecked judge=rela}}
+					{{!-- {{#layout-push direction='row'}}
 						<span class="radio-inline">
 							<input type="radio" name="studRela" value="dad"/>
 							<label for="papa">父亲</label>
@@ -96,9 +100,9 @@
 						<span class="radio-inline">
 							<input type="radio" name="studRela" value="other"/>
 							<label for="mom">其他</label>
-							{{!-- <label for="other">{{input type="text" class="edit_input kid_rel" value=""}}</label> --}}
+							<label for="other">{{input type="text" class="edit_input kid_rel" value=""}}</label>
 						</span>
-					{{/layout-push}}
+					{{/layout-push}} --}}
 				{{/layout-push}}
 				{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
 					{{bmform/bm-edit-line title='联系方式'  inputVal=item.contact classNames='input_area area-margin-bottom'}}
@@ -117,7 +121,7 @@
 				{{#layout-push direction="row" classNames="area-margin-bottom"}}
 					<div class="course-reserve-modal-select error-border">
 						<select class="" id='techSelect' name="" onChange={{action 'selectedTech'}}>
-						   <option value="">请选择参与内容</option>
+						   <option value="">{{bm_stud_service.stud.teacherName}}</option>
 						   {{#each bm_tech_service.techs as |item|}}
 							   <option value={{item.name}}>{{item.name}}</option>
 						   {{/each}}
@@ -138,7 +142,7 @@
 				{{#layout-push direction="row" classNames="area-margin-bottom"}}
 					<div class="course-reserve-modal-select error-border">
 						<select class="" id="originSelect"  name="" onChange={{action 'selectedOrigin'}}>
-						   <option value="">请选择参与内容</option>
+						   <option value="">{{bm_stud_service.stud.sourceWay}}</option>
 						   {{#each origin as |item|}}
 							   <option value={{item}}>{{item}}</option>
 						   {{/each}}
