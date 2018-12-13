@@ -50,6 +50,9 @@ export default Controller.extend({
     //     return this.sr != null && this.sy != null || this.sa != null && this.ss != null;
     // }),
     actions: {
+        handlePageChange (pageNum) {
+            console.log(pageNum)
+        },
         saveInfo() {
             this.set('modal3',false);
             let that = this;

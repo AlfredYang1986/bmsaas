@@ -33,6 +33,54 @@
             {{bmtable/bm-table-inbox title=model.preRegisterTtitle applies=bm_apply_service.preRegistered action="setCurrentApply"}}
         {{/if}}
 
+        {{bmcom/bm-pagination pageCount=30 sendPageNum=(action "handlePageChange")}}
+
+        {{!-- {{#layout-push direction='row' mid=true classNames=''}}
+            <ul class="pagination">
+                {{#if previousFlag}}
+                    <li class="page-item">
+                        <button class="page-link"  {{action 'onFirstClick'}}>First</button>
+                    </li>
+                    <li class="page-item">
+                        <button class="page-link"  {{action 'onPreviousClick'}}>Previous</button>
+                    </li>
+                {{else}}
+                    <li class="page-item disabled">
+                        <button class="page-link"  {{action 'onFirstClick'}}>First</button>
+                    </li>
+                    <li class="page-item disabled">
+                        <button class="page-link"  {{action 'onPreviousClick'}}>Previous</button>
+                    </li>
+                {{/if}}
+                {{#each pageGroup as |item index|}}
+                    {{#if (eq curPage item.pageNum)}}
+                        <li class="page-item active">
+                            <button class="page-link" {{action 'pagiOnClick' item.pageNum}}>{{item.pageNum}}</button>
+                        </li>
+                    {{else}}
+                        <li class="page-item">
+                            <button class="page-link" {{action 'pagiOnClick' item.pageNum}}>{{item.pageNum}}</button>
+                        </li>
+                    {{/if}}
+                {{/each}}
+                {{#if nextFlag}}
+                    <li class="page-item">
+                        <button class="page-link" {{action 'onNextClick'}}>Next</button>
+                    </li>
+                    <li class="page-item">
+                        <button class="page-link" {{action 'onLastClick'}}>Last</button>
+                    </li>
+                {{else}}
+                    <li class="page-item disabled">
+                        <button class="page-link" {{action 'onNextClick'}}>Next</button>    
+                    </li>
+                    <li class="page-item disabled">
+                        <button class="page-link" {{action 'onLastClick'}}>Last</button>
+                    </li>
+                {{/if}}
+            </ul>
+        {{/layout-push}} --}}
+
         {{#bmcom/bm-modal-container
                 needTitle=false
                 mswitch=showhandledlg
