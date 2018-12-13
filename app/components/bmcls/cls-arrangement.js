@@ -1,11 +1,13 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
+import { A } from '@ember/array';
 
 export default Component.extend({
-
     bm_yard_service: service(),
+    bm_clsarr_service: service(),
     selectedYard: '',
+    showAddDlg: false,
     refreshSelected: computed(function(){
         var sel = document.getElementById("yardselect");
         this.set('selectedYard', sel.options[sel.selectedIndex].value);
@@ -62,6 +64,12 @@ export default Component.extend({
         yardChanged() {
             var sel = document.getElementById("yardselect");
             this.set('selectedYard', sel.options[sel.selectedIndex].value);
-        }
+        },
+        cancelHandled() {
+            this.set('showAddDlg', false);
+        },
+        successHandled() {
+            this.set('showAddDlg', false);
+        }        
     }
 });

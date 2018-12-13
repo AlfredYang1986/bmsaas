@@ -1,12 +1,15 @@
 {{!-- {{yield}} --}}
-{{!-- <div class='bm-bg'> --}}
     <table style='height: 100%'>
         <tbody>
             <tr>
                 {{#bmcls/cls-week-calendar-axis classNames='bm-widget-content'}}
                     <span>all day</span>
                 {{/bmcls/cls-week-calendar-axis}}
-                <th class='bm-day bm-widget-content' ></th>
+                <th class='bm-day bm-widget-content' >
+                    {{#each bm_clsarr_service.units as |item| }}
+                        {{bmcls/cls-week-calendar-panel display_str=item}}
+                    {{/each}}
+                </th>
                 <th class='bm-day bm-widget-content' ></th>
                 <th class='bm-day bm-widget-content' ></th>
                 <th class='bm-day bm-widget-content' ></th>
@@ -16,4 +19,3 @@
             </tr>
         </tbody>
     </table>
-{{!-- </div> --}}

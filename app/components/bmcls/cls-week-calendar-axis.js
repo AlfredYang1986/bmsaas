@@ -3,7 +3,7 @@ import { computed } from '@ember/object';
 
 export default Component.extend({
     tagName: 'th',
-    classNames: ['bm-axis', 'bm-widget-header'],
+    classNames: ['bm-axis'],
     attributeBindings: ['style'],
     didInsertElement() {
         console.log('insert bm axis');

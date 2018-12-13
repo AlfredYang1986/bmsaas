@@ -10,7 +10,7 @@ export default Component.extend({
     },
     margin: 14,
     height: 38,
-    style: computed('margin', function(){
+    style: computed('margin', 'height', function(){
         return 'margin-right:' + this.margin + 'px;' + 'height:' + this.height + 'px';
     })
 });
