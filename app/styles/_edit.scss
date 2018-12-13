@@ -7,6 +7,19 @@
 @import 'edit-course';
 @import 'edit-brand';
 
+.ib_radio_inline {
+	min-width: 80px;
+	margin-right: 11px;
+	background-image: url('https://bm-web.oss-cn-beijing.aliyuncs.com/Radio-btn_Resting.png');
+	background-repeat: no-repeat;
+	background-size: 24px 24px;
+	padding-left: 28px;
+	padding-top: 2px;
+	@extend %font-main-text;
+}
+.ib_radio_active {
+	background-image: url('https://bm-web.oss-cn-beijing.aliyuncs.com/Radio-btn_Selected.png');
+}
 .edit_nav {
 	position: fixed;
 	justify-content: space-between;
@@ -839,7 +852,7 @@ span.select-time-subtitle {
 
 
 	}
-	
+
 }
 /*逐条添加样式*/
 .edit_input_remove {

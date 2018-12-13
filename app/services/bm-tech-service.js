@@ -23,7 +23,6 @@ export default Service.extend({
     queryTech() {
         this.bmstore.reset();
         this.set('tech', null);
-        debugger
         if (this.techid.length == 0 || this.techid == 'tech/push') {
             let query_payload = this.genPushQuery();
             let result = this.bmstore.sync(query_payload);

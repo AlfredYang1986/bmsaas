@@ -1,0 +1,25 @@
+{{!-- {{yield}} --}}
+<div class='bm-view-container' >
+    <div class='bm-view bm-agendaWeek-view bm-agenda-view' >
+        <table>
+            <thead class='bm-head'>
+                <tr>
+                    <td class='bm-head-container bm-weiget-header'>
+                        {{bmcls/cls-week-calendar-header start_date=start_date end_date=end_date}}                        
+                    </td>
+                </tr>
+            </thead>
+            <tbody class='bm-body'>
+                <tr>
+                    <td class='bm-widget-content'>
+                        <div class='bm-day-grid bm-unselectable'>
+                            {{bmcls/cls-week-calendar-allday-container}}
+                            <hr class='bm-divider bm-widget-header' >
+                            {{bmcls/cls-week-calendar-scroller}}
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
