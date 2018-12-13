@@ -26,10 +26,4 @@ export default Component.extend({
         }
     }
 
-    // didInsertElement() {
-    //     let tmp = this.height;
-    //     let rows = this.bm_clsarr_service.units.length; // TODO: 七天里面最多的一天
-    //     tmp = rows * (30 + 3) + 3 + 1;
-    //     this.set('height', tmp);
-    // }
 });

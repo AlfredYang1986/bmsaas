@@ -1,0 +1,25 @@
+{{!-- {{yield}} --}}
+    <table style='height: 100%'>
+        <tbody>
+            <tr>
+                {{#bmcls/cls-week-calendar-axis classNames='bm-widget-content'}}
+                    <span></span>
+                {{/bmcls/cls-week-calendar-axis}}
+                <th class='bm-day bm-widget-content' ></th>
+                <th class='bm-day bm-widget-content' >
+                    {{#each bm_clsarr_service.time_uints as |item|}}
+                        <div class='bm-time-container'>
+                            {{bmcls/cls-week-calendar-time-panel
+                                unit=item
+                                onPanelInserted=(action 'panelInserted')}}
+                        </div>
+                    {{/each}}
+                </th>
+                <th class='bm-day bm-widget-content' ></th>
+                <th class='bm-day bm-widget-content' ></th>
+                <th class='bm-day bm-widget-content' ></th>
+                <th class='bm-day bm-widget-content' ></th>
+                <th class='bm-day bm-widget-content' ></th>
+            </tr>
+        </tbody>
+    </table>
