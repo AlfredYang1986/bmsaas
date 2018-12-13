@@ -206,7 +206,6 @@ export default Service.extend({
     },
 
     queryLocalMultiObject() {
-        debugger
         if (this.techs.length == 0) {
             this.queryMultiObjects()
         }

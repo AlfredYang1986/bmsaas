@@ -17,17 +17,29 @@ export default Controller.extend({
 
     actions: {
         saveInputBtnClicked() {
-            debugger
-            let that = this
-            let callback = {
-                onSuccess: function(res) {
-                    that.transitionToRoute('detail.stud', res.data.id);
-                },
-                onFail: function(err) {
-                    console.log('error');
+            if(this.isPushing) {
+                let that = this
+                let callback = {
+                    onSuccess: function(res) {
+                        that.transitionToRoute('detail.stud', res.data.id);
+                    },
+                    onFail: function(err) {
+                        console.log('error');
+                    }
                 }
+                this.bm_stud_service.saveUpdate(callback);
+            } else {
+                let that = this
+                let callback = {
+                    onSuccess: function(res) {
+                        that.transitionToRoute('detail.stud', res.data.id);
+                    },
+                    onFail: function(err) {
+                        console.log('error');
+                    }
+                }
+                this.bm_stud_service.saveUpdate(callback);
             }
-            this.bm_stud_service.saveUpdate(callback);
         },
         selectedTech() {
             let sel = document.getElementById("techSelect");
