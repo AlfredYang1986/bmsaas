@@ -18,7 +18,6 @@ export default Component.extend({
                'margin:' + this.margin + 'px;';
     }),
     didInsertElement() {
-        console.log('did insert panel');
         this.onPanelInserted(this);
     }
 });

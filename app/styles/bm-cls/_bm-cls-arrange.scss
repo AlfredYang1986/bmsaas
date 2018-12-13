@@ -173,5 +173,32 @@
              white-space: nowrap;
              overflow: hidden;
         }
+
+        .bm-divider {
+            padding: 0 0 2px;
+            border-color: #e3eaef;
+            background: #e3eaef;
+            margin: 0;
+        }
+
+        .bm-scroller {
+            position: relative;
+        }
+
+        .bm-slats {
+            position: relative;
+            z-index: 2;
+            background-color: transparent;
+        }
+
+        .bm-time {
+            border-style: solid;
+            border-width: 1px;
+            height: 1.5em;
+        }
+
+        .bm-minor {
+            border-top-style: dotted;
+        }
     }
 }
