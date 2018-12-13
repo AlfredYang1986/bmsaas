@@ -45,7 +45,11 @@ export default Component.extend({
                'background:' + this.bgcolor + ';' + 
                'margin:' + this.margin + 'px;';
     }),
+    showDetailPanel: false,
     didInsertElement() {
         this.onPanelInserted(this);
+    },
+    click() {
+        console.log('click');
     }
 });
