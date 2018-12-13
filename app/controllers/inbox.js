@@ -145,6 +145,11 @@ export default Controller.extend({
             this.set('ss', null);
             this.set('isV', false);
             this.set('current_apply', null);
+            this.set('noteError', false);
+            this.set('noSr', false);
+            this.set('noSy', false);
+            this.set('noSa', false);
+            this.set('noSs', false);
             this.set('showhandledlg', false);
         },
     },
@@ -181,8 +186,8 @@ export default Controller.extend({
                 for (let idx = 0; idx < count; idx++) {
                     arr.push(ori[idx]);
                 }
-                let studid = {"id" : that.bm_stud_service.stud.id};
-                arr.push(studid);
+                let stud = {"id" : that.bm_stud_service.stud.id};
+                arr.push(stud);
 
                 let th = that.bm_sessionable_service.sessionable.Teachers;
                 let th_count = 0
@@ -212,10 +217,10 @@ export default Controller.extend({
                 that.bm_sessionable_service.set('reservableid', reservableid);
                 that.bm_sessionable_service.set('sessionableid', sessionableid);
                 that.bm_sessionable_service.querySessionable2(st2sess);
-                that.toast.success('', '预约成功', that.toastOptions);
+                that.toast.success('', '处理成功', that.toastOptions);
             },
             onFail: function() {
-                that.toast.error('', '预约失败', that.toastOptions);
+                that.toast.error('', '处理失败', that.toastOptions);
                 console.log('push stud fail')
             }
         }
@@ -275,10 +280,10 @@ export default Controller.extend({
                 }
                 let arr = []
                 for (let idx = 0; idx < count; idx++) {
-                    arr.push(ori[idx].id);
+                    arr.push(ori[idx]);
                 }
-                let studid = that.bm_stud_service.stud.id;
-                arr.push(studid);
+                let stud = {"id" : that.bm_stud_service.stud.id};
+                arr.push(stud);
 
                 let th = that.bm_sessionable_service.sessionable.Teachers;
                 let th_count = 0
@@ -308,11 +313,11 @@ export default Controller.extend({
                 that.bm_sessionable_service.set('reservableid', reservableid);
                 that.bm_sessionable_service.set('sessionableid', sessionableid);
                 that.bm_sessionable_service.querySessionable2(st2sess);
-                that.toast.success('', '预约成功', that.toastOptions);
+                that.toast.success('', '处理成功', that.toastOptions);
             },
             onFail: function() {
                 console.log('push stud fail')
-                that.toast.error('', '预约成功', that.toastOptions);
+                that.toast.error('', '处理成功', that.toastOptions);
             }
         }
 

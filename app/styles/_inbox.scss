@@ -400,17 +400,20 @@
         background: #fff;
     }
 }
-
-.ib_title {
+.ib_title_container {
     padding: 20px 24px;
-    background: #fff;
-    font-family: $font-nav-acc;
-    font-size: 24px;
-    color: #172B4D;
+    background-color: #fff;
+
+    .ib_title {
+        font-family: PingFangSC-Medium;
+        font-size: 24px;
+        color: #172B4D;
+        height: 32px;
+    }
 }
 .ib_table_select_area {
     margin-top: 24px;
-    margin-bottom: 32px;
+    margin-bottom: 40px;
     height: 32px;
     display: flex;
     flex-direction: row;
@@ -439,11 +442,12 @@
     width: 100%;
     min-width: 912px;
     margin-top: 24px;
+    height: 24px;
 
     .ib_tab_btn {
-        width: 84px;
+        min-width: 80px;
+        padding: 0 16px;
         height: 24px;
-
         font-family: $font-nav-acc;
         font-size: 14px;
         color: #42526E;
