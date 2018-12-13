@@ -87,7 +87,7 @@
                                     {{kd.guardian_role}}
                                 {{/if}}
                             {{/each}}
-                            </p>
+                        </p>
                     {{/layout-push}}
                     {{#layout-push direction='row' classNames="line-container line-list"}}
                         <p class="course-reserve-label">联系方式</p>
@@ -181,7 +181,14 @@
                     {{/layout-push}}
                     {{#layout-push direction='row' classNames="line-container line-list"}}
                         <p class="course-reserve-label">申请者</p>
-                        <p class="course-reserve-content">{{apply.Applyee.relation_ship}}{{apply.Applyee.name}}</p>
+                        <p class="course-reserve-content">
+                            {{apply.Applyee.name}} 
+                            {{#each apply.Kids as |kd kdIndex|}}
+                                {{#if (eq kdIndex 0)}}
+                                    {{kd.guardian_role}}
+                                {{/if}}
+                            {{/each}}
+                        </p>
                     {{/layout-push}}
                     {{#layout-push direction='row' classNames="line-container line-list"}}
                         <p class="course-reserve-label">联系方式</p>
