@@ -6,7 +6,7 @@
     {{/if}}
     <span>
         {{yield}}
-        <button class="edit_nav_btn btn_save" {{action 'saveCourseBtnClicked'}}>保存</button>
+        <button class="edit_nav_btn btn_save" {{action 'saveCourseBtnClicked'}}>提交</button>
     </span>
 {{/layout-push}}
 
@@ -21,7 +21,8 @@
         {{#if (bmeq cur_page_idx 0)}}
             {{#bmsessioninfo/bm-input-cate-page session=session  isCreate=isCreate}}
                 {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    <p class="nav_save menu_button_between" {{action (mut cur_page_idx) 1}}>下一步</p>
+                    {{!-- <button class="edit_between_btn" {{action (mut cur_page_idx) 1}}>下一步</button> --}}
+                    <button class="edit_between_btn" {{action (mut cur_page_idx) 1}}>下一步</button>
                 {{/layout-push}}
             {{/bmsessioninfo/bm-input-cate-page}}
         {{/if}}
@@ -29,7 +30,7 @@
         {{#if (bmeq cur_page_idx 1)}}
             {{#bmsessioninfo/bm-input-basic-page session=session isCreate=isCreate}}
                 {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    <p class="nav_save menu_button_between" {{action (mut cur_page_idx) 2}}>下一步</p>
+                    <button class="edit_between_btn" {{action (mut cur_page_idx) 2}}>下一步</button>
                 {{/layout-push}}
             {{/bmsessioninfo/bm-input-basic-page}}
         {{/if}}
@@ -37,7 +38,7 @@
         {{#if (bmeq cur_page_idx 2)}}
             {{#bmsessioninfo/bm-input-content-page session=session isCreate=isCreate}}
                 {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    <p class="nav_save menu_button_between" {{action (mut cur_page_idx) 3}}>下一步</p>
+                    <button class="edit_between_btn" {{action (mut cur_page_idx) 3}}>下一步</button>
                 {{/layout-push}}
             {{/bmsessioninfo/bm-input-content-page}}
         {{/if}}
@@ -45,7 +46,7 @@
         {{#if (bmeq cur_page_idx 3)}}
             {{#bmsessioninfo/bm-input-inter-page session=session isCreate=isCreate}}
                 {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    <p class="nav_save menu_button_between" {{action (mut cur_page_idx) 4}}>下一步</p>
+                    <button class="edit_between_btn" {{action (mut cur_page_idx) 4}}>下一步</button>
                 {{/layout-push}}
             {{/bmsessioninfo/bm-input-inter-page}}
         {{/if}}
@@ -53,7 +54,7 @@
         {{#if (bmeq cur_page_idx 4)}}
             {{#bmsessioninfo/bm-input-img-page session=session isCreate=isCreate}}
                 {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    <p class="nav_save menu_button_between" {{action (mut cur_page_idx) 5}}>下一步</p>
+                    <button class="edit_between_btn" {{action (mut cur_page_idx) 5}}>下一步</button>
                 {{/layout-push}}
             {{/bmsessioninfo/bm-input-img-page}}
         {{/if}}
@@ -61,7 +62,7 @@
         {{#if (bmeq cur_page_idx 5)}}
             {{#bmsessioninfo/bm-input-acq-page session=session isCreate=isCreate}}
                 {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    <p class="nav_save menu_button_between" {{action (mut cur_page_idx) 6}}>下一步</p>
+                    <button class="edit_between_btn" {{action (mut cur_page_idx) 6}}>下一步</button>
                 {{/layout-push}}
             {{/bmsessioninfo/bm-input-acq-page}}
         {{/if}}
@@ -69,7 +70,7 @@
         {{#if (bmeq cur_page_idx 6)}}
             {{#bmsessioninfo/bm-input-inc-page session=session isCreate=isCreate}}
                 {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    <p class="nav_save menu_button_between" {{action (mut cur_page_idx) 7}}>下一步</p>
+                    <button class="edit_between_btn" {{action (mut cur_page_idx) 7}}>下一步</button>
                 {{/layout-push}}
             {{/bmsessioninfo/bm-input-inc-page}}
 
@@ -78,25 +79,25 @@
         {{#if (bmeq cur_page_idx 7)}}
             {{#bmsessioninfo/bm-input-carry-page session=session isCreate=isCreate}}
                 {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    <p class="nav_save menu_button_between" {{action (mut cur_page_idx) 8}}>下一步</p>
+                    <button class="edit_between_btn" {{action (mut cur_page_idx) 8}}>下一步</button>
                 {{/layout-push}}
             {{/bmsessioninfo/bm-input-carry-page}}
 
         {{/if}}
 
         {{#if (bmeq cur_page_idx 8)}}
-        {{#bmsessioninfo/bm-input-acc-page session=session isCreate=isCreate}}
-            {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                <p class="nav_save menu_button_between" {{action (mut cur_page_idx) 9}}>下一步</p>
-            {{/layout-push}}
-        {{/bmsessioninfo/bm-input-acc-page}}
+            {{#bmsessioninfo/bm-input-acc-page session=session isCreate=isCreate}}
+                {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
+                    <button class="edit_between_btn" {{action (mut cur_page_idx) 9}}>下一步</button>
+                {{/layout-push}}
+            {{/bmsessioninfo/bm-input-acc-page}}
         {{/if}}
 
         {{#if (bmeq cur_page_idx 9)}}
             {{#bmsessioninfo/bm-input-note-page session=session isCreate=isCreate}}
-                {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    <p class="nav_save menu_button_between" {{action 'saveCourseBtnClicked'}}>完成</p>
-                {{/layout-push}}
+                {{!-- {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
+                    <button class="edit_between_btn" {{action 'saveCourseBtnClicked'}}>提交</button>
+                {{/layout-push}} --}}
             {{/bmsessioninfo/bm-input-note-page}}
         {{/if}}
     </div>

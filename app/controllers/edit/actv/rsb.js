@@ -3,7 +3,6 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 
 export default Controller.extend({
-
     bm_actv_service: service(),
 
     // cur_page_idx: 0,
@@ -11,11 +10,11 @@ export default Controller.extend({
     isPushing: false,
 
     actions: {
-        saveCourseBtnClicked() {
+        saveCourseBtnClicked(idx) {
             let that = this
             let callback = {
-                onSuccess: function() {
-                    that.transitionToRoute('actv');
+                onSuccess: function(res) {
+                    that.transitionToRoute('detail.actv', res.data.id);
                 },
                 onFail: function(err) {
                     console.log('error');

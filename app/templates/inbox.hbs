@@ -1,8 +1,9 @@
 <div class="detail_content_top">
     <div class="detail_page">
-
-        {{#layout-push direction='col' classNames='ib_title'}}
-            收件箱
+        {{#layout-push direction='row' classNames='ib_title_container'}}
+            {{#layout-push direction='col' mid=true classNames='ib_title'}}
+                <p>收件箱</p>
+            {{/layout-push}}
         {{/layout-push}}
 
         {{bmcom/bm-tabs-bar cur_idx=cur_tab_idx titles=tabs}}
@@ -11,14 +12,14 @@
             {{#if (bmeq cur_tab_idx 0)}}
                 <span class="ib_table_num">共{{bm_apply_service.amount}}条</span>
                 <select class="ib_table_select" name="" id='selectReserve' onChange={{action 'reserveTypeChanged'}}>
-                    <option value="">今天</option>
                     <option value="">全部</option>
+                    <option value="">今天</option>
                 </select>
             {{else if (bmeq cur_tab_idx 1)}}
                 <span class="ib_table_num">共{{bm_apply_service.preAmount}}条</span>
                 <select class="ib_table_select" name="" id='selectReserve' onChange={{action 'preRegisterChanged'}}>
-                    <option value="">今天</option>
                     <option value="">全部</option>
+                    <option value="">今天</option>
                 </select>
             {{/if}}
 
@@ -32,19 +33,73 @@
             {{bmtable/bm-table-inbox title=model.preRegisterTtitle applies=bm_apply_service.preRegistered action="setCurrentApply"}}
         {{/if}}
 
+        {{bmcom/bm-pagination pageCount=30 sendPageNum=(action "handlePageChange")}}
+
+        {{!-- {{#layout-push direction='row' mid=true classNames=''}}
+            <ul class="pagination">
+                {{#if previousFlag}}
+                    <li class="page-item">
+                        <button class="page-link"  {{action 'onFirstClick'}}>First</button>
+                    </li>
+                    <li class="page-item">
+                        <button class="page-link"  {{action 'onPreviousClick'}}>Previous</button>
+                    </li>
+                {{else}}
+                    <li class="page-item disabled">
+                        <button class="page-link"  {{action 'onFirstClick'}}>First</button>
+                    </li>
+                    <li class="page-item disabled">
+                        <button class="page-link"  {{action 'onPreviousClick'}}>Previous</button>
+                    </li>
+                {{/if}}
+                {{#each pageGroup as |item index|}}
+                    {{#if (eq curPage item.pageNum)}}
+                        <li class="page-item active">
+                            <button class="page-link" {{action 'pagiOnClick' item.pageNum}}>{{item.pageNum}}</button>
+                        </li>
+                    {{else}}
+                        <li class="page-item">
+                            <button class="page-link" {{action 'pagiOnClick' item.pageNum}}>{{item.pageNum}}</button>
+                        </li>
+                    {{/if}}
+                {{/each}}
+                {{#if nextFlag}}
+                    <li class="page-item">
+                        <button class="page-link" {{action 'onNextClick'}}>Next</button>
+                    </li>
+                    <li class="page-item">
+                        <button class="page-link" {{action 'onLastClick'}}>Last</button>
+                    </li>
+                {{else}}
+                    <li class="page-item disabled">
+                        <button class="page-link" {{action 'onNextClick'}}>Next</button>    
+                    </li>
+                    <li class="page-item disabled">
+                        <button class="page-link" {{action 'onLastClick'}}>Last</button>
+                    </li>
+                {{/if}}
+            </ul>
+        {{/layout-push}} --}}
+
         {{#bmcom/bm-modal-container
                 needTitle=false
                 mswitch=showhandledlg
                 needSubmit=couldSubmit
                 contentSubmit=contentSubmit
-                successbtncss='course-reserve-card-save'
-                cancelbtncss='course-reserve-card-cancel'
+                successbtncss='exp-modal-confirm'
+                cancelbtncss='exp-modal-cancel'
                 canceltext='取消'
                 onCancelBtnClicked=(action 'cancelHandled')
                 onSuccessBtnClicked=(action 'successHandled')}}
             {{#layout-push direction=row classNames="course-reserve-pop-ups-content"}}
                 {{mail-processing-pop-ups
                         classNames="course-reserve-modal-body"
+                        toggleAction=(action 'toggleAction')
+                        noteError=noteError
+                        noSr=noSr
+                        noSy=noSy
+                        noSa=noSa
+                        noSs=noSs
                         selectedReservable=sr
                         selectedYard=sy
                         selectedDate=dt

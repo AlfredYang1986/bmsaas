@@ -4,6 +4,7 @@ import { inject as service } from '@ember/service';
 export default Controller.extend({
 
     bm_session_service: service(),
+    bm_exp_service: service(),
     isCreate: false,
     isPushing: false,
 
@@ -12,7 +13,7 @@ export default Controller.extend({
             let that = this
             let callback = {
                 onSuccess: function() {
-                    that.transitionToRoute('detail.exp', idx);
+                    that.transitionToRoute('detail.exp', that.bm_exp_service.expid);
                 },
                 onFail: function(err) {
                     console.log('error');

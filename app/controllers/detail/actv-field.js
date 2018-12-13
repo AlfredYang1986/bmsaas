@@ -1,8 +1,9 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
 
 export default Controller.extend({
-    tableTitle: ["参与者","孩子","生日","性别", "联系方式", "渠道"],
+    tableTitle: ["孩子","生日","性别", "联系方式", "渠道"],
     bm_actv_service: service(),
     bm_sessionable_service: service(),
     bm_yard_service: service(),
@@ -18,6 +19,10 @@ export default Controller.extend({
     cur_tmp_date: "",
     cur_start_date: "",
     cur_end_date: "",
+    noteError: false,
+    // couldSubmit: computed('cur_yard_id', function() {
+    //     return this.cur_yard_id != null && this.cur_yard_id != "";
+    // }),
 
     deleteSessionDlg: false,
     showEditSessionDlg: false,
@@ -46,10 +51,12 @@ export default Controller.extend({
             this.bm_sessionable_service.deleteSessionable(callback);
         },
         cancelHandled() {
+            this.set('noteError', false);
             this.set('deleteSessionDlg', false);
             this.set('showEditSessionDlg', false);
         },
         successHandled() {
+            if (this.checkValidate()) {
             let that = this;
             if (this.cur_yard_id.length == 0) {
                 alert('shold add yard')
@@ -72,12 +79,15 @@ export default Controller.extend({
             }
 
             this.bm_sessionable_service.resetInfoAndYard(this.cur_yard_id, this.bm_actv_service.actv.SessionInfo.id);
-            this.bm_sessionable_service.resetTechs([]);
-            this.bm_sessionable_service.resetAttendee([]);
+            this.bm_sessionable_service.resetTechs(this.bm_sessionable_service.sessionable.Teachers);
+            this.bm_sessionable_service.resetAttendee(this.bm_sessionable_service.sessionable.Attendees);
             this.bm_sessionable_service.saveUpdate(callback);
 
             this.set('cur_yard_id', "");
             this.set('showEditSessionDlg', false);
+        } else {
+            this.set('noteError', true);
+        }
         },
         reservableChanged() {
             let sel = document.getElementById('reservableselect');
@@ -87,5 +97,8 @@ export default Controller.extend({
                 this.set('cur_yard_id', "");
             }
         },
-    }
+    },
+    checkValidate() {
+        return this.cur_yard_id != null && this.cur_yard_id != "";
+    },
 });

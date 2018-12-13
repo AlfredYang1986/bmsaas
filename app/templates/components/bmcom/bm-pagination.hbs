@@ -1,0 +1,46 @@
+{{!-- {{yield}} --}}
+{{#layout-push direction='row' mid=true classNames=''}}
+    <ul class="pagination">
+        {{#if previousFlag}}
+            <li class="page-item">
+                <button class="page-link"  {{action 'onFirstClick'}}>First</button>
+            </li>
+            <li class="page-item">
+                <button class="page-link"  {{action 'onPreviousClick'}}>Previous</button>
+            </li>
+        {{else}}
+            <li class="page-item disabled">
+                <button class="page-link"  {{action 'onFirstClick'}}>First</button>
+            </li>
+            <li class="page-item disabled">
+                <button class="page-link"  {{action 'onPreviousClick'}}>Previous</button>
+            </li>
+        {{/if}}
+        {{#each pageGroup as |item index|}}
+            {{#if (eq curPage item.pageNum)}}
+                <li class="page-item active">
+                    <button class="page-link" {{action 'pagiOnClick' item.pageNum}}>{{item.pageNum}}</button>
+                </li>
+            {{else}}
+                <li class="page-item">
+                    <button class="page-link" {{action 'pagiOnClick' item.pageNum}}>{{item.pageNum}}</button>
+                </li>
+            {{/if}}
+        {{/each}}
+        {{#if nextFlag}}
+            <li class="page-item">
+                <button class="page-link" {{action 'onNextClick'}}>Next</button>
+            </li>
+            <li class="page-item">
+                <button class="page-link" {{action 'onLastClick'}}>Last</button>
+            </li>
+        {{else}}
+            <li class="page-item disabled">
+                <button class="page-link" {{action 'onNextClick'}}>Next</button>    
+            </li>
+            <li class="page-item disabled">
+                <button class="page-link" {{action 'onLastClick'}}>Last</button>
+            </li>
+        {{/if}}
+    </ul>
+{{/layout-push}}

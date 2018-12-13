@@ -322,8 +322,8 @@ a.reserve_detail_href_ref {
 }
 
 .detail_margin_top.detail_margin_top_field {
-    height: 64px;
-    padding: 16px 24px;
+    height: 80px;
+    padding: 24px;
     .reserve-detail-head{
         height: 32px;
     }
@@ -433,7 +433,7 @@ a.reserve_detail_href_ref {
         border: none;
         background: $color-theme-T100;
         border-radius: 100px;
-        font-family: $font-family;
+        font-family: PingFangSC-Medium;
         font-size: $font-size-main;
         color: $color-neutral-N000;
         letter-spacing: 2px;
@@ -472,12 +472,34 @@ a.reserve_detail_href_ref {
 }
 .modal-content {
     border: none;
+    
     .session-modal  {
-        padding: 24px 8px;
+        padding: 24px 0 8px 0;
         background: #fff;
         // width: 512px;
+        .form-checked {
+            margin-bottom: 16px;
+            img.error {
+                margin-right: 4px;
+                width: 24px;
+                height: 24px;
+            }
+            .error-info {
+                font-family: PingFangSC-Regular;
+                font-size: 14px;
+                color: #DE350B;
+            }
+            .error-line {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
+        }
         .line-list {
             margin-bottom: 24px;
+            &:nth-last-child(1) {
+                margin-bottom: 0;
+            }
         }
         .line-area {
             margin-top: 16px;
@@ -493,7 +515,7 @@ a.reserve_detail_href_ref {
             }
         }
         .title {
-            margin-bottom: 30px;
+            margin-bottom: 24px;
             font-family: PingFangSC-Medium;
             font-size: 16px;
             color: #172B4D;
@@ -507,7 +529,7 @@ a.reserve_detail_href_ref {
             color: #172B4D;
         }
         .radio-col {
-            margin-bottom: 10px;
+            margin-bottom: 0;
             .session-modal-select {
                 width: 320px;
                 height: 35px;
@@ -520,6 +542,10 @@ a.reserve_detail_href_ref {
                 text-align: left;
                 // background: url("../img/chevron_down_normal@2x.png") no-repeat right center transparent;
                 // @extend %select-box-dropdown-default;
+
+                &.error-border {
+                    border: 1px solid #DE350B;
+                }
             }
             label {
                 font-family: SFUIText-Regular;
@@ -528,8 +554,15 @@ a.reserve_detail_href_ref {
                 text-align: left;
                 line-height: 20px;
             }
+            & + .radio-col{
+                margin-bottom: 8px;
+            }
         }
 
+    }
+    .modal-footer {
+        padding: 24px; 
+        height: 80px;
     }
     .session-modal-footer {
         .cancel {
@@ -574,10 +607,10 @@ a.btn_sign {
         // background-color: #FFFFFF;
     }
     .session-list {
-        // height: 56px;
-        // line-height: 56px;
-        height: 72px;
-        line-height: 72px;
+        height: 56px;
+        line-height: 56px;
+        // height: 72px;
+        // line-height: 72px;
         border-bottom: 1px solid #f7f8fa;
         background-color: #FFFFFF;
 
@@ -602,6 +635,16 @@ a.btn_sign {
             &::after {
                 display: none;
             }
+        }
+    }
+}
+
+.exp_table {
+    .session-list {
+        .ib_table_content_item:nth-child(3) {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
         }
     }
 }
@@ -673,6 +716,9 @@ a.btn_sign {
 }
 .modal-dialog {
     .modal-content {
+        .stud_card {
+            margin-bottom: 8px;
+        }
         .exp-modal-delete {
             font-family: PingFangSC-Semibold;
             width: 80px;
@@ -727,6 +773,36 @@ a.btn_sign {
 
             &:focus {
                 background-color: #E9AC50;
+                color: #fff;
+                border: none;
+                box-shadow: none;
+            }
+        }
+
+        .exp-modal-confirm{
+            font-family: PingFangSC-Semibold;
+            width: 80px;
+            height: 32px;
+            border: none;
+            border-radius: 4px;
+            background: #80AEFF;
+            font-size: 14px;
+            color: #fff;
+
+            &:active {
+                background-color: #80AEFF;
+                color: #fff;
+                border: none;
+            }
+
+            &:hover {
+                background-color: #80AEFF;
+                color: #fff;
+                border: none;
+            }
+
+            &:focus {
+                background-color: #80AEFF;
                 color: #fff;
                 border: none;
                 box-shadow: none;

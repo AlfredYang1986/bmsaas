@@ -3,7 +3,7 @@ import Component from '@ember/component';
 export default Component.extend({
     positionalParams: ['listData' ,'type'],
     tagName: '',
-    dealed: false,
+	dealed: false,
     actions: {
 		onClickInner: function (params) {
 			this.sendAction("action", params);

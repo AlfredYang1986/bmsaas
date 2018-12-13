@@ -1,5 +1,6 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
 
 export default Controller.extend({
 
@@ -25,6 +26,10 @@ export default Controller.extend({
     cur_start_date: "",
     cur_end_date: "",
     edit_flag_info: "",
+    noteError: false,
+    // couldSubmit: computed('cur_yard_id', function() {
+    //     return this.cur_yard_id != null && this.cur_yard_id != "";
+    // }),
 
     tmpSessionable: '',
 
@@ -127,12 +132,14 @@ export default Controller.extend({
         },
         cancelHandled() {
             this.set('tmpSessionable', "");
+            this.set('noteError', false);
             this.set('showAddSessionDlg', false);
             this.set('deleteActvDlg', false);
             this.set('closeActvDlg', false);
             this.set('deleteSessionDlg', false);
         },
         successHandled() {
+            if (this.checkValidate()) {
             let that = this;
             let edit_flag_info = "添加";
             if (this.get('edit_flag_info')) {
@@ -158,20 +165,25 @@ export default Controller.extend({
             }
             
             this.bm_sessionable_service.resetInfoAndYard(this.cur_yard_id, this.bm_actv_service.actv.SessionInfo.id);
-            this.bm_sessionable_service.resetTechs([]);
-            this.bm_sessionable_service.resetAttendee([]);
             if(this.tmpSessionable === ""){
+                this.bm_sessionable_service.resetTechs([]);
+                this.bm_sessionable_service.resetAttendee([]);
                 this.bm_sessionable_service.saveUpdate(callback);
             }else{
                 this.set("tmpSessionable.tmp_date", this.cur_tmp_date);
                 this.set("tmpSessionable.start_date", this.cur_start_date);
                 this.set("tmpSessionable.end_date", this.cur_end_date);
+                this.bm_sessionable_service.resetTechs(this.tmpSessionable.Teachers);
+                this.bm_sessionable_service.resetAttendee(this.tmpSessionable.Attendees);
                 this.bm_sessionable_service.saveUpdate(callback,this.tmpSessionable);
             }
 
             this.set('edit_flag_info', "");
             this.set('tmpSessionable', "");
             this.set('cur_yard_id', "");
+        } else {
+            this.set('noteError', true);
+        }
         },
         reservableChanged() {
             let sel = document.getElementById('reservableselect');
@@ -183,7 +195,9 @@ export default Controller.extend({
         }
     },
 
-
+    checkValidate() {
+        return this.cur_yard_id != null && this.cur_yard_id != "";
+    },
     generateSessionable() {
         if (this.showAddSessionDlg == true) {
             this.bm_sessionable_service.set('sessionableid', 'sessionable/push');

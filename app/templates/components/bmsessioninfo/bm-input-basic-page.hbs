@@ -1,6 +1,6 @@
 <section id="start-story" class="alt_course_section" >
     {{#layout-push direction='col' classNames='alt_course_panel edit_panel edit_second_panel'}}
-        <span class='alt_course_big_title'>基本信息</span>
+        <span class='alt_course_title alt_course_big_title'>基本信息</span>
 
         {{#if (bmeq session.status 1)}}
             <span class='alt_course_title'>体验课名称</span>
@@ -20,16 +20,12 @@
             {{#layout-push direction="col" classNames="alt-course-age-group"}}
             {{#if lengthIf}}
                 <div class="course-edit-check course-edit-check-low">
-                    <span class="radio-inline">
-                        <label for="female">
-                            <div class="input-group">
-                                {{input value=session.length class="edit_input_age" disabled='' type="number"}}
-                                <div class="input-group-append">
-                                    <span class="input-group-text">分钟</span>
-                                </div>
-                            </div>
-                        </label>
-                    </span>
+                    <div class="input-group">
+                        {{input value=session.length class="edit_input_age" disabled='' type="number"}}
+                        <div class="input-group-append">
+                            <span class="input-group-text">分钟</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="course-edit-check course-edit-check-low" {{action 'lengthNoSelected'}}>
                     <span class="radio-inline">
@@ -39,16 +35,12 @@
                 </div>
             {{else}}
                 <div class="course-edit-check course-edit-check-low">
-                    <span class="radio-inline">
-                        <label for="female">
-                            <div class="input-group">
-                                {{input value='' class="edit_input_age" disabled='disabled' type="number"}}
-                                <div class="input-group-append">
-                                    <span class="input-group-text">分钟</span>
-                                </div>
-                            </div>
-                        </label>
-                    </span>
+                    <div class="input-group">
+                        {{input value='' class="edit_input_age" disabled='disabled' type="number"}}
+                        <div class="input-group-append">
+                            <span class="input-group-text">分钟</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="course-edit-check course-edit-check-low" {{action 'lengthNoSelected'}}>
                     <span class="radio-inline">
@@ -64,49 +56,41 @@
             <span class='alt_course_title alt_course_title_age'>适宜年龄</span>
             <div class="course-edit-check">
                 {{#if ageInput}}
-                    <span class="radio-inline" {{action 'ageInputSelect'}}>
-                        <label for="age">
-                            {{#layout-push direction="row" classNames="alt-course-age-group"}}
-                                <div class="input-group">
-                                    {{input value=session.alb  maxlength='2' class="edit_input_age"  type="number"}}
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">岁</span>
-                                    </div>
-                                </div>
-                                <span class="alt_course_des">至</span>
-                                <div class="input-group">
-                                    {{input value=session.aub class="edit_input_age"  type="number"  maxlength='2'}}
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">岁</span>
-                                    </div>
-                                </div>
-                            {{/layout-push}}
-                        </label>
-                    </span>
+                    {{#layout-push direction="row" classNames="alt-course-age-group"}}
+                        <div class="input-group">
+                            {{input value=session.alb  maxlength='2' class="edit_input_age"  type="number"}}
+                            <div class="input-group-append">
+                                <span class="input-group-text">岁</span>
+                            </div>
+                        </div>
+                        <span class="alt_course_des">至</span>
+                        <div class="input-group">
+                            {{input value=session.aub class="edit_input_age"  type="number"  maxlength='2'}}
+                            <div class="input-group-append">
+                                <span class="input-group-text">岁</span>
+                            </div>
+                        </div>
+                    {{/layout-push}}
                     <div class="course-edit-check course-edit-check-age">
                         {{#bmform/age-select-input alb=session.alb aub=session.aub ageSelect=(action 'ageSelect')}}
                         {{/bmform/age-select-input}}
                     </div>
                 {{else}}
-                    <span class="radio-inline" {{action 'ageInputSelect'}}>
-                        <label for="age">
-                            {{#layout-push direction="row" classNames="alt-course-age-group"}}
-                                <div class="input-group">
-                                    {{input value='' maxlength='2' class="edit_input_age" readonly='readonly'  type="number"}}
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">岁</span>
-                                    </div>
-                                </div>
-                                <span class="alt_course_des">至</span>
-                                <div class="input-group">
-                                    {{input value='' class="edit_input_age"  type="number" readonly='readonly'  maxlength='2'}}
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">岁</span>
-                                    </div>
-                                </div>
-                            {{/layout-push}}
-                        </label>
-                    </span>
+                    {{#layout-push direction="row" classNames="alt-course-age-group"}}
+                        <div class="input-group">
+                            {{input value='' maxlength='2' class="edit_input_age" readonly='readonly'  type="number"}}
+                            <div class="input-group-append">
+                                <span class="input-group-text">岁</span>
+                            </div>
+                        </div>
+                        <span class="alt_course_des">至</span>
+                        <div class="input-group">
+                            {{input value='' class="edit_input_age"  type="number" readonly='readonly'  maxlength='2'}}
+                            <div class="input-group-append">
+                                <span class="input-group-text">岁</span>
+                            </div>
+                        </div>
+                    {{/layout-push}}
                     <div class="course-edit-check course-edit-check-age">
                         {{#bmform/age-select-input alb=session.alb aub=session.aub ageSelect=(action 'ageSelect') checked='checked'}}
                         {{/bmform/age-select-input}}

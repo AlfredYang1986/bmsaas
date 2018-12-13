@@ -106,7 +106,7 @@
             @extend %font-dialog-title;
         }
         span.base-info {
-            @extend %font-minimum-text;
+            @extend %font-help-text;
         }
     }
     .class-modal-content {
@@ -206,10 +206,37 @@
             .card-area {
                 margin-top: 24px;
             }
+            .form-checked {
+                margin-bottom: 16px;
+                img.error {
+                    margin-right: 4px;
+                    width: 24px;
+                    height: 24px;
+                }
+                .error-info {
+                    font-family: PingFangSC-Regular;
+                    font-size: 14px;
+                    color: #DE350B;
+                }
+                .error-line {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                }
+            }
+            .error-note {
+                display: none;
+            }
             .line-list {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
                 margin-bottom: 24px;
             }
             .line-area {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
                 margin-bottom: 45px;
             }
             p.course-point {
@@ -239,8 +266,9 @@
                 flex-direction: row;
             }
             p.course-reserve-label {
-                margin-right: 25px;
-                min-width: 70px;
+                margin-bottom: 0;
+                margin-right: 16px;
+                min-width: 56px;
                 text-align: left;
                 @extend %font-form-info-title;
                 span.base-info {
@@ -313,10 +341,9 @@
                 color: #6B778C;
                 text-align: center;
             }
-            .course-reserve-modal-select {
-                select {
-                    @extend %select-box-dropdown-default;
-                }
+
+            select.error-border {
+                border: 1px solid #DE350B;
             }
             select.course-reserve-modal-select {
                 @extend %select-box-dropdown-default;
@@ -373,17 +400,20 @@
         background: #fff;
     }
 }
-
-.ib_title {
+.ib_title_container {
     padding: 20px 24px;
-    background: #fff;
-    font-family: $font-nav-acc;
-    font-size: 24px;
-    color: #172B4D;
+    background-color: #fff;
+
+    .ib_title {
+        font-family: PingFangSC-Medium;
+        font-size: 24px;
+        color: #172B4D;
+        height: 32px;
+    }
 }
 .ib_table_select_area {
     margin-top: 24px;
-    margin-bottom: 32px;
+    margin-bottom: 40px;
     height: 32px;
     display: flex;
     flex-direction: row;
@@ -412,11 +442,12 @@
     width: 100%;
     min-width: 912px;
     margin-top: 24px;
+    height: 24px;
 
     .ib_tab_btn {
-        width: 84px;
+        min-width: 80px;
+        padding: 0 16px;
         height: 24px;
-
         font-family: $font-nav-acc;
         font-size: 14px;
         color: #42526E;
@@ -443,10 +474,13 @@
     // height: 34px;
     // width: 143px;
 
-    .ib_table_item {
-        padding: 8px 20px;
+    .ib_table_title {
 
-        font-family: $font-nav-acc;
+    }
+    .ib_table_item {
+        padding: 0px 24px 8px 24px;
+
+        font-family: PingFangSC-Regular;;
         font-size: 12px;
         color: #6B778C;
         line-height: 16px;
@@ -455,9 +489,12 @@
     }
 
     .ib_table_content_item {
-        padding: 8px 20px;
-
-        @extend %font-main-text;
+        padding: 8px 24px;
+        // white-space: nowrap;
+        // text-overflow: ellipsis;
+        // overflow: hidden;
+        // @extend %font-main-text;
+        font-family: PingFangSC-Regular;
         text-align: left;
 
         max-width: 200px;
@@ -480,7 +517,8 @@
             border: none;
             background: transparent;
             border-radius: 4px;
-            padding: 6px 0;
+            padding: 0;
+            margin: 6px 0;
             font-family: $font-nav-acc;
             font-size: 14px;
             color: #80AEFF;

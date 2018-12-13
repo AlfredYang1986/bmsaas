@@ -20,9 +20,8 @@ export default Service.extend({
     studs: A([]),
 
     queryStud() {
-
         this.bmstore.reset();
-        this.set('tech', null);
+        this.set('stud', null);
 
         if (this.studid.length == 0 || this.studid == 'stud/push') {
             let query_payload = this.genPushQuery();
@@ -155,6 +154,7 @@ export default Service.extend({
 
     genPushQuery() {
         let gid01 = this.guid();
+        let gid02 = this.guid();
         let now = new Date().getTime();
         return {
             data: {
@@ -171,7 +171,16 @@ export default Service.extend({
                     intro: "",
                     status: "stud",
                     lesson_count: 0,
-                    school: ''
+                    address: '',
+                    school: '',
+                    applyId: '',
+                    teacherId: '',
+                    teacherName: '',
+                    idCardNo: '',
+                    sourceWay: '',
+                    wechat: '',
+                    brandId: '',
+                    kidId: '',
                 },
                 relationships: {
                     Guardians: {
@@ -181,7 +190,15 @@ export default Service.extend({
                                 type: "BmGuardian"
                             }
                         ]
-                    }
+                    },
+                    Applyees: {
+                        data: [
+                            {
+                                id: gid02,
+                                type: "BmApplyee"
+                            }
+                        ]
+                    },
                 }
             },
             included: [
@@ -197,14 +214,30 @@ export default Service.extend({
                         dob: now,
                         gender: 0,
                         reg_date: now,
-                        addr: ''
-                    },
+                        address: '',
+                        idCardNo: '',
+                        wechat: '',
+                        brandId: '',
+                    }
+                },
+                {
+                    id: gid02,
+                    type: "BmApplyee",
+                    attributes: {
+                        gender: 0,
+                        name: '',
+                        pic: '',
+                        regi_phone: '',
+                        wechat_bind_phone: '',
+                        wechat_openid: '',
+                    }
                 }
             ]
         }
     },
     genPushQueryApply() {
         let gid01 = this.guid();
+        let gid02 = this.guid();
         let now = new Date().getTime();
         return {
             data: {
@@ -221,7 +254,14 @@ export default Service.extend({
                     intro: "",
                     status: "candidate",
                     lesson_count: 0,
-                    school: ''
+                    school: '',
+                    address: '',
+                    applyId: '',
+                    teacherId: '',
+                    teacherName: '',
+                    idCardNo: '',
+                    sourceWay: '',
+                    wechat: '',
                 },
                 relationships: {
                     Guardians: {
@@ -231,7 +271,15 @@ export default Service.extend({
                                 type: "BmGuardian"
                             }
                         ]
-                    }
+                    },
+                    Applyees: {
+                        data: [
+                            {
+                                id: gid02,
+                                type: "BmApplyee"
+                            }
+                        ]
+                    },
                 }
             },
             included: [
@@ -247,14 +295,28 @@ export default Service.extend({
                         dob: now,
                         gender: 0,
                         reg_date: now,
-                        addr: ''
+                        address: '',
+                        idCardNo: '',
                     },
+                },
+                {
+                    id: gid02,
+                    type: "BmApplyee",
+                    attributes: {
+                        gender: 0,
+                        name: '',
+                        pic: '',
+                        regi_phone: '',
+                        wechat_bind_phone: '',
+                        wechat_openid: '',
+                    }
                 }
             ]
         }
     },
 
     saveUpdate(callback) {
+
 
         if (!this.isValidate) {
             return ;
@@ -263,7 +325,14 @@ export default Service.extend({
         let rd = this.stud;
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
         let inc = rd.Guardians[0].serialize();
-        rd_tmp['included'] = [inc.data];
+        if(rd.Applyees != null) {
+            let apl = rd.Applyees[0].serialize();
+            rd_tmp['included'] = [inc.data];
+            rd_tmp.included.push(apl.data)
+        } else {
+            rd_tmp['included'] = [inc.data];
+        }
+
         let dt = JSON.stringify(rd_tmp);
 
         let that = this;
@@ -277,15 +346,20 @@ export default Service.extend({
             },
             data: dt,
             success: function(res) {
+                debugger
+
+                that.bmstore.reset();
+                that.set('stud', null);
                 let result = that.bmstore.sync(res);
                 that.set('stud', result);
-                callback.onSuccess();
+                callback.onSuccess(res);
             },
             error: function(err) {
                 callback.onFail(err);
             },
         })
     },
+
     isValidate() {
         return this.stud.name.length > 0 && this.stud.icon.length > 0 && this.stud.contact.length > 0;
     }

@@ -39,7 +39,7 @@
                 {{#layout-push direction='col' mid=true }}
                     {{#layout-push direction='col' classNames="detail_margin_top_left"}}
                         {{#layout-push direction='row' classNames="detail_margin_top_left_content"}}
-                            <span class="detail_panel_role_num">体验课</span>
+                            <span class="detail_panel_role_num">活动</span>
                             <span class="detail_panel_role_num">{{bm_sessionable_service.sessionable.SessionInfo.title}}</span>
                         {{/layout-push}}
                         {{#layout-push direction='row' classNames="detail_margin_top_left_content"}}
@@ -49,10 +49,10 @@
                     {{/layout-push}}
                 {{/layout-push}}
                 {{#layout-push direction='row' classNames="detail_margin_top_right"}}
-                    {{#if (eq bm_sessionable_service.Attendees undefined)}}
+                    {{#if (bmcom/bm-nil-obj bm_sessionable_service.sessionable.Attendees)}}
                         <span class="detail_panel_role_num">0</span>
                     {{else}}
-                        <span class="detail_panel_role_num">{{bm_sessionable_service.Attendees.length}}</span>
+                        <span class="detail_panel_role_num">{{bm_sessionable_service.sessionable.Attendees.length}}</span>
                     {{/if}}
                     <span class="detail_panel_role_num">报名人数</span>
                 {{/layout-push}}
@@ -61,9 +61,9 @@
         {{bmtable/bm-table-course-field  title=tableTitle attendees=bm_sessionable_service.sessionable.Attendees action=""}}
     </div>
     {{#bmcom/bm-modal-container title="" mswitch=showEditSessionDlg
-        needSubmit=true
-        successbtncss='course-reserve-card-save'
-        cancelbtncss='course-reserve-card-cancel'
+        needSubmit=couldSubmit
+        successbtncss='exp-modal-confirm'
+        cancelbtncss='exp-modal-cancel'
         canceltext='取消'
         onCancelBtnClicked=(action 'cancelHandled')
         onSuccessBtnClicked=(action 'successHandled')}}
@@ -72,6 +72,14 @@
                 {{#layout-push direction='row'}}
                     <p class="title">编辑场次</p>
                 {{/layout-push}}
+                {{#if noteError}}
+                    <div class="form-checked">
+                        {{#layout-push direction='row' classNames="error-line"}}
+                            <img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
+                            <span class="error-info">请填写完整信息</span>
+                        {{/layout-push}}
+                    </div>
+                {{/if}}
                 {{#layout-push direction='row' classNames="line-list"}}
                     <p class="subtitle">校区设置</p>
                     {{#layout-push direction='col' }}

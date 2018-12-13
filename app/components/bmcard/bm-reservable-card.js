@@ -9,7 +9,7 @@ export default Component.extend({
         let client = this.bmOss.get('ossClient');
 
         let url = client.signatureUrl(this.exp.SessionInfo.cover);
-        console.log(url);
+        // console.log(url);
         return url;
     }),
     click() {

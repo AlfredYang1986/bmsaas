@@ -23,6 +23,7 @@
 .edit_container {
     padding-top: 64px;
     font-family: $font-brand;
+    min-width: 1200px;
 
     .edit_left_nav {
         position: fixed;
@@ -77,6 +78,7 @@
     flex: 1;
     padding-top: 24px;
     padding-bottom: 40px;
+    margin-bottom: 68px;
     margin-left: 240px;
 
     // .tech-infos-container{
@@ -96,24 +98,28 @@
         margin: 0 24px 8px;
         padding: 24px;
         background-color: $color-neutral-N000;
-      .title-name {
+        .course-reserve-modal-select {
+            select {
+                @extend %select-box-dropdown-default;
+            }
+        }
+       .title-name {
           margin-bottom: 45px;
           @extend %font-dialog-title;
-      }
-      .name-area {
+       }
+       .name-area {
           margin-right: 40px;
-      }
-      .input_area {
-         
-        input[type=radio] {
+       }
+       .input_area {
 
+        input[type=radio] {
+            opacity: 0.5;
             & + label{
-                margin-left: 0;
-                margin-right: 32px;
+                margin-left: 10px;
             }
         }
         &.area-margin-bottom {
-            margin-bottom: 40px;
+            margin-bottom: 32px;
         }
 
         .edit_title {
@@ -123,6 +129,14 @@
                 font-size: 11px;
                 color: #6B778C;
             }
+        }
+
+        .radio-inline {
+            margin-right: 11px;
+            min-width: 80px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
         }
 
         input.edit_input {

@@ -11,6 +11,7 @@
     @extend %yard_content_basic;
     height: fit-content;
     padding-top: 64px;
+    min-width: 1200px;
 }
 
 .yard_content {

@@ -394,7 +394,7 @@ export default Service.extend({
             },
             data: dt,
             success: function(res) {
-                callback.onSuccess();
+                callback.onSuccess(res);
             },
             error: function(err) {
                 callback.onFail(err);
@@ -427,7 +427,7 @@ export default Service.extend({
             },
         })
     },
-    
+
     isValidate() {
         return this.actv.title.length > 0;
     },

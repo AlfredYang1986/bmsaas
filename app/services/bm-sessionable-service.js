@@ -259,36 +259,47 @@ export default Service.extend({
 
     resetTechs(techs) {
         let arr = []
-        for (let idx = 0; idx < techs.length; idx++) {
-            let tech = {
-                data: {
-                    id: techs[idx],
-                    type: "BmTeacher",
-                    attributes: {
-                        a:0
+        if(techs != null){
+            for (let idx = 0; idx < techs.length; idx++) {
+                let tech = {
+                    data: {
+                        id: techs[idx].id,
+                        type: "BmTeacher",
+                        attributes: {
+                            a:0
+                        }
                     }
                 }
+                let tc = this.bmstore.find('BmAttendee', techs[idx].id)
+                if(tc != null){
+                    this.bmstore.destroy(tc);
+                }
+                arr.push(this.bmstore.sync(tech))
             }
-            arr.push(this.bmstore.sync(tech))
         }
         // this.sessionable.Teachers = arr;
         this.set("sessionable.Teachers",arr)
     },
 
     resetAttendee(studs) {
-
         let arr = []
-        for (let idx = 0; idx < studs.length; idx++) {
-            let stud = {
-                data: {
-                    id: studs[idx],
-                    type: "BmAttendee",
-                    attributes: {
-                        a:0
+        if(studs != null){
+            for (let idx = 0; idx < studs.length; idx++) {
+                let stud = {
+                    data: {
+                        id: studs[idx].id,
+                        type: "BmAttendee",
+                        attributes: {
+                            a:0
+                        }
                     }
                 }
+                let st = this.bmstore.find('BmAttendee', studs[idx].id)
+                if(st != null){
+                    this.bmstore.destroy(st);
+                }
+                arr.push(this.bmstore.sync(stud))
             }
-            arr.push(this.bmstore.sync(stud))
         }
         // this.sessionable.Attendees = arr;
         this.set("sessionable.Attendees",arr)
@@ -366,8 +377,10 @@ export default Service.extend({
         }
 
         let ft_tmp = JSON.parse(JSON.stringify(ft.serialize()));
-        ft_tmp.data.attributes.start_date = this.handleDate(ft.tmp_date, ft.start_date)
-        ft_tmp.data.attributes.end_date = this.handleDate(ft.tmp_date, ft.end_date)
+        if(params){
+            ft_tmp.data.attributes.start_date = this.handleDate(ft.tmp_date, ft.start_date)
+            ft_tmp.data.attributes.end_date = this.handleDate(ft.tmp_date, ft.end_date)
+        }
         ft_tmp['included'] = arr;
         let dt = JSON.stringify(ft_tmp);
 

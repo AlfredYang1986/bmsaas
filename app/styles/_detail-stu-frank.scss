@@ -18,60 +18,90 @@
 }
 
 .detail_title {
-  margin-bottom: 8px;
-  padding: 0 24px;
-  height: 64px;
-  line-height: 64px;
+  margin-bottom: 26px;
+  padding: 40px 24px;
   background-color: #FFF;
-
   .title_text {
-    @extend %font-dialog-title;
+    @extend %font-page-header-title;
   }
-
+  .qr-code {
+      width: 32px;
+      height: 32px;
+  }
   .detail_panel_edit_btn {
     margin: 16px 0 16px 16px;
     @extend %button-system-default-default;
   }
 }
-
+.tab-area {
+    margin-bottom: 24px;
+}
 .stud_detail {
   .basis_margin {
     flex: 1;
+    .head-img {
+        margin-bottom: 16px;
 
-.stud_detail_basis {
-  height: 156px;
-  margin-right: 8px;
-  padding: 24px;
-  background-color: #FFF;
-  text-align: center;
-  min-width: 296px;
+        img {
+            width: 128px;
+            height: 128px;
+            border-radius: 50%;
+        }
+
+    }
+
+    .stud_detail_basis {
+        min-height: 156px;
+        margin-right: 8px;
+        padding: 24px;
+        background-color: #FFF;
+        text-align: center;
+        min-width: 296px;
 
     .basis_name {
-      margin-bottom: 16px;
+      margin-bottom: 8px;
       @extend %font-page-header-title;
       height: 28px;
       line-height: 28px;
     }
+    .stud-basis-left-subtitle {
+        height: 24px;
+
+    }
 
     .basis_sex_age {
       @extend %font-help-text;
-      margin:0 8px;
+      margin:0 4px;
+      line-height: 24px;
+      img {
+        width: 24px;
+        height: 24px;
+      }
     }
 
     .basis_dob {
-        margin-top: 24px;
+        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         font-size: 0;
         span{
-          padding: 0 8px;
-          @extend %font-help-text;
+          padding: 0 10px;
+          @extend %font-main-text;
         }
-        // span:first-child {
-        //     padding-right: 16px;
-        //     @extend %font-help-text;
-        // }
-        // span:last-child {
-        //     @extend %font-main-text;
-        // }
+        .basis_dob_title {
+            min-width: 80px;
+            text-align: left;
+            @extend %font-form-info-title;
+        }
+        .basis_contact_margin_bottom {
+            margin-bottom: 24px;
+        }
+        .basis_contact {
+            min-width: 150px;
+            text-align: left;
+
+        }
     }
 }
   }
@@ -94,9 +124,9 @@
         }
 
         span:first-child {
-            min-width: 70px;
+            min-width: 56px;
             margin-right: 16px;
-            @extend %font-form-info-title;
+            @extend %font-help-text;
         }
 
         span:last-child {
@@ -114,9 +144,23 @@
       }
 
       .parent_info {
-        padding: 24px 24px 0;
-        height: 40px;
-        @extend %font-dialog-title;
+        padding: 16px 24px ;
+        @extend %font-form-info-title;
+      }
+      .follower-info {
+          .follower-head-img {
+              margin-right: 24px;
+              width: 48px;
+              height: 48px;
+              img {
+                  border-radius: 50%;
+              }
+          }
+      }
+      .follower-line {
+          margin: 0 24px;
+          opacity: 0.12;
+          border: 0.5px solid rgba(0, 0, 0 ,0.12);
       }
     }
   }

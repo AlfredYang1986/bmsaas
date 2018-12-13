@@ -12,7 +12,7 @@ export default Route.extend({
         return RSVP.hash({
                 expfieldid: params.expfieldid,
                 reexpid: params.reexpid,
-                tabs: A(['场次安排', '体验详情']),
+                // tabs: A(['场次安排', '体验详情']),
                 urls: A([
                     {
                         "pageName":"体验课开放",

@@ -9,9 +9,16 @@ export default Controller.extend({
     bm_stud_service: service(),
 
     mock_data: service(),
+    toast: service(),
 
     cur_tab_idx: 0,
     tabs: ['预约', '预注册'],
+    toastOptions: {
+        closeButton: false,
+        positionClass: 'toast-top-center',
+        progressBar: false,
+        timeOut: '2000',
+    },
 
     today_apply_count: computed(function(){
         return this.mock_data.todayApplies().length;
@@ -30,6 +37,8 @@ export default Controller.extend({
     sa: null,
     ss: null,
     isCourse: true,
+    noteError: false,
+    noSr: false,
     contentSubmit: computed('sr', 'sa', function() {
         let a = Date.parse( new Date());
         console.log(a)
@@ -37,10 +46,13 @@ export default Controller.extend({
         this.set('ss', null);
         return this.sy == null && this.ss == null;
     }),
-    couldSubmit: computed('sy', 'ss', function() {
-        return this.sr != null && this.sy != null || this.sa != null && this.ss != null;
-    }),
+    // couldSubmit: computed('sy', 'ss', function() {
+    //     return this.sr != null && this.sy != null || this.sa != null && this.ss != null;
+    // }),
     actions: {
+        handlePageChange (pageNum) {
+            console.log(pageNum)
+        },
         saveInfo() {
             this.set('modal3',false);
             let that = this;
@@ -58,13 +70,22 @@ export default Controller.extend({
             this.set('current_apply', item);
             this.set('showhandledlg', true);
         },
+        toggleAction() {
+            let that = this;
+            this.set('noteError', false);
+            if(this.current_apply.courseType == 1) {
+                that.set('current_apply.courseType', 0)
+            } else if (this.current_apply.courseType == 0) {
+                that.set('current_apply.courseType', 1)
+            }
+        },
         successSave() {
             this.set('saveInfo',false);
         },
         reserveTypeChanged() {
             let sel = document.getElementById("selectReserve");
             let that = this;
-            if (sel.selectedIndex == 0) {
+            if (sel.selectedIndex == 1) {
                 that.set('bm_apply_service.reserved', that.bm_apply_service.reserveTypeToday);
                 that.set('bm_apply_service.amount', that.bm_apply_service.reserveTypeTodayAmount);
             } else {
@@ -75,7 +96,7 @@ export default Controller.extend({
         preRegisterChanged() {
             let sel = document.getElementById("selectReserve");
             let that = this;
-            if (sel.selectedIndex == 0) {
+            if (sel.selectedIndex == 1) {
                 that.set('bm_apply_service.preRegistered', that.bm_apply_service.preRegisterToday);
                 that.set('bm_apply_service.preAmount', that.bm_apply_service.preRegisterTodayAmount);
             } else {
@@ -86,6 +107,7 @@ export default Controller.extend({
         successHandled() {
             if (this.checkValidate()) {
                 this.set('couldSubmit', true);
+
                 if (this.current_apply.courseType == 1) {
                     this.signCoureReserve();
                 } else if(this.current_apply.courseType == 0){
@@ -99,7 +121,23 @@ export default Controller.extend({
                 this.set('current_apply', null);
                 this.set('showhandledlg', false);
             } else {
-                alert('请填写完整信息')
+                this.set('noteError', true);
+                if (this.current_apply.courseType == 1) {
+                    if( this.sr == null && this.sy == null ) {
+                        this.set('noSr', true);
+                        this.set('noSy', true);
+                    } else if(this.sy == null && this.sr != null) {
+                        this.set('noSy', true);
+                    }
+                } else {
+                    if(this.sa == null && this.ss == null) {
+                        this.set('noSa', true);
+                        this.set('noSs', true);
+                    } else if(this.sa != null && this.ss == null) {
+                        this.set('noSs', true);
+                    }
+                }
+
             }
 
         },
@@ -110,6 +148,11 @@ export default Controller.extend({
             this.set('ss', null);
             this.set('isV', false);
             this.set('current_apply', null);
+            this.set('noteError', false);
+            this.set('noSr', false);
+            this.set('noSy', false);
+            this.set('noSa', false);
+            this.set('noSs', false);
             this.set('showhandledlg', false);
         },
     },
@@ -144,10 +187,10 @@ export default Controller.extend({
                 }
                 let arr = []
                 for (let idx = 0; idx < count; idx++) {
-                    arr.push(ori[idx].id);
+                    arr.push(ori[idx]);
                 }
-                let studid = that.bm_stud_service.stud.id;
-                arr.push(studid);
+                let stud = {"id" : that.bm_stud_service.stud.id};
+                arr.push(stud);
 
                 let th = that.bm_sessionable_service.sessionable.Teachers;
                 let th_count = 0
@@ -177,8 +220,10 @@ export default Controller.extend({
                 that.bm_sessionable_service.set('reservableid', reservableid);
                 that.bm_sessionable_service.set('sessionableid', sessionableid);
                 that.bm_sessionable_service.querySessionable2(st2sess);
+                that.toast.success('', '处理成功', that.toastOptions);
             },
             onFail: function() {
+                that.toast.error('', '处理失败', that.toastOptions);
                 console.log('push stud fail')
             }
         }
@@ -192,6 +237,8 @@ export default Controller.extend({
         stud.gender = kid.gender;
         stud.reg_date = new Date().getTime();
         stud.dob = kid.dob;
+        stud.applyId = this.current_apply.id;
+
 
         stud.Guardians[0].name = this.current_apply.Applyee.name;
         stud.Guardians[0].gender = this.current_apply.Applyee.gender;
@@ -236,10 +283,10 @@ export default Controller.extend({
                 }
                 let arr = []
                 for (let idx = 0; idx < count; idx++) {
-                    arr.push(ori[idx].id);
+                    arr.push(ori[idx]);
                 }
-                let studid = that.bm_stud_service.stud.id;
-                arr.push(studid);
+                let stud = {"id" : that.bm_stud_service.stud.id};
+                arr.push(stud);
 
                 let th = that.bm_sessionable_service.sessionable.Teachers;
                 let th_count = 0
@@ -269,9 +316,11 @@ export default Controller.extend({
                 that.bm_sessionable_service.set('reservableid', reservableid);
                 that.bm_sessionable_service.set('sessionableid', sessionableid);
                 that.bm_sessionable_service.querySessionable2(st2sess);
+                that.toast.success('', '处理成功', that.toastOptions);
             },
             onFail: function() {
                 console.log('push stud fail')
+                that.toast.error('', '处理成功', that.toastOptions);
             }
         }
 
