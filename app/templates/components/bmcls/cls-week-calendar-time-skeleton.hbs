@@ -9,7 +9,9 @@
                 <th class='bm-day bm-widget-content' >
                     {{#each bm_clsarr_service.time_uints as |item|}}
                         <div class='bm-time-container'>
-                            {{bmcls/cls-week-calendar-time-panel display_str=item onPanelInserted=(action 'panelInserted')}}
+                            {{bmcls/cls-week-calendar-time-panel
+                                unit=item
+                                onPanelInserted=(action 'panelInserted')}}
                         </div>
                     {{/each}}
                 </th>

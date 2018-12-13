@@ -1,2 +1,6 @@
 {{!-- {{yield}} --}}
-{{display_str}}
+<div class='bm-content-left'></div>
+{{#layout-push direction='col' classNames='bm-content-right'}}
+    <span class='bm-content-cls-title'>{{unit.cls_name}}</span>
+    <span class='bm-content-session-title'>{{unit.session_name}}</span>
+{{/layout-push}}
