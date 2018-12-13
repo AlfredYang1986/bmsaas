@@ -208,5 +208,14 @@
             right: 0;
             z-index: 4;
         }
+
+        .bm-time-container {
+            position: relative;
+            z-index: 1;
+
+            .bm-time-container-panel {
+                position: absolute;
+            }
+        }
     }
 }

@@ -15,7 +15,7 @@ export default Component.extend({
 
     actions: {
         panelInserted() {
-
+            console.log('insert time units');
         }
     }
 });

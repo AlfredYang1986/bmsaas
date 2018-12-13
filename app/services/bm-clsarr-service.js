@@ -13,4 +13,5 @@ export default Service.extend({
     refresh_all_token: '',
 
     units: A(['a']),
+    time_uints: A(['bbb'])
 });

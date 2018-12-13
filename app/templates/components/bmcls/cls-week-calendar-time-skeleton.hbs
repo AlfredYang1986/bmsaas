@@ -6,7 +6,13 @@
                     <span></span>
                 {{/bmcls/cls-week-calendar-axis}}
                 <th class='bm-day bm-widget-content' ></th>
-                <th class='bm-day bm-widget-content' ></th>
+                <th class='bm-day bm-widget-content' >
+                    {{#each bm_clsarr_service.time_uints as |item|}}
+                        <div class='bm-time-container'>
+                            {{bmcls/cls-week-calendar-time-panel display_str=item onPanelInserted=(action 'panelInserted')}}
+                        </div>
+                    {{/each}}
+                </th>
                 <th class='bm-day bm-widget-content' ></th>
                 <th class='bm-day bm-widget-content' ></th>
                 <th class='bm-day bm-widget-content' ></th>
