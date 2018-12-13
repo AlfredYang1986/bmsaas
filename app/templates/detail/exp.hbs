@@ -65,17 +65,29 @@
                                                 <input type="radio" name="rel01" value="fa" checked/>
                                                 <label for="">
                                                     {{#layout-push direction=row}}
-                                                        <select class="session-modal-select" id='reservableselect' name="" onchange={{action 'reservableChanged'}}>
-                                                            <option value="">选择已有场地</option>
-                                                            {{!-- {{#each course_lst as |item|}} --}}
-                                                            {{#each bm_yard_service.yards as |item|}}
-                                                                {{#if (eq item.id tmpSessionable.Yard.id)}}
-                                                                    <option selected="selected" value={{item.id}}>{{item.address}}</option>
-                                                                {{else}}
-                                                                    <option value={{item.id}}>{{item.address}}</option>
-                                                                {{/if}}
-                                                            {{/each}}
-                                                        </select>
+                                                        {{#if noteError}}
+                                                            <select class="session-modal-select error-border" id='reservableselect' name="" onchange={{action 'reservableChanged'}}>
+                                                                <option value="">选择已有场地</option>
+                                                                {{#each bm_yard_service.yards as |item|}}
+                                                                    {{#if (eq item.id tmpSessionable.Yard.id)}}
+                                                                        <option selected="selected" value={{item.id}}>{{item.address}}</option>
+                                                                    {{else}}
+                                                                        <option value={{item.id}}>{{item.address}}</option>
+                                                                    {{/if}}
+                                                                {{/each}}
+                                                            </select>
+                                                        {{else}}
+                                                            <select class="session-modal-select" id='reservableselect' name="" onchange={{action 'reservableChanged'}}>
+                                                                <option value="">选择已有场地</option>
+                                                                {{#each bm_yard_service.yards as |item|}}
+                                                                    {{#if (eq item.id tmpSessionable.Yard.id)}}
+                                                                        <option selected="selected" value={{item.id}}>{{item.address}}</option>
+                                                                    {{else}}
+                                                                        <option value={{item.id}}>{{item.address}}</option>
+                                                                    {{/if}}
+                                                                {{/each}}
+                                                            </select>
+                                                        {{/if}}
                                                     {{/layout-push}}
                                                 </label>
                                             </span>

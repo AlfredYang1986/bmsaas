@@ -86,18 +86,18 @@
         {{/if}}
 
         {{#if (bmeq cur_page_idx 8)}}
-        {{#bmsessioninfo/bm-input-acc-page session=session isCreate=isCreate}}
-            {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                <button class="edit_between_btn" {{action (mut cur_page_idx) 9}}>下一步</button>
-            {{/layout-push}}
-        {{/bmsessioninfo/bm-input-acc-page}}
+            {{#bmsessioninfo/bm-input-acc-page session=session isCreate=isCreate}}
+                {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
+                    <button class="edit_between_btn" {{action (mut cur_page_idx) 9}}>下一步</button>
+                {{/layout-push}}
+            {{/bmsessioninfo/bm-input-acc-page}}
         {{/if}}
 
         {{#if (bmeq cur_page_idx 9)}}
             {{#bmsessioninfo/bm-input-note-page session=session isCreate=isCreate}}
-                {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    <p class="nav_save menu_button_between" {{action 'saveCourseBtnClicked'}}>完成</p>
-                {{/layout-push}}
+                {{!-- {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
+                    <button class="edit_between_btn" {{action 'saveCourseBtnClicked'}}>提交</button>
+                {{/layout-push}} --}}
             {{/bmsessioninfo/bm-input-note-page}}
         {{/if}}
     </div>
