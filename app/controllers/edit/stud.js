@@ -34,18 +34,17 @@ export default Controller.extend({
             } else if(this.rela_idx == 1) {
                 this.bm_stud_service.stud.Guardians[0].relation_ship = '妈妈'
             } else {
-                tthis.bm_stud_service.stud.Guardians[0].relation_ship = '其他'
+                this.bm_stud_service.stud.Guardians[0].relation_ship = '其他'
             }
         }
 
     }),
 
     isPushing: false,
-    origin:['学员转介绍', '电话推广', '小程序', '闲暇活动推广', '其他'],
+    origin:['学员转介绍', '电话推广', '小程序', '线下活动推广', '其他'],
 
     actions: {
         saveInputBtnClicked() {
-            debugger
             if(this.isPushing) {
                 let that = this
                 let callback = {
