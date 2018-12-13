@@ -43,7 +43,7 @@
 				<p class="edit_title">性别</p>
 				{{#layout-push direction='row'}}
 					<span class="radio-inline">
-						{{input type="radio" name="studSex" checked=(bmeq bm_stud_service.stud.gender 1)}}
+						{{input type="radio" name="studSex" checked=true}}
 						<label for="male">男</label>
 					</span>
 					<span class="radio-inline">
@@ -115,24 +115,41 @@
 			{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
 				<p class="edit_title">课程顾问</p>
 				{{#layout-push direction="row" classNames="area-margin-bottom"}}
-					{{#bm-select/bm-select-box classNames='course-reserve-modal-select'}}
+					<div class="course-reserve-modal-select error-border">
+						<select class="" id='techSelect' name="" onChange={{action 'selectedTech'}}>
+						   <option value="">请选择参与内容</option>
+						   {{#each bm_tech_service.techs as |item|}}
+							   <option value={{item.name}}>{{item.name}}</option>
+						   {{/each}}
+						</select>
+					</div>
+
+					{{!-- {{#bm-select/bm-select-box classNames='course-reserve-modal-select' onclick=(action 'selectedTech')}}
 						<option value="">请选择</option>
-						{{#each studOther as |item|}}
-							<option value={{item.id}}>{{item.title}}</option>
+						{{#each bm_tech_service.techs as |item|}}
+							<option value={{item.id}}>{{item.name}}</option>
 						{{/each}}
-					{{/bm-select/bm-select-box}}
+					{{/bm-select/bm-select-box}} --}}
 				{{/layout-push}}
 			{{/layout-push}}
 
 			{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
 				<p class="edit_title">渠道来源</p>
 				{{#layout-push direction="row" classNames="area-margin-bottom"}}
-					{{#bm-select/bm-select-box classNames='course-reserve-modal-select'}}
+					<div class="course-reserve-modal-select error-border">
+						<select class="" id="originSelect"  name="" onChange={{action 'selectedOrigin'}}>
+						   <option value="">请选择参与内容</option>
+						   {{#each origin as |item|}}
+							   <option value={{item}}>{{item}}</option>
+						   {{/each}}
+						</select>
+					</div>
+					{{!-- {{#bm-select/bm-select-box classNames='course-reserve-modal-select' onclick=(action 'selectedOrigin')}}
 						<option value="">请选择</option>
-						{{#each studOther as |item|}}
-							<option value={{item.id}}>{{item.title}}</option>
+						{{#each origin as |item|}}
+							<option value={{item.id}}>{{item}}</option>
 						{{/each}}
-					{{/bm-select/bm-select-box}}
+					{{/bm-select/bm-select-box}} --}}
 				{{/layout-push}}
 			{{/layout-push}}
 		</section>

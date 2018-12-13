@@ -23,7 +23,7 @@ export default Service.extend({
     queryTech() {
         this.bmstore.reset();
         this.set('tech', null);
-
+        debugger
         if (this.techid.length == 0 || this.techid == 'tech/push') {
             let query_payload = this.genPushQuery();
             let result = this.bmstore.sync(query_payload);
@@ -37,7 +37,7 @@ export default Service.extend({
         let inc = rd.Eqcond[0].serialize();
         rd_tmp['included'] = [inc.data];
         let dt = JSON.stringify(rd_tmp);
-       
+
         let that = this
         Ember.$.ajax({
             method: 'POST',
@@ -113,7 +113,7 @@ export default Service.extend({
                     }
                 },
                 included: []
-            } 
+            }
     },
 
     genIdQuery() {
@@ -182,7 +182,7 @@ export default Service.extend({
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
         // let inc = rd.Guardians[0].serialize();
         rd_tmp['included'] = [];
-        let dt = JSON.stringify(rd_tmp); 
+        let dt = JSON.stringify(rd_tmp);
 
         Ember.$.ajax({
             method: 'POST',
@@ -203,5 +203,11 @@ export default Service.extend({
     },
     isValidate() {
         return this.tech.name.length > 0 && this.tech.icon.length > 0 && this.tech.contact.length > 0;
+    },
+
+    queryLocalMultiObject() {
+        if (this.techs.length == 0) {
+            this.queryMultiObjects()
+        }
     }
 });
