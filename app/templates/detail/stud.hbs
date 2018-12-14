@@ -1,11 +1,12 @@
 <div class="detail_content_top">
 	<div class="detail_page">
-		<p class="detail_stud_nav">
-			{{#link-to 'stud' class="detail_href_ref" }}
-				学生管理
-			{{/link-to}}
-			<span>&nbsp;&nbsp; / &nbsp;&nbsp; 学生详情</span>
-		</p>
+		{{#bmcom/bm-breadcrumb urls=model.urls as |url|}}
+            {{#if (not-eq url.id "")}}
+                {{#link-to url.link url.id class="reserve_detail_href_ref"}}{{url.pageName}}{{/link-to}}
+            {{else}}
+                {{#link-to url.link class="reserve_detail_href_ref"}}{{url.pageName}}{{/link-to}}
+            {{/if}}
+        {{/bmcom/bm-breadcrumb}}
 		{{#layout-push direction='row' split=true class="detail_title" }}
 			<span class="title_text">{{bm_stud_service.stud.name}}</span>
 			<div class="qr-code">
