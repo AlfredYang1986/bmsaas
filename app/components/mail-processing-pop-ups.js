@@ -35,6 +35,7 @@ export default Component.extend({
     experienceApply: false,
     noteError: false,
     sel: null,
+    errorImg: "https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png",
     course_lst: computed(function(){
         return this.mock_data.courseCandi();
     }),
