@@ -3,7 +3,7 @@ import { computed } from '@ember/object';
 
 
 export default Component.extend({
-    init() {
+    didReceiveAttrs() {
         this._super(...arguments);
         this.createPageGroup()
     },
@@ -71,7 +71,7 @@ export default Component.extend({
             }
         }
         this.set('pageGroup', arr);
-        console.log(this.pageGroup)
+        // console.log(this.pageGroup)
     },
     updatePageGroup() {
         let arr = [];
@@ -99,6 +99,6 @@ export default Component.extend({
             }
         }
         this.set('pageGroup', arr);
-        console.log(this.pageGroup)
+        // console.log(this.pageGroup)
     }
 });

@@ -50,8 +50,24 @@ export default Controller.extend({
     //     return this.sr != null && this.sy != null || this.sa != null && this.ss != null;
     // }),
     actions: {
-        handlePageChange (pageNum) {
+        handleBookPageChange (pageNum) {
             console.log(pageNum)
+            this.set('bm_apply_service.page', pageNum - 1)
+            this.bm_apply_service.queryMultiObjects(0);
+        },
+        handlePrePageChange (pageNum) {
+            console.log(pageNum)
+            this.set('bm_apply_service.page', pageNum - 1)
+            this.bm_apply_service.queryMultiObjects(1);
+        },
+        onTabClicked(tabIdx) {
+            this.set('bm_apply_service.page', 0)
+            if (tabIdx == 0) {
+                this.bm_apply_service.queryMultiObjects(0);
+            } else {
+                this.bm_apply_service.queryMultiObjects(1);
+            }
+            console.log(tabIdx)
         },
         saveInfo() {
             this.set('modal3',false);
