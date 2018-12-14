@@ -17,10 +17,10 @@
 }
 
 .stud_content {
-    background: $color-neutral-N000;
+    background: transparent;
     padding: 0;
     margin: 24px;
-    margin-bottom: 0;
+    // margin-bottom: 0;
     min-height: calc(100vh - 88px);
 
     .stud-title-flex{
@@ -28,6 +28,7 @@
         height: 72px;
         padding: 20px 24px;
         border-bottom: 8px solid #f7f8fa;
+        background-color: #FFFFFF;
         p.page_title {
             @extend %font-page-header-title;
         }
@@ -48,8 +49,7 @@
         @extend %font-page-header-title;
     }
     .stud-list-area {
-        display: flex;
-        flex-direction: column;
+        background-color: transparent;
     }
     .card-wrap {
         // margin-top: 34px;
