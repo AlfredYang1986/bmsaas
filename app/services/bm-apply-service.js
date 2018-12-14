@@ -11,16 +11,85 @@ export default Service.extend({
         this._super(...arguments);
         this.addObserver('refresh_token', this, 'queryApplyInfo');
         this.addObserver('refresh_all_token', this, 'queryMultiObjects');
+        this.addObserver('refresh_all_token', this, 'queryApplyCount');
     },
 
     page: 0,
-    steps: 50,
+    steps: 20,
     applyid: '',
     refresh_token: '',
     refresh_all_token: '',
     apply: null,
     applies: A([]),
+    bookCount: 0,
+    preCount: 0,
+    bookPageCount: 0,
+    prePageCount: 0,
 
+    queryApplyCount() {
+        this.bmstore.reset();
+        this.set('bookCount', 0);
+        this.set('preCount', 0);
+
+        let query_preCount_payload = this.genCountQuery();
+        let rd = this.bmstore.sync(query_preCount_payload);
+        let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
+        let eq = rd.Eqcond[0].serialize();
+        let ne = rd.Necond[0].serialize();
+        // // let fm = rd.Fmcond[0].serialize();
+        rd_tmp['included'] = [eq.data, ne.data];
+        // rd_tmp['included'].push(ne.data)
+        let dt = JSON.stringify(rd_tmp);
+
+        let query_bookCount_payload = this.genCountQuery("preRegister");
+        let rd2 = this.bmstore.sync(query_bookCount_payload);
+        let rd_tmp2 = JSON.parse(JSON.stringify(rd2.serialize()));
+        let eq2 = rd2.Eqcond[0].serialize();
+        let eq22 = rd2.Eqcond[1].serialize();
+        rd_tmp2['included'] = [eq2.data, eq22.data];
+        // rd_tmp2['included'].push(eq22.data)
+        let dt2 = JSON.stringify(rd_tmp2);
+
+        let that = this;
+        Ember.$.ajax({
+            method: 'POST',
+            url: '/api/v1/findcount/0',
+            headers: {
+                'Content-Type': 'application/json', // 默认值
+                'Accept': 'application/json',
+                'Authorization': this.bm_config.getToken(),
+            },
+            data: dt,
+            success: function(res) {
+                let result = that.bmstore.sync(res)
+                that.set('bookCount', result.count);
+                let pageCount = result.count / that.steps;
+                that.set('bookPageCount', Math.ceil(pageCount));
+            },
+            error: function(err) {
+                console.log('error is : ', err);
+            },
+        })
+        Ember.$.ajax({
+            method: 'POST',
+            url: '/api/v1/findcount/0',
+            headers: {
+                'Content-Type': 'application/json', // 默认值
+                'Accept': 'application/json',
+                'Authorization': this.bm_config.getToken(),
+            },
+            data: dt2,
+            success: function(res) {
+                let result = that.bmstore.sync(res)
+                that.set('preCount', result.count);
+                let pageCount = result.count / that.steps;
+                that.set('prePageCount', Math.ceil(pageCount));
+            },
+            error: function(err) {
+                console.log('error is : ', err);
+            },
+        })
+    },
     queryApplyInfo() {
         this.bmstore.reset();
         this.set('apply', null);
@@ -66,6 +135,101 @@ export default Service.extend({
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
     },
 
+    genCountQuery(param) {
+        let eq = this.guid();
+        let eq2 = this.guid();
+        let ne = this.guid();
+        if(param == "preRegister") {
+            return {
+                data: {
+                    id: this.guid(),
+                    type: "Request",
+                    attributes: {
+                        res: "BmApply"
+                    },
+                    relationships: {
+                        Eqcond: {
+                            data: [
+                            {
+                                id: eq,
+                                type: "Eqcond"
+                            },
+                            {
+                                id: eq2,
+                                type: "Eqcond"
+                            }
+                            ]
+                        }
+                    }
+                },
+                included: [
+                    {
+                        id: eq,
+                        type: "Eqcond",
+                        attributes: {
+                            key: "brandId",
+                            val: "5be6a00b8fb80736e2ec9ba5"
+                        }
+                    },
+                    {
+                        id: eq2,
+                        type: "Eqcond",
+                        attributes: {
+                            key: "courseType",
+                            val: -1
+                        }
+                    }
+                ]
+            }
+        } else {
+            return {
+                data: {
+                    id: this.guid(),
+                    type: "Request",
+                    attributes: {
+                        res: "BmApply"
+                    },
+                    relationships: {
+                        Eqcond: {
+                            data: [
+                            {
+                                id: eq,
+                                type: "Eqcond"
+                            }
+                        ]
+                        },
+                        Necond: {
+                            data: [
+                                {
+                                    id: ne,
+                                    type: "Necond"
+                                }
+                            ]
+                        }
+                    }
+                },
+                included: [
+                    {
+                        id: ne,
+                        type: "Necond",
+                        attributes: {
+                            key: "courseType",
+                            val: -1
+                        }
+                    },
+                    {
+                        id: eq,
+                        type: "Eqcond",
+                        attributes: {
+                            key: "brandId",
+                            val: "5be6a00b8fb80736e2ec9ba5"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+
     genIdQuery() {
         let eq = this.guid();
         return {
@@ -100,10 +264,13 @@ export default Service.extend({
             }
     },
 
-    genMultiQuery() {
+    genMultiQuery(param) {
         let fm = this.guid();
         let eq = this.guid();
-        return {
+        let eq2 = this.guid();
+        let ne = this.guid();
+        if (param == 1) {
+            return {
                 data: {
                     id: this.guid(),
                     type: "Request",
@@ -121,6 +288,9 @@ export default Service.extend({
                             data: [
                             {
                                 id: eq,
+                                type: "Eqcond"
+                            },{
+                                id: eq2,
                                 type: "Eqcond"
                             }
                             ]
@@ -143,20 +313,96 @@ export default Service.extend({
                             key: "brandId",
                             val: "5be6a00b8fb80736e2ec9ba5"
                         }
+                    },
+                    {
+                        id: eq2,
+                        type: "Eqcond",
+                        attributes: {
+                            key: "courseType",
+                            val: -1
+                        }
                     }
                 ]
             }
+        } else {
+            return {
+                    data: {
+                        id: this.guid(),
+                        type: "Request",
+                        attributes: {
+                            res: "BmApply"
+                        },
+                        relationships: {
+                            Fmcond: {
+                                data: {
+                                    id: fm,
+                                    type: "Fmcond",
+                                }
+                            },
+                            Eqcond: {
+                                data: [
+                                {
+                                    id: eq,
+                                    type: "Eqcond"
+                                }
+                                ]
+                            },
+                            Necond: {
+                                data: [
+                                {
+                                    id: ne,
+                                    type: "Necond",
+                                }
+                            ]
+                            },
+                        }
+                    },
+                    included: [
+                        {
+                            id: fm,
+                            type: "Fmcond",
+                            attributes: {
+                                take: this.steps,
+                                page: this.page
+                            }
+                        },
+                        {
+                            id: eq,
+                            type: "Eqcond",
+                            attributes: {
+                                key: "brandId",
+                                val: "5be6a00b8fb80736e2ec9ba5"
+                            }
+                        },
+                        {
+                            id: ne,
+                            type: "Necond",
+                            attributes: {
+                                key: "courseType",
+                                val: -1
+                            }
+                        }
+                    ]
+                }
+
+        }
     },
 
-    queryMultiObjects() {
+    queryMultiObjects(param) {
         this.bmmulti.reset();
 
-        let query_yard_payload = this.genMultiQuery();
+        let query_yard_payload = this.genMultiQuery(param);
         let rd = this.bmmulti.sync(query_yard_payload);
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
-        let eq = rd.Eqcond[0].serialize();
         let fm = rd.Fmcond.serialize();
-        rd_tmp['included'] = [eq.data, fm.data];
+        let eq = rd.Eqcond[0].serialize();
+        if (param == 1) {
+            let preEq = rd.Eqcond[1].serialize();
+            rd_tmp['included'] = [eq.data, preEq.data, fm.data];
+        } else {
+            let reserveEq = rd.Necond[0].serialize();
+            rd_tmp['included'] = [eq.data, reserveEq.data, fm.data];
+        }
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
