@@ -1,6 +1,8 @@
 {{#layout-push direction="row" split=true}}
     {{#layout-push direction="row" classNames="title-area"}}
-        <span class="edit_subtitle" >{{title}}</span>
+        {{#unless notitlt}}
+            <span class="edit_subtitle" >{{title}}</span>
+        {{/unless}}
         {{#if notNeeded}}
             <div class="v_end must">
                 <span class="edit_required" >(选填)</span>
@@ -20,6 +22,8 @@
     {{/if}}
     {{#if largeInput}}
         {{input classNames="edit_text_field_large" placeholder=pholder value=inputVal}}
+    {{else if login}}
+        {{input classNames="edit_text_field_login" placeholder=pholder value=inputVal}}
     {{else}}
         {{input classNames="edit_text_field" placeholder=pholder value=inputVal}}
     {{/if}}

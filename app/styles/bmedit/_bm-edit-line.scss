@@ -14,6 +14,15 @@ input.edit_text_field_large {
     border-radius: $border-radius-button-product;
     box-shadow: none;
 }
+input.edit_text_field_login {
+    margin-bottom: 8px;
+    width: 320px;
+    height: 48px;
+    border: 1px solid rgba(0,0,0,0);
+    border-radius: 4px;
+    background: #FAFBFC;
+    box-shadow: none;
+}
 .edit_subtitle {
     margin-bottom: 16px;
     @extend %font-form-info-title;

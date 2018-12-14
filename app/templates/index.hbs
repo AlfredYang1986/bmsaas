@@ -1,1 +1,17 @@
 {{outlet}}
+{{#layout-push direction='row' classNames='login-page'}}
+    {{#layout-push direction='col' mid=true classNames='login-area'}}
+        <p class="title">欢迎</p>
+        <p class="subtitle">发生开发就撒冷风机奥拉夫拉开飞机拉萨附近</p>
+        {{#layout-push direction='row' class='error-line'}}
+            <img class="error" src={{model.errorImg}} alt="">
+            <p class="error-info">用户名或密码错误</p>
+        {{/layout-push}}
+        {{bmform/bm-edit-line login=true notitlt=true pholder='用户名' inputVal='' classNames=''}}
+        {{bmform/bm-edit-line login=true notitlt=true pholder='密码' inputVal='' classNames=''}}
+        <button type="button" name="button" class='login-button'>登录</button>
+    {{/layout-push}}
+    <div class="img-area">
+        <img src="" alt="">
+    </div>
+{{/layout-push}}
