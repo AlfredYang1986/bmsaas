@@ -39,6 +39,10 @@ export default Controller.extend({
     deleteSessionDlg: false,
 
     actions: {
+        handlePageChange (pageNum) {
+            this.set('bm_sessionable_service.page', pageNum - 1)
+            this.bm_sessionable_service.queryMultiObjects();
+        },
         linkToActvField(idx) {
             this.transitionToRoute('detail.actv-field', idx, this.bm_actv_service.actv.id);
         },

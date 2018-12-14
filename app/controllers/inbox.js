@@ -51,12 +51,10 @@ export default Controller.extend({
     // }),
     actions: {
         handleBookPageChange (pageNum) {
-            console.log(pageNum)
             this.set('bm_apply_service.page', pageNum - 1)
             this.bm_apply_service.queryMultiObjects(0);
         },
         handlePrePageChange (pageNum) {
-            console.log(pageNum)
             this.set('bm_apply_service.page', pageNum - 1)
             this.bm_apply_service.queryMultiObjects(1);
         },
@@ -67,7 +65,6 @@ export default Controller.extend({
             } else {
                 this.bm_apply_service.queryMultiObjects(1);
             }
-            console.log(tabIdx)
         },
         saveInfo() {
             this.set('modal3',false);

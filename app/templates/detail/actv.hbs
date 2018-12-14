@@ -156,11 +156,7 @@
                     {{/if}}
                 {{/layout-push}}
                 {{#layout-push direction='row' classNames="detail_margin_top_right"}}
-                    {{#if (eq bm_sessionable_service.sessionables undefined)}}
-                        <span class="detail_panel_role_num">0</span>
-                    {{else}}
-                        <span class="detail_panel_role_num">{{bm_sessionable_service.sessionables.length}}</span>
-                    {{/if}}
+                    <span class="detail_panel_role_num">{{bm_sessionable_service.totalCount}}</span>
                     <span class="detail_panel_role_num">场次数</span>
                 {{/layout-push}}
             {{/layout-push}}
@@ -170,6 +166,7 @@
 
         {{#if (bmeq cur_idx 0)}}
             {{bmpage/bm-sessionable-lst titles=model.titles action="linkToActvField" onEditSessionClick="onEditSessionClick" onDeleteSessionClick="onDeleteSessionClick"}}
+            {{bmcom/bm-pagination pageCount=bm_sessionable_service.totalPageCount sendPageNum=(action "handlePageChange")}}
         {{/if}}
 
         {{#if (bmeq cur_idx 1)}}

@@ -51,6 +51,18 @@ export default Controller.extend({
     closeExpDlg: false,
     deleteSessionDlg: false,
     actions: {
+        handlePageChange (pageNum) {
+            this.set('bm_sessionable_service.page', pageNum - 1)
+            this.bm_sessionable_service.queryMultiObjects();
+        },
+        onTabClicked(tabIdx) {
+            this.set('bm_sessionable_service.page', 0)
+            if (tabIdx == 0) {
+                this.bm_sessionable_service.queryMultiObjects();
+            } else {
+                // this.bm_sessionable_service.queryMultiObjects();
+            }
+        },
         linkToExpField(idx) {
             console.log(this.model.expid)
             this.transitionToRoute('detail.exp-field', idx, this.bm_exp_service.exp.id);

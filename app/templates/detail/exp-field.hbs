@@ -58,7 +58,8 @@
                 {{/layout-push}}
             {{/layout-push}}
         </div>
-        {{bmtable/bm-table-course-field  title=tableTitle attendees=bm_sessionable_service.sessionable.Attendees action=""}}
+        {{bmtable/bm-table-course-field  title=tableTitle attendees=bm_sessionable_service.curAttendeesPage action=""}}
+        {{bmcom/bm-pagination pageCount=bm_sessionable_service.attendeesPageCount sendPageNum=(action "handlePageChange")}}
 
     </div>
     {{#bmcom/bm-modal-container title="" mswitch=showEditSessionDlg
