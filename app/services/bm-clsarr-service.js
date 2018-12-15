@@ -16,7 +16,12 @@ export default Service.extend({
     et: 0,
     refresh_all_token: '',
 
-    units: A(['今天要开会']),
+    units: A([
+        {
+            time: 1544839505000,
+            title: '今天要开会'
+        }
+    ]),
     time_uints: A([]),
 
     queryMultiSessionable() {
