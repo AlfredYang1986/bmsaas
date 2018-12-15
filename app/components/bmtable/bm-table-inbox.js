@@ -7,5 +7,8 @@ export default Component.extend({
 		setCurrentApply: function (params) {
 			this.sendAction("action", params);
 		},
+		onPreRegisterClick: function(params) {
+			this.sendAction('onPreRegisterClick', params)
+		}
 	}
 });

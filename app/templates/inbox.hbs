@@ -33,7 +33,7 @@
 
         {{#if (bmeq cur_tab_idx 1)}}
             {{log bm_apply_service.preCount}}
-            {{bmtable/bm-table-inbox title=model.preRegisterTtitle applies=bm_apply_service.preRegistered action="setCurrentApply"}}
+            {{bmtable/bm-table-inbox title=model.preRegisterTtitle applies=bm_apply_service.preRegistered registerId=bm_apply_service.preRegisterId onPreRegisterClick='onPreRegisterClick'}}
             {{bmcom/bm-pagination pageCount=bm_apply_service.prePageCount sendPageNum=(action "handlePrePageChange")}}
         {{/if}}
 
