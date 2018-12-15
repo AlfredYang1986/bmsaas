@@ -121,7 +121,7 @@ export default Service.extend({
                     id: gt_guid,
                     attributes: {
                         key: "start_date",
-                        val: 1544596294873,
+                        val: this.st,
                         category: "BmSessionable"
                     }
                 },
@@ -130,7 +130,7 @@ export default Service.extend({
                     id: lt_guid,
                     attributes: {
                         key: "end_date",
-                        val: 1544626635292,
+                        val: this.et,
                         category: "BmSessionable"
                     }
                 }
@@ -228,13 +228,24 @@ export default Service.extend({
             return tmp.getDay() == 0;
         }
 
-        // let tmp = this.bm_clsarr_service.get('time_uints');
-        this.set('mon_lst', this.get('time_uints').filter(filterByMon))
-        this.set('tus_lst', this.get('time_uints').filter(filterByTus))
-        this.set('wed_lst', this.get('time_uints').filter(filterByWed))
-        this.set('thu_lst', this.get('time_uints').filter(filterByThu))
-        this.set('fri_lst', this.get('time_uints').filter(filterByFri))
-        this.set('sat_lst', this.get('time_uints').filter(filterBySat))
-        this.set('sun_lst', this.get('time_uints').filter(filterBySun))
+        let tmp = this.get('time_uints');
+        if (tmp) {
+            this.set('mon_lst', tmp.filter(filterByMon))
+            this.set('tus_lst', tmp.filter(filterByTus))
+            this.set('wed_lst', tmp.filter(filterByWed))
+            this.set('thu_lst', tmp.filter(filterByThu))
+            this.set('fri_lst', tmp.filter(filterByFri))
+            this.set('sat_lst', tmp.filter(filterBySat))
+            this.set('sun_lst', tmp.filter(filterBySun))
+
+        } else {
+            this.set('mon_lst', A([]))
+            this.set('tus_lst', A([]))
+            this.set('wed_lst', A([]))
+            this.set('thu_lst', A([]))
+            this.set('fri_lst', A([]))
+            this.set('sat_lst', A([]))
+            this.set('sun_lst', A([]))
+        }
     },
 });
