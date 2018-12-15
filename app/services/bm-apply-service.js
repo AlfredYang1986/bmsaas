@@ -485,7 +485,6 @@ export default Service.extend({
     },
 
     saveUpdate(callback) {
-
         if (!this.isValidate) {
             return ;
         }

@@ -38,7 +38,7 @@
             {{#if (bmcom/bm-nil-obj bm_apply_service.preRegistered)}}
                 {{bmcom/bm-empty-state class="inbox-empty-state" picUrl="/images/temp-pic.png" title="暂无数据" des="暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据"}}
             {{else}}
-                {{bmtable/bm-table-inbox title=model.preRegisterTtitle applies=bm_apply_service.preRegistered action="setCurrentApply"}}
+                {{bmtable/bm-table-inbox title=model.preRegisterTtitle applies=bm_apply_service.preRegistered registerId=bm_apply_service.preRegisterId onPreRegisterClick='onPreRegisterClick'}}
                 {{bmcom/bm-pagination pageCount=bm_apply_service.prePageCount sendPageNum=(action "handlePrePageChange")}}
             {{/if}}
         {{/if}}

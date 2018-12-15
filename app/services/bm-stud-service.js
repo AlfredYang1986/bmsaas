@@ -183,7 +183,7 @@ export default Service.extend({
                     },
                     relationships: {
                         Fmcond: {
-                            data: 
+                            data:
                             {
                                 id: fm,
                                 type: "Fmcond"
@@ -417,7 +417,6 @@ export default Service.extend({
     },
 
     saveUpdate(callback) {
-
 
         if (!this.isValidate) {
             return ;

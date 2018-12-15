@@ -73,9 +73,19 @@
                 {{item.contact}}
             </td>
             <td class='ib_table_content_item'>
-                {{#link-to 'edit.stud' 'stud/push'  classNames="ib_table_content_btn"}}
-                      <span>点击注册</span>
-                {{/link-to}}
+                {{!-- {{#link-to 'edit.stud' item.id  classNames="ib_table_content_btn"}} --}}
+                      {{!-- <span {{action 'addStud'}}>点击注册</span> --}}
+                {{!-- {{/link-to}} --}}
+                {{#if (bmeq item.status 0)}}
+                    <td class='ib_table_content_item'>
+                        {{#bs-button classNames="ib_table_content_btn" onClick=(action 'addStud' item)}}<span>点击注册</span>{{/bs-button}}
+                    </td>
+                {{else}}
+                    <td class='ib_table_content_item'>
+                        <span class="dealed">已处理</span>
+                    </td>
+                {{/if}}
+
             </td>
         {{else if (bmeq type "course")}}
             <td class='ib_table_content_item'>{{bmcom/bm-plus-one index}}</td>
