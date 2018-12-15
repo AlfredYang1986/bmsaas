@@ -20,9 +20,6 @@ export default Service.extend({
         this.addObserver('refresh_all_token', this, 'querySessionableCount');
     },
 
-    localAttendees: null,
-    localAttendeesPages: null,
-    curAttendeesPage: null,
     page: 0,
     steps: 10,
     sessionableid: '',
@@ -35,6 +32,9 @@ export default Service.extend({
     totalPageCount: 0,
     attendeesCount: 0,
     attendeesPageCount: 0,
+    localAttendees: null,
+    localAttendeesPages: null,
+    curAttendeesPage: null,
 
     querySessionableCount() {
         this.bmstore.reset();
@@ -213,7 +213,7 @@ export default Service.extend({
         })
     },
 
-    genCountQuery(param) {
+    genCountQuery() {
         let eq = this.guid();
         return {
             data: {

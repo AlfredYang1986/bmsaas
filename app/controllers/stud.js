@@ -11,6 +11,10 @@ export default Controller.extend({
         },
         addStudClicked() {
             this.transitionToRoute('edit.stud', "stud/push");
-        }
+        },
+        handlePageChange (pageNum) {
+            this.set('bm_stud_service.page', pageNum - 1)
+            this.bm_stud_service.queryMultiObjects();
+        },
     },
 });
