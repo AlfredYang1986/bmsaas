@@ -27,7 +27,8 @@
         align-items: center;
         height: 72px;
         padding: 20px 24px;
-        border-bottom: 8px solid #f7f8fa;
+        // border-bottom: 8px solid #f7f8fa;
+        margin-bottom: 8px;
         background-color: #FFFFFF;
         p.page_title {
             @extend %font-page-header-title;

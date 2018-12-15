@@ -112,8 +112,16 @@
     flex: 2;
 
     .other_self {
-      background-color: #FFF;
+      background-color: transparent;
       min-width: 608px;
+
+      .info-block-outer {
+        background-color: #FFF;
+        margin-top: 8px;
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
       .self_info {
         padding: 24px;
       }
