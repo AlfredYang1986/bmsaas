@@ -11,6 +11,8 @@ export default Component.extend({
     refreshSelected: computed(function(){
         var sel = document.getElementById("yardselect");
         this.set('selectedYard', sel.options[sel.selectedIndex].value);
+        this.bm_clsarr_service.set('yardid', this.selectedYard);
+        this.bm_clsarr_service.set('refresh_all_token', this.bm_clsarr_service.guid());
         return '';
     }),
 
@@ -53,6 +55,8 @@ export default Component.extend({
         yardChanged() {
             var sel = document.getElementById("yardselect");
             this.set('selectedYard', sel.options[sel.selectedIndex].value);
+            this.bm_clsarr_service.set('yardid', this.selectedYard);
+            this.bm_clsarr_service.set('refresh_all_token', this.bm_clsarr_service.guid());
         },
         cancelHandled() {
             this.set('showAddDlg', false);
