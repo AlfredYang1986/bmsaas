@@ -28,6 +28,9 @@ export default Controller.extend({
     showEditSessionDlg: false,
 
     actions: {
+        handlePageChange (pageNum) {
+            this.set('bm_sessionable_service.curAttendeesPage',this.bm_sessionable_service.localAttendeesPages[pageNum - 1]) 
+        },
         onEditSessionable() {
             this.set('cur_yard_id', this.bm_sessionable_service.sessionable.Yard.id);
             this.set('cur_tmp_date', this.bm_sessionable_service.sessionable.tmp_date);

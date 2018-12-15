@@ -12,13 +12,49 @@ export default Service.extend({
         this._super(...arguments);
         this.addObserver('refresh_token', this, 'queryStud');
         this.addObserver('refresh_all_token', this, 'queryMultiObjects');
+        this.addObserver('refresh_all_token', this, 'queryStudCount');
     },
 
+    page: 0,
+    steps: 20,
+    totalCount: 0,
+    totalPageCount: 0,
     studid: '',
     refresh_token: '',
     stud: null,
     studs: A([]),
 
+    queryStudCount() {
+        this.bmstore.reset();
+
+        let query_preCount_payload = this.genCountQuery();
+        let rd = this.bmstore.sync(query_preCount_payload);
+        let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
+        let eq = rd.Eqcond[0].serialize();
+        rd_tmp['included'] = [eq.data];
+        let dt = JSON.stringify(rd_tmp);
+
+        let that = this;
+        Ember.$.ajax({
+            method: 'POST',
+            url: '/api/v1/findcount/0',
+            headers: {
+                'Content-Type': 'application/json', // 默认值
+                'Accept': 'application/json',
+                'Authorization': this.bm_config.getToken(),
+            },
+            data: dt,
+            success: function(res) {
+                let result = that.bmstore.sync(res)
+                that.set('totalCount', result.count);
+                let pageCount = result.count / that.steps;
+                that.set('totalPageCount', Math.ceil(pageCount));
+            },
+            error: function(err) {
+                console.log('error is : ', err);
+            },
+        })
+    },
     queryStud() {
         this.bmstore.reset();
         this.set('stud', null);
@@ -71,9 +107,9 @@ export default Service.extend({
         let query_yard_payload = this.genMultiQuery();
         let rd = this.bmmulti.sync(query_yard_payload);
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
-        // let eq = rd.Eqcond[0].serialize();
-        // let fm = rd.Fmcond.serialize();
-        // rd_tmp['included'] = [eq.data, fm.data];
+        let fm = rd.Fmcond.serialize();
+        let eq = rd.Eqcond[0].serialize();
+        rd_tmp['included'] = [eq.data, fm.data];
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
@@ -88,13 +124,13 @@ export default Service.extend({
             data: dt,
             success: function(res) {
                 let result = that.bmmulti.sync(res)
-                let studs = [];
-                result.forEach((stud,index) => {
-                    if(stud.status == 'stud') {
-                        studs.push(stud)
-                    }
-                })
-                that.set('studs', studs);
+                // let studs = [];
+                // result.forEach((stud,index) => {
+                //     if(stud.status == 'stud') {
+                //         studs.push(stud)
+                //     }
+                // })
+                that.set('studs', result);
             },
             error: function(err) {
                 console.log('error is : ', err);
@@ -102,8 +138,42 @@ export default Service.extend({
         })
     },
 
+    genCountQuery() {
+        let eq = this.guid();
+        return {
+            data: {
+                id: this.guid(),
+                type: "Request",
+                attributes: {
+                    res: "BmAttendee"
+                },
+                relationships: {
+                    Eqcond: {
+                        data: [
+                        {
+                            id: eq,
+                            type: "Eqcond"
+                        },
+                        ]
+                    }
+                }
+            },
+            included: [
+                {
+                    id: eq,
+                    type: "Eqcond",
+                    attributes: {
+                        key: "status",
+                        val: "stud"
+                    }
+                },
+            ]
+        }
+    },
+
     genMultiQuery() {
         let eq = this.guid();
+        let fm = this.guid();
         return {
                 data: {
                     id: this.guid(),
@@ -112,10 +182,41 @@ export default Service.extend({
                         res: "BmAttendee"
                     },
                     relationships: {
-                        Eqcond: {}
+                        Fmcond: {
+                            data:
+                            {
+                                id: fm,
+                                type: "Fmcond"
+                            }
+                        },
+                        Eqcond: {
+                            data: [
+                            {
+                                id: eq,
+                                type: "Eqcond"
+                            }
+                            ]
+                        }
                     }
                 },
-                included: []
+                included: [
+                    {
+                        id: fm,
+                        type: "Fmcond",
+                        attributes: {
+                            take: this.steps,
+                            page: this.page
+                        }
+                    },
+                    {
+                        id: eq,
+                        type: "Eqcond",
+                        attributes: {
+                            key: "status",
+                            val: "stud"
+                        }
+                    },
+                ]
             }
     },
 
@@ -316,7 +417,6 @@ export default Service.extend({
     },
 
     saveUpdate(callback) {
-
 
         if (!this.isValidate) {
             return ;

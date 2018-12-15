@@ -17,18 +17,62 @@ export default Service.extend({
         this._super(...arguments);
         this.addObserver('refresh_token', this, 'querySessionable');
         this.addObserver('refresh_all_token', this, 'queryMultiObjects');
+        this.addObserver('refresh_all_token', this, 'querySessionableCount');
     },
 
+    page: 0,
+    steps: 10,
     sessionableid: '',
     reservableid: '',
     refresh_token: '',
     refresh_all_token: '',
     sessionable: null,
     sessionables: A([]),
+    totalCount: 0,
+    totalPageCount: 0,
+    attendeesCount: 0,
+    attendeesPageCount: 0,
+    localAttendees: null,
+    localAttendeesPages: null,
+    curAttendeesPage: null,
 
+    querySessionableCount() {
+        this.bmstore.reset();
+
+        let query_preCount_payload = this.genCountQuery();
+        let rd = this.bmstore.sync(query_preCount_payload);
+        let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
+        let eq = rd.Eqcond[0].serialize();
+        rd_tmp['included'] = [eq.data];
+        let dt = JSON.stringify(rd_tmp);
+
+        let that = this;
+        Ember.$.ajax({
+            method: 'POST',
+            url: '/api/v1/findcount/0',
+            headers: {
+                'Content-Type': 'application/json', // 默认值
+                'Accept': 'application/json',
+                'Authorization': this.bm_config.getToken(),
+            },
+            data: dt,
+            success: function(res) {
+                let result = that.bmstore.sync(res)
+                that.set('totalCount', result.count);
+                let pageCount = result.count / that.steps;
+                that.set('totalPageCount', Math.ceil(pageCount));
+            },
+            error: function(err) {
+                console.log('error is : ', err);
+            },
+        })
+    },
     querySessionable(callback) {
         this.bmstore.reset();
         this.set('sessionable', null);
+        this.set('localAttendees', null);
+        this.set('localAttendeesPages', null);
+        this.set('curAttendeesPage', null);
 
         if (this.sessionableid.length == 0 || this.sessionableid == 'sessionable/push') {
             let query_payload = this.genPushQuery();
@@ -58,6 +102,23 @@ export default Service.extend({
                 let result = that.bmstore.sync(res)
                 that.set('sessionable', result);
                 that.set('sessionable.tmp_date', result.start_date);
+                if (result.Attendees == null){
+                    that.set('attendeesCount', 0);
+                    that.set('attendeesPageCount', 0);
+                } else {
+                    that.set('attendeesCount', result.Attendees.length);
+                    let pageCount = result.Attendees.length / that.steps;
+                    that.set('attendeesPageCount', Math.ceil(pageCount));
+
+                    that.set('localAttendees', result.Attendees)
+                    let tmpArr = [];
+                    for(let i = 0, len = that.localAttendees.length;i < len ;i += that.steps){
+                        tmpArr.push(that.localAttendees.slice(i,i + that.steps));
+                    }
+                    that.set('localAttendeesPages',tmpArr) 
+                    that.set('curAttendeesPage',tmpArr[0]) 
+
+                }
                 console.log(that.sessionable)
             },
             error: function(err) {
@@ -126,7 +187,8 @@ export default Service.extend({
         let rd = this.bmmulti.sync(query_yard_payload);
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
         let inc = rd.Eqcond[0].serialize();
-        rd_tmp['included'] = [inc.data];
+        let fm = rd.Fmcond.serialize();
+        rd_tmp['included'] = [inc.data, fm.data];
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
@@ -152,6 +214,39 @@ export default Service.extend({
                 console.log('error is : ', err);
             },
         })
+    },
+
+    genCountQuery() {
+        let eq = this.guid();
+        return {
+            data: {
+                id: this.guid(),
+                type: "Request",
+                attributes: {
+                    res: "BmSessionable"
+                },
+                relationships: {
+                    Eqcond: {
+                        data: [
+                        {
+                            id: eq,
+                            type: "Eqcond"
+                        },
+                        ]
+                    }
+                }
+            },
+            included: [
+                {
+                    id: eq,
+                    type: "Eqcond",
+                    attributes: {
+                        key: "reservableId",
+                        val: this.reservableid
+                    }
+                },
+            ]
+        }
     },
 
     genIdQuery() {
@@ -307,6 +402,7 @@ export default Service.extend({
 
     genMultiQuery() {
         let eq = this.guid();
+        let fm = this.guid();
         return {
                 data: {
                     id: this.guid(),
@@ -315,6 +411,13 @@ export default Service.extend({
                         res: "BmSessionable"
                     },
                     relationships: {
+                        Fmcond: {
+                            data: 
+                            {
+                                id: fm,
+                                type: "Fmcond"
+                            }
+                        },
                         Eqcond: {
                             data: [
                             {
@@ -327,13 +430,21 @@ export default Service.extend({
                 },
                 included: [
                     {
+                        id: fm,
+                        type: "Fmcond",
+                        attributes: {
+                            take: this.steps,
+                            page: this.page
+                        }
+                    },
+                    {
                         id: eq,
                         type: "Eqcond",
                         attributes: {
                             key: "reservableId",
                             val: this.reservableid
                         }
-                    }
+                    },
                 ]
             }
     },

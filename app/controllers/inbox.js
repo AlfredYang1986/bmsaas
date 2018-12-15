@@ -50,8 +50,21 @@ export default Controller.extend({
     //     return this.sr != null && this.sy != null || this.sa != null && this.ss != null;
     // }),
     actions: {
-        handlePageChange (pageNum) {
-            console.log(pageNum)
+        handleBookPageChange (pageNum) {
+            this.set('bm_apply_service.page', pageNum - 1)
+            this.bm_apply_service.queryMultiObjects(0);
+        },
+        handlePrePageChange (pageNum) {
+            this.set('bm_apply_service.page', pageNum - 1)
+            this.bm_apply_service.queryMultiObjects(1);
+        },
+        onTabClicked(tabIdx) {
+            this.set('bm_apply_service.page', 0)
+            if (tabIdx == 0) {
+                this.bm_apply_service.queryMultiObjects(0);
+            } else {
+                this.bm_apply_service.queryMultiObjects(1);
+            }
         },
         saveInfo() {
             this.set('modal3',false);
@@ -69,6 +82,51 @@ export default Controller.extend({
             this.set('isV', false);
             this.set('current_apply', item);
             this.set('showhandledlg', true);
+        },
+        onPreRegisterClick(item) {
+            this.set('current_apply', item);
+            let that = this;
+            let callback = {
+                onSuccess: function(res) {
+                    // that.set('bm_apply_service.preRegisterId', res.data.id);
+                    that.transitionToRoute('edit.stud',  res.data.id)
+
+                },
+                onFail: function() {
+                    console.log('push apply fail')
+                }
+            }
+            let kid = this.current_apply.kid;
+
+            let stud_data = this.bm_stud_service.genPushQuery();
+            let stud = this.bm_stud_service.bmstore.sync(stud_data);
+            stud.name = kid.name;
+            stud.nickname = kid.nickname;
+            stud.gender = kid.gender;
+            stud.reg_date = new Date().getTime();
+            stud.dob = kid.dob;
+            stud.applyId = this.current_apply.id;
+
+            stud.Guardians[0].name = this.current_apply.Applyee.name;
+            stud.Guardians[0].gender = this.current_apply.Applyee.gender;
+            stud.Guardians[0].contact = this.current_apply.contact;
+            stud.Guardians[0].reg_date = new Date().getTime();
+            stud.Guardians[0].relation_ship = kid.guardian_role;
+
+            this.bm_stud_service.set('stud', stud);
+            // this.transitionToRoute('edit.stud',  stud.id)
+            this.bm_stud_service.saveUpdate(callback);
+
+            let callbackPush = {
+                onSuccess: function() {
+                    that.bm_apply_service.set('apply', this.current_apply);
+                },
+                onFail: function() {
+                    console.log('push apply fail')
+                }
+            }
+            this.bm_apply_service.set('apply', this.current_apply);
+            this.bm_apply_service.saveUpdate(callbackPush);
         },
         toggleAction() {
             let that = this;

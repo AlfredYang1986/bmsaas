@@ -58,7 +58,12 @@
                 {{/layout-push}}
             {{/layout-push}}
         </div>
-        {{bmtable/bm-table-course-field  title=tableTitle attendees=bm_sessionable_service.sessionable.Attendees action=""}}
+        {{#if (bmcom/bm-nil-obj bm_sessionable_service.curAttendeesPage)}}
+            {{bmcom/bm-empty-state class="field-empty-state" picUrl="/images/temp-pic.png" title="暂无数据" des="暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据"}}
+        {{else}}
+            {{bmtable/bm-table-course-field  title=tableTitle attendees=bm_sessionable_service.curAttendeesPage action=""}}
+            {{bmcom/bm-pagination pageCount=bm_sessionable_service.attendeesPageCount sendPageNum=(action "handlePageChange")}}
+        {{/if}}
 
     </div>
     {{#bmcom/bm-modal-container title="" mswitch=showEditSessionDlg

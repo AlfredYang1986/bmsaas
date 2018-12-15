@@ -470,24 +470,29 @@
 
 }
 
-
-
+.bm-inbox-table {
+    height: 1145px;
+    margin: 24px 0;
+}
+.bm-sessionable-table {
+    height: 585px;
+    margin: 24px 0;
+}
+.bm-field-table {
+    height: 585px;
+    margin: 24px 0;
+}
 .ib_table_head {
-
-    margin-top: 8px;
+    // margin-top: 8px;
     min-width: 912px;
     border: none;
     background: transparent;
     width: 100%;
-    // height: 34px;
-    // width: 143px;
 
     .ib_table_title {
-
     }
     .ib_table_item {
         padding: 0px 24px 8px 24px;
-
         font-family: PingFangSC-Regular;;
         font-size: 12px;
         color: #6B778C;
@@ -588,9 +593,11 @@
         }
     }
     .pagination-count {
+        padding-left: 16px;
         font-family: SFUIText-Medium;
         font-size: 14px;
-        color: #42526E;
+        // color: #42526E;
+        color: #A5ADBA;
         height: 24px;
         line-height: 24px;
     }

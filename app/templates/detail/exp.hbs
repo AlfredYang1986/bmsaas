@@ -167,20 +167,21 @@
                     {{/if}}
                 {{/layout-push}}
                 {{#layout-push direction='row' classNames="detail_margin_top_right"}}
-                    {{#if (eq bm_sessionable_service.sessionables undefined)}}
-                        <span class="detail_panel_role_num">0</span>
-                    {{else}}
-                        <span class="detail_panel_role_num">{{bm_sessionable_service.sessionables.length}}</span>
-                    {{/if}}
+                    <span class="detail_panel_role_num">{{bm_sessionable_service.totalCount}}</span>
                     <span class="detail_panel_role_num">场次数</span>
                 {{/layout-push}}
             {{/layout-push}}
         </div>
 
-        {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs}}
+        {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs needAction=true onTabClicked=(action "onTabClicked")}}
 
         {{#if (bmeq cur_idx 0)}}
-            {{bmpage/bm-sessionable-lst titles=model.titles action="linkToExpField" onEditSessionClick="onEditSessionClick" onDeleteSessionClick="onDeleteSessionClick"}}
+            {{#if (bmcom/bm-nil-obj bm_sessionable_service.sessionables)}}
+                {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/temp-pic.png" title="暂无数据" des="暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据"}}
+            {{else}}
+                {{bmpage/bm-sessionable-lst titles=model.titles action="linkToExpField" onEditSessionClick="onEditSessionClick" onDeleteSessionClick="onDeleteSessionClick"}}
+                {{bmcom/bm-pagination pageCount=bm_sessionable_service.totalPageCount sendPageNum=(action "handlePageChange")}}
+            {{/if}}
         {{/if}}
 
         {{#if (bmeq cur_idx 1)}}

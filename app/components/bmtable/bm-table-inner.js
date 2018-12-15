@@ -15,6 +15,9 @@ export default Component.extend({
 			this.sendAction("onDeleteSessionClick", params);
 		},
         registerClick: function() {
+        },
+        addStud(params) {
+            this.sendAction("addStud", params);
         }
 	}
 });

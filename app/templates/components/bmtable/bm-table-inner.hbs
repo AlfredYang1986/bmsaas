@@ -24,7 +24,6 @@
                         {{kd.guardian_role}}
                     {{/if}}
                 {{/each}}
-
             </td>
             <td class="ib_table_content_item">{{item.contact}}</td>
             {{#if (bmeq item.status 0)}}
@@ -74,9 +73,19 @@
                 {{item.contact}}
             </td>
             <td class='ib_table_content_item'>
-                {{#link-to 'edit.stud' 'stud/push'  classNames="ib_table_content_btn"}}
-                      <span>点击注册</span>
-                {{/link-to}}
+                {{!-- {{#link-to 'edit.stud' item.id  classNames="ib_table_content_btn"}} --}}
+                      {{!-- <span {{action 'addStud'}}>点击注册</span> --}}
+                {{!-- {{/link-to}} --}}
+                {{#if (bmeq item.status 0)}}
+                    <td class='ib_table_content_item'>
+                        {{#bs-button classNames="ib_table_content_btn" onClick=(action 'addStud' item)}}<span>点击注册</span>{{/bs-button}}
+                    </td>
+                {{else}}
+                    <td class='ib_table_content_item'>
+                        <span class="dealed">已处理</span>
+                    </td>
+                {{/if}}
+
             </td>
         {{else if (bmeq type "course")}}
             <td class='ib_table_content_item'>{{bmcom/bm-plus-one index}}</td>
@@ -126,6 +135,19 @@
             {{!-- <td  class="ib_table_content_item">
                 {{#bs-button classNames="ib_table_content_btn"}}<span>点击签到</span>{{/bs-button}}
             </td> --}}
+        {{else if (bmeq type "studsList")}}
+            <td class='ib_table_content_item'>{{item.name}}</td>
+            <td class="ib_table_content_item">
+                {{#if (bmeq item.gender 1)}}
+                男
+                {{else}}
+                女
+                {{/if}}
+            </td>
+            <td class='ib_table_content_item'>{{bmdob/bmdob2age item.dob}}岁</td>
+            <td  class="ib_table_content_item">
+                {{#bs-button classNames="ib_table_content_link_btn" onClick=(action 'onClickInner' item.id)}}<span>查看</span>{{/bs-button}}
+            </td>
         {{/if}}
     </tr>
 {{/each}}

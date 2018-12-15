@@ -1,11 +1,14 @@
 import Component from '@ember/component';
 
 export default Component.extend({
-	classNames: [],
+	classNames: ['bm-inbox-table'],
 	positionalParams: ['title', 'applies'],
 	actions: {
 		setCurrentApply: function (params) {
 			this.sendAction("action", params);
 		},
+		onPreRegisterClick: function(params) {
+			this.sendAction('onPreRegisterClick', params)
+		}
 	}
 });

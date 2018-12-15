@@ -13,6 +13,18 @@ export default Route.extend({
         return RSVP.hash({
             studid: params.studid,
             tabs: A(['详细信息', 'tab']),
+            urls: A([
+                {
+                    "pageName":"学生管理",
+                    "link":"stud",
+                    "id":"",
+                },
+                {
+                    "pageName":"学生详情",
+                    "link":"",
+                    "id":"",
+                }
+            ]),
         })
 
     },
