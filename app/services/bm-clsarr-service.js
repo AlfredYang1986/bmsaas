@@ -9,6 +9,7 @@ export default Service.extend({
     init() {
         this._super(...arguments);
         this.addObserver('refresh_all_token', this, 'queryMultiSessionable');
+        this.unitSplits();
     },
 
     yardid: '',
@@ -59,6 +60,7 @@ export default Service.extend({
                 let result = that.bmstore.sync(res);
                 // that.set('sessions_in_date', result);
                 that.set('time_uints', result);
+                that.timeUnitsSplits();
             },
             error: function(err) {
                 console.log('error is : ', err);
@@ -144,4 +146,95 @@ export default Service.extend({
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
     },
 
+    unitSplits() {
+        function filterByMon(units) {
+            let tmp = new Date();
+            tmp.setTime(units.time);
+            return tmp.getDay() == 1;
+        }
+        function filterByTus(units) {
+            let tmp = new Date();
+            tmp.setTime(units.time);
+            return tmp.getDay() == 2;
+        }
+        function filterByWed(units) {
+            let tmp = new Date();
+            tmp.setTime(units.time);
+            return tmp.getDay() == 3;
+        }
+        function filterByThu(units) {
+            let tmp = new Date();
+            tmp.setTime(units.time);
+            return tmp.getDay() == 4;
+        }
+        function filterByFri(units) {
+            let tmp = new Date();
+            tmp.setTime(units.time);
+            return tmp.getDay() == 5;
+        }
+        function filterBySat(units) {
+            let tmp = new Date();
+            tmp.setTime(units.time);
+            return tmp.getDay() == 6;
+        }
+        function filterBySun(units) {
+            let tmp = new Date();
+            tmp.setTime(units.time);
+            return tmp.getDay() == 0;
+        }
+        // let tmp = this.bm_clsarr_service.get('units');
+        this.set('mon_unit_lst', this.get('units').filter(filterByMon))
+        this.set('tus_unit_lst', this.get('units').filter(filterByTus))
+        this.set('wed_unit_lst', this.get('units').filter(filterByWed))
+        this.set('thu_unit_lst', this.get('units').filter(filterByThu))
+        this.set('fri_unit_lst', this.get('units').filter(filterByFri))
+        this.set('sat_unit_lst', this.get('units').filter(filterBySat))
+        this.set('sun_unit_lst', this.get('units').filter(filterBySun))
+    },
+    timeUnitsSplits() {
+        function filterByMon(units) {
+            let tmp = new Date();
+            tmp.setTime(units.start_date);
+            return tmp.getDay() == 1;
+        }
+        function filterByTus(units) {
+            let tmp = new Date();
+            tmp.setTime(units.start_date);
+            return tmp.getDay() == 2;
+        }
+        function filterByWed(units) {
+            let tmp = new Date();
+            tmp.setTime(units.start_date);
+            return tmp.getDay() == 3;
+        }
+        function filterByThu(units) {
+            let tmp = new Date();
+            tmp.setTime(units.start_date);
+            return tmp.getDay() == 4;
+        }
+        function filterByFri(units) {
+            let tmp = new Date();
+            tmp.setTime(units.start_date);
+            return tmp.getDay() == 5;
+        }
+        function filterBySat(units) {
+            let tmp = new Date();
+            tmp.setTime(units.start_date);
+            return tmp.getDay() == 6;
+        }
+        function filterBySun(units) {
+            let tmp = new Date();
+            tmp.setTime(units.start_date);
+            return tmp.getDay() == 0;
+        }
+
+        // let tmp = this.bm_clsarr_service.get('time_uints');
+        this.set('mon_lst', this.get('time_uints').filter(filterByMon))
+        this.set('tus_lst', this.get('time_uints').filter(filterByTus))
+        this.set('wed_lst', this.get('time_uints').filter(filterByWed))
+        this.set('thu_lst', this.get('time_uints').filter(filterByThu))
+        this.set('fri_lst', this.get('time_uints').filter(filterByFri))
+        this.set('sat_lst', this.get('time_uints').filter(filterBySat))
+        this.set('sun_lst', this.get('time_uints').filter(filterBySun))
+    },
 });
