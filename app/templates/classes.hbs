@@ -1,17 +1,21 @@
 <div class="class_content_top" >
-    {{#layout-push direction="col" classNames="class_content"}}
-        {{#layout-push direction="row" split=true}}
-            <p class="class-content-title">班级</p>
-            <button class="class_add_btn" {{action 'createClass'}}>+ 创建班级</button>
+    {{#if openFlag}}
+        {{#layout-push direction="col" classNames="class_content"}}
+            {{#layout-push direction="row" split=true}}
+                <p class="class-content-title">班级</p>
+                <button class="class_add_btn" {{action 'createClass'}}>+ 创建班级</button>
+            {{/layout-push}}
+            {{#layout-push direction="row" wrap=true classNames="card-wrap"}}
+                {{#each model.cls as |item|}}
+                    <div class="line_container_warp class_card_container" >
+                        {{bmcard/class-card onClassCardClicked=(action 'cardClicked') cls=item}}
+                    </div>
+                {{/each}}
+            {{/layout-push}}
         {{/layout-push}}
-        {{#layout-push direction="row" wrap=true classNames="card-wrap"}}
-            {{#each model.cls as |item|}}
-                <div class="line_container_warp class_card_container" >
-                    {{bmcard/class-card onClassCardClicked=(action 'cardClicked') cls=item}}
-                </div>
-            {{/each}}
-        {{/layout-push}}
-    {{/layout-push}}
+    {{else}}
+        {{bmcom/bm-empty-state class="class-not-open" picUrl="/images/img_openningsoon.png" title="即将开放" des="更加强大便捷的功能马上到来"}}
+    {{/if}}
 </div>
 
 {{outlet}}

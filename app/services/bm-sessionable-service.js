@@ -70,6 +70,9 @@ export default Service.extend({
     querySessionable(callback) {
         this.bmstore.reset();
         this.set('sessionable', null);
+        this.set('localAttendees', null);
+        this.set('localAttendeesPages', null);
+        this.set('curAttendeesPage', null);
 
         if (this.sessionableid.length == 0 || this.sessionableid == 'sessionable/push') {
             let query_payload = this.genPushQuery();

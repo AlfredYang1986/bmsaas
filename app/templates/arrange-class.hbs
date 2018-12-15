@@ -1,9 +1,13 @@
 <div class="detail_content_top">
-    <div class="detail_page">
-        <div class="content_page arrange-class"> 
-            {{bmcls/cls-arrangement}}
+    {{#if openFlag}}
+        <div class="detail_page">
+            <div class="content_page arrange-class"> 
+                {{bmcls/cls-arrangement}}
+            </div> 
         </div> 
-    </div> 
+    {{else}}
+        {{bmcom/bm-empty-state class="arr-class-not-open" picUrl="/images/img_openningsoon.png" title="即将开放" des="更加强大便捷的功能马上到来"}}
+    {{/if}}
 </div>
 
 {{outlet}}
