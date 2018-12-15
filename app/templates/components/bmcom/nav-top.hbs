@@ -2,7 +2,6 @@
     <li class="nav-item">
         {{#layout-push direction='row' classNames="nav-item-left"}}
             {{#if (bmcom/bm-nil-obj bm_brand_service.brand)}}
-            {{log bm_brand_service}}
             {{else}}
                 <img src={{brandlogo}} alt="">
             {{/if}}
