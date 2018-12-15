@@ -637,7 +637,7 @@ a.btn_sign {
             }
         }
         &:nth-child(odd) {
-            background-color: transparent;
+            background-color: #fbfbfb;
         }
     }
 }
@@ -656,7 +656,7 @@ a.btn_sign {
 .ib_table_head.stud_list_table {
     .session-list {
         &:nth-child(even) {
-            background-color: transparent;
+            background-color: #fbfbfb;
         }
         &:nth-child(odd) {
             background-color: #FFFFFF;
