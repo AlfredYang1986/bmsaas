@@ -38,6 +38,7 @@ export default Route.extend({
     setupController(controller, model) {
         this._super(controller, model);
         this.bm_actv_service.set('refresh_token', this.bm_actv_service.guid());
+        this.bm_sessionable_service.set('page', 0);
         this.bm_sessionable_service.set('refresh_all_token', this.bm_sessionable_service.guid());
     },
 });

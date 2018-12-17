@@ -201,7 +201,7 @@
 
         {{#if (bmeq cur_idx 0)}}
             {{#if (bmcom/bm-nil-obj bm_sessionable_service.sessionables)}}
-                {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/temp-pic.png" title="暂无数据" des="暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据"}}
+                {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/temp-pic.png" title="暂无场次" des="点击右上角添加场次，安排活动时间与场地吧"}}
             {{else}}
                 {{bmpage/bm-sessionable-lst titles=model.titles action="linkToActvField" onEditSessionClick="onEditSessionClick" onDeleteSessionClick="onDeleteSessionClick"}}
                 {{bmcom/bm-pagination pageCount=bm_sessionable_service.totalPageCount sendPageNum=(action "handlePageChange")}}
