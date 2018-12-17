@@ -25,6 +25,8 @@ export default Service.extend({
     preCount: 0,
     bookPageCount: 0,
     prePageCount: 0,
+    bookTodayPageCount: 0,
+    preTodayPageCount: 0,
 
     queryApplyCount() {
         this.bmstore.reset();
