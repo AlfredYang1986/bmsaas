@@ -105,11 +105,13 @@ export default Service.extend({
 
         this.bmmulti.reset();
         let query_yard_payload = this.genMultiQuery();
+        debugger
         let rd = this.bmmulti.sync(query_yard_payload);
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
         let fm = rd.Fmcond.serialize();
         let eq = rd.Eqcond[0].serialize();
-        rd_tmp['included'] = [eq.data, fm.data];
+        let brand = rd.Eqcond[1].serialize();
+        rd_tmp['included'] = [eq.data, fm.data, brand.data];
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
@@ -173,6 +175,7 @@ export default Service.extend({
 
     genMultiQuery() {
         let eq = this.guid();
+        let eq2 = this.guid();
         let fm = this.guid();
         return {
                 data: {
@@ -193,6 +196,9 @@ export default Service.extend({
                             data: [
                             {
                                 id: eq,
+                                type: "Eqcond"
+                            }, {
+                                id: eq2,
                                 type: "Eqcond"
                             }
                             ]
@@ -216,6 +222,14 @@ export default Service.extend({
                             val: "stud"
                         }
                     },
+                    {
+                        id: eq2,
+                        type: "Eqcond",
+                        attributes: {
+                            key: "brandId",
+                            val: localStorage.getItem('brandid')
+                        }
+                    }
                 ]
             }
     },

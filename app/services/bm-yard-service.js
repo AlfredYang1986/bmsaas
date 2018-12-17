@@ -111,10 +111,22 @@ export default Service.extend({
                         res: "BmYard"
                     },
                     relationships: {
-                        Eqcond: {}
+                        Eqcond: {
+                            id: eq,
+                            type: "Eqcond"
+                        }
                     }
                 },
-                included: []
+                included: [
+                    {
+                        id: eq,
+                        type: "Eqcond",
+                        attributes: {
+                            key: 'brandId',
+                            val: localStorage.getItem('brandid')
+                        }
+                    }
+                ]
             }
     },
 

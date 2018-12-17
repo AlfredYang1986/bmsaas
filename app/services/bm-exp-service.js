@@ -73,7 +73,9 @@ export default Service.extend({
         let rd = this.bmmulti.sync(query_yard_payload);
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
         let inc = rd.Eqcond[0].serialize();
+        let brand = rd.Eqcond[1].serialize();
         rd_tmp['included'] = [inc.data];
+        rd_tmp.included.push(brand.data);
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
@@ -98,6 +100,7 @@ export default Service.extend({
 
     genMultiQuery() {
         let eq = this.guid();
+        let eq2 = this.guid();
         return {
                 data: {
                     id: this.guid(),
@@ -111,6 +114,9 @@ export default Service.extend({
                             {
                                 id: eq,
                                 type: "Eqcond"
+                            }, {
+                                id: eq2,
+                                type: "Eqcond"
                             }
                             ]
                         }
@@ -123,6 +129,13 @@ export default Service.extend({
                         attributes: {
                             key: "status",
                             val: 1
+                        }
+                    }, {
+                        id: eq2,
+                        type: "Eqcond",
+                        attributes: {
+                            key: "brandId",
+                            val: localStorage.getItem('brandid')
                         }
                     }
                 ]

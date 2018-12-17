@@ -11,7 +11,6 @@ export default Component.extend({
     canceltext: '',
     successtext: '确定',
     // needSubmit:observer('needSubmit', function() {
-    //     // debugger
     //     return needSubmit;
     // }),
     needcancel: computed('canceltext', function(){

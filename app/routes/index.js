@@ -13,5 +13,6 @@ export default Route.extend({
     init() {
         this._super(...arguments);
         localStorage.setItem('brandid', '');
+        this.get('cookie').write('token','');
     },
 });

@@ -20,7 +20,6 @@ export default Component.extend({
     },
    //
    //  didUpdateAttrs() {
-   //      debugger
    //     this._super(...arguments);
    //     this.set('selectedReservable', this.sel.options[this.sel.selectedIndex].value);
    // },

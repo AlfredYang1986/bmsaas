@@ -12,6 +12,10 @@ export default Route.extend({
             // brandid: "5be6a00b8fb80736e2ec9ba5",
         });
     },
+    init() {
+        this._super(...arguments);
+        
+    },
     setupController(controller, model) {
         this._super(controller, model);
         this.bm_brand_service.set('refresh_token', this.bm_brand_service.guid());

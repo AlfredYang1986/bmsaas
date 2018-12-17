@@ -108,10 +108,22 @@ export default Service.extend({
                         res: "BmTeacher"
                     },
                     relationships: {
-                        Eqcond: {}
+                        Eqcond: {
+                            id: eq,
+                            trye: "Eqcond"
+                        }
                     }
                 },
-                included: []
+                included: [
+                    {
+                        id: eq,
+                        type: "Eqcond",
+                        attributes: {
+                            key: 'brandId',
+                            val: localStorage.getItem('brandid')
+                        }
+                    }
+                ]
             }
     },
 

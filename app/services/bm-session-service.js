@@ -69,13 +69,16 @@ export default Service.extend({
     queryMultiObjects() {
 
         this.bmmulti.reset();
-
         let query_yard_payload = this.genMultiQuery();
         let rd = this.bmmulti.sync(query_yard_payload);
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
-        // let eq = rd.Eqcond[0].serialize();
-        // let fm = rd.Fmcond.serialize();
-        // rd_tmp['included'] = [eq.data, fm.data];
+        if (rd.Eqcond != undefined) {
+
+            let eq = rd.Eqcond[0].serialize();
+            // let fm = rd.Fmcond.serialize();
+            rd_tmp['included'] = [eq.data];
+
+        }
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
@@ -109,10 +112,22 @@ export default Service.extend({
                         res: "BmSessionInfo"
                     },
                     relationships: {
-                        Eqcond: {}
+                        Eqcond: {
+                            id: eq,
+                            type: "Eqcond"
+                        }
                     }
                 },
-                included: []
+                included: [
+                    {
+                        id: eq,
+                        type: "Eqcond",
+                        attributes: {
+                            key: 'brandId',
+                            val: localStorage.getItem('brandid'),
+                        }
+                    }
+                ]
             }
     },
 
