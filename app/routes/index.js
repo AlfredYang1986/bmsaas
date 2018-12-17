@@ -10,4 +10,8 @@ export default Route.extend({
             errorImg: 'https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png'
         });
     },
+    init() {
+        this._super(...arguments);
+        localStorage.setItem('brandid', '');
+    },
 });

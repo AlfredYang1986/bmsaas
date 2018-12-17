@@ -181,7 +181,7 @@ export default Service.extend({
                     carrying: "",
                     notice: "",
                     cover: "",
-                    brandId: "5be6a00b8fb80736e2ec9ba5",
+                    brandId: localStorage.getItem('brandid'),
                     status: 1,
                 },
                 relationships: {

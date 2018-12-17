@@ -156,7 +156,7 @@ export default Service.extend({
                 type: "BmTeacher",
                 attributes: {
                     intro: '',
-                    brandId: '5be6a00b8fb80736e2ec9ba5',
+                    brandId: localStorage.getItem('brandid'),
                     name: '',
                     nickname: '',
                     icon: '',
