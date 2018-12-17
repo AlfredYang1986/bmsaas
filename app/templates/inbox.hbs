@@ -27,7 +27,7 @@
 
         {{#if (bmeq cur_tab_idx 0)}}
             {{#if (bmcom/bm-nil-obj bm_apply_service.reserved)}}
-                {{bmcom/bm-empty-state class="inbox-empty-state" picUrl="/images/temp-pic.png" title="暂无数据" des="暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据"}}
+                {{bmcom/bm-empty-state class="inbox-empty-state" picUrl="/images/temp-pic.png" title="暂无数据" des="暂无数据"}}
             {{else}}
                 {{bmtable/bm-table-inbox reserveType=true title=model.reserveTitle applies=bm_apply_service.reserved action="setCurrentApply"}}
                 {{bmcom/bm-pagination pageCount=bm_apply_service.bookPageCount sendPageNum=(action "handleBookPageChange")}}
@@ -36,7 +36,7 @@
 
         {{#if (bmeq cur_tab_idx 1)}}
             {{#if (bmcom/bm-nil-obj bm_apply_service.preRegistered)}}
-                {{bmcom/bm-empty-state class="inbox-empty-state" picUrl="/images/temp-pic.png" title="暂无数据" des="暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据"}}
+                {{bmcom/bm-empty-state class="inbox-empty-state" picUrl="/images/temp-pic.png" title="暂无数据" des="暂无数据"}}
             {{else}}
                 {{bmtable/bm-table-inbox title=model.preRegisterTtitle applies=bm_apply_service.preRegistered registerId=bm_apply_service.preRegisterId onPreRegisterClick='onPreRegisterClick'}}
                 {{bmcom/bm-pagination pageCount=bm_apply_service.prePageCount sendPageNum=(action "handlePrePageChange")}}
