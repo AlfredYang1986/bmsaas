@@ -11,7 +11,7 @@ export default Service.extend({
         this.addObserver('refresh_token', this, 'queryBrand');
     },
 
-    brandid: '5be6a00b8fb80736e2ec9ba5',
+    brandid: localStorage.getItem('brandid'),
     refresh_token: '',
     brand: null,
 
@@ -29,7 +29,7 @@ export default Service.extend({
         let inc = rd.Eqcond[0].serialize();
         rd_tmp['included'] = [inc.data];
         let dt = JSON.stringify(rd_tmp);
-       
+
         let that = this
         Ember.$.ajax({
             method: 'POST',
@@ -115,7 +115,7 @@ export default Service.extend({
 
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
         rd_tmp['included'] = arr;
-        let dt = JSON.stringify(rd_tmp); 
+        let dt = JSON.stringify(rd_tmp);
 
         Ember.$.ajax({
             method: 'POST',

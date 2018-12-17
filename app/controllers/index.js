@@ -12,6 +12,9 @@ export default Controller.extend({
             let callback = {
                 onSuccess: function(res) {
                     if(res.data.attributes.account != '' && res.data.attributes.brandId != '') {
+                        debugger
+                        localStorage.setItem('brandid', res.data.attributes.brandId);
+                        that.bm_brand_service.set('brandid', res.data.attributes.brandId);
                         that.transitionToRoute('home');
                     } else {
                         that.set('errorInfo', true);
