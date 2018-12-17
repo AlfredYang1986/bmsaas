@@ -20,7 +20,7 @@ export default Route.extend({
         return RSVP.hash({
                 expid: params.expid,
                 tabs: A(['场次安排', '体验课详情']),
-                titles: A(["场次号","时间段","校区","人数","", "操作"]),
+                titles: A(["时间段","校区","人数","", "操作"]),
                 urls: A([
                     {
                         "pageName":"体验课开放",

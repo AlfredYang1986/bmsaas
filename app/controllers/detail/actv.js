@@ -27,6 +27,7 @@ export default Controller.extend({
     cur_end_date: "",
     edit_flag_info: "",
     noteError: false,
+    noteTimeError: false,
     // couldSubmit: computed('cur_yard_id', function() {
     //     return this.cur_yard_id != null && this.cur_yard_id != "";
     // }),
@@ -137,13 +138,14 @@ export default Controller.extend({
         cancelHandled() {
             this.set('tmpSessionable', "");
             this.set('noteError', false);
+            this.set('noteTimeError', false);
             this.set('showAddSessionDlg', false);
             this.set('deleteActvDlg', false);
             this.set('closeActvDlg', false);
             this.set('deleteSessionDlg', false);
         },
         successHandled() {
-            if (this.checkValidate()) {
+            if (this.checkValidate() & this.checkTime()) {
             let that = this;
             let edit_flag_info = "添加";
             if (this.get('edit_flag_info')) {
@@ -185,8 +187,16 @@ export default Controller.extend({
             this.set('edit_flag_info', "");
             this.set('tmpSessionable', "");
             this.set('cur_yard_id', "");
+        } else if (!this.checkValidate() & this.checkTime()) {
+            this.set('noteError', true);
+            this.set('noteTimeError', false);
+
+        } else if (this.checkValidate() & !this.checkTime()) {
+            this.set('noteError', false);
+            this.set('noteTimeError', true);
         } else {
             this.set('noteError', true);
+            this.set('noteTimeError', true);
         }
         },
         reservableChanged() {
@@ -201,6 +211,28 @@ export default Controller.extend({
 
     checkValidate() {
         return this.cur_yard_id != null && this.cur_yard_id != "";
+    },
+    checkTime() {
+        let checkStart = null;
+        let checkEnd = null;
+        if(this.tmpSessionable === "") {
+            checkStart = new Date(this.bm_sessionable_service.sessionable.start_date);
+            checkEnd = new Date(this.bm_sessionable_service.sessionable.end_date);
+        } else {
+            checkStart = new Date(this.cur_start_date);
+            checkEnd = new Date(this.cur_end_date);
+        }
+        checkStart.setFullYear(2000);
+        checkStart.setMonth(1);
+        checkStart.setDate(1);
+        checkStart.setSeconds(0);
+        checkStart.setMilliseconds(0);
+        checkEnd.setFullYear(2000);
+        checkEnd.setMonth(1);
+        checkEnd.setDate(1);
+        checkEnd.setSeconds(0);
+        checkEnd.setMilliseconds(0);
+        return checkStart <= checkEnd;
     },
     generateSessionable() {
         if (this.showAddSessionDlg == true) {

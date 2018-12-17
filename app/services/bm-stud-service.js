@@ -280,7 +280,7 @@ export default Service.extend({
                     idCardNo: '',
                     sourceWay: '',
                     wechat: '',
-                    brandId: '',
+                    brandId: localStorage.getItem('brandid'),
                     kidId: '',
                 },
                 relationships: {
@@ -318,7 +318,7 @@ export default Service.extend({
                         address: '',
                         idCardNo: '',
                         wechat: '',
-                        brandId: '',
+                        brandId: localStorage.getItem('brandid'),
                     }
                 },
                 {

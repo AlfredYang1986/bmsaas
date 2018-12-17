@@ -345,6 +345,9 @@
             select.error-border {
                 border: 1px solid #DE350B;
             }
+            div.error-border {
+                border: 1px solid #DE350B;
+            }
             select.course-reserve-modal-select {
                 @extend %select-box-dropdown-default;
             }

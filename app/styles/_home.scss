@@ -572,6 +572,7 @@ input.data-picker {
     box-shadow: none;
     background: url('../images/icon_date@1x.png') no-repeat right center;
     background-color: #FAFBFC;
+    border-radius: 4px;
 }
 input.data-picker:focus {
     width: 163px;
@@ -590,6 +591,11 @@ div.time {
         background: url('../images/icon_time.png') no-repeat right center;
         background-color: #FAFBFC;
         background-size:24px;
+    }
+    &.error-border {
+        .data-picker {
+            border: 1px solid #DE350B;
+        }
     }
     & + div.time {
         margin-left: 8px;

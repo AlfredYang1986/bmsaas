@@ -168,7 +168,7 @@ export default Service.extend({
                         type: "Eqcond",
                         attributes: {
                             key: "brandId",
-                            val: "5be6a00b8fb80736e2ec9ba5"
+                            val: localStorage.getItem('brandid')
                         }
                     },
                     {
@@ -222,7 +222,7 @@ export default Service.extend({
                         type: "Eqcond",
                         attributes: {
                             key: "brandId",
-                            val: "5be6a00b8fb80736e2ec9ba5"
+                            val: localStorage.getItem('brandid')
                         }
                     }
                 ]
@@ -311,7 +311,7 @@ export default Service.extend({
                         type: "Eqcond",
                         attributes: {
                             key: "brandId",
-                            val: "5be6a00b8fb80736e2ec9ba5"
+                            val: localStorage.getItem('brandid')
                         }
                     },
                     {
@@ -371,7 +371,7 @@ export default Service.extend({
                             type: "Eqcond",
                             attributes: {
                                 key: "brandId",
-                                val: "5be6a00b8fb80736e2ec9ba5"
+                                val: localStorage.getItem('brandid')
                             }
                         },
                         {

@@ -181,7 +181,8 @@ export default Service.extend({
                     attributes: {
                         status: 0,
                         start_date: 0,
-                        end_date: 0
+                        end_date: 0,
+                        brandId: localStorage.getItem('brandid'),
                     },
                     relationships: {
                         SessionInfo: {
@@ -201,7 +202,7 @@ export default Service.extend({
                         type: "BmSessionInfo",
                         attributes: {
                             status: 0,
-                            brandId: "5be6a00b8fb80736e2ec9ba5",
+                            brandId: localStorage.getItem('brandid'),
                             title: '',
                             subtitle: "",
                             alb: 1,
