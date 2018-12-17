@@ -3,9 +3,10 @@ import { computed } from '@ember/object';
 
 export default Component.extend({
     positionalParams: ['lang', 'pickType', 'range', 'inputVal'],
-    classNameBindings: ['pickType'],
+    classNameBindings: ['pickType', 'cssClass'],
     lang: 'zh',
     pickType: 'date',
+    cssClass: '',
     range: false,
     inputVal: new Date().getTime(),
 

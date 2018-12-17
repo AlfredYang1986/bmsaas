@@ -20,6 +20,7 @@ export default Controller.extend({
     cur_start_date: "",
     cur_end_date: "",
     noteError: false,
+    noteTimeError: false,
     // couldSubmit: computed('cur_yard_id', function() {
     //     return this.cur_yard_id != null && this.cur_yard_id != "";
     // }),
@@ -55,11 +56,12 @@ export default Controller.extend({
         },
         cancelHandled() {
             this.set('noteError', false);
+            this.set('noteTimeError', false);
             this.set('deleteSessionDlg', false);
             this.set('showEditSessionDlg', false);
         },
         successHandled() {
-            if (this.checkValidate()) {
+            if (this.checkValidate() & this.checkTime()) {
             let that = this;
             if (this.cur_yard_id.length == 0) {
                 alert('shold add yard')
@@ -82,15 +84,22 @@ export default Controller.extend({
             }
 
             this.bm_sessionable_service.resetInfoAndYard(this.cur_yard_id, this.bm_exp_service.exp.SessionInfo.id);
-            console.log(this.bm_sessionable_service.sessionable.Attendees)
             this.bm_sessionable_service.resetTechs(this.bm_sessionable_service.sessionable.Teachers);
             this.bm_sessionable_service.resetAttendee(this.bm_sessionable_service.sessionable.Attendees);
             this.bm_sessionable_service.saveUpdate(callback);
 
             this.set('cur_yard_id', "");
             this.set('showEditSessionDlg', false);
+        } else if (!this.checkValidate() & this.checkTime()) {
+            this.set('noteError', true);
+            this.set('noteTimeError', false);
+
+        } else if (this.checkValidate() & !this.checkTime()) {
+            this.set('noteError', false);
+            this.set('noteTimeError', true);
         } else {
             this.set('noteError', true);
+            this.set('noteTimeError', true);
         }
         },
         reservableChanged() {
@@ -104,5 +113,20 @@ export default Controller.extend({
     },
     checkValidate() {
         return this.cur_yard_id != null && this.cur_yard_id != "";
+    },
+    checkTime() {
+        let checkStart = new Date(this.cur_start_date);
+        let checkEnd = new Date(this.cur_end_date);
+        checkStart.setFullYear(2000);
+        checkStart.setMonth(1);
+        checkStart.setDate(1);
+        checkStart.setSeconds(0);
+        checkStart.setMilliseconds(0);
+        checkEnd.setFullYear(2000);
+        checkEnd.setMonth(1);
+        checkEnd.setDate(1);
+        checkEnd.setSeconds(0);
+        checkEnd.setMilliseconds(0);
+        return checkStart <= checkEnd;
     },
 });

@@ -453,6 +453,8 @@ export default Service.extend({
         let tmpDate = new Date(date)
         let tmpTime = new Date(time)
         let result = new Date(tmpDate.getFullYear(), tmpDate.getMonth(), tmpDate.getDate(), tmpTime.getHours(), tmpTime.getMinutes(), tmpTime.getSeconds())
+        console.log(tmpTime)
+        console.log(result)
         return result.getTime();
     },
 
@@ -488,10 +490,8 @@ export default Service.extend({
         }
 
         let ft_tmp = JSON.parse(JSON.stringify(ft.serialize()));
-        if(params){
-            ft_tmp.data.attributes.start_date = this.handleDate(ft.tmp_date, ft.start_date)
-            ft_tmp.data.attributes.end_date = this.handleDate(ft.tmp_date, ft.end_date)
-        }
+        ft_tmp.data.attributes.start_date = this.handleDate(ft.tmp_date, ft.start_date)
+        ft_tmp.data.attributes.end_date = this.handleDate(ft.tmp_date, ft.end_date)
         ft_tmp['included'] = arr;
         let dt = JSON.stringify(ft_tmp);
 

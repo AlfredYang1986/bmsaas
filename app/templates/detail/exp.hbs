@@ -58,6 +58,14 @@
                                             {{/layout-push}}
                                         </div>
                                     {{/if}}
+                                    {{#if noteTimeError}}
+                                        <div class="form-checked">
+                                            {{#layout-push direction='row' classNames="error-line"}}
+                                                <img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
+                                                <span class="error-info">时间错误</span>
+                                            {{/layout-push}}
+                                        </div>
+                                    {{/if}}
                                     {{#layout-push direction='row' classNames="line-list"}}
                                         <p class="subtitle">校区设置</p>
                                         {{#layout-push direction='col' }}
@@ -69,7 +77,9 @@
                                                             <select class="session-modal-select error-border" id='reservableselect' name="" onchange={{action 'reservableChanged'}}>
                                                                 <option value="">选择已有场地</option>
                                                                 {{#each bm_yard_service.yards as |item|}}
-                                                                    {{#if (eq item.id tmpSessionable.Yard.id)}}
+                                                                    {{#if (eq item.id cur_yard_id)}}
+                                                                        <option selected="selected" value={{item.id}}>{{item.address}}</option>
+                                                                    {{else if (eq item.id tmpSessionable.Yard.id)}}
                                                                         <option selected="selected" value={{item.id}}>{{item.address}}</option>
                                                                     {{else}}
                                                                         <option value={{item.id}}>{{item.address}}</option>
@@ -80,7 +90,9 @@
                                                             <select class="session-modal-select" id='reservableselect' name="" onchange={{action 'reservableChanged'}}>
                                                                 <option value="">选择已有场地</option>
                                                                 {{#each bm_yard_service.yards as |item|}}
-                                                                    {{#if (eq item.id tmpSessionable.Yard.id)}}
+                                                                    {{#if  (eq item.id cur_yard_id)}}
+                                                                        <option selected="selected" value={{item.id}}>{{item.address}}</option>
+                                                                    {{else if (eq item.id tmpSessionable.Yard.id)}}
                                                                         <option selected="selected" value={{item.id}}>{{item.address}}</option>
                                                                     {{else}}
                                                                         <option value={{item.id}}>{{item.address}}</option>
@@ -104,8 +116,13 @@
                                         {{/layout-push}}
                                         {{#layout-push direction="row" classNames="line-list"}}
                                             <p class="subtitle">时间设置</p>
-                                            {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.start_date pickType="time"}}
-                                            {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.end_date pickType="time"}}
+                                            {{#if noteTimeError}}
+                                                {{bmform/bm-lay-date cssClass="error-border" inputVal=bm_sessionable_service.sessionable.start_date pickType="time"}}
+                                                {{bmform/bm-lay-date cssClass="error-border" inputVal=bm_sessionable_service.sessionable.end_date pickType="time"}}
+                                            {{else}}
+                                                {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.start_date pickType="time"}}
+                                                {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.end_date pickType="time"}}
+                                            {{/if}}
                                         {{/layout-push}}
                                     {{else}}
                                         {{#layout-push direction="row" classNames="line-list"}}
@@ -114,8 +131,13 @@
                                         {{/layout-push}}
                                         {{#layout-push direction="row" classNames="line-list"}}
                                             <p class="subtitle">时间设置</p>
-                                            {{bmform/bm-lay-date inputVal=cur_start_date pickType="time"}}
-                                            {{bmform/bm-lay-date inputVal=cur_end_date pickType="time"}}
+                                            {{#if noteTimeError}}
+                                                {{bmform/bm-lay-date cssClass="error-border" inputVal=cur_start_date pickType="time"}}
+                                                {{bmform/bm-lay-date cssClass="error-border" inputVal=cur_end_date pickType="time"}}
+                                            {{else}}
+                                                {{bmform/bm-lay-date inputVal=cur_start_date pickType="time"}}
+                                                {{bmform/bm-lay-date inputVal=cur_end_date pickType="time"}}
+                                            {{/if}}
                                         {{/layout-push}}
                                     {{/if}}
                                     {{!-- {{#layout-push direction='row' classNames="line-area "}}
