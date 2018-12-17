@@ -31,7 +31,11 @@
         margin-bottom: 8px;
         background-color: #FFFFFF;
         p.page_title {
-            @extend %font-page-header-title;
+            // @extend %font-page-header-title;
+            font-family: PingFangSC-Medium;
+            font-weight: normal;
+            font-size: 24px;
+            color: #172B4D;
         }
         .stud_add_btn {
             background: $color-theme-T100;

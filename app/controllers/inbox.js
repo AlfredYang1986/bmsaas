@@ -150,6 +150,7 @@ export default Controller.extend({
                 that.set('bm_apply_service.reserved', that.bm_apply_service.reserveType);
                 that.set('bm_apply_service.amount', that.bm_apply_service.reserveTypeAmount);
             }
+            console.log(this.bm_apply_service.reserved)
         },
         preRegisterChanged() {
             let sel = document.getElementById("selectReserve");
