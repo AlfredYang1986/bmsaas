@@ -3,6 +3,7 @@ import { computed } from '@ember/object'
 import { inject as service } from '@ember/service';
 
 export default Component.extend({
+
     bm_clsarr_service: service(),
     tagName: 'div',
     classNames: ['bm-time-skeleton'],
@@ -17,5 +18,6 @@ export default Component.extend({
         panelInserted() {
             console.log('insert time units');
         }
-    }
+    },
+
 });

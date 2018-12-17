@@ -176,8 +176,12 @@
         {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs needAction=true onTabClicked=(action "onTabClicked")}}
 
         {{#if (bmeq cur_idx 0)}}
-            {{bmpage/bm-sessionable-lst titles=model.titles action="linkToExpField" onEditSessionClick="onEditSessionClick" onDeleteSessionClick="onDeleteSessionClick"}}
-            {{bmcom/bm-pagination pageCount=bm_sessionable_service.totalPageCount sendPageNum=(action "handlePageChange")}}
+            {{#if (bmcom/bm-nil-obj bm_sessionable_service.sessionables)}}
+                {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/temp-pic.png" title="暂无数据" des="暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据暂无数据"}}
+            {{else}}
+                {{bmpage/bm-sessionable-lst titles=model.titles action="linkToExpField" onEditSessionClick="onEditSessionClick" onDeleteSessionClick="onDeleteSessionClick"}}
+                {{bmcom/bm-pagination pageCount=bm_sessionable_service.totalPageCount sendPageNum=(action "handlePageChange")}}
+            {{/if}}
         {{/if}}
 
         {{#if (bmeq cur_idx 1)}}

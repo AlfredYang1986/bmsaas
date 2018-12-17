@@ -9,6 +9,11 @@
 .class_content_top {
     @extend %class_content_basic;
     padding-top: 64px;
+
+    .class-not-open {
+        margin: 24px;
+        height: calc(100vh - 112px);
+    }
 }
 
 .class_content {

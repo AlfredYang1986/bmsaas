@@ -19,6 +19,12 @@
     padding-top: 50px;
     height: 100%;
     min-width: 1200px;
+
+    .arr-class-not-open {
+        margin: 24px;
+        margin-top: 38px;
+        height: calc(100vh - 112px);
+    }
 }
 /* 场次详情 */
 .session-left-info {
@@ -313,6 +319,17 @@ span.list-status {
     padding: 24px;
     margin-top: 14px;
     // margin-bottom: 100px;
+
+    .inbox-empty-state {
+        height: calc(100vh - 328px);
+    }
+    .exp-empty-state {
+        height: calc(100vh - 356px);
+    }
+    .field-empty-state {
+        height: calc(100vh - 336px);
+    }
+
     .alt_course_selection {
         .alt_course_container{
             margin: 24px 0;
