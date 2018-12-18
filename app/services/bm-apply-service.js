@@ -822,49 +822,8 @@ export default Service.extend({
                     if(apply_time == today) {
                         preRegisterToday.push(item);
                         return preRegisterToday;
-=======
-                if(result != undefined) {
-                    if(typeof(param) == 'object') {
-                        result.forEach((item, index) => {
-                            if(item.courseType != -1) {
-                                item.kid = item.Kids[0];
-                                reserveType.push(item);
-                                return reserveType;
-                            } else {
-                                item.kid = item.Kids[0];
-                                preRegister.push(item);
-                                return preRegister;
-                            }
-                        })
-                    } else {
-                        if(param.indexOf("today") == -1) {
-                            result.forEach((item, index) => {
-                                if(item.courseType != -1) {
-                                    item.kid = item.Kids[0];
-                                    reserveType.push(item);
-                                    return reserveType;
-                                } else {
-                                    item.kid = item.Kids[0];
-                                    preRegister.push(item);
-                                    return preRegister;
-                                }
-                            })
-                        } else {
-                            result.forEach((item, index) => {
-                                if(item.courseType != -1) {
-                                    item.kid = item.Kids[0];
-                                    reserveTypeToday.push(item);
-                                    return reserveTypeToday;
-                                } else {
-                                    item.kid = item.Kids[0];
-                                    preRegisterToday.push(item);
-                                    return preRegisterToday;
-                                }
-                            })
-                        }
->>>>>>> origin/zhanglu-1127
                     }
-                }
+                })
                 // let date = new Date();
                 // console.log(typeof(date))
                 // var Y = date.getFullYear() + '-';
@@ -914,14 +873,10 @@ export default Service.extend({
                 }
             },
             error: function(err) {
-<<<<<<< HEAD
                 debug('error is : ', err);
-=======
-                console.log('error is : ', err);
                 if (typeof(callback) == "object") {
                     callback.onFail();
                 }
->>>>>>> origin/zhanglu-1127
             },
         })
     },
