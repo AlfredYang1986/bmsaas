@@ -78,12 +78,38 @@
 				text-align: center;
 				cursor: pointer;
 			}
+            .logout-btn {
+                background-color: #FFFFFF;
+                border: none;
+                // margin-right: 16px;
+                width: 24px;
+                height: 24px;
+                background: url('../images/icon_person@1x.png');
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+
+                &:focus {
+                    box-shadow: none;
+                    background: url('../images/icon_person@1x.png');
+                }
+                &:hover {
+                    background-color: #FFFFFF!important;
+                    box-shadow: none;
+                    background: url('../images/icon_person@1x.png');
+                }
+                &::after {
+                    display: none;
+                    background: url('../images/icon_person@1x.png');
+                }
+            }
+            a {
+                @extend %font-main-text;
+            }
             .menu_button_between {
                 margin-right: 30px;
             }
         }
-
-
         .accounts {
             font-family: $font-nav-acc;
             font-size: 14px;
