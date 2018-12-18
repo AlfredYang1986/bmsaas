@@ -25,7 +25,7 @@
     {{else if accountInput}}
         {{input classNames="edit_text_field_login" placeholder=pholder value=inputVal}}
     {{else if passwordInput}}
-        {{input classNames="edit_text_field_login" placeholder=pholder value=inputVal}}
+        {{input type="password" classNames="edit_text_field_login" placeholder=pholder value=inputVal}}
     {{else if numberInput}}
         <input class="edit_text_field" placeholder={{pholder}} value={{inputVal}} onkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))"/>
     {{else}}

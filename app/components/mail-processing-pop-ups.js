@@ -63,7 +63,6 @@ export default Component.extend({
 
     actions: {
         // courseReserve() {
-        //     debugger
         //     this.set('courseReserve', true);
         //     this.set('experienceApply', false);
         //     this.set('innerCat', true);

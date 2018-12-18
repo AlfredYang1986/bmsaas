@@ -3,7 +3,6 @@ import { inject } from '@ember/service';
 export default Route.extend({
     cookies: inject(),
 	beforeModel(transition) {
-        debugger
 		let token = this.get('cookies').read('token'),
 			loginController = this.controllerFor('index');
 
@@ -14,7 +13,7 @@ export default Route.extend({
 			}
 			this.transitionTo('index');
 		} else if (transition.targetName === 'index') {
-			this.transitionTo('home');
+			this.transitionTo('index');
 		}
 	},
 });

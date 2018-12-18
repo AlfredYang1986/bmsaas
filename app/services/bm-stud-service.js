@@ -105,7 +105,6 @@ export default Service.extend({
 
         this.bmmulti.reset();
         let query_yard_payload = this.genMultiQuery();
-        debugger
         let rd = this.bmmulti.sync(query_yard_payload);
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
         let fm = rd.Fmcond.serialize();
