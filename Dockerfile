@@ -27,7 +27,7 @@ RUN npm install && \
 	bower install foundation --allow-root && \
 	bower install jsonapi-datastore --allow-root
 
-RUN ember b
+RUN ember b --environment production
 
 EXPOSE 4200
 
