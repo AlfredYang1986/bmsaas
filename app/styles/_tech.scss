@@ -12,6 +12,11 @@
     height: fit-content;
     padding-top: 64px;
     min-width: 1200px;
+
+    .tech-not-open {
+        margin: 24px;
+        height: calc(100vh - 112px);
+    }
 }
 
 .tech_content {

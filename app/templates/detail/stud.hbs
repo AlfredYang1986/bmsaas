@@ -50,7 +50,7 @@
 							{{bmdetail/stud-basis-info label="星座" content="星座"}}
 							{{bmdetail/stud-basis-info label="就读学校" content=bm_stud_service.stud.school}}
 							{{bmdetail/stud-basis-info label="住址" content=bm_stud_service.stud.address}}
-							{{bmdetail/stud-basis-info label="注册时间" content=(bmdob/bmdobformat bm_stud_service.stud.reg_date)}}
+							{{bmdetail/stud-basis-info label="出生日期" content=(bmdob/bmdobformat bm_stud_service.stud.dob)}}
 						</div>
 					{{/layout-push}}
 					{{#layout-push direction='col' classNames="info-block-outer"}}
@@ -67,6 +67,7 @@
 						<div class="self_info">
 							{{bmdetail/stud-basis-info label="课程顾问" content=bm_stud_service.stud.teacherName}}
 							{{bmdetail/stud-basis-info label="渠道来源" content=bm_stud_service.stud.sourceWay}}
+							{{bmdetail/stud-basis-info label="注册时间" content=(bmdob/bmdobformat bm_stud_service.stud.reg_date)}}
 						</div>
 					{{/layout-push}}
 					{{#layout-push direction='col' classNames="info-block-outer"}}

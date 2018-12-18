@@ -4,6 +4,7 @@ import { inject as service } from '@ember/service';
 import bmSessionableService from '../services/bm-sessionable-service';
 
 export default Controller.extend({
+
     bm_apply_service: service(),
     bm_sessionable_service: service(),
     bm_stud_service: service(),
@@ -29,6 +30,7 @@ export default Controller.extend({
     showhandledlg: false,
     current_apply: null,
     showcomfirmdlg: false,
+    isToday: false,
 
     sr : null,
     sy: null,
@@ -52,18 +54,27 @@ export default Controller.extend({
     actions: {
         handleBookPageChange (pageNum) {
             this.set('bm_apply_service.page', pageNum - 1)
-            this.bm_apply_service.queryMultiObjects(0);
+            this.bm_apply_service.queryMultiObjects("book");
         },
         handlePrePageChange (pageNum) {
             this.set('bm_apply_service.page', pageNum - 1)
-            this.bm_apply_service.queryMultiObjects(1);
+            this.bm_apply_service.queryMultiObjects("pre");
+        },
+        handleTodayBookPageChange (pageNum) {
+            this.set('bm_apply_service.page', pageNum - 1)
+            this.bm_apply_service.queryMultiObjects("todayBook");
+        },
+        handleTodayPrePageChange (pageNum) {
+            this.set('bm_apply_service.page', pageNum - 1)
+            this.bm_apply_service.queryMultiObjects("todayPre");
         },
         onTabClicked(tabIdx) {
             this.set('bm_apply_service.page', 0)
+            this.set('isToday', false)
             if (tabIdx == 0) {
-                this.bm_apply_service.queryMultiObjects(0);
+                this.bm_apply_service.queryMultiObjects("book");
             } else {
-                this.bm_apply_service.queryMultiObjects(1);
+                this.bm_apply_service.queryMultiObjects("pre");
             }
         },
         saveInfo() {
@@ -141,24 +152,45 @@ export default Controller.extend({
             this.set('saveInfo',false);
         },
         reserveTypeChanged() {
+            
             let sel = document.getElementById("selectReserve");
+            this.set('bm_apply_service.page', 0);
             let that = this;
             if (sel.selectedIndex == 1) {
-                that.set('bm_apply_service.reserved', that.bm_apply_service.reserveTypeToday);
-                that.set('bm_apply_service.amount', that.bm_apply_service.reserveTypeTodayAmount);
+                let callback = {
+                    onSuccess: function() {
+                        that.set('isToday', true);
+                        that.set('bm_apply_service.reserved', that.bm_apply_service.reserveTypeToday);
+                        that.set('bm_apply_service.amount', that.bm_apply_service.reserveTypeTodayAmount);
+                    },
+                    onFail: function() {
+                    }
+                }
+                this.bm_apply_service.queryMultiObjects("todayBook",callback);
             } else {
+                that.set('isToday', false);
                 that.set('bm_apply_service.reserved', that.bm_apply_service.reserveType);
                 that.set('bm_apply_service.amount', that.bm_apply_service.reserveTypeAmount);
             }
-            console.log(this.bm_apply_service.reserved)
         },
         preRegisterChanged() {
+            
             let sel = document.getElementById("selectReserve");
+            this.set('bm_apply_service.page', 0);
             let that = this;
             if (sel.selectedIndex == 1) {
-                that.set('bm_apply_service.preRegistered', that.bm_apply_service.preRegisterToday);
-                that.set('bm_apply_service.preAmount', that.bm_apply_service.preRegisterTodayAmount);
+                let callback = {
+                    onSuccess: function() {
+                        that.set('bm_apply_service.preRegistered', that.bm_apply_service.preRegisterToday);
+                        that.set('bm_apply_service.preAmount', that.bm_apply_service.preRegisterTodayAmount);
+                        that.set('isToday', true);
+                    },
+                    onFail: function() {
+                    }
+                }
+                this.bm_apply_service.queryMultiObjects("todayPre",callback);
             } else {
+                that.set('isToday', false);
                 that.set('bm_apply_service.preRegistered', that.bm_apply_service.preRegister);
                 that.set('bm_apply_service.preAmount', that.bm_apply_service.preRegisterAmount);
             }

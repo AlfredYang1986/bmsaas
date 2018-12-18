@@ -9,6 +9,8 @@ export default Component.extend({
         let client = this.bmOss.get('ossClient');
 
         let url = client.signatureUrl(this.bm_brand_service.brand.logo);
+        // let url = client.signatureUrl(sessionStorage.getItem("brandLogo"));
+        
         console.log(url);
         return url;
     }),

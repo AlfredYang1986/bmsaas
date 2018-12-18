@@ -42,6 +42,7 @@ export default Service.extend({
             data: dt,
             success: function(res) {
                 let result = that.bmstore.sync(res)
+                // sessionStorage.setItem("brandLogo", result.logo);
                 that.set('brand', result);
             },
             error: function(err) {
