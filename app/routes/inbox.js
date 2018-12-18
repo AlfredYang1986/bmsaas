@@ -13,6 +13,7 @@ export default Route.extend({
     },
     activate() {
         this.bm_apply_service.set('page', 0);
+        this.bm_apply_service.set('curTabIdx', 0);
         this.bm_apply_service.set('refresh_all_token', this.bm_apply_service.guid());
     }
 });
