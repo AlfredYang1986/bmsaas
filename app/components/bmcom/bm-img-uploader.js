@@ -37,17 +37,18 @@ export default Component.extend({
                 processData: false,
                 contentType: false,
                 success: function(res) {
-                    that.get('debug').log(res.result.file);
+                    // that.get('debug').log(res.result.file);
                     that.set('img', res.result.file);
                 },
                 error: function(err) {
-                    that.get('debug').log('上传文件失败');
+                    // that.get('debug').log('上传文件失败');
                     that.get('debug').log('error: ' + err);
                 }
             })
         },
         deleteImg() {
             this.set('img', '');
+            document.getElementById(this.upid).lastElementChild.childNodes[7].value = '';
             document.getElementById('uploadImg').value = '';
         }
     },
