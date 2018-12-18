@@ -12,7 +12,8 @@ export default Controller.extend({
                 return resolve(true);
             }
             ).then(() => {
-                window.location.reload();
+                // window.location.reload();
+                this.transitionToRoute('index');
             }
             );
         }

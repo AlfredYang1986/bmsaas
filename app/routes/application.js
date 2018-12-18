@@ -7,7 +7,6 @@ export default Route.extend({
 	beforeModel(transition) {
 		let token = this.get('cookies').read('token'),
 		loginController = this.controllerFor('index');
-
 		if (!token) {
 			if (transition.targetName !== 'index') {
 				loginController.set('previousTransition', transition);

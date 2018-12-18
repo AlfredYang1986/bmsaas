@@ -4,7 +4,11 @@ import { inject as service } from '@ember/service';
 
 export default Route.extend({
     bm_apply_service: service(),
-
+    bm_brand_service: service(),
+    init() {
+        this._super(...arguments);
+        this.bm_brand_service.set('refresh_token', this.bm_brand_service.guid());
+    },
     model() {
         return RSVP.hash({
             reserveTitle: ["孩子","类别","参与内容","意向时间","申请者", "联系方式", "操作"],
