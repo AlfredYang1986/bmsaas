@@ -8,7 +8,6 @@ export default Component.extend({
     bmOss: service(),
     brandlogo: computed(function(){
         let client = this.bmOss.get('ossClient');
-
         return  client.signatureUrl(this.bm_brand_service.brand.logo);
     }),
     // didInsertElement() {
@@ -18,6 +17,6 @@ export default Component.extend({
     actions: {
         exitSystem() {
             this.sendAction('onExitSystem');
-	   },
+        },
     }
 });

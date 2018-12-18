@@ -121,13 +121,13 @@ export default Service.extend({
                 debug('error is : ', err);
             },
         })
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findcount/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: todayBookDt,
             success: function(res) {
@@ -137,16 +137,16 @@ export default Service.extend({
                 that.set('todayBookPageCount', Math.ceil(pageCount));
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findcount/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: todayPreDt,
             success: function(res) {
@@ -156,7 +156,7 @@ export default Service.extend({
                 that.set('todayPrePageCount', Math.ceil(pageCount));
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
     },
