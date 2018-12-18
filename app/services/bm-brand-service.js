@@ -1,14 +1,17 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
+import $ from 'jquery';
+import { debug } from '@ember/debug';
 
 export default Service.extend({
     store: service(),
     bm_config: service(),
-    bmstore: new JsonApiDataStore(),
 
     init() {
         this._super(...arguments);
         this.addObserver('refresh_token', this, 'queryBrand');
+        this.set('bmstore', new JsonApiDataStore());
+        // this.set('bmmulti', new JsonApiDataStore());
     },
 
     brandid: localStorage.getItem('brandid'),
@@ -31,21 +34,22 @@ export default Service.extend({
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findbrand/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token')
             },
             data: dt,
             success: function(res) {
                 let result = that.bmstore.sync(res)
+                // sessionStorage.setItem("brandLogo", result.logo);
                 that.set('brand', result);
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
 
@@ -117,16 +121,16 @@ export default Service.extend({
         rd_tmp['included'] = arr;
         let dt = JSON.stringify(rd_tmp);
 
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/pushbrand/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
-            success: function(res) {
+            success: function(/*res*/) {
                 callback.onSuccess();
             },
             error: function(err) {

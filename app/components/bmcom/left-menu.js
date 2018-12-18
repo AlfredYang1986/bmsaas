@@ -1,9 +1,10 @@
 import Component from '@ember/component';
+import { A } from '@ember/array';
 
 export default Component.extend({
 
     menuList:
-        [{
+        A([{
             icon: '/images/navbar_inbox_normal@2x.png',
             title: '收件箱',
             expond: false,
@@ -38,5 +39,5 @@ export default Component.extend({
             // pageUrl:'tech',
             isSpace: true,
         }
-    ]
+    ])
 });

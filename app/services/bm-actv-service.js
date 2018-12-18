@@ -1,18 +1,19 @@
 import Service from '@ember/service';
 import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
+import $ from 'jquery'
+import { debug } from '@ember/debug';
 
 export default Service.extend({
     bm_config: service(),
-    bmstore: new JsonApiDataStore(),
-    bmmulti: new JsonApiDataStore(),
 
     init() {
         this._super(...arguments);
         this.addObserver('refresh_token', this, 'queryActvInfo');
         this.addObserver('refresh_all_token', this, 'queryMultiObjects');
+        this.set('bmstore', new JsonApiDataStore());
+        this.set('bmmulti', new JsonApiDataStore());
     },
-
     actvid: '',
     refresh_token: '',
     refresh_all_token: '',
@@ -38,13 +39,13 @@ export default Service.extend({
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findreservable/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
@@ -52,7 +53,7 @@ export default Service.extend({
                 that.set('actv', result);
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
     },
@@ -67,22 +68,23 @@ export default Service.extend({
 
     queryMultiObjects() {
         this.bmmulti.reset();
-
         let query_yard_payload = this.genMultiQuery();
         let rd = this.bmmulti.sync(query_yard_payload);
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
         let inc = rd.Eqcond[0].serialize();
+        let brand = rd.Eqcond[1].serialize();
         rd_tmp['included'] = [inc.data];
+        rd_tmp.included.push(brand.data);
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findreservablemulti/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
@@ -90,13 +92,14 @@ export default Service.extend({
                 that.set('actvs', result);
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
     },
 
     genMultiQuery() {
         let eq = this.guid();
+        let st = this.guid();
         return {
                 data: {
                     id: this.guid(),
@@ -110,6 +113,10 @@ export default Service.extend({
                             {
                                 id: eq,
                                 type: "Eqcond"
+                            },
+                            {
+                                id: st,
+                                type: "Eqcond"
                             }
                             ]
                         }
@@ -120,8 +127,16 @@ export default Service.extend({
                         id: eq,
                         type: "Eqcond",
                         attributes: {
+                            key: "brandId",
+                            val: localStorage.getItem('brandid'),
+                        }
+                    }, {
+                        id: st,
+                        type: "Eqcond",
+                        attributes: {
                             key: "status",
                             val: 0
+
                         }
                     }
                 ]
@@ -172,7 +187,7 @@ export default Service.extend({
         let gid09 = this.guid();
         let cate = this.guid();
         let sinfo = this.guid();
-        let now = new Date().getTime();
+        // let now = new Date().getTime();
 
         return {
                 data: {
@@ -384,13 +399,13 @@ export default Service.extend({
         ft_tmp['included'] = arr;
         let dt = JSON.stringify(ft_tmp);
 
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/pushreservable/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
@@ -410,16 +425,16 @@ export default Service.extend({
         rd_tmp['included'] = [inc.data];
         let dt = JSON.stringify(rd_tmp);
 
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/deletereservable/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
-            success: function(res) {
+            success: function(/*res*/) {
                 callback.onSuccess();
             },
             error: function(err) {

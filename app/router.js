@@ -41,7 +41,6 @@ Router.map(function() {
     this.route('exp-field', { path: '/exp-field/:expfieldid/:reexpid' });
     this.route('actv', { path: '/actv/:actvid' });
     this.route('actv-field', { path: '/actv-field/:actvfieldid/:reactvid' });
-    this.route('expsession', { path: '/expsession/:eid/:sid' });
   });
 
   this.route('stud');
@@ -50,15 +49,10 @@ Router.map(function() {
   this.route('phrtest');
   this.route('course');
   this.route('inbox');
-  this.route('workBench');
-  this.route('experienceOpen');
-  this.route('courseReserve');
   this.route('classes');
   this.route('arrange-class');
-  this.route('demo');
   this.route('exp');
   this.route('actv');
-
 });
 
 export default Router;

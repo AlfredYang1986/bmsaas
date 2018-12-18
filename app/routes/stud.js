@@ -8,7 +8,4 @@ export default Route.extend({
         this.bm_stud_service.set('page', 0);
         this.bm_stud_service.set('refresh_all_token', this.bm_stud_service.guid());
     },
-    init() {
-        this._super(...arguments);
-    },
 });

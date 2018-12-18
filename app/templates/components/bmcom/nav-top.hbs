@@ -9,17 +9,28 @@
             {{#link-to 'home' classNames='brand-name'}}{{bm_brand_service.brand.title}}{{/link-to}}
         {{/layout-push}}
     </li>
-    {{!-- <li class="nav-item menu_mid">
+    <li class="nav-item menu_mid">
         <div class="menu_container">
-            <div class="menu_mid" >
+            {{!-- <div class="menu_mid" >
                 <div class="menu_container">
                     <img src="/images/icon_notification@1x.png" alt="">
-                    <img src="/images/icon_person@1x.png" alt="">
+                    <img src="/images/icon_person@1x.png" alt="" {{action 'exitSystem'}}>
                     <img src="/images/icon_search@1x.png" alt="">
                 </div>
             </div>
+            <div class="exit-alert">
+                <p>登出</p>
+            </div> --}}
+        {{#bs-dropdown as |dd|}}
+            {{#dd.button}}<img src="/images/icon_person@1x.png" alt="">{{/dd.button}}
+            {{#dd.menu as |menu|}}
+                {{#menu.item}}
+                	<li {{action 'exitSystem'}}>登出</li>
+                {{/menu.item}}
+            {{/dd.menu}}
+        {{/bs-dropdown}}
         </div>
-    </li> --}}
+    </li>
 </ul>
 
 {{yield}}

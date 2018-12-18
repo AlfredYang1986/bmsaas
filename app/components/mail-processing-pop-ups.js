@@ -20,7 +20,6 @@ export default Component.extend({
     },
    //
    //  didUpdateAttrs() {
-   //      debugger
    //     this._super(...arguments);
    //     this.set('selectedReservable', this.sel.options[this.sel.selectedIndex].value);
    // },
@@ -64,7 +63,6 @@ export default Component.extend({
 
     actions: {
         // courseReserve() {
-        //     debugger
         //     this.set('courseReserve', true);
         //     this.set('experienceApply', false);
         //     this.set('innerCat', true);
@@ -116,14 +114,14 @@ export default Component.extend({
         }
     },
 
-    display_apply_date: computed(function(ele){
+    display_apply_date: computed(function(/*ele*/){
         let date = new Date(this.apply.apply_time);
         var Y = date.getFullYear() + '-';
         var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
         var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate()) + ' ';
         var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
         var m = (date.getMinutes() <10 ? '0' + date.getMinutes() : date.getMinutes());
-        var s = (date.getSeconds() <10 ? '0' + date.getSeconds() : date.getSeconds());
+        // var s = (date.getSeconds() <10 ? '0' + date.getSeconds() : date.getSeconds());
         return Y+M+D+h+m;
     })
 });

@@ -1,18 +1,20 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
+import $ from 'jquery';
+import { debug } from '@ember/debug';
 
 export default Service.extend({
     store: service(),
     bm_config: service(),
-    bmstore: new JsonApiDataStore(),
-    bmmulti: new JsonApiDataStore(),
 
     init() {
         this._super(...arguments);
         this.addObserver('refresh_token', this, 'queryStud');
         this.addObserver('refresh_all_token', this, 'queryMultiObjects');
         this.addObserver('refresh_all_token', this, 'queryStudCount');
+        this.set('bmstore', new JsonApiDataStore());
+        this.set('bmmulti', new JsonApiDataStore());
     },
 
     page: 0,
@@ -35,13 +37,13 @@ export default Service.extend({
         let dt = JSON.stringify(rd_tmp);
 
         let that = this;
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findcount/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
@@ -51,7 +53,7 @@ export default Service.extend({
                 that.set('totalPageCount', Math.ceil(pageCount));
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
     },
@@ -74,13 +76,13 @@ export default Service.extend({
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findattendee/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
@@ -88,7 +90,7 @@ export default Service.extend({
                 that.set('stud', result);
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
     },
@@ -109,17 +111,18 @@ export default Service.extend({
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
         let fm = rd.Fmcond.serialize();
         let eq = rd.Eqcond[0].serialize();
-        rd_tmp['included'] = [eq.data, fm.data];
+        let brand = rd.Eqcond[1].serialize();
+        rd_tmp['included'] = [eq.data, fm.data, brand.data];
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findattendeemulti/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
@@ -133,7 +136,7 @@ export default Service.extend({
                 that.set('studs', result);
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
     },
@@ -173,6 +176,7 @@ export default Service.extend({
 
     genMultiQuery() {
         let eq = this.guid();
+        let eq2 = this.guid();
         let fm = this.guid();
         return {
                 data: {
@@ -193,6 +197,9 @@ export default Service.extend({
                             data: [
                             {
                                 id: eq,
+                                type: "Eqcond"
+                            }, {
+                                id: eq2,
                                 type: "Eqcond"
                             }
                             ]
@@ -216,6 +223,14 @@ export default Service.extend({
                             val: "stud"
                         }
                     },
+                    {
+                        id: eq2,
+                        type: "Eqcond",
+                        attributes: {
+                            key: "brandId",
+                            val: localStorage.getItem('brandid')
+                        }
+                    }
                 ]
             }
     },
@@ -436,13 +451,13 @@ export default Service.extend({
         let dt = JSON.stringify(rd_tmp);
 
         let that = this;
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/insertattendee/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {

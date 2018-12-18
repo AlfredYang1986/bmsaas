@@ -1,15 +1,23 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
+import $ from 'jquery';
+import { debug } from '@ember/debug';
 
 export default Service.extend({
-    store: service(),
+    // store: service(),
     bm_config: service(),
-    bmstore: new JsonApiDataStore(),
-    bmmulti: new JsonApiDataStore(),
+    // bmstore: new JsonApiDataStore(),
+    // bmmulti: new JsonApiDataStore(),
 
     account: '',
     secretword: '',
     brandId: '',
+
+    init() {
+        this._super(...arguments);
+        this.set('bmstore', new JsonApiDataStore());
+        this.set('bmmulti', new JsonApiDataStore());
+    },
 
     guid() {
         function s4() {
@@ -78,13 +86,13 @@ export default Service.extend({
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/accountlogin/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
@@ -95,8 +103,8 @@ export default Service.extend({
                 callback.onSuccess(res);
             },
             error: function(err) {
-                console.log(err);
-                callback.onFail(res);
+                debug(err);
+                callback.onFail(err);
             },
         })
     }

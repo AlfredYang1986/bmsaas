@@ -1,13 +1,13 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
+import { debug } from '@ember/debug';
 
 export default Controller.extend({
 
     init() {
         this._super(...arguments);
         this.addObserver('showAddSessionDlg', this, 'generateSessionable');
-        // console.log(this.bm_sessionable_service.page)
+        // debug(this.bm_sessionable_service.page)
     },
 
     bm_exp_service: service(),
@@ -22,7 +22,7 @@ export default Controller.extend({
     },
 
     // openStatus: computed('bm_exp_service', function(){
-    //     console.log(this.bm_exp_service.exp)
+    //     debug(this.bm_exp_service.exp)
     //     if(this.bm_exp_service.exp.start_date === -1 || this.bm_exp_service.exp.end_date === -1){
     //         return 1;
     //     }else{
@@ -40,8 +40,8 @@ export default Controller.extend({
     noteError: false,
     noteTimeError: false,
     // couldSubmit: computed('cur_yard_id', function() {
-    //     console.log(this.cur_yard_id)
-    //     console.log(this.cur_yard_id != null && this.cur_yard_id != "")
+    //     debug(this.cur_yard_id)
+    //     debug(this.cur_yard_id != null && this.cur_yard_id != "")
     //     return this.cur_yard_id != null && this.cur_yard_id != "";
     // }),
 
@@ -66,7 +66,7 @@ export default Controller.extend({
             }
         },
         linkToExpField(idx) {
-            console.log(this.model.expid)
+            debug(this.model.expid)
             this.transitionToRoute('detail.exp-field', idx, this.bm_exp_service.exp.id);
         },
         onOpenExpClick() {
@@ -74,11 +74,11 @@ export default Controller.extend({
             let callback = {
                 onSuccess: function() {
                     that.toast.success('', '开启成功', that.toastOptions);
-                    console.log('OpenExpsuccess')
+                    debug('OpenExpsuccess')
                 },
                 onFail: function() {
                     that.toast.error('', '开启失败', that.toastOptions);
-                    console.log('OpenExpfail')
+                    debug('OpenExpfail')
                 }
             }
             this.set("bm_exp_service.exp.start_date", 0);
@@ -91,11 +91,11 @@ export default Controller.extend({
                 onSuccess: function() {
                     that.set('closeExpDlg', false);
                     that.toast.success('', '关闭成功', that.toastOptions);
-                    console.log('ShutdownExpsuccess')
+                    debug('ShutdownExpsuccess')
                 },
                 onFail: function() {
                     that.toast.error('', '关闭失败', that.toastOptions);
-                    console.log('ShutdownExpfail')
+                    debug('ShutdownExpfail')
                 }
             }
             this.set("bm_exp_service.exp.start_date", -1);
@@ -106,14 +106,14 @@ export default Controller.extend({
             let that = this;
             let callback = {
                 onSuccess: function() {
-                    console.log('delete　reservable　success')
+                    debug('delete　reservable　success')
                     that.set('deleteExpDlg', false);
                     that.transitionToRoute('exp');
                     that.toast.success('', '删除体验课成功', that.toastOptions);
                 },
                 onFail: function() {
                     that.toast.error('', '删除体验课失败', that.toastOptions);
-                    console.log('delete　reservable　fail')
+                    debug('delete　reservable　fail')
                 }
             }
             this.bm_exp_service.deleteReservable(callback);
@@ -127,13 +127,13 @@ export default Controller.extend({
             this.set('edit_flag_info', "编辑");
             this.set('showAddSessionDlg', true);
             // let sel = document.getElementById('reservableselect');
-            // console.log(sel)
+            // debug(sel)
             // for(let idx = 0;idx < sel.options.length;idx++){
             //     if (params.Yard.id === sel.options[idx].value) {
             //         sel.options[idx].selected = "selected";
             //     }
             // }
-            console.log("onEditSessionClick")
+            debug("onEditSessionClick")
         },
         onDeleteSessionClick(params) {
             this.set('tmpSessionable', params);
@@ -146,11 +146,11 @@ export default Controller.extend({
                     that.bm_sessionable_service.set('refresh_all_token', that.bm_sessionable_service.guid());
                     that.toast.success('', '删除场次成功', that.toastOptions);
                     that.set('deleteSessionDlg', false);
-                    console.log('delete　reservable　success')
+                    debug('delete　reservable　success')
                 },
                 onFail: function() {
                     that.toast.error('', '删除场次失败', that.toastOptions);
-                    console.log('delete　reservable　fail')
+                    debug('delete　reservable　fail')
                 }
             }
             this.bm_sessionable_service.deleteSessionable(callback,this.tmpSessionable);
@@ -184,11 +184,11 @@ export default Controller.extend({
                     that.set('showAddSessionDlg', false);
                     that.toast.success('', edit_flag_info + '场次成功', that.toastOptions);
                     that.bm_sessionable_service.set('refresh_all_token', that.bm_sessionable_service.guid());
-                    console.log('push sessionable success')
+                    debug('push sessionable success')
                 },
                 onFail: function() {
                     that.toast.error('', edit_flag_info + '场次失败', that.toastOptions);
-                    console.log('push sessionable fail')
+                    debug('push sessionable fail')
                 }
             }
             

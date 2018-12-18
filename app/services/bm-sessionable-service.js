@@ -1,12 +1,11 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
+import $ from 'jquery';
+import { debug } from '@ember/debug';
 
 export default Service.extend({
     bm_config: service(),
-    bmstore: new JsonApiDataStore(),
-    bmmulti: new JsonApiDataStore(),
-    // bmupdate: new JsonApiDataStore(),
 
     bm_yard_service: service(),
     bm_session_service: service(),
@@ -18,6 +17,8 @@ export default Service.extend({
         this.addObserver('refresh_token', this, 'querySessionable');
         this.addObserver('refresh_all_token', this, 'queryMultiObjects');
         this.addObserver('refresh_all_token', this, 'querySessionableCount');
+        this.set('bmstore', new JsonApiDataStore());
+        this.set('bmmulti', new JsonApiDataStore());
     },
 
     page: 0,
@@ -47,13 +48,13 @@ export default Service.extend({
         let dt = JSON.stringify(rd_tmp);
 
         let that = this;
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findcount/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
@@ -63,11 +64,11 @@ export default Service.extend({
                 that.set('totalPageCount', Math.ceil(pageCount));
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
     },
-    querySessionable(callback) {
+    querySessionable(/*callback*/) {
         this.bmstore.reset();
         this.set('sessionable', null);
         this.set('localAttendees', null);
@@ -89,13 +90,13 @@ export default Service.extend({
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findsessionable/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
@@ -115,14 +116,14 @@ export default Service.extend({
                     for(let i = 0, len = that.localAttendees.length;i < len ;i += that.steps){
                         tmpArr.push(that.localAttendees.slice(i,i + that.steps));
                     }
-                    that.set('localAttendeesPages',tmpArr) 
-                    that.set('curAttendeesPage',tmpArr[0]) 
+                    that.set('localAttendeesPages',tmpArr)
+                    that.set('curAttendeesPage',tmpArr[0])
 
                 }
-                console.log(that.sessionable)
+                debug(that.sessionable)
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
     },
@@ -146,13 +147,13 @@ export default Service.extend({
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findsessionable/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
@@ -163,7 +164,7 @@ export default Service.extend({
                 }
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
                 if (callback) {
                     callback.onFail();
                 }
@@ -192,13 +193,13 @@ export default Service.extend({
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findsessionablemulti/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
@@ -211,7 +212,7 @@ export default Service.extend({
                 that.set('sessionables', result);
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
     },
@@ -282,7 +283,7 @@ export default Service.extend({
             }
     },
 
-    genPushQuery(yardid, sinfoid) {
+    genPushQuery(/*yardid, sinfoid*/) {
         // TODO: generate more stud
         let now = new Date().getTime();
 
@@ -412,7 +413,7 @@ export default Service.extend({
                     },
                     relationships: {
                         Fmcond: {
-                            data: 
+                            data:
                             {
                                 id: fm,
                                 type: "Fmcond"
@@ -453,8 +454,8 @@ export default Service.extend({
         let tmpDate = new Date(date)
         let tmpTime = new Date(time)
         let result = new Date(tmpDate.getFullYear(), tmpDate.getMonth(), tmpDate.getDate(), tmpTime.getHours(), tmpTime.getMinutes(), tmpTime.getSeconds())
-        console.log(tmpTime)
-        console.log(result)
+        debug(tmpTime)
+        debug(result)
         return result.getTime();
     },
 
@@ -474,7 +475,7 @@ export default Service.extend({
         let s = ft.SessionInfo.serialize();
         arr.push(s.data);
 
-        let y = ft.Yard.serialize();      
+        let y = ft.Yard.serialize();
         arr.push(y.data);
 
         let ts = ft.Teachers
@@ -495,20 +496,19 @@ export default Service.extend({
         ft_tmp['included'] = arr;
         let dt = JSON.stringify(ft_tmp);
 
-        let that = this;
-        Ember.$.ajax({
+        // let that = this;
+        $.ajax({
             method: 'POST',
             url: '/api/v1/pushsessionable/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
                 // let result = null;
                 // this.set("result", that.bmstore.sync(res));
-                // console.log('result is: ' + result);
                 callback.onSuccess(res);
             },
             error: function(err) {
@@ -528,16 +528,16 @@ export default Service.extend({
         }
         let dt = JSON.stringify(rd_tmp);
 
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/deletesessionable/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
-            success: function(res) {
+            success: function(/*res*/) {
                 callback.onSuccess();
             },
             error: function(err) {

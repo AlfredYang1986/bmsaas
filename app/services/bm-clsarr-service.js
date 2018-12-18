@@ -1,15 +1,18 @@
 import Service from '@ember/service';
 import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
+import $ from 'jquery';
+import { debug } from '@ember/debug';
 
 export default Service.extend({
     bm_config: service(),
-    bmstore: new JsonApiDataStore(),
 
     init() {
         this._super(...arguments);
         this.addObserver('refresh_all_token', this, 'queryMultiSessionable');
         this.unitSplits();
+        this.set('bmstore', new JsonApiDataStore());
+        // this.set('bmmulti', new JsonApiDataStore());
     },
 
     yardid: '',
@@ -47,13 +50,13 @@ export default Service.extend({
         let dt = JSON.stringify(rd_tmp);
 
         let that = this;
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findsessionablemultibyyard/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
@@ -63,7 +66,7 @@ export default Service.extend({
                 that.timeUnitsSplits();
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
     },

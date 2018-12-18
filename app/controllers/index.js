@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import { computed} from '@ember/object';
+import { debug } from '@ember/debug';
 
 export default Controller.extend({
     bm_login_service: service(),
@@ -12,16 +12,16 @@ export default Controller.extend({
             let callback = {
                 onSuccess: function(res) {
                     if(res.data.attributes.account != '' && res.data.attributes.brandId != '') {
-                        debugger
                         localStorage.setItem('brandid', res.data.attributes.brandId);
                         that.bm_brand_service.set('brandid', res.data.attributes.brandId);
+                        that.get('cookie').write('token', res.data.attributes.token, { path: '/' });
                         that.transitionToRoute('home');
                     } else {
                         that.set('errorInfo', true);
                     }
                 },
                 onFail: function(err) {
-                    console.log('error');
+                    debug('error: ' + err);
                 }
             }
             this.bm_login_service.accountLogin(callback);

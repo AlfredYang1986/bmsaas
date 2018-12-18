@@ -4,7 +4,7 @@ import { computed } from '@ember/object';
 
 export default Controller.extend({
     bm_yard_service: service(),
-    openFlag: true,
+    openFlag: false,
     selectedYard: '',
     refreshSelected: computed(function(){
         var sel = document.getElementById("yardselect");

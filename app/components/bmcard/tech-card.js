@@ -10,9 +10,7 @@ export default Component.extend({
     iconImg: computed('tech', function(){
         let client = this.bmOss.get('ossClient');
 
-        let url = client.signatureUrl(this.tech.icon);
-        console.log(url);
-        return url;
+        return  client.signatureUrl(this.tech.icon);
     }),
     click() {
         if (this.canChecked) {

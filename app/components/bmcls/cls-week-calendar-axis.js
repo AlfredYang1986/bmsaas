@@ -6,7 +6,7 @@ export default Component.extend({
     classNames: ['bm-axis'],
     attributeBindings: ['style'],
     didInsertElement() {
-        console.log('insert bm axis');
+        
     },
     width: 58,
     style: computed('width', function(){
