@@ -18,7 +18,6 @@
 					{{bmtable/bm-table-inner type="studsList" listData=bm_stud_service.studs action="cardClicked"}}
 				</table>
 			{{/layout-push}}
-			{{log totalPageCount}}
 			{{bmcom/bm-pagination pageCount=bm_stud_service.totalPageCount sendPageNum=(action "handlePageChange")}}
 		{{/layout-push}}
 	{{/layout-push}}
