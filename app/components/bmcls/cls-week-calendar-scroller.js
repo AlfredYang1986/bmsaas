@@ -23,5 +23,5 @@ export default Component.extend({
                 'height: ' + this.height + 'px;'
     }),
     inner_height: 1560,
-    inner_margin: 14,
+    inner_margin: 0,
 });
