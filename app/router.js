@@ -1,4 +1,5 @@
 import EmberRouter from '@ember/routing/router';
+import Route from '@ember/routing/route'
 import config from './config/environment';
 
 const Router = EmberRouter.extend({
@@ -6,42 +7,49 @@ const Router = EmberRouter.extend({
     rootURL: config.rootURL
 });
 
+Route.reopen({
+    withLayout: true,
+    setupController() {
+        this._super(...arguments);
+        this.controllerFor('application').set('showNavbar', this.get('withLayout'));
+    }
+})
+
 Router.map(function() {
   this.route('home', function() {});
 
   this.route('edit', function() {
     this.route('brand');
-    this.route('stud', { path: '/:studid' });
-    this.route('tech', { path: '/:techid' });
-    this.route('yard', { path: '/:yardid' });
+    this.route('stud', { path: '/stud/:studid' });
+    this.route('tech', { path: '/tech/:techid' });
+    this.route('yard', { path: '/yard/:yardid' });
     this.route('classes');
-    this.route('course', { path: '/:courseid' });
-    this.route('session', { path: '/:actid'});
+    this.route('course', { path: '/course/:courseid' });
+    this.route('session', { path: '/session/:actid'});
 
     this.route('actv', function() {
-      this.route('info', { path: '/:sessionid' });
+      this.route('info', { path: '/info/:sessionid' });
       this.route('rsb');
     });
 
     this.route('exp', function() {
-      this.route('info', { path: '/:sessionid' });
+      this.route('info', { path: '/info/:sessionid' });
       this.route('rsb');
     });
   });
 
   this.route('detail', function() {
-    this.route('stud', { path: '/:studid' });
-    this.route('tech', { path: '/:techid' });
-    this.route('yard', { path: '/:yardid' });
-    this.route('course', { path: '/:courseid' });
-    this.route('classes', { path: '/:clsid'} );
-    this.route('course-reserve', { path: '/:reid' });
-    this.route('actarrangement', { path: '/:actactid/:perid' });
-    this.route('exp', { path: '/:expid' });
-    this.route('exp-field', { path: '/:expfieldid/:reexpid' });
-    this.route('actv', { path: '/:actvid' });
-    this.route('expsession', { path: '/:eid/:sid' });
-    this.route('actv-field', { path: '/:actvfieldid/:reactvid' });
+    this.route('stud', { path: '/stud/:studid' });
+    this.route('tech', { path: '/tech/:techid' });
+    this.route('yard', { path: '/yard/:yardid' });
+    this.route('course', { path: '/course/:courseid' });
+    this.route('classes', { path: '/cls/:clsid'} );
+    this.route('course-reserve', { path: '/course-reserve/:reid' });
+    this.route('actarrangement', { path: '/actarrangement/:actactid/:perid' });
+    this.route('exp', { path: '/exp/:expid' });
+    this.route('exp-field', { path: '/exp-field/:expfieldid/:reexpid' });
+    this.route('actv', { path: '/actv/:actvid' });
+    this.route('actv-field', { path: '/actv-field/:actvfieldid/:reactvid' });
   });
 
   this.route('stud');
@@ -50,15 +58,10 @@ Router.map(function() {
   this.route('phrtest');
   this.route('course');
   this.route('inbox');
-  this.route('workBench');
-  this.route('experienceOpen');
-  this.route('courseReserve');
   this.route('classes');
   this.route('arrange-class');
-  this.route('demo');
   this.route('exp');
   this.route('actv');
-
 });
 
 export default Router;

@@ -10,8 +10,26 @@ export default Route.extend({
         this.bm_sessionable_service.set('reservableid', params.reactvid);
         this.bm_sessionable_service.set('sessionableid', params.actvfieldid);
         return RSVP.hash({
-                expfieldid: params.expfieldid,
-                tabs: A(['场次安排', '体验详情'])
+                actvfieldid: params.actvfieldid,
+                reactvid: params.reactvid,
+                // tabs: A(['场次安排', '体验详情']),
+                urls: A([
+                    {
+                        "pageName":"活动",
+                        "link":"actv",
+                        "id":"",
+                    },
+                    {
+                        "pageName":"场次安排",
+                        "link":"detail.actv",
+                        "id":params.reactvid,
+                    },
+                    {
+                        "pageName":"场次详情",
+                        "link":"",
+                        "id":"",
+                    }
+                ]),
             })
     },
     setupController(controller, model) {

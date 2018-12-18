@@ -1,0 +1,28 @@
+<ul class="nav">
+    <li class="nav-item">
+        {{#layout-push direction='row' classNames="nav-item-left"}}
+            {{#if (bmcom/bm-nil-obj bm_brand_service.brand)}}
+            {{else}}
+                <img src={{brandlogo}} alt="">
+            {{/if}}
+            {{!-- <a class="brand-name" href="home">{{bm_brand_service.brand.title}}</a> --}}
+            {{#link-to 'home' classNames='brand-name'}}{{bm_brand_service.brand.title}}{{/link-to}}
+        {{/layout-push}}
+    </li>
+    <li class="nav-item menu_mid">
+        <div class="menu_container">
+            {{#bs-dropdown class="btn-dropdown" as |dd|}}
+                {{#dd.button class="logout-btn"}}{{/dd.button}}
+                {{#dd.menu align="right" as |menu|}}
+                    {{#menu.item align="right"}}
+                        {{#layout-push direction='col' classNames="dropdown-content"}}
+                            <a onclick={{action 'exitSystem'}}>登出</a>
+                        {{/layout-push}}
+                    {{/menu.item}}
+                {{/dd.menu}}
+            {{/bs-dropdown}}
+        </div>
+    </li>
+</ul>
+
+{{yield}}

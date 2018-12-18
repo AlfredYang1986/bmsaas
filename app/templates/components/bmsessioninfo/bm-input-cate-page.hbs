@@ -1,13 +1,32 @@
 <section id="start-story" class="alt_course_section" >
     {{#layout-push direction='col' classNames='alt_course_panel edit_panel edit_first_panel'}}
-        <span class='alt_course_title alt_course_big_title'>您的体验课属于哪一个分类</span>
-        <span class='alt_course_des'>为体验课选择详细类目，这样便于用户快速查找您的体验服务。</span>
-        {{#layout-push direction="row"}}
+        {{#if (bmeq session.status 1)}}
+            <span class='alt_course_title alt_course_big_title'>您的体验课属于哪一个分类</span>
+            <span class='alt_course_des'>为体验课选择详细类目，这样便于用户快速查找您的体验服务。</span>
+            {{#layout-push direction="row"}}
+                {{#if (bmcom/bm-nil-obj session)}}
+                {{else}}
+                {{bmform/bm-cate-choose cat_candi=cat_exp crs_cat=session.Cate.title crs_sub_cat=session.Cate.subtitle}}
+                {{/if}}
+            {{/layout-push}}
+        {{else}}
+            <span class='alt_course_title alt_course_big_title'>您的活动属于哪一个分类</span>
+            <span class='alt_course_des'>请选择最能说明您活动的类别</span>
+            {{#layout-push direction="row"}}
+                {{#if (bmcom/bm-nil-obj session)}}
+                {{else}}
+                {{bmform/bm-cate-choose cat_candi=cat_actv crs_cat=session.Cate.title crs_sub_cat=session.Cate.subtitle}}
+                {{/if}}
+            {{/layout-push}}
+        {{/if}}
+
+
+        {{!-- {{#layout-push direction="row"}}
             {{#if (bmcom/bm-nil-obj session)}}
             {{else}}
-            {{bm-cate-choose crs_cat=session.Cate.title crs_sub_cat=session.Cate.subtitle}}
+            {{bmform/bm-cate-choose cat_candi=cat_exp crs_cat=session.Cate.title crs_sub_cat=session.Cate.subtitle}}
             {{/if}}
-        {{/layout-push}}
+        {{/layout-push}} --}}
         {{yield}}
     {{/layout-push}}
 </section>

@@ -1,4 +1,5 @@
-{{nav-top}}
-{{left-menu}}
-
+{{#if showNavbar}}
+    {{bmcom/nav-top onExitSystem=(action 'exitSystem')}}
+    {{bmcom/left-menu}}
+{{/if}}
 {{outlet}}

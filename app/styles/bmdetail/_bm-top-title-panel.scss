@@ -1,0 +1,23 @@
+.detail_top_title_panel {
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 16px 24px;
+    height: 64px;
+    background-color: #FFF;
+    min-width: 912px;
+
+    .detail_top_title_text{
+        @extend %font-dialog-title;
+        line-height: 32px;
+    }
+
+    .detail_top_more_btn{
+        padding: 6px 26px;
+        height: 32px;
+        font-size: 14px;
+        color: #42526E;
+        text-align: center;
+        background: rgba(9, 30, 66, 0.04);
+        border-radius: 3px;
+    }
+}

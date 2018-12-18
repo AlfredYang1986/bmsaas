@@ -1,17 +1,19 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
+import $ from 'jquery';
+import { debug } from '@ember/debug';
 
 export default Service.extend({
     store: service(),
     bm_config: service(),
-    bmstore: new JsonApiDataStore(),
-    bmmulti: new JsonApiDataStore(),
 
     init() {
         this._super(...arguments);
         this.addObserver('refresh_token', this, 'queryTech');
         this.addObserver('refresh_all_token', this, 'queryMultiObjects');
+        this.set('bmstore', new JsonApiDataStore());
+        this.set('bmmulti', new JsonApiDataStore());
     },
 
     techid: '',
@@ -23,7 +25,6 @@ export default Service.extend({
     queryTech() {
         this.bmstore.reset();
         this.set('tech', null);
-
         if (this.techid.length == 0 || this.techid == 'tech/push') {
             let query_payload = this.genPushQuery();
             let result = this.bmstore.sync(query_payload);
@@ -37,15 +38,15 @@ export default Service.extend({
         let inc = rd.Eqcond[0].serialize();
         rd_tmp['included'] = [inc.data];
         let dt = JSON.stringify(rd_tmp);
-       
+
         let that = this
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findteacher/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
@@ -53,7 +54,7 @@ export default Service.extend({
                 that.set('tech', result);
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
     },
@@ -70,22 +71,22 @@ export default Service.extend({
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findteachermulti/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
-                console.log(res)
+                debug(res)
                 let result = that.bmmulti.sync(res)
                 that.set('techs', result);
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
     },
@@ -109,11 +110,23 @@ export default Service.extend({
                         res: "BmTeacher"
                     },
                     relationships: {
-                        Eqcond: {}
+                        Eqcond: {
+                            id: eq,
+                            trye: "Eqcond"
+                        }
                     }
                 },
-                included: []
-            } 
+                included: [
+                    {
+                        id: eq,
+                        type: "Eqcond",
+                        attributes: {
+                            key: 'brandId',
+                            val: localStorage.getItem('brandid')
+                        }
+                    }
+                ]
+            }
     },
 
     genIdQuery() {
@@ -149,7 +162,7 @@ export default Service.extend({
             }
     },
     genPushQuery() {
-        let gid01 = this.guid();
+        // let gid01 = this.guid();
         let now = new Date().getTime();
         return {
             data: {
@@ -157,7 +170,7 @@ export default Service.extend({
                 type: "BmTeacher",
                 attributes: {
                     intro: '',
-                    brandId: '5be6a00b8fb80736e2ec9ba5',
+                    brandId: localStorage.getItem('brandid'),
                     name: '',
                     nickname: '',
                     icon: '',
@@ -182,18 +195,18 @@ export default Service.extend({
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
         // let inc = rd.Guardians[0].serialize();
         rd_tmp['included'] = [];
-        let dt = JSON.stringify(rd_tmp); 
+        let dt = JSON.stringify(rd_tmp);
 
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/pushteacher/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken()
+                'Authorization': 'bearer ' + this.get('cookie').read('token')
             },
             data: dt,
-            success: function(res) {
+            success: function(/*res*/) {
                 callback.onSuccess();
             },
             error: function(err) {
@@ -203,5 +216,11 @@ export default Service.extend({
     },
     isValidate() {
         return this.tech.name.length > 0 && this.tech.icon.length > 0 && this.tech.contact.length > 0;
+    },
+
+    queryLocalMultiObject() {
+        if (this.techs.length == 0) {
+            this.queryMultiObjects()
+        }
     }
 });

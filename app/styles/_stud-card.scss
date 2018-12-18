@@ -8,13 +8,16 @@
     background: #FFFFFF;
     box-shadow: 0 1px 1px 0 rgba(9,30,66,0.25);
     border-radius: 4px;
-    margin: 12px 8px;
+    // margin: 12px 8px;
+    margin-bottom: 24px;
+    margin-right: 16px;
     padding: 16px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     .stud_card_name {
         @extend %font-form-info-title;
+        min-width: 80px;
     }
 
     .stud_card_other {

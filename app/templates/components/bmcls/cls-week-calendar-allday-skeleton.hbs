@@ -1,0 +1,45 @@
+{{!-- {{yield}} --}}
+    <table style='height: 100%'>
+        <tbody>
+            <tr>
+                {{#bmcls/cls-week-calendar-axis classNames='bm-widget-content'}}
+                    <span>all day</span>
+                {{/bmcls/cls-week-calendar-axis}}
+                <th class='bm-day bm-widget-content' >
+                    {{#each bm_clsarr_service.mon_unit_lst as |item| }}
+                        {{bmcls/cls-week-calendar-panel display_str=item.title onPanelInserted=(action 'panelInserted')}}
+                    {{/each}}
+                </th>
+                <th class='bm-day bm-widget-content' >
+                    {{#each bm_clsarr_service.tus_unit_lst as |item| }}
+                        {{bmcls/cls-week-calendar-panel display_str=item.title onPanelInserted=(action 'panelInserted')}}
+                    {{/each}}
+                </th>
+                <th class='bm-day bm-widget-content' >
+                    {{#each bm_clsarr_service.wed_unit_lst as |item| }}
+                        {{bmcls/cls-week-calendar-panel display_str=item.title onPanelInserted=(action 'panelInserted')}}
+                    {{/each}}
+                </th>
+                <th class='bm-day bm-widget-content' >
+                    {{#each bm_clsarr_service.thu_unit_lst as |item| }}
+                        {{bmcls/cls-week-calendar-panel display_str=item.title onPanelInserted=(action 'panelInserted')}}
+                    {{/each}}
+                </th>
+                <th class='bm-day bm-widget-content' >
+                    {{#each bm_clsarr_service.fri_unit_lst as |item| }}
+                        {{bmcls/cls-week-calendar-panel display_str=item.title onPanelInserted=(action 'panelInserted')}}
+                    {{/each}}
+                </th>
+                <th class='bm-day bm-widget-content' >
+                    {{#each bm_clsarr_service.sat_unit_lst as |item| }}
+                        {{bmcls/cls-week-calendar-panel display_str=item.title onPanelInserted=(action 'panelInserted')}}
+                    {{/each}}
+                </th>
+                <th class='bm-day bm-widget-content' >
+                    {{#each bm_clsarr_service.sun_unit_lst as |item| }}
+                        {{bmcls/cls-week-calendar-panel display_str=item.title onPanelInserted=(action 'panelInserted')}}
+                    {{/each}}
+                </th>
+            </tr>
+        </tbody>
+    </table>

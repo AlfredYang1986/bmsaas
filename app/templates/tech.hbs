@@ -1,18 +1,21 @@
 <div class="tech_content_top" >
-    {{#layout-push direction="col" classNames="tech_content"}}
-        {{#layout-push direction="row" split=true classNames="tech-title-flex"}}
-            <p class="page_title">教师</p>
-            {{#link-to 'edit.tech' 'tech/push' classNames='tech_add_btn'}}+ 添加老师{{/link-to}}
+    {{#if openFlag}}
+        {{#layout-push direction="col" classNames="tech_content"}}
+            {{#layout-push direction="row" split=true classNames="tech-title-flex"}}
+                <p class="page_title">教师</p>
+                {{#link-to 'edit.tech' 'tech/push' classNames='tech_add_btn'}}+ 添加老师{{/link-to}}
+            {{/layout-push}}
+            {{#layout-push direction="row" wrap=true classNames="tech-card-wrap"}}
+                {{#each bm_tech_service.techs as |item|}}
+                    <div class="line_container_warp tech_card_container" >
+                        {{bmcard/tech-card onTechCardClicked=(action 'cardClicked') tech=item}}
+                    </div>
+                {{/each}}
+            {{/layout-push}}
         {{/layout-push}}
-        {{#layout-push direction="row" wrap=true classNames="tech-card-wrap"}}
-            {{#each bm_tech_service.techs as |item|}}
-                <div class="line_container_warp tech_card_container" >
-                    {{tech-card onTechCardClicked=(action 'cardClicked') tech=item}}
-                </div>
-            {{/each}}
-        {{/layout-push}}
-
-    {{/layout-push}}
+    {{else}}
+        {{bmcom/bm-empty-state class="tech-not-open" picUrl="/images/img_openningsoon.png" title="即将开放" des="更加强大便捷的功能马上到来"}}
+    {{/if}}
 </div>
 
 {{outlet}}

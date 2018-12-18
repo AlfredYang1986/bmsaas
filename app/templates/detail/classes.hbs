@@ -38,7 +38,8 @@
             {{/layout-push}}
         </div>
 
-        {{#bm-modal-container mswitch=delclsdlg
+        {{#bmcom/bm-modal-container mswitch=delclsdlg
+                needSubmit=true
                 successbtncss='course-reserve-card-save'
                 cancelbtncss='course-reserve-card-cancel'
                 canceltext='取消'
@@ -47,9 +48,10 @@
             <div class="change-class-pop-ups">
                 <p>您确定要删除“{{model.cls.name}}”的全部班级信息吗？</p>
             </div>
-        {{/bm-modal-container}}
+        {{/bmcom/bm-modal-container}}
 
-        {{#bm-modal-container title="编集班名" mswitch=changeClassName
+        {{#bmcom/bm-modal-container title="编集班名" mswitch=changeClassName
+                needSubmit=true
                 successbtncss='course-reserve-card-save'
                 cancelbtncss='course-reserve-card-cancel'
                 canceltext='取消'
@@ -67,7 +69,7 @@
                     {{/layout-push}}
                 {{/layout-push}}
             {{/layout-push}}
-        {{/bm-modal-container}}
+        {{/bmcom/bm-modal-container}}
 
         {{#if arrangeClass}}
             {{#layout-push direction='row' classNames='ib_tab_bar'}}
@@ -99,7 +101,8 @@
 
                         {{/each}}
                     {{/layout-push}}
-                    {{#bm-modal-container mswitch=techdlg
+                    {{#bmcom/bm-modal-container mswitch=techdlg
+                            needSubmit=true
                             title='添加班级教师'
                             successbtncss='course-reserve-card-save'
                             cancelbtncss='course-reserve-card-cancel'
@@ -111,12 +114,12 @@
                             {{#layout-push direction="row" classNames="card-wrap edit-teacher-list"}}
                                 {{#each tech_lst as |item|}}
                                     <div class="line_container_warp tech_card_container" >
-                                        {{tech-card  tech=item canChecked=true onTechCardClicked=(action 'oneTechChecked')}}
+                                        {{bmcard/tech-card  tech=item canChecked=true onTechCardClicked=(action 'oneTechChecked')}}
                                     </div>
                                 {{/each}}
                             {{/layout-push}}
                         {{/layout-push}}
-                    {{/bm-modal-container}}
+                    {{/bmcom/bm-modal-container}}
 
                     {{#layout-push direction='col' classNames="class-course-card"}}
                         {{#layout-push direction='row' split=true classNames="class-card-head-area"}}
@@ -156,7 +159,8 @@
                 <div class="detail_panel_col_between" class="add-student">
                     {{#bs-button onClick=(action (mut studdlg) true) classNames="add-student-btn"}}添加学员{{/bs-button}}
                 </div>
-                {{#bm-modal-container mswitch=studdlg
+                {{#bmcom/bm-modal-container mswitch=studdlg
+                        needSubmit=true
                         title='添加班级学生'
                         successbtncss='course-reserve-card-save'
                         cancelbtncss='course-reserve-card-cancel'
@@ -168,12 +172,12 @@
                         {{#layout-push direction="row" classNames="card-wrap edit-teacher-list"}}
                             {{#each stud_lst as |item|}}
                                 <div class="line_container_warp stud_card_container" >
-                                    {{stud-card stud=item canChecked=true onStudCardClicked=(action 'oneStudChecked')}}
+                                    {{bmcard/stud-card stud=item canChecked=true onStudCardClicked=(action 'oneStudChecked')}}
                                 </div>
                             {{/each}}
                         {{/layout-push}}
                     {{/layout-push}}
-                {{/bm-modal-container}}
+                {{/bmcom/bm-modal-container}}
 
                 <table class='ib_table_head'>
                     <tr>

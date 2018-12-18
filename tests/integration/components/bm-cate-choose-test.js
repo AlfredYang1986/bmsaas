@@ -10,7 +10,7 @@ module('Integration | Component | bm-cate-choose', function(hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`{{bm-cate-choose}}`);
+    await render(hbs`{{bmform/bm-cate-choose}}`);
 
     assert.equal(this.element.textContent.trim(), '');
 

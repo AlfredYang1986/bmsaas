@@ -1,0 +1,13 @@
+{{yield}}
+{{#layout-push direction='row' mid=true}}
+    <span class="basis_sex_age">
+        {{#if (bmeq gender 0)}}
+            女生 <img src={{female}} alt="">
+        {{else}}
+            男生 <img src={{male}} alt="">
+        {{/if}}
+    </span>
+    <span class="basis_sex_age">
+        {{bmdob/bmdob2age dob}}岁
+    </span>
+{{/layout-push}}

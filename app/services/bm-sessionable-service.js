@@ -1,12 +1,11 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
+import $ from 'jquery';
+import { debug } from '@ember/debug';
 
 export default Service.extend({
     bm_config: service(),
-    bmstore: new JsonApiDataStore(),
-    bmmulti: new JsonApiDataStore(),
-    // bmupdate: new JsonApiDataStore(),
 
     bm_yard_service: service(),
     bm_session_service: service(),
@@ -17,18 +16,64 @@ export default Service.extend({
         this._super(...arguments);
         this.addObserver('refresh_token', this, 'querySessionable');
         this.addObserver('refresh_all_token', this, 'queryMultiObjects');
+        this.addObserver('refresh_all_token', this, 'querySessionableCount');
+        this.set('bmstore', new JsonApiDataStore());
+        this.set('bmmulti', new JsonApiDataStore());
     },
 
+    page: 0,
+    steps: 10,
     sessionableid: '',
     reservableid: '',
     refresh_token: '',
     refresh_all_token: '',
     sessionable: null,
     sessionables: A([]),
+    totalCount: 0,
+    totalPageCount: 0,
+    attendeesCount: 0,
+    attendeesPageCount: 0,
+    localAttendees: null,
+    localAttendeesPages: null,
+    curAttendeesPage: null,
 
-    querySessionable(callback) {
+    querySessionableCount() {
+        this.bmstore.reset();
+
+        let query_preCount_payload = this.genCountQuery();
+        let rd = this.bmstore.sync(query_preCount_payload);
+        let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
+        let eq = rd.Eqcond[0].serialize();
+        rd_tmp['included'] = [eq.data];
+        let dt = JSON.stringify(rd_tmp);
+
+        let that = this;
+        $.ajax({
+            method: 'POST',
+            url: '/api/v1/findcount/0',
+            headers: {
+                'Content-Type': 'application/json', // 默认值
+                'Accept': 'application/json',
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
+            },
+            data: dt,
+            success: function(res) {
+                let result = that.bmstore.sync(res)
+                that.set('totalCount', result.count);
+                let pageCount = result.count / that.steps;
+                that.set('totalPageCount', Math.ceil(pageCount));
+            },
+            error: function(err) {
+                debug('error is : ', err);
+            },
+        })
+    },
+    querySessionable(/*callback*/) {
         this.bmstore.reset();
         this.set('sessionable', null);
+        this.set('localAttendees', null);
+        this.set('localAttendeesPages', null);
+        this.set('curAttendeesPage', null);
 
         if (this.sessionableid.length == 0 || this.sessionableid == 'sessionable/push') {
             let query_payload = this.genPushQuery();
@@ -43,23 +88,42 @@ export default Service.extend({
         let inc = rd.Eqcond[0].serialize();
         rd_tmp['included'] = [inc.data];
         let dt = JSON.stringify(rd_tmp);
-     
+
         let that = this
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findsessionable/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
                 let result = that.bmstore.sync(res)
                 that.set('sessionable', result);
+                that.set('sessionable.tmp_date', result.start_date);
+                if (result.Attendees == null){
+                    that.set('attendeesCount', 0);
+                    that.set('attendeesPageCount', 0);
+                } else {
+                    that.set('attendeesCount', result.Attendees.length);
+                    let pageCount = result.Attendees.length / that.steps;
+                    that.set('attendeesPageCount', Math.ceil(pageCount));
+
+                    that.set('localAttendees', result.Attendees)
+                    let tmpArr = [];
+                    for(let i = 0, len = that.localAttendees.length;i < len ;i += that.steps){
+                        tmpArr.push(that.localAttendees.slice(i,i + that.steps));
+                    }
+                    that.set('localAttendeesPages',tmpArr)
+                    that.set('curAttendeesPage',tmpArr[0])
+
+                }
+                debug(that.sessionable)
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
     },
@@ -81,15 +145,15 @@ export default Service.extend({
         let inc = rd.Eqcond[0].serialize();
         rd_tmp['included'] = [inc.data];
         let dt = JSON.stringify(rd_tmp);
-     
+
         let that = this
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findsessionable/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
@@ -100,7 +164,7 @@ export default Service.extend({
                 }
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
                 if (callback) {
                     callback.onFail();
                 }
@@ -124,27 +188,66 @@ export default Service.extend({
         let rd = this.bmmulti.sync(query_yard_payload);
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
         let inc = rd.Eqcond[0].serialize();
-        rd_tmp['included'] = [inc.data];
+        let fm = rd.Fmcond.serialize();
+        rd_tmp['included'] = [inc.data, fm.data];
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findsessionablemulti/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
                 let result = that.bmmulti.sync(res)
+                if(result !== undefined){
+                    for(let idx = 0;idx < result.length;idx++){
+                        result[idx].tmp_date = result[idx].start_date;
+                    }
+                }
                 that.set('sessionables', result);
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
+    },
+
+    genCountQuery() {
+        let eq = this.guid();
+        return {
+            data: {
+                id: this.guid(),
+                type: "Request",
+                attributes: {
+                    res: "BmSessionable"
+                },
+                relationships: {
+                    Eqcond: {
+                        data: [
+                        {
+                            id: eq,
+                            type: "Eqcond"
+                        },
+                        ]
+                    }
+                }
+            },
+            included: [
+                {
+                    id: eq,
+                    type: "Eqcond",
+                    attributes: {
+                        key: "reservableId",
+                        val: this.reservableid
+                    }
+                },
+            ]
+        }
     },
 
     genIdQuery() {
@@ -180,7 +283,7 @@ export default Service.extend({
             }
     },
 
-    genPushQuery(yardid, sinfoid) {
+    genPushQuery(/*yardid, sinfoid*/) {
         // TODO: generate more stud
         let now = new Date().getTime();
 
@@ -192,6 +295,7 @@ export default Service.extend({
                     status: 0,
                     start_date: now,
                     end_date: now,
+                    tmp_date: now,
                     reservableId: this.reservableid,
                 },
                 relationships: {
@@ -210,8 +314,8 @@ export default Service.extend({
                 }
             },
             included: []
-        } 
-            
+        }
+
         return sessionable;
     },
 
@@ -235,49 +339,71 @@ export default Service.extend({
             }
         }
         let yd = this.bmstore.find('BmYard', yardid);
-        this.bmstore.destroy(yd);
         let bs = this.bmstore.find('BmSessionInfo', sinfoid);
-        this.bmstore.destroy(bs);
-        this.sessionable.SessionInfo = this.bmstore.sync(sinfo);
-        this.sessionable.Yard = this.bmstore.sync(yard);
+        if(bs != null){
+            this.bmstore.destroy(bs);
+        }
+        if(yd != null){
+            this.bmstore.destroy(yd);
+        }
+
+        // this.sessionable.SessionInfo = this.bmstore.sync(sinfo);
+        // this.sessionable.Yard = this.bmstore.sync(yard);
+        this.set("sessionable.SessionInfo",this.bmstore.sync(sinfo))
+        this.set("sessionable.Yard",this.bmstore.sync(yard))
     },
 
     resetTechs(techs) {
         let arr = []
-        for (let idx = 0; idx < techs.length; idx++) {
-            let tech = {
-                data: {
-                    id: techs[idx],
-                    type: "BmTeacher",
-                    attributes: {
-                        a:0
+        if(techs != null){
+            for (let idx = 0; idx < techs.length; idx++) {
+                let tech = {
+                    data: {
+                        id: techs[idx].id,
+                        type: "BmTeacher",
+                        attributes: {
+                            a:0
+                        }
                     }
                 }
+                let tc = this.bmstore.find('BmAttendee', techs[idx].id)
+                if(tc != null){
+                    this.bmstore.destroy(tc);
+                }
+                arr.push(this.bmstore.sync(tech))
             }
-            arr.push(this.bmstore.sync(tech))
         }
-        this.sessionable.Teachers = arr;
+        // this.sessionable.Teachers = arr;
+        this.set("sessionable.Teachers",arr)
     },
 
     resetAttendee(studs) {
         let arr = []
-        for (let idx = 0; idx < studs.length; idx++) {
-            let stud = {
-                data: {
-                    id: studs[idx],
-                    type: "BmAttendee",
-                    attributes: {
-                        a:0
+        if(studs != null){
+            for (let idx = 0; idx < studs.length; idx++) {
+                let stud = {
+                    data: {
+                        id: studs[idx].id,
+                        type: "BmAttendee",
+                        attributes: {
+                            a:0
+                        }
                     }
                 }
+                let st = this.bmstore.find('BmAttendee', studs[idx].id)
+                if(st != null){
+                    this.bmstore.destroy(st);
+                }
+                arr.push(this.bmstore.sync(stud))
             }
-            arr.push(this.bmstore.sync(stud))
         }
-        this.sessionable.Attendees = arr;
+        // this.sessionable.Attendees = arr;
+        this.set("sessionable.Attendees",arr)
     },
 
     genMultiQuery() {
         let eq = this.guid();
+        let fm = this.guid();
         return {
                 data: {
                     id: this.guid(),
@@ -286,6 +412,13 @@ export default Service.extend({
                         res: "BmSessionable"
                     },
                     relationships: {
+                        Fmcond: {
+                            data:
+                            {
+                                id: fm,
+                                type: "Fmcond"
+                            }
+                        },
                         Eqcond: {
                             data: [
                             {
@@ -298,29 +431,50 @@ export default Service.extend({
                 },
                 included: [
                     {
+                        id: fm,
+                        type: "Fmcond",
+                        attributes: {
+                            take: this.steps,
+                            page: this.page
+                        }
+                    },
+                    {
                         id: eq,
                         type: "Eqcond",
                         attributes: {
                             key: "reservableId",
                             val: this.reservableid
                         }
-                    }
+                    },
                 ]
-            } 
+            }
     },
 
-    saveUpdate(callback) {
+    handleDate(date,time) {
+        let tmpDate = new Date(date)
+        let tmpTime = new Date(time)
+        let result = new Date(tmpDate.getFullYear(), tmpDate.getMonth(), tmpDate.getDate(), tmpTime.getHours(), tmpTime.getMinutes(), tmpTime.getSeconds())
+        debug(tmpTime)
+        debug(result)
+        return result.getTime();
+    },
 
+    saveUpdate(callback,params) {
         if (!this.isValidate) {
             return ;
         }
 
         let ft = this.sessionable;
-
+        if(params){
+            ft.id = params.id;
+            ft.tmp_date = params.tmp_date
+            ft.start_date = params.start_date
+            ft.end_date = params.end_date
+        }
         let arr = [];
         let s = ft.SessionInfo.serialize();
         arr.push(s.data);
-        
+
         let y = ft.Yard.serialize();
         arr.push(y.data);
 
@@ -337,29 +491,61 @@ export default Service.extend({
         }
 
         let ft_tmp = JSON.parse(JSON.stringify(ft.serialize()));
+        ft_tmp.data.attributes.start_date = this.handleDate(ft.tmp_date, ft.start_date)
+        ft_tmp.data.attributes.end_date = this.handleDate(ft.tmp_date, ft.end_date)
         ft_tmp['included'] = arr;
-        let dt = JSON.stringify(ft_tmp); 
+        let dt = JSON.stringify(ft_tmp);
 
-        let that = this;
-        Ember.$.ajax({
+        // let that = this;
+        $.ajax({
             method: 'POST',
             url: '/api/v1/pushsessionable/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
-                let result = that.bmstore.sync(res);
-                console.log('result is: ' + result);
-                callback.onSuccess(result);
+                // let result = null;
+                // this.set("result", that.bmstore.sync(res));
+                callback.onSuccess(res);
             },
             error: function(err) {
                 callback.onFail(err);
             },
         })
     },
+
+    deleteSessionable(callback,params) {
+        let delete_sessionable_payload = this.genIdQuery();
+        let rd = this.bmstore.sync(delete_sessionable_payload);
+        let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
+        let inc = rd.Eqcond[0].serialize();
+        rd_tmp['included'] = [inc.data];
+        if(params){
+            rd_tmp['included'][0].attributes.val = params.id
+        }
+        let dt = JSON.stringify(rd_tmp);
+
+        $.ajax({
+            method: 'POST',
+            url: '/api/v1/deletesessionable/0',
+            headers: {
+                'Content-Type': 'application/json', // 默认值
+                'Accept': 'application/json',
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
+            },
+            data: dt,
+            success: function(/*res*/) {
+                callback.onSuccess();
+            },
+            error: function(err) {
+                callback.onFail(err);
+            },
+        })
+    },
+
     isValidate() {
         return this.sessionable.title.length > 0;
     },

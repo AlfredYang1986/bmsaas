@@ -1,17 +1,19 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
+import $ from 'jquery';
+import { debug } from '@ember/debug';
 
 export default Service.extend({
     store: service(),
     bm_config: service(),
-    bmstore: new JsonApiDataStore(),
-    bmmulti: new JsonApiDataStore(),
 
     init() {
         this._super(...arguments);
         this.addObserver('refresh_token', this, 'queryYard');
         this.addObserver('refresh_all_token', this, 'queryMultiObjects');
+        this.set('bmstore', new JsonApiDataStore());
+        this.set('bmmulti', new JsonApiDataStore());
     },
 
     yardid: '',
@@ -39,15 +41,15 @@ export default Service.extend({
         let inc = rd.Eqcond[0].serialize();
         rd_tmp['included'] = [inc.data];
         let dt = JSON.stringify(rd_tmp);
-       
+
         let that = this
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findyard/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
@@ -55,7 +57,7 @@ export default Service.extend({
                 that.set('yard', result);
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
     },
@@ -72,22 +74,22 @@ export default Service.extend({
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findyardmulti/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
-                console.log(res)
+                debug(res)
                 let result = that.bmmulti.sync(res)
                 that.set('yards', result);
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
     },
@@ -111,11 +113,23 @@ export default Service.extend({
                         res: "BmYard"
                     },
                     relationships: {
-                        Eqcond: {}
+                        Eqcond: {
+                            id: eq,
+                            type: "Eqcond"
+                        }
                     }
                 },
-                included: []
-            } 
+                included: [
+                    {
+                        id: eq,
+                        type: "Eqcond",
+                        attributes: {
+                            key: 'brandId',
+                            val: localStorage.getItem('brandid')
+                        }
+                    }
+                ]
+            }
     },
 
     genIdQuery() {
@@ -159,7 +173,7 @@ export default Service.extend({
         let gid05 = this.guid();
         let gid06 = this.guid();
         let gid07 = this.guid();
-        let now = new Date().getTime();
+        // let now = new Date().getTime();
 
         return {
             data: {
@@ -178,7 +192,7 @@ export default Service.extend({
                     traffic_info: '',
                     attribute: '',
                     scenario: '',
-                    brandId: "5be6a00b8fb80736e2ec9ba5",
+                    brandId: localStorage.getItem('brandid'),
                 },
                 relationships: {
                     Rooms: {
@@ -299,18 +313,18 @@ export default Service.extend({
 
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
         rd_tmp['included'] = arr;
-        let dt = JSON.stringify(rd_tmp); 
+        let dt = JSON.stringify(rd_tmp);
 
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/pushyard/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
-            success: function(res) {
+            success: function(/*res*/) {
                 callback.onSuccess();
             },
             error: function(err) {
@@ -324,7 +338,7 @@ export default Service.extend({
 
     queryLocalMultiObject() {
         if (this.yards.length == 0) {
-            this.queryMultiObjects()    
+            this.queryMultiObjects()
         }
-    } 
+    }
 });

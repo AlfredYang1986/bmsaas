@@ -1,19 +1,36 @@
 <div class="detail_content_top">
     <div class="detail_page">
-        {{#link-to 'courseReserve' class="reserve_detail_href_ref"}}
-            返回
-        {{/link-to}}
+        {{#bmcom/bm-breadcrumb urls=model.urls as |url|}}
+            {{#if (not-eq url.id "")}}
+                {{#link-to url.link url.id class="reserve_detail_href_ref"}}{{url.pageName}}{{/link-to}}
+            {{else}}
+                {{#link-to url.link class="reserve_detail_href_ref"}}{{url.pageName}}{{/link-to}}
+            {{/if}}
+        {{/bmcom/bm-breadcrumb}}
         <div class='detail_panel detail_margin_top detail_margin_top_field' >
             {{#layout-push direction='row' split=true classNames="reserve-detail-head"}}
                 {{#layout-push direction='col' mid=true }}
                     {{#layout-push direction='col' classNames="detail_margin_top_left"}}
                         {{!-- <span class="detail_panel_title_name">sda65f4d5f4ds65</span> --}}
-                        <span class="detail_panel_title_name">{{bmdob/bmdobformat bm_sessionable_service.sessionable.start_date}}</span>
+                        <span class="detail_panel_title_name">
+                            {{bmdob/bmdobformat bm_sessionable_service.sessionable.start_date}} 
+                            {{bmdob/bmdob2weekday bm_sessionable_service.sessionable.start_date}} 
+                            {{bmdob/bmdob2clocktime bm_sessionable_service.sessionable.start_date}}-{{bmdob/bmdob2clocktime bm_sessionable_service.sessionable.end_date}}
+                        </span>
                     {{/layout-push}}
                 {{/layout-push}}
                 {{#layout-push direction="row" classNames="reserve-detail-btn"}}
-                    {{#bs-button class="reserve-more-btn"}}{{/bs-button}}
-                    {{#bs-button classNames="second_btn" onClick=(action (mut add_session) true)}}<span>停止报名</span>{{/bs-button}}
+                    {{#bs-dropdown class="btn-dropdown" as |dd|}}
+                        {{#dd.button class="reserve-more-btn"}}{{/dd.button}}
+                        {{#dd.menu align="right" as |menu|}}
+                            {{#menu.item align="right"}}
+                                {{#layout-push direction='col' classNames="dropdown-content"}}
+                                    <a onclick={{action "onEditSessionable" true dd.closeDropdown}}>编辑场次</a>
+                                    <a class="warning" onclick={{action (mut deleteSessionDlg) true dd.closeDropdown}}>删除场次</a>
+                                {{/layout-push}}
+                            {{/menu.item}}
+                        {{/dd.menu}}
+                    {{/bs-dropdown}}
                 {{/layout-push}}
             {{/layout-push}}
         </div>
@@ -32,34 +49,127 @@
                     {{/layout-push}}
                 {{/layout-push}}
                 {{#layout-push direction='row' classNames="detail_margin_top_right"}}
-                    <span class="detail_panel_role_num">{{bm_sessionable_service.sessionable.Attendees.length}}</span>
+                    {{#if (bmcom/bm-nil-obj bm_sessionable_service.sessionable.Attendees)}}
+                        <span class="detail_panel_role_num">0</span>
+                    {{else}}
+                        <span class="detail_panel_role_num">{{bm_sessionable_service.sessionable.Attendees.length}}</span>
+                    {{/if}}
                     <span class="detail_panel_role_num">报名人数</span>
                 {{/layout-push}}
             {{/layout-push}}
         </div>
+        {{#if (bmcom/bm-nil-obj bm_sessionable_service.curAttendeesPage)}}
+            {{bmcom/bm-empty-state class="field-empty-state" picUrl="/images/img_empty@2x.png" title="暂无参与者" des="暂无数据"}}
+        {{else}}
+            {{bmtable/bm-table-course-field  title=tableTitle attendees=bm_sessionable_service.curAttendeesPage action=""}}
+            {{bmcom/bm-pagination pageCount=bm_sessionable_service.attendeesPageCount sendPageNum=(action "handlePageChange")}}
+        {{/if}}
 
-        <table class='ib_table_head exp_table'>
-            <tr>
-                {{#each tableTitle as |item|}}
-                    <th class='ib_table_item'>{{item}}</th>
-                {{/each}}
-            </tr>
-            {{#each bm_sessionable_service.sessionable.Attendees as |item index|}}
-            <tr class="session-list">
-                <td class='ib_table_content_item'>{{index}}</td>
-                <td class='ib_table_content_item'>{{item.name}}</td>
-                <td class="ib_table_content_item">{{bmdob/bmdobformat item.dob}}</td>
-                {{#if (bmeq item.gender 1)}}
-                男
-                {{else}}
-                女
-                {{/if}}
-                <td class="ib_table_content_item">{{item.contact}}</td>
-                <td class="ib_table_content_item">小程序</td>
-                {{!-- <td class="ib_table_content_item">{{#bs-button class="reserve-more-btn"}}{{/bs-button}}</td> --}}
-                <td  class="ib_table_content_item"><a class="btn_sign">点击签到</a> </td>
-            </tr>
-            {{/each}}
-        </table>
     </div>
+    {{#bmcom/bm-modal-container title="" mswitch=showEditSessionDlg
+        needSubmit=couldSubmit
+        successbtncss='exp-modal-confirm'
+        cancelbtncss='exp-modal-cancel'
+        canceltext='取消'
+        onCancelBtnClicked=(action 'cancelHandled')
+        onSuccessBtnClicked=(action 'successHandled')}}
+        <div class="session-modal">
+            {{#layout-push direction='col' }}
+                {{#layout-push direction='row'}}
+                    <p class="title">编辑场次</p>
+                {{/layout-push}}
+                {{#if noteError}}
+                    <div class="form-checked">
+                        {{#layout-push direction='row' classNames="error-line"}}
+                            <img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
+                            <span class="error-info">请填写完整信息</span>
+                        {{/layout-push}}
+                    </div>
+                {{/if}}
+                {{#if noteTimeError}}
+                    <div class="form-checked">
+                        {{#layout-push direction='row' classNames="error-line"}}
+                            <img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
+                            <span class="error-info">时间错误</span>
+                        {{/layout-push}}
+                    </div>
+                {{/if}}
+                {{#layout-push direction='row' classNames="line-list"}}
+                    <p class="subtitle">校区设置</p>
+                    {{#layout-push direction='col' }}
+                        <span class="radio-col">
+                            <input type="radio" name="rel01" value="fa" checked/>
+                            <label for="">
+                                {{#layout-push direction=row}}
+                                    {{#if noteError}}
+                                        <select class="session-modal-select error-border" id='reservableselect' name="" onchange={{action 'reservableChanged'}}>
+                                            <option value="">选择已有场地</option>
+                                            {{#each bm_yard_service.yards as |item|}}
+                                                {{#if (eq item.id cur_yard_id)}}
+                                                    <option selected="selected" value={{item.id}}>{{item.address}}</option>
+                                                {{else if (eq item.id tmpSessionable.Yard.id)}}
+                                                    <option selected="selected" value={{item.id}}>{{item.address}}</option>
+                                                {{else}}
+                                                    <option value={{item.id}}>{{item.address}}</option>
+                                                {{/if}}
+                                            {{/each}}
+                                        </select>
+                                    {{else}}
+                                        <select class="session-modal-select" id='reservableselect' name="" onchange={{action 'reservableChanged'}}>
+                                            <option value="">选择已有场地</option>
+                                            {{#each bm_yard_service.yards as |item|}}
+                                                {{#if  (eq item.id cur_yard_id)}}
+                                                    <option selected="selected" value={{item.id}}>{{item.address}}</option>
+                                                {{else if (eq item.id tmpSessionable.Yard.id)}}
+                                                    <option selected="selected" value={{item.id}}>{{item.address}}</option>
+                                                {{else}}
+                                                    <option value={{item.id}}>{{item.address}}</option>
+                                                {{/if}}
+                                            {{/each}}
+                                        </select>
+                                    {{/if}}
+                                {{/layout-push}}
+                            </label>
+                        </span>
+                        {{!-- <span class="radio-col">
+                            <input type="radio" name="rel" value="ma"/>
+                            <label for="">其他场地</label>
+                        </span> --}}
+                    {{/layout-push}}
+                {{/layout-push}}
+                {{#layout-push direction="row" classNames="line-list"}}
+                    <p class="subtitle">日期设置</p>
+                    {{bmform/bm-lay-date inputVal=cur_tmp_date}}
+                {{/layout-push}}
+                {{#layout-push direction="row" classNames="line-list"}}
+                    <p class="subtitle">时间设置</p>
+                    {{#if noteTimeError}}
+                        {{bmform/bm-lay-date cssClass="error-border" inputVal=cur_start_date pickType="time"}}
+                        {{bmform/bm-lay-date cssClass="error-border" inputVal=cur_end_date pickType="time"}}
+                    {{else}}
+                        {{bmform/bm-lay-date inputVal=cur_start_date pickType="time"}}
+                        {{bmform/bm-lay-date inputVal=cur_end_date pickType="time"}}
+                    {{/if}}
+                {{/layout-push}}
+                {{!-- {{#layout-push direction='row' classNames="line-area "}}
+                    <p class="subtitle">名额设置</p>
+                    {{#layout-push direction='col' }}
+                        <span class="radio-col">
+                            <input type="radio" name="rel02" value="ma" checked/>
+                            <label for="">不限制</label>
+                        </span> --}}
+                        {{!-- <span class="radio-col">
+                            <input type="radio" name="rel" value="fa"/>
+                            <label for="">
+                                <input type="text" name="" value="">
+                            </label>
+                        </span> --}}
+                    {{!-- {{/layout-push}}
+                {{/layout-push}} --}}
+            {{/layout-push}}
+        </div>
+    {{/bmcom/bm-modal-container}}
+    {{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteSessionDlg cancelHandled='cancelHandled' successHandled="onDeleteSessionableClick"}}
+    <p class="warning-modal-body-content">您确定要删除该场次吗？</p>
+    {{/bmcom/bm-warning-modal}}
 </div>

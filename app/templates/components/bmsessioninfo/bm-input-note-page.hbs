@@ -3,10 +3,15 @@
         <span class='alt_course_title alt_course_big_title'>须知</span>
         <span class='alt_course_title'>参与者须知</span>
         <span class='alt_course_des'>详细说明可以让参与者做好充分准备。如：着装建议、身体情况限制、 接送说明等。</span>
-        {{input type="text" class="edit_input" maxlength='10' value=session.notice}}
-        <div class="course-edit-check course-edit-check-low">
-            <span class="radio-inline">
-                <input type="checkbox" name="rel" />
+        {{input type="text" class="edit_input" value=session.notice disabled=ifNoteInput}}
+        <div class="course-edit-check course-edit-check-low no-inc-margin">
+            <span class="radio-inline" {{action 'noNote'}}>
+                {{#if noteInput}}
+                    <input type="checkbox" name="note"/>
+                {{else}}
+                    <input type="checkbox" name="note" checked='checked'/>
+                {{/if}}
+
                 <label for="female">无须知说明</label>
             </span>
         </div>

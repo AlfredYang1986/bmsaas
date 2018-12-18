@@ -88,7 +88,7 @@
             {{/layout-push}}
             {{#layout-push direction='row' split=true}}
                 {{#layout-push direction='row' classNames='line_half'}}
-                    {{region-choose
+                    {{bmform/region-choose
                         provinces=yard_provinces
                         citys=yard_citys
                         governmentAreas=yard_government_areas
@@ -135,7 +135,7 @@
                 <span class="alt-edit-title">场地类型</span>
             {{/layout-push}}
             {{#layout-push direction="col" classNames="single-select card-wrap"}}
-                {{checkbox-label limit=1
+                {{bmform/checkbox-label limit=1
                         candidate=yardCandidate
                         titlecss='edit_sub_title'
                         btncss='form-check-label'
@@ -146,7 +146,7 @@
                 <span class="alt-edit-title">周围环境</span>
             {{/layout-push}}
             {{#layout-push direction="col" classNames="single-select card-wrap"}}
-                {{checkbox-label limit=10
+                {{bmform/checkbox-label limit=10
                         candidate=surroundings
                         titlecss='edit_sub_title'
                         btncss='form-check-label'
@@ -178,8 +178,8 @@
             {{/layout-push }}
 
             {{#layout-push direction='row' split=true}}
-                {{bm-edit-line title="停车场" isNeeded=true maxCount=1 classNames='line_half' inputVal=yard_parking}}
-                {{bm-edit-line title="急救包" isNeeded=true maxCount=1 classNames='line_half' inputVal=yard_embag}}
+                {{bmform/bm-edit-line title="停车场" isNeeded=true maxCount=1 classNames='line_half' inputVal=yard_parking}}
+                {{bmform/bm-edit-line title="急救包" isNeeded=true maxCount=1 classNames='line_half' inputVal=yard_embag}}
             {{/layout-push}}
             
             {{#layout-push classNames='r_end' direction='row'}}

@@ -5,8 +5,9 @@
             <th class='ib_table_item'>{{item}}</th>
         {{/each}}
     </tr>
-    {{#each bm_sessionable_service.sessionables as |item index|}}
-    <tr class="session-list" {{action "onClick" item.id}}>
+    {{bmtable/bm-table-inner type="course" listData=bm_sessionable_service.sessionables action="onClick" onEditSessionClick="onEditSessionClick" onDeleteSessionClick="onDeleteSessionClick"}}
+    {{!-- {{#each bm_sessionable_service.sessionables as |item index|}}
+    <tr class="session-list">
         <td class='ib_table_content_item'>{{index}}</td>
         <td class='ib_table_content_item'>{{bmdob/bmdobformat item.start_date}}</td>
         <td class="ib_table_content_item"></td>
@@ -15,7 +16,7 @@
         {{else}}
         <td class="ib_table_content_item">{{item.Attendees.length}}</td>
         {{/if}}
-        <td  class="ib_table_content_item"><a class="btn_sign">查看详情</a></td>
+        <td  class="ib_table_content_item">{{#bs-button classNames="ib_table_content_btn" onClick=(action 'onClick' item.id)}}<span>查看详情</span>{{/bs-button}}</td>
     </tr>
-    {{/each}}
+    {{/each}} --}}
 </table>

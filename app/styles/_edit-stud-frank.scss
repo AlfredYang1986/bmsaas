@@ -15,7 +15,16 @@
         }
 
         .btn_save {
-          @extend %button-system-disabled;
+        //   @extend %button-system-disabled;
+          font-family: PingFangSC-Semibold;
+          min-width: 80px;
+          height: 32px;
+          border: none;
+          border-radius: 4px;
+          background: #80AEFF;
+          font-size: 14px;
+          color: #fff;
+          padding: 0 16px;
         }
     }
 }
@@ -23,6 +32,7 @@
 .edit_container {
     padding-top: 64px;
     font-family: $font-brand;
+    min-width: 1200px;
 
     .edit_left_nav {
         position: fixed;
@@ -33,10 +43,15 @@
         margin-bottom: 0;
         height: calc(100vh - 64px);
         width: 240px;
-
+        li.title-sub {
+            position: absolute;
+            margin-top: 160px;
+            padding: 17px 0;
+        }
         li.left_bar_title{
             padding-left: 24px;
-            margin-top: 32px;
+            // margin-top: 32px;
+            margin-bottom: 17px;
 
             &:nth-child(1){
                 margin-top: 0;
@@ -47,16 +62,24 @@
             }
         }
 
-    	li {
+    	li.left_bar_item {
+            // margin-bottom: 40px;
             padding-left: 40px;
             text-align: left;
             height: 40px;
-
+            @extend %font-form-info-title;
+            .ib_tab_btn_active {
+                color: #80AEFF;
+            }
     		a.edit_left_menu_text {
                 line-height: 40px;
-    			@extend %font-form-info-title;
     		}
-
+            a.active {
+                color: red;
+            }
+            a.edit_left_menu_stud {
+                @extend %font-form-info-title;
+            }
     	}
     }
 
@@ -64,12 +87,13 @@
     flex: 1;
     padding-top: 24px;
     padding-bottom: 40px;
+    margin-bottom: 68px;
     margin-left: 240px;
 
     // .tech-infos-container{
-        
+
     //     .tech-infos-icon{
-            
+
     //         .edit_title{
     //             margin-bottom: 16px;
     //             font-family: $font-family;
@@ -83,22 +107,31 @@
         margin: 0 24px 8px;
         padding: 24px;
         background-color: $color-neutral-N000;
-
-      .input_area {
+        .course-reserve-modal-select {
+            select {
+                @extend %select-box-dropdown-default;
+            }
+        }
+       .title-name {
+          margin-bottom: 45px;
+          @extend %font-dialog-title;
+       }
+       .name-area {
+          margin-right: 40px;
+       }
+       .input_area {
 
         input[type=radio] {
-
+            opacity: 0.5;
             & + label{
-                margin-left: 0;
-                margin-right: 32px;
+                margin-left: 10px;
             }
         }
         &.area-margin-bottom {
-            margin-bottom: 40px;
+            margin-bottom: 32px;
         }
 
         .edit_title {
-          font-family: $font-family;
             margin-bottom: 16px;
             @extend %font-form-info-title;
             span.sub_title {
@@ -107,9 +140,25 @@
             }
         }
 
+        .radio-inline {
+            margin-right: 11px;
+            min-width: 80px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
         input.edit_input {
             margin-bottom: 4px;
             width: 144px;
+            height: 32px;
+            border: 1px solid #DFE1E5;
+            border-radius: $border-radius-button-product;
+            box-shadow: none;
+        }
+        input.kid_school {
+            width: 536px;
+            margin-bottom: 4px;
             height: 32px;
             border: 1px solid #DFE1E5;
             border-radius: $border-radius-button-product;
@@ -149,7 +198,7 @@
         }
         .tech-infos-container {
             .tech-infos-icon{
-            
+
                 .edit_title{
                     margin-bottom: 16px;
                     font-family: $font-family;

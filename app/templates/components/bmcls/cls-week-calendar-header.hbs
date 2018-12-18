@@ -1,0 +1,12 @@
+{{!-- <div class='bm-row bm-widght-header' style="border-right-width: 1px; margin-right: 14px" > --}}
+<table>
+    <thead>
+        <tr>
+            {{bmcls/cls-week-calendar-axis classNames='bm-widget-header'}}
+            {{#each cols as |item|}}
+                {{bmcls/cls-week-calendar-day-header display_date=item}}
+            {{/each}}
+        </tr>
+    </thead>
+</table>
+{{!-- </div> --}}

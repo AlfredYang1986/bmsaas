@@ -1,6 +1,7 @@
 @import "args";
 @import 'stud-frank';
 @import "stud-card";
+@import 'stud-list';
 @import 'bm-saas-standard/bm-saas-typography';
 @import 'bm-saas-standard/bm-saas-button';
 
@@ -12,62 +13,50 @@
     @extend %stud_content_basic;
     height: fit-content;
     padding-top: 64px;
+    min-width: 1200px;
 }
 
 .stud_content {
-    background: $color-neutral-N000;
+    background: transparent;
     padding: 0;
     margin: 24px;
-    margin-bottom: 0;
+    // margin-bottom: 0;
     min-height: calc(100vh - 88px);
 
     .stud-title-flex{
         align-items: center;
         height: 72px;
         padding: 20px 24px;
-
+        // border-bottom: 8px solid #f7f8fa;
+        margin-bottom: 8px;
+        background-color: #FFFFFF;
         p.page_title {
+            // @extend %font-page-header-title;
+            font-family: PingFangSC-Medium;
+            font-weight: normal;
             font-size: 24px;
-            color: $color-neutral-N800;
-            line-height: 28px;
-            height: 32px;
-            
+            color: #172B4D;
         }
         .stud_add_btn {
             background: $color-theme-T100;
             border-radius: 100px;
-            font-family: $font-family;
+            font-family: PingFangSC-Medium;
             font-size: $font-size-main;
             color: $color-neutral-N000;
             letter-spacing: 2px;
             height: 32px;
             line-height: 16px;
-            padding: 8px 24px;
+            padding: 8px 12px;
 
         }
     }
     .stud_title {
         @extend %font-page-header-title;
     }
-    // .qr-code {
-    //     .stud_add_btn {
-    //         background: #80AEFF;
-    //         border-radius: 100px;
-    //         font-family: $font-nav-acc;
-    //         font-size: 14px;
-    //         color: #FFFFFF;
-    //         letter-spacing: 2px;
-    //         padding: 8px 24px;
-    //     }
-    //     .stud_add_btn:hover {
-    //         text-decoration: none;
-    //         color: #FFFFFF;
-    //     }
-    //     img {
-    //         height: 32px;
-    //         width: 32px;
-    //     }
-    // }
+    .stud-list-area {
+        height: 1140px;
+        background-color: transparent;
+    }
     .card-wrap {
         // margin-top: 34px;
         flex-wrap: wrap;
@@ -91,7 +80,7 @@
     //     letter-spacing: 2px;
     //     margin-top: 16px;
     // }
-    // .stud_card_container {
-    //     width: 260px;
-    // }
+    .stud_list_container {
+        border-bottom: 1px solid #f7f8fa;
+    }
 }

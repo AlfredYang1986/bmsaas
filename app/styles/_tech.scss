@@ -11,6 +11,12 @@
     @extend %tech_content_basic;
     height: fit-content;
     padding-top: 64px;
+    min-width: 1200px;
+
+    .tech-not-open {
+        margin: 24px;
+        height: calc(100vh - 112px);
+    }
 }
 
 .tech_content {
@@ -52,7 +58,11 @@
 
         .tech_card_container {
             // margin-top: 46px;
+            // margin-bottom: 24px;
 
+            // & + .tech_card_container {
+            //     margin-left: 16px;
+            // }
         }
     }
 }

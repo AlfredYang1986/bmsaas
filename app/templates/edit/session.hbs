@@ -89,7 +89,7 @@
                         </select>
                     </div>
                 {{/layout-push}}
-                {{bm-edit-line pholder="如：街道门牌号、小区楼号、楼层号" }}
+                {{bmform/bm-edit-line pholder="如：街道门牌号、小区楼号、楼层号" }}
             {{/if}}
         {{/layout-push}}
     {{/layout-push }}
@@ -124,7 +124,7 @@
                         </div>
                     </div>
                     <div class="line_container" >
-                        {{!-- {{date-choose data=se_date}} --}}
+                        {{!-- {{bmform/date-choose data=se_date}} --}}
                         <select class="start-time" name="">
                             <option value="">年</option>
                             <option value="">2018</option>
@@ -138,7 +138,7 @@
                         </div>
                     </div>
                     <div class="line_container" >
-                        {{!-- {{date-choose data=se_date}} --}}
+                        {{!-- {{bmform/date-choose data=se_date}} --}}
                         <select class="start-time" name="">
                             <option value="">年</option>
                             <option value="">2018</option>
@@ -156,7 +156,7 @@
             <span class="edit_title">报名设置</span>
         {{/layout-push }}
         <p class="edit_subtitle">报名截止时间</p>
-        {{!-- {{date-choose data=se_date}} --}}
+        {{!-- {{bmform/date-choose data=se_date}} --}}
         {{#layout-push direction='col' classNames='select-school'}}
             {{#layout-push direction="row"  classNames="select-site"}}
                 <p class="no-age-limit"><input type="checkbox" name="vehicle" value="赛事"/>无年龄限制</p>
@@ -180,7 +180,7 @@
                 </div>
             {{/layout-push}}
         {{/layout-push}}
-        {{bm-edit-line title="活动名额" classNames="line_half"}}
+        {{bmform/bm-edit-line title="活动名额" classNames="line_half"}}
         {{#layout-push direction="row" classNames="select-site"}}
             <p class="no-age-limit"><input type="checkbox" name="vehicle" value="赛事"/>不限制</p>
         {{/layout-push}}

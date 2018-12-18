@@ -1,0 +1,25 @@
+{{!-- {{yield}} --}}
+<div class="line_container" >
+    <select class="start-time" name="" id='catselected' onchange={{action 'catChanged'}}>
+        <option value="">请选择</option>
+        {{#each cat_candi as |item|}}
+            {{#if (bmeq crs_cat item)}}
+            <option selected=true value={{item}}>{{item}}</option>
+            {{else}}
+            <option value={{item}}>{{item}}</option>
+            {{/if}}
+        {{/each}}
+    </select>
+</div>
+{{!-- <div class="line_container" >
+    <select class="start-time" name="" id='subselected' onchange={{action 'subChanged'}}>
+        <option value="">请选择</option>
+        {{#each sub_candi as |item|}}
+            {{#if (bmeq crs_sub_cat item)}}
+            <option selected=true value={{item}}>{{item}}</option>
+            {{else}}
+            <option value={{item}}>{{item}}</option>
+            {{/if}}
+        {{/each}}
+    </select>
+</div> --}}

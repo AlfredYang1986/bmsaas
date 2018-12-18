@@ -1,17 +1,21 @@
 <div class="yard_content_top" >
-    {{#layout-push direction="col" classNames="yard_content"}}
-        {{#layout-push direction="row" split=true classNames="yard-title-flex"}}
-            <p class="page_title">场地</p>
-            {{#link-to 'edit.yard' 'yard/push' classNames='yard_add_btn'}}+ 添加场地{{/link-to}}
+    {{#if openFlag}}
+        {{#layout-push direction="col" classNames="yard_content"}}
+            {{#layout-push direction="row" split=true classNames="yard-title-flex"}}
+                <p class="page_title">场地</p>
+                {{#link-to 'edit.yard' 'yard/push' classNames='yard_add_btn'}}+ 添加场地{{/link-to}}
+            {{/layout-push}}
+            {{#layout-push direction="row" wrap=true classNames="yard-card-wrap"}}
+                {{#each bm_yard_service.yards as |item|}}
+                    <div class="line_container_warp yard_card_container" >
+                        {{bmcard/yard-card onYardCardClicked=(action 'cardClicked') yard=item}}
+                    </div>
+                {{/each}}
+            {{/layout-push}}
         {{/layout-push}}
-        {{#layout-push direction="row" wrap=true classNames="yard-card-wrap"}}
-            {{#each bm_yard_service.yards as |item|}}
-                <div class="line_container_warp yard_card_container" >
-                    {{yard-card onYardCardClicked=(action 'cardClicked') yard=item}}
-                </div>
-            {{/each}}
-        {{/layout-push}}
-    {{/layout-push}}
+    {{else}}
+        {{bmcom/bm-empty-state class="yard-not-open" picUrl="/images/img_openningsoon.png" title="即将开放" des="更加强大便捷的功能马上到来"}}
+    {{/if}}
 </div>
 
 {{outlet}}

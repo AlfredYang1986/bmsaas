@@ -1,0 +1,35 @@
+input.edit_text_field {
+    margin-bottom: 4px;
+    width: 144px;
+    height: 32px;
+    border: 1px solid #DFE1E5;
+    border-radius: $border-radius-button-product;
+    box-shadow: none;
+}
+input.edit_text_field_large {
+    width: 592px;
+    margin-bottom: 4px;
+    height: 32px;
+    border: 1px solid #DFE1E5;
+    border-radius: $border-radius-button-product;
+    box-shadow: none;
+}
+input.edit_text_field_login {
+    margin-bottom: 8px;
+    width: 320px;
+    height: 48px;
+    border: 1px solid rgba(0,0,0,0);
+    border-radius: 4px;
+    background: #FAFBFC;
+    box-shadow: none;
+}
+.edit_subtitle {
+    margin-bottom: 16px;
+    @extend %font-form-info-title;
+}
+.must {
+    margin-bottom: 16px;
+}
+.edit_required {
+    @extend %font-minimum-text;
+}

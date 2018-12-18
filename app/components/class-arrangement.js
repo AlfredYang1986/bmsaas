@@ -2,6 +2,7 @@ import Component from '@ember/component';
 import { A } from '@ember/array';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
+import { debug } from '@ember/debug';
 
 export default Component.extend({
     mock_data: service(),
@@ -64,7 +65,7 @@ export default Component.extend({
         this.start_date = this.initStartDate();
     },
     didRender() {
-        console.log('data did render');
+        debug('data did render');
         var canvas = document.getElementById('arrangement');
         var ctx = canvas.getContext('2d');
 
@@ -165,19 +166,19 @@ export default Component.extend({
         function filerSessionWithTime(ses) {
             let condi = ses.get('start_date');
             let ss = that.get('end_date');
-            let ee = that.get('start_date');;
+            let ee = that.get('start_date');
             return condi > ee && condi < ss;
         }
         return this.sessions_on_cls.filter(filerSessionWithTime);
     }),
     drawSessions(ctx) {
-        console.log('draw session');
+        debug('draw session');
 
-        let s = this.get('start_date');
-        let sdd = s.getDay() == 0 ? 7 : s.getDay();
+        // let s = this.get('start_date');
+        // let sdd = s.getDay() == 0 ? 7 : s.getDay();
         
-        let e = this.get('end_date');
-        let edd = e.getDay() == 0 ? 7 : e.getDay();
+        // let e = this.get('end_date');
+        // let edd = e.getDay() == 0 ? 7 : e.getDay();
 
         let x_str = this.xmargin + this.time_line_margin + this.time_line_width - 1;
         let step_width = this.tb_width / 7.0;
@@ -270,7 +271,7 @@ export default Component.extend({
         successHandled() {
 
             if (this.session_insert_is_validate) {
-                console.log('insert session');
+                debug('insert session');
                 let nse = this.store.createRecord('bmclssession', {
                     id: this.guid(),
                     length: this.session_insert_length,

@@ -13,6 +13,7 @@
 @import "arrange-class";
 @import "experience-open";
 @import "course-reserve";
+@import "index";
 
 @import 'bm-layouts/bm-layouts';
 @import 'bm-layouts/bm_layouts_item';
@@ -21,10 +22,21 @@
 @import 'bm-saas-standard/bm-saas-typography';
 @import 'bm-saas-standard/bm-saas-button';
 
+@import 'bmdetail/bm-top-title-panel';
+@import 'bmdetail/stud-basis-left-subtitle';
+@import 'bmdetail/course-basis-left-title';
+@import 'bmdetail/course-basis-right-info';
+
 @import 'bm-img-uploader';
 @import 'bm-pic-jigsaw';
+@import 'bm-breadcrumb';
+@import 'bm-empty-state';
+
+@import 'bmedit/bm-edit-line';
+@import 'bm-cls/bm-cls-arrange';
 
 body {
+    min-width: 1200px;
     background-color: #F7F8FA
 }
 p {

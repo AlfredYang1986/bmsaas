@@ -1,0 +1,35 @@
+{{yield}}
+<ul class="edit_left_nav">
+    <li class="left_bar_title">
+        <span class="edit_left_menu_text" >体验课描述</span>
+    </li>
+    {{#each describe as |item idx|}}
+        <li class="left_bar_item">
+            {{bmsessioninfo/bm-input-menu-exp
+                select_idx=cur_page_idx
+                start_index=0
+                index=idx
+                title=item
+                onItemClicked=(action 'itemClicked')
+                classNames='edit_left_menu_text'
+            }}
+        </li>
+    {{/each}}
+
+    <li class="left_bar_title">
+        <span class="edit_left_menu_text" >体验指南</span>
+    </li>
+
+    {{#each guide as |item idx|}}
+        <li class="left_bar_item">
+            {{bmsessioninfo/bm-input-menu-exp
+                select_idx=cur_page_idx
+                start_index=5
+                index=idx
+                title=item
+                onItemClicked=(action 'itemClicked')
+                classNames='edit_left_menu_text'
+            }}
+        </li>
+    {{/each}}
+</ul>

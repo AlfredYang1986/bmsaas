@@ -18,6 +18,13 @@
     @extend %detail_content_basic;
     padding-top: 50px;
     height: 100%;
+    min-width: 1200px;
+
+    .arr-class-not-open {
+        margin: 24px;
+        margin-top: 38px;
+        height: calc(100vh - 112px);
+    }
 }
 /* 场次详情 */
 .session-left-info {
@@ -311,6 +318,17 @@ span.list-status {
 .detail_page {
     padding: 24px;
     margin-top: 14px;
+    // margin-bottom: 100px;
+
+    .inbox-empty-state {
+        height: calc(100vh - 328px);
+    }
+    .exp-empty-state {
+        height: calc(100vh - 356px);
+    }
+    .field-empty-state {
+        height: calc(100vh - 336px);
+    }
 
     .alt_course_selection {
         .alt_course_container{
@@ -331,8 +349,8 @@ span.list-status {
     }
     .tech_info_card {
         margin-right: 8px;
-        width: 296px;
-        // min-height: 420px;
+        min-width: 296px;
+        width: 33.33%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -348,17 +366,19 @@ span.list-status {
             margin-top: 42px;
             display: flex;
             flex-direction: column;
-            width: 296px;
+            // width: 296px;
+            align-self: flex-start;
 
             .tech_info_other_list:nth-last-child(1) {
                 margin-bottom: 0;
             }
             .tech_info_other_list {
-                margin-left: 24px;
+                margin-left: 0;
                 margin-bottom: 24px;
                 height: 20px;
                 line-height: 20px;
                 p {
+                    line-height: 20px;
                     width: 56px;
                     text-align: left;
                     font-size: 14px;
@@ -377,9 +397,10 @@ span.list-status {
         }
     }
     .tech_info_detail {
-        width: 100%;
         padding: 24px;
         height: fit-content;
+        width: 66.66%;
+        min-width: 608px;
         .tech_info_area {
             // padding-top: 40px;
             min-height: 0;
@@ -462,11 +483,12 @@ span.list-status {
 }
 
 .detail_panel_col_between {
-    margin-top: 8px;
+    // margin-top: 8px;
 }
 
 .detail_panel {
     @extend %detail_panel_basic;
+    min-width: 912px;
     padding: 16px 24px;
     .add-student {
         display: flex;
