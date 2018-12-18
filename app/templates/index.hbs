@@ -1,19 +1,21 @@
 {{outlet}}
-{{#layout-push direction='row' classNames='login-page'}}
-    {{#layout-push direction='col' mid=true classNames='login-area'}}
-        <p class="title">欢迎</p>
-        <p class="subtitle">面向未来教育、迈向新生时代</p>
-        {{#if errorInfo}}
-            {{#layout-push direction='row' class='error-line'}}
-                <img class="error" src={{model.errorImg}} alt="">
-                <p class="error-info">用户名或密码错误</p>
-            {{/layout-push}}
-        {{/if}}
-        {{bmform/bm-edit-line accountInput=true notitlt=true pholder='用户名' inputVal=bm_login_service.account classNames=''}}
-        {{bmform/bm-edit-line passwordInput=true notitlt=true pholder='密码' inputVal=bm_login_service.secretword classNames=''}}
-        <button type="button" name="button" class='login-button' {{action 'accountLogin'}}>登录</button>
+{{#layout-push direction='row' mid=true classNames='login-page-warper'}}
+    {{#layout-push direction='row' classNames='login-page'}}
+        {{#layout-push direction='col' mid=true classNames='login-area'}}
+            <p class="title">欢迎</p>
+            <p class="subtitle">面向未来教育、迈向新生时代</p>
+            {{#if errorInfo}}
+                {{#layout-push direction='row' class='error-line'}}
+                    <img class="error" src={{model.errorImg}} alt="">
+                    <p class="error-info">用户名或密码错误</p>
+                {{/layout-push}}
+            {{/if}}
+            {{bmform/bm-edit-line accountInput=true notitlt=true pholder='用户名' inputVal=bm_login_service.account classNames=''}}
+            {{bmform/bm-edit-line passwordInput=true notitlt=true pholder='密码' inputVal=bm_login_service.secretword classNames=''}}
+            <button type="button" name="button" class='login-button' {{action 'accountLogin'}}>登录</button>
+        {{/layout-push}}
+        {{#layout-push direction='col' mid=true classNames='img-area'}}
+            <img src="/images/img_login.png" alt="">
+        {{/layout-push}}
     {{/layout-push}}
-    <div class="img-area">
-        <img src="" alt="">
-    </div>
 {{/layout-push}}

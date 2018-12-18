@@ -59,7 +59,7 @@
             {{/layout-push}}
         </div>
         {{#if (bmcom/bm-nil-obj bm_sessionable_service.curAttendeesPage)}}
-            {{bmcom/bm-empty-state class="field-empty-state" picUrl="/images/temp-pic.png" title="暂无学生" des="暂无数据"}}
+            {{bmcom/bm-empty-state class="field-empty-state" picUrl="/images/img_empty@2x.png" title="暂无参与者" des="暂无数据"}}
         {{else}}
             {{bmtable/bm-table-course-field  title=tableTitle attendees=bm_sessionable_service.curAttendeesPage action=""}}
             {{bmcom/bm-pagination pageCount=bm_sessionable_service.attendeesPageCount sendPageNum=(action "handlePageChange")}}

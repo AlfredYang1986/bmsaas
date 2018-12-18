@@ -5,7 +5,7 @@ export default Controller.extend({
     bm_stud_service: service(),
     actions: {
         cardClicked(idx) {
-            this.get('debug').log(idx);
+            // this.get('debug').log(idx);
             this.transitionToRoute('detail.stud', idx);
         },
         addStudClicked() {

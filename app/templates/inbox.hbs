@@ -27,7 +27,7 @@
 
         {{#if (bmeq bm_apply_service.curTabIdx 0)}}
             {{#if (eq bm_apply_service.reserved.length 0)}}
-                {{bmcom/bm-empty-state class="inbox-empty-state" picUrl="/images/temp-pic.png" title="暂无数据" des="请添加待预约学员"}}
+                {{bmcom/bm-empty-state class="inbox-empty-state" picUrl="/images/img_empty@2x.png" title="暂无数据" des="请添加待预约学员"}}
             {{else}}
                 {{bmtable/bm-table-inbox reserveType=true title=model.reserveTitle applies=bm_apply_service.reserved action="setCurrentApply"}}
                 {{#if isToday}}
@@ -40,7 +40,7 @@
 
         {{#if (bmeq bm_apply_service.curTabIdx 1)}}
             {{#if (eq bm_apply_service.preRegistered.length 0)}}
-                {{bmcom/bm-empty-state class="inbox-empty-state" picUrl="/images/temp-pic.png" title="暂无数据" des="请添加预注册学员"}}
+                {{bmcom/bm-empty-state class="inbox-empty-state" picUrl="/images/img_empty@2x.png" title="暂无数据" des="请添加预注册学员"}}
             {{else}}
                 {{bmtable/bm-table-inbox title=model.preRegisterTtitle applies=bm_apply_service.preRegistered registerId=bm_apply_service.preRegisterId onPreRegisterClick='onPreRegisterClick'}}
                 {{#if isToday}}
