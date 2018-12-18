@@ -31,7 +31,7 @@
             {{else}}
                 {{bmtable/bm-table-inbox reserveType=true title=model.reserveTitle applies=bm_apply_service.reserved action="setCurrentApply"}}
                 {{#if isToday}}
-                    {{bmcom/bm-pagination pageCount=bm_apply_service.bookPageCount sendPageNum=(action "handleTodayBookPageChange")}}
+                    {{bmcom/bm-pagination pageCount=bm_apply_service.todayBookPageCount sendPageNum=(action "handleTodayBookPageChange")}}
                 {{else}}
                     {{bmcom/bm-pagination pageCount=bm_apply_service.bookPageCount sendPageNum=(action "handleBookPageChange")}}
                 {{/if}}
@@ -44,7 +44,7 @@
             {{else}}
                 {{bmtable/bm-table-inbox title=model.preRegisterTtitle applies=bm_apply_service.preRegistered registerId=bm_apply_service.preRegisterId onPreRegisterClick='onPreRegisterClick'}}
                 {{#if isToday}}
-                    {{bmcom/bm-pagination pageCount=bm_apply_service.prePageCount sendPageNum=(action "handleTodayPrePageChange")}}
+                    {{bmcom/bm-pagination pageCount=bm_apply_service.todayPrePageCount sendPageNum=(action "handleTodayPrePageChange")}}
                 {{else}}
                     {{bmcom/bm-pagination pageCount=bm_apply_service.prePageCount sendPageNum=(action "handlePrePageChange")}}
                 {{/if}}

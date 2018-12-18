@@ -168,9 +168,16 @@ export default Controller.extend({
                 }
                 this.bm_apply_service.queryMultiObjects("todayBook",callback);
             } else {
-                that.set('isToday', false);
-                that.set('bm_apply_service.reserved', that.bm_apply_service.reserveType);
-                that.set('bm_apply_service.amount', that.bm_apply_service.reserveTypeAmount);
+                let callback = {
+                    onSuccess: function() {
+                        that.set('isToday', false);
+                        that.set('bm_apply_service.reserved', that.bm_apply_service.reserveType);
+                        that.set('bm_apply_service.amount', that.bm_apply_service.reserveTypeAmount);
+                    },
+                    onFail: function() {
+                    }
+                }
+                this.bm_apply_service.queryMultiObjects("book",callback);
             }
         },
         preRegisterChanged() {
@@ -190,9 +197,16 @@ export default Controller.extend({
                 }
                 this.bm_apply_service.queryMultiObjects("todayPre",callback);
             } else {
-                that.set('isToday', false);
-                that.set('bm_apply_service.preRegistered', that.bm_apply_service.preRegister);
-                that.set('bm_apply_service.preAmount', that.bm_apply_service.preRegisterAmount);
+                let callback = {
+                    onSuccess: function() {
+                        that.set('isToday', false);
+                        that.set('bm_apply_service.preRegistered', that.bm_apply_service.preRegister);
+                        that.set('bm_apply_service.preAmount', that.bm_apply_service.preRegisterAmount);
+                    },
+                    onFail: function() {
+                    }
+                }
+                this.bm_apply_service.queryMultiObjects("pre",callback);
             }
         },
         successHandled() {
