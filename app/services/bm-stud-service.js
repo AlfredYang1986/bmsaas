@@ -1,18 +1,20 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
+import $ from 'jquery';
+import { debug } from '@ember/debug';
 
 export default Service.extend({
     store: service(),
     bm_config: service(),
-    bmstore: new JsonApiDataStore(),
-    bmmulti: new JsonApiDataStore(),
 
     init() {
         this._super(...arguments);
         this.addObserver('refresh_token', this, 'queryStud');
         this.addObserver('refresh_all_token', this, 'queryMultiObjects');
         this.addObserver('refresh_all_token', this, 'queryStudCount');
+        this.set('bmstore', new JsonApiDataStore());
+        this.set('bmmulti', new JsonApiDataStore());
     },
 
     page: 0,
@@ -35,7 +37,7 @@ export default Service.extend({
         let dt = JSON.stringify(rd_tmp);
 
         let that = this;
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findcount/0',
             headers: {
@@ -51,7 +53,7 @@ export default Service.extend({
                 that.set('totalPageCount', Math.ceil(pageCount));
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
     },
@@ -74,7 +76,7 @@ export default Service.extend({
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findattendee/0',
             headers: {
@@ -88,7 +90,7 @@ export default Service.extend({
                 that.set('stud', result);
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
     },
@@ -114,7 +116,7 @@ export default Service.extend({
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findattendeemulti/0',
             headers: {
@@ -134,7 +136,7 @@ export default Service.extend({
                 that.set('studs', result);
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
     },
@@ -449,7 +451,7 @@ export default Service.extend({
         let dt = JSON.stringify(rd_tmp);
 
         let that = this;
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/insertattendee/0',
             headers: {

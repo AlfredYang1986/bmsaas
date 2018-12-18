@@ -1,10 +1,11 @@
 import Component from '@ember/component';
+import { A } from '@ember/array';
 
 export default Component.extend({
     positionalParams: ['data'],
     tagName: '',
-    main: ['科学', '运动', '自然', '人际关系',],
-    sub: [],
+    main: A(['科学', '运动', '自然', '人际关系']),
+    sub: A([]),
 
     actions: {
         changeMain(value) {

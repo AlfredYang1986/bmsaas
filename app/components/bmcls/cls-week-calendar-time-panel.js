@@ -56,6 +56,6 @@ export default Component.extend({
         this.onPanelInserted(this);
     },
     click() {
-        console.log('click');
+
     }
 });

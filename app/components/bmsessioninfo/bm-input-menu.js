@@ -14,7 +14,6 @@ export default Component.extend({
     actions: {
         itemClicked() {
             this.set('select_idx', this.cur_page_idx)
-            console.log("222s");
         }
     }
 });

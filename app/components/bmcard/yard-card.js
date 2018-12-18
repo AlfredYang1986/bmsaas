@@ -24,7 +24,7 @@ export default Component.extend({
                 this.checked = true;
             }
 
-            this.onYardCardClicked(this.yard.id, checked);
+            this.onYardCardClicked(this.yard.id, this.checked);
         } else {
             this.onYardCardClicked(this.yard.id);
         }

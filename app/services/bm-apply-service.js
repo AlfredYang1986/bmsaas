@@ -1,17 +1,19 @@
 import Service from '@ember/service';
 import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
+import $ from 'jquery';
+import { debug } from '@ember/debug';
 
 export default Service.extend({
     bm_config: service(),
-    bmstore: new JsonApiDataStore(),
-    bmmulti: new JsonApiDataStore(),
 
     init() {
         this._super(...arguments);
         this.addObserver('refresh_token', this, 'queryApplyInfo');
         this.addObserver('refresh_all_token', this, 'queryMultiObjects');
         this.addObserver('refresh_all_token', this, 'queryApplyCount');
+        this.set('bmstore', new JsonApiDataStore());
+        this.set('bmmulti', new JsonApiDataStore());
     },
 
     page: 0,
@@ -53,7 +55,7 @@ export default Service.extend({
         let dt2 = JSON.stringify(rd_tmp2);
 
         let that = this;
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findcount/0',
             headers: {
@@ -69,10 +71,10 @@ export default Service.extend({
                 that.set('bookPageCount', Math.ceil(pageCount));
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findcount/0',
             headers: {
@@ -88,7 +90,7 @@ export default Service.extend({
                 that.set('prePageCount', Math.ceil(pageCount));
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
     },
@@ -109,7 +111,7 @@ export default Service.extend({
         let dt = JSON.stringify(rd_tmp);
 
         let that = this;
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findapply/0',
             headers: {
@@ -123,7 +125,7 @@ export default Service.extend({
                 that.set('apply', result);
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
     },
@@ -408,7 +410,7 @@ export default Service.extend({
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findapplies/0',
             headers: {
@@ -421,7 +423,7 @@ export default Service.extend({
                 let result = that.bmmulti.sync(res)
                 that.set('applies', result);
                 let date = new Date();
-                console.log(typeof(date))
+                debug(typeof(date))
                 var Y = date.getFullYear() + '-';
                 var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
                 var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate());
@@ -430,7 +432,7 @@ export default Service.extend({
                 let preRegister = [];
                 let reserveTypeToday = [];
                 let preRegisterToday = [];
-                result.forEach((item, index) => {
+                result.forEach((item) => {
                     if(item.courseType != -1) {
                         item.kid = item.Kids[0];
                         reserveType.push(item);
@@ -441,9 +443,9 @@ export default Service.extend({
                         return preRegister;
                     }
                 })
-                reserveType.forEach((item, index) => {
+                reserveType.forEach((item) => {
                     let applyTime = new Date(item.apply_time);
-                    console.log(typeof(applyTime))
+                    debug(typeof(applyTime))
                     var Y = applyTime.getFullYear() + '-';
                     var M = (applyTime.getMonth()+1 < 10 ? '0'+(applyTime.getMonth()+1) : applyTime.getMonth()+1) + '-';
                     var D = (applyTime.getDate() < 10 ? '0' + (applyTime.getDate()) : applyTime.getDate());
@@ -453,9 +455,9 @@ export default Service.extend({
                         return reserveTypeToday;
                     }
                 })
-                preRegister.forEach((item, index) => {
+                preRegister.forEach((item) => {
                     let applyTime = new Date(item.apply_time);
-                    console.log(typeof(applyTime))
+                    debug(typeof(applyTime))
                     var Y = applyTime.getFullYear() + '-';
                     var M = (applyTime.getMonth()+1 < 10 ? '0'+(applyTime.getMonth()+1) : applyTime.getMonth()+1) + '-';
                     var D = (applyTime.getDate() < 10 ? '0' + (applyTime.getDate()) : applyTime.getDate());
@@ -481,7 +483,7 @@ export default Service.extend({
                 that.set('preRegisterTodayAmount', preRegisterToday.length)
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
     },
@@ -511,7 +513,7 @@ export default Service.extend({
         ft_tmp['included'] = arr;
         let dt = JSON.stringify(ft_tmp);
 
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/pushapply/0',
             headers: {
@@ -520,7 +522,7 @@ export default Service.extend({
                 'Authorization': this.bm_config.getToken(),
             },
             data: dt,
-            success: function(res) {
+            success: function(/*res*/) {
                 callback.onSuccess();
             },
             error: function(err) {

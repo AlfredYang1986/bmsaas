@@ -1,9 +1,10 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
+import { A } from '@ember/array';
+import { debug } from '@ember/debug';
 
 export default Controller.extend({
-    tableTitle: ["孩子","生日","性别", "联系方式", "渠道"],
+    tableTitle: A(["孩子","生日","性别", "联系方式", "渠道"]),
     bm_exp_service: service(),
     bm_sessionable_service: service(),
     bm_yard_service: service(),
@@ -49,7 +50,7 @@ export default Controller.extend({
                 },
                 onFail: function() {
                     that.toast.error('', '删除场次失败', that.toastOptions);
-                    console.log('delete　reservable　fail')
+                    debug('delete　reservable　fail')
                 }
             }
             this.bm_sessionable_service.deleteSessionable(callback);
@@ -79,7 +80,7 @@ export default Controller.extend({
                 },
                 onFail: function() {
                     that.toast.error('', '修改场次失败', that.toastOptions);
-                    console.log('push sessionable fail')
+                    debug('push sessionable fail')
                 }
             }
 

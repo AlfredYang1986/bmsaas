@@ -24,7 +24,7 @@ export default Component.extend({
                 btns: ['now', 'confirm'],
                 format: 'HH:mm',
                 value: new Date(this.get('inputVal')),
-                done: function(value, date){ //监听日期被切换
+                done: function(value/*, date*/){ //监听日期被切换
                     let tmp = new Date();
                     let lst = value.split(':')
                     tmp.setHours(parseInt(lst[0]));
@@ -41,7 +41,7 @@ export default Component.extend({
                 range: this.range,
                 lang: this.lang,
                 value: new Date(this.get('inputVal')),
-                done: function(value, date){ //监听日期被切换
+                done: function(value/*, date*/){ //监听日期被切换
                     let tmp = new Date();
                     let lst = value.split('-')
                     tmp.setFullYear(parseInt(lst[0]));

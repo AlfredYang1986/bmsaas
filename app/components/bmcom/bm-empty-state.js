@@ -9,7 +9,7 @@ export default Component.extend({
 
     actions: {
         actOnClick() {
-            console.log('dadada')
+            
         },
     }
 });

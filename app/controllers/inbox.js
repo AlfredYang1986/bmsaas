@@ -1,7 +1,8 @@
 import Controller from '@ember/controller';
-import { computed, observer } from '@ember/object';
+import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
-import bmSessionableService from '../services/bm-sessionable-service';
+import { A } from '@ember/array';
+import { debug } from '@ember/debug';
 
 export default Controller.extend({
     bm_apply_service: service(),
@@ -12,7 +13,7 @@ export default Controller.extend({
     toast: service(),
 
     cur_tab_idx: 0,
-    tabs: ['预约', '预注册'],
+    tabs: A(['预约', '预注册']),
     toastOptions: {
         closeButton: false,
         positionClass: 'toast-top-center',
@@ -41,7 +42,7 @@ export default Controller.extend({
     noSr: false,
     contentSubmit: computed('sr', 'sa', function() {
         let a = Date.parse( new Date());
-        console.log(a)
+        debug(a)
         this.set('sy', null);
         this.set('ss', null);
         return this.sy == null && this.ss == null;
@@ -74,7 +75,7 @@ export default Controller.extend({
             },500);
         },
         setCurrentApply(item) {
-            console.log(item)
+            debug(item)
             this.set('sr', null);
             this.set('sy', null);
             this.set('sa', null);
@@ -93,7 +94,7 @@ export default Controller.extend({
 
                 },
                 onFail: function() {
-                    console.log('push apply fail')
+                    debug('push apply fail')
                 }
             }
             let kid = this.current_apply.kid;
@@ -122,7 +123,7 @@ export default Controller.extend({
                     that.bm_apply_service.set('apply', this.current_apply);
                 },
                 onFail: function() {
-                    console.log('push apply fail')
+                    debug('push apply fail')
                 }
             }
             this.bm_apply_service.set('apply', this.current_apply);
@@ -150,7 +151,7 @@ export default Controller.extend({
                 that.set('bm_apply_service.reserved', that.bm_apply_service.reserveType);
                 that.set('bm_apply_service.amount', that.bm_apply_service.reserveTypeAmount);
             }
-            console.log(this.bm_apply_service.reserved)
+            debug(this.bm_apply_service.reserved)
         },
         preRegisterChanged() {
             let sel = document.getElementById("selectReserve");
@@ -270,7 +271,7 @@ export default Controller.extend({
                 that.bm_sessionable_service.saveUpdate(setStud);
             },
             onFail: function() {
-                console.log('query sessionable fail')
+                debug('query sessionable fail')
             }
         }
 
@@ -283,7 +284,7 @@ export default Controller.extend({
             },
             onFail: function() {
                 that.toast.error('', '处理失败', that.toastOptions);
-                console.log('push stud fail')
+                debug('push stud fail')
             }
         }
 
@@ -313,7 +314,7 @@ export default Controller.extend({
                 that.bm_apply_service.set('apply', this.current_apply);
             },
             onFail: function() {
-                console.log('push apply fail')
+                debug('push apply fail')
             }
         }
         this.bm_apply_service.set('apply', this.current_apply);
@@ -366,7 +367,7 @@ export default Controller.extend({
                 that.bm_sessionable_service.saveUpdate(setStud);
             },
             onFail: function() {
-                console.log('query sessionable fail')
+                debug('query sessionable fail')
             }
         }
 
@@ -378,7 +379,7 @@ export default Controller.extend({
                 that.toast.success('', '处理成功', that.toastOptions);
             },
             onFail: function() {
-                console.log('push stud fail')
+                debug('push stud fail')
                 that.toast.error('', '处理成功', that.toastOptions);
             }
         }
@@ -404,10 +405,10 @@ export default Controller.extend({
 
         let callbackPush = {
             onSuccess: function() {
-                console.log('push apply success')
+                debug('push apply success')
             },
             onFail: function() {
-                console.log('push apply fail')
+                debug('push apply fail')
             }
         }
         this.bm_apply_service.set('apply', this.current_apply);

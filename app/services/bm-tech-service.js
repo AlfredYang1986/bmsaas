@@ -1,17 +1,19 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
+import $ from 'jquery';
+import { debug } from '@ember/debug';
 
 export default Service.extend({
     store: service(),
     bm_config: service(),
-    bmstore: new JsonApiDataStore(),
-    bmmulti: new JsonApiDataStore(),
 
     init() {
         this._super(...arguments);
         this.addObserver('refresh_token', this, 'queryTech');
         this.addObserver('refresh_all_token', this, 'queryMultiObjects');
+        this.set('bmstore', new JsonApiDataStore());
+        this.set('bmmulti', new JsonApiDataStore());
     },
 
     techid: '',
@@ -38,7 +40,7 @@ export default Service.extend({
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findteacher/0',
             headers: {
@@ -52,7 +54,7 @@ export default Service.extend({
                 that.set('tech', result);
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
     },
@@ -69,7 +71,7 @@ export default Service.extend({
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findteachermulti/0',
             headers: {
@@ -79,12 +81,12 @@ export default Service.extend({
             },
             data: dt,
             success: function(res) {
-                console.log(res)
+                debug(res)
                 let result = that.bmmulti.sync(res)
                 that.set('techs', result);
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
     },
@@ -160,7 +162,7 @@ export default Service.extend({
             }
     },
     genPushQuery() {
-        let gid01 = this.guid();
+        // let gid01 = this.guid();
         let now = new Date().getTime();
         return {
             data: {
@@ -195,7 +197,7 @@ export default Service.extend({
         rd_tmp['included'] = [];
         let dt = JSON.stringify(rd_tmp);
 
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/pushteacher/0',
             headers: {
@@ -204,7 +206,7 @@ export default Service.extend({
                 'Authorization': this.bm_config.getToken()
             },
             data: dt,
-            success: function(res) {
+            success: function(/*res*/) {
                 callback.onSuccess();
             },
             error: function(err) {

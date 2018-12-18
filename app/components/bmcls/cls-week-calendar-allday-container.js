@@ -6,7 +6,7 @@ export default Component.extend({
     classNames: ['bm-row', 'bm-week', 'bm-weiget-content'],
     attributeBindings: ['style'],
     didInsertElement() {
-        console.log('insert all day container');
+        
     },
     margin: 14,
     height: 38,

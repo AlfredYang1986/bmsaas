@@ -1,10 +1,11 @@
 import Route from '@ember/routing/route';
-import { inject } from '@ember/service';
+import { inject as service } from '@ember/service';
+
 export default Route.extend({
-    cookies: inject(),
+    cookies: service(),
 	beforeModel(transition) {
 		let token = this.get('cookies').read('token'),
-			loginController = this.controllerFor('index');
+		loginController = this.controllerFor('index');
 
 		if (!token) {
 			if (transition.targetName !== 'index') {

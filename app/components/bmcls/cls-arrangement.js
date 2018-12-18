@@ -43,7 +43,7 @@ export default Component.extend({
         this.bm_clsarr_service.set('refresh_all_token', this.bm_clsarr_service.guid());
     },
     actions: {
-        prevBtnClicked(args) {
+        prevBtnClicked(/*args*/) {
             let tmp = new Date();
             let span = this.start_date - 7 * 24 * 60 * 60 * 1000;
             tmp.setTime(span);
@@ -51,7 +51,7 @@ export default Component.extend({
             this.set('end_date', this.computedEndDate());
             this.refresh_date();
         },
-        nextBtnClicked(args) {
+        nextBtnClicked(/*args*/) {
             let tmp = new Date();
             let span = this.start_date + 7 * 24 * 60 * 60 * 1000;
             tmp.setTime(span);
@@ -59,7 +59,7 @@ export default Component.extend({
             this.set('end_date', this.computedEndDate());
             this.refresh_date();
         },
-        todayBtnClicked(args) {
+        todayBtnClicked(/*args*/) {
 
         },
         yardChanged() {

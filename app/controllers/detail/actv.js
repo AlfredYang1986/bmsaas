@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
+import { debug } from '@ember/debug';
 
 export default Controller.extend({
 
@@ -52,11 +52,11 @@ export default Controller.extend({
             let callback = {
                 onSuccess: function() {
                     that.toast.success('', '开启成功', that.toastOptions);
-                    console.log('OpenActvsuccess')
+                    debug('OpenActvsuccess')
                 },
                 onFail: function() {
                     that.toast.error('', '开启成功', that.toastOptions);
-                    console.log('OpenActvfail')
+                    debug('OpenActvfail')
                 }
             }
             this.set("bm_actv_service.actv.start_date", 0);
@@ -69,11 +69,11 @@ export default Controller.extend({
                 onSuccess: function() {
                     that.set('closeActvDlg', false);
                     that.toast.success('', '关闭成功', that.toastOptions);
-                    console.log('ShutdownActvsuccess')
+                    debug('ShutdownActvsuccess')
                 },
                 onFail: function() {
                     that.toast.error('', '关闭失败', that.toastOptions);
-                    console.log('ShutdownActvfail')
+                    debug('ShutdownActvfail')
                 }
             }
             this.set("bm_actv_service.actv.start_date", -1);
@@ -84,14 +84,14 @@ export default Controller.extend({
             let that = this;
             let callback = {
                 onSuccess: function() {
-                    console.log('delete　reservable　success')
+                    debug('delete　reservable　success')
                     that.set('deleteActvDlg', false);
                     that.transitionToRoute('actv');
                     that.toast.success('', '删除活动成功', that.toastOptions);
                 },
                 onFail: function() {
                     that.toast.error('', '删除活动失败', that.toastOptions);
-                    console.log('delete　reservable　fail')
+                    debug('delete　reservable　fail')
                 }
             }
             this.bm_actv_service.deleteReservable(callback);
@@ -103,16 +103,16 @@ export default Controller.extend({
             this.set('cur_start_date', params.start_date);
             this.set('cur_end_date', params.end_date);
             this.set('edit_flag_info', "编辑");
-            console.log(this.get('edit_flag_info'))
+            debug(this.get('edit_flag_info'))
             this.set('showAddSessionDlg', true);
             // let sel = document.getElementById('reservableselect');
-            // console.log(sel)
+            // debug(sel)
             // for(let idx = 0;idx < sel.options.length;idx++){
             //     if (params.Yard.id === sel.options[idx].value) {
             //         sel.options[idx].selected = "selected";
             //     }
             // }
-            console.log("onEditSessionClick")
+            debug("onEditSessionClick")
         },
         onDeleteSessionClick(params) {
             this.set('tmpSessionable', params);
@@ -125,11 +125,11 @@ export default Controller.extend({
                     that.bm_sessionable_service.set('refresh_all_token', that.bm_sessionable_service.guid());
                     that.toast.success('', '删除场次成功', that.toastOptions);
                     that.set('deleteSessionDlg', false);
-                    console.log('delete　reservable　success')
+                    debug('delete　reservable　success')
                 },
                 onFail: function() {
                     that.toast.error('', '删除场次失败', that.toastOptions);
-                    console.log('delete　reservable　fail')
+                    debug('delete　reservable　fail')
                 }
             }
             this.bm_sessionable_service.deleteSessionable(callback,this.tmpSessionable);
@@ -162,11 +162,11 @@ export default Controller.extend({
                     that.set('showAddSessionDlg', false);
                     that.toast.success('', edit_flag_info + "场次成功", that.toastOptions);
                     that.bm_sessionable_service.set('refresh_all_token', that.bm_sessionable_service.guid());
-                    console.log('push sessionable success')
+                    debug('push sessionable success')
                 },
                 onFail: function() {
                     that.toast.error('', edit_flag_info + '场次失败', that.toastOptions);
-                    console.log('push sessionable fail')
+                    debug('push sessionable fail')
                 }
             }
             

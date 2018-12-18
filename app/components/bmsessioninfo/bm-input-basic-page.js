@@ -8,7 +8,6 @@ export default Component.extend({
     levelInput: true,
     levelInputRadio: 'checked',
     levelNoRadio: '',
-    positionalParams: ['session'],
     inputChecked: '',
     inputNoChecked: '',
     lengthIf: true,
