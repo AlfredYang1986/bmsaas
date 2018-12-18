@@ -5,14 +5,9 @@ export default Route.extend({
         // this.transitionTo('home'); // Implicitly aborts the on-going transition.
     // }
 
-    model(params) {
+    model() {
         return RSVP.hash({
             errorImg: 'https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png'
         });
-    },
-    init() {
-        this._super(...arguments);
-        // localStorage.setItem('brandid', '');
-        // this.get('cookie').write('token','');
     },
 });

@@ -1,12 +1,10 @@
 import Controller from '@ember/controller';
-// import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
+import { debug } from '@ember/debug';
 
 export default Controller.extend({
 
     bm_session_service: service(),
-
-    // cur_page_idx: 0,
 
     isPushing: false,
 
@@ -17,8 +15,8 @@ export default Controller.extend({
                 onSuccess: function() {
                     that.transitionToRoute('course');
                 },
-                onFail: function(err) {
-                    console.log('error');
+                onFail: function(/*err*/) {
+                    debug('error');
                 }
             }
             this.bm_session_service.saveUpdate(callback); 

@@ -1,17 +1,19 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
+import $ from 'jquery';
+import { debug } from '@ember/debug';
 
 export default Service.extend({
     store: service(),
     bm_config: service(),
-    bmstore: new JsonApiDataStore(),
-    bmmulti: new JsonApiDataStore(),
 
     init() {
         this._super(...arguments);
         this.addObserver('refresh_token', this, 'queryExpInfo');
         this.addObserver('refresh_all_token', this, 'queryMultiObjects');
+        this.set('bmstore', new JsonApiDataStore());
+        this.set('bmmulti', new JsonApiDataStore());
     },
 
     expid: '',
@@ -39,7 +41,7 @@ export default Service.extend({
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findreservable/0',
             headers: {
@@ -53,7 +55,7 @@ export default Service.extend({
                 that.set('exp', result);
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
     },
@@ -79,7 +81,7 @@ export default Service.extend({
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findreservablemulti/0',
             headers: {
@@ -93,7 +95,7 @@ export default Service.extend({
                 that.set('exps', result);
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
     },
@@ -186,7 +188,7 @@ export default Service.extend({
         let gid09 = this.guid();
         let cate = this.guid();
         let sinfo = this.guid();
-        let now = new Date().getTime();
+        // let now = new Date().getTime();
 
         return {
                 data: {
@@ -399,7 +401,7 @@ export default Service.extend({
         ft_tmp['included'] = arr;
         let dt = JSON.stringify(ft_tmp);
 
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/pushreservable/0',
             headers: {
@@ -425,7 +427,7 @@ export default Service.extend({
         rd_tmp['included'] = [inc.data];
         let dt = JSON.stringify(rd_tmp);
 
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/deletereservable/0',
             headers: {
@@ -434,7 +436,7 @@ export default Service.extend({
                 'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
-            success: function(res) {
+            success: function(/*res*/) {
                 callback.onSuccess();
             },
             error: function(err) {

@@ -11,7 +11,6 @@ export default Service.extend({
   regionSource() {
     let tmp = this.store.peekAll('bmprovinces');
     if (tmp.length == 0) {
-      window.console.info('sure regionSource');
       let provinces = ['北京'];
       let citys = ['北京市'];
       let governmentArea = ["密云区", "延庆区", "朝阳区", "丰台区", "石景山区", "海淀区", "门头沟区", "房山区", "通州区", "顺义区", "昌平区", "大兴区", "怀柔区", "平谷区", "东城区", "西城区"]
@@ -37,7 +36,6 @@ export default Service.extend({
   },
 
   queryNotReservableCourse() {
-    console.log('sure not reserve course');
     let lst = this.store.peekAll('bmcourseinfo');
     if (lst.length == 0) {
       this.sureCourse();
@@ -53,7 +51,6 @@ export default Service.extend({
     return lst.filter(notReserveCondition);
   },
   sureActivity() {
-    console.log('sure activity');
     let acts = this.store.peekAll('bmactivityinfo')
     if (acts.length == 0) {
       let act_01 = this.store.createRecord('bmactivityinfo', {
@@ -174,7 +171,6 @@ export default Service.extend({
     }
   },
   sureClasses() {
-    console.log('sure classes');
     let cls = this.store.peekAll('bmclass')
     if (cls.length == 0) {
       let cls_01 = this.store.createRecord('bmclass', {
@@ -191,7 +187,6 @@ export default Service.extend({
     }
   },
   sureApplies() {
-    console.log('sure applies');
     let applies = this.store.peekAll('bmapply');
     if (applies.length == 0) {
       let apply_01 = this.store.createRecord('bmapply', {

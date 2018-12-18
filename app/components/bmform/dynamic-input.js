@@ -1,11 +1,12 @@
 import Component from '@ember/component';
 import EmberObject, { observer } from '@ember/object';
+import { A } from '@ember/array';
 
 const inputObject = EmberObject.extend({});
 export default Component.extend({
     tagNmae: '',
-    listInputs: [],
-    listInputsObs: [],
+    listInputs: A([]),
+    listInputsObs: A([]),
     inputObserver: observer('listInputsObs.@each.text', function() {
         // this.listInputsObs.forEach(elem => {
         //     this.listInputs.pushObject(elem.text)

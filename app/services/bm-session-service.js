@@ -1,17 +1,18 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
+import $ from 'jquery';
+import { debug } from '@ember/debug';
 
 export default Service.extend({
-    // store: service(),
     bm_config: service(),
-    bmstore: new JsonApiDataStore(),
-    bmmulti: new JsonApiDataStore(),
 
     init() {
         this._super(...arguments);
         this.addObserver('refresh_token', this, 'querySessionInfo');
         this.addObserver('refresh_all_token', this, 'queryMultiObjects');
+        this.set('bmstore', new JsonApiDataStore());
+        this.set('bmmulti', new JsonApiDataStore());
     },
 
     sessionid: '',
@@ -39,7 +40,7 @@ export default Service.extend({
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findsessioninfo/0',
             headers: {
@@ -53,7 +54,7 @@ export default Service.extend({
                 that.set('session', result);
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
     },
@@ -82,7 +83,7 @@ export default Service.extend({
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findsessioninfomulti/0',
             headers: {
@@ -92,12 +93,11 @@ export default Service.extend({
             },
             data: dt,
             success: function(res) {
-                console.log(res)
                 let result = that.bmmulti.sync(res)
                 that.set('sessions', result);
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
     },
@@ -174,7 +174,7 @@ export default Service.extend({
         let gid08 = this.guid();
         let gid09 = this.guid();
         let cate = this.guid();
-        let now = new Date().getTime();
+        // let now = new Date().getTime();
 
         return {
             data: {
@@ -350,7 +350,7 @@ export default Service.extend({
         rd_tmp['included'] = arr;
         let dt = JSON.stringify(rd_tmp);
 
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/pushsessioninfo/0',
             headers: {
@@ -359,7 +359,7 @@ export default Service.extend({
                 'Authorization': 'bearer ce6af788112b26331e9789b0b2606cce'
             },
             data: dt,
-            success: function(res) {
+            success: function(/*res*/) {
                 callback.onSuccess();
             },
             error: function(err) {

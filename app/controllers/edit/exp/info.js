@@ -1,5 +1,6 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
+import { debug } from '@ember/debug';
 
 export default Controller.extend({
 
@@ -9,14 +10,14 @@ export default Controller.extend({
     isPushing: false,
 
     actions: {
-        saveCourseBtnClicked(idx) {
+        saveCourseBtnClicked(/*idx*/) {
             let that = this
             let callback = {
                 onSuccess: function() {
                     that.transitionToRoute('detail.exp', that.bm_exp_service.expid);
                 },
-                onFail: function(err) {
-                    console.log('error');
+                onFail: function(/*err*/) {
+                    debug('error');
                 }
             }
             this.bm_session_service.saveUpdate(callback);

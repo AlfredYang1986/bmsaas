@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
+import { debug } from '@ember/debug';
 
 export default Controller.extend({
     bm_yard_service: service(),
@@ -23,8 +24,8 @@ export default Controller.extend({
                 onSuccess: function() {
                     that.transitionToRoute('yard');
                 },
-                onFail: function(err) {
-                    console.log('error');
+                onFail: function(/*err*/) {
+                    debug('error');
                 }
             }
             this.bm_yard_service.saveUpdate(callback); 

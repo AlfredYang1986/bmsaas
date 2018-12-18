@@ -1,7 +1,8 @@
 import Controller from '@ember/controller';
-// import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { computed} from '@ember/object';
+import { A } from '@ember/array';
+import { debug } from '@ember/debug';
 
 export default Controller.extend({
     init() {
@@ -13,8 +14,8 @@ export default Controller.extend({
     bm_tech_service: service(),
     sex_idx: 0,
     rela_idx: 0,
-    genderCheck: ['男', '女', '未知'],
-    relaChecked: ['父亲', '母亲', '其他'],
+    genderCheck: A(['男', '女', '未知']),
+    relaChecked: A(['父亲', '母亲', '其他']),
     sex: computed('sex_idx', function() {
         if(this.bm_stud_service.stud != null) {
             if(this.sex_idx == 1) {
@@ -51,8 +52,8 @@ export default Controller.extend({
                     onSuccess: function(res) {
                         that.transitionToRoute('detail.stud', res.data.id);
                     },
-                    onFail: function(err) {
-                        console.log('error');
+                    onFail: function(/*err*/) {
+                        debug('error');
                     }
                 }
                 this.bm_stud_service.saveUpdate(callback);
@@ -62,8 +63,8 @@ export default Controller.extend({
                     onSuccess: function(res) {
                         that.transitionToRoute('detail.stud', res.data.id);
                     },
-                    onFail: function(err) {
-                        console.log('error');
+                    onFail: function(/*err*/) {
+                        debug('error');
                     }
                 }
                 this.bm_stud_service.saveUpdate(callback);

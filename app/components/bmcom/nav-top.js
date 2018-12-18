@@ -9,9 +9,7 @@ export default Component.extend({
     brandlogo: computed(function(){
         let client = this.bmOss.get('ossClient');
 
-        let url = client.signatureUrl(this.bm_brand_service.brand.logo);
-        console.log(url);
-        return url;
+        return  client.signatureUrl(this.bm_brand_service.brand.logo);
     }),
     // didInsertElement() {
     //     // this._super(...arguments);

@@ -1,9 +1,11 @@
 import Controller from '@ember/controller';
-import { computed, observer } from '@ember/object';
+import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
-import bmSessionableService from '../services/bm-sessionable-service';
+import { A } from '@ember/array';
+import { debug } from '@ember/debug';
 
 export default Controller.extend({
+
     bm_apply_service: service(),
     bm_sessionable_service: service(),
     bm_stud_service: service(),
@@ -12,7 +14,7 @@ export default Controller.extend({
     toast: service(),
 
     cur_tab_idx: 0,
-    tabs: ['预约', '预注册'],
+    tabs: A(['预约', '预注册']),
     toastOptions: {
         closeButton: false,
         positionClass: 'toast-top-center',
@@ -29,6 +31,7 @@ export default Controller.extend({
     showhandledlg: false,
     current_apply: null,
     showcomfirmdlg: false,
+    isToday: false,
 
     sr : null,
     sy: null,
@@ -41,7 +44,7 @@ export default Controller.extend({
     noSr: false,
     contentSubmit: computed('sr', 'sa', function() {
         let a = Date.parse( new Date());
-        console.log(a)
+        debug(a)
         this.set('sy', null);
         this.set('ss', null);
         return this.sy == null && this.ss == null;
@@ -52,18 +55,27 @@ export default Controller.extend({
     actions: {
         handleBookPageChange (pageNum) {
             this.set('bm_apply_service.page', pageNum - 1)
-            this.bm_apply_service.queryMultiObjects(0);
+            this.bm_apply_service.queryMultiObjects("book");
         },
         handlePrePageChange (pageNum) {
             this.set('bm_apply_service.page', pageNum - 1)
-            this.bm_apply_service.queryMultiObjects(1);
+            this.bm_apply_service.queryMultiObjects("pre");
+        },
+        handleTodayBookPageChange (pageNum) {
+            this.set('bm_apply_service.page', pageNum - 1)
+            this.bm_apply_service.queryMultiObjects("todayBook");
+        },
+        handleTodayPrePageChange (pageNum) {
+            this.set('bm_apply_service.page', pageNum - 1)
+            this.bm_apply_service.queryMultiObjects("todayPre");
         },
         onTabClicked(tabIdx) {
             this.set('bm_apply_service.page', 0)
+            this.set('isToday', false)
             if (tabIdx == 0) {
-                this.bm_apply_service.queryMultiObjects(0);
+                this.bm_apply_service.queryMultiObjects("book");
             } else {
-                this.bm_apply_service.queryMultiObjects(1);
+                this.bm_apply_service.queryMultiObjects("pre");
             }
         },
         saveInfo() {
@@ -74,7 +86,7 @@ export default Controller.extend({
             },500);
         },
         setCurrentApply(item) {
-            console.log(item)
+            debug(item)
             this.set('sr', null);
             this.set('sy', null);
             this.set('sa', null);
@@ -93,7 +105,7 @@ export default Controller.extend({
 
                 },
                 onFail: function() {
-                    console.log('push apply fail')
+                    debug('push apply fail')
                 }
             }
             let kid = this.current_apply.kid;
@@ -122,7 +134,7 @@ export default Controller.extend({
                     that.bm_apply_service.set('apply', this.current_apply);
                 },
                 onFail: function() {
-                    console.log('push apply fail')
+                    debug('push apply fail')
                 }
             }
             this.bm_apply_service.set('apply', this.current_apply);
@@ -141,26 +153,61 @@ export default Controller.extend({
             this.set('saveInfo',false);
         },
         reserveTypeChanged() {
+            
             let sel = document.getElementById("selectReserve");
+            this.set('bm_apply_service.page', 0);
             let that = this;
             if (sel.selectedIndex == 1) {
-                that.set('bm_apply_service.reserved', that.bm_apply_service.reserveTypeToday);
-                that.set('bm_apply_service.amount', that.bm_apply_service.reserveTypeTodayAmount);
+                let callback = {
+                    onSuccess: function() {
+                        that.set('isToday', true);
+                        that.set('bm_apply_service.reserved', that.bm_apply_service.reserveTypeToday);
+                        that.set('bm_apply_service.amount', that.bm_apply_service.reserveTypeTodayAmount);
+                    },
+                    onFail: function() {
+                    }
+                }
+                this.bm_apply_service.queryMultiObjects("todayBook",callback);
             } else {
-                that.set('bm_apply_service.reserved', that.bm_apply_service.reserveType);
-                that.set('bm_apply_service.amount', that.bm_apply_service.reserveTypeAmount);
+                let callback = {
+                    onSuccess: function() {
+                        that.set('isToday', false);
+                        that.set('bm_apply_service.reserved', that.bm_apply_service.reserveType);
+                        that.set('bm_apply_service.amount', that.bm_apply_service.reserveTypeAmount);
+                    },
+                    onFail: function() {
+                    }
+                }
+                this.bm_apply_service.queryMultiObjects("book",callback);
             }
-            console.log(this.bm_apply_service.reserved)
         },
         preRegisterChanged() {
+            
             let sel = document.getElementById("selectReserve");
+            this.set('bm_apply_service.page', 0);
             let that = this;
             if (sel.selectedIndex == 1) {
-                that.set('bm_apply_service.preRegistered', that.bm_apply_service.preRegisterToday);
-                that.set('bm_apply_service.preAmount', that.bm_apply_service.preRegisterTodayAmount);
+                let callback = {
+                    onSuccess: function() {
+                        that.set('bm_apply_service.preRegistered', that.bm_apply_service.preRegisterToday);
+                        that.set('bm_apply_service.preAmount', that.bm_apply_service.preRegisterTodayAmount);
+                        that.set('isToday', true);
+                    },
+                    onFail: function() {
+                    }
+                }
+                this.bm_apply_service.queryMultiObjects("todayPre",callback);
             } else {
-                that.set('bm_apply_service.preRegistered', that.bm_apply_service.preRegister);
-                that.set('bm_apply_service.preAmount', that.bm_apply_service.preRegisterAmount);
+                let callback = {
+                    onSuccess: function() {
+                        that.set('isToday', false);
+                        that.set('bm_apply_service.preRegistered', that.bm_apply_service.preRegister);
+                        that.set('bm_apply_service.preAmount', that.bm_apply_service.preRegisterAmount);
+                    },
+                    onFail: function() {
+                    }
+                }
+                this.bm_apply_service.queryMultiObjects("pre",callback);
             }
         },
         successHandled() {
@@ -270,7 +317,7 @@ export default Controller.extend({
                 that.bm_sessionable_service.saveUpdate(setStud);
             },
             onFail: function() {
-                console.log('query sessionable fail')
+                debug('query sessionable fail')
             }
         }
 
@@ -283,7 +330,7 @@ export default Controller.extend({
             },
             onFail: function() {
                 that.toast.error('', '处理失败', that.toastOptions);
-                console.log('push stud fail')
+                debug('push stud fail')
             }
         }
 
@@ -313,7 +360,7 @@ export default Controller.extend({
                 that.bm_apply_service.set('apply', this.current_apply);
             },
             onFail: function() {
-                console.log('push apply fail')
+                debug('push apply fail')
             }
         }
         this.bm_apply_service.set('apply', this.current_apply);
@@ -366,7 +413,7 @@ export default Controller.extend({
                 that.bm_sessionable_service.saveUpdate(setStud);
             },
             onFail: function() {
-                console.log('query sessionable fail')
+                debug('query sessionable fail')
             }
         }
 
@@ -378,7 +425,7 @@ export default Controller.extend({
                 that.toast.success('', '处理成功', that.toastOptions);
             },
             onFail: function() {
-                console.log('push stud fail')
+                debug('push stud fail')
                 that.toast.error('', '处理成功', that.toastOptions);
             }
         }
@@ -404,10 +451,10 @@ export default Controller.extend({
 
         let callbackPush = {
             onSuccess: function() {
-                console.log('push apply success')
+                debug('push apply success')
             },
             onFail: function() {
-                console.log('push apply fail')
+                debug('push apply fail')
             }
         }
         this.bm_apply_service.set('apply', this.current_apply);

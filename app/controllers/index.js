@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import { computed} from '@ember/object';
+import { debug } from '@ember/debug';
 
 export default Controller.extend({
     bm_login_service: service(),
@@ -21,7 +21,7 @@ export default Controller.extend({
                     }
                 },
                 onFail: function(err) {
-                    console.log('error');
+                    debug('error: ' + err);
                 }
             }
             this.bm_login_service.accountLogin(callback);

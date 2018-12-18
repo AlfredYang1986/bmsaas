@@ -8,7 +8,7 @@ export default Component.extend({
     classNames: ['bm-row', 'bm-widght-header'],
     attributeBindings: ['style'],
     didInsertElement() {
-        console.log('insert table header');
+      
     },
     margin: 14,
     style: computed('margin', function(){
