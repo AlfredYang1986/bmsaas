@@ -58,7 +58,26 @@
             flex-wrap: nowrap;
             flex-direction: row;
             justify-content: flex-start;
-
+            button {
+                background: none;
+                border: none;
+            }
+            button:hover {
+                background: none;
+                color: #fff;
+                border: none;
+                outline:none;
+            }
+            button:focus {
+                background: none;
+                color: #fff;
+                border: none;
+                outline:none;
+            }
+            li {
+				text-align: center;
+				cursor: pointer;
+			}
             .menu_button_between {
                 margin-right: 30px;
             }
@@ -618,7 +637,7 @@ div.time {
                 color: #172B4D;
             }
         }
-    
+
         .layui-laydate-content {
             padding-bottom: 50px;
             table {
@@ -633,7 +652,7 @@ div.time {
                     color: #7A869A;
                     // text-align: left;
                 }
-    
+
                 }
                 tr {
                     background-color: #fff;
@@ -652,7 +671,7 @@ div.time {
                 background: #42526E !important;
                 border-radius: 3px;
             }
-    
+
         }
         &.laydate-time-show {
             .layui-laydate-content {

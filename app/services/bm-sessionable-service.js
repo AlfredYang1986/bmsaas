@@ -53,7 +53,7 @@ export default Service.extend({
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
@@ -95,7 +95,7 @@ export default Service.extend({
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
@@ -115,8 +115,8 @@ export default Service.extend({
                     for(let i = 0, len = that.localAttendees.length;i < len ;i += that.steps){
                         tmpArr.push(that.localAttendees.slice(i,i + that.steps));
                     }
-                    that.set('localAttendeesPages',tmpArr) 
-                    that.set('curAttendeesPage',tmpArr[0]) 
+                    that.set('localAttendeesPages',tmpArr)
+                    that.set('curAttendeesPage',tmpArr[0])
 
                 }
                 console.log(that.sessionable)
@@ -152,7 +152,7 @@ export default Service.extend({
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
@@ -198,7 +198,7 @@ export default Service.extend({
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
@@ -412,7 +412,7 @@ export default Service.extend({
                     },
                     relationships: {
                         Fmcond: {
-                            data: 
+                            data:
                             {
                                 id: fm,
                                 type: "Fmcond"
@@ -474,7 +474,7 @@ export default Service.extend({
         let s = ft.SessionInfo.serialize();
         arr.push(s.data);
 
-        let y = ft.Yard.serialize();      
+        let y = ft.Yard.serialize();
         arr.push(y.data);
 
         let ts = ft.Teachers
@@ -502,7 +502,7 @@ export default Service.extend({
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
@@ -534,7 +534,7 @@ export default Service.extend({
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
