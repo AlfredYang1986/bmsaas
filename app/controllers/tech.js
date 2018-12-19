@@ -3,7 +3,7 @@ import { inject as service } from '@ember/service';
 
 export default Controller.extend({
     bm_tech_service: service(),
-    openFlag: false,
+    openFlag: true,
     actions: {
         cardClicked(idx) {
             this.transitionToRoute('detail.tech', idx);

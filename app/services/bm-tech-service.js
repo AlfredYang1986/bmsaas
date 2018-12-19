@@ -181,6 +181,10 @@ export default Service.extend({
                     wechat: '',
                     address: '',
                     nativePlace: '',
+                    jobTitle: '',
+                    jobType: 0,
+                    major: '',
+                    teachYears: 0,
                 },
             }
         }

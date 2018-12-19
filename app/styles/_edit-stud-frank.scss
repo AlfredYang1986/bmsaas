@@ -73,6 +73,7 @@
             }
     		a.edit_left_menu_text {
                 line-height: 40px;
+                @extend %font-form-info-title;
     		}
             a.active {
                 color: red;
@@ -89,6 +90,10 @@
     padding-bottom: 40px;
     margin-bottom: 68px;
     margin-left: 240px;
+
+    &.tech_input_container {
+        margin-bottom: 24px;
+    }
 
     // .tech-infos-container{
 
@@ -187,18 +192,39 @@
       }
     }
     section.tech_section {
-        margin: 0 24px 8px;
+        margin: 0 24px;
         padding: 24px;
         background-color: $color-neutral-N000;
+
+        select {
+            @extend %select-box-dropdown-default;
+
+            &.years-select {
+                width: 80px!important;
+            }
+        }
         .area-margin-bottom {
             margin-bottom: 40px;
         }
+        .area-margin-bottom-job {
+            margin-bottom: 24px;
+        }
         .area-margin-left {
             margin-left: 40px;
+            flex-grow: 1;
         }
         .tech-infos-container {
             .tech-infos-icon{
+                min-width: 272px;
 
+                .bm-upload-container {
+                    width: 272px;
+
+                    img {
+                        width: 272px;
+                        height: 272px;
+                    }
+                }
                 .edit_title{
                     margin-bottom: 16px;
                     font-family: $font-family;
@@ -248,6 +274,19 @@
               font-size: 11px;
               color: $color-neutral-N200;
             }
+            &.edit_title_no_margin {
+                margin-bottom: 4px;
+            }
+            & + .edit_title_des {
+                margin-bottom: 16px;
+            }
+          }
+
+          .edit_title_des {
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #6B778C;
+            text-align: left;
           }
 
           input.edit_input {
@@ -259,7 +298,7 @@
           box-shadow: none;
           }
           input.input_100 {
-              width: 100%;
+                width: 100%;
           }
 
           .edit_hint {
@@ -281,6 +320,9 @@
           &.area-margin-bottom:last-child {
               margin-bottom: 0;
           }
+        }
+        &.job-infos {
+            margin-bottom: 8px;
         }
         &.edu-lifes,&.work-lifes {
             display: none;

@@ -26,6 +26,17 @@ input.edit_text_field_login {
 .edit_subtitle {
     margin-bottom: 16px;
     @extend %font-form-info-title;
+
+    &.edit_title_with_des {
+        margin-bottom: 4px;
+    }
+}
+.edit_title_des {
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #6B778C;
+    text-align: left;
+    margin-bottom: 16px;
 }
 .must {
     margin-bottom: 16px;

@@ -361,6 +361,29 @@ span.list-status {
             display: flex;
             flex-direction: column;
             align-items: center;
+
+            .bm-upload-container {
+                width: 128px;
+                height: 128px;
+                
+                img {
+                    width: 128px;
+                    height: 128px;
+                    border-radius: 50%;
+                    border: none;
+                }
+            }
+            .bm-upload-tag {
+                display: none;
+            }
+        }
+        .tech_info_other {
+            .tech_info_other_list {
+                p {
+                    font-family: PingFangSC-Medium;
+                    color: #172B4D !important;
+                }
+            }
         }
         .tech_info_other {
             margin-top: 42px;
@@ -401,7 +424,14 @@ span.list-status {
         height: fit-content;
         width: 66.66%;
         min-width: 608px;
+
+        .split-line {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+            margin-bottom: 24px;
+        }
+
         .tech_info_area {
+            
             // padding-top: 40px;
             min-height: 0;
             // border-bottom: 1px solid rgba(0,0,0,0.12);
@@ -417,13 +447,15 @@ span.list-status {
                 color: #6B778C;
             }
             p {
+                font-family: PingFangSC-Regular;
                 margin-bottom: 24px;
                 margin-right: 16px;
                 min-width: 56px;
                 font-size: 14px;
-                color: #172B4D;
+                color: #6B778C;
             }
             span {
+                font-family: PingFangSC-Regular;
                 margin-bottom: 24px;
                 font-size: 14px;
                 color: #172B4D;
@@ -486,6 +518,10 @@ span.list-status {
     // margin-top: 8px;
 }
 
+
+.detail_panel_tab_container {
+    margin-bottom: 24px;
+}
 .detail_panel {
     @extend %detail_panel_basic;
     min-width: 912px;
@@ -517,7 +553,8 @@ span.list-status {
     }
 
     .detail_panel_role_name {
-        margin-bottom: 10px;
+        margin-top: 16px;
+        margin-bottom: 8px;
         font-family: $font-href;
         font-size: 24px;
         color: #172B4D;
