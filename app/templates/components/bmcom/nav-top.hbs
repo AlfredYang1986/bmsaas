@@ -16,7 +16,12 @@
                 {{#dd.menu align="right" as |menu|}}
                     {{#menu.item align="right"}}
                         {{#layout-push direction='col' classNames="dropdown-content"}}
-                            <a onclick={{action 'exitSystem'}}>登出</a>
+                            {{#link-to "home"}}品牌信息{{/link-to}}
+                        {{/layout-push}}
+                    {{/menu.item}}
+                    {{#menu.item align="right"}}
+                        {{#layout-push direction='col' classNames="dropdown-content"}}
+                            <a onclick={{action 'exitSystem'}}>退出</a>
                         {{/layout-push}}
                     {{/menu.item}}
                 {{/dd.menu}}

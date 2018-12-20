@@ -4,6 +4,7 @@ import { computed } from '@ember/object';
 
 export default Controller.extend({
     bm_brand_service: service(),
+    cur_idx: 0,
     bmOss: service(),
     logoPath: computed(function(){
         let client = this.bmOss.get('ossClient');

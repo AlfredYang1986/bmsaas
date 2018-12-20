@@ -51,7 +51,6 @@ export default Controller.extend({
             } else {
                 this.set('bm_tech_service.tech.teachYears', parseInt(sel.options[sel.selectedIndex].value));
             }
-            console.log(this.bm_tech_service.tech.teachYears)
         },
         selectedJob() {
             let sel = document.getElementById("jobSelect");
@@ -60,7 +59,6 @@ export default Controller.extend({
             } else {
                 this.set('bm_tech_service.tech.jobTitle', sel.options[sel.selectedIndex].value);
             }
-            console.log(this.bm_tech_service.tech.jobTitle)
         }
     },
 });

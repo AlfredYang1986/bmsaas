@@ -11,15 +11,51 @@
         section.brand_section{
             padding: 0 24px 24px 24px;
 
+            .edit_between_btn {
+                padding: 6px 12px;
+                height: 32px;
+                min-width: 80px;
+                line-height: 20px;
+                background: rgba(9, 30, 66, 0.04);
+                font-family: PingFangSC-Medium;
+                border-radius: 2px;
+                font-size: 14px;
+                color: #42526E;
+                display: inline-block;
+                white-space: nowrap;
+                vertical-align: middle;
+                text-align: center;
+                outline: none;
+            }
+
 			.edit_panel {
                 min-height: 0;
 				padding: 24px;
 				margin: 0;
 				box-shadow: none;
                 width: 100%;
+
+                select {
+                    @extend %select-box-dropdown-default;
+        
+                    &.years-select {
+                        width: 80px!important;
+                    }
+                }
+                
+                .edit_title_top {
+                    font-family: PingFangSC-Medium;
+                    font-size: 20px;
+                    color: #172B4D;
+                    margin-bottom: 40px;
+                }
                 
                 .brand-logo-continer {
                     width: 272px;
+
+                    .edit_subtitle {
+                        margin-bottom: 0;
+                    }
                     .bm-upload-container{
                         margin-top: 16px;
                         width: 272px;
@@ -28,6 +64,9 @@
                     img {
                         width: 272px;
                         height: 272px;
+                    }
+                    .bm-upload-tag {
+                        display: none;
                     }
                 }
                 .brand-base-info-continer {
@@ -66,7 +105,7 @@
                         color: #6B778C;
                         letter-spacing: 0;
                         margin-top: 4px;
-                        
+                        font-weight: unset;
                     }
                     &:nth-child(1){
                         margin-top: 0px;
@@ -85,7 +124,17 @@
                 	color: #6B778C;
                     letter-spacing: 0;
                     margin-top: 4px;
+                    font-weight: unset;
+                }
 
+                .edit_subtitle_nomargin {
+                    margin-bottom: 0;
+                    font-family: PingFangSC-Regular;
+                	font-size: 14px;
+                	color: #6B778C;
+                    letter-spacing: 0;
+                    margin-top: 4px;
+                    font-weight: unset;
                 }
 
                 .alt-edit-title {
@@ -127,7 +176,7 @@
                 .alt-edit-text-area {
                     width: 600px;
                     margin: 0;
-                    margin-top: 16px;
+                    // margin-top: 16px;
                     border: 1px solid #DFE1E5;
                     border-radius: 4px;
                 }
@@ -148,6 +197,10 @@
                     box-shadow: none;
                 }
 
+                .edit_panel_btn_margin {
+                    margin-top: 40px;
+                }
+
 				&.edit_first_panel {
 
 				}
@@ -163,7 +216,7 @@
                         
                         .brand-honor-pic-upload {
                             margin-right: 24px;
-                            margin-bottom: 40px;
+                            margin-bottom: 24px;
                             width: 272px;
                             height: 218px;
                         
@@ -176,6 +229,9 @@
                                         width: 272px;
                                         height: 182px;
 
+                                    }
+                                    .delete {
+                                        top: 158px;
                                     }
                                 }
                                 
@@ -196,7 +252,7 @@
                         
                         .brand-cert-pic-upload {
                             margin-right: 24px;
-                            margin-bottom: 40px;
+                            margin-bottom: 24px;
                             width: 272px;
                             height: 218px;
                         
@@ -208,7 +264,9 @@
                                     img{
                                         width: 272px;
                                         height: 182px;
-
+                                    }
+                                    .delete {
+                                        top: 158px;
                                     }
                                 }
                                 

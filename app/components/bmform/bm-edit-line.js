@@ -20,8 +20,8 @@ export default Component.extend({
             } else {
                 if ( event && event.preventDefault ){  
                     //非IE浏览器  
-                    event.preventDefault();  
-                } else {   
+                    event.preventDefault();
+                } else {
                     //IE浏览器  
                     window.event.returnValue = false;  
                 } 
