@@ -23,6 +23,14 @@ input.edit_text_field_login {
     background: #FAFBFC;
     box-shadow: none;
 }
+input.edit_text_field_number[type=number] {
+    -moz-appearance:textfield;
+}
+input.edit_text_field_number[type=number]::-webkit-inner-spin-button,
+input.edit_text_field_number[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 .edit_subtitle {
     margin-bottom: 16px;
     @extend %font-form-info-title;

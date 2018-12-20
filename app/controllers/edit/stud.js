@@ -46,8 +46,9 @@ export default Controller.extend({
 
     actions: {
         saveInputBtnClicked() {
-            if(this.isPushing) {
+            // if(this.isPushing) {
                 let that = this
+                debugger
                 let callback = {
                     onSuccess: function(res) {
                         that.transitionToRoute('detail.stud', res.data.id);
@@ -57,18 +58,18 @@ export default Controller.extend({
                     }
                 }
                 this.bm_stud_service.saveUpdate(callback);
-            } else {
-                let that = this
-                let callback = {
-                    onSuccess: function(res) {
-                        that.transitionToRoute('detail.stud', res.data.id);
-                    },
-                    onFail: function(/*err*/) {
-                        debug('error');
-                    }
-                }
-                this.bm_stud_service.saveUpdate(callback);
-            }
+            // } else {
+            //     let that = this
+            //     let callback = {
+            //         onSuccess: function(res) {
+            //             that.transitionToRoute('detail.stud', res.data.id);
+            //         },
+            //         onFail: function(/*err*/) {
+            //             debug('error');
+            //         }
+            //     }
+            //     this.bm_stud_service.saveUpdate(callback);
+            // }
         },
         selectedTech() {
             let sel = document.getElementById("techSelect");

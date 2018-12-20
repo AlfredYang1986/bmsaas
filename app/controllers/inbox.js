@@ -153,7 +153,7 @@ export default Controller.extend({
             this.set('saveInfo',false);
         },
         reserveTypeChanged() {
-            
+
             let sel = document.getElementById("selectReserve");
             this.set('bm_apply_service.page', 0);
             let that = this;
@@ -182,7 +182,7 @@ export default Controller.extend({
             }
         },
         preRegisterChanged() {
-            
+
             let sel = document.getElementById("selectReserve");
             this.set('bm_apply_service.page', 0);
             let that = this;
@@ -211,6 +211,7 @@ export default Controller.extend({
             }
         },
         successHandled() {
+            debugger
             if (this.checkValidate()) {
                 this.set('couldSubmit', true);
 
