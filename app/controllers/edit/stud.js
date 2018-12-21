@@ -48,7 +48,6 @@ export default Controller.extend({
         saveInputBtnClicked() {
             // if(this.isPushing) {
                 let that = this
-                debugger
                 let callback = {
                     onSuccess: function(res) {
                         that.transitionToRoute('detail.stud', res.data.id);

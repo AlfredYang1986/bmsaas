@@ -211,7 +211,6 @@ export default Controller.extend({
             }
         },
         successHandled() {
-            debugger
             if (this.checkValidate()) {
                 this.set('couldSubmit', true);
 

@@ -159,6 +159,7 @@ export default Service.extend({
             success: function(res) {
                 let result = that.bmstore.sync(res)
                 that.set('sessionable', result);
+                that.set('sessionable.tmp_date', result.start_date);
                 if (callback) {
                     callback.onSuccess();
                 }
