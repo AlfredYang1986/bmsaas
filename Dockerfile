@@ -28,6 +28,8 @@ RUN npm install && \
 	bower install jsonapi-datastore --allow-root && \
 	bower install ali-oss --allow-root
 
+RUN npm i heimdalljs-logger
+
 RUN ember b --environment production
 
 EXPOSE 4200
