@@ -1,100 +1,84 @@
 <section class='alt_yard_selection' >
     {{#layout-push direction='col' classNames='alt_yard_container'}}
-        {{#link-to 'yard' class="alt_href_link"}}
-            返回 
-        {{/link-to}}
-        {{bmdetail/bm-top-title-panel title="校区详情" rightText="编辑" linkAddr='edit.yard' linkParam=bm_yard_service.yard.id}}
-        {{!-- {{#layout-push direction='row' split=true classNames='alt_yard_panel'}}
-            {{#layout-push direction='col' mid=true}}
-                <span class='alt_yard_title'>校区详情</span>
-            {{/layout-push}}
-            {{#layout-push direction='col' mid=true}}
-                {{#link-to 'edit.yard' bm_yard_service.yard.id classNames='alt_yard_btn'}}
-                    编辑
-                {{/link-to}}
-            {{/layout-push}}
-        {{/layout-push}} --}}
 
-        {{#layout-push direction='row' split=true}}
-            {{#layout-push direction='col' classNames='alt_yard_left_panel'}}
-                {{#layout-push direction='col' classNames='alt_yard_panel'}}
-                    {{bmdetail/course-basis-left-title 
-                        title=bm_yard_service.yard.title
-                        subTitle=bm_yard_service.yard.address
-                        subTitleBehind=""}}
-                    {{bmdetail/yard-basis-left-tags tags=bm_yard_service.yard.attribute}}
-                    {{!-- {{#layout-push direction='row' mid=true classNames='alt_yard_deltail_title'}}
-                        {{bm_yard_service.yard.title}}
-                    {{/layout-push}}
-                    {{#layout-push direction='row' mid=true classNames='alt_yard_detail_cat'}}
-                        {{bm_yard_service.yard.address}}
-                    {{/layout-push}}
-                    {{#layout-push direction='row' mid=true classNames='alt_yard_tag'}}
-                        <p>{{bm_yard_service.yard.attribute}}</p>
-                    {{/layout-push}} --}}
-                    {{#if (bmcom/bm-nil-obj bm_yard_service.yard)}}
-                    {{else}}
-                        {{bmcom/bm-pic-jigsaw picData=bm_yard_service.yard.Tagimgs}}
-                    {{/if}}
-                {{/layout-push}}
-            {{/layout-push}}
-
-            {{#layout-push direction='col' classNames='alt_yard_panel alt_yard_right_panel'}}
-                {{bmdetail/course-basis-right-info label="交通路线" content=bm_yard_service.yard.traffic_info}}
-
-                {{!-- {{#layout-push direction='col' classNames='alt_yard_detail_panel'}}
-                    <span class='alt_right_panel_perperty_title'>校区详情</span>
-                    {{#if (bmcom/bm-nil-string bm_yard_service.yard.description)}}
-                        {{#layout-push direction='row' mid=true}}
-                            <span class='alt_right_panel_perperty_des'>请上传信息</span>
-                        {{/layout-push}}
-                    {{else}}
-                        <span class='alt_right_panel_perperty_des'>{{bm_yard_service.yard.description}}</span>
-                    {{/if}}
-                {{/layout-push}}
-
-                {{#layout-push direction='col' classNames='alt_yard_detail_panel'}}
-                    <span class='alt_right_panel_perperty_title'>交通路线</span>
-                    {{#if (bmcom/bm-nil-string bm_yard_service.yard.traffic_info)}}
-                        {{#layout-push direction='row' mid=true}}
-                            <span class='alt_right_panel_perperty_des'>请上传信息</span>
-                        {{/layout-push}}
-                    {{else}}
-                        <span class='alt_right_panel_perperty_des'>{{bm_yard_service.yard.traffic_info}}</span>
-                    {{/if}}
-                {{/layout-push}}
-
-                {{#layout-push direction='col' classNames='alt_yard_detail_panel'}}
-                    <span class='alt_right_panel_perperty_title'>校区设施</span>
-                    {{#if (bmcom/bm-nil-array bm_yard_service.yard.facilities)}}
-                        {{#layout-push direction='row' mid=true}}
-                            <span class='alt_right_panel_perperty_des'>请上传信息</span>
-                        {{/layout-push}}
-                    {{else}}
-                        {{#layout-push direction='row'}}
-                            {{#each bm_yard_service.yard.facilities as |item|}}
-                                <span class='alt_yard_detail_tag'>{{item}}</span>
-                            {{/each}}
-                        {{/layout-push}}
-                    {{/if}}
-                {{/layout-push}} --}}
-
-                {{!-- {{#layout-push direction='col' classNames='alt_yard_detail_panel'}}
-                    <span class='alt_right_panel_perperty_title'>校区认证</span>
-                    <div class='line_conatainer_warp'>
-                        {{#if (bmcom/bm-nil-string bm_yard_service.yard.cover)}}
-                                <span class='alt_right_panel_perperty_des'>请上传信息</span>
-                        {{else}}
-                            {{#each bm_yard_service.yard.Tagimgs as |item|}}
-                                {{bmcom/bm-img-uploader needTag=true canEdit=false img=item.url tag=item.tag classNames='alt-yard-tag-img-adjust'}}
-                            {{/each}}
-                        {{/if}}
-                        <img src={{cover}} class="img_cert">
-                        <span>xxx认证</span>
-                    </div>
-                {{/layout-push}} --}}
-            {{/layout-push}}
+        {{#layout-push direction='col' classNames="detail_title yard_detail_title"}}
+            <span class="title_text">{{bm_yard_service.yard.title}}</span> 
+            <span class="sub_title_text">{{bm_yard_service.yard.address}}</span> 
         {{/layout-push}}
+        {{#layout-push direction="col" classNames="detail_panel_tab_container"}}
+            {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs}}
+        {{/layout-push}}
+
+
+        {{#if (eq cur_idx 0)}}
+            {{bmdetail/bm-top-title-panel title="校区信息" rightText="编辑" linkAddr='edit.yard' linkParam=bm_yard_service.yard.id}}
+            {{#layout-push direction='row' split=true}}
+                {{#layout-push direction='col' classNames='alt_yard_left_panel'}}
+                    {{#layout-push direction='col' classNames='alt_yard_panel'}}
+                        {{bmdetail/course-basis-left-title 
+                            title=bm_yard_service.yard.title
+                            subTitle=bm_yard_service.yard.address
+                            subTitleBehind=""}}
+                        {{bmdetail/yard-basis-left-tags tags1=bm_yard_service.yard.scenario tags2=bm_yard_service.yard.attribute}}
+                        {{!-- {{#layout-push direction='row' mid=true classNames='alt_yard_deltail_title'}}
+                            {{bm_yard_service.yard.title}}
+                        {{/layout-push}}
+                        {{#layout-push direction='row' mid=true classNames='alt_yard_detail_cat'}}
+                            {{bm_yard_service.yard.address}}
+                        {{/layout-push}}
+                        {{#layout-push direction='row' mid=true classNames='alt_yard_tag'}}
+                            <p>{{bm_yard_service.yard.attribute}}</p>
+                        {{/layout-push}} --}}
+                        {{#if (bmcom/bm-nil-obj bm_yard_service.yard)}}
+                        {{else}}
+                            {{bmcom/bm-pic-jigsaw picData=bm_yard_service.yard.Tagimgs}}
+                        {{/if}}
+                    {{/layout-push}}
+                {{/layout-push}}
+
+                {{#layout-push direction='col' classNames='alt_yard_panel alt_yard_right_panel'}}
+                    {{#layout-push direction='col' classNames='alt_yard_detail_panel'}}
+                        {{!-- {{bmdetail/course-basis-right-info label="交通路线" content=bm_yard_service.yard.traffic_info}} --}}
+                        {{bmdetail/stud-basis-info label="客服电话" content=bm_yard_service.yard.serviceContact}}
+                        {{bmdetail/stud-basis-info label="营业时间" content=bm_yard_service.yard.openTime}}
+                    {{/layout-push}}
+
+                    {{#layout-push direction='col' classNames='alt_yard_detail_panel'}}
+                        <span class='alt_right_panel_perperty_title'>校区设施</span>
+                        {{#if (bmcom/bm-nil-obj bm_yard_service.yard.facilities)}}
+                            {{#layout-push direction='row'}}
+                                <span class='alt_right_panel_perperty_des'>请上传信息</span>
+                            {{/layout-push}}
+                        {{else}}
+                            {{#layout-push direction='row'}}
+                                {{#each bm_yard_service.yard.facilities as |item|}}
+                                    <span class='alt_yard_detail_tag'>{{item}}</span>
+                                {{/each}}
+                            {{/layout-push}}
+                        {{/if}}
+                    {{/layout-push}}
+
+                    {{#layout-push direction='col' classNames='alt_yard_detail_panel'}}
+                        <span class='alt_right_panel_perperty_title'>校区认证</span>
+                            {{#if (bmcom/bm-nil-obj bm_yard_service.yard.Certifications)}}
+                                {{#layout-push direction='row'}}
+                                    <span class='alt_right_panel_perperty_des'>请上传信息</span>
+                                {{/layout-push}}
+                            {{else}}
+                                <div class='line_conatainer_warp'>
+                                    {{#each bm_yard_service.yard.Certifications as |item|}}
+                                        {{bmcom/bm-img-uploader needTag=true canEdit=false img=item.url tag=item.tag classNames='alt-yard-tag-img-adjust'}}
+                                    {{/each}}
+                                </div>
+                            {{/if}}
+                            {{!-- <img src={{cover}} class="img_cert">
+                            <span>xxx认证</span> --}}
+                    {{/layout-push}}
+                {{/layout-push}}
+            {{/layout-push}}
+        {{/if}}
+        {{#if (eq cur_idx 1)}}
+        {{/if}}
     {{/layout-push}}
 </section>
 

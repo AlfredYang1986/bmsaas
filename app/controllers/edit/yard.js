@@ -14,8 +14,10 @@ export default Controller.extend({
     current_idx: 0,
 
     yardCandidate: A(['室内', '室外', '室内 + 室外']),
-    surroundings: A(['社区', '商圈', '校区', '写字楼', '户外', '露天', '闹市区']),
+    surroundings: A(['写字楼', '社区', '购物中心', '学校', '其它']),
+    facilities: A(['写字楼', '社区', '购物中心', '学校', '其它']),
     tagsCandi: A(['阅读区', '教学区', '家长休息区', '生活区', '寄存区', '户外活动区', '室内活动区']),
+    handledArr: A([]),
 
     actions: {
         saveYardBtnClicked() {
@@ -30,5 +32,14 @@ export default Controller.extend({
             }
             this.bm_yard_service.saveUpdate(callback); 
         },
+        multiCheckOnClick(value) {
+            // console.log(value)
+            if (this.handledArr.indexOf(value) == -1) {
+                this.handledArr.push(value)
+            } else {
+                this.handledArr.splice(this.handledArr.indexOf(value), 1)
+            }
+            // console.log(this.handledArr)
+        }
     },
 });

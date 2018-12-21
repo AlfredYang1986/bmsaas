@@ -1,10 +1,10 @@
 {{yield}}
 {{#layout-push direction='row' classNames="check-box"}}
     <p class={{checkboxTitle}}>{{title}}</p>
-    {{#layout-push direction="column" classNames="box-content"}}
+    {{#layout-push direction="row" classNames="box-content"}}
         {{#each checkboxItem as |item|}}
             {{#layout-push direction="row" classNames="box-item"}}
-                <input type="checkbox" name="labels" id="labels" value="" class="checkbox">{{item}}
+                <input type="checkbox" name="labels" id="labels" value="" class="checkbox" {{action change item on=mouseUp}}>{{item}}
             {{/layout-push}}
         {{/each}}
     {{/layout-push}}

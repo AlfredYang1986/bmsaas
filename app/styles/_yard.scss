@@ -182,7 +182,7 @@
                 &:nth-last-child(1){
 
                     .alt_right_panel_perperty_des {
-                        margin-bottom: 0;
+                        // margin-bottom: 0;
                     }
                 }
                 
@@ -258,6 +258,7 @@
                 margin-bottom: 24px;
 
                 p {
+                    padding: 0 8px;
                     font-family: PingFangSC-Regular;
                     font-size: 14px;
                     color: #172B4D;

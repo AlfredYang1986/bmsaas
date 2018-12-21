@@ -1,5 +1,4 @@
 {{!-- {{yield}} --}}
-{{log listInputs}}
 {{#each listInputs as |item index|}}
     {{#bmform/bm-edit-line title=(concat "第" item.id "项") maxCount="6" maxlength="6" pholder="请输入" inputVal=item.text}}
         <span class="edit_input_remove" {{action "remove" item.id}}>

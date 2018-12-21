@@ -1,6 +1,7 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 import { inject as service } from '@ember/service';
+import { A } from '@ember/array';
 
 export default Route.extend({
     bm_yard_service: service(),
@@ -10,6 +11,7 @@ export default Route.extend({
   
         return RSVP.hash({
             yardid: params.yardid,
+            tabs: A(['校区信息', '教室/场地']),
         })
     },
     guid() {

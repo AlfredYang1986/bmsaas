@@ -11,21 +11,35 @@
 		section.yard_section {
             margin: 24px;
             margin-top: 0;
-			padding: 24px;
+			padding: 0;
 			background-color: $color-neutral-N000;
 
 			.edit_panel {
-				padding: 0;
+				padding: 24px;
 				margin: 0;
 				box-shadow: none;
-				width: 100%;
+                width: 100%;
+
+                .area-margin-bottom {
+                    margin-bottom: 40px;
+
+
+                }
+                
+                .edit_title_container {
+                    margin-bottom: 40px;
+                }
 
                 .edit_sub_title{
                     margin: 0;
+                    font-family: PingFangSC-Regular;
+                    font-size: 14px;
+                    color: #6B778C;
+                    text-align: left;
                 }
 
                 .alt-edit-title {
-                    color: #172B4D;
+                    color: rgb(18, 34, 61);
                     margin-bottom: 16px;
                 }
 
@@ -81,6 +95,20 @@
 
 				&.edit_first_panel {
 
+                    .yard-name {
+                        
+                        input {
+                            width: 228px;
+                        }
+                    }
+                    .yard-contact {
+                        
+                        input {
+                            width: 592px;
+                        }
+                    }
+                    
+
 					.alt-edit-title {
                         // color: #172B4D;
 						margin-bottom: 16px;
@@ -114,40 +142,17 @@
 						box-shadow: none;
 					}
 				}
-
+                
 				&.edit_second_panel {
-
-				}
-
-				&.edit_third_panel {
-
-                    .single-select{
-                        margin-bottom: 40px;
-                    }
-
-                    .alt-edit-title-loc {
-						margin-bottom: 4px;
-                    }
-
-                    .alt-edit-line-area {
-						margin-bottom: 40px;
-                    }
-
-                    // .alt-edit-line-traf {
-					// 	margin-bottom: 4px;
-                    // }
-                    
-                }
-
-				&.edit_fourth_panel {
-
-				}
-
-				&.edit_fifth_panel {
                     min-height: 0;
 
+                    .alt-edit-title {
+                        margin-bottom: 0;
+                    }
+    
                     .line_conatainer_warp{
-                        
+                        margin-top: 16px;
+
                         .alt-yard-edit-tag-img-adjust {
                             margin-right: 24px;
                             margin-bottom: 40px;
@@ -162,7 +167,7 @@
                                     img{
                                         width: 272px;
                                         height: 272px;
-
+    
                                     }
                                 }
                                 
@@ -177,6 +182,38 @@
                         }
                     }
 				}
+
+				&.edit_third_panel {
+
+                    // .single-select{
+                    //     margin-bottom: 40px;
+                    // }
+
+                    // .alt-edit-title-loc {
+					// 	margin-bottom: 4px;
+                    // }
+
+                    // .alt-edit-line-area {
+					// 	margin-bottom: 40px;
+                    // }
+                    .box-content {
+                        width: 800px;
+
+                        .box-item {
+                            margin: 0 40px 16px 0;
+                            width: 112px;
+
+                            input[type=checkbox] {
+                                margin-left: 0;
+                            }
+                        }
+                    }
+                }
+
+				&.edit_fourth_panel {
+
+				}
+
 			}
 		}
 	}
