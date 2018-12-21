@@ -52,7 +52,7 @@
                         {{#layout-push direction="row"}}
                             {{#each bm_brand_service.brand.brand_tags as |item|}}
                                 {{#layout-push direction='col' mid=true classNames="brand_tags brand_tag_margin"}}
-                                    <span>{{item}}</span>
+                                    <span>{{item.text}}</span>
                                 {{/layout-push}}
                             {{/each}}
                         {{/layout-push}}

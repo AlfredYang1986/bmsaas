@@ -55,7 +55,7 @@
         {{!-- <input class="edit_text_field" maxlength={{maxlength}} placeholder={{pholder}} value={{inputVal}} onkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))"/> --}}
         {{input classNames="edit_text_field" maxlength=maxlength  placeholder=pholder value=inputVal key-press=(action "onKeyPress")}}
     {{else}}
-        {{input classNames="edit_text_field" maxlength=maxlength  placeholder=pholder value=inputVal}}
+        {{input classNames="edit_text_field" maxlength=maxlength  placeholder=pholder value=inputVal key-up=(action "onKeyUp")}}
     {{/if}}
     {{#if (eq group 'append')}}
         <div class="input-group-append">

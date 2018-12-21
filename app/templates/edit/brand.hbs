@@ -58,6 +58,8 @@
                         </select>
                     {{/layout-push}}
                 {{/layout-push}}
+
+
                 {{#layout-push direction="col" classNames='brand-input-group'}}
                     <span class="edit_title">品牌名称</span>
                     {{input type="text" class="edit_input_small" value=bm_brand_service.brand.title}}
@@ -70,7 +72,8 @@
                 {{#layout-push direction="col" classNames='brand-input-group'}}
                     <span class="edit_title">品牌亮点</span>
                     <span class='edit_subtitle'>您的品牌有什么独特之处？（限6个字 至多添加三个）如:PBL教学</span>
-                    {{input type="text" class="edit_input_medium" value=bm_brand_service.brand.brand_tangs}}
+                    {{bmform/dynamic-input listInputs=bm_brand_service.brand.brand_tags}}
+                    {{!-- {{input type="text" class="edit_input_medium" value=bm_brand_service.brand.brand_tangs}} --}}
                 {{/layout-push}}
                 {{#layout-push direction='row' split=true}}
                     {{#layout-push direction='row' classNames="brand-setup-time"}}

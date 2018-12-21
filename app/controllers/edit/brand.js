@@ -5,7 +5,7 @@ import { A } from '@ember/array'
 
 export default Controller.extend({
     bm_brand_service: service(),
-
+    listInputs: A([]),
     cur_idx: 0,
     cateArr:A(["音樂", "藝術", "運動", "科學", "steam"]),
     actions: {

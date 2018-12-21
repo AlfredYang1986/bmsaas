@@ -29,6 +29,9 @@ export default Component.extend({
             // if(regex.test(value)) {
                 
             // };
+        },
+        onKeyUp() {
+            // this.handleOnKeyUp();
         }
     }
 });
