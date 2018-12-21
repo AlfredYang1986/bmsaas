@@ -1,119 +1,77 @@
 <div class="detail_content_top">
     <div class="detail_page">
-
-        {{#layout-push direction='col' classNames='ib_title'}}
-            收件箱
+        {{#layout-push direction='row' classNames='ib_title_container'}}
+            {{#layout-push direction='col' mid=true classNames='ib_title'}}
+                <p>收件箱</p>
+            {{/layout-push}}
         {{/layout-push}}
 
-        {{bmcom/bm-tabs-bar cur_idx=cur_tab_idx titles=tabs}}
+        {{bmcom/bm-tabs-bar cur_idx=bm_apply_service.curTabIdx titles=tabs needAction=true onTabClicked=(action "onTabClicked")}}
 
-        {{#if (bmeq cur_tab_idx 0)}}
-            {{bmtable/bm-table-inbox title=model.title applies=bm_apply_service.applies action="setCurrentApply"}}
-        {{!-- <table class='ib_table_head inbox_table'>
-            <tr>
-                {{#each model.title as |item|}}
-                    <th class='ib_table_item'>{{item}}</th>
-                {{/each}}
-            </tr>
-            {{#each bm_apply_service.applies as |item|}}
-            <tr class="session-list">
-                <td class='ib_table_content_item'>
-                    {{#each item.Kids as |kd|}}
-                        {{kd.name}}
-                    {{/each}}
-                </td>
-                <td class="ib_table_content_item">
-                    {{#if (bmeq item.courseType 0)}}
-                    活动
-                    {{else}}
-                    体验课
-                    {{/if}}
-                </td>
-                <td class='ib_table_content_item'>{{item.courseName}}</td>
-                <td class="ib_table_content_item">{{bmdob/bmdobformat item.except_time}}</td>
-                <td class="ib_table_content_item">
-                    {{#each item.Kids as |kd|}}
-                        {{kd.guardian_role}}
-                    {{/each}}
-                    &nbsp;
-                    &nbsp;
-                    &nbsp;
-                    {{item.Applyee.name}}
-                </td>
-                <td class="ib_table_content_item">{{item.contact}}</td>
-                {{#if (bmeq item.status 0)}}
-                    <td class='ib_table_content_item'>
-                        {{#bs-button classNames="ib_table_content_btn" onClick=(action 'setCurrentApply' item)}}<span>处理</span>{{/bs-button}}
-                    </td>
+        {{#layout-push direction='row' split=true classNames='ib_table_select_area'}}
+            {{#if (bmeq bm_apply_service.curTabIdx 0)}}
+                <span class="ib_table_num">共{{bm_apply_service.amount}}条</span>
+                <select class="ib_table_select" name="" id='selectReserve' onChange={{action 'reserveTypeChanged'}}>
+                    <option value="">全部</option>
+                    <option value="">今天</option>
+                </select>
+            {{else if (bmeq bm_apply_service.curTabIdx 1)}}
+                <span class="ib_table_num">共{{bm_apply_service.preAmount}}条</span>
+                <select class="ib_table_select" name="" id='selectReserve' onChange={{action 'preRegisterChanged'}}>
+                    <option value="">全部</option>
+                    <option value="">今天</option>
+                </select>
+            {{/if}}
+
+        {{/layout-push}}
+
+        {{#if (bmeq bm_apply_service.curTabIdx 0)}}
+            {{#if (eq bm_apply_service.reserved.length 0)}}
+                {{bmcom/bm-empty-state class="inbox-empty-state" picUrl="/images/img_empty@2x.png" title="暂无数据" des="请添加待预约学员"}}
+            {{else}}
+                {{bmtable/bm-table-inbox reserveType=true title=model.reserveTitle applies=bm_apply_service.reserved action="setCurrentApply"}}
+                {{#if isToday}}
+                    {{bmcom/bm-pagination pageCount=bm_apply_service.todayBookPageCount sendPageNum=(action "handleTodayBookPageChange")}}
                 {{else}}
-                    <td class="ib_table_content_item">{{bmapplystatus item.status}}</td>
+                    {{bmcom/bm-pagination pageCount=bm_apply_service.bookPageCount sendPageNum=(action "handleBookPageChange")}}
                 {{/if}}
-            </tr>
-            {{/each}}
-        </table> --}}
+            {{/if}}
         {{/if}}
 
-        {{#if (bmeq cur_tab_idx 1)}}
-        {{bmtable/bm-table-inbox title=model.title applies=bm_apply_service.applies action="setCurrentApply"}}
-        {{!-- <table class='ib_table_head inbox_table'>
-            <tr>
-                {{#each model.title as |item|}}
-                    <th class='ib_table_item'>{{item}}</th>
-                {{/each}}
-            </tr>
-            {{#each bm_apply_service.applies as |item|}}
-            <tr class="session-list">
-                <td class='ib_table_content_item'>
-                    {{#each item.Kids as |kd|}}
-                        {{kd.name}}
-                    {{/each}}
-                </td>
-                <td class="ib_table_content_item">
-                    {{#if (bmeq item.courseType 0)}}
-                    活动
-                    {{else}}
-                    体验课
-                    {{/if}}
-                </td>
-                <td class='ib_table_content_item'>{{item.courseName}}</td>
-                <td class="ib_table_content_item">{{bmdob/bmdobformat item.except_time}}</td>
-                <td class="ib_table_content_item">
-                    {{#each item.Kids as |kd|}}
-                        {{kd.guardian_role}}
-                    {{/each}}
-                    &nbsp;
-                    &nbsp;
-                    &nbsp;
-                    {{item.Applyee.name}}
-                </td>
-                <td class="ib_table_content_item">{{item.contact}}</td>
-                {{#if (bmeq item.status 0)}}
-                    <td class='ib_table_content_item'>
-                        {{#bs-button classNames="ib_table_content_btn" onClick=(action 'setCurrentApply' item)}}<span>处理</span>{{/bs-button}}
-                    </td>
+        {{#if (bmeq bm_apply_service.curTabIdx 1)}}
+            {{#if (eq bm_apply_service.preRegistered.length 0)}}
+                {{bmcom/bm-empty-state class="inbox-empty-state" picUrl="/images/img_empty@2x.png" title="暂无数据" des="请添加预注册学员"}}
+            {{else}}
+                {{bmtable/bm-table-inbox title=model.preRegisterTtitle applies=bm_apply_service.preRegistered registerId=bm_apply_service.preRegisterId onPreRegisterClick='onPreRegisterClick'}}
+                {{#if isToday}}
+                    {{bmcom/bm-pagination pageCount=bm_apply_service.todayPrePageCount sendPageNum=(action "handleTodayPrePageChange")}}
                 {{else}}
-                    <td class="ib_table_content_item">{{bmapplystatus item.status}}</td>
+                    {{bmcom/bm-pagination pageCount=bm_apply_service.prePageCount sendPageNum=(action "handlePrePageChange")}}
                 {{/if}}
-            </tr>
-            {{/each}}
-        </table> --}}
+            {{/if}}
         {{/if}}
 
-        {{#if (bmeq cur_tab_idx -1)}}
-            {{bmtable/bm-table-inbox title=model.title applies=bm_apply_service.applies action="setCurrentApply"}}
-        {{/if}}
 
-        
 
-        {{#bmcom/bm-modal-container title="处理通知" mswitch=showhandledlg
-                successbtncss='course-reserve-card-save'
-                cancelbtncss='course-reserve-card-cancel'
+        {{#bmcom/bm-modal-container
+                needTitle=false
+                mswitch=showhandledlg
+                needSubmit=couldSubmit
+                contentSubmit=contentSubmit
+                successbtncss='exp-modal-confirm'
+                cancelbtncss='exp-modal-cancel'
                 canceltext='取消'
                 onCancelBtnClicked=(action 'cancelHandled')
                 onSuccessBtnClicked=(action 'successHandled')}}
             {{#layout-push direction=row classNames="course-reserve-pop-ups-content"}}
                 {{mail-processing-pop-ups
                         classNames="course-reserve-modal-body"
+                        toggleAction=(action 'toggleAction')
+                        noteError=noteError
+                        noSr=noSr
+                        noSy=noSy
+                        noSa=noSa
+                        noSs=noSs
                         selectedReservable=sr
                         selectedYard=sy
                         selectedDate=dt
@@ -124,6 +82,7 @@
             {{/layout-push}}
         {{/bmcom/bm-modal-container}}
         {{#bmcom/bm-modal-container
+                needSubmit=true
                 mswitch=showcomfirmdlg
                 successbtncss='course-reserve-card-save'
                 onSuccessBtnClicked=(action 'successHandled')}}

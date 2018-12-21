@@ -1,0 +1,10 @@
+{{!-- {{yield}} --}}
+<div class='bm-content-left'></div>
+{{#layout-push direction='col' classNames='bm-content-right'}}
+    <span class='bm-content-cls-title'>{{unit.SessionInfo.title}}</span>
+    <span class='bm-content-session-time'>
+        {{bmdob/bmdob2clocktime unit.start_date}}
+        ~
+        {{bmdob/bmdob2clocktime unit.end_date}}
+    </span>
+{{/layout-push}}

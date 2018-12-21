@@ -19,13 +19,26 @@ export default Route.extend({
         this.bm_sessionable_service.set('reservableid', params.actvid);
         return RSVP.hash({
                 expid: params.actvid,
-                tabs: A(['场次安排', '体验详情']),
-                titles: A(["场次号","时间段","校区","报名人数", "操作"])
+                tabs: A(['场次安排', '活动详情']),
+                titles: A(["时间段","校区","人数","", "操作"]),
+                urls: A([
+                    {
+                        "pageName":"活动",
+                        "link":"actv",
+                        "id":"",
+                    },
+                    {
+                        "pageName":"场次安排",
+                        "link":"",
+                        "id":"",
+                    }
+                ]),
             })
     },
     setupController(controller, model) {
         this._super(controller, model);
         this.bm_actv_service.set('refresh_token', this.bm_actv_service.guid());
+        this.bm_sessionable_service.set('page', 0);
         this.bm_sessionable_service.set('refresh_all_token', this.bm_sessionable_service.guid());
     },
 });

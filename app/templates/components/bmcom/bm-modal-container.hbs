@@ -1,4 +1,4 @@
-{{#bs-modal open=mswitch onHidden=(action 'cancelBtnClicked') onSubmit=(action 'successBtnClicked') onClose=(action 'cancelBtnClicked') as |modal|}}
+{{#bs-modal open=mswitch backdropClose=backdropClose onHidden=(action 'cancelBtnClicked') onSubmit=(action 'successBtnClicked') onClose=(action 'cancelBtnClicked') as |modal|}}
     <div class="course-reserve-pop-ups">
         {{#if needTitle}}
             {{#modal.header classNames="course-reserve-modal-title"}}
@@ -10,11 +10,16 @@
         {{#modal.body}}
             {{yield}}
         {{/modal.body}}
+
         {{#modal.footer}}
             {{#if needcancel}}
-                {{#bs-button type="cancel" classNames=cancelbtncss onClick=(action 'cancelBtnClicked') }}取消{{/bs-button}}
+                {{#bs-button type="cancel" classNames=cancelbtncss onClick=(action 'cancelBtnClicked') }}{{canceltext}}{{/bs-button}}
             {{/if }}
-            {{#bs-button type="success" classNames=successbtncss onClick=(action 'successBtnClicked') }}确定{{/bs-button}}
+            {{!-- {{#if needSubmit}} --}}
+                {{#bs-button type="success" classNames=successbtncss onClick=(action 'successBtnClicked') }}{{successtext}}{{/bs-button}}
+            {{!-- {{else}}
+                <button type="button" name="button" disabled='disabled' class="not-fill">{{successtext}}</button>
+            {{/if}} --}}
         {{/modal.footer}}
     </div>
 {{/bs-modal}}

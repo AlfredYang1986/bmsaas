@@ -1,0 +1,21 @@
+{{!-- {{yield}} --}}
+{{#layout-push direction='col' mid=true classNames="empty-state-outer"}}
+    {{#if (not-eq picUrl '')}}
+        {{#layout-push direction='row' mid=true classNames="empty-state-pic-outer"}}
+            <img class="empty-state-pic" src={{picUrl}}/>
+        {{/layout-push}}
+    {{/if}}
+    {{#layout-push direction='row' mid=true classNames="empty-state-title-outer"}}
+        <p class="empty-state-title">{{title}}</p>
+    {{/layout-push}}
+    {{#if (not-eq des '')}}
+        {{#layout-push direction='row' mid=true classNames="empty-state-des-outer"}}
+            <p class="empty-state-des">{{des}}</p>
+        {{/layout-push}}
+    {{/if}}
+    {{#if (not-eq btnText '')}}
+        {{#layout-push direction='row' mid=true classNames="empty-state-act-outer"}}
+            <button class="empty-state-act" {{action 'actOnClick'}}>{{btnText}}</button>
+        {{/layout-push}}
+    {{/if}}
+{{/layout-push}}

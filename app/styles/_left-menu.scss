@@ -4,7 +4,7 @@
     opacity: 0;
 }
 .left_bar {
-    // z-index: 0.9;
+    z-index: 1;
     background: #FFFFFF;
     box-shadow: 0 2px 2px 0 #F4F5F7;
     width: 240px;
@@ -28,7 +28,7 @@
         cursor: pointer;
 
         .left_menu_actv {
-            
+
         }
 
         .left-bar-info {
@@ -53,7 +53,6 @@
             flex-wrap: nowrap;
 
             .active {
-
                 span.left_menu_text, span.left_menu_text_sub {
                     color: #80AEFF;
                 }

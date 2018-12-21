@@ -1,17 +1,17 @@
 @import 'args';
 %select-box-dropdown-default {
-    background: url("../img/chevron_down_normal@2x.png") no-repeat right center transparent;
+    background: url('https://bm-web.oss-cn-beijing.aliyuncs.com/chevron_down_normal%402x.png') no-repeat right center transparent;
     border: $color-border-none;
     border-radius: $border-radius-button-product;
     background-size: $width-icon;
     width: $width-select-dropdown;
-    height: $height-select-dropdown;
+    // height: $height-select-dropdown;
     padding-left: $padding-select-dropdown-left;
     padding-right: $padding-select-dropdown-right;
     background-color: $color-select-bg-dafault;
     font-family: $font-family;
     font-size: $font-size-main;
-    color: $color-form-unfilled-text;
+    color: $color-form-filled-text;
     outline: none;
     overflow: hidden;
     text-overflow:ellipsis;
@@ -42,7 +42,7 @@
 }
 
 %select-box-dropdown-disabled {
-    background: url("../img/chevron_down_normal@2x.png") no-repeat right center transparent;
+    background: url("https://bm-web.oss-cn-beijing.aliyuncs.com/chevron_down_normal%402x.png") no-repeat right center transparent;
     border: $color-border-none;
     border-radius: $border-radius-button-product;
     background-size: $width-icon;

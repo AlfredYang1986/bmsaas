@@ -1,10 +1,8 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
-// import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default Route.extend({
-    // mock_data: service(),
     bm_session_service: service(),
 
     model(params) {

@@ -1,17 +1,19 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
+import $ from 'jquery';
+import { debug } from '@ember/debug';
 
 export default Service.extend({
     store: service(),
     bm_config: service(),
-    bmstore: new JsonApiDataStore(),
-    bmmulti: new JsonApiDataStore(),
 
     init() {
         this._super(...arguments);
         this.addObserver('refresh_token', this, 'queryExpInfo');
         this.addObserver('refresh_all_token', this, 'queryMultiObjects');
+        this.set('bmstore', new JsonApiDataStore());
+        this.set('bmmulti', new JsonApiDataStore());
     },
 
     expid: '',
@@ -37,15 +39,15 @@ export default Service.extend({
         let inc = rd.Eqcond[0].serialize();
         rd_tmp['included'] = [inc.data];
         let dt = JSON.stringify(rd_tmp);
-      
+
         let that = this
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findreservable/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
@@ -53,7 +55,7 @@ export default Service.extend({
                 that.set('exp', result);
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
     },
@@ -73,17 +75,19 @@ export default Service.extend({
         let rd = this.bmmulti.sync(query_yard_payload);
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
         let inc = rd.Eqcond[0].serialize();
+        let brand = rd.Eqcond[1].serialize();
         rd_tmp['included'] = [inc.data];
+        rd_tmp.included.push(brand.data);
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/findreservablemulti/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
@@ -91,13 +95,14 @@ export default Service.extend({
                 that.set('exps', result);
             },
             error: function(err) {
-                console.log('error is : ', err);
+                debug('error is : ', err);
             },
         })
     },
 
     genMultiQuery() {
         let eq = this.guid();
+        let eq2 = this.guid();
         return {
                 data: {
                     id: this.guid(),
@@ -110,6 +115,9 @@ export default Service.extend({
                             data: [
                             {
                                 id: eq,
+                                type: "Eqcond"
+                            }, {
+                                id: eq2,
                                 type: "Eqcond"
                             }
                             ]
@@ -124,9 +132,16 @@ export default Service.extend({
                             key: "status",
                             val: 1
                         }
+                    }, {
+                        id: eq2,
+                        type: "Eqcond",
+                        attributes: {
+                            key: "brandId",
+                            val: localStorage.getItem('brandid')
+                        }
                     }
                 ]
-            } 
+            }
     },
 
     genIdQuery() {
@@ -173,7 +188,7 @@ export default Service.extend({
         let gid09 = this.guid();
         let cate = this.guid();
         let sinfo = this.guid();
-        let now = new Date().getTime();
+        // let now = new Date().getTime();
 
         return {
                 data: {
@@ -182,7 +197,8 @@ export default Service.extend({
                     attributes: {
                         status: 1,
                         start_date: 0,
-                        end_date: 0
+                        end_date: 0,
+                        brandId: localStorage.getItem('brandid'),
                     },
                     relationships: {
                         SessionInfo: {
@@ -201,11 +217,12 @@ export default Service.extend({
                         id: sinfo,
                         type: "BmSessionInfo",
                         attributes: {
-                            brandId: "5be6a00b8fb80736e2ec9ba5",
+                            status: 1,
+                            brandId: localStorage.getItem('brandid'),
                             title: '',
                             subtitle: "",
-                            alb: 0,
-                            aub: 0,
+                            alb: 1,
+                            aub: 1,
                             level: "",
                             count: 0,
                             length: 0,
@@ -216,7 +233,9 @@ export default Service.extend({
                             including: "",
                             carrying: "",
                             notice: "",
-                            cover: ""
+                            cover: "",
+                            inc: "",
+                            play_children: "",
                         },
                         relationships: {
                             Cate: {
@@ -352,7 +371,6 @@ export default Service.extend({
     },
 
     saveUpdate(callback) {
-
         if (!this.isValidate) {
             return ;
         }
@@ -378,19 +396,47 @@ export default Service.extend({
         arr.push(rd_tmp.data)
 
         let ft_tmp = JSON.parse(JSON.stringify(ft.serialize()));
+        ft_tmp.data.attributes.start_date = ft.start_date
+        ft_tmp.data.attributes.end_date = ft.end_date
         ft_tmp['included'] = arr;
-        let dt = JSON.stringify(ft_tmp); 
+        let dt = JSON.stringify(ft_tmp);
 
-        Ember.$.ajax({
+        $.ajax({
             method: 'POST',
             url: '/api/v1/pushreservable/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
-                'Authorization': this.bm_config.getToken(),
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
             success: function(res) {
+                callback.onSuccess(res);
+            },
+            error: function(err) {
+                callback.onFail(err);
+            },
+        })
+    },
+
+    deleteReservable(callback) {
+        let delete_reservable_payload = this.genIdQuery();
+        let rd = this.bmstore.sync(delete_reservable_payload);
+        let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
+        let inc = rd.Eqcond[0].serialize();
+        rd_tmp['included'] = [inc.data];
+        let dt = JSON.stringify(rd_tmp);
+
+        $.ajax({
+            method: 'POST',
+            url: '/api/v1/deletereservable/0',
+            headers: {
+                'Content-Type': 'application/json', // 默认值
+                'Accept': 'application/json',
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
+            },
+            data: dt,
+            success: function(/*res*/) {
                 callback.onSuccess();
             },
             error: function(err) {
@@ -398,13 +444,14 @@ export default Service.extend({
             },
         })
     },
+
     isValidate() {
         return this.exp.title.length > 0;
     },
 
     queryLocalMultiObject() {
         if (this.exps.length == 0) {
-            this.queryMultiObjects()    
+            this.queryMultiObjects()
         }
-    } 
+    }
 });

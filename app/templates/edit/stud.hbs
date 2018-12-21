@@ -1,6 +1,6 @@
 
 {{#layout-push direction='row' split=true classNames='edit_nav' }}
-	<span classNames='edit_nav_title'>编辑学员信息</span>
+	<span classNames='edit_nav_title'>编辑学生信息</span>
 	<span>
 		{{#if isPushing}}
 			{{#link-to 'stud' class="edit_nav_btn btn_cacel"}}
@@ -18,83 +18,145 @@
 {{#layout-push direction='row' split=true classNames='edit_container experience-content' }}
 	<ul class="edit_left_nav">
 		<li class="left_bar_item">
-			<a class="edit_left_menu_text" href="#kid-info">孩子信息</a>
+			<a class="edit_left_menu_stud">孩子信息</a>
 		</li>
 		<li class="left_bar_item">
-			<a class="edit_left_menu_text" href="#par-story">家长信息</a>
+			<a class="edit_left_menu_stud">监护人信息</a>
+		</li>
+		<li class="left_bar_item">
+			<a class="edit_left_menu_stud">更多信息</a>
 		</li>
 	</ul>
 	<div class="input_container">
 		<section id="kid-info" class="kids_info stu_section">
+			<p class="title-name">孩子信息</p>
+			{{#layout-push direction='row'}}
+				{{#layout-push direction="col"  classNames='input_area area-margin-bottom name-area' }}
+					{{bmform/bm-edit-line title='真实姓名'  inputVal=bm_stud_service.stud.name classNames='input_area area-margin-bottom'}}
+				{{/layout-push}}
+				{{#layout-push direction="col" classNames='input_area area-margin-bottom' }}
+					{{bmform/bm-edit-line title='昵称'  inputVal=bm_stud_service.stud.nickname classNames='input_area area-margin-bottom'}}
+				{{/layout-push}}
+			{{/layout-push}}
+
 			{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
-				<p class="edit_title">学员真实姓名</p>
-				{{input type="text" class="edit_input kid_name" maxlength='8' value=bm_stud_service.stud.name}}
-				{{!-- <span class="edit_hint">{{chd_name_length}}/8</span> --}}
+				<p class="edit_title">性别</p>
+
+				{{bmcom/bm-radio-inline cur_idx=sex_idx judge=sex titles=genderCheck}}
+
+				{{!-- {{#layout-push direction='row'}}
+					<span class="radio-inline">
+						{{input type="radio" name="studSex" checked=true}}
+						<label for="male">男</label>
+					</span>
+					<span class="radio-inline">
+						{{input type="radio" name="studSex"  checked=(bmeq bm_stud_service.stud.gender 0)}}
+						<label for="female">女</label>
+					</span>
+					<span class="radio-inline">
+						{{input type="radio" name="studSex" checked=(bmeq bm_stud_service.stud.gender -1)}}
+						<label for="female">未知</label>
+					</span>
+				{{/layout-push}} --}}
 			{{/layout-push}}
 
 			{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
 				<p class="edit_title">出生日期</p>
 				{{#layout-push direction="row" split=false classNames='date_choose' }}
-                {{#if (bmcom/bm-nil-obj bm_stud_service.stud)}}
-                {{else}}
-					{{bmform/bm-lay-date inputVal=bm_stud_service.stud.dob}}
-                {{/if}}
+	                {{#if (bmcom/bm-nil-obj bm_stud_service.stud)}}
+	                {{else}}
+						{{bmform/bm-lay-date inputVal=bm_stud_service.stud.dob}}
+	                {{/if}}
 				{{/layout-push}}
 			{{/layout-push}}
+
 			{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
-				<p class="edit_title">性别</p>
-				<div class="">
-					<span class="radio-inline">
-						<input type="radio" name="rel" value="fa" checked={{bmeq item.gender 1}}/>
-						<label for="male">男</label>
-					</span>
-					<span class="radio-inline">
-						<input type="radio" name="rel" value="ma" checked={{bmeq item.gender 0}}/>
-						<label for="female">女</label>
-					</span>
-				</div>
-				{{!-- {{bmform/bm-radio title="单选框" checkboxTitle="box-title" checkboxItem=genderCheck}} --}}
+				{{bmform/bm-edit-line title='就读学校' largeInput=true  inputVal=bm_stud_service.stud.school classNames='input_area area-margin-bottom'}}
 			{{/layout-push}}
+
 			{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
-				<p class="edit_title">就读学校<span class="sub_title">(选填)</span></p>
-				{{input type="text" class="edit_input kid_school" maxlength='14' value=bm_stud_service.stud.school}}
-				{{!-- <span class="edit_hint">{{school_length}}/14</span> --}}
+				{{bmform/bm-edit-line title='地址' largeInput=true  inputVal=bm_stud_service.stud.address classNames='input_area area-margin-bottom'}}
 			{{/layout-push}}
 		</section>
 		{{#each bm_stud_service.stud.Guardians as |item|}}
-			<section class="parent_info stu_section">
+			<section class="parent_info stu_section" id="par-story">
+				<p class="title-name">监护人信息</p>
 				{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
-					<p class="edit_title">家长姓名</p>
-					{{input type="text" class="edit_input par_name" maxlength='8' value=item.name}}
+					{{bmform/bm-edit-line title='姓名'  inputVal=item.name classNames='input_area area-margin-bottom'}}
 				{{/layout-push}}
 
 				{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
-					<p class="edit_title">与学员关系</p>
-					<div class="">
+					<p class="edit_title">与孩子关系</p>
+						{{bmcom/bm-radio-inline cur_idx=rela_idx titles=relaChecked judge=rela}}
+					{{!-- {{#layout-push direction='row'}}
 						<span class="radio-inline">
-							<input type="radio" name="rel" value="fa" checked={{bmeq item.gender 1}}/>
+							<input type="radio" name="studRela" value="dad"/>
 							<label for="papa">父亲</label>
 						</span>
 						<span class="radio-inline">
-							<input type="radio" name="rel" value="ma" checked={{bmeq item.gender 0}}/>
+							<input type="radio" name="studRela" value="mom"/>
 							<label for="mom">母亲</label>
 						</span>
 						<span class="radio-inline">
-							<input type="radio" name="rel" value="other"/>
+							<input type="radio" name="studRela" value="other"/>
+							<label for="mom">其他</label>
 							<label for="other">{{input type="text" class="edit_input kid_rel" value=""}}</label>
 						</span>
-					</div>
+					{{/layout-push}} --}}
 				{{/layout-push}}
 				{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
-					<p class="edit_title">联系方式</p>
-					{{input type="text" class="edit_input par_contact" value=item.contact}}
+					{{bmform/bm-edit-line numberInput=true title='联系方式'  inputVal=item.contact classNames='input_area area-margin-bottom'}}
+					{{bmform/bm-edit-line title='微信'  inputVal=bm_stud_service.stud.wechat classNames='input_area area-margin-bottom'}}
 				{{/layout-push}}
-				{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
-					<p class="edit_title">地址</p>
-					{{input type="text" class="edit_input par_address" maxlength="14" value=item.addr}}
-				{{/layout-push}}
+				{{!-- {{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
+					{{bmform/bm-edit-line title='身份证号'  notNeeded=true inputVal=item.addr classNames='input_area area-margin-bottom'}}
+				{{/layout-push}} --}}
 			</section>
 		{{/each}}
+
+		<section class="kids_info stu_section" id="other-info">
+			<p class="title-name">更多信息</p>
+			{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
+				<p class="edit_title">课程顾问</p>
+				{{#layout-push direction="row" classNames="area-margin-bottom"}}
+					<div class="course-reserve-modal-select error-border">
+						<select class="" id='techSelect' name="" onChange={{action 'selectedTech'}}>
+						   <option value="">{{bm_stud_service.stud.teacherName}}</option>
+						   {{#each bm_tech_service.techs as |item|}}
+							   <option value={{item.name}}>{{item.name}}</option>
+						   {{/each}}
+						</select>
+					</div>
+
+					{{!-- {{#bm-select/bm-select-box classNames='course-reserve-modal-select' onclick=(action 'selectedTech')}}
+						<option value="">请选择</option>
+						{{#each bm_tech_service.techs as |item|}}
+							<option value={{item.id}}>{{item.name}}</option>
+						{{/each}}
+					{{/bm-select/bm-select-box}} --}}
+				{{/layout-push}}
+			{{/layout-push}}
+
+			{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
+				<p class="edit_title">渠道来源</p>
+				{{#layout-push direction="row" classNames="area-margin-bottom"}}
+					<div class="course-reserve-modal-select error-border">
+						<select class="" id="originSelect"  name="" onChange={{action 'selectedOrigin'}}>
+						   <option value="">{{bm_stud_service.stud.sourceWay}}</option>
+						   {{#each origin as |item|}}
+							   <option value={{item}}>{{item}}</option>
+						   {{/each}}
+						</select>
+					</div>
+					{{!-- {{#bm-select/bm-select-box classNames='course-reserve-modal-select' onclick=(action 'selectedOrigin')}}
+						<option value="">请选择</option>
+						{{#each origin as |item|}}
+							<option value={{item.id}}>{{item}}</option>
+						{{/each}}
+					{{/bm-select/bm-select-box}} --}}
+				{{/layout-push}}
+			{{/layout-push}}
+		</section>
 	</div>
 {{/layout-push}}
 

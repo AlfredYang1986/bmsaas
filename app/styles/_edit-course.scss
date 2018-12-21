@@ -10,7 +10,7 @@
 
         section.alt_course_section{
             padding: 0;
-            
+
         // }
 
 		// section.course_section {
@@ -23,7 +23,24 @@
 				padding: 0;
 				margin: 0;
 				box-shadow: none;
-				width: 100%;
+                width: 100%;
+                
+                .edit_between_btn {
+                    padding: 6px 12px;
+                    height: 32px;
+                    min-width: 80px;
+                    line-height: 20px;
+                    background: rgba(9, 30, 66, 0.04);
+                    font-family: PingFangSC-Medium;
+                    border-radius: 2px;
+                    font-size: 14px;
+                    color: #42526E;
+                    display: inline-block;
+                    white-space: nowrap;
+                    vertical-align: middle;
+                    text-align: center;
+                    outline: none;
+                }
 
                 .edit_sub_title{
                     margin: 0;
@@ -31,17 +48,17 @@
 
                 .alt-edit-title {
                     color: #172B4D;
-                    margin-bottom: 16px;
+                    margin-bottom: 8px;
                 }
 
                 .alt-edit-only-margin {
                     margin-top: 20px;
-                    
+
                     .alt-edit-title-des {
                         margin-bottom: 4px;
                     }
                 }
-                
+
                 .line_half {
                     height: 32px;
                     margin-bottom: 32px;
@@ -58,7 +75,7 @@
                     margin: 0;
                     margin-bottom: 16px;
                 }
-                
+
                 .alt-edit-half-line {
                     width: 300px;
                     margin: 0;
@@ -71,15 +88,28 @@
                     border: 1px solid #DFE1E5;
                     border-radius: 4px;
                 }
-
+				.alt-edit-area {
+					margin: 0;
+					width: 600px;
+					border: 1px solid #DFE1E5;
+                    border-radius: 4px;
+				}
                 .alt-edit-step-btn {
                     margin-top: 40px;
                     width: 85px;
                     height: 32px;
                     line-height: 18px;
                 }
-                
+
                 input[type=text] {
+                    margin: 0;
+                    margin-top: 16px;
+                    height: 32px;
+                    border: 1px solid #DFE1E5;
+                    border-radius: 4px;
+                    box-shadow: none;
+                }
+				input[type=number] {
                     margin: 0;
                     margin-top: 16px;
                     height: 32px;
@@ -92,8 +122,9 @@
                     margin-top: 8px;
                 }
 
-                .course-edit-check-low {
-                    margin-top: 42px;
+                .no-inc-margin {
+                	margin-top: 40px;
+					margin-bottom: 16px;
                 }
 
                 .course-edit-check-high {
@@ -102,7 +133,7 @@
 
                 .course-edit-check-age {
                     margin-top: 8px;
-                    margin-bottom: 40px;
+
                 }
 
                 input[type=checkbox] {
@@ -122,15 +153,16 @@
 				}
 
 				&.edit_second_panel {
+                    .alt-course-input-group {
+                        margin-top: 40px;
+                        margin-bottom: 0;
+                    }
                     .alt_course_title_age{
                         margin-top: 40px;
                     }
-				}
-
-				&.edit_third_panel {
-                    .alt-course-age-group{
+					.alt-course-age-group{
                         justify-content: flex-start;
-    
+
                         .alt_course_des{
                             position: relative;
                             left: -22px;
@@ -139,7 +171,33 @@
                         }
                         .input-group{
                             width:200px;
-    
+
+                            .edit_input_age{
+                                width: 110px;
+                            }
+                            .input-group-append{
+                                height: 32px;
+                                position: relative;
+                                top: 16px;
+                                left: -40px;
+                            }
+                        }
+                    }
+				}
+
+				&.edit_third_panel {
+                    .alt-course-age-group{
+                        justify-content: flex-start;
+
+                        .alt_course_des{
+                            position: relative;
+                            left: -22px;
+                            line-height: 58px;
+                            height: 32px;
+                        }
+                        .input-group{
+                            width:200px;
+
                             .edit_input_age{
                                 width: 110px;
                             }
@@ -162,25 +220,25 @@
                     min-height: 0;
 
                     .line_conatainer_warp{
-                        margin-top: 12px;
+                        margin-top: 16px;
                         .alt-course-edit-tag-img-adjust {
                             margin-right: 24px;
                             margin-bottom: 40px;
                             width: 272px;
                             height: 308px;
-                        
+
                             .bm-upload-form{
-                        
+
                                 div.bm-upload-container{
                                     width: 272px;
-                        
+
                                     img{
                                         width: 272px;
                                         height: 272px;
 
                                     }
                                 }
-                                
+
                             }
                             .bm-upload-tag{
                                 text-align: left;
@@ -195,34 +253,47 @@
                             margin-bottom: 0;
                         }
                     }
+                }
+                
+                &.edit_eighth_panel {
+                    .accompany-bottom-margin-div {
+                        margin-bottom: 56px;
+                    }
+                }
+                &.edit_ten_panel {
+                    .no-inc-margin {
+                        margin-bottom: 0;
+                    }
 				}
             }
-            
+
             .alt_course_panel{
                 margin: 0 24px 24px 24px;
                 width: calc(100% - 48px);
                 padding: 24px;
 
-                .alt_course_big_title{
+                .alt_course_title.alt_course_big_title{
                     margin-bottom: 40px;
                     font-size: 20px;
                 }
                 .alt_course_title{
-                    // margin-bottom: 4px;
+                    margin-bottom: 4px;
+                    // margin-top: 40px;
                 }
                 .alt_course_des{
                     // margin-bottom: 16px;
-                    margin-top: 4px;
+                    // margin-top: 4px;
                 }
-                .edit_input{
+                .edit_input[type=text]{
                     width: 300px;
+					// margin-bottom: 40px;
                 }
                 .select-age{
-                    margin-bottom: 40px;
+                    margin-bottom: 5px;
 
                     .alt-course-age-group{
                         justify-content: flex-start;
-    
+
                         .alt_course_des{
                             position: relative;
                             left: -22px;
@@ -231,7 +302,7 @@
                         }
                         .input-group{
                             width:125px;
-    
+
                             .edit_input_age{
                                 width: 80px;
                             }
@@ -245,11 +316,12 @@
                     }
                 }
                 .alt-course-input-group{
-                    margin-bottom: 40px;
+                    margin-bottom: 16px;
                 }
 
                 select {
                     margin-top: 16px;
+					margin-bottom: 24px;
                 }
             }
 		}

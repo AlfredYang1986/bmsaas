@@ -14,7 +14,7 @@ export default Component.extend({
         return m;
     }),
     days: computed('selectedYear', 'selectedMonth', function(){
-        let tmp_b = [1, 3, 5, 7, 8, 10, 12];
+        // let tmp_b = [1, 3, 5, 7, 8, 10, 12];
         let tmp_s = [4, 6, 9, 11];
         let tmp_y = 2;
         let sm = parseInt(this.selectedMonth);

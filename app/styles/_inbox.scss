@@ -87,7 +87,7 @@
 .modal-content {
     background: none;
     .modal-body {
-        padding: 0 1em;
+        padding: 0 24px;
     }
 }
 .modal-footer {
@@ -97,6 +97,18 @@
     width: 512px;
     height: auto;
     background: #fff;
+    .content-title-area {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-bottom: 24px;
+        .title {
+            @extend %font-dialog-title;
+        }
+        span.base-info {
+            @extend %font-help-text;
+        }
+    }
     .class-modal-content {
       margin: 64px 48px 48px;
 
@@ -183,12 +195,48 @@
         }
     }
     .course-reserve-modal-body {
-        padding: 8px 0;
+        padding: 24px 0 0;
         .course-reserve-content {
+            .line-container {
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: row;
+                justify-content: flex-start;
+            }
+            .card-area {
+                margin-top: 24px;
+            }
+            .form-checked {
+                margin-bottom: 16px;
+                img.error {
+                    margin-right: 4px;
+                    width: 24px;
+                    height: 24px;
+                }
+                .error-info {
+                    font-family: PingFangSC-Regular;
+                    font-size: 14px;
+                    color: #DE350B;
+                }
+                .error-line {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                }
+            }
+            .error-note {
+                display: none;
+            }
             .line-list {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
                 margin-bottom: 24px;
             }
             .line-area {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
                 margin-bottom: 45px;
             }
             p.course-point {
@@ -198,11 +246,6 @@
                 color: #6B778C;
                 text-align: left;
             }
-            p {
-                font-size: 14px;
-                color: #767A80;
-                letter-spacing: 2px;
-            }
             p.course-reserve-title {
                 margin-right: 25px;
                 margin-bottom: 28px;
@@ -211,9 +254,11 @@
                 font-size: 14px;
                 color: #172B4D;
             }
+            .select-title {
+                margin-bottom: 10px;
+            }
             .list-title {
                 margin-bottom: 16px;
-
             }
             .card-info {
                 width: 220px;
@@ -221,44 +266,30 @@
                 flex-direction: row;
             }
             p.course-reserve-label {
-                margin-right: 25px;
-                min-width: 70px;
+                margin-bottom: 0;
+                margin-right: 16px;
+                min-width: 56px;
                 text-align: left;
-                font-family: PingFangSC-Medium;
-                font-size: 14px;
-                color: #172B4D;
+                @extend %font-form-info-title;
                 span.base-info {
-                    font-family: PingFangSC-Regular;
-                    font-size: 14px;
-                    color: #6B778C;
-                    text-align: left;
+                    @extend %font-help-text;
                 }
             }
             p.course-reserve-content {
-                font-family: PingFangSC-Regular;
-                font-size: 14px;
-                color: #172B4D;
+                @extend %font-main-text;
             }
             .partner-name {
-                font-family: PingFangSC-Medium;
-                font-size: 14px;
-                color: #172B4D;
                 margin-right: 38px;
                 margin-bottom: 16px;
+                @extend %font-main-text;
             }
             .partner-sex {
                 margin-right: 32px;
                 margin-bottom: 16px;
-                font-family: PingFangSC-Regular;
-                font-size: 14px;
-                color: #6B778C;
-                text-align: left;
+                @extend %font-help-text;
             }
             .partner-age {
-                font-family: SFUIText-Regular;
-                font-size: 14px;
-                color: #6B778C;
-                text-align: left;
+                @extend %font-help-text;
             }
             .partner-tel {
                 margin-bottom: 10px;
@@ -289,21 +320,20 @@
                 border-radius: 4px;
             }
             .course-reserve-btn {
-                margin-right: 25px;
-                width: 100px;
-                height: 35px;
+                margin-right: 8px;
+                width: 80px;
+                height: 32px;
                 background: #80AEFF;
                 border: 1px solid  #80AEFF;
                 border-radius: 4px;
                 font-size: 14px;
                 color: #FFFFFF;
-                letter-spacing: 2px;
                 text-align: center;
             }
             .experience-apply-btn {
-                margin-right: 25px;
-                width: 100px;
-                height: 35px;
+                margin-right: 8px;
+                width: 80px;
+                height: 32px;
                 background: #e9ebee;
                 border: 1px solid #e9ebee;
                 border-radius: 4px;
@@ -311,10 +341,15 @@
                 color: #6B778C;
                 text-align: center;
             }
-            .course-reserve-modal-select {
-                font-size: 14px;
-                color: #767A80;
-                letter-spacing: 2px;
+
+            select.error-border {
+                border: 1px solid #DE350B;
+            }
+            div.error-border {
+                border: 1px solid #DE350B;
+            }
+            select.course-reserve-modal-select {
+                @extend %select-box-dropdown-default;
             }
             .course-participants {
                 p {
@@ -339,9 +374,12 @@
             }
         }
     }
+    .not-fill {
+        @extend %button-system-disabled;
+    }
     .course-reserve-card-cancel {
-        width: 100px;
-        height: 35px;
+        width: 80px;
+        height: 32px;
         border: 1px solid#80AEFF;
         border-radius: 3px;
         background: #fff;
@@ -350,8 +388,8 @@
         letter-spacing: 2px;
     }
     .course-reserve-card-save {
-        width: 100px;
-        height: 35px;
+        width: 90px;
+        height: 32px;
         border: 1px solid #80AEFF;
         border-radius: 3px;
         background: #80AEFF;
@@ -365,23 +403,62 @@
         background: #fff;
     }
 }
+.ib_title_container {
+    padding: 20px 24px;
+    background-color: #fff;
 
-.ib_title {
-    font-family: $font-nav-acc;
-    font-size: 24px;
-    color: #172B4D;
+    .ib_title {
+        // font-family: PingFangSC-Medium;
+        // font-size: 24px;
+        // color: #172B4D;
+        // height: 32px;
+
+        p {
+            font-family: PingFangSC-Medium;
+            font-size: 24px;
+            color: #172B4D;
+            height: 32px;
+            line-height: 32px;
+        }
+    }
+}
+.ib_table_select_area {
+    margin-top: 24px;
+    margin-bottom: 40px;
+    height: 32px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    span {
+        @extend %font-help-text;
+    }
+    .ib_table_select {
+        background: #f7f8fa;
+        background: url('https://bm-web.oss-cn-beijing.aliyuncs.com/chevron_down_normal%402x.png') no-repeat right center transparent;
+        border: $color-border-none;
+        border-radius: $border-radius-button-product;
+        background-size: $width-icon;
+        width: $width-select-dropdown;
+        width: 92px;
+        // height: 32px;
+        border: none;
+        @extend %font-help-text;
+    }
 }
 
 .ib_tab_bar {
     border-bottom: 2px rgba(9,30,66,0.08) solid;
     width: 100%;
     min-width: 912px;
-    margin-top: 26px;
+    margin-top: 24px;
+    height: 24px;
 
     .ib_tab_btn {
-        width: 84px;
+        min-width: 80px;
+        padding: 0 16px;
         height: 24px;
-
         font-family: $font-nav-acc;
         font-size: 14px;
         color: #42526E;
@@ -393,22 +470,33 @@
         color: #3172E0;
         border-bottom: 2px #3172E0 solid;
     }
+
 }
 
+.bm-inbox-table {
+    height: 1145px;
+    margin: 24px 0;
+}
+.bm-sessionable-table {
+    height: 585px;
+    margin: 24px 0;
+}
+.bm-field-table {
+    height: 585px;
+    margin: 24px 0;
+}
 .ib_table_head {
-
-    margin-top: 8px;
+    // margin-top: 8px;
     min-width: 912px;
     border: none;
     background: transparent;
     width: 100%;
-    // height: 34px;
-    // width: 143px;
 
+    .ib_table_title {
+    }
     .ib_table_item {
-        padding: 8px 20px;
-
-        font-family: $font-nav-acc;
+        padding: 0px 24px 8px 24px;
+        font-family: PingFangSC-Regular;;
         font-size: 12px;
         color: #6B778C;
         line-height: 16px;
@@ -417,15 +505,18 @@
     }
 
     .ib_table_content_item {
-        padding: 8px 20px;
-
-        font-family: $font-brand;
-        font-size: 14px;
-        color: #172B4D;
+        padding: 8px 24px;
+        // white-space: nowrap;
+        // text-overflow: ellipsis;
+        // overflow: hidden;
+        // @extend %font-main-text;
+        font-family: PingFangSC-Regular;
         text-align: left;
 
         max-width: 200px;
-
+        span.dealed {
+            @extend %font-help-text;
+        }
         .ib_table_content_btn {
             border: none;
             background: #80AEFF;
@@ -438,5 +529,79 @@
             letter-spacing: 0;
             text-align: center;
         }
+        .ib_table_content_link_btn {
+            border: none;
+            background: transparent;
+            border-radius: 4px;
+            padding: 0;
+            margin: 6px 0;
+            font-family: $font-nav-acc;
+            font-size: 14px;
+            color: #80AEFF;
+            letter-spacing: 0;
+            text-align: center;
+
+            &:active{
+                background-color: transparent;
+                border-color: transparent;
+                color: #80AEFF;
+            }
+        }
+    }
+}
+.bm-pagination {
+    .pagination {
+        margin: 0;
+
+        .page-item {
+            background-color: transparent;
+            border-radius: 4px;
+            height: 24px;
+            min-width: 24px;
+
+            .page-link {
+                font-family: SFUIText-Medium;
+                font-size: 14px;
+                color: #42526E;
+                letter-spacing: 0;
+                text-align: center;
+                height: 24px;
+                background-color: transparent;
+                border: none;
+                padding: 0 8px;
+                margin: 0;
+
+                &:focus {
+                    box-shadow: none;
+                }
+            }
+            &.active {
+                background-color: #42526E;
+
+                .page-link {
+                    color: #FFFFFF;
+                }
+            }
+            &.disabled {
+                .page-link {
+                    color: #A5ADBA;
+                }
+            }
+        }
+        .page-num-item {
+            width: 32px;
+            .page-link {
+                width: 32px;
+            }
+        }
+    }
+    .pagination-count {
+        padding-left: 16px;
+        font-family: SFUIText-Medium;
+        font-size: 14px;
+        // color: #42526E;
+        color: #A5ADBA;
+        height: 24px;
+        line-height: 24px;
     }
 }

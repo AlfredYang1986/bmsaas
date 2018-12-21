@@ -37,7 +37,6 @@ export default Component.extend({
             if(idx >= (this.imgs.length - 1)) {
                 idx = this.imgs.length - 1;
             }
-            console.log(idx,down,up)
             this.set('mainPicIdx', idx);
             this.set('listPicIdxUp', up);
             this.set('listPicIdxDown', down);
@@ -56,7 +55,6 @@ export default Component.extend({
             if(idx < 0) {
                 idx = 0;
             }
-            console.log(idx,down,up)
             this.set('mainPicIdx', idx);
             this.set('listPicIdxUp', up);
             this.set('listPicIdxDown', down);

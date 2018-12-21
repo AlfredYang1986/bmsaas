@@ -1,47 +1,26 @@
 import Component from '@ember/component';
+import { A } from '@ember/array';
 
 export default Component.extend({
 
     menuList:
-        [{
+        A([{
             icon: '/images/navbar_inbox_normal@2x.png',
             title: '收件箱',
             expond: false,
             pageUrl:'inbox',
             isInbox: true,
         },
-        // {
-        //     icon: '/images/icon_dashboard_normal@1x.png',
-        //     title: '工作台',
-        //     expond: false,
-        //     pageUrl:'home',
-        //     isSpace: true,
-        // },
-
-        // {
-        //     icon: '/images/navbar_booking_normal@2x.png',
-        //     title: '活动',
-        //     expond: false,
-        //     pageUrl:'actv',
-
-        // },
-        // {
-        //     icon: '/images/navbar_activity_normal@2x.png',
-        //     title: '体验课',
-        //     expond: false,
-        //     pageUrl:'exp',
-        //     isSpace: true,
-        // },
         {
             icon: '/images/icon_dashboard_normal@1x.png',
-            title: '工作台',
-            expond: true,
-            // pageUrl:'home',
+            title: '学生管理',
+            expond: false,
+            pageUrl:'stud',
             isSpace: true,
         },
         {
             icon: '/images/navbar_activity_normal@2x.png',
-            title: '体验活动',
+            title: '营销管理',
             expond: true,
             // pageUrl:'exp',
             isSpace: true,
@@ -60,5 +39,5 @@ export default Component.extend({
             // pageUrl:'tech',
             isSpace: true,
         }
-    ]
+    ])
 });

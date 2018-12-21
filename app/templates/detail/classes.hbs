@@ -39,6 +39,7 @@
         </div>
 
         {{#bmcom/bm-modal-container mswitch=delclsdlg
+                needSubmit=true
                 successbtncss='course-reserve-card-save'
                 cancelbtncss='course-reserve-card-cancel'
                 canceltext='取消'
@@ -50,6 +51,7 @@
         {{/bmcom/bm-modal-container}}
 
         {{#bmcom/bm-modal-container title="编集班名" mswitch=changeClassName
+                needSubmit=true
                 successbtncss='course-reserve-card-save'
                 cancelbtncss='course-reserve-card-cancel'
                 canceltext='取消'
@@ -100,6 +102,7 @@
                         {{/each}}
                     {{/layout-push}}
                     {{#bmcom/bm-modal-container mswitch=techdlg
+                            needSubmit=true
                             title='添加班级教师'
                             successbtncss='course-reserve-card-save'
                             cancelbtncss='course-reserve-card-cancel'
@@ -157,6 +160,7 @@
                     {{#bs-button onClick=(action (mut studdlg) true) classNames="add-student-btn"}}添加学员{{/bs-button}}
                 </div>
                 {{#bmcom/bm-modal-container mswitch=studdlg
+                        needSubmit=true
                         title='添加班级学生'
                         successbtncss='course-reserve-card-save'
                         cancelbtncss='course-reserve-card-cancel'

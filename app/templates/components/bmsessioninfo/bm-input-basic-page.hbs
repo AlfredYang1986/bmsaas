@@ -1,45 +1,104 @@
 <section id="start-story" class="alt_course_section" >
     {{#layout-push direction='col' classNames='alt_course_panel edit_panel edit_second_panel'}}
         <span class='alt_course_title alt_course_big_title'>基本信息</span>
-        <span class='alt_course_title'>体验课名称</span>
+
+        {{#if (bmeq session.status 1)}}
+            <span class='alt_course_title'>体验课名称</span>
+        {{else}}
+            <span class='alt_course_title'>活动名称</span>
+        {{/if}}
         <span class='alt_course_des'>生動、有趣的名稱更能激发孩子们的好奇心。</span>
         <span class='alt_course_des'>如：奇妙的色彩艺术之旅</span>
-        {{input type="text" class="edit_input" maxlength='8' value=session.title}}
-        {{#layout-push direction='col' classNames='select-age'}}
-            <span class='alt_course_title alt_course_title_age'>适宜年龄</span>
-            {{#layout-push direction="row" classNames="alt-course-age-group"}}
-                <div class="input-group">
-                    {{input value=session.alb class="edit_input_age" type="text"}}
-                    <div class="input-group-append">
-                        <span class="input-group-text">岁</span>
+        {{input type="text" class="edit_input" value=session.title}}
+
+        {{#layout-push direction="col" classNames="alt-course-input-group"}}
+            {{#if (bmeq session.status 1)}}
+                <span class='alt_course_title'>体验课时长（min）</span>
+            {{else}}
+                <span class='alt_course_title'>活动时长（min）</span>
+            {{/if}}
+            {{#layout-push direction="col" classNames="alt-course-age-group"}}
+            {{#if lengthIf}}
+                <div class="course-edit-check course-edit-check-low">
+                    <div class="input-group">
+                        {{input value=session.length class="edit_input_age" disabled='' type="number"}}
+                        <div class="input-group-append">
+                            <span class="input-group-text">分钟</span>
+                        </div>
                     </div>
                 </div>
-                <span class="alt_course_des">至</span>
-                <div class="input-group">
-                    {{input value=session.aub class="edit_input_age" type="text"}}
-                    <div class="input-group-append">
-                        <span class="input-group-text">岁</span>
+                <div class="course-edit-check course-edit-check-low" {{action 'lengthNoSelected'}}>
+                    <span class="radio-inline">
+                        <input type="checkbox" name="length" value="l"/>
+                        <label for="female">不限时长</label>
+                    </span>
+                </div>
+            {{else}}
+                <div class="course-edit-check course-edit-check-low">
+                    <div class="input-group">
+                        {{input value='' class="edit_input_age" disabled='disabled' type="number"}}
+                        <div class="input-group-append">
+                            <span class="input-group-text">分钟</span>
+                        </div>
                     </div>
                 </div>
+                <div class="course-edit-check course-edit-check-low" {{action 'lengthNoSelected'}}>
+                    <span class="radio-inline">
+                        <input type="checkbox" name="length" value="ma" checked='checked'/>
+                        <label for="female">不限时长</label>
+                    </span>
+                </div>
+            {{/if}}
             {{/layout-push}}
         {{/layout-push}}
-        <div class="course-edit-check course-edit-check-age">
-            <span class="radio-inline">
-                <input type="checkbox" name="rel" value="ma" checked={{bmeq item.gender 0}}/>
-                <label for="female">无年龄限制</label>
-            </span>
-        </div>
-        {{#layout-push direction="col" classNames="alt-course-input-group"}}
-            <span class='alt_course_title'>分级阶段</span>
-            <span class='alt_course_des'>如：入门级、LV1</span>
-            {{input type="text" class="edit_input" value=session.level}}
+
+        {{#layout-push direction='col' classNames='select-age'}}
+            <span class='alt_course_title alt_course_title_age'>适宜年龄</span>
+            <div class="course-edit-check">
+                {{#if ageInput}}
+                    {{#layout-push direction="row" classNames="alt-course-age-group"}}
+                        <div class="input-group">
+                            {{input value=session.alb  maxlength='2' class="edit_input_age"  type="number"}}
+                            <div class="input-group-append">
+                                <span class="input-group-text">岁</span>
+                            </div>
+                        </div>
+                        <span class="alt_course_des">至</span>
+                        <div class="input-group">
+                            {{input value=session.aub class="edit_input_age"  type="number"  maxlength='2'}}
+                            <div class="input-group-append">
+                                <span class="input-group-text">岁</span>
+                            </div>
+                        </div>
+                    {{/layout-push}}
+                    <div class="course-edit-check course-edit-check-age">
+                        {{#bmform/age-select-input alb=session.alb aub=session.aub ageSelect=(action 'ageSelect')}}
+                        {{/bmform/age-select-input}}
+                    </div>
+                {{else}}
+                    {{#layout-push direction="row" classNames="alt-course-age-group"}}
+                        <div class="input-group">
+                            {{input value='' maxlength='2' class="edit_input_age" readonly='readonly'  type="number"}}
+                            <div class="input-group-append">
+                                <span class="input-group-text">岁</span>
+                            </div>
+                        </div>
+                        <span class="alt_course_des">至</span>
+                        <div class="input-group">
+                            {{input value='' class="edit_input_age"  type="number" readonly='readonly'  maxlength='2'}}
+                            <div class="input-group-append">
+                                <span class="input-group-text">岁</span>
+                            </div>
+                        </div>
+                    {{/layout-push}}
+                    <div class="course-edit-check course-edit-check-age">
+                        {{#bmform/age-select-input alb=session.alb aub=session.aub ageSelect=(action 'ageSelect') checked='checked'}}
+                        {{/bmform/age-select-input}}
+                    </div>
+                {{/if}}
+            </div>
         {{/layout-push}}
-        <div class="course-edit-check course-edit-check-low">
-            <span class="radio-inline">
-                <input type="checkbox" name="rel" value="ma" checked={{bmeq item.gender 0}}/>
-                <label for="female">无分级阶段</label>
-            </span>
-        </div>
+
         {{yield}}
     {{/layout-push}}
 </section>

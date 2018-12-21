@@ -17,4 +17,5 @@ export default DS.Model.extend({
     notice: DS.attr('string'),
     cover: DS.attr('string'),
     Cate: DS.belongsTo('BmCategory', {async: false}),
+    status: DS.attr('number')
 });

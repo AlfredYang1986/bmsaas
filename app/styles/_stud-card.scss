@@ -17,6 +17,7 @@
     justify-content: space-between;
     .stud_card_name {
         @extend %font-form-info-title;
+        min-width: 80px;
     }
 
     .stud_card_other {

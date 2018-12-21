@@ -25,9 +25,10 @@ WORKDIR bmsaas
 
 RUN npm install && \
 	bower install foundation --allow-root && \
-	bower install jsonapi-datastore --allow-root
+	bower install jsonapi-datastore --allow-root && \
+	bower install ali-oss --allow-root
 
-RUN ember b
+RUN ember b --environment production
 
 EXPOSE 4200
 

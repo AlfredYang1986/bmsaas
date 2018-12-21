@@ -1,0 +1,16 @@
+{{yield}}
+
+<div class="self_info">
+    {{#layout-push direction='row' classNames='follower-info'}}
+        <div class="follower-head-img">
+            <img src={{item.pic}} alt="">
+        </div>
+        {{#layout-push direction='col'}}
+            {{bmdetail/stud-basis-info label="姓名" content=item.name}}
+            {{bmdetail/stud-basis-info label="微信昵称" content=item.name}}
+            {{bmdetail/stud-basis-info label="关系" content=item.name}}
+            {{bmdetail/stud-basis-info label="联系方式" content=wechat_bind_phone}}
+        {{/layout-push}}
+    {{/layout-push}}
+</div>
+<div class="follower-line"></div>

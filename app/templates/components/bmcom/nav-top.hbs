@@ -11,13 +11,16 @@
     </li>
     <li class="nav-item menu_mid">
         <div class="menu_container">
-            <div class="menu_mid" >
-                <div class="menu_container">
-                    <img src="/images/icon_notification@1x.png" alt="">
-                    <img src="/images/icon_person@1x.png" alt="">
-                    <img src="/images/icon_search@1x.png" alt="">
-                </div>
-            </div>
+            {{#bs-dropdown class="btn-dropdown" as |dd|}}
+                {{#dd.button class="logout-btn"}}{{/dd.button}}
+                {{#dd.menu align="right" as |menu|}}
+                    {{#menu.item align="right"}}
+                        {{#layout-push direction='col' classNames="dropdown-content"}}
+                            <a onclick={{action 'exitSystem'}}>登出</a>
+                        {{/layout-push}}
+                    {{/menu.item}}
+                {{/dd.menu}}
+            {{/bs-dropdown}}
         </div>
     </li>
 </ul>
