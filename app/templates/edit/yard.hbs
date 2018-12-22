@@ -214,6 +214,7 @@
             {{#layout-push direction="col" classNames="multi-select"}}
                 {{bmform/bm-checkbox
                     checkboxItem=facilities
+                    curItems=bm_yard_service.yard.facilities
                     change=(action 'multiCheckOnClick')}}
             {{/layout-push}}
         {{/layout-push }}
