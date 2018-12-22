@@ -12,6 +12,7 @@ export default Route.extend({
         return RSVP.hash({
             yardid: params.yardid,
             tabs: A(['校区信息', '教室/场地']),
+            titles: A(["教室名称","使用类型",""]),
         })
     },
     guid() {

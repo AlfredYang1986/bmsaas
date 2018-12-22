@@ -2,7 +2,6 @@
 {{#layout-push direction='row' classNames="check-box"}}
     <p class={{checkboxTitle}}>{{title}}</p>
     {{#layout-push direction="row" classNames="box-content"}}
-        {{log handledCheckboxItem}}
         {{#each handledCheckboxItem as |item|}}
             {{#layout-push direction="row" classNames="box-item"}}
                 <input type="checkbox" name="labels" id="labels" value="" class="checkbox" checked={{item.status}} {{action change item.value}}>{{item.value}}

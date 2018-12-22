@@ -3,7 +3,7 @@ import { A } from '@ember/array';
 import { computed } from '@ember/object';
 
 export default Component.extend({
-    positionalParams: ['title', 'checkboxItem', 'checkboxTitle', 'curItems'],
+    positionalParams: ['title', 'checkboxItem', 'checkboxTitle', 'curItems','flag'],
     checkboxTitle: '',
     curItems: A([]),
     handledArr: A([]),
@@ -41,18 +41,17 @@ export default Component.extend({
                 for(let innerIdx = 0;innerIdx < this.curItems.length;innerIdx++) {
                     if (this.checkboxItem[idx] == this.curItems[innerIdx]) {
                         tmpObj.status = 'checked';
+                        break;
                     } else {
                         tmpObj.status = '';
                     }
-                    tempArr.push(tmpObj)
-                    }
+                }
+                tempArr.push(tmpObj)
                 } else {
                     tmpObj.status = '';
                     tempArr.push(tmpObj)
                 }
-                // this.handledCheckboxItem = tempArr;
             }
-        console.log(tempArr)
         this.set('handledCheckboxItem', tempArr)
     },
     

@@ -213,6 +213,7 @@
             {{/layout-push}} --}}
             {{#layout-push direction="col" classNames="multi-select"}}
                 {{bmform/bm-checkbox
+                    flag=changeFlag
                     checkboxItem=facilities
                     curItems=bm_yard_service.yard.facilities
                     change=(action 'multiCheckOnClick')}}
