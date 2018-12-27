@@ -21,7 +21,7 @@ export default Component.extend({
     attributeBindings: ['style'],
     overflow: 'hidden scroll',
     style: computed('height', 'overflow', function(){
-        return 'overflow: ' + this.overflow + ';' + 
+        return 'overflow: ' + this.overflow + ';' +
                 'height: ' + this.height + 'px;'
     }),
     inner_height: 1560,
