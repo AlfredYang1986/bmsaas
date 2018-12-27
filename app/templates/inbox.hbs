@@ -95,19 +95,24 @@
                         apply=current_apply}}
             {{/layout-push}}
         {{/bmcom/bm-modal-container}}
+
         {{#bmcom/bm-modal-container
-                needSubmit=true
-                mswitch=showcomfirmdlg
-                successbtncss='course-reserve-card-save'
-                onSuccessBtnClicked=(action 'successHandled')}}
-            {{#layout-push direction=row classNames="success-info course-reverve-success"}}
-                <img src="../images/success.png" alt="">
-                {{#layout-push direction=col}}
-                    <p>安排成功！ </p>
-                    <p>已确认参与者提交状态，参与者可在小程序>我的>我的服务中查看详情。</p>
-                {{/layout-push}}
+                needTitle=false
+                mswitch=showRegister
+                needSubmit=couldSubmit
+                contentSubmit=contentSubmit
+                successbtncss='exp-modal-confirm'
+                cancelbtncss='exp-modal-cancel'
+                canceltext='取消'
+                onCancelBtnClicked=(action 'cancelRegisterHandled')
+                onSuccessBtnClicked=(action 'successRegisterHandled')}}
+            {{#layout-push direction=row classNames="course-reserve-pop-ups-content"}}
+                {{mail-register-pop-ups
+                    classNames="course-reserve-modal-body"
+                    }}
             {{/layout-push}}
         {{/bmcom/bm-modal-container}}
+
     </div>
 </div>
 {{outlet}}
