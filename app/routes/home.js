@@ -6,6 +6,6 @@ export default Route.extend({
     bm_login_service: service(),
     setupController(controller, model) {
         this._super(controller, model);
-        // this.bm_brand_service.set('refresh_token', this.bm_brand_service.guid());
+        this.bm_brand_service.set('refresh_token', this.bm_brand_service.guid());
     },
 });

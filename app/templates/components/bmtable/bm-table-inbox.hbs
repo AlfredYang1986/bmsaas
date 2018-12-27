@@ -2,18 +2,18 @@
 
 <table class='ib_table_head inbox_table'>
     {{#if reserveType}}
-        <tr class='ib_table_title'>
+        {{!-- <tr class='ib_table_title'>
             {{#each title as |item|}}
                 <th class='ib_table_item'>{{item}}</th>
             {{/each}}
-        </tr>
+        </tr> --}}
         {{bmtable/bm-table-inner type="inbox" listData=applies action="setCurrentApply"}}
     {{else}}
-        <tr class='ib_table_title'>
+        {{!-- <tr class='ib_table_title'>
             {{#each title as |item|}}
                 <th class='ib_table_item'>{{item}}</th>
             {{/each}}
-        </tr>
+        </tr> --}}
         {{bmtable/bm-table-inner type="preRegister" listData=applies registerId=registerId addStud=(action 'onPreRegisterClick')}}
     {{/if}}
 

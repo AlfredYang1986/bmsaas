@@ -16,7 +16,7 @@ export default Route.extend({
 		} else if (transition.targetName === 'index') {
 			this.transitionTo('index');
 		} else {
-			// this.bm_brand_service.set('refresh_token', this.bm_brand_service.guid());
+			this.bm_brand_service.set('refresh_token', this.bm_brand_service.guid());
 		}
 	},
 });

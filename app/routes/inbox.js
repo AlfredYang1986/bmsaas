@@ -7,7 +7,7 @@ export default Route.extend({
     bm_brand_service: service(),
     init() {
         this._super(...arguments);
-        this.bm_brand_service.set('refresh_token', this.bm_brand_service.guid());
+        // this.bm_brand_service.set('refresh_token', this.bm_brand_service.guid());
     },
     model() {
         return RSVP.hash({
