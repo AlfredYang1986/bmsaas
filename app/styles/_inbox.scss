@@ -381,7 +381,7 @@
             }
             .pop-section {
                 margin-bottom: 24px;
-                border-bottom: 0.5px solid rgba(0,0,0,0.5)
+                border-bottom: 0.5px solid #eee;
             }
             p.help-title {
                 margin-bottom: 24px;
@@ -396,6 +396,16 @@
             p.edit_title {
                 @extend %font-form-info-title;
                 min-width: 56px;
+                margin-right: 16px;
+            }
+            .course-reserve-modal-select {
+                select {
+                    width: 224px;
+                    @extend %select-box-dropdown-default;
+                }
+            }
+            .select_input {
+                width: 224px;
                 margin-right: 16px;
             }
         }

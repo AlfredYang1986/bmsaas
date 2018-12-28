@@ -96,55 +96,61 @@ export default Controller.extend({
             this.set('current_apply', item);
             this.set('showhandledlg', true);
         },
-        successRegisterHandled(item) {
 
+        successRegisterHandled(item) {
+            debugger
+            let that = this;
+            let callback = {
+                onSuccess: function(res) {
+                    // that.set('bm_apply_service.preRegisterId', res.data.id);
+                    // that.transitionToRoute('edit.stud',  res.data.id)
+                },
+                onFail: function() {
+                    debug('push apply fail')
+                }
+            }
+            let kid = this.current_apply.kid;
+
+            let stud_data = this.bm_stud_service.genPushQuery();
+            let stud = this.bm_stud_service.bmstore.sync(stud_data);
+            stud.name = kid.name;
+            stud.nickname = kid.nickname;
+            stud.gender = kid.gender;
+            stud.reg_date = new Date().getTime();
+            stud.dob = kid.dob;
+            stud.applyId = this.current_apply.id;
+            stud.school = kid.school
+            stud.address = kid.address
+            stud.teacherName = kid.teacherName
+            stud.sourceWay = kid.sourceWay
+
+            stud.Guardians[0].name = this.current_apply.Applyee.name;
+            stud.Guardians[0].gender = this.current_apply.Applyee.gender;
+            stud.Guardians[0].contact = this.current_apply.contact;
+            stud.Guardians[0].reg_date = new Date().getTime();
+            stud.Guardians[0].relation_ship = kid.guardian_role;
+
+            this.bm_stud_service.set('stud', stud);
+            // this.transitionToRoute('edit.stud',  stud.id)
+            this.bm_stud_service.saveUpdate(callback);
+
+            let callbackPush = {
+                onSuccess: function() {
+                    that.bm_apply_service.set('apply', this.current_apply);
+                    that.set('showRegister', false);
+                    that.toast.success('', '处理成功', that.toastOptions);
+                },
+                onFail: function() {
+                    debug('push apply fail')
+                }
+            }
+            this.bm_apply_service.set('apply', this.current_apply);
+            this.bm_apply_service.saveUpdate(callbackPush);
         },
         onPreRegisterClick(item) {
+            debugger
             this.set('showRegister', true);
             this.set('current_apply', item);
-
-            // let that = this;
-            // let callback = {
-            //     onSuccess: function(res) {
-            //         // that.set('bm_apply_service.preRegisterId', res.data.id);
-            //         that.transitionToRoute('edit.stud',  res.data.id)
-            //
-            //     },
-            //     onFail: function() {
-            //         debug('push apply fail')
-            //     }
-            // }
-            // let kid = this.current_apply.kid;
-            //
-            // let stud_data = this.bm_stud_service.genPushQuery();
-            // let stud = this.bm_stud_service.bmstore.sync(stud_data);
-            // stud.name = kid.name;
-            // stud.nickname = kid.nickname;
-            // stud.gender = kid.gender;
-            // stud.reg_date = new Date().getTime();
-            // stud.dob = kid.dob;
-            // stud.applyId = this.current_apply.id;
-            //
-            // stud.Guardians[0].name = this.current_apply.Applyee.name;
-            // stud.Guardians[0].gender = this.current_apply.Applyee.gender;
-            // stud.Guardians[0].contact = this.current_apply.contact;
-            // stud.Guardians[0].reg_date = new Date().getTime();
-            // stud.Guardians[0].relation_ship = kid.guardian_role;
-            //
-            // this.bm_stud_service.set('stud', stud);
-            // // this.transitionToRoute('edit.stud',  stud.id)
-            // this.bm_stud_service.saveUpdate(callback);
-            //
-            // let callbackPush = {
-            //     onSuccess: function() {
-            //         that.bm_apply_service.set('apply', this.current_apply);
-            //     },
-            //     onFail: function() {
-            //         debug('push apply fail')
-            //     }
-            // }
-            // this.bm_apply_service.set('apply', this.current_apply);
-            // this.bm_apply_service.saveUpdate(callbackPush);
         },
         toggleAction() {
             let that = this;

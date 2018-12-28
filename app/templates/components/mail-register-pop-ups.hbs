@@ -6,31 +6,32 @@
 
         {{#layout-push direction='row'}}
             {{#layout-push direction="col"  classNames='input_area area-margin-bottom name-area' }}
-                {{bmform/bm-edit-line title='真实姓名'  inputVal=bm_stud_service.stud.name classNames='input_area area-margin-bottom'}}
+                {{bmform/bm-edit-line title='真实姓名'  inputVal=apply.kid.name classNames='input_area'}}
             {{/layout-push}}
             {{#layout-push direction="col" classNames='input_area area-margin-bottom' }}
-                {{bmform/bm-edit-line title='昵称'  inputVal=bm_stud_service.stud.nickname classNames='input_area area-margin-bottom'}}
+                {{bmform/bm-edit-line title='昵称'  inputVal=apply.kid.nickname classNames='input_area'}}
             {{/layout-push}}
         {{/layout-push}}
 
         {{#layout-push direction="row" classNames='input_area area-margin-bottom' }}
             <p class="edit_title">性别</p>
-            {{bmcom/bm-radio-inline cur_idx=sex_idx judge=sex titles=genderCheck}}
+            {{bmcom/bm-radio-inline cur_idx=sex_idx judge=sex titles=genderCheck onChange=(action 'radioSelect')}}
+
         {{/layout-push}}
 
         {{#layout-push direction="row" classNames='input_area area-margin-bottom' }}
             <p class="edit_title">出生日期</p>
             {{#layout-push direction="row" split=false classNames='date_choose' }}
-                {{bmform/bm-lay-date inputVal=bm_stud_service.stud.dob}}
+                {{bmform/bm-lay-date inputVal=apply.kid.dob}}
             {{/layout-push}}
         {{/layout-push}}
 
         {{#layout-push direction='row'}}
             {{#layout-push direction="col"  classNames='input_area area-margin-bottom name-area' }}
-                {{bmform/bm-edit-line title='就读学校'  inputVal=bm_stud_service.stud.name classNames='input_area area-margin-bottom'}}
+                {{bmform/bm-edit-line title='就读学校'  inputVal=apply.kid.school classNames='input_area'}}
             {{/layout-push}}
             {{#layout-push direction="col" classNames='input_area area-margin-bottom' }}
-                {{bmform/bm-edit-line title='住址'  inputVal=bm_stud_service.stud.nickname classNames='input_area area-margin-bottom'}}
+                {{bmform/bm-edit-line title='住址'  inputVal=apply.kid.address classNames='input_area'}}
             {{/layout-push}}
         {{/layout-push}}
 
@@ -41,29 +42,29 @@
 
         {{#layout-push direction='row'}}
             {{#layout-push direction="col"  classNames='input_area area-margin-bottom name-area' }}
-                {{bmform/bm-edit-line title='姓名'  inputVal=bm_stud_service.stud.name classNames='input_area area-margin-bottom'}}
+                {{bmform/bm-edit-line title='姓名'  inputVal=apply.Applyee.name classNames='input_area'}}
             {{/layout-push}}
             {{#layout-push direction="col" classNames='input_area area-margin-bottom' }}
-                {{bmform/bm-edit-line title='联系方式'  inputVal=bm_stud_service.stud.nickname classNames='input_area area-margin-bottom'}}
+                {{bmform/bm-edit-line title='联系方式'  inputVal=apply.Applyee.regi_phone classNames='input_area'}}
             {{/layout-push}}
         {{/layout-push}}
 
-        {{#layout-push direction="row" split=true classNames='input_area area-margin-bottom' }}
+        {{#layout-push direction="row" classNames='input_area area-margin-bottom' }}
             <p class="edit_title">亲子关系</p>
-            {{bmcom/bm-radio-inline cur_idx=sex_idx judge=sex titles=genderCheck}}
+            {{bmcom/bm-radio-inline cur_idx=rela_idx judge2=rela titles=relaChecked}}
         {{/layout-push}}
 
     {{/layout-push}}
 
-    {{#layout-push direction='col' classNames='pop-section'}}
+    {{#layout-push direction='col' classNames=''}}
         <p class="help-title">更多信息</p>
 
         {{#layout-push direction='row'}}
-            {{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
-                <p class="edit_title">课程顾问</p>
+            {{#layout-push direction="col" split=true classNames='input_area' }}
+                <p class="edit_subtitle">课程顾问</p>
                 {{#layout-push direction="row" classNames="area-margin-bottom"}}
                     <div class="course-reserve-modal-select error-border">
-                        <select class="" id='techSelect' name="">
+                        <select class="select_input" id='techSelect' name="" onChange={{action 'selectedTech'}}>
                            <option value="">{{bm_stud_service.stud.teacherName}}</option>
                            {{#each bm_tech_service.techs as |item|}}
                                <option value={{item.name}}>{{item.name}}</option>
@@ -73,11 +74,11 @@
                 {{/layout-push}}
             {{/layout-push}}
 
-            {{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
-                <p class="edit_title">渠道来源</p>
+            {{#layout-push direction="col" split=true classNames='input_area' }}
+                <p class="edit_subtitle">渠道来源</p>
                 {{#layout-push direction="row" classNames="area-margin-bottom"}}
                     <div class="course-reserve-modal-select error-border">
-                        <select class="" id="originSelect"  name="">
+                        <select class="select_input" id="originSelect"  name="" onChange={{action 'selectedOrigin'}}>
                            <option value="">{{bm_stud_service.stud.sourceWay}}</option>
                            {{#each origin as |item|}}
                                <option value={{item}}>{{item}}</option>
