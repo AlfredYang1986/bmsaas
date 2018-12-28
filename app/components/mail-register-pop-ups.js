@@ -30,23 +30,23 @@ export default Component.extend({
     genderCheck: A(['男', '女', '未知']),
     relaChecked: A(['父亲', '母亲', '未知']),
     sex: computed('sex_idx', function() {
-        // if(this.sex_idx == 1) {
-        //     this.set('apply.kid.gender', 0)
-        // } else if(this.sex_idx == 0) {
-        //     this.set('apply.kid.gender', 1)
-        // } else {
-        //     this.set('apply.kid.gender', 2)
-        // }
+        if(this.sex_idx == 1) {
+            this.set('apply.kid.gender', 0)
+        } else if(this.sex_idx == 0) {
+            this.set('apply.kid.gender', 1)
+        } else {
+            this.set('apply.kid.gender', 2)
+        }
 
     }),
     rela: computed('rela_idx', function() {
-        // if(this.rela_idx == 0) {
-        //     this.set('apply.kid.guardian_role', "爸爸")
-        // } else if(this.rela_idx == 1) {
-        //     this.set('apply.kid.guardian_role', "妈妈")
-        // } else {
-        //     this.set('apply.kid.guardian_role', "其他")
-        // }
+        if(this.rela_idx == 0) {
+            this.set('apply.kid.guardian_role', "爸爸")
+        } else if(this.rela_idx == 1) {
+            this.set('apply.kid.guardian_role', "妈妈")
+        } else {
+            this.set('apply.kid.guardian_role', "其他")
+        }
     }),
     origin: ['学员转介绍', '电话推广', '小程序', '线下活动推广', '其他'],
     positionalParams: ['apply',],
