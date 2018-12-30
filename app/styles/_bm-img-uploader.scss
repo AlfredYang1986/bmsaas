@@ -49,6 +49,19 @@
                 margin-left: 119px;
             }
         }
+        .delete-img-obj {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            top: 0;
+            right: 0;
+        }
+        .delete-img-obj-btn {
+            width: 16px !important;
+            height: 16px !important;
+            border: none !important;
+            cursor: pointer;
+        }
     }
 }
 
@@ -56,8 +69,16 @@
     font-family: PingFangSC-Regular;
     font-size: 14px;
     color: #172B4D;
-    max-width: 200px;
+    max-width: 100%;
     text-align: center;
 
     margin-top: 216px;
+    
+    .bm-upload-tag-input {
+        width: 100%;
+    
+        input {
+            width: 100% !important;
+        }
+    }
 }

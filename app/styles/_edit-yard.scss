@@ -20,6 +20,16 @@
 				box-shadow: none;
                 width: 100%;
 
+                .line_conatainer_warp{
+                    .delete-img {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        width: 32px;
+                        height: 32px;
+                    }
+                }
+
                 .area-margin-bottom {
                     margin-bottom: 40px;
 
@@ -161,7 +171,8 @@
                             .add-new-img {
                                 width: 272px;
                                 height: 182px;
-                                border: 1px dashed #D2D4D9
+                                border: 1px dashed #D2D4D9;
+                                cursor: pointer;
                             }
                         }
 
@@ -187,6 +198,13 @@
                             .bm-upload-tag{
                                 margin-top: 288px;
                                 justify-content: flex-start;
+
+                                .bm-upload-tag-input {
+
+                                    div:nth-child(1) {
+                                        display: none;
+                                    }
+                                }
                             }
                         }
                         .alt-yard-edit-tag-img-adjust:nth-last-child(1){
@@ -225,7 +243,61 @@
                 }
 
 				&.edit_fourth_panel {
+                    .line_conatainer_warp{
+                        margin-top: 16px;
 
+                        .add-img-div {
+                            width: 272px;
+                            height: 272px;
+                            // background-color: #fff;
+
+                            .add-new-img {
+                                width: 272px;
+                                height: 182px;
+                                border: 1px dashed #D2D4D9;
+                                cursor: pointer;
+                            }
+                        }
+
+                        .alt-yard-edit-tag-img-adjust {
+                            margin-right: 24px;
+                            margin-bottom: 40px;
+                            width: 272px;
+                            height: 230px;
+                        
+                            .bm-upload-form{
+                        
+                                div.bm-upload-container{
+                                    width: 272px;
+                        
+                                    img{
+                                        width: 272px;
+                                        height: 182px;
+    
+                                    }
+
+                                    .delete {
+                                        top: 158px;
+                                    }
+                                }
+                                
+                            }
+                            .bm-upload-tag{
+                                margin-top: 198px;
+                                justify-content: flex-start;
+                                
+                                .bm-upload-tag-input {
+
+                                    div:nth-child(1) {
+                                        display: none;
+                                    }
+                                }
+                            }
+                        }
+                        .alt-yard-edit-tag-img-adjust:nth-last-child(1){
+                            margin-bottom: 0;
+                        }
+                    }
 				}
 
 			}

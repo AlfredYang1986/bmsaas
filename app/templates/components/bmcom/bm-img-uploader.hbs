@@ -11,6 +11,9 @@
                     </div>
                 {{/if}}
                 <input type='file' id="uploadImg" name='file' value='file' multiple=false class='' onchange={{action 'inputChanged'}} />
+                <div class="delete-img-obj">
+                    <img src="/images/remove.png" class="delete-img-obj-btn" {{action "deleteObj"}}/>
+                </div>
             {{else}}
                 <img src={{concertImgPath}} class='' />
             {{/if}}
@@ -18,7 +21,14 @@
     </form>
     {{#layout-push direction='row' mid=true classNames='bm-upload-tag'}}
         {{#if needTag}}
-            <span>{{tag}}</span>
+            {{#if canEditTag}}
+                {{bmform/bm-edit-line 
+                maxlength='15' 
+                inputVal=tag 
+                classNames='bm-upload-tag-input'}}
+            {{else}}
+                <span>{{tag}}</span>
+            {{/if}}
         {{/if}}
     {{/layout-push}}
 {{/layout-push}}

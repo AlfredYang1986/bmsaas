@@ -5,10 +5,12 @@ import $ from 'jquery';
 
 export default Component.extend({
     bmOss: service(),
-    positionalParams: ['img', 'tag', 'canEdit', 'needTag'],
+    positionalParams: ['imgObj', 'img', 'tag', 'canEdit', 'canEditTag', 'needTag'],
+    imgObj: '',
     img: '',
     tag: '',
     canEdit: false,
+    canEditTag: false,
     needTag: false,
     deleteIcon: 'https://bm-web.oss-cn-beijing.aliyuncs.com/icon_remove%402x.png',
     isNull: computed('img', function(){
@@ -50,6 +52,9 @@ export default Component.extend({
             this.set('img', '');
             document.getElementById(this.upid).lastElementChild.childNodes[7].value = '';
             document.getElementById('uploadImg').value = '';
+        },
+        deleteObj() {
+            this.onDeleteObj(this.imgObj)
         }
     },
     guid() {

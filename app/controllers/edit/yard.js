@@ -50,7 +50,9 @@ export default Controller.extend({
             }
             tempArr.pushObject(newObj);
             this.set('bm_yard_service.yard.Certifications', tempArr)
-            console.log(this.bm_yard_service.yard)
+        },
+        deleteCertImg(param) {
+            this.bm_yard_service.yard.Certifications.removeObject(param);
         }
     },
 });
