@@ -94,8 +94,8 @@ export default Service.extend({
         })
     },
 
-    genNewImgObj() {
-        let payload = this.genNewImgPayload();
+    genNewImgObj(type) {
+        let payload = this.genNewImgPayload(type);
         let result = this.bmstore.sync(payload);
         return result;
     },
@@ -109,10 +109,10 @@ export default Service.extend({
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
     },
 
-    genNewImgPayload() {
+    genNewImgPayload(type) {
         return {
             data: {
-                type: 'BmCertification',
+                type: type,
                 id: this.guid(),
                 attributes: {
                     img: "",

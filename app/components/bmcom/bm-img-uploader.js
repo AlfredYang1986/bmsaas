@@ -5,13 +5,14 @@ import $ from 'jquery';
 
 export default Component.extend({
     bmOss: service(),
-    positionalParams: ['imgObj', 'img', 'tag', 'canEdit', 'canEditTag', 'needTag'],
+    positionalParams: ['imgObj', 'img', 'tag', 'canEdit', 'canEditTag', 'needTag', 'canDeleteObj'],
     imgObj: '',
     img: '',
     tag: '',
     canEdit: false,
     canEditTag: false,
     needTag: false,
+    canDeleteObj: false,
     deleteIcon: 'https://bm-web.oss-cn-beijing.aliyuncs.com/icon_remove%402x.png',
     isNull: computed('img', function(){
         return this.img == null || this.img.length == 0;

@@ -43,7 +43,7 @@ export default Controller.extend({
             this.set('bm_yard_service.yard.facilities', tempArr)
         },
         addCertPicOnClick() {
-            let newObj = this.bm_yard_service.genNewImgObj();
+            let newObj = this.bm_yard_service.genNewImgObj('BmCertification');
             let tempArr = [];
             if (this.bm_yard_service.yard.Certifications !== null) {
                 tempArr = this.bm_yard_service.yard.Certifications;
@@ -51,8 +51,20 @@ export default Controller.extend({
             tempArr.pushObject(newObj);
             this.set('bm_yard_service.yard.Certifications', tempArr)
         },
+        addYardPicOnClick() {
+            let newObj = this.bm_yard_service.genNewImgObj('BmTagImg');
+            let tempArr = [];
+            if (this.bm_yard_service.yard.Tagimgs !== null) {
+                tempArr = this.bm_yard_service.yard.Tagimgs;
+            }
+            tempArr.pushObject(newObj);
+            this.set('bm_yard_service.yard.Certifications', tempArr)
+        },
         deleteCertImg(param) {
             this.bm_yard_service.yard.Certifications.removeObject(param);
+        },
+        deleteYardImg(param) {
+            this.bm_yard_service.yard.Tagimgs.removeObject(param);
         }
     },
 });

@@ -186,12 +186,23 @@
                     <span class="alt-edit-title">校区图片</span>
                 {{/layout-push}}
                 <span class='edit_sub_title'>图片的区域名称将被展示在小程序中</span>
-                <span class='edit_sub_title'>每张图片小于100KB</span>
+                <span class='edit_sub_title'>每张图片小于150KB，至多上传9项</span>
                 {{#layout-push direction='row'}}
                     <div class='line_conatainer_warp'>
                         {{#each bm_yard_service.yard.Tagimgs as |item|}}
-                            {{bmcom/bm-img-uploader needTag=true canEdit=true canEditTag=true img=item.img tag=item.tag classNames='alt-yard-edit-tag-img-adjust'}}
+                            {{bmcom/bm-img-uploader needTag=true canEdit=true canEditTag=true canDeleteObj=true imgObj=item img=item.img tag=item.tag onDeleteObj=(action "deleteYardImg") classNames='alt-yard-edit-tag-img-adjust'}}
                         {{/each}}
+                        {{#if (bmcom/bm-nil-obj bm_yard_service.yard.Certifications)}}
+                                <div class="add-img-div">
+                                    <img class="add-new-img" src='/images/btn_more_default@2x.png' {{action "addYardPicOnClick"}}/>
+                                </div>
+                        {{else}}
+                            {{#if (lt bm_yard_service.yard.Certifications.length 9)}}
+                                <div class="add-img-div">
+                                    <img class="add-new-img" src='/images/btn_more_default@2x.png' {{action "addYardPicOnClick"}}/>
+                                </div>
+                            {{/if}}
+                        {{/if}}
                     </div>
                 {{/layout-push}}
             {{/layout-push }}
@@ -233,18 +244,18 @@
                 {{/layout-push }}
                 <span class='edit_sub_title'>请上传您获得的相关资质认证</span>
                 <span class='edit_sub_title'>如：国际儿童场地友好性证明</span>
-                <span class='edit_sub_title'>每张图片小于100KB</span>
+                <span class='edit_sub_title'>每张图片小于100KB，至多上传8项</span>
                 {{#layout-push direction='row'}}
                     <div class='line_conatainer_warp'>
                         {{#each bm_yard_service.yard.Certifications as |item|}}
-                            {{bmcom/bm-img-uploader needTag=true canEdit=true canEditTag=true imgObj=item img=item.img tag=item.tag onDeleteObj=(action "deleteCertImg") classNames='alt-yard-edit-tag-img-adjust'}}
+                            {{bmcom/bm-img-uploader needTag=true canEdit=true canEditTag=true canDeleteObj=true imgObj=item img=item.img tag=item.tag onDeleteObj=(action "deleteCertImg") classNames='alt-yard-edit-tag-img-adjust'}}
                         {{/each}}
                         {{#if (bmcom/bm-nil-obj bm_yard_service.yard.Certifications)}}
                                 <div class="add-img-div">
                                     <img class="add-new-img" src='/images/btn_more_default@2x.png' {{action "addCertPicOnClick"}}/>
                                 </div>
                         {{else}}
-                            {{#if (lt bm_yard_service.yard.Certifications.length 5)}}
+                            {{#if (lt bm_yard_service.yard.Certifications.length 8)}}
                                 <div class="add-img-div">
                                     <img class="add-new-img" src='/images/btn_more_default@2x.png' {{action "addCertPicOnClick"}}/>
                                 </div>
