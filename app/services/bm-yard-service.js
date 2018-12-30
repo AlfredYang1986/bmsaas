@@ -94,6 +94,12 @@ export default Service.extend({
         })
     },
 
+    genNewImgObj() {
+        let payload = this.genNewImgPayload();
+        let result = this.bmstore.sync(payload);
+        return result;
+    },
+
     guid() {
         function s4() {
           return Math.floor((1 + Math.random()) * 0x10000)
@@ -101,6 +107,19 @@ export default Service.extend({
             .substring(1);
         }
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+    },
+
+    genNewImgPayload() {
+        return {
+            data: {
+                type: 'BmCertification',
+                id: this.guid(),
+                attributes: {
+                    img: "",
+                    tag: ""
+                },
+            }
+        }
     },
 
     genMultiQuery() {
@@ -310,6 +329,11 @@ export default Service.extend({
             }
             arr.push(tmp.data);
         }
+        for (let idx = 0; idx < rd.Certifications.length; idx++) {
+            let tmp = rd.Certifications[idx].serialize();
+            arr.push(tmp.data);
+        }
+
 
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
         rd_tmp['included'] = arr;

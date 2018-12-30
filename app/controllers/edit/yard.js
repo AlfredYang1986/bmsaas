@@ -41,6 +41,16 @@ export default Controller.extend({
                 tempArr.splice(tempArr.indexOf(value), 1)
             }
             this.set('bm_yard_service.yard.facilities', tempArr)
+        },
+        addCertPicOnClick() {
+            let newObj = this.bm_yard_service.genNewImgObj();
+            let tempArr = [];
+            if (this.bm_yard_service.yard.Certifications !== null) {
+                tempArr = this.bm_yard_service.yard.Certifications;
+            }
+            tempArr.pushObject(newObj);
+            this.set('bm_yard_service.yard.Certifications', tempArr)
+            console.log(this.bm_yard_service.yard)
         }
     },
 });

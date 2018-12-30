@@ -236,9 +236,21 @@
                 <span class='edit_sub_title'>每张图片小于100KB</span>
                 {{#layout-push direction='row'}}
                     <div class='line_conatainer_warp'>
+                        {{log bm_yard_service.yard.Certifications}}
                         {{#each bm_yard_service.yard.Certifications as |item|}}
                             {{bmcom/bm-img-uploader needTag=true canEdit=true img=item.img tag=item.tag classNames='alt-yard-edit-tag-img-adjust'}}
                         {{/each}}
+                        {{#if (bmcom/bm-nil-obj bm_yard_service.yard.Certifications)}}
+                                <div class="add-img-div">
+                                    <img class="add-new-img" src='/images/image@2x.png' {{action "addCertPicOnClick"}}/>
+                                </div>
+                        {{else}}
+                            {{#if (lt bm_yard_service.yard.Certifications.length 5)}}
+                                <div class="add-img-div">
+                                    <img class="add-new-img" src='/images/image@2x.png' {{action "addCertPicOnClick"}}/>
+                                </div>
+                            {{/if}}
+                        {{/if}}
                     </div>
                 {{/layout-push}}
             {{/layout-push }}

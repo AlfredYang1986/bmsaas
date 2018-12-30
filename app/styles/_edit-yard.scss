@@ -153,6 +153,18 @@
                     .line_conatainer_warp{
                         margin-top: 16px;
 
+                        .add-img-div {
+                            width: 272px;
+                            height: 272px;
+                            // background-color: #fff;
+
+                            .add-new-img {
+                                width: 272px;
+                                height: 182px;
+                                border: 1px dashed #D2D4D9
+                            }
+                        }
+
                         .alt-yard-edit-tag-img-adjust {
                             margin-right: 24px;
                             margin-bottom: 40px;

@@ -52,7 +52,6 @@
     {{else if passwordInput}}
         {{input type="password" classNames="edit_text_field_login" maxlength=maxlength placeholder=pholder value=inputVal}}
     {{else if numberInput}}
-        {{!-- <input class="edit_text_field" placeholder={{pholder}} value={{inputVal}} onkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))"/> --}}
         {{input type="number" classNames="edit_text_field edit_text_field_number" placeholder=pholder value=inputVal key-press=(action "onKeyPress")}}
     {{else}}
         {{input classNames="edit_text_field" maxlength=maxlength  placeholder=pholder value=inputVal key-up=(action "onKeyUp")}}
