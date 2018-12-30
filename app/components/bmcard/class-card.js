@@ -17,6 +17,6 @@ export default Component.extend({
         }
     }),
     click() {
-        this.onClassCardClicked(this.cls.get('id'));
+        this.onClassCardClicked(this.cls.id);
     }
 });

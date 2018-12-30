@@ -373,6 +373,51 @@
 
             }
         }
+
+        .register-pop-ups {
+            p.pop-up-title {
+                margin-bottom: 24px;
+                @extend %font-dialog-title;
+            }
+            .pop-section {
+                margin-bottom: 24px;
+                border-bottom: 0.5px solid #eee;
+            }
+            p.help-title {
+                margin-bottom: 24px;
+                @extend %font-minimum-text;
+            }
+            .name-area {
+                margin-right: 16px;
+            }
+            .area-margin-bottom {
+                margin-bottom: 24px;
+            }
+            p.edit_title {
+                @extend %font-form-info-title;
+                min-width: 56px;
+                margin-right: 16px;
+            }
+            .course-reserve-modal-select {
+                select {
+                    width: 224px;
+                    @extend %select-box-dropdown-default;
+                }
+            }
+            .select_input {
+                width: 224px;
+                margin-right: 16px;
+            }
+
+            .input_area_address {
+                width: 300px;
+
+                input {
+                    width: 300px;
+                }
+            }
+        }
+
     }
     .not-fill {
         @extend %button-system-disabled;
