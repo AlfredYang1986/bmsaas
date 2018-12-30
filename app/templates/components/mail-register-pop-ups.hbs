@@ -31,7 +31,7 @@
                 {{bmform/bm-edit-line title='就读学校'  inputVal=apply.kid.school classNames='input_area'}}
             {{/layout-push}}
             {{#layout-push direction="col" classNames='input_area area-margin-bottom' }}
-                {{bmform/bm-edit-line title='住址'  inputVal=apply.kid.address classNames='input_area'}}
+                {{bmform/bm-edit-line title='住址'  inputVal=apply.kid.address classNames='input_area input_area_address'}}
             {{/layout-push}}
         {{/layout-push}}
 
@@ -44,8 +44,11 @@
             {{#layout-push direction="col"  classNames='input_area area-margin-bottom name-area' }}
                 {{bmform/bm-edit-line title='姓名'  inputVal=apply.Applyee.name classNames='input_area'}}
             {{/layout-push}}
-            {{#layout-push direction="col" classNames='input_area area-margin-bottom' }}
+            {{#layout-push direction="col" classNames='input_area area-margin-bottom name-area' }}
                 {{bmform/bm-edit-line title='联系方式'  inputVal=apply.Applyee.regi_phone classNames='input_area'}}
+            {{/layout-push}}
+            {{#layout-push direction="col"  classNames='input_area area-margin-bottom' }}
+                {{bmform/bm-edit-line title='微信'  inputVal=apply.Applyee.wechat classNames='input_area'}}
             {{/layout-push}}
         {{/layout-push}}
 

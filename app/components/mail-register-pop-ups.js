@@ -7,7 +7,7 @@ export default Component.extend({
     init() {
         this._super(...arguments);
         this.bm_tech_service.queryLocalMultiObject();
-        debugger
+        // debugger
         if(this.apply.kid.gender == 0) {
             this.set('sex_idx', 1)
         } else if(this.apply.kid.gender == 1) {
@@ -69,7 +69,7 @@ export default Component.extend({
             }
         },
         radioSelect() {
-            debugger
+            // debugger
         }
     }
 });

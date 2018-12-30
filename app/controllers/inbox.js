@@ -3,6 +3,7 @@ import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 import { debug } from '@ember/debug';
+import { copy } from '@ember/object/internals';
 
 export default Controller.extend({
 
@@ -31,6 +32,7 @@ export default Controller.extend({
     showhandledlg: false,
     showRegister: false,
     current_apply: null,
+    current_edit_apply: null,
     showcomfirmdlg: false,
     isToday: false,
 
@@ -98,7 +100,30 @@ export default Controller.extend({
         },
 
         successRegisterHandled(item) {
-            debugger
+            this.set("current_apply.Applyee.gender",this.current_edit_apply.Applyee.gender);
+            this.set("current_apply.Applyee.name",this.current_edit_apply.Applyee.name);
+            this.set("current_apply.Applyee.pic",this.current_edit_apply.Applyee.pic);
+            this.set("current_apply.Applyee.regi_phone",this.current_edit_apply.Applyee.regi_phone);
+            this.set("current_apply.Applyee.wechat_bind_phone",this.current_edit_apply.Applyee.wechat_bind_phone);
+            this.set("current_apply.Applyee.wechat_openid",this.current_edit_apply.Applyee.wechat_openid);
+            
+            this.set("current_apply.kid.dob",this.current_edit_apply.kid.dob);
+            this.set("current_apply.kid.gender",this.current_edit_apply.kid.gender);
+            this.set("current_apply.kid.guardian_role",this.current_edit_apply.kid.guardian_role);
+            this.set("current_apply.kid.name",this.current_edit_apply.kid.name);
+            this.set("current_apply.kid.nickname",this.current_edit_apply.kid.nickname);
+
+            this.set("current_apply.applyFrom",this.current_edit_apply.applyFrom);
+            this.set("current_apply.apply_time",this.current_edit_apply.apply_time);
+            this.set("current_apply.brandId",this.current_edit_apply.brandId);
+            this.set("current_apply.contact",this.current_edit_apply.contact);
+            this.set("current_apply.courseName",this.current_edit_apply.courseName);
+            this.set("current_apply.courseType",this.current_edit_apply.courseType);
+            this.set("current_apply.create_time",this.current_edit_apply.create_time);
+            this.set("current_apply.except_time",this.current_edit_apply.except_time);
+            this.set("current_apply.status",this.current_edit_apply.status);
+
+            // debugger
             let that = this;
             let callback = {
                 onSuccess: function(res) {
@@ -119,10 +144,11 @@ export default Controller.extend({
             stud.reg_date = new Date().getTime();
             stud.dob = kid.dob;
             stud.applyId = this.current_apply.id;
-            stud.school = kid.school
-            stud.address = kid.address
-            stud.teacherName = kid.teacherName
-            stud.sourceWay = kid.sourceWay
+            stud.school = this.current_edit_apply.kid.school
+            stud.address = this.current_edit_apply.kid.address
+            stud.teacherName = this.current_edit_apply.kid.teacherName
+            stud.sourceWay = this.current_edit_apply.kid.sourceWay
+            stud.wechat = this.current_edit_apply.Applyee.wechat
 
             stud.Guardians[0].name = this.current_apply.Applyee.name;
             stud.Guardians[0].gender = this.current_apply.Applyee.gender;
@@ -148,9 +174,11 @@ export default Controller.extend({
             this.bm_apply_service.saveUpdate(callbackPush);
         },
         onPreRegisterClick(item) {
-            debugger
+            // debugger
             this.set('showRegister', true);
             this.set('current_apply', item);
+            this.set('current_edit_apply', copy(item,true));
+
         },
         toggleAction() {
             let that = this;
