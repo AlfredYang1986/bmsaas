@@ -81,7 +81,7 @@
             {{#layout-push direction='col' classNames='yard_room_container'}}
                 {{#layout-push direction='row' split=true classNames='yard_room_title_container'}}
                     <p class="room-title">教室/场地</p>
-                    {{#bs-button classNames="add_btn" onClick=(action (mut EditRoomDlg) true)}}<span>+ 添加教室</span>{{/bs-button}}
+                    {{#bs-button classNames="add_btn" onClick=(action 'onAddRoomClick')}}<span>+ 添加教室</span>{{/bs-button}}
                 {{/layout-push}}
             {{/layout-push}}
 
@@ -94,5 +94,40 @@
         {{/if}}
     {{/layout-push}}
 </section>
+
+{{#bmcom/bm-modal-container title="" mswitch=editRoomDlg
+        successbtncss='exp-modal-confirm'
+        cancelbtncss='exp-modal-cancel'
+        canceltext='取消'
+        onCancelBtnClicked=(action 'cancelHandled')
+        onSuccessBtnClicked=(action 'successHandled')}}
+        <div class="session-modal">
+            {{#layout-push direction='col' }}
+                {{#layout-push direction='row'}}
+                    <p class="title">编辑教室</p>
+                {{/layout-push}}
+                {{!-- {{#if noteError}}
+                    <div class="form-checked">
+                        {{#layout-push direction='row' classNames="error-line"}}
+                            <img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
+                            <span class="error-info">请填写完整信息</span>
+                        {{/layout-push}}
+                    </div>
+                {{/if}} --}}
+                {{#layout-push direction="col" classNames='input_area area-margin-bottom' }}
+                    <p class="edit_subtitle">使用类型</p>
+                    {{bmcom/bm-radio-inline cur_idx=type_idx judge2=type titles=typeChecked}}
+                {{/layout-push}}
+                {{#layout-push direction="row"  classNames='input_area' }}
+                    {{bmform/bm-edit-line title='教室名称' inputVal="" classNames='input_area input-full-width'}}
+                {{/layout-push}}
+                
+            {{/layout-push}}
+        </div>
+{{/bmcom/bm-modal-container}}
+
+{{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteRoomDlg cancelHandled='cancelHandled' successHandled="onDeleteRoomClick"}}
+    <p class="warning-modal-body-content">您确定要删除该教室吗？</p>
+{{/bmcom/bm-warning-modal}}
 
 {{outlet}}

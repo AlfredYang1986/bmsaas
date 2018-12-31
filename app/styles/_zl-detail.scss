@@ -472,11 +472,22 @@ a.reserve_detail_href_ref {
 }
 .modal-content {
     border: none;
-    
+
     .session-modal  {
         padding: 24px 0 8px 0;
         background: #fff;
         // width: 512px;
+
+        .input-full-width {
+            width: 100%;
+            input {
+                width: 100%;
+            }
+        }
+        .area-margin-bottom {
+            margin-bottom: 32px;
+        }
+        
         .form-checked {
             margin-bottom: 16px;
             img.error {
