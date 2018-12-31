@@ -47,7 +47,15 @@ export default Controller.extend({
             this.set('type_idx', 0)
             this.set('editRoomDlg', true);
         },
-        onEditRoomClick() {
+        onEditRoomClick(params) {
+            // this.set('tempRoom', params);
+            this.bm_room_service.genNewRoom();
+            this.set('bm_room_service.room.id',params.id);
+            this.set('bm_room_service.room.roomType',params.roomType);
+            this.set('bm_room_service.room.capacity',params.capacity);
+            this.set('bm_room_service.room.title',params.title);
+            this.set('bm_room_service.room.yardId',params.yardId);
+            this.set('type_idx',params.roomType);
             this.set('edit_flag_info', "编辑");
             this.set('editRoomDlg', true);
         },
@@ -80,6 +88,7 @@ export default Controller.extend({
             // this.set('showAddSessionDlg', false);
             // this.set('deleteRoomDlg', false);
             // this.set('closeRoomDlg', false);
+            this.set('type_idx', 0)
             this.set('editRoomDlg', false);
             this.set('deleteRoomDlg', false);
         },
