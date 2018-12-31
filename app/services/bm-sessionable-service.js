@@ -26,7 +26,6 @@ export default Service.extend({
     sessionableid: '',
     reservableid: '',
     refresh_token: '',
-    refresh_all_token: '',
     sessionable: null,
     sessionables: A([]),
     totalCount: 0,

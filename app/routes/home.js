@@ -13,6 +13,6 @@ export default Route.extend({
     },
     setupController(controller, model) {
         this._super(controller, model);
-        // this.bm_brand_service.set('refresh_token', this.bm_brand_service.guid());
+        this.bm_brand_service.set('refresh_token', this.bm_brand_service.guid());
     },
 });

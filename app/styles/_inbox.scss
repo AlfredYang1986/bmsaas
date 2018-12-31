@@ -373,6 +373,51 @@
 
             }
         }
+
+        .register-pop-ups {
+            p.pop-up-title {
+                margin-bottom: 24px;
+                @extend %font-dialog-title;
+            }
+            .pop-section {
+                margin-bottom: 24px;
+                border-bottom: 0.5px solid #eee;
+            }
+            p.help-title {
+                margin-bottom: 24px;
+                @extend %font-minimum-text;
+            }
+            .name-area {
+                margin-right: 16px;
+            }
+            .area-margin-bottom {
+                margin-bottom: 24px;
+            }
+            p.edit_title {
+                @extend %font-form-info-title;
+                min-width: 56px;
+                margin-right: 16px;
+            }
+            .course-reserve-modal-select {
+                select {
+                    width: 224px;
+                    @extend %select-box-dropdown-default;
+                }
+            }
+            .select_input {
+                width: 224px;
+                margin-right: 16px;
+            }
+
+            .input_area_address {
+                width: 300px;
+
+                input {
+                    width: 300px;
+                }
+            }
+        }
+
     }
     .not-fill {
         @extend %button-system-disabled;
@@ -474,16 +519,34 @@
 }
 
 .bm-inbox-table {
-    height: 1145px;
+    height: 550px;
+    overflow: auto;
     margin: 24px 0;
 }
 .bm-sessionable-table {
-    height: 585px;
+    height: 560px;
+    overflow: auto;
     margin: 24px 0;
 }
 .bm-field-table {
     height: 585px;
     margin: 24px 0;
+}
+.ib_table_title {
+
+}
+
+.register_title {
+    width: 80%;
+}
+.ib_table_item {
+    padding: 0px 24px 8px 24px;
+    font-family: PingFangSC-Regular;;
+    font-size: 12px;
+    color: #6B778C;
+    line-height: 16px;
+
+    min-width: 100px;
 }
 .ib_table_head {
     // margin-top: 8px;
@@ -491,6 +554,9 @@
     border: none;
     background: transparent;
     width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
 
     .ib_table_title {
     }

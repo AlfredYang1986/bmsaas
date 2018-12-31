@@ -2,13 +2,9 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
 export default Route.extend({
-    mock_data: service(),
-    model() {
-        // this.mock_data.sureClasses();
-        // let cls = this.store.peekAll('bmclass');
-
-        // return RSVP.hash({
-        //         cls: cls
-        //     })
-    },
+    bm_class_service: service(),
+    setupController(controller, model) {
+        this._super(controller, model);
+        this.bm_class_service.set('refresh_all_token', this.bm_class_service.guid());
+    }
 });

@@ -1,22 +1,24 @@
 import Component from '@ember/component';
-import { computed } from '@ember/object';
 import { debug } from '@ember/debug';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
+    bm_class_service: service(),
 
     init() {
         this._super(...arguments);
         this.get('resizeService').on('didResize', event => {
-            debug(event)
-            this.set('height', window.innerHeight - 375);
+            debug(event);
+            this.set('height', window.innerHeight - 290);
         })
     },
 
     positionalParams: ['height', 'overflow'],
     tagName: 'div',
-    classNames: ['bm-scroller bm-time-grid-container'],
-    height: computed(function(){
-        return window.innerHeight - 375;
+    classNames: ['bm-scroller', 'class-content-panel-scroller'],
+    height: computed(function() {
+        return window.innerHeight - 290;
     }),
     attributeBindings: ['style'],
     overflow: 'hidden scroll',
@@ -24,6 +26,5 @@ export default Component.extend({
         return 'overflow: ' + this.overflow + ';' +
                 'height: ' + this.height + 'px;'
     }),
-    inner_height: 1560,
-    inner_margin: 0,
+    // innerHeight: 
 });

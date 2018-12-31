@@ -29,6 +29,13 @@
             {{#if (eq bm_apply_service.reserved.length 0)}}
                 {{bmcom/bm-empty-state class="inbox-empty-state" picUrl="/images/img_empty@2x.png" title="暂无数据" des="请添加待预约学员"}}
             {{else}}
+                <table class='ib_table_head exp_table'>
+                    <tr class='ib_table_title'>
+                        {{#each model.reserveTitle as |item|}}
+                            <th class='ib_table_item'>{{item}}</th>
+                        {{/each}}
+                    </tr>
+                </table>
                 {{bmtable/bm-table-inbox reserveType=true title=model.reserveTitle applies=bm_apply_service.reserved action="setCurrentApply"}}
                 {{#if isToday}}
                     {{bmcom/bm-pagination pageCount=bm_apply_service.todayBookPageCount sendPageNum=(action "handleTodayBookPageChange")}}
@@ -42,6 +49,13 @@
             {{#if (eq bm_apply_service.preRegistered.length 0)}}
                 {{bmcom/bm-empty-state class="inbox-empty-state" picUrl="/images/img_empty@2x.png" title="暂无数据" des="请添加预注册学员"}}
             {{else}}
+                <table class='ib_table_head exp_table'>
+                    <tr class='ib_table_title'>
+                        {{#each model.preRegisterTtitle as |item|}}
+                            <th class='ib_table_item'>{{item}}</th>
+                        {{/each}}
+                    </tr>
+                </table>
                 {{bmtable/bm-table-inbox title=model.preRegisterTtitle applies=bm_apply_service.preRegistered registerId=bm_apply_service.preRegisterId onPreRegisterClick='onPreRegisterClick'}}
                 {{#if isToday}}
                     {{bmcom/bm-pagination pageCount=bm_apply_service.todayPrePageCount sendPageNum=(action "handleTodayPrePageChange")}}
@@ -81,19 +95,25 @@
                         apply=current_apply}}
             {{/layout-push}}
         {{/bmcom/bm-modal-container}}
+
         {{#bmcom/bm-modal-container
-                needSubmit=true
-                mswitch=showcomfirmdlg
-                successbtncss='course-reserve-card-save'
-                onSuccessBtnClicked=(action 'successHandled')}}
-            {{#layout-push direction=row classNames="success-info course-reverve-success"}}
-                <img src="../images/success.png" alt="">
-                {{#layout-push direction=col}}
-                    <p>安排成功！ </p>
-                    <p>已确认参与者提交状态，参与者可在小程序>我的>我的服务中查看详情。</p>
-                {{/layout-push}}
+                needTitle=false
+                mswitch=showRegister
+                needSubmit=couldSubmit
+                contentSubmit=contentSubmit
+                successbtncss='exp-modal-confirm'
+                cancelbtncss='exp-modal-cancel'
+                canceltext='取消'
+                onCancelBtnClicked=(action 'cancelRegisterHandled')
+                onSuccessBtnClicked=(action 'successRegisterHandled')}}
+            {{#layout-push direction=row classNames="course-reserve-pop-ups-content"}}
+                {{mail-register-pop-ups
+                    classNames="course-reserve-modal-body"
+                    apply=current_edit_apply
+                    }}
             {{/layout-push}}
         {{/bmcom/bm-modal-container}}
+
     </div>
 </div>
 {{outlet}}
