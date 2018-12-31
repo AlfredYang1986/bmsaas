@@ -60,10 +60,17 @@
                     {{#each imgs as |item index|}}
                         {{#if (gte index listPicIdxDown)}}
                             {{#if (lte index listPicIdxUp)}}
-                                {{#layout-push direction='col' split=true classNames='more-pic-list-each'}}
-                                    <img src={{item.url}} class="list-each-img">
-                                    <p class="list-each-img-des">{{item.tag}}</p>
-                                {{/layout-push}}
+                                {{#if (eq index mainPicIdx)}}
+                                    {{#layout-push direction='col' split=true classNames='more-pic-list-each'}}
+                                        <img src={{item.url}} class="list-each-img pic-checked">
+                                        <p class="list-each-img-des">{{item.tag}}</p>
+                                    {{/layout-push}}
+                                {{else}}
+                                    {{#layout-push direction='col' split=true classNames='more-pic-list-each'}}
+                                        <img src={{item.url}} class="list-each-img">
+                                        <p class="list-each-img-des">{{item.tag}}</p>
+                                    {{/layout-push}}
+                                {{/if}}
                             {{/if}}
                         {{/if}}
                     {{/each}}
