@@ -74,12 +74,12 @@ export default Service.extend({
         // this.set('localAttendeesPages', null);
         // this.set('curAttendeesPage', null);
 
-        if (this.roomid.length == 0 || this.roomid == 'room/push') {
-            let query_payload = this.genPushQuery();
-            let result = this.bmstore.sync(query_payload);
-            this.set('room', result);
-            return;
-        }
+        // if (this.roomid.length == 0 || this.roomid == 'room/push') {
+        //     let query_payload = this.genPushQuery();
+        //     let result = this.bmstore.sync(query_payload);
+        //     this.set('room', result);
+        //     return;
+        // }
 
         let query_room_payload = this.genIdQuery();
         let rd = this.bmstore.sync(query_room_payload);
@@ -171,9 +171,6 @@ export default Service.extend({
         let ft = this.room;
         if(params){
             ft.id = params.id;
-            ft.tmp_date = params.tmp_date
-            ft.start_date = params.start_date
-            ft.end_date = params.end_date
         }
         let arr = [];
         // let s = ft.SessionInfo.serialize();
@@ -195,8 +192,6 @@ export default Service.extend({
         // }
 
         let ft_tmp = JSON.parse(JSON.stringify(ft.serialize()));
-        ft_tmp.data.attributes.start_date = this.handleDate(ft.tmp_date, ft.start_date)
-        ft_tmp.data.attributes.end_date = this.handleDate(ft.tmp_date, ft.end_date)
         ft_tmp['included'] = arr;
         let dt = JSON.stringify(ft_tmp);
 
@@ -221,15 +216,12 @@ export default Service.extend({
         })
     },
 
-    deleteRoom(callback,params) {
+    deleteRoom(callback) {
         let delete_room_payload = this.genIdQuery();
         let rd = this.bmstore.sync(delete_room_payload);
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
         let inc = rd.Eqcond[0].serialize();
         rd_tmp['included'] = [inc.data];
-        if(params){
-            rd_tmp['included'][0].attributes.val = params.id
-        }
         let dt = JSON.stringify(rd_tmp);
 
         $.ajax({
@@ -326,7 +318,7 @@ export default Service.extend({
                 type: "BmRoom",
                 attributes: {
                     title: '',
-                    capacity: '',
+                    capacity: 0,
                     roomType: 0,
                     yardId: this.yardid,
                 },
@@ -402,6 +394,12 @@ export default Service.extend({
     isValidate() {
         return this.room.title.length > 0;
     },
+
+    genNewRoom() {
+        let query_payload = this.genPushQuery();
+        let result = this.bmstore.sync(query_payload);
+        this.set('room', result);
+    }
 
 
     // resetInfoAndYard(yardid, sinfoid) {

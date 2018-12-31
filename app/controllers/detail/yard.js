@@ -17,22 +17,22 @@ export default Controller.extend({
         progressBar: false,
         timeOut: '2000',
     },
+    edit_flag_info: "",
 
     cur_idx: 0,
     editRoomDlg: false,
     deleteRoomDlg: false,
-    addTemp:null,
-    editTemp:null,
+    tempRoom:null,
     
     typeChecked: A(['自有', '租用', '公共']),
     type_idx: 0,
     type: computed('type_idx', function() {
         // if(this.type_idx == 0) {
-        //     this.set('apply.kid.gender', 0)
+        //     this.set('bm_room_service.room.roomType', 0)
         // } else if(this.type_idx == 1) {
-        //     this.set('apply.kid.gender', 1)
+        //     this.set('bm_room_service.room.roomType', 1)
         // } else {
-        //     this.set('apply.kid.gender', 2)
+        //     this.set('bm_room_service.room.roomType', 2)
         // }
     }),
 
@@ -42,38 +42,36 @@ export default Controller.extend({
             this.bm_room_service.queryMultiObjects();
         },
         onAddRoomClick() {
-            // if(this.apply.kid.gender == 0) {
-            //     this.set('sex_idx', 1)
-            // } else if(this.apply.kid.gender == 1) {
-            //     this.set('sex_idx', 0)
-            // } else {
-            //     this.set('sex_idx', 2)
-            // }
+            this.set('edit_flag_info', "添加");
+            this.bm_room_service.genNewRoom();
+            this.set('type_idx', 0)
             this.set('editRoomDlg', true);
         },
         onEditRoomClick() {
+            this.set('edit_flag_info', "编辑");
             this.set('editRoomDlg', true);
         },
-        onDeleteRoomClick() {
-            // this.set('tmpSessionable', params);
+        onDeleteRoomClick(params) {
+            this.set('tempRoom', params);
             this.set('deleteRoomDlg', true);
         },
         onDeleteRoomClickOk() {
-            // let that = this;
-            // let callback = {
-                //     onSuccess: function() {
-                    //         that.bm_sessionable_service.set('refresh_all_token', that.bm_sessionable_service.guid());
-                    //         that.toast.success('', '删除场次成功', that.toastOptions);
-                    //         that.set('deleteSessionDlg', false);
-                    //         debug('delete　reservable　success')
-                    //     },
-                    //     onFail: function() {
-            //         that.toast.error('', '删除场次失败', that.toastOptions);
-            //         debug('delete　reservable　fail')
-            //     }
-            // }
-            // this.bm_sessionable_service.deleteSessionable(callback,this.tmpSessionable);
-            // this.set('tmpSessionable', "");
+            this.set('bm_room_service.roomid', this.tempRoom.id);
+            let that = this;
+            let callback = {
+                onSuccess: function () {
+                    that.toast.success('', '删除教室成功', that.toastOptions);
+                    that.bm_room_service.set('refresh_all_token', that.bm_room_service.guid());
+                    that.set('deleteRoomDlg', false);
+                    debug('delete　reservable　success')
+                },
+                onFail: function () {
+                    that.toast.error('', '删除教室失败', that.toastOptions);
+                    debug('delete　reservable　fail')
+                }
+            }
+            this.bm_room_service.deleteRoom(callback);
+            this.set('tempRoom', null);
         },
         cancelHandled() {
             // this.set('tmpSessionable', "");
@@ -86,9 +84,25 @@ export default Controller.extend({
             this.set('deleteRoomDlg', false);
         },
         successHandled() {
-            this.set('editRoomDlg', false);
+
+            this.set('bm_room_service.room.roomType', this.type_idx);
+
+            let that = this
+            let callback = {
+                onSuccess: function () {
+                    that.set('editRoomDlg', false);
+                    that.toast.success('', that.edit_flag_info + '教室成功', that.toastOptions);
+                    that.bm_room_service.set('refresh_all_token', that.bm_room_service.guid());
+                    debug('push room success')
+                },
+                onFail: function () {
+                    that.toast.error('', that.edit_flag_info + '教室失败', that.toastOptions);
+                    debug('push room fail')
+                }
+            }
+            this.bm_room_service.saveUpdate(callback);
+            
         },
     },
-
 
 });

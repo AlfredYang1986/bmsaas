@@ -120,17 +120,17 @@
                 {{/layout-push}}
                 {{#layout-push direction="col" classNames='input_area area-margin-bottom' }}
                     <p class="edit_subtitle">使用类型</p>
-                    {{bmcom/bm-radio-inline cur_idx=type_idx judge2=type titles=typeChecked}}
+                    {{bmcom/bm-radio-inline cur_idx=type_idx titles=typeChecked}}
                 {{/layout-push}}
                 {{#layout-push direction="row"  classNames='input_area' }}
-                    {{bmform/bm-edit-line title='教室名称' inputVal="" classNames='input_area input-full-width'}}
+                    {{bmform/bm-edit-line title='教室名称' inputVal=bm_room_service.room.title classNames='input_area input-full-width'}}
                 {{/layout-push}}
                 
             {{/layout-push}}
         </div>
 {{/bmcom/bm-modal-container}}
 
-{{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteRoomDlg cancelHandled='cancelHandled' successHandled="onDeleteRoomClick"}}
+{{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteRoomDlg cancelHandled='cancelHandled' successHandled="onDeleteRoomClickOk"}}
     <p class="warning-modal-body-content">您确定要删除该教室吗？</p>
 {{/bmcom/bm-warning-modal}}
 
