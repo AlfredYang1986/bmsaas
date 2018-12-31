@@ -612,7 +612,7 @@ a.btn_sign {
     text-align: center;
 }
 
-.actv_table, .exp_table, .inbox_table, .stud_list_table{
+.actv_table, .exp_table, .inbox_table, .stud_list_table .room_table{
 
     & tr:nth-of-type(even){
         // background-color: #FFFFFF;
@@ -676,6 +676,24 @@ a.btn_sign {
             width: 25%;
         }
         .ib_table_content_item:nth-last-child(1) {
+            text-align: center;
+        }
+    }
+}
+
+.ib_table_head.room_table {
+    .session-list {
+        &:nth-child(even) {
+            background-color: #fbfbfb;
+        }
+        &:nth-child(odd) {
+            background-color: #FFFFFF;
+        }
+        .ib_table_content_item {
+            width: 40%;
+        }
+        .ib_table_content_item:nth-last-child(1) {
+            width: 20%;
             text-align: center;
         }
     }

@@ -14,6 +14,12 @@ export default Component.extend({
 		onDeleteSessionClick: function (params) {
 			this.sendAction("onDeleteSessionClick", params);
 		},
+		onEditRoomClick: function (params) {
+			this.sendAction("onEditRoomClick", params);
+		},
+		onDeleteRoomClick: function (params) {
+			this.sendAction("onDeleteRoomClick", params);
+		},
         registerClick: function() {
         },
         addStud(params) {

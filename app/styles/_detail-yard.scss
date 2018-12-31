@@ -46,6 +46,7 @@
     }
 
     .yard_room_container {
+        margin-bottom: 24px;
         
         .yard_room_title_container {
             background-color: #FFFFFF;
@@ -78,4 +79,16 @@
             }
         }
     }
+}
+
+.edit_subtitle_content {
+    height: 32px;
+    line-height: 32px;
+    padding-left: 16px;
+    background: #FAFBFC;
+    border-radius: 4px;
+    width: 386px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #253858;
 }

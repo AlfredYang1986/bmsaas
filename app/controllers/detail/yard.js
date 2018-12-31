@@ -9,6 +9,7 @@ export default Controller.extend({
         this._super(...arguments);
     },
     bm_yard_service: service(),
+    bm_room_service: service(),
     toast: service(),
     toastOptions: {
         closeButton: false,
@@ -20,6 +21,8 @@ export default Controller.extend({
     cur_idx: 0,
     editRoomDlg: false,
     deleteRoomDlg: false,
+    addTemp:null,
+    editTemp:null,
     
     typeChecked: A(['自有', '租用', '公共']),
     type_idx: 0,
@@ -34,6 +37,10 @@ export default Controller.extend({
     }),
 
     actions: {
+        handlePageChange(pageNum) {
+            this.set('bm_room_service.page', pageNum - 1);
+            this.bm_room_service.queryMultiObjects();
+        },
         onAddRoomClick() {
             // if(this.apply.kid.gender == 0) {
             //     this.set('sex_idx', 1)
