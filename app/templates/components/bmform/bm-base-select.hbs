@@ -1,0 +1,20 @@
+{{!-- {{yield}} --}}
+{{#layout-push direction="col" split=true classNames='input_area'}}
+    <p class="edit_title">{{selTitle}}</p>
+    {{#layout-push direction="row" classNames=""}}
+        <div class="course-reserve-modal-select">
+            <select class="" id="selId" name="" onChange={{action 'selectedChange'}}>
+                {{#if (eq curSelect "")}}
+                    <option value="" disabled selected hidden>请选择</option>
+                {{/if}}
+                {{#each options as |item|}}
+                    {{#if (eq curSelect item.name)}}
+                        <option selected value={{item.name}}>{{item.name}}</option>
+                    {{else}}
+                        <option value={{item.name}}>{{item.name}}</option>
+                    {{/if}}
+                {{/each}}
+            </select>
+        </div>
+    {{/layout-push}}
+{{/layout-push}}

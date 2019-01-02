@@ -83,21 +83,26 @@
 
 		<section class="kids_info stu_section" id="other-info">
 			<p class="title-name">更多信息</p>
-			{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
+			{{!-- {{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
 				<p class="edit_title">课程顾问</p>
 				{{#layout-push direction="row" classNames="area-margin-bottom"}}
 					<div class="course-reserve-modal-select error-border">
 						<select class="" id='techSelect' name="" onChange={{action 'selectedTech'}}>
-						   <option value="">{{bm_stud_service.stud.teacherName}}</option>
+						   {{#if (eq bm_stud_service.stud.teacherName "")}}
+						   		<option value="" disabled selected hidden>请选择</option>
+						   {{/if}}
 						   {{#each bm_tech_service.techs as |item|}}
-							   <option value={{item.name}}>{{item.name}}</option>
+							{{#if (eq bm_stud_service.stud.teacherName item.name)}}
+								<option selected value={{item.name}}>{{item.name}}</option>
+							{{else}}
+								<option value={{item.name}}>{{item.name}}</option>
+							{{/if}}
 						   {{/each}}
 						</select>
 					</div>
 				{{/layout-push}}
-			{{/layout-push}}
-
-			{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
+			{{/layout-push}} --}}
+			{{!-- {{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
 				<p class="edit_title">渠道来源</p>
 				{{#layout-push direction="row" classNames="area-margin-bottom"}}
 					<div class="course-reserve-modal-select error-border">
@@ -109,7 +114,9 @@
 						</select>
 					</div>
 				{{/layout-push}}
-			{{/layout-push}}
+			{{/layout-push}} --}}
+			{{bmform/bm-base-select selTitle="课程顾问" options=bm_tech_service.techs curSelect=bm_stud_service.stud.teacherName classNames="input_area area-margin-bottom"}}
+			{{bmform/bm-base-select selTitle="渠道来源" options=origin curSelect=bm_stud_service.stud.sourceWay classNames="input_area"}}
 		</section>
 	</div>
 {{/layout-push}}
