@@ -23,17 +23,17 @@ export default Service.extend({
     yard: null,
     yards: A([]),
 
-    queryYard() {
+    queryYard(callback) {
 
         this.bmstore.reset();
         this.set('yard', null);
 
-        if (this.yardid.length == 0 || this.yardid == 'yard/push') {
-            let query_payload = this.genPushQuery();
-            let result = this.bmstore.sync(query_payload);
-            this.set('yard', result);
-            return;
-        }
+        // if (this.yardid.length == 0 || this.yardid == 'yard/push') {
+        //     let query_payload = this.genPushQuery();
+        //     let result = this.bmstore.sync(query_payload);
+        //     this.set('yard', result);
+        //     return;
+        // }
 
         let query_yard_payload = this.genIdQuery();
         let rd = this.bmstore.sync(query_yard_payload);
@@ -55,9 +55,16 @@ export default Service.extend({
             success: function(res) {
                 let result = that.bmstore.sync(res)
                 that.set('yard', result);
+                that.set('yardid', result.id);
+                if (callback.onSuccess) {
+                    callback.onSuccess();
+                }
             },
             error: function(err) {
                 debug('error is : ', err);
+                if (callback.onFail) {
+                    callback.onFail(err);
+                }
             },
         })
     },
@@ -68,9 +75,9 @@ export default Service.extend({
         let query_yard_payload = this.genMultiQuery();
         let rd = this.bmmulti.sync(query_yard_payload);
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
-        // let eq = rd.Eqcond[0].serialize();
+        let eq = rd.Eqcond[0].serialize();
         // let fm = rd.Fmcond.serialize();
-        // rd_tmp['included'] = [eq.data, fm.data];
+        rd_tmp['included'] = [eq.data];
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
@@ -86,10 +93,16 @@ export default Service.extend({
             success: function(res) {
                 debug(res)
                 let result = that.bmmulti.sync(res)
-                that.set('yards', result);
+                that.set('yards', result[0]);
+                // if (callback.onSuccess) {
+                //     callback.onSuccess();
+                // }
             },
             error: function(err) {
                 debug('error is : ', err);
+                // if (callback.onFail) {
+                //     callback.onFail(err);
+                // }
             },
         })
     },
@@ -133,8 +146,12 @@ export default Service.extend({
                     },
                     relationships: {
                         Eqcond: {
-                            id: eq,
-                            type: "Eqcond"
+                            data: [
+                            {
+                                id: eq,
+                                type: "Eqcond"
+                            }
+                            ]
                         }
                     }
                 },
@@ -176,8 +193,10 @@ export default Service.extend({
                         id: eq,
                         type: "Eqcond",
                         attributes: {
-                            key: "id",
-                            val: this.yardid
+                            // key: "id",
+                            // val: this.yardid
+                            key: 'brandId',
+                            val: localStorage.getItem('brandid')
                         }
                     }
                 ]

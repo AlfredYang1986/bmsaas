@@ -67,7 +67,7 @@ export default Service.extend({
             },
         })
     },
-    queryRoom(/*callback*/) {
+    queryRoom(callback/*callback*/) {
         this.bmstore.reset();
         this.set('room', null);
         // this.set('localAttendees', null);
@@ -120,9 +120,16 @@ export default Service.extend({
 
                 // }
                 debug(that.room)
+                // console.log(callback)
+                // if (callback.onSuccess) {
+                //     callback.onSuccess();
+                // }
             },
             error: function(err) {
                 debug('error is : ', err);
+                // if (callback.onFail) {
+                //     callback.onFail(err);
+                // }
             },
         })
     },
@@ -268,7 +275,7 @@ export default Service.extend({
                     type: "Eqcond",
                     attributes: {
                         key: "yardId",
-                        val: this.yardid
+                        val: this.bm_yard_service.yardid
                     }
                 },
             ]
@@ -320,7 +327,7 @@ export default Service.extend({
                     title: '',
                     capacity: 0,
                     roomType: 0,
-                    yardId: this.yardid,
+                    yardId: this.bm_yard_service.yardid,
                 },
                 relationships: {
                 }
@@ -374,7 +381,7 @@ export default Service.extend({
                         type: "Eqcond",
                         attributes: {
                             key: "yardId",
-                            val: this.yardid
+                            val: this.bm_yard_service.yardid
                         }
                     },
                 ]

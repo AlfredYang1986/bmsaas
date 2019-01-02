@@ -42,6 +42,7 @@ Router.map(function() {
     this.route('stud', { path: '/stud/:studid' });
     this.route('tech', { path: '/tech/:techid' });
     this.route('yard', { path: '/yard/:yardid' });
+    this.route('yard', { path: '/yard' });
     this.route('course', { path: '/course/:courseid' });
     this.route('classes', { path: '/cls/:clsid'} );
     this.route('course-reserve', { path: '/course-reserve/:reid' });
