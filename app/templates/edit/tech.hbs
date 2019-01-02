@@ -45,7 +45,8 @@
     <div class="input_container tech_input_container">
         <section id="job-info" class="job-infos tech_section">
             {{#layout-push direction='col' split=true classNames="job-infos-container"}}
-                {{#layout-push direction='row' split=false classNames="area-margin-bottom-job"}}
+                {{bmform/bm-base-select selTitle="职务" options=jobArr curSelect=bm_tech_service.tech.jobTitle classNames="input_area area-margin-bottom-job"}}
+                {{!-- {{#layout-push direction='row' split=false classNames="area-margin-bottom-job"}}
                     {{#layout-push direction='col' classNames="input_area"}}
                         <p class="edit_title">职务</p>
                         <select class="" id="jobSelect"  name="" onChange={{action 'selectedJob'}}>
@@ -55,7 +56,7 @@
                             {{/each}}
                         </select>
                     {{/layout-push}}
-                {{/layout-push}}
+                {{/layout-push}} --}}
                 {{#layout-push direction='col' classNames="input_area"}}
                     <p class="edit_title">类型</p>
                     {{bmcom/bm-radio-inline cur_idx=jobTypeIdx judge=jobType titles=jobTypeCheck}}
@@ -90,7 +91,7 @@
                     {{bmform/bm-edit-line title='微信' inputVal=bm_tech_service.tech.wechat classNames='input_area area-margin-bottom'}}
                     {{bmform/bm-edit-line fullWidthInput=true title='来自城市' inputVal=bm_tech_service.tech.nativePlace classNames='input_area area-margin-bottom'}}
                     {{#layout-push direction='row' split=false classNames="input_area area-margin-bottom"}}
-                        {{#layout-push direction="col" split=false classNames='input_area'}}
+                        {{!-- {{#layout-push direction="col" split=false classNames='input_area'}}
                         <p class="edit_title">教龄</p>
                         <select class="years-select" id="yearsSelect"  name="" onChange={{action 'selectedYears'}}>
                             <option value="">{{bm_tech_service.tech.teachYears}}</option>
@@ -98,7 +99,8 @@
                                 <option value={{item}}>{{item}}</option>
                             {{/each}}
                         </select>
-                        {{/layout-push}}
+                        {{/layout-push}} --}}
+                        {{bmform/bm-base-select selId="yearsSelect" type="number" selTitle="教龄" options=teachYearsArr curSelect=bm_tech_service.tech.teachYears classNames="input_area years-select" pHolder=0}}
                         {{bmform/bm-edit-line fullWidthInput=true title='擅长科目' inputVal=bm_tech_service.tech.major classNames='input_area area-margin-bottom area-margin-left'}}
                     {{/layout-push}}
                     {{bmform/bm-edit-line notNeeded=true fullWidthInput=true title='地址' inputVal=bm_tech_service.tech.address classNames='input_area area-margin-bottom'}}

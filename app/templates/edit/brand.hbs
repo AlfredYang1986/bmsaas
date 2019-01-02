@@ -47,7 +47,7 @@
                 {{!-- {{bmform/bm-edit-line title="品牌名称" isNeeded=true maxCount=15 pholder="如：Black Mirror Tech" inputVal=bm_brand_service.brand.title}}
                 {{bmform/bm-edit-line title="品牌简称" isNeeded=true maxCount=15 pholder="简称更容易让大家记住您的品牌喔！如：Black Mirror" inputVal=bm_brand_service.brand.subtitle}}
                 {{bmform/bm-edit-line title="一句话介绍(slogan)" isNeeded=true maxCount=15 pholder="请用一句话想家长和孩子们传递您的品牌理念" inputVal=bm_brand_service.brand.slogan}} --}}
-                {{#layout-push direction='row' split=false classNames="area-margin-bottom-cate"}}
+                {{!-- {{#layout-push direction='row' split=false classNames="area-margin-bottom-cate"}}
                     {{#layout-push direction='col' classNames="input_area"}}
                         <p class="edit_title">分类</p>
                         <select class="" id="cateSelect"  name="" onChange={{action 'selectedCate'}}>
@@ -57,7 +57,8 @@
                             {{/each}}
                         </select>
                     {{/layout-push}}
-                {{/layout-push}}
+                {{/layout-push}} --}}
+                {{bmform/bm-base-select selTitle="分类" options=cateArr curSelect=bm_brand_service.brand.Cate.title classNames="input_area area-margin-bottom"}}
 
 
                 {{#layout-push direction="col" classNames='brand-input-group'}}

@@ -61,9 +61,10 @@
 
     {{#layout-push direction='col' classNames=''}}
         <p class="help-title">更多信息</p>
-
         {{#layout-push direction='row'}}
-            {{#layout-push direction="col" split=true classNames='input_area' }}
+            {{bmform/bm-base-select selTitle="课程顾问" options=bm_tech_service.techs curSelect=bm_stud_service.stud.teacherName classNames="input_area area-margin-bottom"}}
+            {{bmform/bm-base-select selTitle="渠道来源" options=origin curSelect=bm_stud_service.stud.sourceWay classNames="input_area area-margin-bottom"}}
+            {{!-- {{#layout-push direction="col" split=true classNames='input_area' }}
                 <p class="edit_subtitle">课程顾问</p>
                 {{#layout-push direction="row" classNames="area-margin-bottom"}}
                     <div class="course-reserve-modal-select error-border">
@@ -89,7 +90,7 @@
                         </select>
                     </div>
                 {{/layout-push}}
-            {{/layout-push}}
+            {{/layout-push}} --}}
         {{/layout-push}}
 
     {{/layout-push}}

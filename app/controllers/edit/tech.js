@@ -28,8 +28,8 @@ export default Controller.extend({
             }
         }
     }),
-    teachYearsArr:A([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]),
-    jobArr:A(["校長", "教務主任", "課程顧問", "教師"]),
+    teachYearsArr:A([{name: 0}, {name: 1}, {name: 2}, {name: 3}, {name: 4}, {name: 5}, {name: 6}, {name: 7}, {name: 8}, {name: 9}, {name: 10}, {name: 11}, {name: 12}, {name: 13}, {name: 14}, {name: 15}, {name: 16}, {name: 17}, {name: 18}, {name: 19}, {name: 20}]),
+    jobArr:A([{name: '校長'}, {name: '教務主任'}, {name: '課程顧問'}, {name: '教師'}]),
 
     actions: {
         saveTechBtnClicked() {

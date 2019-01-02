@@ -7,7 +7,7 @@ export default Controller.extend({
     bm_brand_service: service(),
     listInputs: A([]),
     cur_idx: 0,
-    cateArr:A(["音樂", "藝術", "運動", "科學", "steam"]),
+    cateArr: A([{name: '音樂'}, {name: '藝術'}, {name: '運動'}, {name: '科學'}, {name: 'steam'}]),
     actions: {
         saveBrand() {
             let that = this

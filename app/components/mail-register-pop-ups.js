@@ -48,7 +48,7 @@ export default Component.extend({
             this.set('apply.kid.guardian_role', "其他")
         }
     }),
-    origin: ['学员转介绍', '电话推广', '小程序', '线下活动推广', '其他'],
+    origin:A([{name: '学员转介绍'}, {name: '电话推广'}, {name: '小程序'}, {name: '线下活动推广'}, {name: '其他'}]),
     positionalParams: ['apply',],
     actions: {
         selectedTech() {

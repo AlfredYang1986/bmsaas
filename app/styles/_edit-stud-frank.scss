@@ -196,6 +196,11 @@
         padding: 24px;
         background-color: $color-neutral-N000;
 
+        .years-select {
+            select { 
+                width: 80px!important;                
+            }
+        }
         select {
             @extend %select-box-dropdown-default;
 
