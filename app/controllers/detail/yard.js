@@ -22,6 +22,7 @@ export default Controller.extend({
     cur_idx: 0,
     editRoomDlg: false,
     deleteRoomDlg: false,
+    noteError: false,
     tempRoom:null,
     
     typeChecked: A(['自有', '租用', '公共']),
@@ -88,30 +89,37 @@ export default Controller.extend({
             // this.set('showAddSessionDlg', false);
             // this.set('deleteRoomDlg', false);
             // this.set('closeRoomDlg', false);
+            this.set('noteError', false);
             this.set('type_idx', 0)
             this.set('editRoomDlg', false);
             this.set('deleteRoomDlg', false);
         },
         successHandled() {
+            if(this.checkValidate()) {
+                this.set('bm_room_service.room.roomType', this.type_idx);
 
-            this.set('bm_room_service.room.roomType', this.type_idx);
-
-            let that = this
-            let callback = {
-                onSuccess: function () {
-                    that.set('editRoomDlg', false);
-                    that.toast.success('', that.edit_flag_info + '教室成功', that.toastOptions);
-                    that.bm_room_service.set('refresh_all_token', that.bm_room_service.guid());
-                    debug('push room success')
-                },
-                onFail: function () {
-                    that.toast.error('', that.edit_flag_info + '教室失败', that.toastOptions);
-                    debug('push room fail')
+                let that = this
+                let callback = {
+                    onSuccess: function () {
+                        that.set('editRoomDlg', false);
+                        that.toast.success('', that.edit_flag_info + '教室成功', that.toastOptions);
+                        that.bm_room_service.set('refresh_all_token', that.bm_room_service.guid());
+                        debug('push room success')
+                    },
+                    onFail: function () {
+                        that.toast.error('', that.edit_flag_info + '教室失败', that.toastOptions);
+                        debug('push room fail')
+                    }
                 }
+                this.bm_room_service.saveUpdate(callback);
+            } else {
+                this.set('noteError', true);
+                return
             }
-            this.bm_room_service.saveUpdate(callback);
             
         },
     },
-
+    checkValidate() {
+        return this.bm_room_service.room.title != "";
+    },
 });

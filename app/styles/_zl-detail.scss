@@ -478,6 +478,12 @@ a.reserve_detail_href_ref {
         background: #fff;
         // width: 512px;
 
+        .error-border {
+            input {
+                border: 1px solid #DE350B;
+            }
+        }
+
         .input-full-width {
             width: 100%;
             input {

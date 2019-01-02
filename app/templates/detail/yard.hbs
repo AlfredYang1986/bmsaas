@@ -106,14 +106,14 @@
                 {{#layout-push direction='row'}}
                     <p class="title">编辑教室</p>
                 {{/layout-push}}
-                {{!-- {{#if noteError}}
+                {{#if noteError}}
                     <div class="form-checked">
                         {{#layout-push direction='row' classNames="error-line"}}
                             <img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
                             <span class="error-info">请填写完整信息</span>
                         {{/layout-push}}
                     </div>
-                {{/if}} --}}
+                {{/if}}
                 {{#layout-push direction="col" classNames='input_area area-margin-bottom' }}
                     <p class="edit_subtitle">所属校区</p>
                     <p class="edit_subtitle_content">{{bm_yard_service.yard.title}}</p>
@@ -122,9 +122,15 @@
                     <p class="edit_subtitle">使用类型</p>
                     {{bmcom/bm-radio-inline cur_idx=type_idx titles=typeChecked}}
                 {{/layout-push}}
-                {{#layout-push direction="row"  classNames='input_area' }}
-                    {{bmform/bm-edit-line title='教室名称' inputVal=bm_room_service.room.title classNames='input_area input-full-width'}}
-                {{/layout-push}}
+                {{#if noteError}}
+                    {{#layout-push direction="row"  classNames='input_area' }}
+                        {{bmform/bm-edit-line title='教室名称' inputVal=bm_room_service.room.title classNames='input_area input-full-width error-border'}}
+                    {{/layout-push}}
+                {{else}}
+                    {{#layout-push direction="row"  classNames='input_area' }}
+                        {{bmform/bm-edit-line title='教室名称' inputVal=bm_room_service.room.title classNames='input_area input-full-width'}}
+                    {{/layout-push}}
+                {{/if}}
                 
             {{/layout-push}}
         </div>
