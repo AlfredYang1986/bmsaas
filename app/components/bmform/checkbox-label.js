@@ -20,7 +20,12 @@ export default Component.extend({
             this.set('curSel', '');
         },
         onOneSelected(ele) {
-            if (this.count < this.limit) {
+            if (this.limit == 1) {
+                // this.set('count', this.count + 1);
+                ele.set('isSelected', true);
+                // current.pushObject(ele.value);
+                this.set('curSel', ele.text);
+            } else if (this.count < this.limit) {
                 // this.set('count', this.count + 1);
                 ele.set('isSelected', true);
                 // current.pushObject(ele.value);
