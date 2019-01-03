@@ -29,12 +29,14 @@ export default Service.extend({
         this.bmstore.reset();
         this.set('yard', null);
 
-        // if (this.yardid.length == 0 || this.yardid == 'yard/push') {
-        //     let query_payload = this.genPushQuery();
-        //     let result = this.bmstore.sync(query_payload);
-        //     this.set('yard', result);
-        //     return;
-        // }
+        if (this.yardid !== undefined) {
+            if (this.yardid.length == 0 || this.yardid == 'yard/push') {
+                let query_payload = this.genPushQuery();
+                let result = this.bmstore.sync(query_payload);
+                this.set('yard', result);
+                return;
+            }
+        }
 
         let query_yard_payload = this.genIdQuery();
         let rd = this.bmstore.sync(query_yard_payload);
@@ -55,8 +57,13 @@ export default Service.extend({
             data: dt,
             success: function(res) {
                 let result = that.bmstore.sync(res)
+                result = null;
                 that.set('yard', result);
-                that.set('yardid', result.id);
+                if (result == null) {
+                    that.set('yardid', '');
+                } else {
+                    that.set('yardid', result.id);
+                }
                 if (callback.onSuccess) {
                     callback.onSuccess();
                 }
@@ -212,6 +219,7 @@ export default Service.extend({
         let gid05 = this.guid();
         let gid06 = this.guid();
         let gid07 = this.guid();
+        let gid08 = this.guid();
         // let now = new Date().getTime();
 
         return {
@@ -266,6 +274,14 @@ export default Service.extend({
                             {
                                 id: gid07,
                                 type: "BmTagImg"
+                            },
+                        ]
+                    },
+                    Certifications: {
+                        data: [
+                            {
+                                id: gid08,
+                                type: "BmCertification"
                             },
                         ]
                     }
@@ -326,6 +342,14 @@ export default Service.extend({
                     attributes: {
                         img: "",
                         tag: "室内活动区",
+                    },
+                },
+                {
+                    id: gid08,
+                    type: "BmCertification",
+                    attributes: {
+                        img: "",
+                        tag: "XX奖",
                     },
                 },
             ]

@@ -1,5 +1,10 @@
 .alt_yard_container {
 
+    .yard-empty-state {
+        margin-top: 0;
+        height: calc(100vh - 112px);
+    }
+
     .yard_detail_title {
         height: 110px;
         padding: 24px;

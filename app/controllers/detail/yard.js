@@ -43,6 +43,9 @@ export default Controller.extend({
             this.set('bm_room_service.page', pageNum - 1);
             this.bm_room_service.queryMultiObjects();
         },
+        onAddYardClick() {
+            this.transitionToRoute('edit.yard',"yard/push")
+        },
         onAddRoomClick() {
             this.set('edit_flag_info', "添加");
             this.bm_room_service.genNewRoom();

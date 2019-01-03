@@ -46,14 +46,21 @@
             padding-top: 24px;
 
             .empty-state-act {
-                background: #0052CC;
-                border-radius: 4px;
-                height: 32px;
-                line-height: 32px;
-                min-width: 80px;
-                font-family: SFUIText-Bold;
+                border: none;
+                background: #80AEFF;
+                border-radius: 100px;
+                font-family: PingFangSC-Medium;
                 font-size: 14px;
                 color: #FFFFFF;
+                letter-spacing: 2px;
+                height: 32px;
+                line-height: 16px;
+                padding: 8px 24px;
+
+                &:focus {
+                    box-shadow: none;
+                    outline: none;
+                }
             }
         }
     }
