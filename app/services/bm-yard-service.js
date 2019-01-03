@@ -57,13 +57,12 @@ export default Service.extend({
             data: dt,
             success: function(res) {
                 let result = that.bmstore.sync(res)
-                result = null;
-                that.set('yard', result);
                 if (result == null) {
                     that.set('yardid', '');
                 } else {
                     that.set('yardid', result.id);
                 }
+                that.set('yard', result);
                 if (callback.onSuccess) {
                     callback.onSuccess();
                 }

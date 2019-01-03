@@ -59,9 +59,19 @@
 				{{bmform/bm-edit-line title='就读学校' largeInput=true  inputVal=bm_stud_service.stud.school classNames='input_area area-margin-bottom'}}
 			{{/layout-push}}
 
-			{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
+			{{!-- {{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
 				{{bmform/bm-edit-line title='地址' largeInput=true  inputVal=bm_stud_service.stud.address classNames='input_area area-margin-bottom'}}
-			{{/layout-push}}
+			{{/layout-push}} --}}
+			{{bmform/bm-detail-address 
+                provinces=provinces 
+                citys=citys 
+                areas=areas 
+                province=bm_stud_service.stud.province
+                city=bm_stud_service.stud.city
+                area=bm_stud_service.stud.district
+                title='地址' 
+                detailAddress=bm_stud_service.stud.address
+				classNames="area-margin-bottom"}}
 		</section>
 		{{#each bm_stud_service.stud.Guardians as |item|}}
 			<section class="parent_info stu_section" id="par-story">
@@ -115,8 +125,8 @@
 					</div>
 				{{/layout-push}}
 			{{/layout-push}} --}}
-			{{bmform/bm-base-select selTitle="课程顾问" options=bm_tech_service.techs curSelect=bm_stud_service.stud.teacherName classNames="input_area area-margin-bottom"}}
-			{{bmform/bm-base-select selTitle="渠道来源" options=origin curSelect=bm_stud_service.stud.sourceWay classNames="input_area"}}
+			{{bmform/bm-base-select selId='teacherName' selTitle="课程顾问" options=bm_tech_service.techs curSelect=bm_stud_service.stud.teacherName classNames="input_area area-margin-bottom"}}
+			{{bmform/bm-base-select selId='sourceWay' selTitle="渠道来源" options=origin curSelect=bm_stud_service.stud.sourceWay classNames="input_area"}}
 		</section>
 	</div>
 {{/layout-push}}

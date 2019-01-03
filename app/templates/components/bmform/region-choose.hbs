@@ -1,6 +1,8 @@
 {{!-- {{yield}} --}}
-<select class="start-time" onchange={{action 'changeProvinces' value="target.value"}}>
-    <option>省份</option>
+<select class="address-select" onchange={{action 'changeProvinces' value="target.value"}}>
+    {{#if (eq province "")}}
+        <option value="" disabled selected hidden>省份</option>
+    {{/if}}
     {{#each provinces as |item|}}
         {{#if (eq province item.name)}}
             <option selected=true value={{item.name}}>{{item.name}}</option>
@@ -10,8 +12,10 @@
         
     {{/each}}
 </select>
-<select class="start-time" onchange={{action 'changeCitys' value="target.value"}}>
-    <option>城市</option>
+<select class="address-select" onchange={{action 'changeCitys' value="target.value"}}>
+    {{#if (eq province "")}}
+        <option value="" disabled selected hidden>城市</option>
+    {{/if}}
     {{#each citys as |item|}}
         {{#if (eq city item.name)}}
             <option selected=true value={{item.name}}>{{item.name}}</option>
@@ -20,8 +24,10 @@
         {{/if}}
     {{/each}}
 </select>
-<select class="start-time" onchange={{action 'changeGovernmentAreas' value="target.value"}}>
-    <option>行政区域</option>
+<select class="address-select" onchange={{action 'changeGovernmentAreas' value="target.value"}}>
+    {{#if (eq province "")}}
+        <option value="" disabled selected hidden>行政区域</option>
+    {{/if}}
     {{#each governmentAreas as |item|}}
         {{#if (eq area item.name)}}
             <option selected=true value={{item.name}}>{{item.name}}</option>

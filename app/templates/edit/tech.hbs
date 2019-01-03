@@ -21,7 +21,7 @@
   <span>编辑教师信息</span>
   <span>
       {{#if isPushing}}
-          {{#link-to 'home' class="edit_nav_btn btn_cacel"}}
+          {{#link-to 'tech' class="edit_nav_btn btn_cacel"}}
               取消
           {{/link-to}}
       {{else}}
@@ -103,7 +103,17 @@
                         {{bmform/bm-base-select selId="yearsSelect" type="number" selTitle="教龄" options=teachYearsArr curSelect=bm_tech_service.tech.teachYears classNames="input_area years-select" pHolder=0}}
                         {{bmform/bm-edit-line fullWidthInput=true title='擅长科目' inputVal=bm_tech_service.tech.major classNames='input_area area-margin-bottom area-margin-left'}}
                     {{/layout-push}}
-                    {{bmform/bm-edit-line notNeeded=true fullWidthInput=true title='地址' inputVal=bm_tech_service.tech.address classNames='input_area area-margin-bottom'}}
+                    {{bmform/bm-detail-address 
+                        provinces=provinces 
+                        citys=citys 
+                        areas=areas 
+                        province=bm_tech_service.tech.province
+                        city=bm_tech_service.tech.city
+                        area=bm_tech_service.tech.district
+                        title='地址' 
+                        detailAddress=bm_tech_service.tech.address
+                        classNames="area-margin-bottom"}}
+                    {{!-- {{bmform/bm-edit-line notNeeded=true fullWidthInput=true title='地址' inputVal=bm_tech_service.tech.address classNames='input_area area-margin-bottom'}} --}}
                 </div>
             {{/layout-push}}
         </section>

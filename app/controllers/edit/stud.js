@@ -12,6 +12,9 @@ export default Controller.extend({
 
     bm_stud_service: service(),
     bm_tech_service: service(),
+    provinces: null,
+    citys: null,
+    areas: null,
     sex_idx: 0,
     rela_idx: 0,
     genderCheck: A(['男', '女', '未知']),

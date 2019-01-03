@@ -42,7 +42,7 @@
             {{#layout-push direction='row' classNames='edit_title_container'}}
                 <span class="edit_title">基本信息</span>
             {{/layout-push }}
-            {{#layout-push direction="col" classNames='area-margin-bottom'}}
+            {{!-- {{#layout-push direction="col" classNames='area-margin-bottom'}}
                 {{#layout-push direction="row"}}
                         <span class="alt-edit-title">校区地址</span>
                 {{/layout-push}}
@@ -59,7 +59,17 @@
                 {{/layout-push}}
                 <span class='alt-edit-up-hit'>街道门牌号、小区楼号、楼层号</span>
                 {{input value=bm_yard_service.yard.address classNames='alt-edit-line'}}
-            {{/layout-push}}
+            {{/layout-push}} --}}
+            {{bmform/bm-detail-address 
+                provinces=yard_provinces 
+                citys=yard_citys 
+                areas=yard_government_areas 
+                province=bm_yard_service.yard.province
+                city=bm_yard_service.yard.city
+                area=bm_yard_service.yard.district
+                title='校区地址' 
+                detailAddress=bm_yard_service.yard.address
+                classNames="area-margin-bottom"}}
             {{bmform/bm-edit-line 
                 maxlength='20' 
                 title='校区名称' 

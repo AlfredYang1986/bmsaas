@@ -6,6 +6,9 @@ import { A } from '@ember/array';
 
 export default Controller.extend({
     bm_tech_service: service(),
+    provinces: null,
+    citys: null,
+    areas: null,
     sex_idx: 0,
     genderCheck: A(['男', '女']),
     sex: computed('sex_idx', function() {
