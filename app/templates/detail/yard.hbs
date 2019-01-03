@@ -6,11 +6,11 @@
             <span class="sub_title_text">{{bm_yard_service.yard.address}}</span> 
         {{/layout-push}}
         {{#layout-push direction="col" classNames="detail_panel_tab_container"}}
-            {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs}}
+            {{bmcom/bm-tabs-bar cur_idx=bm_yard_service.curTabIdx titles=model.tabs}}
         {{/layout-push}}
 
 
-        {{#if (eq cur_idx 0)}}
+        {{#if (eq bm_yard_service.curTabIdx 0)}}
             {{bmdetail/bm-top-title-panel title="校区信息" rightText="编辑" linkAddr='edit.yard' linkParam=bm_yard_service.yard.id}}
             {{#layout-push direction='row' split=true}}
                 {{#layout-push direction='col' classNames='alt_yard_left_panel'}}
@@ -77,7 +77,7 @@
                 {{/layout-push}}
             {{/layout-push}}
         {{/if}}
-        {{#if (eq cur_idx 1)}}
+        {{#if (eq bm_yard_service.curTabIdx 1)}}
             {{#layout-push direction='col' classNames='yard_room_container'}}
                 {{#layout-push direction='row' split=true classNames='yard_room_title_container'}}
                     <p class="room-title">教室/场地</p>

@@ -7,6 +7,7 @@ import { debug } from '@ember/debug';
 export default Controller.extend({
     init() {
         this._super(...arguments);
+        // this.cur_idx = 0;
     },
     bm_yard_service: service(),
     bm_room_service: service(),

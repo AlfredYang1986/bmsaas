@@ -27,11 +27,12 @@ export default Route.extend({
     },
     setupController(controller, model) {
         this._super(controller, model);
+        this.bm_yard_service.set('curTabIdx', 0);
+        this.bm_room_service.set('page', 0);
         let that = this;
         let callback = {
             onSuccess: function () {
                 that.bm_room_service.set('refresh_all_token', that.bm_room_service.guid());
-                console.log(1)
             },
             onFail: function () {
                 

@@ -20,6 +20,7 @@ export default Service.extend({
     refresh_all_token: '',
     refresh_token: '',
 
+    curTabIdx: 0,
     yard: null,
     yards: A([]),
 
@@ -93,7 +94,7 @@ export default Service.extend({
             success: function(res) {
                 debug(res)
                 let result = that.bmmulti.sync(res)
-                that.set('yards', result[0]);
+                that.set('yards', result);
                 // if (callback.onSuccess) {
                 //     callback.onSuccess();
                 // }
