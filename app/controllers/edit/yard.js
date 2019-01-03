@@ -33,7 +33,10 @@ export default Controller.extend({
             this.bm_yard_service.saveUpdate(callback); 
         },
         multiCheckOnClick(value) {
-            let tempArr = this.bm_yard_service.yard.facilities;
+            let tempArr = [];
+            if (this.bm_yard_service.yard.facilities != null) {
+                tempArr = this.bm_yard_service.yard.facilities;
+            }
             this.toggleProperty("changeFlag")
             if (tempArr.indexOf(value) == -1) {
                 tempArr.push(value)
