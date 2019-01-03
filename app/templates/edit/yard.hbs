@@ -2,11 +2,11 @@
   <span>编辑场地</span>
   <span>
       {{#if isPushing}}
-          {{#link-to 'yard' class="edit_nav_btn btn_cacel"}}
+          {{#link-to 'detail.yard' class="edit_nav_btn btn_cacel"}}
               取消
           {{/link-to}}
       {{else}}
-          {{#link-to 'detail.yard' bm_yard_service.yard.id class="edit_nav_btn btn_cacel"}}
+          {{#link-to 'detail.yard' class="edit_nav_btn btn_cacel"}}
               取消
           {{/link-to}}
       {{/if}}

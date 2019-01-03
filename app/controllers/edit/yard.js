@@ -24,7 +24,7 @@ export default Controller.extend({
             let that = this
             let callback = {
                 onSuccess: function() {
-                    that.transitionToRoute('yard');
+                    that.transitionToRoute('detail.yard');
                 },
                 onFail: function(/*err*/) {
                     debug('error');
