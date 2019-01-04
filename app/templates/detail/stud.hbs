@@ -49,7 +49,7 @@
 							{{bmdetail/stud-basis-info label="昵称" content=bm_stud_service.stud.nickname}}
 							{{bmdetail/stud-basis-info label="星座" content="星座"}}
 							{{bmdetail/stud-basis-info label="就读学校" content=bm_stud_service.stud.school}}
-							{{bmdetail/stud-basis-info label="住址" content=bm_stud_service.stud.address}}
+							{{bmdetail/stud-basis-info label="住址" content=(bmcom/bm-trans-address bm_stud_service.stud)}}
 							{{bmdetail/stud-basis-info label="出生日期" content=(bmdob/bmdobformat bm_stud_service.stud.dob)}}
 						</div>
 					{{/layout-push}}

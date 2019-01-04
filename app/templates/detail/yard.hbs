@@ -6,7 +6,7 @@
         {{else}}
             {{#layout-push direction='col' classNames="detail_title yard_detail_title"}}
                 <span class="title_text">{{bm_yard_service.yard.title}}</span> 
-                <span class="sub_title_text">{{bm_yard_service.yard.address}}</span> 
+                <span class="sub_title_text">{{bmcom/bm-trans-address bm_yard_service.yard}}</span> 
             {{/layout-push}}
             {{#layout-push direction="col" classNames="detail_panel_tab_container"}}
                 {{bmcom/bm-tabs-bar cur_idx=bm_yard_service.curTabIdx titles=model.tabs}}
@@ -20,7 +20,7 @@
                         {{#layout-push direction='col' classNames='alt_yard_panel'}}
                             {{bmdetail/course-basis-left-title 
                                 title=bm_yard_service.yard.title
-                                subTitle=bm_yard_service.yard.address
+                                subTitle=(bmcom/bm-trans-address bm_yard_service.yard)
                                 subTitleBehind=""}}
                             {{bmdetail/yard-basis-left-tags tags1=bm_yard_service.yard.scenario tags2=bm_yard_service.yard.attribute}}
                             {{!-- {{#layout-push direction='row' mid=true classNames='alt_yard_deltail_title'}}

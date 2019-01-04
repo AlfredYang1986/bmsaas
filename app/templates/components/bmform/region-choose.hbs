@@ -13,7 +13,7 @@
     {{/each}}
 </select>
 <select class="address-select" onchange={{action 'changeCitys' value="target.value"}}>
-    {{#if (eq province "")}}
+    {{#if (eq city "")}}
         <option value="" disabled selected hidden>城市</option>
     {{/if}}
     {{#each citys as |item|}}
@@ -25,7 +25,7 @@
     {{/each}}
 </select>
 <select class="address-select" onchange={{action 'changeGovernmentAreas' value="target.value"}}>
-    {{#if (eq province "")}}
+    {{#if (eq area "")}}
         <option value="" disabled selected hidden>行政区域</option>
     {{/if}}
     {{#each governmentAreas as |item|}}

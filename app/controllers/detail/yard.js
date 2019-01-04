@@ -37,6 +37,9 @@ export default Controller.extend({
         //     this.set('bm_room_service.room.roomType', 2)
         // }
     }),
+    // detailAddress: computed('bm_yard_service.yard', function() {
+    //     return this.bm_yard_service.yard.province + this.bm_yard_service.yard.city + this.bm_yard_service.yard.district + this.bm_yard_service.yard.district
+    // }),
 
     actions: {
         handlePageChange(pageNum) {
