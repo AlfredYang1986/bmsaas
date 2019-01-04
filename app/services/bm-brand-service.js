@@ -46,13 +46,15 @@ export default Service.extend({
             success: function(res) {
                 let result = that.bmstore.sync(res);
                 // sessionStorage.setItem("brandLogo", result.logo);
+                
                 let tempArr = [];
-                // if(result.brand_tags != null)
-                for (let idx = 0;idx < result.brand_tags.length;idx++) {
-                    let item = {};
-                    item.id = idx + 1;
-                    item.text = result.brand_tags[idx];
-                    tempArr.push(item);
+                if(result.brand_tags != null) {
+                    for (let idx = 0;idx < result.brand_tags.length;idx++) {
+                        let item = {};
+                        item.id = idx + 1;
+                        item.text = result.brand_tags[idx];
+                        tempArr.push(item);
+                    }
                 }
                 result.brand_tags = tempArr;
 

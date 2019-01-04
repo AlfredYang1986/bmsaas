@@ -227,13 +227,13 @@ export default Service.extend({
                             length: 0,
                             description: "",
                             harvest: "",
-                            acquisition: "",
+                            acquisition: [{"id": 0,"item":""}],
+                            inc: [{"id": 0,"item":""}],
+                            carrying: [{"id": 0,"item":""}],
                             accompany: 0,
                             including: "",
-                            carrying: "",
                             notice: "",
                             cover: "",
-                            inc: "",
                             play_children: "",
                         },
                         relationships: {
@@ -388,6 +388,23 @@ export default Service.extend({
         arr.push(c.data);
 
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
+
+        let tempArr1 = [];
+        for (let idx = 0;idx < rd_tmp.data.attributes.acquisition.length;idx++) {
+            tempArr1.push(rd_tmp.data.attributes.acquisition[idx].text);
+        }
+        rd_tmp.data.attributes.acquisition = tempArr1;
+        let tempArr2 = [];
+        for (let idx = 0;idx < rd_tmp.data.attributes.carrying.length;idx++) {
+            tempArr2.push(rd_tmp.data.attributes.carrying[idx].text);
+        }
+        rd_tmp.data.attributes.carrying = tempArr2;
+        let tempArr3 = [];
+        for (let idx = 0;idx < rd_tmp.data.attributes.inc.length;idx++) {
+            tempArr3.push(rd_tmp.data.attributes.inc[idx].text);
+        }
+        rd_tmp.data.attributes.inc = tempArr3;
+
         rd_tmp.data.attributes.count = parseInt(rd.count);
         rd_tmp.data.attributes.length = parseInt(rd.length);
         rd_tmp.data.attributes.alb = parseInt(rd.alb);

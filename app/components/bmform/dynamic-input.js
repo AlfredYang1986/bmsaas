@@ -6,6 +6,8 @@ import { set } from '@ember/object';
 const inputObject = EmberObject.extend({});
 export default Component.extend({
     tagNmae: '',
+    classNames: 'bm-dynamic-input',
+    disabled: false,
     listInputs: A([]),
     init() {
         this._super(...arguments);
@@ -15,6 +17,9 @@ export default Component.extend({
     },
     actions: {
         addProject() {
+            if (this.listInputs == null || this.listInputs == "") {
+                this.set('listInputs', []);
+            }
             let id = this.listInputs.length + 1
             this.listInputs.pushObject(inputObject.create({ id, text: '' }))
         },

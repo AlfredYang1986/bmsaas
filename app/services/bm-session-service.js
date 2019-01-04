@@ -24,7 +24,6 @@ export default Service.extend({
     querySessionInfo() {
         this.bmstore.reset();
         this.set('session', null);
-
         if (this.sessionid.length == 0 || this.sessionid == 'course/push') {
             let query_payload = this.genPushQuery();
             let result = this.bmstore.sync(query_payload);
@@ -51,6 +50,40 @@ export default Service.extend({
             data: dt,
             success: function(res) {
                 let result = that.bmstore.sync(res)
+
+                let tempArr1 = [];
+                if (result.acquisition != null) {
+                    for (let idx = 0;idx < result.acquisition.length;idx++) {
+                        let item = {};
+                        item.id = idx + 1;
+                        item.text = result.acquisition[idx];
+                        tempArr1.push(item);
+                    }
+                }
+                result.acquisition = tempArr1;
+
+                let tempArr2 = [];
+                if (result.carrying != null) {
+                    for (let idx = 0;idx < result.carrying.length;idx++) {
+                        let item = {};
+                        item.id = idx + 1;
+                        item.text = result.carrying[idx];
+                        tempArr2.push(item);
+                    }
+                }
+                result.carrying = tempArr2;
+
+                let tempArr3 = [];
+                if (result.inc != null) {
+                    for (let idx = 0;idx < result.inc.length;idx++) {
+                        let item = {};
+                        item.id = idx + 1;
+                        item.text = result.inc[idx];
+                        tempArr3.push(item);
+                    }
+                }
+                result.inc = tempArr3;
+
                 that.set('session', result);
             },
             error: function(err) {
@@ -190,10 +223,10 @@ export default Service.extend({
                     length: 0,
                     description: "",
                     harvest: "",
-                    acquisition: "",
+                    acquisition: [{"id": 0,"item":""}],
                     accompany: 0,
-                    inc: "",
-                    carrying: "",
+                    inc: [{"id": 0,"item":""}],
+                    carrying: [{"id": 0,"item":""}],
                     notice: "",
                     cover: "",
                     brandId: localStorage.getItem('brandid'),
@@ -338,11 +371,28 @@ export default Service.extend({
             let tmp = rd.Tagimgs[idx].serialize();
             arr.push(tmp.data);
         }
-
+        
         let c = rd.Cate.serialize();
         arr.push(c.data);
-
+        
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
+
+        let tempArr1 = [];
+        for (let idx = 0;idx < rd_tmp.data.attributes.acquisition.length;idx++) {
+            tempArr1.push(rd_tmp.data.attributes.acquisition[idx].text);
+        }
+        rd_tmp.data.attributes.acquisition = tempArr1;
+        let tempArr2 = [];
+        for (let idx = 0;idx < rd_tmp.data.attributes.carrying.length;idx++) {
+            tempArr2.push(rd_tmp.data.attributes.carrying[idx].text);
+        }
+        rd_tmp.data.attributes.carrying = tempArr2;
+        let tempArr3 = [];
+        for (let idx = 0;idx < rd_tmp.data.attributes.inc.length;idx++) {
+            tempArr3.push(rd_tmp.data.attributes.inc[idx].text);
+        }
+        rd_tmp.data.attributes.inc = tempArr3;
+
         rd_tmp.data.attributes.count = parseInt(rd.count);
         rd_tmp.data.attributes.length = parseInt(rd.length);
         rd_tmp.data.attributes.alb = parseInt(rd.alb);

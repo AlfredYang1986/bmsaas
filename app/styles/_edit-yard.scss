@@ -164,15 +164,17 @@
                         margin-top: 16px;
 
                         .add-img-div {
+                            align-items: center;
                             width: 272px;
                             height: 272px;
+                            border: 1px dashed #D2D4D9;
+                            cursor: pointer;
+                            background: #FAFBFC;
                             // background-color: #fff;
 
                             .add-new-img {
-                                width: 272px;
-                                height: 272px;
-                                // border: 1px dashed #D2D4D9;
-                                cursor: pointer;
+                                width: 32px;
+                                height: 32px;
                             }
                         }
 
@@ -201,7 +203,7 @@
 
                                 .bm-upload-tag-input {
 
-                                    div:nth-child(1) {
+                                    .pre-input {
                                         display: none;
                                     }
                                 }
@@ -247,15 +249,18 @@
                         margin-top: 16px;
 
                         .add-img-div {
+                            align-items: center;
                             width: 272px;
-                            height: 272px;
+                            height: 182px;
+                            border: 1px dashed #D2D4D9;
+                            cursor: pointer;
+                            background: #FAFBFC;
                             // background-color: #fff;
 
+
                             .add-new-img {
-                                width: 272px;
-                                height: 182px;
-                                // border: 1px dashed #D2D4D9;
-                                cursor: pointer;
+                                width: 32px;
+                                height: 32px;
                             }
                         }
 
@@ -288,7 +293,7 @@
                                 
                                 .bm-upload-tag-input {
 
-                                    div:nth-child(1) {
+                                    .pre-input {
                                         display: none;
                                     }
                                 }

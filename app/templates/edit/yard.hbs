@@ -203,14 +203,18 @@
                             {{bmcom/bm-img-uploader needTag=true canEdit=true canEditTag=true canDeleteObj=true imgObj=item img=item.img tag=item.tag onDeleteObj=(action "deleteYardImg") classNames='alt-yard-edit-tag-img-adjust'}}
                         {{/each}}
                         {{#if (bmcom/bm-nil-obj bm_yard_service.yard.Certifications)}}
-                                <div class="add-img-div">
-                                    <img class="add-new-img" src='/images/btn_more_default@2x.png' {{action "addYardPicOnClick"}}/>
-                                </div>
+                            {{#layout-push direction='row' mid=true classNames="add-img-div"}}
+                                <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addYardPicOnClick"}}/>
+                            {{/layout-push}}
+                                {{!-- <div class="add-img-div">
+                                </div> --}}
                         {{else}}
                             {{#if (lt bm_yard_service.yard.Certifications.length 9)}}
-                                <div class="add-img-div">
-                                    <img class="add-new-img" src='/images/btn_more_default@2x.png' {{action "addYardPicOnClick"}}/>
-                                </div>
+                                {{#layout-push direction='row' mid=true classNames="add-img-div"}}
+                                    <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addYardPicOnClick"}}/>
+                                {{/layout-push}}
+                                {{!-- <div class="add-img-div">
+                                </div> --}}
                             {{/if}}
                         {{/if}}
                     </div>
@@ -261,14 +265,18 @@
                             {{bmcom/bm-img-uploader needTag=true canEdit=true canEditTag=true canDeleteObj=true imgObj=item img=item.img tag=item.tag onDeleteObj=(action "deleteCertImg") classNames='alt-yard-edit-tag-img-adjust'}}
                         {{/each}}
                         {{#if (bmcom/bm-nil-obj bm_yard_service.yard.Certifications)}}
-                                <div class="add-img-div">
-                                    <img class="add-new-img" src='/images/btn_more_default@2x.png' {{action "addCertPicOnClick"}}/>
-                                </div>
+                            {{#layout-push direction='row' mid=true classNames="add-img-div"}}
+                                <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addCertPicOnClick"}}/>
+                            {{/layout-push}}
+                                {{!-- <div class="add-img-div">
+                                </div> --}}
                         {{else}}
                             {{#if (lt bm_yard_service.yard.Certifications.length 8)}}
-                                <div class="add-img-div">
-                                    <img class="add-new-img" src='/images/btn_more_default@2x.png' {{action "addCertPicOnClick"}}/>
-                                </div>
+                                {{#layout-push direction='row' mid=true classNames="add-img-div"}}
+                                    <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addCertPicOnClick"}}/>
+                                {{/layout-push}}
+                                {{!-- <div class="add-img-div">
+                                </div> --}}
                             {{/if}}
                         {{/if}}
                     </div>
