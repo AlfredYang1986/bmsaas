@@ -1,11 +1,6 @@
 import { helper } from '@ember/component/helper';
 
 export function bmcomBmTransAddress(params/*, hash*/) {
-  console.log(params)
-  console.log(params.length)
-  // console.log(params[0].length==)
-  // console.log(typeof(params))
-  // console.log(typeof(params[0]))
   let province = '';
   let city = '';
   let district = '';

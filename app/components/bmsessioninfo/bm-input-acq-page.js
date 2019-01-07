@@ -14,7 +14,6 @@ export default Component.extend({
             // this.set('checkFlag', false)
             // console.log(1)
         // } else {
-            console.log(this.session.acquisition)
             if(this.session.acquisition == null || this.session.acquisition == '') {
                 // this.set('ifAcqInput', 'disabled');
                 this.set('checkFlag', true)

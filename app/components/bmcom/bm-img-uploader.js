@@ -13,6 +13,7 @@ export default Component.extend({
     canEditTag: false,
     needTag: false,
     canDeleteObj: false,
+    canDeleteImg: true,
     deleteIcon: 'https://bm-web.oss-cn-beijing.aliyuncs.com/icon_remove%402x.png',
     isNull: computed('img', function(){
         return this.img == null || this.img.length == 0;
@@ -66,4 +67,14 @@ export default Component.extend({
         }
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
     },
+    // lala(){ console.log(1)},
+    
+    didRender() {
+        if (this.tag == "initTag") {
+            this.set('tag', '图片描述');
+            // document.getElementById(this.upid).lastElementChild.getElementsByTagName("input")[0].blur(this.lala())
+            // document.getElementById(this.upid).lastElementChild.getElementsByTagName("input")[0].focus(this.lala())
+            document.getElementById(this.upid).lastElementChild.getElementsByTagName("input")[0].click()
+        }
+    }
 });

@@ -200,7 +200,7 @@
                 {{#layout-push direction='row'}}
                     <div class='line_conatainer_warp'>
                         {{#each bm_yard_service.yard.Tagimgs as |item|}}
-                            {{bmcom/bm-img-uploader needTag=true canEdit=true canEditTag=true canDeleteObj=true imgObj=item img=item.img tag=item.tag onDeleteObj=(action "deleteYardImg") classNames='alt-yard-edit-tag-img-adjust'}}
+                            {{bmcom/bm-img-uploader needTag=true canEdit=true canEditTag=true canDeleteImg=false canDeleteObj=true imgObj=item img=item.img tag=item.tag onDeleteObj=(action "deleteYardImg") classNames='alt-yard-edit-tag-img-adjust'}}
                         {{/each}}
                         {{#if (bmcom/bm-nil-obj bm_yard_service.yard.Certifications)}}
                             {{#layout-push direction='row' mid=true classNames="add-img-div"}}
@@ -262,7 +262,7 @@
                 {{#layout-push direction='row'}}
                     <div class='line_conatainer_warp'>
                         {{#each bm_yard_service.yard.Certifications as |item|}}
-                            {{bmcom/bm-img-uploader needTag=true canEdit=true canEditTag=true canDeleteObj=true imgObj=item img=item.img tag=item.tag onDeleteObj=(action "deleteCertImg") classNames='alt-yard-edit-tag-img-adjust'}}
+                            {{bmcom/bm-img-uploader needTag=true canEdit=true canEditTag=true canDeleteImg=false canDeleteObj=true imgObj=item img=item.img tag=item.tag onDeleteObj=(action "deleteCertImg") classNames='alt-yard-edit-tag-img-adjust'}}
                         {{/each}}
                         {{#if (bmcom/bm-nil-obj bm_yard_service.yard.Certifications)}}
                             {{#layout-push direction='row' mid=true classNames="add-img-div"}}

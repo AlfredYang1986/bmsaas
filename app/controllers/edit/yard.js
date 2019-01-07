@@ -47,12 +47,14 @@ export default Controller.extend({
         },
         addCertPicOnClick() {
             let newObj = this.bm_yard_service.genNewImgObj('BmCertification');
+            newObj.tag = "initTag"
             let tempArr = [];
             if (this.bm_yard_service.yard.Certifications !== null) {
                 tempArr = this.bm_yard_service.yard.Certifications;
             }
             tempArr.pushObject(newObj);
-            this.set('bm_yard_service.yard.Certifications', tempArr)
+            this.set('bm_yard_service.yard.Certifications', tempArr);
+            // console.log(this.bm_yard_service.yard.Certifications)
         },
         addYardPicOnClick() {
             let newObj = this.bm_yard_service.genNewImgObj('BmTagImg');
