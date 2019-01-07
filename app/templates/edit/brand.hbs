@@ -73,7 +73,7 @@
                 {{#layout-push direction="col" classNames='brand-input-group'}}
                     <span class="edit_title">品牌亮点</span>
                     <span class='edit_subtitle'>您的品牌有什么独特之处？（限6个字 至多添加三个）如:PBL教学</span>
-                    {{bmform/dynamic-input listInputs=bm_brand_service.brand.brand_tags}}
+                    {{bmform/dynamic-input listInputs=bm_brand_service.brand.brand_tags needBottomHint=true limit=3}}
                     {{!-- {{input type="text" class="edit_input_medium" value=bm_brand_service.brand.brand_tangs}} --}}
                 {{/layout-push}}
                 {{#layout-push direction='row' split=true}}
@@ -122,8 +122,19 @@
         <span class="edit_subtitle_nomargin ">每张图片小于100 KB，至多添加5项</span>
         <div class='line_conatainer_warp'>
             {{#each bm_brand_service.brand.Honors as |item|}}
-                {{bmcom/bm-img-uploader needTag=true canEdit=true img=item.img tag=item.tag classNames='brand-honor-pic-upload'}}
+                {{bmcom/bm-img-uploader needTag=true canEdit=true canEditTag=true canDeleteImg=false canDeleteObj=true imgObj=item img=item.img tag=item.tag onDeleteObj=(action "deleteHonorImg") classNames='brand-honor-pic-upload'}}
             {{/each}}
+            {{#if (bmcom/bm-nil-obj bm_brand_service.brand.Honors)}}
+                {{#layout-push direction='row' mid=true classNames="add-img-div"}}
+                    <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addHonorPicOnClick"}}/>
+                {{/layout-push}}
+            {{else}}
+                {{#if (lt bm_brand_service.brand.Honors.length 5)}}
+                    {{#layout-push direction='row' mid=true classNames="add-img-div"}}
+                        <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addHonorPicOnClick"}}/>
+                    {{/layout-push}}
+                {{/if}}
+            {{/if}}
         </div>
 
     {{#layout-push direction='row' classNames='edit_panel_btn_margin'}}
@@ -145,8 +156,19 @@
 
         <div class='line_conatainer_warp'>
             {{#each bm_brand_service.brand.Certifications as |item|}}
-                {{bmcom/bm-img-uploader needTag=true canEdit=true img=item.img tag=item.tag classNames='brand-cert-pic-upload'}}
+                {{bmcom/bm-img-uploader needTag=true canEdit=true canEditTag=true canDeleteImg=false canDeleteObj=true imgObj=item img=item.img tag=item.tag onDeleteObj=(action "deleteCertImg") classNames='brand-cert-pic-upload'}}
             {{/each}}
+            {{#if (bmcom/bm-nil-obj bm_brand_service.brand.Certifications)}}
+                {{#layout-push direction='row' mid=true classNames="add-img-div"}}
+                    <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addCertPicOnClick"}}/>
+                {{/layout-push}}
+            {{else}}
+                {{#if (lt bm_brand_service.brand.Certifications.length 5)}}
+                    {{#layout-push direction='row' mid=true classNames="add-img-div"}}
+                        <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addCertPicOnClick"}}/>
+                    {{/layout-push}}
+                {{/if}}
+            {{/if}}
         </div>
     {{!-- {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
         <p class="nav_save menu_button_between" {{action 'saveBrand'}}>完成</p>

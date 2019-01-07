@@ -8,6 +8,7 @@ export default Component.extend({
     tagNmae: '',
     classNames: 'bm-dynamic-input',
     disabled: false,
+    limit: 10,
     listInputs: A([]),
     init() {
         this._super(...arguments);
@@ -20,8 +21,10 @@ export default Component.extend({
             if (this.listInputs == null || this.listInputs == "") {
                 this.set('listInputs', []);
             }
-            let id = this.listInputs.length + 1
-            this.listInputs.pushObject(inputObject.create({ id, text: '' }))
+            if (this.listInputs.length < this.limit) {
+                let id = this.listInputs.length + 1
+                this.listInputs.pushObject(inputObject.create({ id, text: '' }))
+            }
         },
 
         remove(id) {

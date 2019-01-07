@@ -213,6 +213,20 @@
 
                     .line_conatainer_warp{
                         margin-top: 16px;
+
+                        .add-img-div {
+                            align-items: center;
+                            width: 272px;
+                            height: 182px;
+                            border: 1px dashed #D2D4D9;
+                            cursor: pointer;
+                            background: #FAFBFC;
+
+                            .add-new-img {
+                                width: 32px;
+                                height: 32px;
+                            }
+                        }
                         
                         .brand-honor-pic-upload {
                             margin-right: 24px;
@@ -250,6 +264,20 @@
                     .line_conatainer_warp{
                         margin-top: 16px;
                         
+                        .add-img-div {
+                            align-items: center;
+                            width: 272px;
+                            height: 182px;
+                            border: 1px dashed #D2D4D9;
+                            cursor: pointer;
+                            background: #FAFBFC;
+
+                            .add-new-img {
+                                width: 32px;
+                                height: 32px;
+                            }
+                        }
+
                         .brand-cert-pic-upload {
                             margin-right: 24px;
                             margin-bottom: 24px;

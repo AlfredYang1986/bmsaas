@@ -58,12 +58,13 @@ export default Controller.extend({
         },
         addYardPicOnClick() {
             let newObj = this.bm_yard_service.genNewImgObj('BmTagImg');
+            newObj.tag = "initTag"
             let tempArr = [];
             if (this.bm_yard_service.yard.Tagimgs !== null) {
                 tempArr = this.bm_yard_service.yard.Tagimgs;
             }
             tempArr.pushObject(newObj);
-            this.set('bm_yard_service.yard.Certifications', tempArr)
+            this.set('bm_yard_service.yard.Tagimgs', tempArr)
         },
         deleteCertImg(param) {
             this.bm_yard_service.yard.Certifications.removeObject(param);

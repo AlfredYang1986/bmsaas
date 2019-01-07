@@ -100,6 +100,25 @@ export default Service.extend({
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
     },
 
+    genNewImgObj(type) {
+        let payload = this.genNewImgPayload(type);
+        let result = this.bmstore.sync(payload);
+        return result;
+    },
+    
+    genNewImgPayload(type) {
+        return {
+            data: {
+                type: type,
+                id: this.guid(),
+                attributes: {
+                    img: "",
+                    tag: ""
+                },
+            }
+        }
+    },
+
     queryMultiObjects() {
 
         this.bmmulti.reset();
@@ -197,15 +216,15 @@ export default Service.extend({
             }
     },
     genPushQuery() {
-        let gid01 = this.guid();
-        let gid02 = this.guid();
-        let gid03 = this.guid();
-        let gid04 = this.guid();
-        let gid05 = this.guid();
-        let gid06 = this.guid();
-        let gid07 = this.guid();
-        let gid08 = this.guid();
-        let gid09 = this.guid();
+        // let gid01 = this.guid();
+        // let gid02 = this.guid();
+        // let gid03 = this.guid();
+        // let gid04 = this.guid();
+        // let gid05 = this.guid();
+        // let gid06 = this.guid();
+        // let gid07 = this.guid();
+        // let gid08 = this.guid();
+        // let gid09 = this.guid();
         let cate = this.guid();
         // let now = new Date().getTime();
 
@@ -241,34 +260,34 @@ export default Service.extend({
                     },
                     Tagimgs: {
                         data: [
-                            {
-                                id: gid01,
-                                type: "BmTagImg"
-                            },
-                            {
-                                id: gid02,
-                                type: "BmTagImg"
-                            },
-                            {
-                                id: gid03,
-                                type: "BmTagImg"
-                            },
-                            {
-                                id: gid04,
-                                type: "BmTagImg"
-                            },
-                            {
-                                id: gid05,
-                                type: "BmTagImg"
-                            },
-                            {
-                                id: gid06,
-                                type: "BmTagImg"
-                            },
-                            {
-                                id: gid07,
-                                type: "BmTagImg"
-                            },
+                            // {
+                            //     id: gid01,
+                            //     type: "BmTagImg"
+                            // },
+                            // {
+                            //     id: gid02,
+                            //     type: "BmTagImg"
+                            // },
+                            // {
+                            //     id: gid03,
+                            //     type: "BmTagImg"
+                            // },
+                            // {
+                            //     id: gid04,
+                            //     type: "BmTagImg"
+                            // },
+                            // {
+                            //     id: gid05,
+                            //     type: "BmTagImg"
+                            // },
+                            // {
+                            //     id: gid06,
+                            //     type: "BmTagImg"
+                            // },
+                            // {
+                            //     id: gid07,
+                            //     type: "BmTagImg"
+                            // },
                         ]
                     }
                 }
@@ -282,78 +301,78 @@ export default Service.extend({
                         subtitle: ""
                     }
                 },
-                {
-                    id: gid01,
-                    type: "BmTagImg",
-                    attributes: {
-                        img: "",
-                        tag: "主题-能突显课程主题的图片",
-                    },
-                },
-                {
-                    id: gid02,
-                    type: "BmTagImg",
-                    attributes: {
-                        img: "",
-                        tag: "往期回顾-以往体验的真实情况",
-                    },
-                },
-                {
-                    id: gid03,
-                    type: "BmTagImg",
-                    attributes: {
-                        img: "",
-                        tag: "课程特色-课程主打或与众不同的內容",
-                    },
-                },
-                {
-                    id: gid04,
-                    type: "BmTagImg",
-                    attributes: {
-                        img: "",
-                        tag: "教学-与课程、教学有关的精彩画面",
-                    },
-                },
-                {
-                    id: gid05,
-                    type: "BmTagImg",
-                    attributes: {
-                        img: "",
-                        tag: "成果-孩子课程的收获",
-                    },
-                },
-                {
-                    id: gid06,
-                    type: "BmTagImg",
-                    attributes: {
-                        img: "",
-                        tag: "互动-家长老师在课程中与孩子的互动",
-                    },
-                },
-                {
-                    id: gid07,
-                    type: "BmTagImg",
-                    attributes: {
-                        img: "",
-                        tag: "教具-能体现专业的教学用具。如:生物实验需要显微镜",
-                    },
-                },
-                {
-                    id: gid08,
-                    type: "BmTagImg",
-                    attributes: {
-                        img: "",
-                        tag: "其他",
-                    },
-                },
-                {
-                    id: gid09,
-                    type: "BmTagImg",
-                    attributes: {
-                        img: "",
-                        tag: "其他",
-                    },
-                },
+                // {
+                //     id: gid01,
+                //     type: "BmTagImg",
+                //     attributes: {
+                //         img: "",
+                //         tag: "主题-能突显课程主题的图片",
+                //     },
+                // },
+                // {
+                //     id: gid02,
+                //     type: "BmTagImg",
+                //     attributes: {
+                //         img: "",
+                //         tag: "往期回顾-以往体验的真实情况",
+                //     },
+                // },
+                // {
+                //     id: gid03,
+                //     type: "BmTagImg",
+                //     attributes: {
+                //         img: "",
+                //         tag: "课程特色-课程主打或与众不同的內容",
+                //     },
+                // },
+                // {
+                //     id: gid04,
+                //     type: "BmTagImg",
+                //     attributes: {
+                //         img: "",
+                //         tag: "教学-与课程、教学有关的精彩画面",
+                //     },
+                // },
+                // {
+                //     id: gid05,
+                //     type: "BmTagImg",
+                //     attributes: {
+                //         img: "",
+                //         tag: "成果-孩子课程的收获",
+                //     },
+                // },
+                // {
+                //     id: gid06,
+                //     type: "BmTagImg",
+                //     attributes: {
+                //         img: "",
+                //         tag: "互动-家长老师在课程中与孩子的互动",
+                //     },
+                // },
+                // {
+                //     id: gid07,
+                //     type: "BmTagImg",
+                //     attributes: {
+                //         img: "",
+                //         tag: "教具-能体现专业的教学用具。如:生物实验需要显微镜",
+                //     },
+                // },
+                // {
+                //     id: gid08,
+                //     type: "BmTagImg",
+                //     attributes: {
+                //         img: "",
+                //         tag: "其他",
+                //     },
+                // },
+                // {
+                //     id: gid09,
+                //     type: "BmTagImg",
+                //     attributes: {
+                //         img: "",
+                //         tag: "其他",
+                //     },
+                // },
             ]
         }
     },
@@ -379,17 +398,29 @@ export default Service.extend({
 
         let tempArr1 = [];
         for (let idx = 0;idx < rd_tmp.data.attributes.acquisition.length;idx++) {
-            tempArr1.push(rd_tmp.data.attributes.acquisition[idx].text);
+            if(rd_tmp.data.attributes.acquisition[idx].text != undefined && 
+                rd_tmp.data.attributes.acquisition[idx].text != null && 
+                rd_tmp.data.attributes.acquisition[idx].text != ''){
+                tempArr1.push(rd_tmp.data.attributes.acquisition[idx].text);
+            }
         }
         rd_tmp.data.attributes.acquisition = tempArr1;
         let tempArr2 = [];
         for (let idx = 0;idx < rd_tmp.data.attributes.carrying.length;idx++) {
-            tempArr2.push(rd_tmp.data.attributes.carrying[idx].text);
+            if(rd_tmp.data.attributes.carrying[idx].text != undefined && 
+                rd_tmp.data.attributes.carrying[idx].text != null && 
+                rd_tmp.data.attributes.carrying[idx].text != ''){
+                tempArr2.push(rd_tmp.data.attributes.carrying[idx].text);
+            }
         }
         rd_tmp.data.attributes.carrying = tempArr2;
         let tempArr3 = [];
         for (let idx = 0;idx < rd_tmp.data.attributes.inc.length;idx++) {
-            tempArr3.push(rd_tmp.data.attributes.inc[idx].text);
+            if(rd_tmp.data.attributes.inc[idx].text != undefined && 
+                rd_tmp.data.attributes.inc[idx].text != null && 
+                rd_tmp.data.attributes.inc[idx].text != ''){
+                tempArr3.push(rd_tmp.data.attributes.inc[idx].text);
+            }
         }
         rd_tmp.data.attributes.inc = tempArr3;
 

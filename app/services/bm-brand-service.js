@@ -75,6 +75,25 @@ export default Service.extend({
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
     },
 
+    genNewImgObj(type) {
+        let payload = this.genNewImgPayload(type);
+        let result = this.bmstore.sync(payload);
+        return result;
+    },
+    
+    genNewImgPayload(type) {
+        return {
+            data: {
+                type: type,
+                id: this.guid(),
+                attributes: {
+                    img: "",
+                    tag: ""
+                },
+            }
+        }
+    },
+
     genIdQuery() {
         let eq = this.guid();
         return {
@@ -134,6 +153,7 @@ export default Service.extend({
         let tempArr = [];
         for (let idx = 0;idx < rd_tmp.data.attributes.brand_tags.length;idx++) {
             tempArr.push(rd_tmp.data.attributes.brand_tags[idx].text);
+            console.log(rd_tmp.data.attributes.brand_tags[idx].text)
         }
         rd_tmp.data.attributes.brand_tags = tempArr;
 

@@ -113,22 +113,22 @@ export default Service.extend({
             },
         })
     },
-
-    genNewImgObj(type) {
-        let payload = this.genNewImgPayload(type);
-        let result = this.bmstore.sync(payload);
-        return result;
-    },
-
+    
     guid() {
         function s4() {
-          return Math.floor((1 + Math.random()) * 0x10000)
+            return Math.floor((1 + Math.random()) * 0x10000)
             .toString(16)
             .substring(1);
         }
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
     },
 
+    genNewImgObj(type) {
+        let payload = this.genNewImgPayload(type);
+        let result = this.bmstore.sync(payload);
+        return result;
+    },
+    
     genNewImgPayload(type) {
         return {
             data: {
