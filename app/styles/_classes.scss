@@ -15,6 +15,22 @@
         height: calc(100vh - 112px);
     }
 }
+.session-modal {
+    .edit_title {
+        font-family: PingFangSC-Medium;
+        font-size: 14px;
+        color: #172B4D;
+    }
+    .input_area.area-margin-bottom {
+        margin-bottom: 24px;
+    }
+    .edit_title.area-margin-bottom {
+        margin-bottom: 16px;
+    }
+    select {
+        @extend %select-box-dropdown-default;
+    }
+}
 
 .class_content {
     background: #fff;

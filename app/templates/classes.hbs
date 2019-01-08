@@ -3,7 +3,7 @@
         {{#layout-push direction="col" classNames="class_content"}}
             {{#layout-push direction="row" split=true}}
                 <p class="class-content-title">班级</p>
-                <button class="class_add_btn" {{action 'createClass'}}>+ 创建班级</button>
+                <button class="class_add_btn" {{action 'onAddClassClick'}}>+ 创建班级</button>
             {{/layout-push}}
         {{/layout-push}}
 
@@ -16,5 +16,41 @@
         {{bmcom/bm-empty-state class="class-not-open" picUrl="/images/img_openningsoon.png" title="即将开放" des="更加强大便捷的功能马上到来"}}
     {{/if}}
 </div>
+
+{{#bmcom/bm-modal-container title="" mswitch=addClassDlg
+    successbtncss='exp-modal-confirm'
+    cancelbtncss='exp-modal-cancel'
+    canceltext='取消'
+    onCancelBtnClicked=(action 'cancelHandled')
+    onSuccessBtnClicked=(action 'successHandled')}}
+    <div class="session-modal">
+        {{#layout-push direction='col' }}
+            {{#layout-push direction='row'}}
+                <p class="title">添加班级</p>
+            {{/layout-push}}
+            {{#if noteError}}
+                <div class="form-checked">
+                    {{#layout-push direction='row' classNames="error-line"}}
+                        <img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
+                        <span class="error-info">请填写完整信息</span>
+                    {{/layout-push}}
+                </div>
+            {{/if}}
+            {{#layout-push direction="col" classNames='input_area' }}
+                {{bmform/bm-base-select selTitle="选择课程" options=bm_tech_service.techs curSelect=bm_stud_service.stud.teacherName classNames="input_area area-margin-bottom"}}
+            {{/layout-push}}
+            {{#if noteError}}
+                {{#layout-push direction="row"  classNames='input_area' }}
+                    {{bmform/bm-edit-line title='班级名称' needTitleDes=true titleDes="请为班级设定名称，方便识别" inputVal=bm_room_service.room.title classNames='input_area input-full-width error-border'}}
+                {{/layout-push}}
+            {{else}}
+                {{#layout-push direction="row"  classNames='input_area' }}
+                    {{bmform/bm-edit-line title='班级名称' needTitleDes=true titleDes="请为班级设定名称，方便识别" inputVal=bm_room_service.room.title classNames='input_area input-full-width'}}
+                {{/layout-push}}
+            {{/if}}
+            
+        {{/layout-push}}
+    </div>
+{{/bmcom/bm-modal-container}}
 
 {{outlet}}
