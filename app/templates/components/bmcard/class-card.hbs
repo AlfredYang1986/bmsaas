@@ -1,29 +1,31 @@
 {{#layout-push direction="col" classNames="class-card"}}
     {{#layout-push direction="col" classNames="class-card-head-info"}}
-        <p class="headline">{{cls.name}}</p>
-        <p class="secondary-title">{{cls.course.name}}</p>
-        <p class="class-address">{{cls.yard.address}}</p>
+        <p class="headline">乐高机器人搭建A班</p>
+        <p class="secondary-title">乐高机器人设计搭建课</p>
+        {{!-- <p class="class-address">{{cls.yard.address}}</p> --}}
     {{/layout-push}}
     {{#layout-push direction="col" classNames="class-card-content"}}
-        {{#layout-push direction="row" classNames="class-teachers"}}
-            <img src="" alt="">
-            <img src="" alt="">
-            <img src="" alt="">
-            <p class="teacher-num">+2</p>
-        {{/layout-push}}
         {{#layout-push direction="col"}}
             <div class="progress-label">
                 <p>课程进度</p>
-                <p>60%</p>
+                <p>1/12</p>
             </div>
             <div class="progress">
               <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
         {{/layout-push}}
-        {{#layout-push direction=row classNames="list"}}
+        {{#layout-push direction='row' classNames="list"}}
             {{!-- <img src="../images/coursebooking_selected.png" alt="">
             <p>{{arrangedDate}}</p> --}}
             <p class="class-date">2018.02.01-2018.05.01</p>
+        {{/layout-push}}
+        {{#layout-push direction='row' classNames="split-line"}}
+        {{/layout-push}}
+        {{#layout-push direction="row" classNames="class-teachers"}}
+            <img src="" alt="">
+            <img src="" alt="">
+            <img src="" alt="">
+            <p class="teacher-num">+2</p>
         {{/layout-push}}
     {{/layout-push}}
 {{/layout-push}}

@@ -10,7 +10,7 @@ export default Component.extend({
         this._super(...arguments);
         this.get('resizeService').on('didResize', event => {
             debug(event);
-            this.set('height', window.innerHeight - 290);
+            this.set('height', window.innerHeight - 266);
         })
     },
 
@@ -18,13 +18,13 @@ export default Component.extend({
     tagName: 'div',
     classNames: ['bm-scroller', 'class-content-panel-scroller'],
     height: computed(function() {
-        return window.innerHeight - 290;
+        return window.innerHeight - 266;
     }),
     attributeBindings: ['style'],
-    overflow: 'hidden scroll',
+    overflow: 'hidden auto',
     style: computed('height', 'overflow', function(){
-        return 'overflow: ' + this.overflow + ';' +
-                'height: ' + this.height + 'px;'
+        return 'height: ' + this.height + 'px;'
+         + 'overflow: ' + this.overflow + ';'
     }),
     // innerHeight: 
 });
