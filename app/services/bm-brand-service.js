@@ -153,7 +153,6 @@ export default Service.extend({
         let tempArr = [];
         for (let idx = 0;idx < rd_tmp.data.attributes.brand_tags.length;idx++) {
             tempArr.push(rd_tmp.data.attributes.brand_tags[idx].text);
-            console.log(rd_tmp.data.attributes.brand_tags[idx].text)
         }
         rd_tmp.data.attributes.brand_tags = tempArr;
 

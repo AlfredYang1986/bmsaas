@@ -8,7 +8,8 @@
         {{/layout-push}}
 
         {{#layout-push direction='col' classNames='class-content-tab-bar'}}
-            {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=titles}}
+            {{!-- {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=titles}} --}}
+            {{bmcom/bm-tabs-bar cur_idx=bm_class_service.curTabIdx titles=titles needAction=true onTabClicked=(action "onTabClicked")}}
         {{/layout-push}} 
 
         {{bmclass/bm-class-scroller}}
@@ -52,5 +53,8 @@
         {{/layout-push}}
     </div>
 {{/bmcom/bm-modal-container}}
+{{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=addSuccessDlg successHandled="onAddSuccess"}}
+    <p class="warning-modal-body-content">您可以前往班级为该班级安排上课时间与授课教师</p>
+{{/bmcom/bm-warning-modal}}
 
 {{outlet}}

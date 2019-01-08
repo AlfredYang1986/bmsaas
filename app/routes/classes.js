@@ -5,6 +5,8 @@ export default Route.extend({
     bm_class_service: service(),
     setupController(controller, model) {
         this._super(controller, model);
+        this.bm_class_service.set('page', 0);
+        this.bm_class_service.set('curTabIdx', 0);
         this.bm_class_service.set('refresh_all_token', this.bm_class_service.guid());
     }
 });
