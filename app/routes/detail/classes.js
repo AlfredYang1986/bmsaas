@@ -6,16 +6,16 @@ export default Route.extend({
     mock_data: service(),
     bm_class_service: service(),
     model(params) {
-        this.bm_class_service.set('classId', params.classid);
-        this.mock_data.sureClasses();
-        let cls = this.store.peekRecord('bmclass', params.clsid);
-        if (cls == null) {
-            this.transitionTo('home');
-        }
+        this.bm_class_service.set('classId', params.clsid);
+        // this.mock_data.sureClasses();
+        // let cls = this.store.peekRecord('bmclass', params.clsid);
+        // if (cls == null) {
+        //     this.transitionTo('home');
+        // }
     
         return RSVP.hash({
             classid : params.classid,
-            cls: cls,
+            // cls: cls,
             teacherList:[{
                 name:"张洒",
                 tel:"15188311343"

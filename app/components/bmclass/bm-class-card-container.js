@@ -15,6 +15,7 @@ export default Component.extend({
     actions: {
         cardClicked(id) {
             debug('card clicked: ' + id);
+            this.onCardClicked(id);
         }
     }
 });

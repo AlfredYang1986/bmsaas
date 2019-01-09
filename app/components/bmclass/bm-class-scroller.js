@@ -27,4 +27,9 @@ export default Component.extend({
          + 'overflow: ' + this.overflow + ';'
     }),
     // innerHeight: 
+    actions: {
+        cardClicked(id) {
+            this.onCardClicked(id);
+        }
+    }
 });

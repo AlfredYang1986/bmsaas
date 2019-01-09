@@ -41,6 +41,7 @@ export default Controller.extend({
             }
         },
         cardClicked(idx) {
+            console.log(idx)
             this.transitionToRoute('detail.classes', idx);
         },
         // createClass() {
