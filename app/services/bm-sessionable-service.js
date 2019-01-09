@@ -495,7 +495,6 @@ export default Service.extend({
         ft_tmp.data.attributes.end_date = this.handleDate(ft.tmp_date, ft.end_date)
         ft_tmp['included'] = arr;
         let dt = JSON.stringify(ft_tmp);
-
         // let that = this;
         $.ajax({
             method: 'POST',

@@ -23,14 +23,11 @@ export default Component.extend({
             return;
         } else {
             if (this.cls.courseTotalCount == 0) {
-                // return "#5A74DB";
                 return "notarr";
             } else {
                 if(this.cls.courseTotalCount == this.cls.courseExpireCount) {
-                    // return "#98A0AF";
                     return "finish";
                 } else {
-                    // return "#5ACADC";
                     return "going";
                 }
             }

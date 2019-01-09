@@ -31,8 +31,8 @@ export default Service.extend({
             return;
         }
 
-        let query_yard_payload = this.genIdQuery();
-        let rd = this.bmstore.sync(query_yard_payload);
+        let query_session_payload = this.genIdQuery();
+        let rd = this.bmstore.sync(query_session_payload);
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
         let inc = rd.Eqcond[0].serialize();
         rd_tmp['included'] = [inc.data];
@@ -122,14 +122,15 @@ export default Service.extend({
     queryMultiObjects() {
 
         this.bmmulti.reset();
-        let query_yard_payload = this.genMultiQuery();
-        let rd = this.bmmulti.sync(query_yard_payload);
+        let query_session_payload = this.genMultiQuery();
+        let rd = this.bmmulti.sync(query_session_payload);
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
         if (rd.Eqcond != undefined) {
 
             let eq = rd.Eqcond[0].serialize();
+            let eq2 = rd.Eqcond[1].serialize();
             // let fm = rd.Fmcond.serialize();
-            rd_tmp['included'] = [eq.data];
+            rd_tmp['included'] = [eq.data, eq2.data];
 
         }
         let dt = JSON.stringify(rd_tmp);
@@ -137,7 +138,7 @@ export default Service.extend({
         let that = this
         $.ajax({
             method: 'POST',
-            url: '/api/v1/findsessioninfomulti/0',
+            url: '/api/v1/findreservablemulti/0',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',
@@ -156,17 +157,26 @@ export default Service.extend({
 
     genMultiQuery() {
         let eq = this.guid();
+        let eq2 = this.guid();
         return {
                 data: {
                     id: this.guid(),
                     type: "Request",
                     attributes: {
-                        res: "BmSessionInfo"
+                        res: "BmReservable"
                     },
                     relationships: {
                         Eqcond: {
-                            id: eq,
-                            type: "Eqcond"
+                            data: [
+                            {
+                                id: eq,
+                                type: "Eqcond"
+                            },
+                            {
+                                id: eq2,
+                                type: "Eqcond"
+                            }
+                            ]
                         }
                     }
                 },
@@ -176,7 +186,15 @@ export default Service.extend({
                         type: "Eqcond",
                         attributes: {
                             key: 'brandId',
-                            val: localStorage.getItem('brandid'),
+                            val: localStorage.getItem('brandid')
+                        }
+                    },
+                    {
+                        id: eq2,
+                        type: "Eqcond",
+                        attributes: {
+                            key: 'status',
+                            val: 2
                         }
                     }
                 ]

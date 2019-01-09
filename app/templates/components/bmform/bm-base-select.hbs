@@ -8,10 +8,18 @@
                     <option value="" disabled selected hidden>{{pHolder}}</option>
                 {{/if}}
                 {{#each options as |item|}}
-                    {{#if (eq curSelect item.name)}}
-                        <option selected value={{item.name}}>{{item.name}}</option>
+                    {{#if chooseReservable}}
+                        {{#if (eq curSelect item.id)}}
+                            <option selected value="{{item.id}}{{separator}}{{item.SessionInfo.id}}">{{item.SessionInfo.title}}</option>
+                        {{else}}
+                            <option value="{{item.id}}{{separator}}{{item.SessionInfo.id}}">{{item.SessionInfo.title}}</option>
+                        {{/if}}
                     {{else}}
-                        <option value={{item.name}}>{{item.name}}</option>
+                        {{#if (eq curSelect item.name)}}
+                            <option selected value={{item.name}}>{{item.name}}</option>
+                        {{else}}
+                            <option value={{item.name}}>{{item.name}}</option>
+                        {{/if}}
                     {{/if}}
                 {{/each}}
             </select>
