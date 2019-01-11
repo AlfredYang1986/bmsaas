@@ -298,6 +298,35 @@ export default Service.extend({
             },
         })
     },
+    
+    delete(callback) {
+        let delete_sessionable_payload = this.genIdQuery();
+        let rd = this.bmstore.sync(delete_sessionable_payload);
+        let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
+        let inc = rd.Eqcond[0].serialize();
+        rd_tmp['included'] = [inc.data];
+        // if(params){
+        //     rd_tmp['included'][0].attributes.val = params.id
+        // }
+        let dt = JSON.stringify(rd_tmp);
+
+        $.ajax({
+            method: 'POST',
+            url: '/api/v1/deletesessionable/0',
+            headers: {
+                'Content-Type': 'application/json', // 默认值
+                'Accept': 'application/json',
+                'Authorization': 'bearer ' + this.get('cookie').read('token'),
+            },
+            data: dt,
+            success: function(/*res*/) {
+                callback.onSuccess();
+            },
+            error: function(err) {
+                callback.onFail(err);
+            },
+        })
+    },
 
     filterMultiObjects(param) {
         if (param == "all") {
