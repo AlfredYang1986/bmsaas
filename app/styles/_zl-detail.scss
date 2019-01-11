@@ -714,6 +714,38 @@ a.btn_sign {
         margin-left: 16px;
     }
 
+    .add-muti-btn {
+        font-family: PingFangSC-Medium;
+        font-size: 14px;
+        color: #FFFFFF;
+        text-align: left;
+
+        border: none;
+        // margin-right: 16px;
+        width: 80px;
+        height: 32px;
+        border-radius: 20px;
+        // background: #80AEFF url("../images/chevron_down_selected@2x.png") no-repeat 30px 13px/right;
+        background: url('../images/chevron_down_normal@2x.png');
+        background-color: #80AEFF !important;
+        background-position: right;
+        background-repeat: no-repeat;
+        background-size: 32px;
+        .dropdown-toggle {
+            background-color: #80AEFF !important;
+        }
+        &:focus {
+            box-shadow: none !important;
+        }
+        &:active {
+            // background-color: #FFFFFF!important;
+            box-shadow: none;
+        }
+        &::after {
+            display: none;
+        }
+    }
+
     .reserve-more-btn {
         background-color: #FFFFFF;
         border: none;
