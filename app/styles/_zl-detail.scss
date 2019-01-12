@@ -707,6 +707,26 @@ a.btn_sign {
     }
 }
 
+.ib_table_head.class_teacher_table {
+    margin-top: 24px;
+    
+    .session-list {
+        &:nth-child(even) {
+            background-color: #fbfbfb;
+        }
+        &:nth-child(odd) {
+            background-color: #FFFFFF;
+        }
+        .ib_table_content_item {
+            width: 40%;
+        }
+        .ib_table_content_item:nth-last-child(1) {
+            width: 20%;
+            text-align: center;
+        }
+    }
+}
+
 
 .btn-dropdown{
 

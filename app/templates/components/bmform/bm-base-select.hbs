@@ -14,6 +14,12 @@
                         {{else}}
                             <option value="{{item.id}}{{separator}}{{item.SessionInfo.id}}">{{item.SessionInfo.title}}</option>
                         {{/if}}
+                    {{else if idType}}
+                        {{#if (eq curSelect item.id)}}
+                            <option selected value={{item.id}}>{{item.name}}</option>
+                        {{else}}
+                            <option value={{item.id}}>{{item.name}}</option>
+                        {{/if}}
                     {{else}}
                         {{#if (eq curSelect item.name)}}
                             <option selected value={{item.name}}>{{item.name}}</option>

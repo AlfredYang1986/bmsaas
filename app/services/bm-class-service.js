@@ -184,6 +184,7 @@ export default Service.extend({
             data: dt,
             success: function(res) {
                 let result = that.bmstore.sync(res)
+                that.set('sessionableId', result.id);
                 that.set('class', result);
             },
             error: function(err) {
@@ -298,7 +299,7 @@ export default Service.extend({
             },
         })
     },
-    
+
     delete(callback) {
         let delete_sessionable_payload = this.genIdQuery();
         let rd = this.bmstore.sync(delete_sessionable_payload);

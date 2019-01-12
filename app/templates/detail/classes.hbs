@@ -20,7 +20,7 @@
                         {{#dd.menu align="right" as |menu|}}
                             {{#menu.item align="right"}}
                                 {{#layout-push direction='col' classNames="dropdown-content"}}
-                                    <a onclick={{action (mut editClassDlg) true dd.closeDropdown}}>编辑班级</a>
+                                    <a onclick={{action "onEditClassClick" dd.closeDropdown}}>编辑班级</a>
                                     <a class="warning" onclick={{action (mut deleteClassDlg) true dd.closeDropdown}}>删除班级</a>
                                 {{/layout-push}}
                             {{/menu.item}}
@@ -68,27 +68,27 @@
 
             {{#if (bmeq cur_idx 0)}}
                 {{#if (bmcom/bm-nil-obj bm_class_service.class.Teachers)}}
-                    {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无教师" des="快去为孩子们选择教师吧" btnText="添加课程安排" onBtnClick=(action (mut addTechDlg) true)}}
+                    {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无教师" des="快去为孩子们选择教师吧" btnText="添加教师" onBtnClick=(action (mut addTechDlg) true)}}
                 {{else}}
-                    {{!-- {{bmpage/bm-sessionable-lst titles=model.titles action="linkToExpField" onEditSessionClick="onEditSessionClick" onDeleteSessionClick="onDeleteSessionClick"}} --}}
+                    {{bmtable/bm-table-class-tech titles=model.techTitles onRemoveTeacherClick="onRemoveTeacherClick"}}
                     {{!-- {{bmcom/bm-pagination pageCount=bm_sessionable_service.totalPageCount sendPageNum=(action "handlePageChange")}} --}}
                 {{/if}}
             {{/if}}
 
             {{#if (bmeq cur_idx 1)}}
                 {{#if (bmcom/bm-nil-obj bm_class_service.class.Attendees)}}
-                    {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无学生" des="快去添加孩子们吧" btnText="添加课程安排" onBtnClick=(action (mut addStudDlg) true)}}
+                    {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无学生" des="快去添加孩子们吧" btnText="添加学生" onBtnClick=(action (mut addStudDlg) true)}}
                 {{else}}
-                    {{!-- {{bmpage/bm-sessionable-lst titles=model.titles action="linkToExpField" onEditSessionClick="onEditSessionClick" onDeleteSessionClick="onDeleteSessionClick"}} --}}
+                    {{bmtable/bm-table-class-stud titles=model.studTitles onRemoveStudClick="onRemoveStudClick"}}
                     {{!-- {{bmcom/bm-pagination pageCount=bm_sessionable_service.totalPageCount sendPageNum=(action "handlePageChange")}} --}}
                 {{/if}}
             {{/if}}
 
             {{#if (bmeq cur_idx 2)}}
-                {{#if (bmcom/bm-nil-obj bm_class_service.class.Attendees)}}
+                {{#if (bmcom/bm-nil-obj bm_courseunit_service.units)}}
                     {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无课程安排" des="快去添加课程安排吧" btnText="添加课程安排" onBtnClick=(action (mut addArrClassDlg) true)}}
                 {{else}}
-                    {{!-- {{bmpage/bm-sessionable-lst titles=model.titles action="linkToExpField" onEditSessionClick="onEditSessionClick" onDeleteSessionClick="onDeleteSessionClick"}} --}}
+                    {{bmtable/bm-table-class-arrcourse titles=model.arrTitles onRemoveArrcourseClick="onRemoveArrcourseClick"}}
                     {{!-- {{bmcom/bm-pagination pageCount=bm_sessionable_service.totalPageCount sendPageNum=(action "handlePageChange")}} --}}
                 {{/if}}
             {{/if}}
@@ -119,11 +119,11 @@
             {{/layout-push}}
             {{#if noteError}}
                 {{#layout-push direction="row"  classNames='input_area' }}
-                    {{bmform/bm-edit-line title='班级名称' needTitleDes=true titleDes="请为班级设定名称，方便识别" inputVal=bm_class_service.class.classTitle classNames='input_area input-full-width error-border'}}
+                    {{bmform/bm-edit-line title='班级名称' needTitleDes=true titleDes="请为班级设定名称，方便识别" inputVal=classTitle classNames='input_area input-full-width error-border'}}
                 {{/layout-push}}
             {{else}}
                 {{#layout-push direction="row"  classNames='input_area' }}
-                    {{bmform/bm-edit-line title='班级名称' needTitleDes=true titleDes="请为班级设定名称，方便识别" inputVal=bm_class_service.class.classTitle classNames='input_area input-full-width'}}
+                    {{bmform/bm-edit-line title='班级名称' needTitleDes=true titleDes="请为班级设定名称，方便识别" inputVal=classTitle classNames='input_area input-full-width'}}
                 {{/layout-push}}
             {{/if}}
             
@@ -135,4 +135,72 @@
     <p class="warning-modal-body-content">删除班级后与该班级相关的排课信息也会随之删除</p>
 {{/bmcom/bm-warning-modal}}
 
+
+{{#bmcom/bm-modal-container title="" mswitch=addTechDlg
+    successbtncss='exp-modal-confirm'
+    cancelbtncss='exp-modal-cancel'
+    canceltext='取消'
+    onCancelBtnClicked=(action 'cancelHandled')
+    onSuccessBtnClicked=(action 'addTechHandled')}}
+    <div class="session-modal">
+        {{#layout-push direction='col' }}
+            {{#layout-push direction='row'}}
+                <p class="title">添加教师</p>
+            {{/layout-push}}
+            {{#if noteError}}
+                <div class="form-checked">
+                    {{#layout-push direction='row' classNames="error-line"}}
+                        <img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
+                        <span class="error-info">请填写完整信息</span>
+                    {{/layout-push}}
+                </div>
+            {{/if}}
+            {{#layout-push direction="col" classNames='input_area' }}
+                {{bmform/bm-base-select selTitle="选择教师" options=bm_tech_service.techs curSelect=addTechId idType=true classNames="input_area area-margin-bottom"}}
+            {{/layout-push}}
+            {{#layout-push direction="col" classNames='input_area' }}
+                {{bmform/bm-base-select selTitle="选择职责" options=jobDuty curSelect=addJobDuty classNames="input_area area-margin-bottom"}}
+            {{/layout-push}}   
+        {{/layout-push}}
+    </div>
+{{/bmcom/bm-modal-container}}
+{{#bmcom/bm-warning-modal title="移出班级" mainBtnText="移出" type="error" switchParam=removeTechDlg cancelHandled='cancelHandled' successHandled="onRemoveTeacherClickOk"}}
+    <p class="warning-modal-body-content">确定要将「{{tmpTech.name}}」老师移出「{{bm_class_service.class.classTitle}}」吗？</p>
+{{/bmcom/bm-warning-modal}}
+
+{{#bmcom/bm-modal-container title="" mswitch=addStudDlg
+    successbtncss='exp-modal-confirm'
+    cancelbtncss='exp-modal-cancel'
+    canceltext='取消'
+    onCancelBtnClicked=(action 'cancelHandled')
+    onSuccessBtnClicked=(action 'addStudHandled')}}
+    <div class="session-modal">
+        {{#layout-push direction='col' }}
+            {{#layout-push direction='row'}}
+                <p class="title">添加班级学生</p>
+            {{/layout-push}}
+            {{!-- {{#if noteError}}
+                <div class="form-checked">
+                    {{#layout-push direction='row' classNames="error-line"}}
+                        <img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
+                        <span class="error-info">请填写完整信息</span>
+                    {{/layout-push}}
+                </div>
+            {{/if}}
+            {{#layout-push direction="col" classNames='input_area' }}
+                {{bmform/bm-base-select selTitle="选择教师" options=bm_tech_service.techs curSelect=addTechId idType=true classNames="input_area area-margin-bottom"}}
+            {{/layout-push}}
+            {{#layout-push direction="col" classNames='input_area' }}
+                {{bmform/bm-base-select selTitle="选择职责" options=jobDuty curSelect=addJobDuty classNames="input_area area-margin-bottom"}}
+            {{/layout-push}}    --}}
+        {{/layout-push}}
+    </div>
+{{/bmcom/bm-modal-container}}
+{{#bmcom/bm-warning-modal title="移出班级" mainBtnText="移出" type="error" switchParam=removeStudDlg cancelHandled='cancelHandled' successHandled="onRemoveStudClickOk"}}
+    <p class="warning-modal-body-content">确定要将「{{tmpStud.name}}」学生移出「{{bm_class_service.class.classTitle}}」吗？</p>
+{{/bmcom/bm-warning-modal}}
+
+{{#bmcom/bm-warning-modal title="删除课程安排" mainBtnText="删除" type="error" switchParam=removeStudDlg cancelHandled='cancelHandled' successHandled="onRemoveArrcourseClickOk"}}
+    <p class="warning-modal-body-content">确定要删除此节课程安排吗？</p>
+{{/bmcom/bm-warning-modal}}
 {{outlet}}

@@ -1,0 +1,9 @@
+{{!-- {{yield}} --}}
+<table class='ib_table_head class_teacher_table'>
+    <tr>
+        {{#each titles as |item|}}
+            <th class='ib_table_item'>{{item}}</th>
+        {{/each}}
+    </tr>
+    {{bmtable/bm-table-inner type="classTeacher" listData=bm_class_service.class.Teachers onRemoveTeacherClick="onRemoveTeacherClick"}}
+</table>

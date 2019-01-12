@@ -7,17 +7,16 @@ export default Route.extend({
     mock_data: service(),
     bm_session_service: service(),
     bm_class_service: service(),
+    bm_tech_service: service(),
     model(params) {
         this.bm_class_service.set('classId', params.clsid);
-        // this.mock_data.sureClasses();
-        // let cls = this.store.peekRecord('bmclass', params.clsid);
-        // if (cls == null) {
-        //     this.transitionTo('home');
-        // }
     
         return RSVP.hash({
             classid : params.classid,
             tabs: A(['班级教师', '学生名单', '课程安排']),
+            techTitles: A(['教师', '职责', '手机', '微信', '']),
+            studTitles: A(['姓名', '性别', '年龄', '联系方式', '']),
+            arrTitles: A(['课次', '时间', '教室', '教师', '']),
             // cls: cls,
             teacherList:[{
                 name:"张洒",
@@ -102,6 +101,7 @@ export default Route.extend({
         this._super(controller, model);
         this.bm_class_service.set('refresh_token', this.bm_class_service.guid());
         this.bm_session_service.set('refresh_all_token', this.bm_session_service.guid());
+        this.bm_tech_service.set('refresh_all_token', this.bm_session_service.guid());
     },
 
     activate() {

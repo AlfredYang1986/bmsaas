@@ -24,6 +24,24 @@ export default Component.extend({
         },
         addStud(params) {
             this.sendAction("addStud", params);
-        }
+		},
+		onRemoveTeacherClick(params) {
+			this.sendAction("onRemoveTeacherClick", params);
+		},
+		onStudDetailClick(params) {
+			this.sendAction("onStudDetailClick", params);
+		},
+		onRemoveStudClick(params) {
+			this.sendAction("onRemoveStudClick", params);
+		},
+		onArrcourseClick(params) {
+			this.sendAction("onArrcourseClick", params);
+		},
+		onEditArrcourseClick(params) {
+			this.sendAction("onEditArrcourseClick", params);
+		},
+		onRemoveArrcourseClick(params) {
+			this.sendAction("onRemoveArrcourseClick", params);
+		},
 	}
 });
