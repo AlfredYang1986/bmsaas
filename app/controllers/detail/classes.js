@@ -10,6 +10,7 @@ export default Controller.extend({
     bm_session_service: service(),
     bm_sessionable_service: service(),
     bm_tech_service: service(),
+    bm_stud_service: service(),
     bm_courseunit_service: service(),
     toast: service(),
     toastOptions: {

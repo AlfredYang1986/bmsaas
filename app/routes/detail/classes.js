@@ -8,6 +8,7 @@ export default Route.extend({
     bm_session_service: service(),
     bm_class_service: service(),
     bm_tech_service: service(),
+    bm_stud_service: service(),
     model(params) {
         this.bm_class_service.set('classId', params.clsid);
     
@@ -101,7 +102,8 @@ export default Route.extend({
         this._super(controller, model);
         this.bm_class_service.set('refresh_token', this.bm_class_service.guid());
         this.bm_session_service.set('refresh_all_token', this.bm_session_service.guid());
-        this.bm_tech_service.set('refresh_all_token', this.bm_session_service.guid());
+        this.bm_tech_service.set('refresh_all_token', this.bm_tech_service.guid());
+        this.bm_stud_service.set('refresh_all_token', this.bm_stud_service.guid());
     },
 
     activate() {

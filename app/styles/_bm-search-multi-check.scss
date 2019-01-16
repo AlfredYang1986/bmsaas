@@ -1,0 +1,43 @@
+.bm-search-check-container {
+    .title-container {
+        .search-title {
+            font-family: PingFangSC-Medium;
+            font-size: 14px;
+            color: #172B4D;
+        }
+        .choose-num {
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #6B778C;
+        }
+    }
+    .search-container {
+        margin-top: 16px;
+        .search-input {
+            
+        }
+    }
+    .table-container {
+        background-color: #fafbfc;
+        border-radius: 4px;
+        padding: 8px;
+        width: 464px;
+        height: 456px;
+        overflow-y: scroll;
+
+        .ib_table_head.class_add_stud_table {
+            min-width: unset;
+
+            .session-list {
+                height: 52px;
+
+                &:nth-child(even) {
+                    background-color: #fbfbfb;
+                }
+                &:nth-child(odd) {
+                    background-color: #FFFFFF;
+                }
+            }
+        }
+    }
+}
