@@ -25,7 +25,10 @@ export default Controller.extend({
     addClassDlg: false,
     addSuccessDlg: false,
     noteError: false,
+    noteCourseError: false,
     sessionId: '',
+
+    aaa: false,
 
     actions: {
         onTabClicked(tabIdx) {
@@ -41,7 +44,6 @@ export default Controller.extend({
             }
         },
         cardClicked(idx) {
-            console.log(idx)
             this.transitionToRoute('detail.classes', idx);
         },
         // createClass() {
@@ -50,14 +52,36 @@ export default Controller.extend({
         onAddClassClick() {
             this.set('addClassDlg', true);
         },
+        cancelSuccessHandled() {
+            this.set('addSuccessDlg', false);
+        },
         cancelHandled() {
             this.set('addClassDlg', false);
-            this.set('addSuccessDlg', false);
+            this.set('noteError', false);
+            this.set('noteCourseError', false);
         },
         successHandled() {
             this.bm_class_service.resetInfoAndYard(this.bm_yard_service.yard.id, this.sessionId);
             this.bm_class_service.resetTechs([]);
             this.bm_class_service.resetAttendee([]);
+
+            if(this.bm_class_service.class.classTitle == "" && this.bm_class_service.class.reservableId == "") {
+                this.set('noteError', true);
+                this.set('noteCourseError', true);
+                return;
+            } else if (this.bm_class_service.class.classTitle == "" && this.bm_class_service.class.reservableId != "") {
+                this.set('noteError', true);
+                this.set('noteCourseError', false);
+                return;
+            } else if (this.bm_class_service.class.classTitle != "" && this.bm_class_service.class.reservableId == "") {
+                this.set('noteCourseError', true);
+                this.set('noteError', false);
+                return;
+            } else {
+                this.set('noteCourseError', false);
+                this.set('noteError', false);
+            }
+
             let that = this
             let callback = {
                 onSuccess: function() {
@@ -66,6 +90,7 @@ export default Controller.extend({
                     that.bm_class_service.set('refresh_all_token', that.bm_class_service.guid());
                     debug('push sessionable success')
                     that.set('addSuccessDlg', true);
+                    that.set('aaa', true);
                 },
                 onFail: function() {
                     that.toast.error('', '添加班级失败', that.toastOptions);
@@ -76,6 +101,7 @@ export default Controller.extend({
         },
         onAddSuccess() {
             this.set('addSuccessDlg', false);
+            this.transitionToRoute("detail.classes", this.bm_class_service.sessionableId)
         },
     },
     generateClass() {

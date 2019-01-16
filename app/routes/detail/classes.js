@@ -16,7 +16,7 @@ export default Route.extend({
             tabs: A(['班级教师', '学生名单', '课程安排']),
             techTitles: A(['教师', '职责', '手机', '微信', '']),
             studTitles: A(['姓名', '性别', '年龄', '联系方式', '']),
-            arrTitles: A(['课次', '时间', '教室', '教师', '']),
+            arrTitles: A(['课次', '时间', '教室', '']),
             // cls: cls,
             teacherList:[{
                 name:"张洒",

@@ -1,10 +1,16 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
+import { A } from '@ember/array';
+import { inject as service } from '@ember/service';
+
 
 export default Component.extend({
+    bmOss: service(),
     positionalParams: ['cls'],
     // attributeBindings: ['style'],
     classNameBindings: ['background'],
+    techPics: A([]),
+    techPicsOverFlow: 0,
     hasSetCls: computed(function(){
         return this.cls != null;
     }),
@@ -38,5 +44,26 @@ export default Component.extend({
     }),
     click() {
         this.onClassCardClicked(this.cls.id);
+    },
+
+    didReceiveAttrs() {
+        if(this.cls.Teachers != null) {
+            this.set("techPics", A([]));
+            let client = this.bmOss.get('ossClient');
+            for(let idx = 0;idx < this.cls.Teachers.length;idx++) {
+                if(idx < 3) {
+                    let tmpObj = {};
+                    tmpObj.url = client.signatureUrl(this.cls.Teachers[idx].icon);
+                    this.techPics.pushObject(tmpObj)
+                }
+            }
+            if(this.cls.Teachers.length > 3) {
+                this.set("techPicsOverFlow", this.cls.Teachers.length - 3)
+            }
+        } else {
+            this.set("techPics", A([]))
+            this.set("techPicsOverFlow", 0)
+        }
     }
+
 });

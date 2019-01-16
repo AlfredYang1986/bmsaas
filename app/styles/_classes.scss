@@ -34,6 +34,12 @@
     select {
         @extend %select-box-dropdown-default;
     }
+    .error-border {
+        select {
+            border: 1px solid #DE350B;
+        }
+    }
+
 }
 
 .class_content {

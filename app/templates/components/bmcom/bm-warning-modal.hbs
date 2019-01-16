@@ -18,6 +18,26 @@
             {{/layout-push}}
         {{/layout-push}}
     {{/bmcom/bm-modal-container}}
+{{else if (eq type "normal")}}
+    {{#bmcom/bm-modal-container title="" mswitch=switchParam
+            needSubmit=true
+            cancelbtncss='exp-modal-cancel'
+            successbtncss='exp-modal-normal'
+            canceltext='取消'
+            successtext=mainBtnText
+            backdropClose=false
+            onCancelBtnClicked=(action 'cancelHandled')
+            onSuccessBtnClicked=(action 'successHandled')}}
+        {{#layout-push direction='col' classNames="warning-modal"}}
+            {{#layout-push direction='row' classNames="warning-modal-title"}}
+                <img class="warning-modal-title-pic" src="/images/icon_status_error@2x.png"/>
+                <p class="warning-modal-title-content">{{title}}</p>
+            {{/layout-push}}
+            {{#layout-push direction='col' classNames="warning-modal-body"}}
+                {{yield}}
+            {{/layout-push}}
+        {{/layout-push}}
+    {{/bmcom/bm-modal-container}}
 {{else}}
     {{#bmcom/bm-modal-container title="" mswitch=switchParam
             needSubmit=true

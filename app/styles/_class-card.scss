@@ -45,6 +45,9 @@
         // margin: 17px 12px;
         padding: 24px;
         height: 171px;
+        .no-arr-des {
+            display: none;
+        }
         .class-teachers {
             // margin-bottom: 20px;
             img {
@@ -102,6 +105,9 @@
             color: #172B4D;
             text-align: left;
         }
+        .no-course-count {
+            display: none;
+        }
     }
     .progress {
         margin-bottom: 8px;
@@ -117,6 +123,25 @@
 .notarr {
     .class-card-head-info {
         background:  #5A74DB;
+    }
+    .list, .split-line, .class-teachers {
+        display: none;
+    }
+    .class-card-content {
+        .course-count {
+            display: none;
+        }
+        .no-course-count {
+            display: inline-block;
+        }
+        .no-arr-des {
+            display: flex;
+            .no-arr-des-title {
+                font-family: PingFangSC-Regular;
+                font-size: 14px;
+                color: #FF9C46;
+            }
+        }
     }
 }
 .going {

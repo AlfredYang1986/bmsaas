@@ -282,6 +282,7 @@ export default Service.extend({
         rd_tmp['included'] = arr;
         let dt = JSON.stringify(rd_tmp);
 
+        let that = this;
         $.ajax({
             method: 'POST',
             url: '/api/v1/pushsessionable/0',
@@ -291,7 +292,10 @@ export default Service.extend({
                 'Authorization': 'bearer ' + this.get('cookie').read('token'),
             },
             data: dt,
-            success: function(/*res*/) {
+            success: function(res) {
+                // let result = that.bmstore.sync(res)
+                that.set('sessionableId', res.id);
+                // that.set('class', result);
                 callback.onSuccess();
             },
             error: function(err) {
@@ -373,6 +377,11 @@ export default Service.extend({
         this.set("class.Yard",this.bmstore.sync(yard))
     },
 
+    transTech(tech) {
+        tech._type = "BmClassTeacher"
+        tech.duty = ""
+        tech._attributes.pushObject("duty");
+    },
     resetTechs(techs) {
         let arr = []
         if(techs != null){
@@ -386,7 +395,7 @@ export default Service.extend({
                         }
                     }
                 }
-                let tc = this.bmstore.find('BmAttendee', techs[idx].id)
+                let tc = this.bmstore.find('BmTeacher', techs[idx].id)
                 if(tc != null){
                     this.bmstore.destroy(tc);
                 }

@@ -8,11 +8,15 @@
         {{#layout-push direction="col"}}
             <div class="progress-label">
                 <p>课程进度</p>
-                <p>{{cls.courseExpireCount}}/{{cls.courseTotalCount}}</p>
+                <p class="course-count">{{cls.courseExpireCount}}/{{cls.courseTotalCount}}</p>
+                <p class="no-course-count">-</p>
             </div>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
+            {{#bs-progress as |p|}}
+                {{p.bar value=cls.courseExpireCount minValue=0 maxValue=cls.courseTotalCount}}
+            {{/bs-progress}}
+        {{/layout-push}}
+        {{#layout-push direction='row' classNames="no-arr-des"}}
+            <p class="no-arr-des-title">尚未排课</p>
         {{/layout-push}}
         {{#layout-push direction='row' classNames="list"}}
             {{!-- <img src="../images/coursebooking_selected.png" alt="">
@@ -22,10 +26,12 @@
         {{#layout-push direction='row' classNames="split-line"}}
         {{/layout-push}}
         {{#layout-push direction="row" classNames="class-teachers"}}
-            <img src="" alt="">
-            <img src="" alt="">
-            <img src="" alt="">
-            <p class="teacher-num">+2</p>
+            {{#each techPics as |item|}}
+                <img src={{item.url}} alt="">
+            {{/each}}
+            {{#if (gt techPicsOverFlow 0)}}
+                <p class="teacher-num">+{{techPicsOverFlow}}</p>
+            {{/if}}
         {{/layout-push}}
     {{/layout-push}}
 {{/layout-push}}

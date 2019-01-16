@@ -12,7 +12,9 @@
             {{#layout-push direction='row' split=true classNames="class-detail-title-top"}}
                 {{#layout-push direction='col' split=true classNames="class-detail-title-top-left"}}
                     <p class="class-title">{{bm_class_service.class.classTitle}}</p>
-                    <p class="class-subtitle">{{bm_class_service.class.SessionInfo.title}}</p>
+                    {{#link-to 'detail.course' bm_class_service.class.SessionInfo.id}}
+                        <p class="class-subtitle">{{bm_class_service.class.SessionInfo.title}}</p>
+                    {{/link-to}}
                 {{/layout-push}}
                 {{#layout-push direction='row' classNames="class-detail-title-top-right"}}
                     {{#bs-dropdown class="btn-dropdown" as |dd|}}
@@ -159,7 +161,7 @@
                 {{bmform/bm-base-select selTitle="选择教师" options=bm_tech_service.techs curSelect=addTechId idType=true classNames="input_area area-margin-bottom"}}
             {{/layout-push}}
             {{#layout-push direction="col" classNames='input_area' }}
-                {{bmform/bm-base-select selTitle="选择职责" options=jobDuty curSelect=addJobDuty classNames="input_area area-margin-bottom"}}
+                {{bmform/bm-base-select selId="job" selTitle="选择职责" options=jobDuty curSelect=addJobDuty classNames="input_area area-margin-bottom"}}
             {{/layout-push}}   
         {{/layout-push}}
     </div>

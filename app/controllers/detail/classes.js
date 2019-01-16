@@ -78,7 +78,7 @@ export default Controller.extend({
                 }
             }
             this.bm_class_service.resetInfoAndYard(this.bm_class_service.class.Yard.id, this.bm_class_service.class.SessionInfo.id);
-            this.bm_class_service.resetTechs(this.bm_class_service.class.Teachers);
+            // this.bm_class_service.resetTechs(this.bm_class_service.class.Teachers);
             this.bm_class_service.resetAttendee(this.bm_class_service.class.Attendees);
             let that = this
             let callback = {
@@ -106,7 +106,7 @@ export default Controller.extend({
                 }
             }
             this.bm_class_service.resetInfoAndYard(this.bm_class_service.class.Yard.id, this.bm_class_service.class.SessionInfo.id);
-            this.bm_class_service.resetTechs(this.bm_class_service.class.Teachers);
+            // this.bm_class_service.resetTechs(this.bm_class_service.class.Teachers);
             this.bm_class_service.resetAttendee(this.bm_class_service.class.Attendees);
             let that = this
             let callback = {
@@ -145,7 +145,7 @@ export default Controller.extend({
             }
             this.set('bm_class_service.class.classTitle', this.classTitle);
             this.bm_class_service.resetInfoAndYard(this.bm_class_service.class.Yard.id, this.bm_class_service.class.SessionInfo.id);
-            this.bm_class_service.resetTechs(this.bm_class_service.class.Teachers);
+            // this.bm_class_service.resetTechs(this.bm_class_service.class.Teachers);
             this.bm_class_service.resetAttendee(this.bm_class_service.class.Attendees);
             let that = this
             let callback = {
@@ -177,19 +177,22 @@ export default Controller.extend({
             let addTech = null
             for(let idx = 0;idx < this.bm_tech_service.techs.length;idx++) {
                 if(this.addTechId == this.bm_tech_service.techs[idx].id) {
+                    this.bm_class_service.transTech(this.bm_tech_service.techs[idx])
                     addTech = this.bm_tech_service.techs[idx];
                 }
             }
+            addTech.duty = this.addJobDuty;
             this.bm_class_service.class.Teachers.pushObject(addTech);
 
             this.bm_class_service.resetInfoAndYard(this.bm_class_service.class.Yard.id, this.bm_class_service.class.SessionInfo.id);
-            this.bm_class_service.resetTechs(this.bm_class_service.class.Teachers);
+            // this.bm_class_service.resetTechs(this.bm_class_service.class.Teachers);
             this.bm_class_service.resetAttendee(this.bm_class_service.class.Attendees);
             let that = this
             let callback = {
                 onSuccess: function() {
                     that.set('addTechDlg', false);
-                    that.set("addTechId", null);
+                    that.set("addTechId", "");
+                    that.set("addJobDuty", "");
                     that.toast.success('', '添加老师成功', that.toastOptions);
                     that.bm_class_service.set('refresh_token', that.bm_class_service.guid());
                     debug('push success')
