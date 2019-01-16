@@ -1,0 +1,34 @@
+{{!-- {{yield}} --}}
+{{#layout-push direction="col" split=true classNames='input_area'}}
+    <p class="edit_title area-margin-bottom">{{selTitle}}</p>
+    {{#layout-push direction="row" classNames=""}}
+        <div class="course-reserve-modal-select">
+            <select class="" id={{selId}} name="" onChange={{action 'selectedChange'}}>
+                {{#if (eq curSelect "")}}
+                    <option value="" disabled selected hidden>{{pHolder}}</option>
+                {{/if}}
+                {{#each options as |item|}}
+                    {{#if chooseReservable}}
+                        {{#if (eq curSelect item.id)}}
+                            <option selected value="{{item.id}}{{separator}}{{item.SessionInfo.id}}">{{item.SessionInfo.title}}</option>
+                        {{else}}
+                            <option value="{{item.id}}{{separator}}{{item.SessionInfo.id}}">{{item.SessionInfo.title}}</option>
+                        {{/if}}
+                    {{else if idType}}
+                        {{#if (eq curSelect item.id)}}
+                            <option selected value={{item.id}}>{{item.name}}</option>
+                        {{else}}
+                            <option value={{item.id}}>{{item.name}}</option>
+                        {{/if}}
+                    {{else}}
+                        {{#if (eq curSelect item.name)}}
+                            <option selected value={{item.name}}>{{item.name}}</option>
+                        {{else}}
+                            <option value={{item.name}}>{{item.name}}</option>
+                        {{/if}}
+                    {{/if}}
+                {{/each}}
+            </select>
+        </div>
+    {{/layout-push}}
+{{/layout-push}}

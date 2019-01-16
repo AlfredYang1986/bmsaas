@@ -14,12 +14,39 @@
         margin: 24px;
         height: calc(100vh - 112px);
     }
+    .class-empty-state {
+        height: calc(100vh - 256px);
+        margin: 24px;
+    }
+}
+.session-modal {
+    .edit_title {
+        font-family: PingFangSC-Medium;
+        font-size: 14px;
+        color: #172B4D;
+    }
+    .input_area.area-margin-bottom {
+        margin-bottom: 24px;
+    }
+    .edit_title.area-margin-bottom {
+        margin-bottom: 16px;
+    }
+    select {
+        @extend %select-box-dropdown-default;
+    }
+    .error-border {
+        select {
+            border: 1px solid #DE350B;
+        }
+    }
+
 }
 
 .class_content {
     background: #fff;
     padding: 20px 24px;
-    margin: 24px;
+    height: 72px;
+    margin: 24px 24px 0 24px;
     p.class-content-title {
         font-family: PingFangSC-Medium;
         font-size: 24px;
@@ -52,12 +79,12 @@
     margin: 24px; 
     position: relative;
 
-    border: 2px rgba(9, 30, 66, 0.08) solid;
+    // border: 2px rgba(9, 30, 66, 0.08) solid;
 
     .class-content-panel {
-        position: absolute;
-        top: 0;
-        left: 0;
+        // position: absolute;
+        // top: 0;
+        // left: 0;
         width: 100%;
     }
 }

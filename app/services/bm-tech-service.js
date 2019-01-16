@@ -179,8 +179,15 @@ export default Service.extend({
                     reg_date: now,
                     contact: '',
                     wechat: '',
+                    province: '',
+                    city: '',
+                    district: '',
                     address: '',
                     nativePlace: '',
+                    jobTitle: '',
+                    jobType: 0,
+                    major: '',
+                    teachYears: 0,
                 },
             }
         }

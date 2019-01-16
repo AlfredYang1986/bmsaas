@@ -3,4 +3,6 @@ import { inject as service } from '@ember/service';
 
 export default Controller.extend({
     bm_tech_service: service(),
+
+    cur_idx: 0,
 });

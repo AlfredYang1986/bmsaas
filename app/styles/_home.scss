@@ -150,20 +150,39 @@
 
 .dd_content_top {
     @extend %dd_content_basic;
-    padding-top: 88px;
+    padding-top: 64px;
 }
 
 // .dd_content {
-//     @extend %dd_content_basic;
-// }
+    //     @extend %dd_content_basic;
+    // }
+.brand_detail_container_outer {
+    margin: 24px;
+
+    .brand_detail_title {
+        height: 110px;
+        padding: 24px;
+        margin: 0;
+
+        .title_text {
+            
+        }
+        .sub_title_text {
+            font-family: SFUIText-Regular;
+            font-size: 14px;
+            color: #6B778C;
+            text-align: left;
+            margin-top: 8px;
+        }
+    }
+}
 .brand_detail_container{
-    padding-left: 240px;
+    // padding-left: 240px;
 
     .brand_detail_container_left{
         width: 33.33%;
         min-width: 296px;
         margin-right: 8px;
-        margin-left: 24px;
 
         .brand_detail_container_left_inner{
 
@@ -213,6 +232,7 @@
                 border-radius: 4px;
             }
             p.brand_title {
+                font-family: PingFangSC-Medium;
                 font-size: 16px;
                 color: #172B4D;
             }
@@ -220,6 +240,7 @@
         .brand_info_card_content {
             margin-top: 40px;
             p {
+                font-family: PingFangSC-Medium;
                 margin-right: 16px;
                 min-width: 70px;
                 font-size: 14px;
@@ -245,6 +266,7 @@
         background: #fff;
         min-width: 912px;
         p.brand_panel_head_title {
+            font-family: PingFangSC-Medium;
             font-size: 16px;
             color: #172B4D;
         }
@@ -261,8 +283,6 @@
 }
 .brand_detail {
     padding: 24px;
-    // margin-left: -16px;
-    margin-right: 24px;
     margin-bottom: 24px;
     min-height: 338px;
     width: 100%;
@@ -323,6 +343,7 @@
                         width: 160px;
 
                         img{
+                            border: none;
                             width: 160px;
                             height: 106px;
 

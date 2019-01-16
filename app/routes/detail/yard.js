@@ -1,15 +1,20 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 import { inject as service } from '@ember/service';
+import { A } from '@ember/array';
 
 export default Route.extend({
     bm_yard_service: service(),
+    bm_room_service: service(),
 
     model(params) {
         this.bm_yard_service.set('yardid', params.yardid);
-  
+        this.bm_room_service.set('yardid', params.yardid);
+
         return RSVP.hash({
             yardid: params.yardid,
+            tabs: A(['校区信息', '教室/场地']),
+            titles: A(["教室名称","使用类型",""]),
         })
     },
     guid() {
@@ -22,6 +27,18 @@ export default Route.extend({
     },
     setupController(controller, model) {
         this._super(controller, model);
-        this.bm_yard_service.set('refresh_token', this.bm_yard_service.guid());
+        this.bm_yard_service.set('curTabIdx', 0);
+        this.bm_room_service.set('page', 0);
+        let that = this;
+        let callback = {
+            onSuccess: function () {
+                that.bm_room_service.set('refresh_all_token', that.bm_room_service.guid());
+            },
+            onFail: function () {
+                
+            }
+        }
+        this.bm_yard_service.queryYard(callback);
+        // this.bm_yard_service.set('refresh_token', this.bm_yard_service.guid());
     },
 });

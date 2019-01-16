@@ -1,0 +1,70 @@
+// @import 'args';
+
+.detail_panel.class-detail-outer {
+    padding: 0;
+    background-color: transparent;
+
+    .class-detail-title-top {
+        background-color: #fff;
+        height: 88px;
+        padding: 16px 24px;
+        .class-detail-title-top-left {
+            .class-title {
+                font-family: PingFangSC-Medium;
+                font-size: 24px;
+                color: #172B4D;
+                line-height: 28px;
+            }
+            .class-subtitle {
+                font-family: PingFangSC-Medium;
+                font-size: 14px;
+                color: #3172E0;
+            }
+        }
+        .class-detail-title-top-right {
+            
+        }
+    }
+    .class-detail-title-sec {
+        background-color: #fff;
+        height: 80px;
+        padding: 16px 24px;
+        .class-detail-title-sec-left {
+            .sec-title {
+                font-family: PingFangSC-Medium;
+                font-size: 14px;
+                color: #172B4D;
+            }
+            .sec-des {
+                margin-left: 8px;
+                font-family: SFUIText-Regular;
+                font-size: 14px;
+                color: #6B778C;
+            }
+            .sec-left-top {
+
+            }
+            .sec-left-bottom {
+                margin-top: 8px;
+            }
+        }
+        .class-detail-title-sec-right {
+            align-items: center;
+            justify-content: end;
+            .sec-right-num {
+                margin-left: 24px;
+                font-family: PingFangSC-Medium;
+                font-size: 16px;
+                color: #172B4D;
+                line-height: 22px;
+            }
+            .sec-right-des {
+                margin-left: 4px;
+                font-family: PingFangSC-Regular;
+                font-size: 11px;
+                color: #6B778C;
+                line-height: 22px;
+            }
+        }
+    }
+}

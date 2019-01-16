@@ -580,6 +580,13 @@
         text-align: left;
 
         max-width: 200px;
+
+        .table-img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+        }
+
         span.dealed {
             @extend %font-help-text;
         }

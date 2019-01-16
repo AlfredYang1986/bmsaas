@@ -23,6 +23,13 @@
     margin-bottom: 26px;
     padding: 40px 24px;
     background-color: #FFF;
+
+    &.tech_detail_title {
+      height: 72px;
+      padding: 20px 24px;
+      margin-bottom: 0;
+    }
+
     .title_text {
     @extend %font-page-header-title;
     }

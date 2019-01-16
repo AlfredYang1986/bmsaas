@@ -32,6 +32,14 @@
                 font-size: $font-size-main;
                 color: $color-neutral-N800;
                 letter-spacing: 1.58px;
+
+                & + .tech_card_text {
+                    margin-left: 8px;
+                    font-family: SFUIText-Regular;
+                    font-size: 14px;
+                    color: #6B778C;
+                    text-align: left;
+                }
             }
             .tech_card_tel {
                 font-size: $font-size-main;

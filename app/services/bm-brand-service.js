@@ -44,8 +44,20 @@ export default Service.extend({
             },
             data: dt,
             success: function(res) {
-                let result = that.bmstore.sync(res)
+                let result = that.bmstore.sync(res);
                 // sessionStorage.setItem("brandLogo", result.logo);
+                
+                let tempArr = [];
+                if(result.brand_tags != null) {
+                    for (let idx = 0;idx < result.brand_tags.length;idx++) {
+                        let item = {};
+                        item.id = idx + 1;
+                        item.text = result.brand_tags[idx];
+                        tempArr.push(item);
+                    }
+                }
+                result.brand_tags = tempArr;
+
                 that.set('brand', result);
             },
             error: function(err) {
@@ -61,6 +73,25 @@ export default Service.extend({
             .substring(1);
         }
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+    },
+
+    genNewImgObj(type) {
+        let payload = this.genNewImgPayload(type);
+        let result = this.bmstore.sync(payload);
+        return result;
+    },
+    
+    genNewImgPayload(type) {
+        return {
+            data: {
+                type: type,
+                id: this.guid(),
+                attributes: {
+                    img: "",
+                    tag: ""
+                },
+            }
+        }
     },
 
     genIdQuery() {
@@ -102,22 +133,29 @@ export default Service.extend({
         }
 
         let rd = this.brand;
-
+        
         let arr = [];
         for (let idx = 0; idx < rd.Honors.length; idx++) {
             let tmp = rd.Honors[idx].serialize();
             arr.push(tmp.data);
         }
-
+        
         for (let idx = 0; idx < rd.Certifications.length; idx++) {
             let tmp = rd.Certifications[idx].serialize();
             arr.push(tmp.data);
         }
-
+        
         let c = rd.Cate.serialize();
         arr.push(c.data);
-
+        
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
+
+        let tempArr = [];
+        for (let idx = 0;idx < rd_tmp.data.attributes.brand_tags.length;idx++) {
+            tempArr.push(rd_tmp.data.attributes.brand_tags[idx].text);
+        }
+        rd_tmp.data.attributes.brand_tags = tempArr;
+
         rd_tmp['included'] = arr;
         let dt = JSON.stringify(rd_tmp);
 

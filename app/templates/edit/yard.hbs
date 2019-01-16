@@ -1,32 +1,12 @@
-{{!-- <ul class="nav">
-    <li class="nav-item">
-        <a class="nav-link active brand_name" href="#">编辑-场地信息</a>
-        {{refresh_yard}}
-    </li>
-    <li class="nav-item menu_mid">
-        <div class="menu_container">
-            {{#if isPushing}}
-                {{#link-to 'yard' class="nav_cancel_btn menu_button_between"}}
-                    取消
-                {{/link-to}}
-            {{else}}
-                {{#link-to 'detail.yard' bm_yard_service.yard.id class="nav_cancel_btn menu_button_between"}}
-                    取消
-                {{/link-to}}
-            {{/if}}
-            <button class="nav_save_btn menu_button_between" {{action 'saveYardBtnClicked'}}>保存</button>
-        </div>
-    </li>
-</ul> --}}
 {{#layout-push direction='row' split=true classNames='edit_nav' }}
   <span>编辑场地</span>
   <span>
       {{#if isPushing}}
-          {{#link-to 'yard' class="edit_nav_btn btn_cacel"}}
+          {{#link-to 'detail.yard' class="edit_nav_btn btn_cacel"}}
               取消
           {{/link-to}}
       {{else}}
-          {{#link-to 'detail.yard' bm_yard_service.yard.id class="edit_nav_btn btn_cacel"}}
+          {{#link-to 'detail.yard' class="edit_nav_btn btn_cacel"}}
               取消
           {{/link-to}}
       {{/if}}
@@ -36,77 +16,113 @@
 {{#layout-push direction='row' split=true classNames='edit_container' }}
     <ul class="edit_left_nav">
         <li class="left_bar_item">
-            <a class="edit_left_menu_text" href="#yard-loc" {{action (mut current_idx) 0}}>场地地址</a>
+            <a class="edit_left_menu_text" href="#yard-loc" {{action (mut current_idx) 0}}>基本信息</a>
         </li>
         <li class="left_bar_item">
+            <a class="edit_left_menu_text" href="#yard-cert" {{action (mut current_idx) 1}}>校区图片</a>
+        </li>
+        <li class="left_bar_item">
+            <a class="edit_left_menu_text" href="#yard-faclity" {{action (mut current_idx) 2}}>校区设施</a>
+        </li>
+        <li class="left_bar_item">
+            <a class="edit_left_menu_text" href="#yard-faclity" {{action (mut current_idx) 3}}>校区认证</a>
+        </li>
+        {{!-- <li class="left_bar_item">
             <a class="edit_left_menu_text" href="#yard-info" {{action (mut current_idx) 1}}>场地名称</a>
         </li>
         <li class="left_bar_item">
             <a class="edit_left_menu_text" href="#yard-evn" {{action (mut current_idx) 2}}>场地环境</a>
-        </li>
-        {{!-- <li class="left_bar_item">
-            <a class="edit_left_menu_text" href="#yard-faclity" {{action (mut current_idx) 3}}>友好设施</a>
         </li> --}}
-        <li class="left_bar_item">
-            <a class="edit_left_menu_text" href="#yard-cert" {{action (mut current_idx) 4}}>场地图片</a>
-        </li>
     </ul>
 
-    {{!-- <ul class="edit_left_bar">
-        <li class="left_bar_item" >
-            <div class="edit_left_menu_mid menu_margin_right">
-                <a class="edit_left_menu_text" href="#yard-loc" {{action (mut current_idx) 0}}>场地地址</a>
-            </div>
-        </li>
-        <li class="left_bar_item" >
-            <div class="edit_left_menu_mid menu_margin_right">
-                <a class="edit_left_menu_text" href="#yard-info" {{action (mut current_idx) 1}}>场地名称</a>
-            </div>
-        </li>
-        <li class="left_bar_item" >
-            <div class="edit_left_menu_mid menu_margin_right">
-                <a class="edit_left_menu_text" href="#yard-evn" {{action (mut current_idx) 2}}>场地环境</a>
-            </div>
-        </li> --}}
-        {{!-- <li class="left_bar_item" >
-            <div class="edit_left_menu_mid menu_margin_right">
-                <a class="edit_left_menu_text" href="#yard-faclity" {{action (mut current_idx) 3}}>友好设施</a>
-            </div>
-        </li> --}}
-        {{!-- <li class="left_bar_item" >
-            <div class="edit_left_menu_mid menu_margin_right">
-                <a class="edit_left_menu_text" href="#yard-cert" {{action (mut current_idx) 4}}>场地图片</a>
-            </div>
-        </li>
-    </ul> --}}
     <div class="input_container">
     {{#if (bmeq current_idx 0)}}
     <section id="yard-loc" class="yard-infos yard_section">
-        <div class="edit_panel v_push edit_first_panel">
-            {{#layout-push direction="row"}}
-                <span class="alt-edit-title">场地地址</span>
-            {{/layout-push}}
-            {{#layout-push direction='row' split=true}}
-                {{#layout-push direction='row' classNames='line_half'}}
-                    {{bmform/region-choose
-                        provinces=yard_provinces
-                        citys=yard_citys
-                        governmentAreas=yard_government_areas
-                        province=bm_yard_service.yard.province
-                        city=bm_yard_service.yard.city
-                        area=bm_yard_service.yard.district}}
+        {{#layout-push direction='col' classNames='edit_panel edit_first_panel'}}
+            {{#layout-push direction='row' classNames='edit_title_container'}}
+                <span class="edit_title">基本信息</span>
+            {{/layout-push }}
+            {{!-- {{#layout-push direction="col" classNames='area-margin-bottom'}}
+                {{#layout-push direction="row"}}
+                        <span class="alt-edit-title">校区地址</span>
+                {{/layout-push}}
+                {{#layout-push direction='row' split=true}}
+                    {{#layout-push direction='row' classNames='line_half'}}
+                        {{bmform/region-choose
+                            provinces=yard_provinces
+                            citys=yard_citys
+                            governmentAreas=yard_government_areas
+                            province=bm_yard_service.yard.province
+                            city=bm_yard_service.yard.city
+                            area=bm_yard_service.yard.district}}
+                    {{/layout-push}}
+                {{/layout-push}}
+                <span class='alt-edit-up-hit'>街道门牌号、小区楼号、楼层号</span>
+                {{input value=bm_yard_service.yard.address classNames='alt-edit-line'}}
+            {{/layout-push}} --}}
+            {{bmform/bm-detail-address 
+                provinces=yard_provinces 
+                citys=yard_citys 
+                areas=yard_government_areas 
+                province=bm_yard_service.yard.province
+                city=bm_yard_service.yard.city
+                area=bm_yard_service.yard.district
+                title='校区地址' 
+                detailAddress=bm_yard_service.yard.address
+                classNames="area-margin-bottom"}}
+            {{bmform/bm-edit-line 
+                maxlength='20' 
+                title='校区名称' 
+                inputVal=bm_yard_service.yard.title 
+                classNames='input_area area-margin-bottom yard-name' 
+                needTitleDes=true 
+                titleDes="如:PRO科学空间站 海淀校区"}}
+            {{#layout-push direction="col" classNames='area-margin-bottom'}}
+                {{#layout-push direction="row"}}
+                    <span class="alt-edit-title">校区属性</span>
+                {{/layout-push}}
+                {{#layout-push direction="col" classNames="single-select card-wrap"}}
+                    {{bmform/checkbox-label limit=1
+                            candidate=yardCandidate
+                            titlecss='edit_sub_title'
+                            btncss='form-check-label'
+                            curSel=bm_yard_service.yard.attribute
+                            }}
                 {{/layout-push}}
             {{/layout-push}}
-            <span class='alt-edit-up-hit'>街道门牌号、小区楼号、楼层号</span>
-            {{input value=bm_yard_service.yard.address classNames='alt-edit-line'}}
-            {{#layout-push classNames='r_end' direction='row'}}
-                <button class='alt-edit-step-btn' {{action (mut current_idx) 1}}>下一步</button>
+            {{#layout-push direction="col" classNames='area-margin-bottom'}}
+                {{#layout-push direction="row"}}
+                    <span class="alt-edit-title">校区场景</span>
+                {{/layout-push}}
+                {{#layout-push direction="col" classNames="single-select card-wrap"}}
+                    {{bmform/checkbox-label limit=1
+                            candidate=surroundings
+                            titlecss='edit_sub_title'
+                            btncss='form-check-label'
+                            curSel=bm_yard_service.yard.scenario
+                            }}
+                {{/layout-push}}
             {{/layout-push}}
-        </div>
+            {{bmform/bm-edit-line 
+                numberInput=true 
+                maxlength='20' 
+                title='客服联系电话' 
+                inputVal=bm_yard_service.yard.serviceContact 
+                classNames='input_area area-margin-bottom yard-contact'}}
+            {{bmform/bm-edit-line 
+                title='营业时间' 
+                inputVal=bm_yard_service.yard.openTime 
+                classNames='input_area yard-contact'
+                needTitleDes=true 
+                titleDes="如:周一，周三至周五，周日 10:00~22:00"}}
+        {{/layout-push}}
+        {{#layout-push classNames='edit_panel_bottom_btn_container' direction='row'}}
+            <button class='edit_panel_bottom_btn' {{action (mut current_idx) 1}}>下一步</button>
+        {{/layout-push}}
     </section>
     {{/if}}
 
-    {{#if (bmeq current_idx 1)}}
+    {{!-- {{#if (bmeq current_idx 1)}}
     <section id="yard-info" class="yard-infos yard_section">
         <div class="edit_panel v_push edit_second_panel">
             {{#layout-push direction="row"}}
@@ -142,7 +158,7 @@
                         curSel=bm_yard_service.yard.attribute
                         }}
             {{/layout-push}}
-            {{!-- {{#layout-push direction="row"}}
+            {{#layout-push direction="row"}}
                 <span class="alt-edit-title">周围环境</span>
             {{/layout-push}}
             {{#layout-push direction="col" classNames="single-select card-wrap"}}
@@ -151,7 +167,7 @@
                         titlecss='edit_sub_title'
                         btncss='form-check-label'
                     }}
-            {{/layout-push}} --}}
+            {{/layout-push}}
             {{#layout-push direction="row"}}
                 <span class="alt-edit-title alt-edit-title-loc">小区/校区/商圈 名称</span>
             {{/layout-push}}
@@ -168,47 +184,101 @@
             {{/layout-push}}
         </div>
     </section>
-    {{/if}}
-
-    {{!-- {{#if (bmeq current_idx 3)}}
-    <section id="yard-faclity" class="yard-infos yard_section" >
-        {{#layout-push direction='col' classNames='edit_panel edit_fourth_panel'}}
-            {{#layout-push direction='row' }}
-                <span class="edit_title">设施</span>
-            {{/layout-push }}
-
-            {{#layout-push direction='row' split=true}}
-                {{bmform/bm-edit-line title="停车场" isNeeded=true maxCount=1 classNames='line_half' inputVal=yard_parking}}
-                {{bmform/bm-edit-line title="急救包" isNeeded=true maxCount=1 classNames='line_half' inputVal=yard_embag}}
-            {{/layout-push}}
-            
-            {{#layout-push classNames='r_end' direction='row'}}
-                <button class='alt-edit-step-btn' {{action (mut current_idx) 4}}>下一步</button>
-            {{/layout-push}}
-        {{/layout-push }}
-    </section>
     {{/if}} --}}
 
-    {{#if (bmeq current_idx 4)}}
-    <section class="yard-infos yard_section" >
-        {{#layout-push direction='col' classNames='edit_panel edit_reward_panel edit_fifth_panel'}}
-            {{#layout-push direction="row"}}
-                <span class="alt-edit-title">场地图片</span>
+    {{#if (bmeq current_idx 1)}}
+        <section class="yard-infos yard_section" >
+            {{#layout-push direction='col' classNames='edit_panel edit_second_panel'}}
+                {{#layout-push direction='row' classNames='edit_title_container'}}
+                    <span class="edit_title">校区图片</span>
+                {{/layout-push }}
+                {{#layout-push direction="row"}}
+                    <span class="alt-edit-title">校区图片</span>
+                {{/layout-push}}
+                <span class='edit_sub_title'>图片的区域名称将被展示在小程序中</span>
+                <span class='edit_sub_title'>每张图片小于150KB，至多上传9项</span>
+                {{#layout-push direction='row'}}
+                    <div class='line_conatainer_warp'>
+                        {{#each bm_yard_service.yard.Tagimgs as |item|}}
+                            {{bmcom/bm-img-uploader needTag=true canEdit=true canEditTag=true canDeleteImg=false canDeleteObj=true imgObj=item img=item.img tag=item.tag onDeleteObj=(action "deleteYardImg") classNames='alt-yard-edit-tag-img-adjust'}}
+                        {{/each}}
+                        {{#if (bmcom/bm-nil-obj bm_yard_service.yard.Certifications)}}
+                            {{#layout-push direction='row' mid=true classNames="add-img-div"}}
+                                <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addYardPicOnClick"}}/>
+                            {{/layout-push}}
+                        {{else}}
+                            {{#if (lt bm_yard_service.yard.Certifications.length 9)}}
+                                {{#layout-push direction='row' mid=true classNames="add-img-div"}}
+                                    <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addYardPicOnClick"}}/>
+                                {{/layout-push}}
+                            {{/if}}
+                        {{/if}}
+                    </div>
+                {{/layout-push}}
+            {{/layout-push }}
+            {{#layout-push classNames='edit_panel_bottom_btn_container' direction='row'}}
+                <button class='edit_panel_bottom_btn' {{action (mut current_idx) 2}}>下一步</button>
             {{/layout-push}}
-            <span class='alt-edit-up-hit'>每张图片小于100KB</span>
-            {{#layout-push direction='row' mid=true}}
-                <div class='line_conatainer_warp'>
-                    {{#each bm_yard_service.yard.Tagimgs as |item|}}
-                        {{bmcom/bm-img-uploader needTag=true canEdit=true img=item.img tag=item.tag classNames='alt-yard-edit-tag-img-adjust'}}
-                    {{/each}}
-                </div>
-            {{/layout-push}}
-            {{#layout-push classNames='r_end' direction='row'}}
-                <button class='alt-edit-step-btn' {{action 'saveYardBtnClicked'}}>完成</button>
+        </section>
+    {{/if}}
+
+    {{#if (bmeq current_idx 2)}}
+    <section id="yard-faclity" class="yard-infos yard_section" >
+        {{#layout-push direction='col' classNames='edit_panel edit_third_panel'}}
+            {{#layout-push direction='row' classNames='edit_title_container'}}
+                <span class="edit_title">校区设施</span>
+            {{/layout-push }}
+            {{!-- {{#layout-push direction='row' split=true}}
+                {{bmform/bm-edit-line title="停车场" isNeeded=true maxCount=1 classNames='line_half' inputVal=yard_parking}}
+                {{bmform/bm-edit-line title="急救包" isNeeded=true maxCount=1 classNames='line_half' inputVal=yard_embag}}
+            {{/layout-push}} --}}
+            {{#layout-push direction="col" classNames="multi-select"}}
+                {{bmform/bm-checkbox
+                    flag=changeFlag
+                    checkboxItem=facilities
+                    curItems=bm_yard_service.yard.facilities
+                    change=(action 'multiCheckOnClick')}}
             {{/layout-push}}
         {{/layout-push }}
+        {{#layout-push classNames='edit_panel_bottom_btn_container' direction='row'}}
+            <button class='edit_panel_bottom_btn' {{action (mut current_idx) 3}}>下一步</button>
+        {{/layout-push}}
     </section>
     {{/if}}
+
+    {{#if (bmeq current_idx 3)}}
+        <section class="yard-infos yard_section" >
+            {{#layout-push direction='col' classNames='edit_panel edit_fourth_panel'}}
+                {{#layout-push direction='row' classNames='edit_title_container'}}
+                    <span class="edit_title">校区认证</span>
+                {{/layout-push }}
+                <span class='edit_sub_title'>请上传您获得的相关资质认证</span>
+                <span class='edit_sub_title'>如：国际儿童场地友好性证明</span>
+                <span class='edit_sub_title'>每张图片小于100KB，至多上传8项</span>
+                {{#layout-push direction='row'}}
+                    <div class='line_conatainer_warp'>
+                        {{#each bm_yard_service.yard.Certifications as |item|}}
+                            {{bmcom/bm-img-uploader needTag=true canEdit=true canEditTag=true canDeleteImg=false canDeleteObj=true imgObj=item img=item.img tag=item.tag onDeleteObj=(action "deleteCertImg") classNames='alt-yard-edit-tag-img-adjust'}}
+                        {{/each}}
+                        {{#if (bmcom/bm-nil-obj bm_yard_service.yard.Certifications)}}
+                            {{#layout-push direction='row' mid=true classNames="add-img-div"}}
+                                <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addCertPicOnClick"}}/>
+                            {{/layout-push}}
+                        {{else}}
+                            {{#if (lt bm_yard_service.yard.Certifications.length 8)}}
+                                {{#layout-push direction='row' mid=true classNames="add-img-div"}}
+                                    <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addCertPicOnClick"}}/>
+                                {{/layout-push}}
+                            {{/if}}
+                        {{/if}}
+                    </div>
+                {{/layout-push}}
+            {{/layout-push }}
+            {{!-- {{#layout-push classNames='edit_panel_bottom_btn_container' direction='row'}}
+                <button class='edit_panel_bottom_btn' {{action 'saveYardBtnClicked'}}>完成</button>
+            {{/layout-push}} --}}
+        </section>
+    {{/if}} 
     </div>
 {{/layout-push}}
 

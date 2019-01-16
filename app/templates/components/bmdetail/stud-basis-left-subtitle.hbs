@@ -2,9 +2,9 @@
 {{#layout-push direction='row' mid=true}}
     <span class="basis_sex_age">
         {{#if (bmeq gender 0)}}
-            女生 <img src={{female}} alt="">
+            女{{contentBelow}} <img src={{female}} alt="">
         {{else}}
-            男生 <img src={{male}} alt="">
+            男{{contentBelow}} <img src={{male}} alt="">
         {{/if}}
     </span>
     <span class="basis_sex_age">

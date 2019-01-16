@@ -3,18 +3,75 @@
         {{#layout-push direction="col" classNames="class_content"}}
             {{#layout-push direction="row" split=true}}
                 <p class="class-content-title">班级</p>
-                <button class="class_add_btn" {{action 'createClass'}}>+ 创建班级</button>
+                <button class="class_add_btn" {{action 'onAddClassClick'}}>+ 创建班级</button>
             {{/layout-push}}
         {{/layout-push}}
 
         {{#layout-push direction='col' classNames='class-content-tab-bar'}}
-            {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=titles}}
+            {{!-- {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=titles}} --}}
+            {{bmcom/bm-tabs-bar cur_idx=bm_class_service.curTabIdx titles=titles needAction=true onTabClicked=(action "onTabClicked")}}
         {{/layout-push}} 
-
-        {{bmclass/bm-class-scroller}}
+        {{#if (eq bm_class_service.classes.length 0)}}
+            {{bmcom/bm-empty-state class="class-empty-state" picUrl="/images/img_empty@2x.png" title="暂无班级" des="点击右上角添加班级，安排班级吧"}}
+        {{else}}
+            {{bmclass/bm-class-scroller onCardClicked=(action 'cardClicked')}}
+        {{/if}}
     {{else}}
         {{bmcom/bm-empty-state class="class-not-open" picUrl="/images/img_openningsoon.png" title="即将开放" des="更加强大便捷的功能马上到来"}}
     {{/if}}
 </div>
+
+{{#bmcom/bm-modal-container title="" mswitch=addClassDlg
+    successbtncss='exp-modal-confirm'
+    cancelbtncss='exp-modal-cancel'
+    canceltext='取消'
+    onCancelBtnClicked=(action 'cancelHandled')
+    onSuccessBtnClicked=(action 'successHandled')}}
+    <div class="session-modal">
+        {{#layout-push direction='col' }}
+            {{#layout-push direction='row'}}
+                <p class="title">添加班级</p>
+            {{/layout-push}}
+            {{#if noteCourseError}}
+                <div class="form-checked">
+                    {{#layout-push direction='row' classNames="error-line"}}
+                        <img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
+                        <span class="error-info">请选择课程</span>
+                    {{/layout-push}}
+                </div>
+            {{/if}}
+            {{#if noteError}}
+                <div class="form-checked">
+                    {{#layout-push direction='row' classNames="error-line"}}
+                        <img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
+                        <span class="error-info">请填写完整信息</span>
+                    {{/layout-push}}
+                </div>
+            {{/if}}
+            {{#if noteCourseError}}
+                {{#layout-push direction="col" classNames='input_area' }}
+                    {{bmform/bm-base-select selTitle="选择课程" options=bm_session_service.sessions curSelect=bm_class_service.class.reservableId chooseReservable=true sessionId=sessionId classNames="input_area area-margin-bottom error-border"}}
+                {{/layout-push}}
+            {{else}}
+                {{#layout-push direction="col" classNames='input_area' }}
+                    {{bmform/bm-base-select selTitle="选择课程" options=bm_session_service.sessions curSelect=bm_class_service.class.reservableId chooseReservable=true sessionId=sessionId classNames="input_area area-margin-bottom"}}
+                {{/layout-push}}
+            {{/if}}
+            {{#if noteError}}
+                {{#layout-push direction="row"  classNames='input_area' }}
+                    {{bmform/bm-edit-line title='班级名称' needTitleDes=true titleDes="请为班级设定名称，方便识别" inputVal=bm_class_service.class.classTitle classNames='input_area input-full-width error-border'}}
+                {{/layout-push}}
+            {{else}}
+                {{#layout-push direction="row"  classNames='input_area' }}
+                    {{bmform/bm-edit-line title='班级名称' needTitleDes=true titleDes="请为班级设定名称，方便识别" inputVal=bm_class_service.class.classTitle classNames='input_area input-full-width'}}
+                {{/layout-push}}
+            {{/if}}
+            
+        {{/layout-push}}
+    </div>
+{{/bmcom/bm-modal-container}}
+{{#bmcom/bm-warning-modal title="创建成功" mainBtnText="完善班级信息" type="normal" switchParam=addSuccessDlg cancelHandled="cancelSuccessHandled" successHandled="onAddSuccess"}}
+    <p class="warning-modal-body-content">您可以前往班级为该班级安排上课时间与授课教师</p>
+{{/bmcom/bm-warning-modal}}
 
 {{outlet}}

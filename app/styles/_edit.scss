@@ -165,10 +165,9 @@ span.select-time-subtitle {
 	}
 
 	.edit_title {
-		font-family: $font-brand;
-		font-size: 16px;
+		font-family: PingFangSC-Medium;
+		font-size: 20px;
 		color: #172B4D;
-		letter-spacing: 2.57px;
 	}
 
 	.alt-edit-title {
@@ -245,11 +244,9 @@ span.select-time-subtitle {
 	}
 
 	.edit_subtitle {
-		font-family: $font-brand;
+		font-family: PingFangSC-Medium;
 		font-size: 14px;
-		color: #565656;
-		letter-spacing: 2.4px;
-		margin-top: 24px;
+		color: #172B4D;
 	}
 
 	.time-cycle {
@@ -438,21 +435,24 @@ span.select-time-subtitle {
 
 			div {
 				margin-right: 16px;
-				margin-bottom: 10px;
-				width: 110px;
-				height: 30px;
-				line-height: 30px;
+				padding: 0 16px;
+				// margin-bottom: 10px;
+				min-width: 72px;
+				height: 32px;
+				line-height: 32px;
 				text-align: center;
-				border: 1px solid #DAD9D9;
+				border: 1px solid #BFD6FF ;
 				border-radius: 4px;
+				font-family: PingFangSC-Medium;
 				font-size: 14px;
-				color: #767A80;
-				letter-spacing: 2px;
+				color: #80AEFF;
+				letter-spacing: 0;
 			}
 
 			div.selected {
-				border: 1px solid #6E7CD4;
-				color: #6E7CD4;
+				border: 1px solid transparent;
+				// color: #BFD6FF;
+				background-color: rgba(128,174,255,0.2)
 			}
 		}
 	}
@@ -511,6 +511,29 @@ span.select-time-subtitle {
 			color: #7A869A;
 			text-align: left;
 		}
+	}
+}
+
+.edit_panel_bottom_btn_container {
+	height: 72px;
+	padding: 24px;
+	padding-top: 16px;
+
+	.edit_panel_bottom_btn {
+		padding: 6px 12px;
+		height: 32px;
+		min-width: 80px;
+		line-height: 20px;
+		background: rgba(9, 30, 66, 0.04);
+		font-family: PingFangSC-Medium;
+		border-radius: 2px;
+		font-size: 14px;
+		color: #42526E;
+		display: inline-block;
+		white-space: nowrap;
+		vertical-align: middle;
+		text-align: center;
+		outline: none;
 	}
 }
 

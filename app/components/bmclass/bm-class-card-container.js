@@ -9,12 +9,13 @@ export default Component.extend({
     tagName: 'div',
     classNames: ['class-content-panel'],
     attributeBindings: ['style'],
-    style: computed('outHeight', function(){
-        return 'min-height: ' + (this.outHeight - 8) + "px;"
-    }),
+    // style: computed('outHeight', function(){
+    //     return 'min-height: ' + (this.outHeight - 8) + "px;"
+    // }),
     actions: {
         cardClicked(id) {
             debug('card clicked: ' + id);
+            this.onCardClicked(id);
         }
     }
 });

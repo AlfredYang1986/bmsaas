@@ -125,11 +125,31 @@
                 margin-bottom: 40px;
                 border-bottom: 1px solid #00000020;
 
+                .facilities_tag_container {
+                    width: 600px;
+                    flex-wrap: wrap;
+                    margin-bottom: 16px;
+                
+                    .alt_yard_detail_tag {
+                        width: 106px;
+                        height: 32px;
+                        line-height: 32px;
+                        font-family: PingFangSC-Regular;
+                        font-size: 14px;
+                        color: #172B4D;
+                        text-align: center;
+                        background: #d4e3ff;
+                        border-radius: 4px;
+                        margin: 0 8px 16px 0;
+                    }
+                }
+
                 .line_conatainer_warp {
 
                     img {
                         width: 160px;
                         height: 106px;
+                        border: none;
                     }
 
                     span {
@@ -182,25 +202,10 @@
                 &:nth-last-child(1){
 
                     .alt_right_panel_perperty_des {
-                        margin-bottom: 0;
+                        // margin-bottom: 0;
                     }
                 }
-                
-                .alt_yard_detail_tag {
-                    width: 106px;
-                    height: 32px;
-                    line-height: 32px;
 
-                    font-family: PingFangSC-Regular;
-                    font-size: 14px;
-                    color: #172B4D;
-                    text-align: center;
-
-                    background: #80AEFF55;
-                    border-radius: 4px;
-
-                    margin: 0 8px 40px 0;
-                }
             }
             .alt_yard_detail_panel:nth-last-child(1){
                 min-height: 0;
@@ -258,6 +263,7 @@
                 margin-bottom: 24px;
 
                 p {
+                    padding: 0 8px;
                     font-family: PingFangSC-Regular;
                     font-size: 14px;
                     color: #172B4D;

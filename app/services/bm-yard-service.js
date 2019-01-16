@@ -20,19 +20,22 @@ export default Service.extend({
     refresh_all_token: '',
     refresh_token: '',
 
+    curTabIdx: 0,
     yard: null,
     yards: A([]),
 
-    queryYard() {
+    queryYard(callback) {
 
         this.bmstore.reset();
         this.set('yard', null);
 
-        if (this.yardid.length == 0 || this.yardid == 'yard/push') {
-            let query_payload = this.genPushQuery();
-            let result = this.bmstore.sync(query_payload);
-            this.set('yard', result);
-            return;
+        if (this.yardid !== undefined) {
+            if (this.yardid.length == 0 || this.yardid == 'yard/push') {
+                let query_payload = this.genPushQuery();
+                let result = this.bmstore.sync(query_payload);
+                this.set('yard', result);
+                return;
+            }
         }
 
         let query_yard_payload = this.genIdQuery();
@@ -54,10 +57,21 @@ export default Service.extend({
             data: dt,
             success: function(res) {
                 let result = that.bmstore.sync(res)
+                if (result == null) {
+                    that.set('yardid', '');
+                } else {
+                    that.set('yardid', result.id);
+                }
                 that.set('yard', result);
+                if (callback.onSuccess) {
+                    callback.onSuccess();
+                }
             },
             error: function(err) {
                 debug('error is : ', err);
+                if (callback.onFail) {
+                    callback.onFail(err);
+                }
             },
         })
     },
@@ -68,9 +82,9 @@ export default Service.extend({
         let query_yard_payload = this.genMultiQuery();
         let rd = this.bmmulti.sync(query_yard_payload);
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
-        // let eq = rd.Eqcond[0].serialize();
+        let eq = rd.Eqcond[0].serialize();
         // let fm = rd.Fmcond.serialize();
-        // rd_tmp['included'] = [eq.data, fm.data];
+        rd_tmp['included'] = [eq.data];
         let dt = JSON.stringify(rd_tmp);
 
         let that = this
@@ -87,20 +101,45 @@ export default Service.extend({
                 debug(res)
                 let result = that.bmmulti.sync(res)
                 that.set('yards', result);
+                // if (callback.onSuccess) {
+                //     callback.onSuccess();
+                // }
             },
             error: function(err) {
                 debug('error is : ', err);
+                // if (callback.onFail) {
+                //     callback.onFail(err);
+                // }
             },
         })
     },
-
+    
     guid() {
         function s4() {
-          return Math.floor((1 + Math.random()) * 0x10000)
+            return Math.floor((1 + Math.random()) * 0x10000)
             .toString(16)
             .substring(1);
         }
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+    },
+
+    genNewImgObj(type) {
+        let payload = this.genNewImgPayload(type);
+        let result = this.bmstore.sync(payload);
+        return result;
+    },
+    
+    genNewImgPayload(type) {
+        return {
+            data: {
+                type: type,
+                id: this.guid(),
+                attributes: {
+                    img: "",
+                    tag: ""
+                },
+            }
+        }
     },
 
     genMultiQuery() {
@@ -114,8 +153,12 @@ export default Service.extend({
                     },
                     relationships: {
                         Eqcond: {
-                            id: eq,
-                            type: "Eqcond"
+                            data: [
+                            {
+                                id: eq,
+                                type: "Eqcond"
+                            }
+                            ]
                         }
                     }
                 },
@@ -157,8 +200,10 @@ export default Service.extend({
                         id: eq,
                         type: "Eqcond",
                         attributes: {
-                            key: "id",
-                            val: this.yardid
+                            // key: "id",
+                            // val: this.yardid
+                            key: 'brandId',
+                            val: localStorage.getItem('brandid')
                         }
                     }
                 ]
@@ -173,6 +218,7 @@ export default Service.extend({
         let gid05 = this.guid();
         let gid06 = this.guid();
         let gid07 = this.guid();
+        let gid08 = this.guid();
         // let now = new Date().getTime();
 
         return {
@@ -227,6 +273,14 @@ export default Service.extend({
                             {
                                 id: gid07,
                                 type: "BmTagImg"
+                            },
+                        ]
+                    },
+                    Certifications: {
+                        data: [
+                            {
+                                id: gid08,
+                                type: "BmCertification"
                             },
                         ]
                     }
@@ -289,6 +343,14 @@ export default Service.extend({
                         tag: "室内活动区",
                     },
                 },
+                {
+                    id: gid08,
+                    type: "BmCertification",
+                    attributes: {
+                        img: "",
+                        tag: "XX奖",
+                    },
+                },
             ]
         }
     },
@@ -310,6 +372,11 @@ export default Service.extend({
             }
             arr.push(tmp.data);
         }
+        for (let idx = 0; idx < rd.Certifications.length; idx++) {
+            let tmp = rd.Certifications[idx].serialize();
+            arr.push(tmp.data);
+        }
+
 
         let rd_tmp = JSON.parse(JSON.stringify(rd.serialize()));
         rd_tmp['included'] = arr;

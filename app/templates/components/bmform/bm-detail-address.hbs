@@ -1,0 +1,17 @@
+{{!-- {{yield}} --}}
+{{#layout-push direction="col" classNames='detail-address'}}
+    {{#layout-push direction="row"}}
+        <span class="add-title">{{title}}</span>
+    {{/layout-push}}
+    {{#layout-push direction='row' classNames='detail-address-select'}}
+        {{bmform/region-choose
+            provinces=provinces
+            citys=citys
+            governmentAreas=areas
+            province=province
+            city=city
+            area=area}}
+    {{/layout-push}}
+    <span class='add-sub'>详细地址</span>
+    {{bmform/bm-edit-line largeInput=true inputVal=detailAddress classNames='input_area'}}
+{{/layout-push}}

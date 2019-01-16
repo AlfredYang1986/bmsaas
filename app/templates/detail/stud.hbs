@@ -27,7 +27,7 @@
 						<img src={{headImg}} alt="">
 					</div>
 					<p class="basis_name">{{bm_stud_service.stud.name}}</p>
-					{{bmdetail/stud-basis-left-subtitle gender=bm_stud_service.stud.gender dob=bm_stud_service.stud.dob}}
+					{{bmdetail/stud-basis-left-subtitle gender=bm_stud_service.stud.gender dob=bm_stud_service.stud.dob contentBelow="生"}}
 					{{!-- {{#layout-push direction='col' classNames='basis_dob' }} --}}
 						{{!-- {{#layout-push direction='row' classNames="basis_contact basis_contact_margin_bottom"}}
 							<span class="basis_dob_title">联系方式</span><span>{{bm_stud_service.stud.contact}}</span>
@@ -49,7 +49,7 @@
 							{{bmdetail/stud-basis-info label="昵称" content=bm_stud_service.stud.nickname}}
 							{{bmdetail/stud-basis-info label="星座" content="星座"}}
 							{{bmdetail/stud-basis-info label="就读学校" content=bm_stud_service.stud.school}}
-							{{bmdetail/stud-basis-info label="住址" content=bm_stud_service.stud.address}}
+							{{bmdetail/stud-basis-info label="住址" content=(bmcom/bm-trans-address bm_stud_service.stud)}}
 							{{bmdetail/stud-basis-info label="出生日期" content=(bmdob/bmdobformat bm_stud_service.stud.dob)}}
 						</div>
 					{{/layout-push}}

@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 
 export default Component.extend({
-    positionalParams: ['title', 'pholder', 'maxCount', 'notNeeded', 'inputVal','height', 'group', 'largeInput', 'numberInput'],
+    positionalParams: ['title', 'pholder', 'maxCount', 'notNeeded', 'inputVal','height', 'group', 'largeInput', 'numberInput', 'maxlength', 'needTitleDes', 'titleDes', 'fullWidthInput', 'needBottomHint'],
     count: computed('inputVal', function() {
         if (typeof this.inputVal == 'string')
             return this.inputVal.length;
@@ -12,4 +12,26 @@ export default Component.extend({
         if (typeof this.maxCount == 'undefined') return '';
         else return `字数 (${this.count}/${this.maxCount})`;
     }),
+    actions: {
+        onKeyPress() {
+            let regex = new RegExp(/[\d]/);
+            if(regex.test(String.fromCharCode(event.keyCode))) {
+                return;
+            } else {
+                if ( event && event.preventDefault ){  
+                    //非IE浏览器  
+                    event.preventDefault();
+                } else {
+                    //IE浏览器  
+                    window.event.returnValue = false;  
+                } 
+            }
+            // if(regex.test(value)) {
+                
+            // };
+        },
+        onKeyUp() {
+            // this.handleOnKeyUp();
+        }
+    }
 });

@@ -12,9 +12,11 @@ export default Controller.extend({
 
     isPushing: false,
     current_idx: 0,
+    changeFlag: false,
 
     yardCandidate: A(['室内', '室外', '室内 + 室外']),
-    surroundings: A(['社区', '商圈', '校区', '写字楼', '户外', '露天', '闹市区']),
+    surroundings: A(['写字楼', '社区', '购物中心', '学校', '其它']),
+    facilities: A(['实时监控', '防摔地板', '空气净化器', 'Wi-Fi', '门禁', '安全护栏', '新风系统', '停车场', '急救包', '安全插座', '加湿器', '电梯', '安全桌脚']),
     tagsCandi: A(['阅读区', '教学区', '家长休息区', '生活区', '寄存区', '户外活动区', '室内活动区']),
 
     actions: {
@@ -22,7 +24,7 @@ export default Controller.extend({
             let that = this
             let callback = {
                 onSuccess: function() {
-                    that.transitionToRoute('yard');
+                    that.transitionToRoute('detail.yard');
                 },
                 onFail: function(/*err*/) {
                     debug('error');
@@ -30,5 +32,45 @@ export default Controller.extend({
             }
             this.bm_yard_service.saveUpdate(callback); 
         },
+        multiCheckOnClick(value) {
+            let tempArr = [];
+            if (this.bm_yard_service.yard.facilities != null) {
+                tempArr = this.bm_yard_service.yard.facilities;
+            }
+            this.toggleProperty("changeFlag")
+            if (tempArr.indexOf(value) == -1) {
+                tempArr.push(value)
+            } else {
+                tempArr.splice(tempArr.indexOf(value), 1)
+            }
+            this.set('bm_yard_service.yard.facilities', tempArr)
+        },
+        addCertPicOnClick() {
+            let newObj = this.bm_yard_service.genNewImgObj('BmCertification');
+            newObj.tag = "initTag"
+            let tempArr = [];
+            if (this.bm_yard_service.yard.Certifications !== null) {
+                tempArr = this.bm_yard_service.yard.Certifications;
+            }
+            tempArr.pushObject(newObj);
+            this.set('bm_yard_service.yard.Certifications', tempArr);
+            // console.log(this.bm_yard_service.yard.Certifications)
+        },
+        addYardPicOnClick() {
+            let newObj = this.bm_yard_service.genNewImgObj('BmTagImg');
+            newObj.tag = "initTag"
+            let tempArr = [];
+            if (this.bm_yard_service.yard.Tagimgs !== null) {
+                tempArr = this.bm_yard_service.yard.Tagimgs;
+            }
+            tempArr.pushObject(newObj);
+            this.set('bm_yard_service.yard.Tagimgs', tempArr)
+        },
+        deleteCertImg(param) {
+            this.bm_yard_service.yard.Certifications.removeObject(param);
+        },
+        deleteYardImg(param) {
+            this.bm_yard_service.yard.Tagimgs.removeObject(param);
+        }
     },
 });

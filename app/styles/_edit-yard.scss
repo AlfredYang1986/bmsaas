@@ -11,21 +11,45 @@
 		section.yard_section {
             margin: 24px;
             margin-top: 0;
-			padding: 24px;
+			padding: 0;
 			background-color: $color-neutral-N000;
 
 			.edit_panel {
-				padding: 0;
+				padding: 24px;
 				margin: 0;
 				box-shadow: none;
-				width: 100%;
+                width: 100%;
+
+                .line_conatainer_warp{
+                    .delete-img {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        width: 32px;
+                        height: 32px;
+                    }
+                }
+
+                .area-margin-bottom {
+                    margin-bottom: 40px;
+
+
+                }
+                
+                .edit_title_container {
+                    margin-bottom: 40px;
+                }
 
                 .edit_sub_title{
                     margin: 0;
+                    font-family: PingFangSC-Regular;
+                    font-size: 14px;
+                    color: #6B778C;
+                    text-align: left;
                 }
 
                 .alt-edit-title {
-                    color: #172B4D;
+                    color: rgb(18, 34, 61);
                     margin-bottom: 16px;
                 }
 
@@ -81,6 +105,20 @@
 
 				&.edit_first_panel {
 
+                    .yard-name {
+                        
+                        input {
+                            width: 228px;
+                        }
+                    }
+                    .yard-contact {
+                        
+                        input {
+                            width: 592px;
+                        }
+                    }
+                    
+
 					.alt-edit-title {
                         // color: #172B4D;
 						margin-bottom: 16px;
@@ -114,40 +152,31 @@
 						box-shadow: none;
 					}
 				}
-
+                
 				&.edit_second_panel {
-
-				}
-
-				&.edit_third_panel {
-
-                    .single-select{
-                        margin-bottom: 40px;
-                    }
-
-                    .alt-edit-title-loc {
-						margin-bottom: 4px;
-                    }
-
-                    .alt-edit-line-area {
-						margin-bottom: 40px;
-                    }
-
-                    // .alt-edit-line-traf {
-					// 	margin-bottom: 4px;
-                    // }
-                    
-                }
-
-				&.edit_fourth_panel {
-
-				}
-
-				&.edit_fifth_panel {
                     min-height: 0;
 
+                    .alt-edit-title {
+                        margin-bottom: 0;
+                    }
+    
                     .line_conatainer_warp{
-                        
+                        margin-top: 16px;
+
+                        .add-img-div {
+                            align-items: center;
+                            width: 272px;
+                            height: 272px;
+                            border: 1px dashed #D2D4D9;
+                            cursor: pointer;
+                            background: #FAFBFC;
+
+                            .add-new-img {
+                                width: 32px;
+                                height: 32px;
+                            }
+                        }
+
                         .alt-yard-edit-tag-img-adjust {
                             margin-right: 24px;
                             margin-bottom: 40px;
@@ -162,7 +191,7 @@
                                     img{
                                         width: 272px;
                                         height: 272px;
-
+    
                                     }
                                 }
                                 
@@ -170,6 +199,13 @@
                             .bm-upload-tag{
                                 margin-top: 288px;
                                 justify-content: flex-start;
+
+                                .bm-upload-tag-input {
+
+                                    .pre-input {
+                                        display: none;
+                                    }
+                                }
                             }
                         }
                         .alt-yard-edit-tag-img-adjust:nth-last-child(1){
@@ -177,6 +213,97 @@
                         }
                     }
 				}
+
+				&.edit_third_panel {
+
+                    // .single-select{
+                    //     margin-bottom: 40px;
+                    // }
+
+                    // .alt-edit-title-loc {
+					// 	margin-bottom: 4px;
+                    // }
+
+                    // .alt-edit-line-area {
+					// 	margin-bottom: 40px;
+                    // }
+                    .box-content {
+                        width: 620px;
+                        flex-wrap: wrap;
+
+                        .box-item {
+                            margin: 0 40px 16px 0;
+                            width: 112px;
+
+                            input[type=checkbox] {
+                                margin-left: 0;
+                                margin-right: 8px;
+                            }
+                        }
+                    }
+                }
+
+				&.edit_fourth_panel {
+                    .line_conatainer_warp{
+                        margin-top: 16px;
+
+                        .add-img-div {
+                            align-items: center;
+                            width: 272px;
+                            height: 182px;
+                            border: 1px dashed #D2D4D9;
+                            cursor: pointer;
+                            background: #FAFBFC;
+                            // background-color: #fff;
+
+
+                            .add-new-img {
+                                width: 32px;
+                                height: 32px;
+                            }
+                        }
+
+                        .alt-yard-edit-tag-img-adjust {
+                            margin-right: 24px;
+                            margin-bottom: 40px;
+                            width: 272px;
+                            height: 230px;
+                        
+                            .bm-upload-form{
+                        
+                                div.bm-upload-container{
+                                    width: 272px;
+                        
+                                    img{
+                                        width: 272px;
+                                        height: 182px;
+    
+                                    }
+
+                                    .delete {
+                                        top: 158px;
+                                    }
+                                }
+                                
+                            }
+                            .bm-upload-tag{
+                                margin-top: 198px;
+                                justify-content: flex-start;
+                                
+                                .bm-upload-tag-input {
+
+                                    .pre-input {
+                                        display: none;
+                                    }
+                                }
+                            }
+                        }
+                        .alt-yard-edit-tag-img-adjust:nth-last-child(1){
+                            margin-bottom: 0;
+                        }
+                    }
+				}
+
 			}
 		}
 	}
