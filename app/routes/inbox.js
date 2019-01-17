@@ -5,11 +5,8 @@ import { inject as service } from '@ember/service';
 export default Route.extend({
     bm_apply_service: service(),
     bm_brand_service: service(),
-    init() {
-        this._super(...arguments);
-        // this.bm_brand_service.set('refresh_token', this.bm_brand_service.guid());
-    },
     model() {
+        this.bm_apply_service.applies = this.store.findAll('apply');
         return RSVP.hash({
             reserveTitle: ["孩子","类别","参与内容","意向时间","申请者", "联系方式", "操作"],
             preRegisterTtitle:  ["孩子","性别","年龄","申请者", "联系方式", "操作"],
@@ -18,6 +15,6 @@ export default Route.extend({
     activate() {
         this.bm_apply_service.set('page', 0);
         this.bm_apply_service.set('curTabIdx', 0);
-        this.bm_apply_service.set('refresh_all_token', this.bm_apply_service.guid());
+        // this.bm_apply_service.set('refresh_all_token', this.bm_apply_service.guid());
     }
 });

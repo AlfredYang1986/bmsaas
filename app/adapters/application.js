@@ -1,5 +1,5 @@
-import PharbersAdapter from 'pharbers-emberbasis-library/adapters/phadapter';
+import DS from 'ember-data';
 
-export default PharbersAdapter.extend({
-
+export default DS.JSONAPIAdapter.extend({
+    namespace: "v0"
 });

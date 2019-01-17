@@ -3,11 +3,11 @@ import { inject } from '@ember/service';
 import rsvp from 'rsvp';
 
 export default Controller.extend({
-    cookies: inject(),
+    // cookies: inject(),
     actions: {
         exitSystem() {
             new rsvp.Promise((resolve) => {
-                this.get('cookies').clear('token', {path: '/'});
+                // this.get('cookies').clear('token', {path: '/'});
                 localStorage.clear();
                 return resolve(true);
             }
