@@ -7,4 +7,6 @@ export default DS.Model.extend({
     regiPhone: DS.attr('string'),
     wechatBindPhone: DS.attr('string'),
     wechatOpenid: DS.attr('string'),
+
+    // apply: DS.belongsTo('apply'),
 });

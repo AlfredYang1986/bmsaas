@@ -6,4 +6,6 @@ export default DS.Model.extend({
     guardianRole: DS.attr('string'),
     name: DS.attr('string'),
     nickname: DS.attr('string'),
+
+    // apply: DS.belongsTo('apply'),
 });
