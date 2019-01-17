@@ -13,7 +13,6 @@ export default DS.Model.extend({
     yard: DS.belongsTo('yard'),
     sessioninfo: DS.belongsTo('sessioninfo'),
     students: DS.hasMany('student'),
-    teacher: DS.hasMany('teacher'),
-
-    // courseUnit: DS.belongsTo('course-unit'),
+    teachers: DS.hasMany('teacher'),
+    units: DS.hasMany('unit'),
 });
