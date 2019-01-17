@@ -17,5 +17,5 @@ export default DS.Model.extend({
     title: DS.attr('string'),
     trafficInfo: DS.attr('string'),
     rooms: DS.hasMany('room'),
-    imgs: DS.hasMany('img'),
+    images: DS.hasMany('image'),
 });

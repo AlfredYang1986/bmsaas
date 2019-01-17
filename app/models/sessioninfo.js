@@ -20,7 +20,7 @@ export default DS.Model.extend({
     subtitle: DS.attr('string'),
     title: DS.attr('string'),
     cate: DS.belongsTo('category'),
-    imgs: DS.hasMany('img'),
+    images: DS.hasMany('image'),
 
     // reservableItem: DS.belongsTo('reservable-item'),
     // sessionable: DS.belongsTo('sessionable'),
