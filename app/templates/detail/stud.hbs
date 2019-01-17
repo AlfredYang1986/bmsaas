@@ -8,7 +8,7 @@
             {{/if}}
         {{/bmcom/bm-breadcrumb}}
 		{{#layout-push direction='row' split=true class="detail_title" }}
-			<span class="title_text">{{bm_stud_service.stud.name}}</span>
+			<span class="title_text">{{model.stud.name}}</span>
 			{{!-- <div class="qr-code">
 				<img src={{qrCode}} alt="">
 			</div> --}}
@@ -19,24 +19,24 @@
 		</div>
 
 
-		{{bmdetail/bm-top-title-panel title="学生详情" rightText="编辑" linkAddr='edit.stud' linkParam=bm_stud_service.studid}}
+		{{bmdetail/bm-top-title-panel title="学生详情" rightText="编辑" linkAddr='edit.stud' linkParam=model.studid}}
 		{{#layout-push direction='row' split=true classNames='stud_detail' }}
 			<div class="basis_margin">
 				{{#layout-push direction='col' mid=true classNames='stud_detail_basis' }}
 					<div class="head-img">
 						<img src={{headImg}} alt="">
 					</div>
-					<p class="basis_name">{{bm_stud_service.stud.name}}</p>
-					{{bmdetail/stud-basis-left-subtitle gender=bm_stud_service.stud.gender dob=bm_stud_service.stud.dob contentBelow="生"}}
+					<p class="basis_name">{{model.stud.name}}</p>
+					{{bmdetail/stud-basis-left-subtitle gender=model.stud.gender dob=model.stud.dob contentBelow="生"}}
 					{{!-- {{#layout-push direction='col' classNames='basis_dob' }} --}}
 						{{!-- {{#layout-push direction='row' classNames="basis_contact basis_contact_margin_bottom"}}
-							<span class="basis_dob_title">联系方式</span><span>{{bm_stud_service.stud.contact}}</span>
+							<span class="basis_dob_title">联系方式</span><span>{{model.stud.contact}}</span>
 						{{/layout-push}}
 
 						{{#layout-push direction='row' classNames="basis_contact"}}
-							<span class="basis_dob_title">微信</span><span>{{bm_stud_service.stud.wechat}}</span>
+							<span class="basis_dob_title">微信</span><span>{{model.stud.wechat}}</span>
 						{{/layout-push}} --}}
-						{{!-- <span>出生日期</span><span>{{bmdob/bmdobformat bm_stud_service.stud.dob}}</span> --}}
+						{{!-- <span>出生日期</span><span>{{bmdob/bmdobformat model.stud.dob}}</span> --}}
 					{{!-- {{/layout-push}} --}}
 				{{/layout-push }}
 			</div>
@@ -46,33 +46,33 @@
 					{{#layout-push direction='col'classNames="info-block-outer"}}
 						<p class="parent_info">孩子信息</p>
 						<div class="self_info">
-							{{bmdetail/stud-basis-info label="昵称" content=bm_stud_service.stud.nickname}}
+							{{bmdetail/stud-basis-info label="昵称" content=model.stud.nickname}}
 							{{bmdetail/stud-basis-info label="星座" content="星座"}}
-							{{bmdetail/stud-basis-info label="就读学校" content=bm_stud_service.stud.school}}
-							{{bmdetail/stud-basis-info label="住址" content=(bmcom/bm-trans-address bm_stud_service.stud)}}
-							{{bmdetail/stud-basis-info label="出生日期" content=(bmdob/bmdobformat bm_stud_service.stud.dob)}}
+							{{bmdetail/stud-basis-info label="就读学校" content=model.stud.school}}
+							{{bmdetail/stud-basis-info label="住址" content=(bmcom/bm-trans-address model.stud)}}
+							{{bmdetail/stud-basis-info label="出生日期" content=(bmdob/bmdobformat model.stud.dob)}}
 						</div>
 					{{/layout-push}}
 					{{#layout-push direction='col' classNames="info-block-outer"}}
 						<p class="parent_info">监护人信息</p>
 						<div class="self_info">
-							{{bmdetail/stud-basis-info label="姓名" content=bm_stud_service.stud.Guardians.firstObject.name}}
-							{{bmdetail/stud-basis-info label="关系" content=bm_stud_service.stud.Guardians.firstObject.relation_ship}}
-							{{bmdetail/stud-basis-info label="联系方式" content=bm_stud_service.stud.Guardians.firstObject.contact}}
-							{{bmdetail/stud-basis-info label="微信" content=bm_stud_service.stud.wechat}}
+							{{bmdetail/stud-basis-info label="姓名" content=model.stud.guardians.firstObject.name}}
+							{{bmdetail/stud-basis-info label="关系" content=model.stud.guardians.firstObject.relationShip}}
+							{{bmdetail/stud-basis-info label="联系方式" content=model.stud.guardians.firstObject.contact}}
+							{{bmdetail/stud-basis-info label="微信" content=model.stud.wechat}}
 						</div>
 					{{/layout-push}}
 					{{#layout-push direction='col' classNames="info-block-outer"}}
 						<p class="parent_info">更多信息</p>
 						<div class="self_info">
-							{{bmdetail/stud-basis-info label="课程顾问" content=bm_stud_service.stud.teacherName}}
-							{{bmdetail/stud-basis-info label="渠道来源" content=bm_stud_service.stud.sourceWay}}
-							{{bmdetail/stud-basis-info label="注册时间" content=(bmdob/bmdobformat bm_stud_service.stud.reg_date)}}
+							{{bmdetail/stud-basis-info label="课程顾问" content=model.stud.teacherName}}
+							{{bmdetail/stud-basis-info label="渠道来源" content=model.stud.sourceWay}}
+							{{bmdetail/stud-basis-info label="注册时间" content=(bmdob/bmdobformat model.stud.regDate)}}
 						</div>
 					{{/layout-push}}
 					{{#layout-push direction='col' classNames="info-block-outer"}}
 						<p class="parent_info">关注者信息</p>
-						{{#each bm_stud_service.stud.Applyees as |item|}}
+						{{#each model.stud.Applyees as |item|}}
 						  	{{bmdetail/stud-followers-info item=item}}
 						{{/each}}
 
