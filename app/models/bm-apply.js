@@ -12,6 +12,6 @@ export default DS.Model.extend({
     except_time: DS.attr('number'),
     reservableId: DS.attr('string'),
     status: DS.attr('number'),
-    Applyee: DS.belongsTo('bm-applyee', {async: false}),
+    Applicant: DS.belongsTo('bm-applicant', {async: false}),
     Kids: DS.hasMany('bm-kid', {async: false}),
 });
