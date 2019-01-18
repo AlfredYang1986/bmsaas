@@ -10,6 +10,8 @@ export default Component.extend({
     disabled: false,
     limit: 10,
     listInputs: A([]),
+    innerData: A([]),
+    // outputData: A([]),
     init() {
         this._super(...arguments);
         // console.log(this.listInputs)
@@ -18,25 +20,52 @@ export default Component.extend({
     },
     actions: {
         addProject() {
-            if (this.listInputs == null || this.listInputs == "") {
-                this.set('listInputs', []);
+            if (this.innerData == null || this.innerData == "") {
+                this.set('innerData', []);
             }
-            if (this.listInputs.length < this.limit) {
-                let id = this.listInputs.length + 1
-                this.listInputs.pushObject(inputObject.create({ id, text: '' }))
+            if (this.innerData.length < this.limit) {
+                let id = this.innerData.length + 1
+                this.innerData.pushObject(inputObject.create({ id, text: '' }))
             }
+            this.transToSourceFormat()
         },
 
         remove(id) {
-            let res = this.listInputs.filter(elem => elem.id !== id).map((elem, index) => {
+            this.set("innerData", this.innerData.filter(elem => elem.id !== id).map((elem, index) => {
                 set(elem, 'id', index + 1)
                 return elem
-            })
+            }))
 
-            this.set('listInputs', res);
+            // this.set('innerData', res);
+            this.transToSourceFormat()
         },
-        // sendHandledArr() {
-        //     console.log(this.inputTemp)
-        // }
-    }
+        onChange() {
+            this.transToSourceFormat()
+        }
+    },
+    transToSourceFormat() {
+        let tmpArr = [];
+        for (let idx = 0;idx < this.innerData.length;idx++) {
+            tmpArr.push(this.innerData[idx].text);
+        }
+        this.set("listInputs",tmpArr);
+        // console.log(this.listInputs)
+    },
+    didReceiveAttrs() {
+        let tmpArr= [];
+        if(this.listInputs != null) {
+            for (let idx = 0;idx < this.listInputs.length;idx++) {
+                let item = {};
+                item.id = idx + 1;
+                item.text = this.listInputs[idx];
+                tmpArr.push(item);
+            }
+        }
+        this.set("innerData",tmpArr);
+        // console.log(this.innerData)
+    },
+    // didRender() {
+    //     this.transToSourceFormat()
+    //     console.log(this.listInputs)
+    // }
 });

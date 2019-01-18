@@ -1,5 +1,10 @@
 .pic-jigsaw {
-
+    display: flex;
+    justify-content: center;
+    margin: 0 24px;
+    height: 154px;
+    width: 248px;
+    
     .jigsaw_pic {
         margin-top: 16px;
 

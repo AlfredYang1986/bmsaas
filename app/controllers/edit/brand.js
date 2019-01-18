@@ -7,8 +7,13 @@ export default Controller.extend({
     cur_idx: 0,
     cateArr: A([{name: '音樂'}, {name: '藝術'}, {name: '運動'}, {name: '科學'}, {name: 'steam'}]),
     actions: {
+        cancelBrandClicked() {
+            this.store.unloadRecord(this.model.brand);
+            this.transitionToRoute("home")
+        },
         saveBrand() {
-
+            this.model.brand.save();
+            this.transitionToRoute("home")
         },
         selectedCate() {
             let sel = document.getElementById("cateSelect");

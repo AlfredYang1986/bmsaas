@@ -1,9 +1,7 @@
 {{#layout-push direction='row' split=true classNames='edit_nav' }}
   <span>编辑-品牌主页</span>
   <span>
-        {{#link-to 'home' class="edit_nav_btn btn_cacel"}}
-            取消
-        {{/link-to}}
+        <button class="edit_nav_btn btn_cacel" {{action 'cancelBrandClicked'}}>取消</button>
         <button class="edit_nav_btn btn_save" {{action 'saveBrand'}}>提交</button>
   </span>
 {{/layout-push}}
@@ -73,7 +71,8 @@
                 {{#layout-push direction="col" classNames='brand-input-group'}}
                     <span class="edit_title">品牌亮点</span>
                     <span class='edit_subtitle'>您的品牌有什么独特之处？（限6个字 至多添加三个）如:PBL教学</span>
-                    {{bmform/dynamic-input listInputs=model.brand.brand_tags needBottomHint=true limit=3}}
+                    {{!-- {{log }} --}}
+                    {{bmform/dynamic-input listInputs=model.brand.brandTags needBottomHint=true limit=3}}
                     {{!-- {{input type="text" class="edit_input_medium" value=model.brand.brand_tangs}} --}}
                 {{/layout-push}}
                 {{#layout-push direction='row' split=true}}
