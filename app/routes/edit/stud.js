@@ -3,13 +3,14 @@ import RSVP from 'rsvp';
 
 export default Route.extend({
     model(params) {
-        // console.log(params.studid)
         if (params.studid == "stud/push") {
             return RSVP.hash({
+                isPushing: true,
                 stud: this.store.createRecord('student'),
             })
         } else {
             return RSVP.hash({
+                isPushing: false,
                 stud: this.store.find('student', params.studid),
             })
         }

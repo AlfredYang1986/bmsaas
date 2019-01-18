@@ -32,17 +32,25 @@ export default Controller.extend({
         //     }
         // }
     }),
-    isPushing: false,
+
     origin:A([{name: '学员转介绍'}, {name: '电话推广'}, {name: '小程序'}, {name: '线下活动推广'}, {name: '其他'}]),
 
     actions: {
         cancelInputBtnClicked() {
             this.store.unloadRecord(this.model.stud);
-            this.transitionToRoute("detail.stud", this.model.stud.id)
+            if (this.model.isPushing) {
+                this.transitionToRoute("stud")
+            } else {
+                this.transitionToRoute("detail.stud", this.model.stud.id)
+            }
         },
         saveInputBtnClicked() {
             this.model.stud.save();
-            this.transitionToRoute("detail.stud", this.model.stud.id)
+            if (this.model.isPushing) {
+                this.transitionToRoute("stud")
+            } else {
+                this.transitionToRoute("detail.stud", this.model.stud.id)
+            }
         },
         selectedTech() {
             let sel = document.getElementById("techSelect");
