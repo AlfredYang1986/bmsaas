@@ -5,7 +5,7 @@
             {{#link-to 'edit.exp.rsb' classNames='course_add_btn'}}+ 创建体验课{{/link-to}}
         {{/layout-push}}
         {{#layout-push direction="row" wrap=true classNames="course-card-wrap"}}
-            {{#each bm_exp_service.exps as |item|}}
+            {{#each model as |item|}}
                 <div class="line_container_warp course_card_container" >
                     {{bmcard/bm-reservable-card onCourseCardClicked=(action 'cardClicked') exp=item}}
                 </div>

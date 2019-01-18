@@ -8,9 +8,13 @@ export default Component.extend({
     cover: computed('exp', function(){
         let client = this.bmOss.get('ossClient');
 
-        let url = client.signatureUrl(this.exp.SessionInfo.cover);
-        // console.log(url);
-        return url;
+        let c = this.exp.sessioninfo.get('cover')
+        if (c !== undefined && c != '') {
+            let url = client.signatureUrl(c)
+            return url;
+        } else {
+            return '';
+        }
     }),
     click() {
         this.onCourseCardClicked(this.exp.id);
