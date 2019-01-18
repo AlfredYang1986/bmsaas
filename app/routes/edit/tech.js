@@ -17,9 +17,9 @@ export default Route.extend({
 
     setupController(controller, model) {
         this._super(controller, model);
-        controller.set('provinces', this.store.peekAll('bmprovinces'));
-        controller.set('citys', this.store.peekAll('bmcitys'));
-        controller.set('areas', this.store.peekAll('bmgovernment-areas'));
+        // controller.set('provinces', this.store.peekAll('bmprovinces'));
+        // controller.set('citys', this.store.peekAll('bmcitys'));
+        // controller.set('areas', this.store.peekAll('bmgovernment-areas'));
         if (model.techid == "tech/push") {
             controller.set('isPushing', true);
         } else {

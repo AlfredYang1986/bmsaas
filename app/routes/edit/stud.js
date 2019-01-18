@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
-// import { inject as service } from '@ember/service';
+import { inject as service } from '@ember/service';
 
 export default Route.extend({
     mock_data: service(),
@@ -10,7 +10,8 @@ export default Route.extend({
         this.mock_data.regionSource();
         // this.bm_stud_service.set('studid', params.studid);
         return RSVP.hash({
-            studid: params.studid
+            studid: params.studid,
+            stud: this.store.find('student',params.studid),
         })
     },
 
