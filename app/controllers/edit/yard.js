@@ -1,18 +1,14 @@
 import Controller from '@ember/controller';
-import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
-import { debug } from '@ember/debug';
 
 export default Controller.extend({
-    bm_yard_service: service(),
-
-    yard_provinces: null,
-    yard_citys: null,
-    yard_government_areas: null,
-
     isPushing: false,
     current_idx: 0,
     changeFlag: false,
+
+    provinces: A(['北京']),
+    citys: A(['北京市']),
+    areas: A(["密云区", "延庆区", "朝阳区", "丰台区", "石景山区", "海淀区", "门头沟区", "房山区", "通州区", "顺义区", "昌平区", "大兴区", "怀柔区", "平谷区", "东城区", "西城区"]),
 
     yardCandidate: A(['室内', '室外', '室内 + 室外']),
     surroundings: A(['写字楼', '社区', '购物中心', '学校', '其它']),
@@ -21,56 +17,50 @@ export default Controller.extend({
 
     actions: {
         saveYardBtnClicked() {
-            let that = this
-            let callback = {
-                onSuccess: function() {
-                    that.transitionToRoute('detail.yard');
-                },
-                onFail: function(/*err*/) {
-                    debug('error');
-                }
-            }
-            this.bm_yard_service.saveUpdate(callback); 
+
         },
         multiCheckOnClick(value) {
+
             let tempArr = [];
-            if (this.bm_yard_service.yard.facilities != null) {
-                tempArr = this.bm_yard_service.yard.facilities;
+            if (this.model.yard.facilities != nill) {
+                tmpArr = this.model.yard.facilities;
             }
-            this.toggleProperty("changeFlag")
+
+            this.toggleProperty('changeFlag');
             if (tempArr.indexOf(value) == -1) {
-                tempArr.push(value)
+                tmpArr.push(value)
             } else {
                 tempArr.splice(tempArr.indexOf(value), 1)
             }
-            this.set('bm_yard_service.yard.facilities', tempArr)
+
+            this.model.yard.set('facilities', tmpArr);
         },
         addCertPicOnClick() {
-            let newObj = this.bm_yard_service.genNewImgObj('BmCertification');
-            newObj.tag = "initTag"
-            let tempArr = [];
-            if (this.bm_yard_service.yard.Certifications !== null) {
-                tempArr = this.bm_yard_service.yard.Certifications;
-            }
-            tempArr.pushObject(newObj);
-            this.set('bm_yard_service.yard.Certifications', tempArr);
+            // let newObj = this.bm_yard_service.genNewImgObj('BmCertification');
+            // newObj.tag = "initTag"
+            // let tempArr = [];
+            // if (this.bm_yard_service.yard.Certifications !== null) {
+            //     tempArr = this.bm_yard_service.yard.Certifications;
+            // }
+            // tempArr.pushObject(newObj);
+            // this.set('bm_yard_service.yard.Certifications', tempArr);
             // console.log(this.bm_yard_service.yard.Certifications)
         },
         addYardPicOnClick() {
-            let newObj = this.bm_yard_service.genNewImgObj('BmTagImg');
-            newObj.tag = "initTag"
-            let tempArr = [];
-            if (this.bm_yard_service.yard.Tagimgs !== null) {
-                tempArr = this.bm_yard_service.yard.Tagimgs;
-            }
-            tempArr.pushObject(newObj);
-            this.set('bm_yard_service.yard.Tagimgs', tempArr)
+            // let newObj = this.bm_yard_service.genNewImgObj('BmTagImg');
+            // newObj.tag = "initTag"
+            // let tempArr = [];
+            // if (this.bm_yard_service.yard.Tagimgs !== null) {
+            //     tempArr = this.bm_yard_service.yard.Tagimgs;
+            // }
+            // tempArr.pushObject(newObj);
+            // this.set('bm_yard_service.yard.Tagimgs', tempArr)
         },
         deleteCertImg(param) {
-            this.bm_yard_service.yard.Certifications.removeObject(param);
+            // this.bm_yard_service.yard.Certifications.removeObject(param);
         },
         deleteYardImg(param) {
-            this.bm_yard_service.yard.Tagimgs.removeObject(param);
+            // this.bm_yard_service.yard.Tagimgs.removeObject(param);
         }
     },
 });
