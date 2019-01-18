@@ -8,21 +8,21 @@
             {{/if}}
         {{/bmcom/bm-breadcrumb}}
         {{#layout-push direction='row' split=true classNames="detail_title tech_detail_title"}}
-			<span class="title_text">{{bm_tech_service.tech.name}}</span> 
+			<span class="title_text">{{model.tech.name}}</span> 
         {{/layout-push}}
         {{#layout-push direction="col" classNames="detail_panel_tab_container"}}
             {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs}}
         {{/layout-push}}
-        {{bmdetail/bm-top-title-panel title="教师信息" rightText="编辑" linkAddr='edit.tech' linkParam=bm_tech_service.tech.id}}
+        {{bmdetail/bm-top-title-panel title="教师信息" rightText="编辑" linkAddr='edit.tech' linkParam=model.tech.id}}
 
         {{#layout-push direction="row" classNames=""}}
             <div class='detail_panel detail_panel_col_between tech_info_card' >
                 {{#layout-push direction="col" classNames="tech_info_base"}}
-                    {{#if (bmcom/bm-nil-obj bm_tech_service.tech)}}
+                    {{#if (bmcom/bm-nil-obj model.tech)}}
                     {{else}}
-                        {{bmcom/bm-img-uploader needTag=false canEdit=false img=bm_tech_service.tech.icon}}
+                        {{bmcom/bm-img-uploader needTag=false canEdit=false img=model.tech.icon}}
                     {{/if}}
-                    <span class="detail_panel_role_name">{{bm_tech_service.tech.name}}</span>
+                    <span class="detail_panel_role_name">{{model.tech.name}}</span>
                     {{!-- {{#layout-push direction="row"}}
                         <span class="detail_panel_role_des">
                             {{#if isFemale}}
@@ -34,46 +34,46 @@
                                 <img src="../images/icon_male@2x.png" alt="" class="sex-icon">
                             {{/if}}
                         </span>
-                        <span class="detail_panel_role_des">{{bmdob/bmdob2age bm_tech_service.tech.dob}}岁</span>
+                        <span class="detail_panel_role_des">{{bmdob/bmdob2age model.tech.dob}}岁</span>
                     {{/layout-push}} --}}
-                    {{bmdetail/stud-basis-left-subtitle gender=bm_tech_service.tech.gender dob=bm_tech_service.tech.dob contentBelow=""}}
+                    {{bmdetail/stud-basis-left-subtitle gender=model.tech.gender dob=model.tech.dob contentBelow=""}}
                 {{/layout-push}}
                 {{#layout-push direction="col" classNames="tech_info_other"}}
-                    {{bmdetail/tech-basis-left-info label="职务" content=bm_tech_service.tech.jobTitle}}
-                    {{bmdetail/tech-basis-left-info label="手机号" content=bm_tech_service.tech.contact}}
-                    {{bmdetail/tech-basis-left-info label="微信" content=bm_tech_service.tech.wechat}}
+                    {{bmdetail/tech-basis-left-info label="职务" content=model.tech.jobTitle}}
+                    {{bmdetail/tech-basis-left-info label="手机号" content=model.tech.contact}}
+                    {{bmdetail/tech-basis-left-info label="微信" content=model.tech.wechat}}
                 {{/layout-push}}
             </div>
             <div class='detail_panel detail_panel_col_between tech_info_detail' >
                 {{#layout-push direction="col" classNames="tech_info_area"}}
                     {{#layout-push direction="row" classNames="tech_info_area-item"}}
                         <p>类型</p>
-                        {{#if (eq bm_tech_service.tech.jobType 1)}}
+                        {{#if (eq model.tech.jobType 1)}}
                             <span class='detail_panel_des_02'>正职</span>
                         {{else}}
                             <span class='detail_panel_des_02'>兼职</span>
                         {{/if}}
                     {{/layout-push}}
                     <div class="split-line"></div>
-                    {{bmdetail/tech-basis-right-info label="昵称" content=bm_tech_service.tech.nickname}}
-                    {{bmdetail/tech-basis-right-info label="出生日期" content=(bmdob/bmdobformat bm_tech_service.tech.dob)}}
-                    {{bmdetail/tech-basis-right-info label="来自城市" content=bm_tech_service.tech.nativePlace}}
-                    {{bmdetail/tech-basis-right-info label="地址" content=(bmcom/bm-trans-address bm_tech_service.tech)}}
+                    {{bmdetail/tech-basis-right-info label="昵称" content=model.tech.nickname}}
+                    {{bmdetail/tech-basis-right-info label="出生日期" content=(bmdob/bmdobformat model.tech.dob)}}
+                    {{bmdetail/tech-basis-right-info label="来自城市" content=model.tech.nativePlace}}
+                    {{bmdetail/tech-basis-right-info label="地址" content=(bmcom/bm-trans-address model.tech)}}
                     <div class="split-line"></div>
-                    {{bmdetail/tech-basis-right-info label="教龄" content=bm_tech_service.tech.teachYears contentBelow=" 年"}}
-                    {{bmdetail/tech-basis-right-info label="擅长科目" content=bm_tech_service.tech.major}}
+                    {{bmdetail/tech-basis-right-info label="教龄" content=model.tech.teachYears contentBelow=" 年"}}
+                    {{bmdetail/tech-basis-right-info label="擅长科目" content=model.tech.major}}
 
                     {{!-- {{#layout-push direction="row" classNames="tech_info_area-item"}}
                         <p>昵称</p>
-                        <span class='detail_panel_des_02'>{{bm_tech_service.tech.nickname}}</span>
+                        <span class='detail_panel_des_02'>{{model.tech.nickname}}</span>
                     {{/layout-push}}
                     {{#layout-push direction="row" classNames="tech_info_area-item"}}
                         <p>出生日期</p>
-                        <span class='detail_panel_des_02'>{{bmdob/bmdobformat bm_tech_service.tech.dob}}</span>
+                        <span class='detail_panel_des_02'>{{bmdob/bmdobformat model.tech.dob}}</span>
                     {{/layout-push}}
                     {{#layout-push direction="row" classNames="tech_info_area-item"}}
                         <p>来自城市</p>
-                        <span class='detail_panel_des_02'>{{bm_tech_service.tech.nativePlace}}</span>
+                        <span class='detail_panel_des_02'>{{model.tech.nativePlace}}</span>
                     {{/layout-push}} --}}
                 {{/layout-push}}
                 {{!-- {{#layout-push direction="col" classNames="tech_info_area"}}

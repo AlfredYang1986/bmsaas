@@ -12,22 +12,22 @@ export default Controller.extend({
     sex_idx: 0,
     genderCheck: A(['男', '女']),
     sex: computed('sex_idx', function() {
-        if(this.bm_tech_service.tech != null) {
+        if(this.model.tech != null) {
             if(this.sex_idx == 1) {
-                this.set('bm_tech_service.tech.gender', 0)
+                this.set('model.tech.gender', 0)
             } else if (this.sex_idx == 0) {
-                this.set('bm_tech_service.tech.gender', 1)
+                this.set('model.tech.gender', 1)
             }
         }
     }),
     jobTypeIdx: 0,
     jobTypeCheck: A(['正职', '兼职']),
     jobType: computed('jobTypeIdx', function() {
-        if(this.bm_tech_service.tech != null) {
+        if(this.model.tech != null) {
             if(this.jobTypeIdx == 1) {
-                this.set('bm_tech_service.tech.jobType', 0)
+                this.set('model.tech.jobType', 0)
             } else if (this.jobTypeIdx == 0) {
-                this.set('bm_tech_service.tech.jobType', 1)
+                this.set('model.tech.jobType', 1)
             }
         }
     }),
@@ -50,17 +50,17 @@ export default Controller.extend({
         selectedYears() {
             let sel = document.getElementById("yearsSelect");
             if (sel.selectedIndex == "") {
-                this.set('bm_tech_service.tech.teachYears', 0);
+                this.set('model.tech.teachYears', 0);
             } else {
-                this.set('bm_tech_service.tech.teachYears', parseInt(sel.options[sel.selectedIndex].value));
+                this.set('model.tech.teachYears', parseInt(sel.options[sel.selectedIndex].value));
             }
         },
         selectedJob() {
             let sel = document.getElementById("jobSelect");
             if (sel.selectedIndex == "") {
-                this.set('bm_tech_service.tech.jobTitle', "");
+                this.set('model.tech.jobTitle', "");
             } else {
-                this.set('bm_tech_service.tech.jobTitle', sel.options[sel.selectedIndex].value);
+                this.set('model.tech.jobTitle', sel.options[sel.selectedIndex].value);
             }
         }
     },

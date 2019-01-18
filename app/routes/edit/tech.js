@@ -4,13 +4,14 @@ import { inject as service } from '@ember/service';
 
 export default Route.extend({
     mock_data: service(),
-    bm_tech_service: service(),
+    // bm_tech_service: service(),
 
     model(params) {
         this.mock_data.regionSource();
-        this.bm_tech_service.set('techid', params.techid);
+        // this.bm_tech_service.set('techid', params.techid);
         return RSVP.hash({
-                techid : params.techid
+                techid : params.techid,
+                tech: this.store.find('teacher',params.techid),
             })
     },
 
@@ -24,6 +25,6 @@ export default Route.extend({
         } else {
             controller.set('isPushing', false)
         }
-        this.bm_tech_service.set('refresh_token', this.bm_tech_service.guid());
+        // this.bm_tech_service.set('refresh_token', this.bm_tech_service.guid());
     }
 });
