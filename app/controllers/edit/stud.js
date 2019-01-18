@@ -49,6 +49,7 @@ export default Controller.extend({
             if (this.model.isPushing) {
                 this.transitionToRoute("stud")
             } else {
+                // this.store.unloadAll("stud")
                 this.transitionToRoute("detail.stud", this.model.stud.id)
             }
         },

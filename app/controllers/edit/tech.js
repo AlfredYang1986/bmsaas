@@ -34,10 +34,21 @@ export default Controller.extend({
 
     actions: {
         cancelTechBtnClicked() {
-            this.store.unloadRecord(model.model.tech);
+            this.store.unloadRecord(this.model.tech);
+            if (this.model.isPushing) {
+                this.transitionToRoute("tech")
+            } else {
+                this.transitionToRoute("detail.tech", this.model.tech.id)
+            }
         },
         saveTechBtnClicked() {
             this.model.tech.save();
+            if (this.model.isPushing) {
+                this.transitionToRoute("tech")
+            } else {
+                // this.store.unloadAll("tech")
+                this.transitionToRoute("detail.tech", this.model.tech.id)
+            }
         },
         selectedYears() {
             let sel = document.getElementById("yearsSelect");
