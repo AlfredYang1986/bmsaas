@@ -3,9 +3,16 @@ import RSVP from 'rsvp';
 
 export default Route.extend({
     model(params) {
-        return RSVP.hash({
-            stud: this.store.find('student', params.studid),
-        })
+        // console.log(params.studid)
+        if (params.studid == "stud/push") {
+            return RSVP.hash({
+                stud: this.store.createRecord('student'),
+            })
+        } else {
+            return RSVP.hash({
+                stud: this.store.find('student', params.studid),
+            })
+        }
     },
     setupController(controller, model) {
         this._super(controller, model);
