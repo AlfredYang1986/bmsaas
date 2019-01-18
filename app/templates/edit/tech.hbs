@@ -20,7 +20,7 @@
 {{#layout-push direction='row' split=true classNames='edit_nav' }}
   <span>编辑教师信息</span>
   <span>
-      {{#if isPushing}}
+      {{!-- {{#if isPushing}}
           {{#link-to 'tech' class="edit_nav_btn btn_cacel"}}
               取消
           {{/link-to}}
@@ -28,7 +28,8 @@
           {{#link-to 'detail.tech' model.tech.id class="edit_nav_btn btn_cacel"}}
               取消
           {{/link-to}}
-      {{/if}}
+      {{/if}} --}}
+      <button class="edit_nav_btn btn_cacel" {{action 'cancelTechBtnClicked'}}>取消</button>
       <button class="edit_nav_btn btn_save" {{action 'saveTechBtnClicked'}}>提交</button>
   </span>
 {{/layout-push}}

@@ -33,6 +33,9 @@ export default Controller.extend({
     jobArr:A([{name: '校長'}, {name: '教務主任'}, {name: '課程顧問'}, {name: '教師'}]),
 
     actions: {
+        cancelTechBtnClicked() {
+            this.store.unloadRecord(model.model.tech);
+        },
         saveTechBtnClicked() {
             this.model.tech.save();
         },
