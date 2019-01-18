@@ -949,7 +949,6 @@ export default Service.extend({
         return this.apply.id.length > 0;
     },
     afterAppliesQuery(result) {
-        debugger
         let that = this;
         let date = new Date();
         debug(typeof(date))

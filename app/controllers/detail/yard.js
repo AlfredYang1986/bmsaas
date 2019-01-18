@@ -5,12 +5,6 @@ import { A } from '@ember/array';
 import { debug } from '@ember/debug';
 
 export default Controller.extend({
-    init() {
-        this._super(...arguments);
-        // this.cur_idx = 0;
-    },
-    bm_yard_service: service(),
-    bm_room_service: service(),
     toast: service(),
     toastOptions: {
         closeButton: false,
@@ -28,7 +22,7 @@ export default Controller.extend({
     
     typeChecked: A(['自有', '租用', '公共']),
     type_idx: 0,
-    type: computed('type_idx', function() {
+    // type: computed('type_idx', function() {
         // if(this.type_idx == 0) {
         //     this.set('bm_room_service.room.roomType', 0)
         // } else if(this.type_idx == 1) {
@@ -36,10 +30,12 @@ export default Controller.extend({
         // } else {
         //     this.set('bm_room_service.room.roomType', 2)
         // }
-    }),
+    // }),
     // detailAddress: computed('bm_yard_service.yard', function() {
     //     return this.bm_yard_service.yard.province + this.bm_yard_service.yard.city + this.bm_yard_service.yard.district + this.bm_yard_service.yard.district
     // }),
+
+    curTabIdx: 0,
 
     actions: {
         handlePageChange(pageNum) {
