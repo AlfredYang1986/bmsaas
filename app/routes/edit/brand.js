@@ -2,9 +2,10 @@ import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 
 export default Route.extend({
-    model(params) {
+    model() {
+        let tmp = '5c4178918fb8073d04e89793';
         return RSVP.hash({
-            brand: this.store.findRecord('brand', '5c4178918fb8073d04e89793') 
+            brand: this.store.findRecord('brand', tmp)
         })
     },
     setupController(controller, model) {
