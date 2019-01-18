@@ -1,4 +1,3 @@
-
 {{#layout-push direction='row' split=true classNames='edit_nav' }}
 	<span classNames='edit_nav_title'>编辑学生信息</span>
 	<span>
@@ -32,10 +31,10 @@
 			<p class="title-name">孩子信息</p>
 			{{#layout-push direction='row'}}
 				{{#layout-push direction="col"  classNames='input_area area-margin-bottom name-area' }}
-					{{bmform/bm-edit-line title='真实姓名'  inputVal=bm_stud_service.stud.name classNames='input_area area-margin-bottom'}}
+					{{bmform/bm-edit-line title='真实姓名'  inputVal=model.stud.name classNames='input_area area-margin-bottom'}}
 				{{/layout-push}}
 				{{#layout-push direction="col" classNames='input_area area-margin-bottom' }}
-					{{bmform/bm-edit-line title='昵称'  inputVal=bm_stud_service.stud.nickname classNames='input_area area-margin-bottom'}}
+					{{bmform/bm-edit-line title='昵称'  inputVal=model.stud.nickname classNames='input_area area-margin-bottom'}}
 				{{/layout-push}}
 			{{/layout-push}}
 
@@ -50,13 +49,13 @@
 				{{#layout-push direction="row" split=false classNames='date_choose' }}
 	                {{#if (bmcom/bm-nil-obj bm_stud_service.stud)}}
 	                {{else}}
-						{{bmform/bm-lay-date inputVal=bm_stud_service.stud.dob}}
+						{{bmform/bm-lay-date inputVal=model.stud.dob}}
 	                {{/if}}
 				{{/layout-push}}
 			{{/layout-push}}
 
 			{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
-				{{bmform/bm-edit-line title='就读学校' largeInput=true  inputVal=bm_stud_service.stud.school classNames='input_area area-margin-bottom'}}
+				{{bmform/bm-edit-line title='就读学校' largeInput=true  inputVal=model.stud.school classNames='input_area area-margin-bottom'}}
 			{{/layout-push}}
 
 			{{!-- {{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
@@ -66,14 +65,14 @@
                 provinces=provinces 
                 citys=citys 
                 areas=areas 
-                province=bm_stud_service.stud.province
-                city=bm_stud_service.stud.city
-                area=bm_stud_service.stud.district
+                province=model.stud.province
+                city=model.stud.city
+                area=model.stud.district
                 title='地址' 
-                detailAddress=bm_stud_service.stud.address
+                detailAddress=model.stud.address
 				classNames="area-margin-bottom"}}
 		</section>
-		{{#each bm_stud_service.stud.Guardians as |item|}}
+		{{#each medel.stud.Guardians as |item|}}
 			<section class="parent_info stu_section" id="par-story">
 				<p class="title-name">监护人信息</p>
 				{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
@@ -125,8 +124,8 @@
 					</div>
 				{{/layout-push}}
 			{{/layout-push}} --}}
-			{{bmform/bm-base-select selId='teacherName' selTitle="课程顾问" options=bm_tech_service.techs curSelect=bm_stud_service.stud.teacherName classNames="input_area area-margin-bottom"}}
-			{{bmform/bm-base-select selId='sourceWay' selTitle="渠道来源" options=origin curSelect=bm_stud_service.stud.sourceWay classNames="input_area"}}
+			{{bmform/bm-base-select selId='teacherName' selTitle="课程顾问" options=model.stud.techs curSelect=bm_stud_service.stud.teacherName classNames="input_area area-margin-bottom"}}
+			{{bmform/bm-base-select selId='sourceWay' selTitle="渠道来源" options=origin curSelect=model.stud.sourceWay classNames="input_area"}}
 		</section>
 	</div>
 {{/layout-push}}

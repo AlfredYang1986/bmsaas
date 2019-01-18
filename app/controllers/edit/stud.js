@@ -19,17 +19,17 @@ export default Controller.extend({
             let sel = document.getElementById("techSelect");
             this.set('sel', sel)
             if (sel.selectedIndex == 0) {
-                this.set('bm_stud_service.stud.teacherName', null);
+                // this.set('bm_stud_service.stud.teacherName', null);
             } else {
-                this.set('bm_stud_service.stud.teacherName', sel.options[sel.selectedIndex].value);
+                // this.set('bm_stud_service.stud.teacherName', sel.options[sel.selectedIndex].value);
             }
         },
         selectedOrigin() {
             let sel = document.getElementById("originSelect");
             if (sel.selectedIndex == 0) {
-                this.set('bm_stud_service.stud.sourceWay', null);
+                // this.set('bm_stud_service.stud.sourceWay', null);
             } else {
-                this.set('bm_stud_service.stud.sourceWay', sel.options[sel.selectedIndex].value);
+                // this.set('bm_stud_service.stud.sourceWay', sel.options[sel.selectedIndex].value);
             }
         }
     },
