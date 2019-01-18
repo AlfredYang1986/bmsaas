@@ -3,7 +3,7 @@
         {{#link-to 'course' class="alt_href_link"}}
             返回 
         {{/link-to}}
-        {{#bmpage/bm-session-info session=bm_session_service.session}}
+        {{#bmpage/bm-session-info session=model.course}}
             {{bmdetail/bm-top-title-panel title="课程详情" rightText="编辑" linkAddr='edit.course' linkParam=bm_session_service.session.id}}
             {{!-- {{#link-to 'edit.course' bm_session_service.session.id classNames='alt_course_btn'}}
                 编辑
