@@ -19,7 +19,7 @@ Router.map(function() {
   this.route('home', function() {});
 
   this.route('edit', function() {
-    this.route('brand');
+    this.route('brand', { path: '/brand/:brandid' });
     this.route('stud', { path: '/stud/:studid' });
     this.route('tech', { path: '/tech/:techid' });
     this.route('yard', { path: '/yard/:yardid' });
