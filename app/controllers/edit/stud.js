@@ -51,10 +51,10 @@ export default Controller.extend({
         selectedOrigin() {
             let sel = document.getElementById("originSelect");
             if (sel.selectedIndex == 0) {
-                model.stud.set('sourceWay', '');
+                this.model.stud.set('sourceWay', '');
                 // this.set('bm_stud_service.stud.sourceWay', null);
             } else {
-                model.stud.set('sourceWay', sel.options[sel.selectedIndex].value);
+                this.model.stud.set('sourceWay', sel.options[sel.selectedIndex].value);
                 // this.set('bm_stud_service.stud.sourceWay', sel.options[sel.selectedIndex].value);
             }
         }

@@ -1,14 +1,12 @@
 import Controller from '@ember/controller';
-import { inject as service } from '@ember/service';
-import { debug } from '@ember/debug';
 import { computed} from '@ember/object';
 import { A } from '@ember/array';
 
 export default Controller.extend({
-    bm_tech_service: service(),
-    provinces: null,
-    citys: null,
-    areas: null,
+    provinces: A(['北京']),
+    citys: A(['北京市']),
+    areas: A(["密云区", "延庆区", "朝阳区", "丰台区", "石景山区", "海淀区", "门头沟区", "房山区", "通州区", "顺义区", "昌平区", "大兴区", "怀柔区", "平谷区", "东城区", "西城区"]),
+
     sex_idx: 0,
     genderCheck: A(['男', '女']),
     sex: computed('sex_idx', function() {
@@ -36,31 +34,26 @@ export default Controller.extend({
 
     actions: {
         saveTechBtnClicked() {
-            let that = this
-            let callback = {
-                onSuccess: function() {
-                    that.transitionToRoute('tech');
-                },
-                onFail: function(/*err*/) {
-                    debug('error');
-                }
-            }
-            this.bm_tech_service.saveUpdate(callback);
+            this.model.tech.save();
         },
         selectedYears() {
             let sel = document.getElementById("yearsSelect");
             if (sel.selectedIndex == "") {
-                this.set('model.tech.teachYears', 0);
+                // this.set('model.tech.teachYears', 0);
+                this.model.tech.set('teachYears', 0)
             } else {
-                this.set('model.tech.teachYears', parseInt(sel.options[sel.selectedIndex].value));
+                this.model.tech.set('teachYears', parseInt(sel.options[sel.selectedIndex].value));
+                // this.set('model.tech.teachYears', parseInt(sel.options[sel.selectedIndex].value));
             }
         },
         selectedJob() {
             let sel = document.getElementById("jobSelect");
             if (sel.selectedIndex == "") {
-                this.set('model.tech.jobTitle', "");
+                // this.set('model.tech.jobTitle', "");
+                this.model.tech.set('jobTitle', "");
             } else {
-                this.set('model.tech.jobTitle', sel.options[sel.selectedIndex].value);
+                // this.set('model.tech.jobTitle', sel.options[sel.selectedIndex].value);
+                this.model.tech.set('jobTitle', sel.options[sel.selectedIndex].value);
             }
         }
     },

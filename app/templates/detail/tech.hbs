@@ -23,19 +23,6 @@
                         {{bmcom/bm-img-uploader needTag=false canEdit=false img=model.tech.icon}}
                     {{/if}}
                     <span class="detail_panel_role_name">{{model.tech.name}}</span>
-                    {{!-- {{#layout-push direction="row"}}
-                        <span class="detail_panel_role_des">
-                            {{#if isFemale}}
-                                女
-                                <img src="../images/icon_female@2x.png" alt="" class="sex-icon">
-                            {{/if}}
-                            {{#if isMale}}
-                                男
-                                <img src="../images/icon_male@2x.png" alt="" class="sex-icon">
-                            {{/if}}
-                        </span>
-                        <span class="detail_panel_role_des">{{bmdob/bmdob2age model.tech.dob}}岁</span>
-                    {{/layout-push}} --}}
                     {{bmdetail/stud-basis-left-subtitle gender=model.tech.gender dob=model.tech.dob contentBelow=""}}
                 {{/layout-push}}
                 {{#layout-push direction="col" classNames="tech_info_other"}}
@@ -62,19 +49,6 @@
                     <div class="split-line"></div>
                     {{bmdetail/tech-basis-right-info label="教龄" content=model.tech.teachYears contentBelow=" 年"}}
                     {{bmdetail/tech-basis-right-info label="擅长科目" content=model.tech.major}}
-
-                    {{!-- {{#layout-push direction="row" classNames="tech_info_area-item"}}
-                        <p>昵称</p>
-                        <span class='detail_panel_des_02'>{{model.tech.nickname}}</span>
-                    {{/layout-push}}
-                    {{#layout-push direction="row" classNames="tech_info_area-item"}}
-                        <p>出生日期</p>
-                        <span class='detail_panel_des_02'>{{bmdob/bmdobformat model.tech.dob}}</span>
-                    {{/layout-push}}
-                    {{#layout-push direction="row" classNames="tech_info_area-item"}}
-                        <p>来自城市</p>
-                        <span class='detail_panel_des_02'>{{model.tech.nativePlace}}</span>
-                    {{/layout-push}} --}}
                 {{/layout-push}}
                 {{!-- {{#layout-push direction="col" classNames="tech_info_area"}}
                     <p>教育经历</p>
