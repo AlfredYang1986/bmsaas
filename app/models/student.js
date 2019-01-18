@@ -1,7 +1,6 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-    address: DS.attr('string'),
     brandId: DS.attr('string'),
     contact: DS.attr('string'),
     dob: DS.attr('number'),
@@ -15,6 +14,12 @@ export default DS.Model.extend({
     wechat: DS.attr('string'),
     school: DS.attr('string'),
     sourceWay: DS.attr('string'),
+
+    province: DS.attr('string'),
+    city: DS.attr('string'),
+    district: DS.attr('string'),
+    address: DS.attr('string'),
+
     // applicants: DS.hasMany('applicant'),
     guardians: DS.hasMany('guardian'),
 
