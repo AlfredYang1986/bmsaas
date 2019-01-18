@@ -9,8 +9,11 @@ export default Component.extend({
     checked: false,
     iconImg: computed('tech', function(){
         let client = this.bmOss.get('ossClient');
-
-        return  client.signatureUrl(this.tech.icon);
+        if(this.tech.icon == undefined) {
+            return "";
+        } else {
+            return client.signatureUrl(this.tech.icon);
+        }
     }),
     click() {
         if (this.canChecked) {

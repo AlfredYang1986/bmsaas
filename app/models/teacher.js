@@ -7,7 +7,7 @@ export default DS.Model.extend({
     contact: DS.attr('string'),
     createTime: DS.attr('number'),
     district: DS.attr('string'),
-    dob: DS.attr('number'),
+    dob: DS.attr('number', { defaultValue: 0}),
     gender: DS.attr('number'),
     icon: DS.attr('string'),
     idCardNo: DS.attr('string'),

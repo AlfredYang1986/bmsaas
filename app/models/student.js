@@ -3,7 +3,7 @@ import DS from 'ember-data';
 export default DS.Model.extend({
     brandId: DS.attr('string'),
     contact: DS.attr('string'),
-    dob: DS.attr('number'),
+    dob: DS.attr('number', { defaultValue: 0}),
     gender: DS.attr('number'),
     icon: DS.attr('string'),
     idCardNo: DS.attr('string'),
