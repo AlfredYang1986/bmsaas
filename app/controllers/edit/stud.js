@@ -38,6 +38,7 @@ export default Controller.extend({
     actions: {
         saveInputBtnClicked() {
             this.model.stud.save();
+            this.transitionToRoute("detail.stud", this.model.stud.id)
         },
         selectedTech() {
             let sel = document.getElementById("techSelect");
