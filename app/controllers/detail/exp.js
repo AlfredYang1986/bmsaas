@@ -6,13 +6,10 @@ export default Controller.extend({
 
     init() {
         this._super(...arguments);
-        this.addObserver('showAddSessionDlg', this, 'generateSessionable');
+        // this.addObserver('showAddSessionDlg', this, 'generateSessionable');
         // debug(this.bm_sessionable_service.page)
     },
 
-    bm_exp_service: service(),
-    bm_sessionable_service: service(),
-    bm_yard_service: service(),
     toast: service(),
     toastOptions: {
         closeButton: false,
@@ -30,7 +27,6 @@ export default Controller.extend({
     //     }
     // }),
 
-
     cur_idx: 0,
     cur_yard_id: "",
     cur_tmp_date: "",
@@ -46,7 +42,6 @@ export default Controller.extend({
     // }),
 
     tmpSessionable: '',
-
 
     showAddSessionDlg: false,
     deleteExpDlg: false,
@@ -256,10 +251,10 @@ export default Controller.extend({
         checkEnd.setMilliseconds(0);
         return checkStart <= checkEnd;
     },
-    generateSessionable() {
-        if (this.showAddSessionDlg == true) {
-            this.bm_sessionable_service.set('sessionableid', 'sessionable/push');
-            this.bm_sessionable_service.querySessionable();
-        }
-    }
+    // generateSessionable() {
+    //     if (this.showAddSessionDlg == true) {
+    //         this.bm_sessionable_service.set('sessionableid', 'sessionable/push');
+    //         this.bm_sessionable_service.querySessionable();
+    //     }
+    // }
 });

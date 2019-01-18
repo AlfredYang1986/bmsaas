@@ -11,7 +11,7 @@
             {{#layout-push direction='row' split=true classNames="reserve-detail-head"}}
                 {{#layout-push direction='col' mid=true }}
                     {{#layout-push direction='col' classNames="detail_margin_top_left"}}
-                        <span class="detail_panel_title_name">{{bm_exp_service.exp.SessionInfo.title}}</span>
+                        <span class="detail_panel_title_name">{{model.exp.SessionInfo.title}}</span>
                         {{!-- {{#layout-push direction='row'}}
                         <p class="detail_panel_role_num">{{reserve_number}}</p>
                         {{/layout-push}} --}}
@@ -23,8 +23,8 @@
                         {{#dd.menu align="right" as |menu|}}
                             {{#menu.item align="right"}}
                                 {{#layout-push direction='col' classNames="dropdown-content"}}
-                                    {{#if (eq bm_exp_service.exp.start_date -1)}}
-                                        {{#if (eq bm_exp_service.exp.end_date -1)}}
+                                    {{#if (eq model.exp.start_date -1)}}
+                                        {{#if (eq model.exp.end_date -1)}}
                                             <a onclick={{action "onOpenExpClick" item dd.closeDropdown}}>开启报名</a>
                                         {{else}}
                                             <a onclick={{action (mut closeExpDlg) true dd.closeDropdown}}>关闭报名</a>
@@ -159,7 +159,7 @@
                             </div>
                     {{/bmcom/bm-modal-container}}
                     {{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteExpDlg cancelHandled='cancelHandled' successHandled="onDeleteExpClick"}}
-                        <p class="warning-modal-body-content">您确定要删除体验课「{{bm_exp_service.exp.SessionInfo.title}}」吗？</p>
+                        <p class="warning-modal-body-content">您确定要删除体验课「{{model.exp.SessionInfo.title}}」吗？</p>
                         <p class="warning-modal-body-content">删除后所有场次信息都将删除。</p>
                     {{/bmcom/bm-warning-modal}}
                     {{#bmcom/bm-warning-modal title="关闭" mainBtnText="关闭" type="warning" switchParam=closeExpDlg cancelHandled='cancelHandled' successHandled="onShutdownExpClick"}}
@@ -175,8 +175,8 @@
         <div class='detail_panel detail_margin_top detail_margin_top_des' >
             {{#layout-push direction='row' split=true classNames="reserve-detail-head"}}
                 {{#layout-push direction='row' mid=true classNames="detail_margin_top_left"}}
-                    {{#if (eq bm_exp_service.exp.start_date -1)}}
-                        {{#if (eq bm_exp_service.exp.end_date -1)}}
+                    {{#if (eq model.exp.start_date -1)}}
+                        {{#if (eq model.exp.end_date -1)}}
                             <p class="status_before_dot_outer"><span class="status_before_dot_disable"></span></p>
                             <span class="detail_panel_role_num">未开放</span>
                         {{else}}
@@ -209,9 +209,9 @@
         {{#if (bmeq cur_idx 1)}}
             <section class='alt_course_selection'>
                 {{#layout-push direction='col' classNames='alt_course_container'}}
-                    {{#bmpage/bm-session-info session=bm_exp_service.exp.SessionInfo}}
-                        {{bmdetail/bm-top-title-panel title="体验详情" rightText="编辑" linkAddr='edit.exp.info' linkParam=bm_exp_service.exp.SessionInfo.id}}
-                        {{!-- {{#link-to 'edit.exp.info' bm_exp_service.exp.SessionInfo.id classNames='alt_course_btn'}}
+                    {{#bmpage/bm-session-info session=model.exp.SessionInfo}}
+                        {{bmdetail/bm-top-title-panel title="体验详情" rightText="编辑" linkAddr='edit.exp.info' linkParam=model.exp.SessionInfo.id}}
+                        {{!-- {{#link-to 'edit.exp.info' model.exp.SessionInfo.id classNames='alt_course_btn'}}
                             编辑
                         {{/link-to}} --}}
                     {{/bmpage/bm-session-info}}
