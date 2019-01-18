@@ -4,8 +4,8 @@
         {{#layout-push direction='col' classNames='alt_course_panel'}}
             {{bmdetail/course-basis-left-title
                 title=session.title
-                subTitle=session.Cate.title
-                subTitleBehind=session.Cate.subtitle}}
+                subTitle=session.cate.title
+                subTitleBehind=session.cate.subtitle}}
             {{bmdetail/course-basis-left-infocard infoCardData=session}}
             {{#if (bmcom/bm-nil-obj session)}}
             {{else}}
