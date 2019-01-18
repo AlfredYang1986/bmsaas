@@ -1,7 +1,7 @@
 {{#layout-push direction='row' split=true classNames='edit_nav' }}
 	<span classNames='edit_nav_title'>编辑学生信息</span>
 	<span>
-		{{#if isPushing}}
+		{{!-- {{#if isPushing}}
 			{{#link-to 'stud' class="edit_nav_btn btn_cacel"}}
 				取消
 			{{/link-to}}
@@ -9,7 +9,8 @@
 			{{#link-to 'detail.stud' model.stud.id class="edit_nav_btn btn_cacel"}}
 				取消
 			{{/link-to}}
-		{{/if}}
+		{{/if}} --}}
+		<button class="edit_nav_btn btn_cacel" {{action 'cancelInputBtnClicked'}}>取消</button>
 		<button class="edit_nav_btn btn_save" {{action 'saveInputBtnClicked'}}>提交</button>
 	</span>
 {{/layout-push}}
