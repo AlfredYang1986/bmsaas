@@ -9,39 +9,22 @@
         {{/bmcom/bm-breadcrumb}}
 		{{#layout-push direction='row' split=true class="detail_title" }}
 			<span class="title_text">{{model.stud.name}}</span>
-			{{!-- <div class="qr-code">
-				<img src={{qrCode}} alt="">
-			</div> --}}
 		{{/layout-push}}
 
 		<div class="tab-area">
 			{{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs}}
 		</div>
 
-
 		{{bmdetail/bm-top-title-panel title="学生详情" rightText="编辑" linkAddr='edit.stud' linkParam=model.studid}}
 		{{#layout-push direction='row' split=true classNames='stud_detail' }}
-			<div class="basis_margin">
-				{{#layout-push direction='col' mid=true classNames='stud_detail_basis' }}
-					<div class="head-img">
-						<img src={{headImg}} alt="">
-					</div>
-					<p class="basis_name">{{model.stud.name}}</p>
-					{{bmdetail/stud-basis-left-subtitle gender=model.stud.gender dob=model.stud.dob contentBelow="生"}}
-					{{!-- {{#layout-push direction='col' classNames='basis_dob' }} --}}
-						{{!-- {{#layout-push direction='row' classNames="basis_contact basis_contact_margin_bottom"}}
-							<span class="basis_dob_title">联系方式</span><span>{{model.stud.contact}}</span>
-						{{/layout-push}}
-
-						{{#layout-push direction='row' classNames="basis_contact"}}
-							<span class="basis_dob_title">微信</span><span>{{model.stud.wechat}}</span>
-						{{/layout-push}} --}}
-						{{!-- <span>出生日期</span><span>{{bmdob/bmdobformat model.stud.dob}}</span> --}}
-					{{!-- {{/layout-push}} --}}
-				{{/layout-push }}
-			</div>
+			{{#layout-push direction='col' mid=true classNames='basis_margin stud_detail_basis' }}
+				<div class="head-img">
+					<img src={{headImg}} alt="">
+				</div>
+				<p class="basis_name">{{model.stud.name}}</p>
+				{{bmdetail/stud-basis-left-subtitle gender=model.stud.gender dob=model.stud.dob contentBelow="生"}}
+			{{/layout-push }}
 			{{#layout-push direction='col' mid=true classNames='stud_detail_other' }}
-
 				<div class="other_self">
 					{{#layout-push direction='col'classNames="info-block-outer"}}
 						<p class="parent_info">孩子信息</p>
@@ -75,7 +58,6 @@
 						{{!-- {{#each model.stud.Applyees as |item|}}
 						  	{{bmdetail/stud-followers-info item=item}}
 						{{/each}} --}}
-
 					{{/layout-push}}
 				</div>
 			{{/layout-push }}

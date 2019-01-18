@@ -6,7 +6,8 @@ export default Route.extend({
     bm_apply_service: service(),
     bm_brand_service: service(),
     model() {
-        this.bm_apply_service.applies = this.store.findAll('apply');
+        let applies = this.store.findAll('apply');
+        this.bm_apply_service.afterAppliesQuery(applies);
         return RSVP.hash({
             reserveTitle: ["孩子","类别","参与内容","意向时间","申请者", "联系方式", "操作"],
             preRegisterTtitle:  ["孩子","性别","年龄","申请者", "联系方式", "操作"],

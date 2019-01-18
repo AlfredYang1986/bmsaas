@@ -1,9 +1,8 @@
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
 
 export default Route.extend({
 	// cookies: service(),
-	bm_brand_service: service(),
+	// bm_brand_service: service(),
 	// beforeModel(transition) {
 	// 	let token = this.get('cookies').read('token'),
 	// 	loginController = this.controllerFor('index');
@@ -19,4 +18,7 @@ export default Route.extend({
 	// 		this.bm_brand_service.set('refresh_token', this.bm_brand_service.guid());
 	// 	}
 	// },
+	// model() {
+	// 	return this.store.findAll('apply');
+	// }
 });

@@ -947,5 +947,100 @@ export default Service.extend({
     },
     isValidate() {
         return this.apply.id.length > 0;
+    },
+    afterAppliesQuery(result) {
+        debugger
+        let that = this;
+        let date = new Date();
+        debug(typeof(date))
+        var Y = date.getFullYear() + '-';
+        var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+        var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate());
+        let today = Y+M+D;
+        
+        let reserveType = [];
+        let preRegister = [];
+        let reserveTypeToday = [];
+        let preRegisterToday = [];
+
+        result.forEach((item) => {
+            if(item.courseType != -1) {
+                item.kid = item.Kids[0];
+                reserveType.push(item);
+                return reserveType;
+            } else {
+                item.kid = item.Kids[0];
+                preRegister.push(item);
+                return preRegister;
+            }
+        })
+        reserveType.forEach((item) => {
+            let applyTime = new Date(item.apply_time);
+            debug(typeof(applyTime))
+            var Y = applyTime.getFullYear() + '-';
+            var M = (applyTime.getMonth()+1 < 10 ? '0'+(applyTime.getMonth()+1) : applyTime.getMonth()+1) + '-';
+            var D = (applyTime.getDate() < 10 ? '0' + (applyTime.getDate()) : applyTime.getDate());
+            let apply_time = Y+M+D;
+            if(apply_time == today) {
+                reserveTypeToday.push(item);
+                return reserveTypeToday;
+            }
+        })
+        preRegister.forEach((item) => {
+            let applyTime = new Date(item.apply_time);
+            debug(typeof(applyTime))
+            var Y = applyTime.getFullYear() + '-';
+            var M = (applyTime.getMonth()+1 < 10 ? '0'+(applyTime.getMonth()+1) : applyTime.getMonth()+1) + '-';
+            var D = (applyTime.getDate() < 10 ? '0' + (applyTime.getDate()) : applyTime.getDate());
+            let apply_time = Y+M+D;
+            if(apply_time == today) {
+                preRegisterToday.push(item);
+                return preRegisterToday;
+            }
+        })
+        // let date = new Date();
+        // console.log(typeof(date))
+        // var Y = date.getFullYear() + '-';
+        // var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+        // var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate());
+        // let today = Y+M+D;
+        // reserveType.forEach((item, index) => {
+        //     let applyTime = new Date(item.apply_time);
+        //     console.log(typeof(applyTime))
+        //     var Y = applyTime.getFullYear() + '-';
+        //     var M = (applyTime.getMonth()+1 < 10 ? '0'+(applyTime.getMonth()+1) : applyTime.getMonth()+1) + '-';
+        //     var D = (applyTime.getDate() < 10 ? '0' + (applyTime.getDate()) : applyTime.getDate());
+        //     let apply_time = Y+M+D;
+        //     if(apply_time == today) {
+        //         reserveTypeToday.push(item);
+        //         return reserveTypeToday;
+        //     }
+        // })
+        // preRegister.forEach((item, index) => {
+        //     let applyTime = new Date(item.apply_time);
+        //     console.log(typeof(applyTime))
+        //     var Y = applyTime.getFullYear() + '-';
+        //     var M = (applyTime.getMonth()+1 < 10 ? '0'+(applyTime.getMonth()+1) : applyTime.getMonth()+1) + '-';
+        //     var D = (applyTime.getDate() < 10 ? '0' + (applyTime.getDate()) : applyTime.getDate());
+        //     let apply_time = Y+M+D;
+        //     if(apply_time == today) {
+        //         preRegisterToday.push(item);
+        //         return preRegisterToday;
+        //     }
+        // })
+        that.set('reserveType', reserveType);
+        that.set('reserveTypeToday', reserveTypeToday);
+        that.set('reserveTypeAmount', reserveType.length);
+        that.set('reserveTypeTodayAmount', reserveTypeToday.length);
+
+        that.set('amount', reserveType.length);
+        that.set('reserved', reserveType)
+        that.set('preAmount', preRegister.length);
+        that.set('preRegistered', preRegister)
+
+        that.set('preRegister', preRegister);
+        that.set('preRegisterToday', preRegisterToday);
+        that.set('preRegisterAmount', preRegister.length);
+        that.set('preRegisterTodayAmount', preRegisterToday.length)
     }
 });

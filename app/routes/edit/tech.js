@@ -11,7 +11,7 @@ export default Route.extend({
         // this.bm_tech_service.set('techid', params.techid);
         return RSVP.hash({
                 techid : params.techid,
-                tech: this.store.find('teacher',params.techid),
+                tech: this.store.find('teacher', params.techid),
             })
     },
 
