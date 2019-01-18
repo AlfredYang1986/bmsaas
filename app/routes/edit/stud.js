@@ -6,5 +6,15 @@ export default Route.extend({
         return RSVP.hash({
             stud: this.store.find('student', params.studid),
         })
+    },
+    setupController(controller, model) {
+        this._super(controller, model);
+        if (model.stud.gender == 0) {
+            controller.set("sex_idx", 1);
+        } else if (model.stud.gender == 1) {
+            controller.set("sex_idx", 0);
+        } else {
+            controller.set("sex_idx", 2);
+        }
     }
 });

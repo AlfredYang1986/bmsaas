@@ -6,7 +6,7 @@
 				取消
 			{{/link-to}}
 		{{else}}
-			{{#link-to 'detail.stud' bm_stud_service.stud.id class="edit_nav_btn btn_cacel"}}
+			{{#link-to 'detail.stud' model.stud.id class="edit_nav_btn btn_cacel"}}
 				取消
 			{{/link-to}}
 		{{/if}}
@@ -47,7 +47,7 @@
 			{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
 				<p class="edit_title">出生日期</p>
 				{{#layout-push direction="row" split=false classNames='date_choose' }}
-	                {{#if (bmcom/bm-nil-obj bm_stud_service.stud)}}
+	                {{#if (bmcom/bm-nil-obj model.stud)}}
 	                {{else}}
 						{{bmform/bm-lay-date inputVal=model.stud.dob}}
 	                {{/if}}
@@ -85,7 +85,7 @@
 				{{/layout-push}}
 				{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
 					{{bmform/bm-edit-line numberInput=true title='联系方式'  inputVal=item.contact classNames='input_area area-margin-bottom'}}
-					{{bmform/bm-edit-line title='微信'  inputVal=bm_stud_service.stud.wechat classNames='input_area area-margin-bottom'}}
+					{{bmform/bm-edit-line title='微信'  inputVal=model.stud.wechat classNames='input_area area-margin-bottom'}}
 				{{/layout-push}}
 			</section>
 		{{/each}}

@@ -13,6 +13,8 @@ export default DS.Model.extend({
     regDate: DS.attr('number'),
     relationShip: DS.attr('string'),
     wechat: DS.attr('string'),
+    school: DS.attr('string'),
+    sourceWay: DS.attr('string'),
     // applicants: DS.hasMany('applicant'),
     guardians: DS.hasMany('guardian'),
 
