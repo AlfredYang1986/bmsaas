@@ -49,16 +49,16 @@ export default Controller.extend({
     deleteSessionDlg: false,
     actions: {
         handlePageChange (pageNum) {
-            this.set('bm_sessionable_service.page', pageNum - 1);
-            this.bm_sessionable_service.queryMultiObjects();
+            // this.set('bm_sessionable_service.page', pageNum - 1);
+            // this.bm_sessionable_service.queryMultiObjects();
         },
         onTabClicked(tabIdx) {
-            this.set('bm_sessionable_service.page', 0);
-            if (tabIdx == 0) {
-                this.bm_sessionable_service.queryMultiObjects();
-            } else {
-                // this.bm_sessionable_service.queryMultiObjects();
-            }
+            // this.set('bm_sessionable_service.page', 0);
+            // if (tabIdx == 0) {
+            //     this.bm_sessionable_service.queryMultiObjects();
+            // } else {
+            //     // this.bm_sessionable_service.queryMultiObjects();
+            // }
         },
         linkToExpField(idx) {
             debug(this.model.expid)

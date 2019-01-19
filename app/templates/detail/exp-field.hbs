@@ -13,9 +13,9 @@
                     {{#layout-push direction='col' classNames="detail_margin_top_left"}}
                         {{!-- <span class="detail_panel_title_name">sda65f4d5f4ds65</span> --}}
                         <span class="detail_panel_title_name">
-                            {{bmdob/bmdobformat bm_sessionable_service.sessionable.start_date}} 
-                            {{bmdob/bmdob2weekday bm_sessionable_service.sessionable.start_date}} 
-                            {{bmdob/bmdob2clocktime bm_sessionable_service.sessionable.start_date}}-{{bmdob/bmdob2clocktime bm_sessionable_service.sessionable.end_date}}
+                            {{bmdob/bmdobformat model.classes.start_date}} 
+                            {{bmdob/bmdob2weekday model.classes.start_date}} 
+                            {{bmdob/bmdob2clocktime model.classes.start_date}}-{{bmdob/bmdob2clocktime model.classes.end_date}}
                         </span>
                     {{/layout-push}}
                 {{/layout-push}}
@@ -40,19 +40,19 @@
                     {{#layout-push direction='col' classNames="detail_margin_top_left"}}
                         {{#layout-push direction='row' classNames="detail_margin_top_left_content"}}
                             <span class="detail_panel_role_num">体验课</span>
-                            <span class="detail_panel_role_num">{{bm_sessionable_service.sessionable.SessionInfo.title}}</span>
+                            <span class="detail_panel_role_num">{{model.classes.SessionInfo.title}}</span>
                         {{/layout-push}}
                         {{#layout-push direction='row' classNames="detail_margin_top_left_content"}}
                             <span class="detail_panel_role_num">校区</span>
-                            <span class="detail_panel_role_num">{{bm_sessionable_service.sessionable.Yard.address}}</span>
+                            <span class="detail_panel_role_num">{{model.classes.Yard.address}}</span>
                         {{/layout-push}}
                     {{/layout-push}}
                 {{/layout-push}}
                 {{#layout-push direction='row' classNames="detail_margin_top_right"}}
-                    {{#if (bmcom/bm-nil-obj bm_sessionable_service.sessionable.Attendees)}}
+                    {{#if (bmcom/bm-nil-obj model.classes.Attendees)}}
                         <span class="detail_panel_role_num">0</span>
                     {{else}}
-                        <span class="detail_panel_role_num">{{bm_sessionable_service.sessionable.Attendees.length}}</span>
+                        <span class="detail_panel_role_num">{{model.classes.Attendees.length}}</span>
                     {{/if}}
                     <span class="detail_panel_role_num">报名人数</span>
                 {{/layout-push}}

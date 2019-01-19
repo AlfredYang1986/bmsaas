@@ -5,9 +5,9 @@ import { debug } from '@ember/debug';
 
 export default Controller.extend({
     tableTitle: A(["孩子","生日","性别", "联系方式", "渠道"]),
-    bm_exp_service: service(),
-    bm_sessionable_service: service(),
-    bm_yard_service: service(),
+    // bm_exp_service: service(),
+    // bm_sessionable_service: service(),
+    // bm_yard_service: service(),
     toast: service(),
     toastOptions: {
         closeButton: false,
@@ -34,10 +34,10 @@ export default Controller.extend({
             this.set('bm_sessionable_service.curAttendeesPage',this.bm_sessionable_service.localAttendeesPages[pageNum - 1]) 
         },
         onEditSessionable() {
-            this.set('cur_yard_id', this.bm_sessionable_service.sessionable.Yard.id);
-            this.set('cur_tmp_date', this.bm_sessionable_service.sessionable.tmp_date);
-            this.set('cur_start_date', this.bm_sessionable_service.sessionable.start_date);
-            this.set('cur_end_date', this.bm_sessionable_service.sessionable.end_date);
+            this.set('cur_yard_id', this.model.classes.Yard.id);
+            this.set('cur_tmp_date', this.model.classes.tmp_date);
+            this.set('cur_start_date', this.model.classes.start_date);
+            this.set('cur_end_date', this.model.classes.end_date);
             this.set('showEditSessionDlg', true);
         },
         onDeleteSessionableClick() {
@@ -69,9 +69,9 @@ export default Controller.extend({
                 return
             }
 
-            this.set("bm_sessionable_service.sessionable.tmp_date", this.cur_tmp_date);
-            this.set("bm_sessionable_service.sessionable.start_date", this.cur_start_date);
-            this.set("bm_sessionable_service.sessionable.end_date", this.cur_end_date);
+            this.set("model.classes.tmp_date", this.cur_tmp_date);
+            this.set("model.classes.start_date", this.cur_start_date);
+            this.set("model.classes.end_date", this.cur_end_date);
 
             let callback = {
                 onSuccess: function() {
@@ -85,8 +85,8 @@ export default Controller.extend({
             }
 
             this.bm_sessionable_service.resetInfoAndYard(this.cur_yard_id, this.bm_exp_service.exp.SessionInfo.id);
-            this.bm_sessionable_service.resetTechs(this.bm_sessionable_service.sessionable.Teachers);
-            this.bm_sessionable_service.resetAttendee(this.bm_sessionable_service.sessionable.Attendees);
+            this.bm_sessionable_service.resetTechs(this.model.classes.Teachers);
+            this.bm_sessionable_service.resetAttendee(this.model.classes.Attendees);
             this.bm_sessionable_service.saveUpdate(callback);
 
             this.set('cur_yard_id', "");

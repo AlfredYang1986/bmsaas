@@ -1,10 +1,11 @@
 import Component from '@ember/component';
-import { inject as service } from '@ember/service';
+// import { inject as service } from '@ember/service';
 
 export default Component.extend({
     classNames: ['bm-sessionable-table'],
-    positionalParams: ['titles'],
-    bm_sessionable_service: service(),
+    positionalParams: ['titles', 'listData'],
+    listData: null,
+    // bm_sessionable_service: service(),
     actions : {
         onClick: function(fieldId) {
             this.sendAction("action", fieldId);
