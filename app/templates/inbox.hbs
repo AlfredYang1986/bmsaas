@@ -16,43 +16,25 @@
             </select>
         {{/layout-push}}
 
-        {{#if (bmeq cur_tab_idx 0)}}
-            {{#if (eq bm_apply_service.reserved.length 0)}}
-                {{bmcom/bm-empty-state class="inbox-empty-state" picUrl="/images/img_empty@2x.png" title="暂无数据" des="请添加待预约学员"}}
-            {{else}}
-                <table class='ib_table_head exp_table'>
-                    <tr class='ib_table_title'>
-                        {{#each bm_apply_service.reserveTitle as |item|}}
+        {{#if (eq applies.length 0)}}
+            {{bmcom/bm-empty-state class="inbox-empty-state" picUrl="/images/img_empty@2x.png" title="暂无数据" des="请添加待预约学员"}}
+        {{else}}
+            <table class='ib_table_head exp_table'>
+                <tr class='ib_table_title'>
+                    {{#if (eq cur_tab_idx 0)}}
+                        {{#each model.reserveTitle as |item|}}
                             <th class='ib_table_item'>{{item}}</th>
                         {{/each}}
-                    </tr>
-                </table>
-                {{bmtable/bm-table-inbox reserveType=true title=bm_apply_service.reserveTitle applies=applies action="setCurrentApply"}}
-                {{bmcom/bm-pagination pageCount=page_count sendPageNum=(action "handleBookPageChange")}}
-            {{/if}}
-        {{/if}}
-
-        {{#if (bmeq cur_tab_idx 1)}}
-            {{#if (eq bm_apply_service.preRegistered.length 0)}}
-                {{bmcom/bm-empty-state class="inbox-empty-state" picUrl="/images/img_empty@2x.png" title="暂无数据" des="请添加预注册学员"}}
-            {{else}}
-                <table class='ib_table_head exp_table'>
-                    <tr class='ib_table_title'>
-                        {{#each bm_apply_service.preRegisterTtitle as |item|}}
+                    {{else}}
+                        {{#each model.preRegisterTtitle as |item|}}
                             <th class='ib_table_item'>{{item}}</th>
                         {{/each}}
-                    </tr>
-                </table>
-                {{bmtable/bm-table-inbox title=bm_apply_service.preRegisterTtitle applies=bm_apply_service.preRegistered registerId=bm_apply_service.preRegisterId onPreRegisterClick='onPreRegisterClick'}}
-                {{#if isToday}}
-                    {{bmcom/bm-pagination pageCount=bm_apply_service.todayPrePageCount sendPageNum=(action "handleTodayPrePageChange")}}
-                {{else}}
-                    {{bmcom/bm-pagination pageCount=bm_apply_service.prePageCount sendPageNum=(action "handlePrePageChange")}}
-                {{/if}}
-            {{/if}}
+                    {{/if}}
+                </tr>
+            </table>
+            {{bmtable/bm-table-inbox reserveType=true title=bm_apply_service.reserveTitle applies=applies action="setCurrentApply"}}
+            {{bmcom/bm-pagination pageCount=page_count sendPageNum=(action "handleBookPageChange")}}
         {{/if}}
-
-
 
         {{#bmcom/bm-modal-container
                 needTitle=false
