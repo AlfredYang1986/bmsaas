@@ -5,7 +5,7 @@ export default DS.JSONAPISerializer.extend({
         let normalizedDocument = this._super(...arguments);
     
         // Customize document meta
-        normalizedDocument.meta = camelCaseKeys(normalizedDocument.meta);
+        // normalizedDocument.meta = camelCaseKeys(normalizedDocument.meta);
     
         return normalizedDocument;
     },
