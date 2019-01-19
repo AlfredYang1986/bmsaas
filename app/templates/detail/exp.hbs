@@ -23,8 +23,8 @@
                         {{#dd.menu align="right" as |menu|}}
                             {{#menu.item align="right"}}
                                 {{#layout-push direction='col' classNames="dropdown-content"}}
-                                    {{#if (eq model.exp.start_date -1)}}
-                                        {{#if (eq model.exp.end_date -1)}}
+                                    {{#if (eq model.exp.startDate -1)}}
+                                        {{#if (eq model.exp.endDate -1)}}
                                             <a onclick={{action "onOpenExpClick" item dd.closeDropdown}}>开启报名</a>
                                         {{else}}
                                             <a onclick={{action (mut closeExpDlg) true dd.closeDropdown}}>关闭报名</a>
@@ -117,11 +117,11 @@
                                         {{#layout-push direction="row" classNames="line-list"}}
                                             <p class="subtitle">时间设置</p>
                                             {{#if noteTimeError}}
-                                                {{bmform/bm-lay-date cssClass="error-border" inputVal=bm_sessionable_service.sessionable.start_date pickType="time"}}
-                                                {{bmform/bm-lay-date cssClass="error-border" inputVal=bm_sessionable_service.sessionable.end_date pickType="time"}}
+                                                {{bmform/bm-lay-date cssClass="error-border" inputVal=bm_sessionable_service.sessionable.startDate pickType="time"}}
+                                                {{bmform/bm-lay-date cssClass="error-border" inputVal=bm_sessionable_service.sessionable.endDate pickType="time"}}
                                             {{else}}
-                                                {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.start_date pickType="time"}}
-                                                {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.end_date pickType="time"}}
+                                                {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.startDate pickType="time"}}
+                                                {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.endDate pickType="time"}}
                                             {{/if}}
                                         {{/layout-push}} --}}
                                     {{else}}
@@ -132,11 +132,11 @@
                                         {{#layout-push direction="row" classNames="line-list"}}
                                             <p class="subtitle">时间设置</p>
                                             {{#if noteTimeError}}
-                                                {{bmform/bm-lay-date cssClass="error-border" inputVal=cur_start_date pickType="time"}}
-                                                {{bmform/bm-lay-date cssClass="error-border" inputVal=cur_end_date pickType="time"}}
+                                                {{bmform/bm-lay-date cssClass="error-border" inputVal=cur_startDate pickType="time"}}
+                                                {{bmform/bm-lay-date cssClass="error-border" inputVal=cur_endDate pickType="time"}}
                                             {{else}}
-                                                {{bmform/bm-lay-date inputVal=cur_start_date pickType="time"}}
-                                                {{bmform/bm-lay-date inputVal=cur_end_date pickType="time"}}
+                                                {{bmform/bm-lay-date inputVal=cur_startDate pickType="time"}}
+                                                {{bmform/bm-lay-date inputVal=cur_endDate pickType="time"}}
                                             {{/if}}
                                         {{/layout-push}}
                                     {{/if}}
@@ -175,8 +175,8 @@
         <div class='detail_panel detail_margin_top detail_margin_top_des' >
             {{#layout-push direction='row' split=true classNames="reserve-detail-head"}}
                 {{#layout-push direction='row' mid=true classNames="detail_margin_top_left"}}
-                    {{#if (eq model.exp.start_date -1)}}
-                        {{#if (eq model.exp.end_date -1)}}
+                    {{#if (eq model.exp.startDate -1)}}
+                        {{#if (eq model.exp.endDate -1)}}
                             <p class="status_before_dot_outer"><span class="status_before_dot_disable"></span></p>
                             <span class="detail_panel_role_num">未开放</span>
                         {{else}}
@@ -189,7 +189,7 @@
                     {{/if}}
                 {{/layout-push}}
                 {{#layout-push direction='row' classNames="detail_margin_top_right"}}
-                    <span class="detail_panel_role_num">{{model.exp.sessioninfo.length}}</span>
+                    <span class="detail_panel_role_num">{{model.exp.classes.length}}</span>
                     <span class="detail_panel_role_num">场次数</span>
                 {{/layout-push}}
             {{/layout-push}}
@@ -210,7 +210,7 @@
             <section class='alt_course_selection'>
                 {{#layout-push direction='col' classNames='alt_course_container'}}
                     {{#bmpage/bm-session-info session=model.exp.sessioninfo}}
-                        {{bmdetail/bm-top-title-panel title="体验详情" rightText="编辑" linkAddr='edit.exp.info' linkParam=model.exp.sessioninfo.id}}
+                        {{bmdetail/bm-top-title-panel title="体验详情" rightText="编辑" linkAddr='edit.exp.info' linkParam=model.exp.sessioninfo.id linkParam2=model.exp.id}}
                         {{!-- {{#link-to 'edit.exp.info' model.exp.sessioninfo.id classNames='alt_course_btn'}}
                             编辑
                         {{/link-to}} --}}

@@ -2,6 +2,6 @@ import Route from '@ember/routing/route';
 
 export default Route.extend({
     model() {
-        return this.store.findAll('reservableitem', { status : 1 });
+        return this.store.query('reservableitem', { 'status': 0 });
     }
 });

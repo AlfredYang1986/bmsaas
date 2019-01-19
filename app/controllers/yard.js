@@ -8,7 +8,7 @@ export default Controller.extend({
     //     this.skipListPage();
     //     console.log(123)
     // },
-    bm_yard_service: service(),
+    // bm_yard_service: service(),
     openFlag: true,
     actions: {
         cardClicked(idx) {

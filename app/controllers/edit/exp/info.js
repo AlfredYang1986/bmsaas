@@ -7,21 +7,17 @@ export default Controller.extend({
 
     actions: {
         saveCourseBtnClicked(/*idx*/) {
-            // let that = this
-            // let callback = {
-            //     onSuccess: function() {
-            //         that.transitionToRoute('detail.exp', that.bm_exp_service.expid);
-            //     },
-            //     onFail: function(/*err*/) {
-            //         debug('error');
-            //     }
-            // }
-            // this.bm_session_service.saveUpdate(callback);
-            this.model.course.save();
-            this.transitionToRoute('exp');
+            let that = this;
+            let onSuccess = function () {
+                that.transitionToRoute('detail.exp', that.model.reservable.id);
+            }
+            let onFail = function ( /*err*/ ) {
+                debug('error');
+            }
+            this.model.course.save().then(onSuccess, onFail);
         },
         reserveCourse() {
-            this.transitionToRoute('courseReserve');
+            // this.transitionToRoute('courseReserve');
         },
     },
 });

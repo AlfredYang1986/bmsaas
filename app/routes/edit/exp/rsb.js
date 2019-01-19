@@ -5,8 +5,9 @@ import { A } from '@ember/array';
 export default Route.extend({
     model() {
         let exp = this.store.createRecord('reservableitem');
-        // this.set("status", )  // TODO: 体验课的status？1？2
+        exp.set("status", 1)  // TODO: 体验课的status？1？2
         let si = this.store.createRecord('sessioninfo');
+        si.set("status", 1)
 
         return RSVP.hash({
                 exp: exp,

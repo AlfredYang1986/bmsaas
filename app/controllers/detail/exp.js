@@ -65,53 +65,50 @@ export default Controller.extend({
             this.transitionToRoute('detail.exp-field', idx, this.bm_exp_service.exp.id);
         },
         onOpenExpClick() {
+            this.model.exp.set("startDate", 0)
+            this.model.exp.set("endDate", 0)
+            
             let that = this;
-            let callback = {
-                onSuccess: function() {
-                    that.toast.success('', '开启成功', that.toastOptions);
-                    debug('OpenExpsuccess')
-                },
-                onFail: function() {
-                    that.toast.error('', '开启失败', that.toastOptions);
-                    debug('OpenExpfail')
-                }
+            let onSuccess = function() {
+                that.set('closeExpDlg', false);
+                that.toast.success('', '开启成功', that.toastOptions);
             }
-            this.set("bm_exp_service.exp.start_date", 0);
-            this.set("bm_exp_service.exp.end_date", 0);
-            this.bm_exp_service.saveUpdate(callback);
+            let onFail = function() {
+                that.toast.error('', '开启失败', that.toastOptions);
+            }
+            this.model.exp.save().then(onSuccess, onFail);
         },
         onShutdownExpClick() {
+            this.model.exp.set("startDate", -1)
+            this.model.exp.set("endDate", -1)
+
             let that = this;
-            let callback = {
-                onSuccess: function() {
-                    that.set('closeExpDlg', false);
-                    that.toast.success('', '关闭成功', that.toastOptions);
-                    debug('ShutdownExpsuccess')
-                },
-                onFail: function() {
-                    that.toast.error('', '关闭失败', that.toastOptions);
-                    debug('ShutdownExpfail')
-                }
+            let onSuccess = function() {
+                that.set('closeExpDlg', false);
+                that.toast.success('', '关闭成功', that.toastOptions);
             }
-            this.set("bm_exp_service.exp.start_date", -1);
-            this.set("bm_exp_service.exp.end_date", -1);
-            this.bm_exp_service.saveUpdate(callback);
+            let onFail = function() {
+                that.toast.error('', '关闭失败', that.toastOptions);
+            }
+            this.model.exp.save().then(onSuccess, onFail);
         },
         onDeleteExpClick() {
             let that = this;
-            let callback = {
-                onSuccess: function() {
-                    debug('delete　reservable　success')
-                    that.set('deleteExpDlg', false);
-                    that.transitionToRoute('exp');
-                    that.toast.success('', '删除体验课成功', that.toastOptions);
-                },
-                onFail: function() {
-                    that.toast.error('', '删除体验课失败', that.toastOptions);
-                    debug('delete　reservable　fail')
-                }
+            for(let idx = 0;idx < this.model.exp.classes.length;idx++) {
+                that.model.exp.classes.objectAt(idx).deleteRecord()
+                that.model.exp.classes.objectAt(idx).save()
             }
-            this.bm_exp_service.deleteReservable(callback);
+            let onSuccess = function() {
+                that.toast.success('', '删除体验课成功', that.toastOptions);
+                that.set('deleteExpDlg', false);
+                that.transitionToRoute('exp');
+            }
+            let onFail = function() {
+                that.toast.error('', '删除体验课失败', that.toastOptions);
+            }
+            this.model.exp.deleteRecord(this.model.exp)
+            this.model.exp.save().then(onSuccess, onFail);
+            
         },
         onEditSessionClick(params) {
             this.set('tmpSessionable', params);

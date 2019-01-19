@@ -28,12 +28,12 @@ Router.map(function() {
     this.route('session', { path: '/session/:actid'});
 
     this.route('actv', function() {
-      this.route('info', { path: '/info/:sessionid' });
+      this.route('info', { path: '/info/:sessionid/:resid' });
       this.route('rsb');
     });
 
     this.route('exp', function() {
-      this.route('info', { path: '/info/:sessionid' });
+      this.route('info', { path: '/info/:sessionid/:resid' });
       this.route('rsb');
     });
   });

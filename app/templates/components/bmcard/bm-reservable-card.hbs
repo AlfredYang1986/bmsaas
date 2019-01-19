@@ -1,7 +1,7 @@
 {{#layout-push direction='col' classNames="alt_course_card"}}
     <img src={{cover}} class='alt_course_cover' />
-    {{#if (eq exp.start_date -1)}}
-        {{#if (eq exp.end_date -1)}}
+    {{#if (eq exp.startDate -1)}}
+        {{#if (eq exp.endDate -1)}}
             <div class='alt_course_field_closed_info'>
                 <p class='alt_course_field_info_text'>未开放</p>
             </div>

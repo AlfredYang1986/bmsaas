@@ -9,12 +9,18 @@ export default Controller.extend({
 
     actions: {
         saveCourseBtnClicked(/*idx*/) {
-            this.model.si.save();
-            this.model.exp.set('sessioninfo', this.model.si);
-            this.model.exp.save();
+            let that = this;
+            let onSuccess = function () {
+                let tmp = that.store.peekRecord('sessioninfo', that.model.si.id)
+                that.model.actv.set('sessioninfo', tmp);
+                that.model.actv.save().then(() => {}, () => {})
+            }
+            let onFail = function () {
+            }
+            this.model.si.save().then(onSuccess, onFail);
         },
         reserveCourse() {
-            this.transitionToRoute('courseReserve');
+            this.transitionToRoute('actv');
         },
     },
 });

@@ -7,8 +7,14 @@ export default Controller.extend({
 
     actions: {
         saveCourseBtnClicked(/*idx*/) {
-            this.model.course.save();
-            this.transitionToRoute('actv');
+            let that = this;
+            let onSuccess = function () {
+                that.transitionToRoute('actv.exp', that.model.reservable.id);
+            }
+            let onFail = function ( /*err*/ ) {
+                debug('error');
+            }
+            this.model.course.save().then(onSuccess, onFail);
         },
         reserveCourse() {
             this.transitionToRoute('courseReserve');

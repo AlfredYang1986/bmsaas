@@ -45,53 +45,49 @@ export default Controller.extend({
             // this.transitionToRoute('detail.actv-field', idx, this.bm_actv_service.actv.id);
         },
         onOpenActvClick() {
+            this.model.actv.set("startDate", 0)
+            this.model.actv.set("endDate", 0)
+            
             let that = this;
-            let callback = {
-                onSuccess: function() {
-                    that.toast.success('', '开启成功', that.toastOptions);
-                    debug('OpenActvsuccess')
-                },
-                onFail: function() {
-                    that.toast.error('', '开启成功', that.toastOptions);
-                    debug('OpenActvfail')
-                }
+            let onSuccess = function() {
+                that.set('closeActvDlg', false);
+                that.toast.success('', '开启成功', that.toastOptions);
             }
-            this.set("bm_actv_service.actv.start_date", 0);
-            this.set("bm_actv_service.actv.end_date", 0);
-            this.bm_actv_service.saveUpdate(callback);
+            let onFail = function() {
+                that.toast.error('', '开启失败', that.toastOptions);
+            }
+            this.model.actv.save().then(onSuccess, onFail);
         },
         onShutdownActvClick() {
+            this.model.actv.set("startDate", -1)
+            this.model.actv.set("endDate", -1)
+
             let that = this;
-            let callback = {
-                onSuccess: function() {
-                    that.set('closeActvDlg', false);
-                    that.toast.success('', '关闭成功', that.toastOptions);
-                    debug('ShutdownActvsuccess')
-                },
-                onFail: function() {
-                    that.toast.error('', '关闭失败', that.toastOptions);
-                    debug('ShutdownActvfail')
-                }
+            let onSuccess = function() {
+                that.set('closeActvDlg', false);
+                that.toast.success('', '关闭成功', that.toastOptions);
             }
-            // this.set("bm_actv_service.actv.start_date", -1);
-            // this.set("bm_actv_service.actv.end_date", -1);
-            // this.bm_actv_service.saveUpdate(callback);
+            let onFail = function() {
+                that.toast.error('', '关闭失败', that.toastOptions);
+            }
+            this.model.actv.save().then(onSuccess, onFail);
         },
         onDeleteActvClick() {
             let that = this;
-            let callback = {
-                onSuccess: function() {
-                    debug('delete　reservable　success')
-                    // that.set('deleteActvDlg', false);
-                    // that.transitionToRoute('actv');
-                    // that.toast.success('', '删除活动成功', that.toastOptions);
-                },
-                onFail: function() {
-                    that.toast.error('', '删除活动失败', that.toastOptions);
-                    // debug('delete　reservable　fail')
-                }
+            for(let idx = 0;idx < this.model.actv.classes.length;idx++) {
+                that.model.actv.classes.objectAt(idx).deleteRecord()
+                that.model.actv.classes.objectAt(idx).save()
             }
-            // this.bm_actv_service.deleteReservable(callback);
+            let onSuccess = function() {
+                that.toast.success('', '删除体验课成功', that.toastOptions);
+                that.set('deleteActvDlg', false);
+                that.transitionToRoute('actv');
+            }
+            let onFail = function() {
+                that.toast.error('', '删除体验课失败', that.toastOptions);
+            }
+            this.model.actv.deleteRecord(this.model.actv)
+            this.model.actv.save().then(onSuccess, onFail);
         },
         onEditSessionClick(params) {
             this.set('tmpSessionable', params);
