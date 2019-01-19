@@ -20,8 +20,8 @@ export default Controller.extend({
     applies: computed('cur_tab_idx', 'cur_reserve_type', function() {
         return this.store.query('apply', { 'page[number]': 1, 'page[size]': 20 })
     }),
-    applies_count: computed('cur_tab_idx', 'cur_reserve_type', function(){
-        return 0;
+    page_count: computed('cur_tab_idx', 'cur_reserve_type', function(){
+        return Number.parseInt(localStorage.getItem('applies'));
     }),
 
     showhandledlg: false,

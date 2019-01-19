@@ -28,11 +28,7 @@
                     </tr>
                 </table>
                 {{bmtable/bm-table-inbox reserveType=true title=bm_apply_service.reserveTitle applies=applies action="setCurrentApply"}}
-                {{#if isToday}}
-                    {{bmcom/bm-pagination pageCount=bm_apply_service.todayBookPageCount sendPageNum=(action "handleTodayBookPageChange")}}
-                {{else}}
-                    {{bmcom/bm-pagination pageCount=bm_apply_service.bookPageCount sendPageNum=(action "handleBookPageChange")}}
-                {{/if}}
+                {{bmcom/bm-pagination pageCount=page_count sendPageNum=(action "handleBookPageChange")}}
             {{/if}}
         {{/if}}
 
