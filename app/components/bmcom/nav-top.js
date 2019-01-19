@@ -4,11 +4,12 @@ import { computed } from '@ember/object';
 
 
 export default Component.extend({
-    bm_brand_service: service(),
+    // bm_brand_service: service(),
     bmOss: service(),
     brandlogo: computed(function(){
         let client = this.bmOss.get('ossClient');
-        return  client.signatureUrl(this.bm_brand_service.brand.logo);
+        // return  client.signatureUrl(this.bm_brand_service.brand.logo);
+        return  "";
     }),
     // didInsertElement() {
     //     // this._super(...arguments);

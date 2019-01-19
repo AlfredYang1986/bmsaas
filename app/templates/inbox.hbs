@@ -6,26 +6,17 @@
             {{/layout-push}}
         {{/layout-push}}
 
-        {{bmcom/bm-tabs-bar cur_idx=bm_apply_service.curTabIdx titles=tabs needAction=true onTabClicked=(action "onTabClicked")}}
+        {{bmcom/bm-tabs-bar cur_idx=cur_tab_idx titles=tabs needAction=true onTabClicked=(action "onTabClicked")}}
 
         {{#layout-push direction='row' split=true classNames='ib_table_select_area'}}
-            {{#if (bmeq bm_apply_service.curTabIdx 0)}}
-                <span class="ib_table_num">共{{bm_apply_service.amount}}条</span>
-                <select class="ib_table_select" name="" id='selectReserve' onChange={{action 'reserveTypeChanged'}}>
-                    <option value="">全部</option>
-                    <option value="">今天</option>
-                </select>
-            {{else if (bmeq bm_apply_service.curTabIdx 1)}}
-                <span class="ib_table_num">共{{bm_apply_service.preAmount}}条</span>
-                <select class="ib_table_select" name="" id='selectReserve' onChange={{action 'preRegisterChanged'}}>
-                    <option value="">全部</option>
-                    <option value="">今天</option>
-                </select>
-            {{/if}}
-
+            <span class="ib_table_num">共{{applies_count}}条</span>
+            <select class="ib_table_select" name="" id='selectReserve' onChange={{action 'reserveTypeChanged'}}>
+                <option selected value="0">全部</option>
+                <option value="1">今天</option>
+            </select>
         {{/layout-push}}
 
-        {{#if (bmeq bm_apply_service.curTabIdx 0)}}
+        {{#if (bmeq cur_tab_idx 0)}}
             {{#if (eq bm_apply_service.reserved.length 0)}}
                 {{bmcom/bm-empty-state class="inbox-empty-state" picUrl="/images/img_empty@2x.png" title="暂无数据" des="请添加待预约学员"}}
             {{else}}
@@ -36,7 +27,7 @@
                         {{/each}}
                     </tr>
                 </table>
-                {{bmtable/bm-table-inbox reserveType=true title=bm_apply_service.reserveTitle applies=bm_apply_service.reserved action="setCurrentApply"}}
+                {{bmtable/bm-table-inbox reserveType=true title=bm_apply_service.reserveTitle applies=applies action="setCurrentApply"}}
                 {{#if isToday}}
                     {{bmcom/bm-pagination pageCount=bm_apply_service.todayBookPageCount sendPageNum=(action "handleTodayBookPageChange")}}
                 {{else}}
@@ -45,7 +36,7 @@
             {{/if}}
         {{/if}}
 
-        {{#if (bmeq bm_apply_service.curTabIdx 1)}}
+        {{#if (bmeq cur_tab_idx 1)}}
             {{#if (eq bm_apply_service.preRegistered.length 0)}}
                 {{bmcom/bm-empty-state class="inbox-empty-state" picUrl="/images/img_empty@2x.png" title="暂无数据" des="请添加预注册学员"}}
             {{else}}

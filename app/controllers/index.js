@@ -4,7 +4,7 @@ import { debug } from '@ember/debug';
 
 export default Controller.extend({
     bm_login_service: service(),
-    bm_brand_service: service(),
+    // bm_brand_service: service(),
     errorInfo: false,
     actions: {
         accountLogin() {
@@ -13,9 +13,9 @@ export default Controller.extend({
                 onSuccess: function(res) {
                     if(res.data.attributes.account != '' && res.data.attributes.brandId != '') {
                         localStorage.setItem('brandid', res.data.attributes.brandId);
-                        that.bm_brand_service.set('brandid', res.data.attributes.brandId);
+                        // that.bm_brand_service.set('brandid', res.data.attributes.brandId);
                         that.get('cookie').write('token', res.data.attributes.token, { path: '/' });
-                        that.bm_brand_service.set('refresh_token', that.bm_brand_service.guid());
+                        // that.bm_brand_service.set('refresh_token', that.bm_brand_service.guid());
                         that.set('errorInfo', false);
                         that.transitionToRoute('inbox');
                     } else {
