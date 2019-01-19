@@ -1,7 +1,7 @@
 {{#layout-push direction='row' split=true classNames='edit_nav' }}
   <span>编辑场地</span>
   <span>
-      {{#if isPushing}}
+      {{!-- {{#if isPushing}}
           {{#link-to 'detail.yard' class="edit_nav_btn btn_cacel"}}
               取消
           {{/link-to}}
@@ -9,8 +9,9 @@
           {{#link-to 'detail.yard' class="edit_nav_btn btn_cacel"}}
               取消
           {{/link-to}}
-      {{/if}}
-      <button class="edit_nav_btn btn_save" {{action 'saveYardBtnClicked'}}>保存</button>
+      {{/if}} --}}
+        <button class="edit_nav_btn btn_cacel" {{action 'cancelYardBtnClicked'}}>取消</button>
+        <button class="edit_nav_btn btn_save" {{action 'saveYardBtnClicked'}}>保存</button>
   </span>
 {{/layout-push}}
 {{#layout-push direction='row' split=true classNames='edit_container' }}

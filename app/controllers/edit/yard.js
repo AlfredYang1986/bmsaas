@@ -16,24 +16,29 @@ export default Controller.extend({
     tagsCandi: A(['阅读区', '教学区', '家长休息区', '生活区', '寄存区', '户外活动区', '室内活动区']),
 
     actions: {
+        cancelYardBtnClicked() {
+            this.store.unloadRecord(this.model.yard);
+            this.transitionToRoute("detail.yard")
+        },
         saveYardBtnClicked() {
-
+            this.model.yard.save();
+            this.transitionToRoute("detail.yard")
         },
         multiCheckOnClick(value) {
 
             let tempArr = [];
-            if (this.model.yard.facilities != nill) {
-                tmpArr = this.model.yard.facilities;
+            if (this.model.yard.facilities != null) {
+                tempArr = this.model.yard.facilities;
             }
 
             this.toggleProperty('changeFlag');
             if (tempArr.indexOf(value) == -1) {
-                tmpArr.push(value)
+                tempArr.push(value)
             } else {
                 tempArr.splice(tempArr.indexOf(value), 1)
             }
 
-            this.model.yard.set('facilities', tmpArr);
+            this.model.yard.set('facilities', tempArr);
         },
         addCertPicOnClick() {
             // let newObj = this.bm_yard_service.genNewImgObj('BmCertification');

@@ -3,8 +3,8 @@ import { inject as service } from '@ember/service';
 
 export default Component.extend({
     classNames: ['bm-room-table'],
-    positionalParams: ['titles'],
-    bm_room_service: service(),
+    positionalParams: ['titles', 'rooms'],
+    rooms: null,
     actions : {
         onClick: function(fieldId) {
             this.sendAction("action", fieldId);

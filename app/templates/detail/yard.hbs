@@ -91,7 +91,7 @@
                 {{#if (bmcom/bm-nil-obj model.yard.rooms)}}
                     {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="暂无教室/场地" des="点击右上角添加教室/场地，安排教室/场地吧"}}
                 {{else}}
-                    {{bmtable/bm-table-room titles=model.titles onEditRoomClick="onEditRoomClick" onDeleteRoomClick="onDeleteRoomClick"}}
+                    {{bmtable/bm-table-room titles=model.titles rooms=model.yard.rooms onEditRoomClick="onEditRoomClick" onDeleteRoomClick="onDeleteRoomClick"}}
                     {{bmcom/bm-pagination pageCount=model.yard.totalPageCount sendPageNum=(action "handlePageChange")}}
                 {{/if}}
             {{/if}}
@@ -128,11 +128,11 @@
                 {{/layout-push}}
                 {{#if noteError}}
                     {{#layout-push direction="row"  classNames='input_area' }}
-                        {{bmform/bm-edit-line title='教室名称' inputVal=model.yard.room.title classNames='input_area input-full-width error-border'}}
+                        {{bmform/bm-edit-line title='教室名称' inputVal=tempRoomTitle classNames='input_area input-full-width error-border'}}
                     {{/layout-push}}
                 {{else}}
                     {{#layout-push direction="row"  classNames='input_area' }}
-                        {{bmform/bm-edit-line title='教室名称' inputVal=model.yard.room.title classNames='input_area input-full-width'}}
+                        {{bmform/bm-edit-line title='教室名称' inputVal=tempRoomTitle classNames='input_area input-full-width'}}
                     {{/layout-push}}
                 {{/if}}
                 
