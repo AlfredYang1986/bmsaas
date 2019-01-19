@@ -110,7 +110,7 @@
                                         {{/layout-push}}
                                     {{/layout-push}}
                                     {{#if (eq tmpSessionable "")}}
-                                        {{#layout-push direction="row" classNames="line-list"}}
+                                        {{!-- {{#layout-push direction="row" classNames="line-list"}}
                                             <p class="subtitle">日期设置</p>
                                             {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.tmp_date}}
                                         {{/layout-push}}
@@ -123,7 +123,7 @@
                                                 {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.start_date pickType="time"}}
                                                 {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.end_date pickType="time"}}
                                             {{/if}}
-                                        {{/layout-push}}
+                                        {{/layout-push}} --}}
                                     {{else}}
                                         {{#layout-push direction="row" classNames="line-list"}}
                                             <p class="subtitle">日期设置</p>
@@ -189,7 +189,7 @@
                     {{/if}}
                 {{/layout-push}}
                 {{#layout-push direction='row' classNames="detail_margin_top_right"}}
-                    <span class="detail_panel_role_num">{{bm_sessionable_service.totalCount}}</span>
+                    <span class="detail_panel_role_num">{{model.exp.sessioninfo.length}}</span>
                     <span class="detail_panel_role_num">场次数</span>
                 {{/layout-push}}
             {{/layout-push}}
@@ -198,11 +198,11 @@
         {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs needAction=true onTabClicked=(action "onTabClicked")}}
 
         {{#if (bmeq cur_idx 0)}}
-            {{#if (bmcom/bm-nil-obj bm_sessionable_service.sessionables)}}
+            {{#if (bmcom/bm-nil-obj model.exp.classes)}}
                 {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="暂无场次" des="点击右上角添加场次，安排体验课时间与场地吧"}}
             {{else}}
                 {{bmpage/bm-sessionable-lst titles=model.titles action="linkToExpField" onEditSessionClick="onEditSessionClick" onDeleteSessionClick="onDeleteSessionClick"}}
-                {{bmcom/bm-pagination pageCount=bm_sessionable_service.totalPageCount sendPageNum=(action "handlePageChange")}}
+                {{bmcom/bm-pagination pageCount=0 sendPageNum=(action "handlePageChange")}}
             {{/if}}
         {{/if}}
 

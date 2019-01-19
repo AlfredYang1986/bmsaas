@@ -7,4 +7,5 @@ export default DS.Model.extend({
     startDate: DS.attr('number'),
     status: DS.attr('number'),
     sessioninfo: DS.belongsTo('sessioninfo'),
+    classes: DS.hasMany('class')
 });

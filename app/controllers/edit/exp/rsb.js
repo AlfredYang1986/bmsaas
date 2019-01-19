@@ -1,27 +1,15 @@
 import Controller from '@ember/controller';
-import { inject as service } from '@ember/service';
-import { debug } from '@ember/debug';
 
 export default Controller.extend({
 
-    bm_exp_service: service(),
-
     isCreate: true,
-
     isPushing: false,
+
     actions: {
         saveCourseBtnClicked(/*idx*/) {
-            let that = this
-            let callback = {
-                onSuccess: function(res) {
-                    that.transitionToRoute('detail.exp', res.data.id);
-                },
-                onFail: function(/*err*/) {
-                    debug('error');
-                }
-            }
-            this.bm_exp_service.saveUpdate(callback);
-
+            this.model.si.save();
+            this.model.exp.set('sessioninfo', this.model.si);
+            this.model.exp.save();
         },
         reserveCourse() {
             this.transitionToRoute('courseReserve');
