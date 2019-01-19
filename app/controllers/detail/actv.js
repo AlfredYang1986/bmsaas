@@ -6,12 +6,9 @@ export default Controller.extend({
 
     init() {
         this._super(...arguments);
-        this.addObserver('showAddSessionDlg', this, 'generateSessionable');
+        // this.addObserver('showAddSessionDlg', this, 'generateSessionable');
     },
 
-    bm_actv_service: service(),
-    bm_sessionable_service: service(),
-    bm_yard_service: service(),
     toast: service(),
     toastOptions: {
         closeButton: false,
@@ -41,11 +38,11 @@ export default Controller.extend({
 
     actions: {
         handlePageChange (pageNum) {
-            this.set('bm_sessionable_service.page', pageNum - 1)
-            this.bm_sessionable_service.queryMultiObjects();
+            // this.set('bm_sessionable_service.page', pageNum - 1)
+            // this.bm_sessionable_service.queryMultiObjects();
         },
         linkToActvField(idx) {
-            this.transitionToRoute('detail.actv-field', idx, this.bm_actv_service.actv.id);
+            // this.transitionToRoute('detail.actv-field', idx, this.bm_actv_service.actv.id);
         },
         onOpenActvClick() {
             let that = this;
@@ -76,25 +73,25 @@ export default Controller.extend({
                     debug('ShutdownActvfail')
                 }
             }
-            this.set("bm_actv_service.actv.start_date", -1);
-            this.set("bm_actv_service.actv.end_date", -1);
-            this.bm_actv_service.saveUpdate(callback);
+            // this.set("bm_actv_service.actv.start_date", -1);
+            // this.set("bm_actv_service.actv.end_date", -1);
+            // this.bm_actv_service.saveUpdate(callback);
         },
         onDeleteActvClick() {
             let that = this;
             let callback = {
                 onSuccess: function() {
                     debug('delete　reservable　success')
-                    that.set('deleteActvDlg', false);
-                    that.transitionToRoute('actv');
-                    that.toast.success('', '删除活动成功', that.toastOptions);
+                    // that.set('deleteActvDlg', false);
+                    // that.transitionToRoute('actv');
+                    // that.toast.success('', '删除活动成功', that.toastOptions);
                 },
                 onFail: function() {
                     that.toast.error('', '删除活动失败', that.toastOptions);
-                    debug('delete　reservable　fail')
+                    // debug('delete　reservable　fail')
                 }
             }
-            this.bm_actv_service.deleteReservable(callback);
+            // this.bm_actv_service.deleteReservable(callback);
         },
         onEditSessionClick(params) {
             this.set('tmpSessionable', params);
@@ -216,11 +213,11 @@ export default Controller.extend({
         let checkStart = null;
         let checkEnd = null;
         if(this.tmpSessionable === "") {
-            checkStart = new Date(this.bm_sessionable_service.sessionable.start_date);
-            checkEnd = new Date(this.bm_sessionable_service.sessionable.end_date);
+            // checkStart = new Date(this.bm_sessionable_service.sessionable.start_date);
+            // checkEnd = new Date(this.bm_sessionable_service.sessionable.end_date);
         } else {
-            checkStart = new Date(this.cur_start_date);
-            checkEnd = new Date(this.cur_end_date);
+            // checkStart = new Date(this.cur_start_date);
+            // checkEnd = new Date(this.cur_end_date);
         }
         checkStart.setFullYear(2000);
         checkStart.setMonth(1);
@@ -236,8 +233,8 @@ export default Controller.extend({
     },
     generateSessionable() {
         if (this.showAddSessionDlg == true) {
-            this.bm_sessionable_service.set('sessionableid', 'sessionable/push');
-            this.bm_sessionable_service.querySessionable();
+            // this.bm_sessionable_service.set('sessionableid', 'sessionable/push');
+            // this.bm_sessionable_service.querySessionable();
         }
     }
 });
