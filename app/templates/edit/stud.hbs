@@ -73,7 +73,7 @@
                 detailAddress=model.stud.address
 				classNames="area-margin-bottom"}}
 		</section>
-		{{#each medel.stud.Guardians as |item|}}
+		{{#each model.stud.guardians as |item|}}
 			<section class="parent_info stu_section" id="par-story">
 				<p class="title-name">监护人信息</p>
 				{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
@@ -125,7 +125,7 @@
 					</div>
 				{{/layout-push}}
 			{{/layout-push}} --}}
-			{{bmform/bm-base-select selId='teacherName' selTitle="课程顾问" options=model.stud.techs curSelect=bm_stud_service.stud.teacherName classNames="input_area area-margin-bottom"}}
+			{{bmform/bm-base-select selId='teacherName' selTitle="课程顾问" options=model.techs curSelect=model.stud.teacher.name classNames="input_area area-margin-bottom"}}
 			{{bmform/bm-base-select selId='sourceWay' selTitle="渠道来源" options=origin curSelect=model.stud.sourceWay classNames="input_area"}}
 		</section>
 	</div>

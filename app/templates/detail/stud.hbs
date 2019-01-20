@@ -48,7 +48,7 @@
 					{{#layout-push direction='col' classNames="info-block-outer"}}
 						<p class="parent_info">更多信息</p>
 						<div class="self_info">
-							{{bmdetail/stud-basis-info label="课程顾问" content=model.stud.teacherName}}
+							{{bmdetail/stud-basis-info label="课程顾问" content=model.stud.teachers.name}}
 							{{bmdetail/stud-basis-info label="渠道来源" content=model.stud.sourceWay}}
 							{{bmdetail/stud-basis-info label="注册时间" content=(bmdob/bmdobformat model.stud.regDate)}}
 						</div>

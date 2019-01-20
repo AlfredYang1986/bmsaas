@@ -4,14 +4,26 @@ import RSVP from 'rsvp';
 export default Route.extend({
     model(params) {
         if (params.studid == "stud/push") {
+            let stud = this.store.createRecord('student');
+            let gard = this.store.createRecord('guardian');
+            gard.save().then(stud.guardians.pushObject(gard)).catch()
+            stud.guardians.pushObject(gard);
+
+            let techs = this.store.findAll('teacher');
             return RSVP.hash({
                 isPushing: true,
-                stud: this.store.createRecord('student'),
+                stud: stud,
+                gard: gard,
+                techs: techs,
             })
         } else {
+            let stud = this.store.find('student', params.studid);
+            let techs = this.store.findAll('teacher');
             return RSVP.hash({
                 isPushing: false,
-                stud: this.store.find('student', params.studid),
+                stud: stud,
+                gards: stud.guardians,
+                techs: techs,
             })
         }
     },

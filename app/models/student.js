@@ -21,7 +21,9 @@ export default DS.Model.extend({
     address: DS.attr('string'),
 
     // applicants: DS.hasMany('applicant'),
+    teacher: DS.belongsTo('teacher'),
     guardians: DS.hasMany('guardian'),
+
 
     // sessionable: DS.belongsTo('sessionable'),
 });

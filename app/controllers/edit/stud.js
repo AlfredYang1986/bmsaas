@@ -22,15 +22,15 @@ export default Controller.extend({
     }),
 
     rela: computed('rela_idx', function() {
-        // if(this.bm_stud_service.stud.Guardians.length > 0) {
-        //     if(this.rela_idx == 0) {
-        //         this.bm_stud_service.stud.Guardians[0].relation_ship = "爸爸"
-        //     } else if(this.rela_idx == 1) {
-        //         this.bm_stud_service.stud.Guardians[0].relation_ship = '妈妈'
-        //     } else {
-        //         this.bm_stud_service.stud.Guardians[0].relation_ship = '其他'
-        //     }
-        // }
+        if(this.model.stud.guardians.length > 0) {
+            if(this.rela_idx == 0) {
+                this.model.stud.guardians.objectAt(0).set("relationShip", "爸爸")
+            } else if(this.rela_idx == 1) {
+                this.model.stud.guardians.objectAt(0).set("relationShip", '妈妈')
+            } else {
+                this.model.stud.guardians.objectAt(0).set("relationShip", '其他')
+            }
+        }
     }),
 
     origin:A([{name: '学员转介绍'}, {name: '电话推广'}, {name: '小程序'}, {name: '线下活动推广'}, {name: '其他'}]),
@@ -57,8 +57,17 @@ export default Controller.extend({
             let sel = document.getElementById("techSelect");
             this.set('sel', sel)
             if (sel.selectedIndex == 0) {
+                this.model.stud.set('teacher', null);
                 // this.set('bm_stud_service.stud.teacherName', null);
             } else {
+                let curSelect = sel.options[sel.selectedIndex].value;
+                for(let idx = 0;idx < this.model.techs.length;idx++) {
+                    debugger
+                    if(curSelect == this.model.techs.objectAt(idx).name) {
+                        console.log(this.model.techs.objectAt(idx))
+                        this.model.stud.set('teacher', this.model.techs.objectAt(idx));
+                    }
+                }
                 // this.set('bm_stud_service.stud.teacherName', sel.options[sel.selectedIndex].value);
             }
         },
