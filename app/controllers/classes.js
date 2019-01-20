@@ -21,7 +21,7 @@ export default Controller.extend({
     },
     // cur_idx: 0,
     titles: A(['全部', '未排课', 'On Going', 'Finished']),
-    openFlag: true,
+    openFlag: false,
     addClassDlg: false,
     addSuccessDlg: false,
     noteError: false,
