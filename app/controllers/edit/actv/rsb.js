@@ -13,7 +13,11 @@ export default Controller.extend({
             let onSuccess = function () {
                 let tmp = that.store.peekRecord('sessioninfo', that.model.si.id)
                 that.model.actv.set('sessioninfo', tmp);
-                that.model.actv.save().then(() => {}, () => {})
+                that.model.actv.save().then(() => {
+                    // that.transitionToRoute('actv');
+                }, () => {
+                    that.transitionToRoute('actv');
+                })
             }
             let onFail = function () {
             }

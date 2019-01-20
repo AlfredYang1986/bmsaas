@@ -13,9 +13,9 @@
                     {{#layout-push direction='col' classNames="detail_margin_top_left"}}
                         {{!-- <span class="detail_panel_title_name">sda65f4d5f4ds65</span> --}}
                         <span class="detail_panel_title_name">
-                            {{bmdob/bmdobformat bm_sessionable_service.sessionable.start_date}} 
-                            {{bmdob/bmdob2weekday bm_sessionable_service.sessionable.start_date}} 
-                            {{bmdob/bmdob2clocktime bm_sessionable_service.sessionable.start_date}}-{{bmdob/bmdob2clocktime bm_sessionable_service.sessionable.end_date}}
+                            {{bmdob/bmdobformat model.class.startDate}} 
+                            {{bmdob/bmdob2weekday model.class.startDate}} 
+                            {{bmdob/bmdob2clocktime model.class.startDate}}-{{bmdob/bmdob2clocktime model.class.endDate}}
                         </span>
                     {{/layout-push}}
                 {{/layout-push}}
@@ -40,29 +40,25 @@
                     {{#layout-push direction='col' classNames="detail_margin_top_left"}}
                         {{#layout-push direction='row' classNames="detail_margin_top_left_content"}}
                             <span class="detail_panel_role_num">活动</span>
-                            <span class="detail_panel_role_num">{{bm_sessionable_service.sessionable.SessionInfo.title}}</span>
+                            <span class="detail_panel_role_num">{{model.class.sessioninfo.title}}</span>
                         {{/layout-push}}
                         {{#layout-push direction='row' classNames="detail_margin_top_left_content"}}
                             <span class="detail_panel_role_num">校区</span>
-                            <span class="detail_panel_role_num">{{bm_sessionable_service.sessionable.Yard.address}}</span>
+                            <span class="detail_panel_role_num">{{model.class.yard.address}}</span>
                         {{/layout-push}}
                     {{/layout-push}}
                 {{/layout-push}}
                 {{#layout-push direction='row' classNames="detail_margin_top_right"}}
-                    {{#if (bmcom/bm-nil-obj bm_sessionable_service.sessionable.Attendees)}}
-                        <span class="detail_panel_role_num">0</span>
-                    {{else}}
-                        <span class="detail_panel_role_num">{{bm_sessionable_service.sessionable.Attendees.length}}</span>
-                    {{/if}}
+                    <span class="detail_panel_role_num">{{model.class.students.length}}</span>
                     <span class="detail_panel_role_num">报名人数</span>
                 {{/layout-push}}
             {{/layout-push}}
         </div>
-        {{#if (bmcom/bm-nil-obj bm_sessionable_service.curAttendeesPage)}}
+        {{#if (bmcom/bm-nil-obj model.class.students)}}
             {{bmcom/bm-empty-state class="field-empty-state" picUrl="/images/img_empty@2x.png" title="暂无参与者" des="暂无数据"}}
         {{else}}
             {{bmtable/bm-table-course-field  title=tableTitle attendees=bm_sessionable_service.curAttendeesPage action=""}}
-            {{bmcom/bm-pagination pageCount=bm_sessionable_service.attendeesPageCount sendPageNum=(action "handlePageChange")}}
+            {{!-- {{bmcom/bm-pagination pageCount=bm_sessionable_service.attendeesPageCount sendPageNum=(action "handlePageChange")}} --}}
         {{/if}}
     </div>
     {{#bmcom/bm-modal-container title="" mswitch=showEditSessionDlg
@@ -95,7 +91,8 @@
                 {{/if}}
                 {{#layout-push direction='row' classNames="line-list"}}
                     <p class="subtitle">校区设置</p>
-                    {{#layout-push direction='col' }}
+                    <p class="edit_subtitle_content">{{model.class.yard.title}}</p>
+                    {{!-- {{#layout-push direction='col' }}
                         <span class="radio-col">
                             <input type="radio" name="rel01" value="fa" checked/>
                             <label for="">
@@ -129,12 +126,12 @@
                                     {{/if}}
                                 {{/layout-push}}
                             </label>
-                        </span>
+                        </span> --}}
                         {{!-- <span class="radio-col">
                             <input type="radio" name="rel" value="ma"/>
                             <label for="">其他场地</label>
                         </span> --}}
-                    {{/layout-push}}
+                    {{!-- {{/layout-push}} --}}
                 {{/layout-push}}
                 {{#layout-push direction="row" classNames="line-list"}}
                     <p class="subtitle">日期设置</p>

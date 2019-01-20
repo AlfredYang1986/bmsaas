@@ -68,7 +68,8 @@
                                     {{/if}}
                                     {{#layout-push direction='row' classNames="line-list"}}
                                         <p class="subtitle">校区设置</p>
-                                        {{#layout-push direction='col' }}
+                                        <p class="edit_subtitle_content">{{model.yard.title}}</p>
+                                        {{!-- {{#layout-push direction='col' }}
                                             <span class="radio-col">
                                                 <input type="radio" name="rel01" value="fa" checked/>
                                                 <label for="">
@@ -102,28 +103,28 @@
                                                         {{/if}}
                                                     {{/layout-push}}
                                                 </label>
-                                            </span>
+                                            </span> --}}
                                             {{!-- <span class="radio-col">
                                                 <input type="radio" name="rel" value="ma"/>
                                                 <label for="">其他场地</label>
                                             </span> --}}
-                                        {{/layout-push}}
+                                        {{!-- {{/layout-push}} --}}
                                     {{/layout-push}}
                                     {{#if (eq tmpSessionable "")}}
-                                        {{!-- {{#layout-push direction="row" classNames="line-list"}}
+                                        {{#layout-push direction="row" classNames="line-list"}}
                                             <p class="subtitle">日期设置</p>
-                                            {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.tmp_date}}
+                                            {{bmform/bm-lay-date inputVal=cur_tmp_date}}
                                         {{/layout-push}}
                                         {{#layout-push direction="row" classNames="line-list"}}
                                             <p class="subtitle">时间设置</p>
                                             {{#if noteTimeError}}
-                                                {{bmform/bm-lay-date cssClass="error-border" inputVal=bm_sessionable_service.sessionable.startDate pickType="time"}}
-                                                {{bmform/bm-lay-date cssClass="error-border" inputVal=bm_sessionable_service.sessionable.endDate pickType="time"}}
+                                                {{bmform/bm-lay-date cssClass="error-border" inputVal=cur_start_date pickType="time"}}
+                                                {{bmform/bm-lay-date cssClass="error-border" inputVal=cur_end_date pickType="time"}}
                                             {{else}}
-                                                {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.startDate pickType="time"}}
-                                                {{bmform/bm-lay-date inputVal=bm_sessionable_service.sessionable.endDate pickType="time"}}
+                                                {{bmform/bm-lay-date inputVal=cur_start_date pickType="time"}}
+                                                {{bmform/bm-lay-date inputVal=cur_end_date pickType="time"}}
                                             {{/if}}
-                                        {{/layout-push}} --}}
+                                        {{/layout-push}}
                                     {{else}}
                                         {{#layout-push direction="row" classNames="line-list"}}
                                             <p class="subtitle">日期设置</p>
@@ -132,11 +133,11 @@
                                         {{#layout-push direction="row" classNames="line-list"}}
                                             <p class="subtitle">时间设置</p>
                                             {{#if noteTimeError}}
-                                                {{bmform/bm-lay-date cssClass="error-border" inputVal=cur_startDate pickType="time"}}
-                                                {{bmform/bm-lay-date cssClass="error-border" inputVal=cur_endDate pickType="time"}}
+                                                {{bmform/bm-lay-date cssClass="error-border" inputVal=cur_start_date pickType="time"}}
+                                                {{bmform/bm-lay-date cssClass="error-border" inputVal=cur_end_date pickType="time"}}
                                             {{else}}
-                                                {{bmform/bm-lay-date inputVal=cur_startDate pickType="time"}}
-                                                {{bmform/bm-lay-date inputVal=cur_endDate pickType="time"}}
+                                                {{bmform/bm-lay-date inputVal=cur_start_date pickType="time"}}
+                                                {{bmform/bm-lay-date inputVal=cur_end_date pickType="time"}}
                                             {{/if}}
                                         {{/layout-push}}
                                     {{/if}}
@@ -201,7 +202,7 @@
             {{#if (bmcom/bm-nil-obj model.exp.classes)}}
                 {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="暂无场次" des="点击右上角添加场次，安排体验课时间与场地吧"}}
             {{else}}
-                {{bmpage/bm-sessionable-lst titles=model.titles listData=model.exp action="linkToExpField" onEditSessionClick="onEditSessionClick" onDeleteSessionClick="onDeleteSessionClick"}}
+                {{bmpage/bm-sessionable-lst titles=model.titles listData=model.exp.classes action="linkToExpField" onEditSessionClick="onEditSessionClick" onDeleteSessionClick="onDeleteSessionClick"}}
                 {{bmcom/bm-pagination pageCount=0 sendPageNum=(action "handlePageChange")}}
             {{/if}}
         {{/if}}

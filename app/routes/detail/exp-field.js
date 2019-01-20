@@ -12,7 +12,9 @@ export default Route.extend({
         return RSVP.hash({
                 expfieldid: params.expfieldid,
                 reexpid: params.reexpid,
-                classes: this.store.find('class', params.expfieldid),
+                class: this.store.find('class', params.expfieldid),
+                exp: this.store.find('reservableitem', params.reexpid),
+                // studs: this.store.query('student', {"classId" : params.expfieldid}),
                 // tabs: A(['场次安排', '体验详情']),
                 urls: A([
                     {

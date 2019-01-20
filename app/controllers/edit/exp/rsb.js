@@ -12,7 +12,11 @@ export default Controller.extend({
                 // that.model.exp.sessioninfo = that.model.si;
                 let tmp = that.store.peekRecord('sessioninfo', that.model.si.id)
                 that.model.exp.set('sessioninfo', tmp);
-                that.model.exp.save().then(() => {}, () => {})
+                that.model.exp.save().then(() => {
+                    // that.transitionToRoute('exp');
+                }, () => {
+                    that.transitionToRoute('exp');
+                })
             }
             let onFail = function () {
             }

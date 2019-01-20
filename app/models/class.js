@@ -3,13 +3,13 @@ import DS from 'ember-data';
 export default DS.Model.extend({
     brandId: DS.attr('string'),
     classTitle: DS.attr('string'),
-    courseExpireCount: DS.attr('number'),
-    courseTotalCount: DS.attr('number'),
+    courseExpireCount: DS.attr('number', { defaultValue: 0}),
+    courseTotalCount: DS.attr('number', { defaultValue: 0}),
     createTime: DS.attr('number'),
-    endDate: DS.attr('number'),
+    endDate: DS.attr('number', { defaultValue: 0}),
     // reservableId: DS.attr('string'),
-    startDate: DS.attr('number'),
-    status: DS.attr('number'),
+    startDate: DS.attr('number', { defaultValue: 0}),
+    status: DS.attr('number', { defaultValue: 0}),
     
     yard: DS.belongsTo('yard'),
     sessioninfo: DS.belongsTo('sessioninfo'),

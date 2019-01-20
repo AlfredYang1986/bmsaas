@@ -6,6 +6,7 @@ export default Route.extend({
     model(params) {
         let actv = this.store.findRecord('reservableitem', params.actvid);
         return RSVP.hash({
+            yard: this.store.findRecord('yard', "5c4191588fb807574ac84659"),
             actv: actv,
             tabs: A(['场次安排', '活动详情']),
             titles: A(["时间段","校区","人数","", "操作"]),

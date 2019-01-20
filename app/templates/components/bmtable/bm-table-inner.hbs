@@ -90,15 +90,11 @@
         {{else if (bmeq type "course")}}
             {{!-- <td class='ib_table_content_item'>{{bmcom/bm-plus-one index}}</td> --}}
             <td class='ib_table_content_item'>
-                {{bmdob/bmdobformat item.start_date}} {{bmdob/bmdob2weekday item.start_date}}<br/>
-                {{bmdob/bmdob2clocktime item.start_date}}-{{bmdob/bmdob2clocktime item.end_date}}
+                {{bmdob/bmdobformat item.startDate}} {{bmdob/bmdob2weekday item.startDate}}<br/>
+                {{bmdob/bmdob2clocktime item.startDate}}-{{bmdob/bmdob2clocktime item.endDate}}
             </td>
-            <td class="ib_table_content_item">{{item.Yard.title}}<br/>{{item.Yard.address}}</td>
-            {{#if (bmcom/bm-nil-obj item.Attendees)}}
-                <td class="ib_table_content_item">0</td>
-            {{else}}
-                <td class="ib_table_content_item">{{item.Attendees.length}}</td>
-            {{/if}}
+            <td class="ib_table_content_item">{{item.yard.title}}<br/>{{item.yard.address}}</td>
+            <td class="ib_table_content_item">{{item.students.length}}</td>
             <td  class="ib_table_content_item">
                 {{#bs-dropdown class="btn-dropdown" as |dd|}}
                     {{#dd.button class="reserve-more-btn"}}{{/dd.button}}
@@ -127,7 +123,7 @@
                 {{/if}}
             </td>
             <td class="ib_table_content_item">
-                {{#each item.Guardians as |gardianItem|}}
+                {{#each item.guardians as |gardianItem|}}
                     {{gardianItem.contact}}<br/>
                 {{/each}}
             </td>
@@ -226,8 +222,8 @@
         {{else if (bmeq type "classArr")}}
             <td class='ib_table_content_item'>第{{item.courseTime}}节</td>
             <td class='ib_table_content_item'>
-                {{bmdob/bmdobformat item.start_date}} {{bmdob/bmdob2weekday item.start_date}}<br/>
-                {{bmdob/bmdob2clocktime item.start_date}}-{{bmdob/bmdob2clocktime item.end_date}}
+                {{bmdob/bmdobformat item.startDate}} {{bmdob/bmdob2weekday item.startDate}}<br/>
+                {{bmdob/bmdob2clocktime item.startDate}}-{{bmdob/bmdob2clocktime item.endDate}}
             </td>
             <td class='ib_table_content_item'>{{item.Room.title}}</td>
             {{!-- <td class='ib_table_content_item'>{{item.contact}}</td> --}}
