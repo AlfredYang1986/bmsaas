@@ -35,7 +35,7 @@ export default Component.extend({
 
             var that = this;
             $.ajax({
-                url: '/upload',
+                url: '/v0/UploadToOss',
                 type: 'post',
                 data: formData,
                 processData: false,
