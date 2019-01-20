@@ -6,9 +6,9 @@ export default Component.extend({
 
     init() {
         this._super(...arguments);
-        this.bm_actv_service.queryLocalMultiObject();
-        this.bm_exp_service.queryLocalMultiObject();
-        this.bm_yard_service.queryLocalMultiObject();
+        // this.bm_actv_service.queryLocalMultiObject();
+        // this.bm_exp_service.queryLocalMultiObject();
+        // this.bm_yard_service.queryLocalMultiObject();
         // this.bm_sessionable_service.queryMultiObjects();
         if(this.apply.courseType == 1) {
             this.set('courseReserve', true);
@@ -25,10 +25,10 @@ export default Component.extend({
    // },
 
     mock_data: service(),
-    bm_actv_service: service(),
-    bm_exp_service: service(),
-    bm_yard_service: service(),
-    bm_sessionable_service: service(),
+    // bm_actv_service: service(),
+    // bm_exp_service: service(),
+    // bm_yard_service: service(),
+    // bm_sessionable_service: service(),
     positionalParams: ['apply', 'selectedReservable', 'selectedYard', 'selectedDate', 'selectedActivity', 'selectedSession', 'innerCat', 'courseType', 'noteError', 'noSr', 'noSy', 'noSa', 'noSs'],
     courseReserve: true,
     experienceApply: false,
@@ -50,15 +50,15 @@ export default Component.extend({
     // }),
 
     exp_session_lst: computed('selectedReservable', function(){
-        this.bm_sessionable_service.set('reservableid', this.selectedReservable);
-        this.bm_sessionable_service.set('refresh_all_token', this.bm_sessionable_service.guid());
-        return ''
+        // this.bm_sessionable_service.set('reservableid', this.selectedReservable);
+        // this.bm_sessionable_service.set('refresh_all_token', this.bm_sessionable_service.guid());
+        return '';
     }),
 
     act_session_lst: computed("selectedActivity", function(){
-        this.bm_sessionable_service.set('reservableid', this.selectedActivity);
-        this.bm_sessionable_service.set('refresh_all_token', this.bm_sessionable_service.guid());
-        return ''
+        // this.bm_sessionable_service.set('reservableid', this.selectedActivity);
+        // this.bm_sessionable_service.set('refresh_all_token', this.bm_sessionable_service.guid());
+        return '';
     }),
 
     actions: {
@@ -115,7 +115,7 @@ export default Component.extend({
     },
 
     display_apply_date: computed(function(/*ele*/){
-        let date = new Date(this.apply.apply_time);
+        let date = new Date(this.apply.applyTime);
         var Y = date.getFullYear() + '-';
         var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
         var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate()) + ' ';

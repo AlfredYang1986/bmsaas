@@ -3,10 +3,10 @@
     <tr class="session-list">
         {{#if (bmeq type "inbox")}}
             <td class='ib_table_content_item'>
-                {{!-- {{#each item.Kids as |kd|}}
-                    {{kd.name}}
-                {{/each}} --}}
-                {{item.kid.name}}
+                {{log item}}
+                {{#each item.kids as |list|}}
+                    {{list.name}}
+                {{/each}}
             </td>
             <td class="ib_table_content_item">
                 {{#if (bmeq item.courseType 0)}}
@@ -16,9 +16,9 @@
                 {{/if}}
             </td>
             <td class='ib_table_content_item'>{{item.courseName}}</td>
-            <td class="ib_table_content_item">{{bmdob/bmdobformat item.except_time}}</td>
+            <td class="ib_table_content_item">{{bmdob/bmdobformat item.exceptTime}}</td>
             <td class="ib_table_content_item">
-                {{item.Applyee.name}} &nbsp;&nbsp;
+                {{item.applicant.name}} &nbsp;&nbsp;
                 {{#each item.Kids as |kd kdIndex|}}
                     {{#if (eq kdIndex 0)}}
                         {{kd.guardian_role}}
