@@ -136,16 +136,16 @@
                         {{#if noSa}}
                             <select class="course-reserve-modal-select error-border" id='actselect' name="" onChange={{action 'activityChanged'}}>
                                <option value="">请选择参与内容</option>
-                               {{#each bm_actv_service.actvs as |item|}}
+                               {{!-- {{#each bm_actv_service.actvs as |item|}}
                                    <option value={{item.id}}>{{item.SessionInfo.title}}</option>
-                               {{/each}}
+                               {{/each}} --}}
                             </select>
                         {{else}}
                             <select class="course-reserve-modal-select" id='actselect' name="" onChange={{action 'activityChanged'}}>
                                <option value="">请选择参与内容</option>
-                               {{#each bm_actv_service.actvs as |item|}}
+                               {{!-- {{#each bm_actv_service.actvs as |item|}}
                                    <option value={{item.id}}>{{item.SessionInfo.title}}</option>
-                               {{/each}}
+                               {{/each}} --}}
                             </select>
                         {{/if}}
 
