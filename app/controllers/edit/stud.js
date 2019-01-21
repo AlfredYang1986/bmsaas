@@ -7,6 +7,7 @@ export default Controller.extend({
     citys: A(['北京市']),
     areas: A(["密云区", "延庆区", "朝阳区", "丰台区", "石景山区", "海淀区", "门头沟区", "房山区", "通州区", "顺义区", "昌平区", "大兴区", "怀柔区", "平谷区", "东城区", "西城区"]),
 
+    cur_tech_id: "",
     sex_idx: 0,
     rela_idx: 0,
     genderCheck: A(['男', '女', '未知']),
@@ -45,30 +46,22 @@ export default Controller.extend({
             }
         },
         saveInputBtnClicked() {
+            // debugger
+            let tmpTech = null;
+            if(this.cur_tech_id != null) {
+                tmpTech = this.store.peekRecord("teacher", this.cur_tech_id);
+            } else {
+                tmpTech = this.model.techs.objectAt(0)
+            }
+            this.model.stud.set('teacher', tmpTech);
+            for(let idx = 0;idx < this.model.stud.guardians.length;idx++) {
+                this.model.stud.guardians.objectAt(idx).save()
+            }
             this.model.stud.save();
             if (this.model.isPushing) {
                 this.transitionToRoute("stud")
             } else {
-                // this.store.unloadAll("stud")
                 this.transitionToRoute("detail.stud", this.model.stud.id)
-            }
-        },
-        selectedTech() {
-            let sel = document.getElementById("techSelect");
-            this.set('sel', sel)
-            if (sel.selectedIndex == 0) {
-                this.model.stud.set('teacher', null);
-                // this.set('bm_stud_service.stud.teacherName', null);
-            } else {
-                let curSelect = sel.options[sel.selectedIndex].value;
-                for(let idx = 0;idx < this.model.techs.length;idx++) {
-                    debugger
-                    if(curSelect == this.model.techs.objectAt(idx).name) {
-                        console.log(this.model.techs.objectAt(idx))
-                        this.model.stud.set('teacher', this.model.techs.objectAt(idx));
-                    }
-                }
-                // this.set('bm_stud_service.stud.teacherName', sel.options[sel.selectedIndex].value);
             }
         },
         selectedOrigin() {
