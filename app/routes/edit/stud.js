@@ -26,7 +26,7 @@ export default Route.extend({
             //         tech = that.store.createRecord('teacher')
             //     }
             // }
-            let stud = this.store.find('student', params.studid).then().catch();
+            let stud = this.store.find('student', params.studid);
             let techs = this.store.findAll('teacher');
             return RSVP.hash({
                 isPushing: false,
@@ -40,7 +40,7 @@ export default Route.extend({
     setupController(controller, model) {
         this._super(controller, model);
         if(model.stud.teacher) {
-            controller.set("cur_tech_id", model.stud.teacher.id);
+            controller.set("cur_tech_id", model.stud.teacher.get("id"));
         } else {
             controller.set("cur_tech_id", "");
         }

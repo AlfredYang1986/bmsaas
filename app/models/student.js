@@ -9,7 +9,7 @@ export default DS.Model.extend({
     idCardNo: DS.attr('string'),
     name: DS.attr('string'),
     nickname: DS.attr('string'),
-    regDate: DS.attr('number'),
+    regDate: DS.attr('number', { defaultValue: new Date().getTime()}),
     relationShip: DS.attr('string'),
     wechat: DS.attr('string'),
     school: DS.attr('string'),
