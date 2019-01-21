@@ -4,7 +4,7 @@ import RSVP from 'rsvp';
 export default Route.extend({
     model() {
         return RSVP.hash({
-            studs: this.store.findAll('student')
+            // studs: this.store.query('student', {"brand-id": localStorage.getItem("brandid")})
         })
     },
 });

@@ -3,9 +3,9 @@ import RSVP from 'rsvp';
 
 export default Route.extend({
     model() {
-        let yardid = "5c4191588fb807574ac84659";
+        // let yardid = "5c4191588fb807574ac84659";
         return RSVP.hash({
-            yard: this.store.findRecord('yard', yardid),
+            yard: this.store.query('yard', {"brand-id": localStorage.getItem("brandid")}),
         })
     },
 });

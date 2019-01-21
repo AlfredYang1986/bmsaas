@@ -8,7 +8,7 @@ export default Route.extend({
     model() {
         return RSVP.hash({
             tabs: A(['品牌信息']),
-            brand: this.store.findRecord('brand', "5c4178918fb8073d04e89793")
+            brand: this.store.findRecord('brand', localStorage.getItem("brandid"))
         })
     },
 });

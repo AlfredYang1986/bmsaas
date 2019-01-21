@@ -13,7 +13,7 @@ export default Route.extend({
             gard.save().then(onSuccess).catch()
             // stud.guardians.pushObject(gard);
 
-            let techs = this.store.findAll('teacher');
+            let techs = this.store.query('teacher', {"brand-id": localStorage.getItem("brandid")});
             return RSVP.hash({
                 isPushing: true,
                 stud: stud,
@@ -31,7 +31,7 @@ export default Route.extend({
             //     }
             // }
             let stud = this.store.find('student', params.studid);
-            let techs = this.store.findAll('teacher');
+            let techs = this.store.query('teacher', {"brand-id": localStorage.getItem("brandid")});
             return RSVP.hash({
                 isPushing: false,
                 stud: stud,

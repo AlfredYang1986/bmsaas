@@ -7,7 +7,8 @@ export default DS.JSONAPISerializer.extend({
         let tr =  normalizedDocument.meta['query-res']
         let tp =  normalizedDocument.meta['total-page']
         localStorage.setItem(tr, tp);
+
     
         return normalizedDocument;
-    },
+    }
 });

@@ -18,7 +18,7 @@ export default Controller.extend({
     },
 
     applies: computed('cur_tab_idx', 'cur_reserve_type', function() {
-        return this.store.query('apply', { 'page[number]': 1, 'page[size]': 20 })
+        return this.store.query('apply', { 'page[number]': 1, 'page[size]': 20, "brand-id": localStorage.getItem("brandid")})
     }),
     page_count: computed('cur_tab_idx', 'cur_reserve_type', function(){
         return Number.parseInt(localStorage.getItem('applies'));

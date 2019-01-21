@@ -3,9 +3,9 @@ import RSVP from 'rsvp';
 
 export default Route.extend({
     model() {
-        let tmp = '5c4178918fb8073d04e89793';
+        // let tmp = '5c4178918fb8073d04e89793';
         return RSVP.hash({
-            brand: this.store.findRecord('brand', tmp)
+            brand: this.store.query('brand', {"brand-id": localStorage.getItem("brandid")})
         })
     },
     setupController(controller, model) {
