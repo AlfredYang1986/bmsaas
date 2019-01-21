@@ -3,7 +3,6 @@
     <tr class="session-list">
         {{#if (bmeq type "inbox")}}
             <td class='ib_table_content_item'>
-                {{log item}}
                 {{#each item.kids as |list|}}
                     {{list.name}}
                 {{/each}}

@@ -61,7 +61,7 @@ export default Controller.extend({
 
         },
         handleTodayPrePageChange (pageNum) {
-        
+
         },
         onTabClicked(tabIdx) {
 
@@ -87,7 +87,7 @@ export default Controller.extend({
         successRegisterHandled(item) {
         },
         onPreRegisterClick(item) {
-        
+
         },
         toggleAction() {
 
@@ -103,22 +103,34 @@ export default Controller.extend({
 
         },
         successHandled() {
-
+            debugger
+            if (this.current_apply.courseType == 1) {
+                    this.signCoureReserve();
+                } else if(this.current_apply.courseType == 0){
+                    this.signActivityReserve();
+                }
         },
         cancelHandled() {
-
+            this.set('showhandledlg', false);
         },
         cancelRegisterHandled() {
-        
+
         }
     },
     checkValidate() {
-
+        
     },
     signCoureReserve() {
 
     },
     signActivityReserve() {
-
+        let kid = this.current_apply.kids.firstObject;
+        let stud = this.store.createRecord('student');
+        stud.set('name', kid.name);
+        stud.set('nickname', kid.nickname)
+        stud.set('gender', kid.gender)
+        stud.set('dob', kid.dob);
+        stud.set('guardianRole', this.current_apply.applicant.name);
+        stud.save();
     },
 });

@@ -29,7 +29,7 @@ export default Component.extend({
     // bm_exp_service: service(),
     // bm_yard_service: service(),
     // bm_sessionable_service: service(),
-    positionalParams: ['apply', 'selectedReservable', 'selectedYard', 'selectedDate', 'selectedActivity', 'selectedSession', 'innerCat', 'courseType', 'noteError', 'noSr', 'noSy', 'noSa', 'noSs'],
+    positionalParams: ['exp', 'actv', 'apply', 'selectedReservable', 'selectedYard', 'selectedDate', 'selectedActivity', 'selectedSession', 'innerCat', 'courseType', 'noteError', 'noSr', 'noSy', 'noSa', 'noSs'],
     courseReserve: true,
     experienceApply: false,
     noteError: false,
