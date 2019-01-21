@@ -47,45 +47,23 @@ export default Controller.extend({
         },
         saveInputBtnClicked() {
             // debugger
-            let tmpTech = this.store.peekRecord("teacher", this.cur_tech_id);
-            console.log(tmpTech)
+            let tmpTech = null;
+            if(this.cur_tech_id != null) {
+                tmpTech = this.store.peekRecord("teacher", this.cur_tech_id);
+            } else {
+                tmpTech = this.model.techs.objectAt(0)
+            }
             this.model.stud.set('teacher', tmpTech);
             for(let idx = 0;idx < this.model.stud.guardians.length;idx++) {
                 this.model.stud.guardians.objectAt(idx).save()
             }
-            // this.model.stud.set('guardians', this.model.gards);
-            // this.model.stud.teacher.pushObject(tmpTech);
-            console.log(this.model.stud)
             this.model.stud.save();
             if (this.model.isPushing) {
                 this.transitionToRoute("stud")
             } else {
-                // this.store.unloadAll("stud")
                 this.transitionToRoute("detail.stud", this.model.stud.id)
             }
         },
-        // selectedTech() {
-        //     let sel = document.getElementById("techSelect");
-        //     this.set('sel', sel)
-        //     if (sel.selectedIndex == 0) {
-        //         debugger
-        //         this.model.stud.set('teacher', null);
-        //         // this.set('bm_stud_service.stud.teacherName', null);
-        //     } else {
-        //         debugger
-        //         let tmpTech = this.store.query("teacher", {"id": this.cur_tech_id});
-        //         this.model.stud.set('teacher', tmpTech);
-        //         // let curSelect = this.store.query("teacher", {"name":sel.options[sel.selectedIndex].value});
-        //         // for(let idx = 0;idx < this.model.techs.length;idx++) {
-        //         //     debugger
-        //         //     if(curSelect == this.model.techs.objectAt(idx).name) {
-        //         //         console.log(this.model.techs.objectAt(idx))
-        //         //         this.model.stud.set('teacher', this.model.techs.objectAt(idx));
-        //         //     }
-        //         // }
-        //         // this.set('bm_stud_service.stud.teacherName', sel.options[sel.selectedIndex].value);
-        //     }
-        // },
         selectedOrigin() {
             let sel = document.getElementById("originSelect");
             if (sel.selectedIndex == 0) {
