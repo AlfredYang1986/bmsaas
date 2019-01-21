@@ -11,10 +11,12 @@ export default Controller.extend({
             let that = this
             let callback = {
                 onSuccess: function(res) {
-                    if(res.data.attributes.account != '' && res.data.attributes.brandId != '') {
-                        localStorage.setItem('brandid', res.data.attributes.brandId);
+                    if(res.status == "ok") {
+                        localStorage.setItem('brandid', res.result["brand-id"]);
                         // that.bm_brand_service.set('brandid', res.data.attributes.brandId);
-                        that.get('cookie').write('token', res.data.attributes.token, { path: '/' });
+                        // document.cookie.write('token', res.token, { path: '/' });
+                        document.cookie="token="+res.result.token;
+                        that.setCookie("token",res.result.token,365*24)
                         // that.bm_brand_service.set('refresh_token', that.bm_brand_service.guid());
                         that.set('errorInfo', false);
                         that.transitionToRoute('inbox');
@@ -28,5 +30,16 @@ export default Controller.extend({
             }
             this.bm_login_service.accountLogin(callback);
         }
+    },
+    setCookie(name,value,hours) {
+        let expires = "";
+        if (hours) {
+            let date = new Date();
+            date.setTime(date.getTime()+(hours*60*60*1000));
+            expires = "; expires="+date.toGMTString();
+        }else{
+            expires = "";
+        }
+        document.cookie = name+"="+value+expires+"; path=/";
     }
 });

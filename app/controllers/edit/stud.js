@@ -7,6 +7,7 @@ export default Controller.extend({
     citys: A(['北京市']),
     areas: A(["密云区", "延庆区", "朝阳区", "丰台区", "石景山区", "海淀区", "门头沟区", "房山区", "通州区", "顺义区", "昌平区", "大兴区", "怀柔区", "平谷区", "东城区", "西城区"]),
 
+    cur_tech_id: "",
     sex_idx: 0,
     rela_idx: 0,
     genderCheck: A(['男', '女', '未知']),
@@ -45,6 +46,7 @@ export default Controller.extend({
             }
         },
         saveInputBtnClicked() {
+            console.log(this.model.stud)
             this.model.stud.save();
             if (this.model.isPushing) {
                 this.transitionToRoute("stud")
@@ -60,14 +62,17 @@ export default Controller.extend({
                 this.model.stud.set('teacher', null);
                 // this.set('bm_stud_service.stud.teacherName', null);
             } else {
-                let curSelect = sel.options[sel.selectedIndex].value;
-                for(let idx = 0;idx < this.model.techs.length;idx++) {
-                    debugger
-                    if(curSelect == this.model.techs.objectAt(idx).name) {
-                        console.log(this.model.techs.objectAt(idx))
-                        this.model.stud.set('teacher', this.model.techs.objectAt(idx));
-                    }
-                }
+                debugger
+                let tmpTech = this.store.query("teacher", {"id": this.cur_tech_id});
+                this.model.stud.set('teacher', tmpTech);
+                // let curSelect = this.store.query("teacher", {"name":sel.options[sel.selectedIndex].value});
+                // for(let idx = 0;idx < this.model.techs.length;idx++) {
+                //     debugger
+                //     if(curSelect == this.model.techs.objectAt(idx).name) {
+                //         console.log(this.model.techs.objectAt(idx))
+                //         this.model.stud.set('teacher', this.model.techs.objectAt(idx));
+                //     }
+                // }
                 // this.set('bm_stud_service.stud.teacherName', sel.options[sel.selectedIndex].value);
             }
         },

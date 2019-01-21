@@ -125,7 +125,7 @@
 					</div>
 				{{/layout-push}}
 			{{/layout-push}} --}}
-			{{bmform/bm-base-select selId='teacherName' selTitle="课程顾问" options=model.techs curSelect=model.stud.teacher.name classNames="input_area area-margin-bottom"}}
+			{{bmform/bm-base-select type="id" idType=true selId='teacherName' selTitle="课程顾问" options=model.techs curSelect=cur_tech_id classNames="input_area area-margin-bottom"}}
 			{{bmform/bm-base-select selId='sourceWay' selTitle="渠道来源" options=origin curSelect=model.stud.sourceWay classNames="input_area"}}
 		</section>
 	</div>
