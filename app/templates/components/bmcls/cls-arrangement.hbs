@@ -28,7 +28,7 @@
             <p class="title">选择场地</p>
             <form class="select-site">
                 <select name="cars" id='yardselect' onChange={{action 'yardChanged'}}>
-                    {{#each bm_yard_service.yards as |item idx|}}
+                    {{#each yards as |item idx|}}
                         <option value={{item.id}}>{{item.address}}</option>
                         {{#if (bmeq idx 0)}}
                             {{refreshSelected}}
