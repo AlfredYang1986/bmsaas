@@ -1,11 +1,11 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
-import { inject as service } from '@ember/service';
+// import { inject as service } from '@ember/service';
 // import { A } from '@ember/array';
 
 export default Component.extend({
-    bm_yard_service: service(),
-    bm_clsarr_service: service(),
+    // bm_yard_service: service(),
+    // bm_clsarr_service: service(),
     selectedYard: '',
     showAddDlg: false,
     refreshSelected: computed(function(){

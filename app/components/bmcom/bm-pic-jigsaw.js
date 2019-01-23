@@ -33,7 +33,9 @@ export default Component.extend({
             }
         }
         let onFail = function() {}
-        this.picData.then(onSuccess, onFail)
+        if (this.picData) {
+            this.picData.then(onSuccess, onFail)
+        }
         // }
         // console.log(tempImgs)
         // debugger
