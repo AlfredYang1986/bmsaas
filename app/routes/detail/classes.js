@@ -6,7 +6,7 @@ import { A } from '@ember/array';
 export default Route.extend({
     mock_data: service(),
     bm_session_service: service(),
-    bm_class_service: service(),
+    // bm_class_service: service(),
     bm_tech_service: service(),
     bm_stud_service: service(),
     model(params) {

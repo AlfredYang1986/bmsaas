@@ -1,6 +1,6 @@
 {{!-- {{yield}} --}}
 {{#layout-push direction="row" wrap=true classNames="card-wrap"}}
-    {{#each bm_class_service.classes as |item|}}
+    {{#each cls as |item|}}
         <div class="line_container_warp class_card_container" >
             {{bmcard/class-card onClassCardClicked=(action 'cardClicked') cls=item}}
         </div>

@@ -6,7 +6,7 @@ import { A } from '@ember/array';
 
 export default Controller.extend({
 
-    bm_class_service: service(),
+    // bm_class_service: service(),
     bm_session_service: service(),
     bm_sessionable_service: service(),
     bm_tech_service: service(),
