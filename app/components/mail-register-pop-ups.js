@@ -7,7 +7,6 @@ export default Component.extend({
     init() {
         this._super(...arguments);
         this.bm_tech_service.queryLocalMultiObject();
-        // debugger
         if(this.apply.kid.gender == 0) {
             this.set('sex_idx', 1)
         } else if(this.apply.kid.gender == 1) {
@@ -15,9 +14,9 @@ export default Component.extend({
         } else {
             this.set('sex_idx', 2)
         }
-        if(this.apply.kid.guardian_role == "爸爸") {
+        if(this.apply.kid.guardianRole == "爸爸") {
             this.set('rela_idx', 0)
-        } else if(this.apply.kid.guardian_role == "妈妈") {
+        } else if(this.apply.kid.guardianRole == "妈妈") {
             this.set('rela_idx', 1)
         } else {
             this.set('rela_idx', 2)
@@ -41,11 +40,11 @@ export default Component.extend({
     }),
     rela: computed('rela_idx', function() {
         if(this.rela_idx == 0) {
-            this.set('apply.kid.guardian_role', "爸爸")
+            this.set('apply.kid.guardianRole', "爸爸")
         } else if(this.rela_idx == 1) {
-            this.set('apply.kid.guardian_role', "妈妈")
+            this.set('apply.kid.guardianRole', "妈妈")
         } else {
-            this.set('apply.kid.guardian_role', "其他")
+            this.set('apply.kid.guardianRole', "其他")
         }
     }),
     origin:A([{name: '学员转介绍'}, {name: '电话推广'}, {name: '小程序'}, {name: '线下活动推广'}, {name: '其他'}]),
@@ -69,7 +68,6 @@ export default Component.extend({
             }
         },
         radioSelect() {
-            // debugger
         }
     }
 });

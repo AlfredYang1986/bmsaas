@@ -6,10 +6,6 @@ export default Component.extend({
 
     init() {
         this._super(...arguments);
-        // this.bm_actv_service.queryLocalMultiObject();
-        // this.bm_exp_service.queryLocalMultiObject();
-        // this.bm_yard_service.queryLocalMultiObject();
-        // this.bm_sessionable_service.queryMultiObjects();
         if(this.apply.courseType == 1) {
             this.set('courseReserve', true);
             this.set('experienceApply', false);
@@ -17,19 +13,18 @@ export default Component.extend({
             this.set('courseReserve', false);
             this.set('experienceApply', true);
         }
-    },
-   //
-   //  didUpdateAttrs() {
-   //     this._super(...arguments);
-   //     this.set('selectedReservable', this.sel.options[this.sel.selectedIndex].value);
-   // },
 
-    mock_data: service(),
+    },
+
+    sr: computed('srClasses', function() {
+        return this.srClasses;
+    }),
+    // mock_data: service(),
     // bm_actv_service: service(),
     // bm_exp_service: service(),
     // bm_yard_service: service(),
     // bm_sessionable_service: service(),
-    positionalParams: ['exp', 'actv', 'apply', 'selectedReservable', 'selectedYard', 'selectedDate', 'selectedActivity', 'selectedSession', 'innerCat', 'courseType', 'noteError', 'noSr', 'noSy', 'noSa', 'noSs'],
+    positionalParams: ['saClasses','srClasses','exp', 'actv', 'apply', 'selectedReservable', 'selectedYard', 'selectedDate', 'selectedActivity', 'selectedSession', 'innerCat', 'courseType', 'noteError', 'noSr', 'noSy', 'noSa', 'noSs'],
     courseReserve: true,
     experienceApply: false,
     noteError: false,
@@ -39,36 +34,21 @@ export default Component.extend({
         return this.mock_data.courseCandi();
     }),
 
-    // yard_lst: computed(function(){
-    //     return this.mock_data.yardCondi();
-    // }),
-    // activity_lst: computed(function(){
-    //     return this.mock_data.activityCandi();
-    // }),
-    // session_lst: computed('selectedActivity', function(){
-        // return this.mock_data.sessionCandi(this.selectedActivity);
-    // }),
-
     exp_session_lst: computed('selectedReservable', function(){
+        let reservableitemid = this.selectedReservable;
         // this.bm_sessionable_service.set('reservableid', this.selectedReservable);
         // this.bm_sessionable_service.set('refresh_all_token', this.bm_sessionable_service.guid());
         return '';
     }),
 
     act_session_lst: computed("selectedActivity", function(){
-        // this.bm_sessionable_service.set('reservableid', this.selectedActivity);
-        // this.bm_sessionable_service.set('refresh_all_token', this.bm_sessionable_service.guid());
+        this.bm_sessionable_service.set('reservableid', this.selectedActivity);
+        this.bm_sessionable_service.set('refresh_all_token', this.bm_sessionable_service.guid());
         return '';
     }),
 
     actions: {
-        // courseReserve() {
-        //     this.set('courseReserve', true);
-        //     this.set('experienceApply', false);
-        //     this.set('innerCat', true);
-        // },
         toggleAction() {
-
             if(this.courseReserve) {
                 this.set('experienceApply', true);
                 this.set('courseReserve', false)

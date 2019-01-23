@@ -8,7 +8,6 @@ export default Component.extend({
     checkFlag: false,
     init() {
         this._super(...arguments);
-        // debugger
         // if(this.isCreate) {
             // this.set('ifAcqInput', '');
             // this.set('checkFlag', false)

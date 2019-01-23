@@ -40,17 +40,39 @@ export default Controller.extend({
     isCourse: true,
     noteError: false,
     noSr: false,
+    srClasses: null,
+    saClasses: null,
     contentSubmit: computed('sr', 'sa', function() {
-        let a = Date.parse( new Date());
-        debug(a)
-        this.set('sy', null);
-        this.set('ss', null);
-        return this.sy == null && this.ss == null;
+        let that = this;
+        if(this.sr != null) {
+            let onSrSuccess = function(res) {
+                that.set('srClasses', res.classes);
+            }
+            let onSrFail = function(res) {
+
+            }
+            that.store.find('reservableitem', that.sr).then(onSrSuccess, onSrFail)
+        }
+        if(this.sa != null) {
+            let onSaSuccess = function(res) {
+                that.set('saClasses', res.classes);
+            }
+            let onSaFail = function(res) {
+
+            }
+            that.store.find('reservableitem', that.sa).then(onSaSuccess, onSaFail)
+        }
+        // let a = Date.parse( new Date());
+        // debug(a)
+        // this.set('sy', null);
+        // this.set('ss', null);
+        // return this.sy == null && this.ss == null;
     }),
     couldSubmit: computed('sy', 'ss', function() {
         return this.sr != null && this.sy != null || this.sa != null && this.ss != null;
     }),
     actions: {
+        /* 今天全部预约与注册*/
         handleBookPageChange (pageNum) {
 
         },
@@ -63,6 +85,7 @@ export default Controller.extend({
         handleTodayPrePageChange (pageNum) {
 
         },
+
         onTabClicked(tabIdx) {
 
         },
@@ -103,7 +126,6 @@ export default Controller.extend({
 
         },
         successHandled() {
-            debugger
             if (this.current_apply.courseType == 1) {
                     this.signCoureReserve();
                 } else if(this.current_apply.courseType == 0){
@@ -118,19 +140,81 @@ export default Controller.extend({
         }
     },
     checkValidate() {
-        
-    },
-    signCoureReserve() {
 
     },
-    signActivityReserve() {
+    signCoureReserve() {
+        let that = this;
         let kid = this.current_apply.kids.firstObject;
+        let applicant = this.current_apply.applicant;
         let stud = this.store.createRecord('student');
+        let guar = this.store.createRecord('guardian');
         stud.set('name', kid.name);
         stud.set('nickname', kid.nickname)
         stud.set('gender', kid.gender)
         stud.set('dob', kid.dob);
-        stud.set('guardianRole', this.current_apply.applicant.name);
-        stud.save();
+        stud.set('guardianRole', kid.guardianRole);
+
+        stud.guardians.pushObject(guar)
+        stud.guardians.objectAt(0).set('name', applicant.content.name);
+        stud.guardians.objectAt(0).set('gender', applicant.content.gender);
+        stud.guardians.objectAt(0).set('contact', applicant.content.regiPhone);
+        stud.guardians.objectAt(0).set('regDate', new Date().getTime());
+        stud.guardians.objectAt(0).set('relationShip', kid.guardianRole);
+
+        let onClassSuccess = function(res) {
+            res.students.pushObject(stud);
+            res.save()
+            that.set('showhandledlg', false);
+        }
+        let onClassFail = function() {
+
+        }
+
+        let onStudSuccess = function() {
+
+            that.store.find('class', that.sy).then(onClassSuccess, onClassFail)
+        }
+        let onStudFail = function() {
+
+        }
+
+        stud.save().then(onStudSuccess, onStudFail);
+
+    },
+    signActivityReserve() {
+        let that = this;
+        let kid = this.current_apply.kids.firstObject;
+        let applicant = this.current_apply.applicant;
+        let stud = this.store.createRecord('student');
+        let guar = this.store.createRecord('guardian');
+        stud.set('name', kid.name);
+        stud.set('nickname', kid.nickname)
+        stud.set('gender', kid.gender)
+        stud.set('dob', kid.dob);
+        stud.set('guardianRole', kid.guardianRole);
+
+        stud.guardians.pushObject(guar)
+        stud.guardians.objectAt(0).set('name', applicant.content.name);
+        stud.guardians.objectAt(0).set('gender', applicant.content.gender);
+        stud.guardians.objectAt(0).set('contact', applicant.content.regiPhone);
+        stud.guardians.objectAt(0).set('regDate', new Date().getTime());
+        stud.guardians.objectAt(0).set('relationShip', kid.guardianRole);
+
+        let onClassSuccess = function(res) {
+            res.students.pushObject(stud)
+        }
+        let onClassFail = function() {
+
+        }
+
+        let onStudSuccess = function() {
+            // let actv = that.store.find('reservableitem', that.sa).then();
+            that.store.find('class', that.ss).then(onClassSuccess, onClassFail)
+        }
+        let onStudFail = function() {
+
+        }
+
+        stud.save().then(onStudSuccess, onStudFail);
     },
 });

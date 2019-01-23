@@ -46,7 +46,6 @@ export default Controller.extend({
             }
         },
         saveInputBtnClicked() {
-            // debugger
             let tmpTech = null;
             if(this.cur_tech_id != null) {
                 tmpTech = this.store.peekRecord("teacher", this.cur_tech_id);
