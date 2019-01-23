@@ -18,13 +18,11 @@ export default Controller.extend({
     },
 
     applies: computed('cur_tab_idx', 'cur_reserve_type', function() {
-        debugger
         let today = new Date();
         today.setHours(0);
         today.setMinutes(0);
         today.setSeconds(0);
         today.setMilliseconds(0);
-        console.log(today);
 
         if(this.cur_tab_idx == 1 && this.cur_reserve_type == 0) {
             return this.store.query('apply', { 'page[number]': 1, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), 'course-type': -1})
@@ -114,14 +112,42 @@ export default Controller.extend({
             },500);
         },
         setCurrentApply(item) {
-            debug(item)
-            this.set('sr', null);
-            this.set('sy', null);
-            this.set('sa', null);
-            this.set('ss', null);
-            this.set('isV', false);
+            debugger
+            let that = this;
             this.set('current_apply', item);
-            this.set('showhandledlg', true);
+            if(item.courseType == -1) {
+                let apply = this.current_apply;
+                let stud = this.store.createRecord('student');
+                let kid = this.current_apply.kids.firstObject;
+                let applicant = this.current_apply.applicant;
+                let guar = this.store.createRecord('guardian');
+                stud.set('name', kid.name);
+                stud.set('nickname', kid.nickname)
+                stud.set('gender', kid.gender)
+                stud.set('dob', kid.dob);
+                stud.set('guardianRole', kid.guardianRole);
+
+                stud.guardians.pushObject(guar)
+                stud.guardians.objectAt(0).set('name', applicant.content.name);
+                stud.guardians.objectAt(0).set('gender', applicant.content.gender);
+                stud.guardians.objectAt(0).set('contact', applicant.content.regiPhone);
+                stud.guardians.objectAt(0).set('regDate', new Date().getTime());
+                stud.guardians.objectAt(0).set('relationShip', kid.guardianRole);
+                let onSuccess = function() {
+                    that.transitionToRoute('edit.stud', stud.id + ' ' + apply.id);
+                }
+                let onFail = function(err) {
+                    console.log(err)
+                }
+                stud.save().then(onSuccess, onFail)
+
+            } else {
+                this.set('sr', null);
+                this.set('sy', null);
+                this.set('sa', null);
+                this.set('ss', null);
+                this.set('showhandledlg', true);
+            }
         },
 
         successRegisterHandled(item) {
@@ -161,6 +187,7 @@ export default Controller.extend({
     },
     signCoureReserve() {
         let that = this;
+        let apply = this.current_apply;
         let kid = this.current_apply.kids.firstObject;
         let applicant = this.current_apply.applicant;
         let stud = this.store.createRecord('student');
@@ -178,17 +205,26 @@ export default Controller.extend({
         stud.guardians.objectAt(0).set('regDate', new Date().getTime());
         stud.guardians.objectAt(0).set('relationShip', kid.guardianRole);
 
-        let onClassSuccess = function(res) {
-            res.students.pushObject(stud);
-            res.save()
+
+        let onApplySuccess = function(res) {
+            apply.set('status', 1);
+            apply.save();
             that.set('showhandledlg', false);
         }
-        let onClassFail = function() {
+        let onApplyFail = function(err) {
+
+        }
+
+        let onClassSuccess = function(res) {
+            res.students.pushObject(stud);
+            res.save().then(onApplySuccess, onApplyFail)
+
+        }
+        let onClassFail = function(err) {
 
         }
 
         let onStudSuccess = function() {
-
             that.store.find('class', that.sy).then(onClassSuccess, onClassFail)
         }
         let onStudFail = function() {
@@ -200,6 +236,7 @@ export default Controller.extend({
     },
     signActivityReserve() {
         let that = this;
+        let apply = this.current_apply;
         let kid = this.current_apply.kids.firstObject;
         let applicant = this.current_apply.applicant;
         let stud = this.store.createRecord('student');
@@ -217,8 +254,18 @@ export default Controller.extend({
         stud.guardians.objectAt(0).set('regDate', new Date().getTime());
         stud.guardians.objectAt(0).set('relationShip', kid.guardianRole);
 
+        let onApplySuccess = function(res) {
+            apply.set('status', 1);
+            apply.save();
+            that.set('showhandledlg', false);
+        }
+        let onApplyFail = function(err) {
+
+        }
+
         let onClassSuccess = function(res) {
-            res.students.pushObject(stud)
+            res.students.pushObject(stud);
+            res.save().then(onApplySuccess, onApplyFail)
         }
         let onClassFail = function() {
 

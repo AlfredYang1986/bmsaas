@@ -4,6 +4,7 @@ import { A } from '@ember/array';
 
 export default Route.extend({
     model(params) {
+        debugger
         if (params.studid == "stud/push") {
             let onSuccess = function() {
                 stud.guardians.pushObject(gard)
