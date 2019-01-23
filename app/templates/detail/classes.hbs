@@ -11,9 +11,9 @@
         {{#layout-push direction='col' classNames="detail_panel class-detail-outer"}}
             {{#layout-push direction='row' split=true classNames="class-detail-title-top"}}
                 {{#layout-push direction='col' split=true classNames="class-detail-title-top-left"}}
-                    <p class="class-title">{{bm_class_service.class.classTitle}}</p>
-                    {{#link-to 'detail.course' bm_class_service.class.SessionInfo.id}}
-                        <p class="class-subtitle">{{bm_class_service.class.SessionInfo.title}}</p>
+                    <p class="class-title">{{model.class.classTitle}}</p>
+                    {{#link-to 'detail.course' model.class.sessioninfo.id}}
+                        <p class="class-subtitle">{{model.class.sessioninfo.title}}</p>
                     {{/link-to}}
                 {{/layout-push}}
                 {{#layout-push direction='row' classNames="class-detail-title-top-right"}}
@@ -46,21 +46,17 @@
                 {{#layout-push direction='col' split=true classNames="class-detail-title-sec-left"}}
                     {{#layout-push direction='row' classNames="sec-left-top"}}
                         <p class="sec-title">时间</p>
-                        <p class="sec-des">{{bmdob/bmdobformat bm_class_service.class.start_date}}-{{bmdob/bmdobformat bm_class_service.class.end_date}}</p>
+                        <p class="sec-des">{{bmdob/bmdobformat model.class.startDate}}-{{bmdob/bmdobformat model.class.endDate}}</p>
                     {{/layout-push}}
                     {{#layout-push direction='row' classNames="sec-left-bottom"}}
                         <p class="sec-title">校区</p>
-                        <p class="sec-des">{{bm_class_service.class.Yard.title}}</p>
+                        <p class="sec-des">{{model.class.yard.title}}</p>
                     {{/layout-push}}
                 {{/layout-push}}
                 {{#layout-push direction='row' split=true classNames="class-detail-title-sec-right"}}
-                    {{#if (bmcom/bm-nil-obj bm_class_service.class.Attendees)}}
-                        <p class="sec-right-num">0</p>
-                    {{else}}
-                        <p class="sec-right-num">{{bm_class_service.class.Attendees.length}}</p>
-                    {{/if}}
+                    <p class="sec-right-num">{{model.class.students.length}}</p>
                     <p class="sec-right-des">学生人数</p>
-                    <p class="sec-right-num">{{bm_class_service.class.courseTotalCount}}</p>
+                    <p class="sec-right-num">{{model.class.courseTotalCount}}</p>
                     <p class="sec-right-des">课次</p>
                 {{/layout-push}}
             
@@ -69,7 +65,7 @@
             {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs needAction=true onTabClicked=(action "onTabClicked")}}
 
             {{#if (bmeq cur_idx 0)}}
-                {{#if (bmcom/bm-nil-obj bm_class_service.class.Teachers)}}
+                {{#if (eq model.class.teachers.length 0)}}
                     {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无教师" des="快去为孩子们选择教师吧" btnText="添加教师" onBtnClick=(action (mut addTechDlg) true)}}
                 {{else}}
                     {{bmtable/bm-table-class-tech titles=model.techTitles onRemoveTeacherClick="onRemoveTeacherClick"}}
@@ -78,7 +74,7 @@
             {{/if}}
 
             {{#if (bmeq cur_idx 1)}}
-                {{#if (bmcom/bm-nil-obj bm_class_service.class.Attendees)}}
+                {{#if (eq model.class.students.length 0)}}
                     {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无学生" des="快去添加孩子们吧" btnText="添加学生" onBtnClick=(action (mut addStudDlg) true)}}
                 {{else}}
                     {{bmtable/bm-table-class-stud titles=model.studTitles onRemoveStudClick="onRemoveStudClick"}}
@@ -87,7 +83,7 @@
             {{/if}}
 
             {{#if (bmeq cur_idx 2)}}
-                {{#if (bmcom/bm-nil-obj bm_courseunit_service.units)}}
+                {{#if (eq model.class.units.length 0)}}
                     {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无课程安排" des="快去添加课程安排吧" btnText="添加课程安排" onBtnClick=(action (mut addArrClassDlg) true)}}
                 {{else}}
                     {{bmtable/bm-table-class-arrcourse titles=model.arrTitles onRemoveArrcourseClick="onRemoveArrcourseClick"}}
@@ -97,7 +93,7 @@
         {{/layout-push}}
     </div>
 </div>
-{{#bmcom/bm-modal-container title="" mswitch=editClassDlg
+{{#bmcom/bm-modal-container title="" mswitch=addArrClassDlg
     successbtncss='exp-modal-confirm'
     cancelbtncss='exp-modal-cancel'
     canceltext='取消'
@@ -117,7 +113,7 @@
                 </div>
             {{/if}}
             {{#layout-push direction="col" classNames='input_area' }}
-                {{bmform/bm-base-select selTitle="选择课程" options=bm_session_service.sessions curSelect=bm_class_service.class.reservableId chooseReservable=true sessionId=bm_class_service.class.SessionInfo.id classNames="input_area area-margin-bottom"}}
+                {{bmform/bm-base-select selTitle="选择课程" options=sessions curSelect=model.class.reservableId chooseReservable=true sessionId=model.class.sessioninfo.id classNames="input_area area-margin-bottom"}}
             {{/layout-push}}
             {{#if noteError}}
                 {{#layout-push direction="row"  classNames='input_area' }}
@@ -133,7 +129,7 @@
     </div>
 {{/bmcom/bm-modal-container}}
 {{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteClassDlg cancelHandled='cancelHandled' successHandled="onDeleteClassClick"}}
-    <p class="warning-modal-body-content">确定要删除「{{bm_class_service.class.classTitle}}」的全部班级信息吗？</p>
+    <p class="warning-modal-body-content">确定要删除「{{model.class.classTitle}}」的全部班级信息吗？</p>
     <p class="warning-modal-body-content">删除班级后与该班级相关的排课信息也会随之删除</p>
 {{/bmcom/bm-warning-modal}}
 
@@ -158,7 +154,7 @@
                 </div>
             {{/if}}
             {{#layout-push direction="col" classNames='input_area' }}
-                {{bmform/bm-base-select selTitle="选择教师" options=bm_tech_service.techs curSelect=addTechId idType=true classNames="input_area area-margin-bottom"}}
+                {{bmform/bm-base-select selTitle="选择教师" options=techs curSelect=addTechId idType=true classNames="input_area area-margin-bottom"}}
             {{/layout-push}}
             {{#layout-push direction="col" classNames='input_area' }}
                 {{bmform/bm-base-select selId="job" selTitle="选择职责" options=jobDuty curSelect=addJobDuty classNames="input_area area-margin-bottom"}}
@@ -167,7 +163,7 @@
     </div>
 {{/bmcom/bm-modal-container}}
 {{#bmcom/bm-warning-modal title="移出班级" mainBtnText="移出" type="error" switchParam=removeTechDlg cancelHandled='cancelHandled' successHandled="onRemoveTeacherClickOk"}}
-    <p class="warning-modal-body-content">确定要将「{{tmpTech.name}}」老师移出「{{bm_class_service.class.classTitle}}」吗？</p>
+    <p class="warning-modal-body-content">确定要将「{{tmpTech.name}}」老师移出「{{model.class.classTitle}}」吗？</p>
 {{/bmcom/bm-warning-modal}}
 
 {{#bmcom/bm-modal-container title="" mswitch=addStudDlg
@@ -181,7 +177,7 @@
             {{#layout-push direction='row'}}
                 <p class="title">添加班级学生</p>
             {{/layout-push}}
-            {{bmform/bm-search-multi-check multiData=bm_stud_service.studs type="" curItems="" filterData=bm_class_service.class.Attendees}}
+            {{bmform/bm-search-multi-check multiData=bm_stud_service.studs type="" curItems="" filterData=model.class.Attendees}}
             {{!-- {{#if noteError}}
                 <div class="form-checked">
                     {{#layout-push direction='row' classNames="error-line"}}
@@ -200,7 +196,7 @@
     </div>
 {{/bmcom/bm-modal-container}}
 {{#bmcom/bm-warning-modal title="移出班级" mainBtnText="移出" type="error" switchParam=removeStudDlg cancelHandled='cancelHandled' successHandled="onRemoveStudClickOk"}}
-    <p class="warning-modal-body-content">确定要将「{{tmpStud.name}}」学生移出「{{bm_class_service.class.classTitle}}」吗？</p>
+    <p class="warning-modal-body-content">确定要将「{{tmpStud.name}}」学生移出「{{model.class.classTitle}}」吗？</p>
 {{/bmcom/bm-warning-modal}}
 
 {{#bmcom/bm-warning-modal title="删除课程安排" mainBtnText="删除" type="error" switchParam=removeStudDlg cancelHandled='cancelHandled' successHandled="onRemoveArrcourseClickOk"}}

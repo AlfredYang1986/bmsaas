@@ -45,7 +45,8 @@ export default Component.extend({
         // console.log(this.handledMultiData)
     },
     deepClone(source){
-        return JSON.parse(JSON.stringify(source));
+        return ''
+        // return JSON.parse(JSON.stringify(source));
     },
 
 });

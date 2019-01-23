@@ -10,9 +10,9 @@
                 {{#each options as |item|}}
                     {{#if chooseReservable}}
                         {{#if (eq curSelect item.id)}}
-                            <option selected value="{{item.id}}{{separator}}{{item.SessionInfo.id}}">{{item.SessionInfo.title}}</option>
+                            <option selected value="{{item.id}}{{separator}}{{item.sessioninfo.id}}">{{item.sessioninfo.title}}</option>
                         {{else}}
-                            <option value="{{item.id}}{{separator}}{{item.SessionInfo.id}}">{{item.SessionInfo.title}}</option>
+                            <option value="{{item.id}}{{separator}}{{item.sessioninfo.id}}">{{item.sessioninfo.title}}</option>
                         {{/if}}
                     {{else if idType}}
                         {{#if (eq curSelect item.id)}}
