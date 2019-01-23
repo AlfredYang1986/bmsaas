@@ -20,11 +20,12 @@ export default Component.extend({
         let client = this.bmOss.get('ossClient');
 
         this.picData.then(data => {
-           let result = data.
+            let result = data.
             filter((item) => {return item.img !== ""}).
             map(v => {return {url: client.signatureUrl(v.img), tag: v.tag}})
            
-           this.images.pushObjects(result)
+        //    this.images.pushObjects(result)
+           this.set("images", result)
         })
     },
     actions: {
@@ -35,12 +36,12 @@ export default Component.extend({
             idx++;
             up++;
             down++;
-            if(idx >= (this.imgs.length - 4)) {
-                up = this.imgs.length - 1;
-                down = this.imgs.length - 4;
+            if(idx >= (this.images.length - 4)) {
+                up = this.images.length - 1;
+                down = this.images.length - 4;
             }
-            if(idx >= (this.imgs.length - 1)) {
-                idx = this.imgs.length - 1;
+            if(idx >= (this.images.length - 1)) {
+                idx = this.images.length - 1;
             }
             this.set('mainPicIdx', idx);
             this.set('listPicIdxUp', up);
