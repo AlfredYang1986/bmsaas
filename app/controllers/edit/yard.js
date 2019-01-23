@@ -5,6 +5,8 @@ export default Controller.extend({
     isPushing: false,
     current_idx: 0,
     changeFlag: false,
+    tempCertImgs: A(),
+    tempYardImgs: A(),
 
     provinces: A(['北京']),
     citys: A(['北京市']),
@@ -17,12 +19,48 @@ export default Controller.extend({
 
     actions: {
         cancelYardBtnClicked() {
-            this.store.unloadRecord(this.model.yard);
+            this.model.yard.unloadRecord();
             this.transitionToRoute("detail.yard")
         },
         saveYardBtnClicked() {
-            this.model.yard.save();
-            this.transitionToRoute("detail.yard")
+            let flag1 = false;
+            let flag2 = false;
+            let flag1Count = 0;
+            let flag2Count = 0;
+            let doneFlag = false;         
+            if(this.tempYardImgs.length === 0) {
+                flag1 = true;
+            }
+            if(this.tempCertImgs.length === 0) {
+                flag2 = true;
+            }
+            if(this.tempYardImgs.length === 0 && this.tempCertImgs.length === 0) {
+                this.saveYard();
+            }
+            this.tempYardImgs.forEach((data, index, arr) => {
+                data.save().then(() => {
+                    flag1Count++
+                    if(flag1Count === arr.length) {
+                        flag1 = true;
+                    }
+                    if(flag1 && flag2 && !doneFlag) {
+                        doneFlag = true;
+                        this.saveYard();
+                    }
+                });
+            })
+            this.tempCertImgs.forEach((data, index, arr) => {
+                data.save().then(() => {
+                    flag2Count++
+                    if(flag2Count === arr.length) {
+                        flag2 = true;
+                    }
+                    if(flag1 && flag2 && !doneFlag) {
+                        doneFlag = true;
+                        this.saveYard();
+                    }
+                });
+            })
         },
         multiCheckOnClick(value) {
 
@@ -50,6 +88,15 @@ export default Controller.extend({
             // tempArr.pushObject(newObj);
             // this.set('bm_yard_service.yard.Certifications', tempArr);
             // console.log(this.bm_yard_service.yard.Certifications)
+
+            let tempCertImg = this.store.createRecord("image", {"flag": 2})
+            this.tempCertImgs.pushObject(tempCertImg)
+            console.log(tempCertImg)
+            console.log(this.tempCertImgs)
+            
+            // tempCertImgs()
+
+
         },
         addYardPicOnClick() {
             // let newObj = this.bm_yard_service.genNewImgObj('BmTagImg');
@@ -63,9 +110,17 @@ export default Controller.extend({
         },
         deleteCertImg(param) {
             // this.bm_yard_service.yard.Certifications.removeObject(param);
+
         },
         deleteYardImg(param) {
             // this.bm_yard_service.yard.Tagimgs.removeObject(param);
         }
     },
+
+    saveYard() {
+        this.model.yard.set("images", this.tempYardImgs)
+        this.model.yard.get("images").pushObjects(this.tempCertImgs)
+        console.log(this.model.yard)
+        this.model.yard.save().then(this.transitionToRoute("detail.yard"));
+    }
 });

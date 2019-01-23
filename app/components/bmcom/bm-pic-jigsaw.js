@@ -19,14 +19,13 @@ export default Component.extend({
     initPicJigsaw() {
         let client = this.bmOss.get('ossClient');
 
-        window.console.log(typeof(this.picData));
-        
         this.picData.then(data => {
-           let result = data.
+            let result = data.
             filter((item) => {return item.img !== ""}).
             map(v => {return {url: client.signatureUrl(v.img), tag: v.tag}})
            
-           this.images.pushObjects(result)
+        //    this.images.pushObjects(result)
+           this.set("images", result)
         })
     },
     actions: {
