@@ -9,8 +9,8 @@ export default Route.extend({
             let onSuccess = function() {
                 stud.guardians.pushObject(gard)
             }
-            let stud = this.store.createRecord('student');
-            let gard = this.store.createRecord('guardian');
+            let stud = this.store.createRecord('student', {"brandId": localStorage.getItem("brandid")});
+            let gard = this.store.createRecord('guardian', {"brandId": localStorage.getItem("brandid")});
             gard.save().then(onSuccess).catch()
             // stud.guardians.pushObject(gard);
 
