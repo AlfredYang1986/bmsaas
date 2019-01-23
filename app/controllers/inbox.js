@@ -18,7 +18,24 @@ export default Controller.extend({
     },
 
     applies: computed('cur_tab_idx', 'cur_reserve_type', function() {
-        return this.store.query('apply', { 'page[number]': 1, 'page[size]': 20, "brand-id": localStorage.getItem("brandid")})
+        debugger
+        let today = new Date();
+        today.setHours(0);
+        today.setMinutes(0);
+        today.setSeconds(0);
+        today.setMilliseconds(0);
+        console.log(today);
+
+        if(this.cur_tab_idx == 1 && this.cur_reserve_type == 0) {
+            return this.store.query('apply', { 'page[number]': 1, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), 'course-type': -1})
+        } else if(this.cur_tab_idx == 0 && this.cur_reserve_type == 0){
+            return this.store.query('apply', { 'page[number]': 1, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), "ne[course-type]": -1})
+        } else if(this.cur_tab_idx == 1 && this.cur_reserve_type == 1) {
+            return this.store.query('apply', { 'page[number]': 1, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), 'course-type': -1, 'gte[apply-time]': today.getTime()})
+        } else if (this.cur_tab_idx == 0 && this.cur_reserve_type == 1) {
+            return this.store.query('apply', { 'page[number]': 1, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), "ne[course-type]": -1, 'gte[apply-time]': today.getTime()})
+        }
+
     }),
     page_count: computed('cur_tab_idx', 'cur_reserve_type', function(){
         return Number.parseInt(localStorage.getItem('applies'));

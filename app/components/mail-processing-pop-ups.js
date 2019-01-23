@@ -19,11 +19,9 @@ export default Component.extend({
     sr: computed('srClasses', function() {
         return this.srClasses;
     }),
-    // mock_data: service(),
-    // bm_actv_service: service(),
-    // bm_exp_service: service(),
-    // bm_yard_service: service(),
-    // bm_sessionable_service: service(),
+    sa: computed('saClasses', function() {
+        return this.saClasses;
+    }),
     positionalParams: ['saClasses','srClasses','exp', 'actv', 'apply', 'selectedReservable', 'selectedYard', 'selectedDate', 'selectedActivity', 'selectedSession', 'innerCat', 'courseType', 'noteError', 'noSr', 'noSy', 'noSa', 'noSs'],
     courseReserve: true,
     experienceApply: false,
@@ -36,8 +34,6 @@ export default Component.extend({
 
     exp_session_lst: computed('selectedReservable', function(){
         let reservableitemid = this.selectedReservable;
-        // this.bm_sessionable_service.set('reservableid', this.selectedReservable);
-        // this.bm_sessionable_service.set('refresh_all_token', this.bm_sessionable_service.guid());
         return '';
     }),
 

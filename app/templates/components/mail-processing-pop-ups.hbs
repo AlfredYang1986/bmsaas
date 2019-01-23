@@ -24,6 +24,7 @@
                             <p class="btn btn-primary course-reserve-btn" >体验课</p>
                         {{/layout-push}}
                     {{/layout-push}}
+
                     {{#layout-push direction='row' classNames="line-list"}}
                         <p class="course-reserve-label select-title">参与内容</p>
                         {{#if noSr}}
@@ -41,28 +42,27 @@
                                {{/each}}
                            </select>
                         {{/if}}
-
-
                     {{/layout-push}}
+
                     {{#layout-push direction='row' classNames="line-area"}}
                         <p class="course-reserve-label select-title">场次安排</p>
                         {{#if noSy}}
                             <select class="course-reserve-modal-select error-border" id='yardselect' name="" onChange={{action 'yardChanged'}}>
                                 <option value="">请选择场次安排</option>
                                 {{#each sr as |item|}}
-                                    {{log item}}
+                                    <option value={{item.id}}>{{bmdob/bmdobformat item.startDate}}至{{bmdob/bmdobformat item.endDate}} {{item.yard.title}} -</option>
                                 {{/each}}
                             </select>
                         {{else}}
                             <select class="course-reserve-modal-select" id='yardselect' name="" onChange={{action 'yardChanged'}}>
                                 <option value="">请选择场次安排</option>
                                 {{#each sr as |item|}}
-                                    {{log item}}
                                     <option value={{item.id}}>{{bmdob/bmdobformat item.startDate}}至{{bmdob/bmdobformat item.endDate}} {{item.yard.title}} -</option>
                                 {{/each}}
                             </select>
                         {{/if}}
                     {{/layout-push}}
+
                     {{#layout-push direction='row' classNames="line-container line-list"}}
                         <p class="course-reserve-label">申请者</p>
                         <p class="course-reserve-content">
@@ -81,17 +81,15 @@
 
                     <p class="course-reserve-label">孩子信息</p>
                     {{#layout-push direction='row' classNames="line-container card-area"}}
-                            {{#each apply.kids as |item|}}
-                                {{bmcard/bm-kid-card kid=item classNames="card-info"}}
-                            {{/each}}
+                        {{#each apply.kids as |item|}}
+                            {{bmcard/bm-kid-card kid=item classNames="card-info"}}
+                        {{/each}}
                     {{/layout-push}}
                 {{/layout-push}}
             {{/if}}
+
             {{#if experienceApply}}
                 {{#layout-push direction='col'}}
-                    {{!-- {{#layout-push direction='row' classNames="line-list"}}
-                        <p class="course-reserve-label"><span class="base-info">请与参与者确认参与内容及安排</span></p>
-                    {{/layout-push}} --}}
                     {{#if noteError}}
                         <div class="form-checked">
                             {{#layout-push direction='row' classNames="error-line"}}
@@ -110,6 +108,7 @@
                         <p class="btn btn-primary experience-apply-btn" {{action 'toggleAction'}}>体验课</p>
                         {{/layout-push}}
                     {{/layout-push}}
+
                     {{#layout-push direction='col' classNames="line-list"}}
                         <p class="course-reserve-label select-title">参与内容</p>
                         {{#if noSa}}
@@ -127,36 +126,22 @@
                                {{/each}}
                             </select>
                         {{/if}}
-
-
                     {{/layout-push}}
+
                     {{#layout-push direction='col' classNames="line-area"}}
                         <p class="course-reserve-label select-title">场次安排</p>
-                        {{!-- {{#bm-select/bm-select-box classNames='course-reserve-modal-select' id='sessionselect' onChange=(action 'sessionChanged')}}
-                            <option value="">请选择场次安排</option>
-                            {{#each bm_sessionable_service.sessionables as |item|}}
-                                <option value={{item.id}}>{{bmdob/bmdobformat item.start_date}} - {{item.Yard.address}}</option>
-                            {{/each}}
-                            {{act_session_lst}}
-                        {{/bm-select/bm-select-box}} --}}
                         {{#if noSs}}
                             <select class="course-reserve-modal-select error-border" id='sessionselect' name="" onChange={{action 'sessionChanged'}}>
                               <option value="">请选择场次安排</option>
-                              {{#each exp as |list|}}
-                                  {{#each list.classes as |item|}}
-                                      <option value={{item.id}}>{{bmdob/bmdobformat item.startDate}} - {{item.yard.address}}</option>
-                                      {{item.yard.title}}  {{item.yard.address}}
-                                  {{/each}}
+                              {{#each sa as |item|}}
+                                  <option value={{item.id}}>{{bmdob/bmdobformat item.startDate}}至{{bmdob/bmdobformat item.endDate}} {{item.yard.title}} -</option>
                               {{/each}}
                             </select>
                         {{else}}
                             <select class="course-reserve-modal-select" id='sessionselect' name="" onChange={{action 'sessionChanged'}}>
                               <option value="">请选择场次安排</option>
-                              {{#each exp as |list|}}
-                                  {{#each list.classes as |item|}}
-                                      <option value={{item.id}}>{{bmdob/bmdobformat item.startDate}} - {{item.yard.address}}</option>
-                                      {{item.yard.title}}  {{item.yard.address}}
-                                  {{/each}}
+                              {{#each sa as |item|}}
+                                  <option value={{item.id}}>{{bmdob/bmdobformat item.startDate}}至{{bmdob/bmdobformat item.endDate}} {{item.yard.title}} -</option>
                               {{/each}}
                             </select>
                         {{/if}}
