@@ -19,6 +19,8 @@ export default Component.extend({
     initPicJigsaw() {
         let client = this.bmOss.get('ossClient');
 
+        window.console.log(typeof(this.picData));
+        
         this.picData.then(data => {
            let result = data.
             filter((item) => {return item.img !== ""}).
@@ -35,12 +37,12 @@ export default Component.extend({
             idx++;
             up++;
             down++;
-            if(idx >= (this.imgs.length - 4)) {
-                up = this.imgs.length - 1;
-                down = this.imgs.length - 4;
+            if(idx >= (this.images.length - 4)) {
+                up = this.images.length - 1;
+                down = this.images.length - 4;
             }
-            if(idx >= (this.imgs.length - 1)) {
-                idx = this.imgs.length - 1;
+            if(idx >= (this.images.length - 1)) {
+                idx = this.images.length - 1;
             }
             this.set('mainPicIdx', idx);
             this.set('listPicIdxUp', up);
