@@ -4,10 +4,17 @@ import { A } from '@ember/array';
 
 export default Route.extend({
     model() {
-        // let yardid = "5c4191588fb807574ac84659";
+        var tmp = this.store.query('yard', {"brand-id": localStorage.getItem("brandid")}).then(res => {
+            return new Promise(function(resolve, reject) {
+                if (res.length == 0) {
+                    resolve(null)
+                } else {
+                    resolve(res.firstObject)
+                }
+            }) 
+        })
         return RSVP.hash({
-            // yardid: yardid,
-            yard: this.store.query('yard', {"brand-id": localStorage.getItem("brandid")}),
+            yard: tmp,
             tabs: A(['校区信息', '教室/场地']),
             titles: A(["教室名称","使用类型",""]),
         })
