@@ -1,74 +1,31 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
+import { A } from '@ember/array';
 
 export default Component.extend({
     positionalParams: ['picData'],
+    images: A(),
     classNames: ['pic-jigsaw'],
     bmOss: service(),
     isMorePic: false,
     mainPicIdx: 0,
     listPicIdxUp: 3,
     listPicIdxDown: 0,
-    // imgs: null,
-    imgs: computed("picData", function(){
-        // TODO: 重渲染问题 hbs没绑上
-        let client = this.bmOss.get('ossClient');
-        let tempImgs = [];
-        // if (this.picData.length != 0) {
-        let that = this
-        let onSuccess = function() {
-            // console.log(that.picData)
-            for (let index = 0; index < that.picData.length; index++) {
-                if(that.picData.objectAt(index).img == "") {
-                    // debugger
-                    return;
-                }
-                let url = client.signatureUrl(that.picData.objectAt(index).img);
-                let tag = that.picData.objectAt(index).tag;
-                let tempImg = {url, tag};
-                tempImgs.push(tempImg);
-                // debugger
-                return tempImgs;
-            }
-        }
-        let onFail = function() {}
-        if (this.picData) {
-            this.picData.then(onSuccess, onFail)
-        }
-        // }
-        // console.log(tempImgs)
-        // debugger
-        // this.rerender() 
-    }),
-    didReciveAttrs() {
-        // let client = this.bmOss.get('ossClient');
-        // let tempImgs = [];
-        // // if (this.picData.length != 0) {
-        // let that = this
-        // let onSuccess = function() {
-        //     console.log(that.picData)
-        //     for (let index = 0; index < that.picData.length; index++) {
-        //         if(that.picData.objectAt(index).img == "") {
-        //             return;
-        //         }
-        //         let url = client.signatureUrl(that.picData.objectAt(index).img);
-        //         let tag = that.picData.objectAt(index).tag;
-        //         let tempImg = {url, tag};
-        //         tempImgs.push(tempImg);
-        //     }
-        //     this.set("imgs", tempImgs)
-        //     this.rerender()
-        //     console.log(that.imgs)
+    init() {
+        this._super(...arguments);
 
-        // }
-        // let onFail = function() {}
-        // this.picData.then(onSuccess, onFail)
-        // // }
-        // console.log(tempImgs)
-        // // debugger
-        // // this.rerender() 
-        // // return tempImgs;
+        this.initPicJigsaw()
+    },
+    initPicJigsaw() {
+        let client = this.bmOss.get('ossClient');
+
+        this.picData.then(data => {
+           let result = data.
+            filter((item) => {return item.img !== ""}).
+            map(v => {return {url: client.signatureUrl(v.img), tag: v.tag}})
+           
+           this.images.pushObjects(result)
+        })
     },
     actions: {
         nextPic() {
