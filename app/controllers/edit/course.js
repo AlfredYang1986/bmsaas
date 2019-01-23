@@ -5,10 +5,23 @@ import { debug } from '@ember/debug';
 export default Controller.extend({
     actions: {
         saveCourseBtnClicked() {
-
+            let that = this;
+            let onSuccess = function () {
+                that.transitionToRoute('detail.course', that.model.course.id);
+            }
+            let onFail = function ( /*err*/ ) {
+                debug('error');
+            }
+            this.model.course.save().then(onSuccess, onFail);
         },
-        reserveCourse() {
-            this.transitionToRoute('courseReserve');
+        cancelCourseBtnClicked() {
+            if(this.model.isPushing) {
+                this.store.unloadRecord(this.model.course)
+                this.transitionToRoute('course');
+            } else {
+                this.store.unloadRecord(this.model.course);
+                this.transitionToRoute('detail.course', this.model.courseid);
+            }
         },
     },
 });

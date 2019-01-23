@@ -2,9 +2,9 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 
 export default Component.extend({
-    bm_session_service: service(),
+    // bm_session_service: service(),
     positionalParams: ['session'],
-
+    
     actions: {
         addPicOnClick() {
             // let newObj = this.bm_session_service.genNewImgObj('BmTagImg');

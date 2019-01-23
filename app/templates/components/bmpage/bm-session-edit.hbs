@@ -1,6 +1,8 @@
 {{#layout-push direction='row' split=true classNames='edit_nav'}}
     {{#if (bmeq session.status 1)}}
         <span>编辑体验课信息</span>
+    {{else if (bmeq session.status 2)}}
+        <span>编辑课程信息</span>
     {{else}}
         <span>编辑活动信息</span>
     {{/if}}
@@ -13,6 +15,8 @@
 {{#layout-push direction='row' split=true classNames='edit_container' }}
     {{!-- {{bmsessioninfo/bm-input-menu cur_page_idx=cur_page_idx status=session.status}} --}}
     {{#if (bmeq session.status 1)}}
+        {{bmsessioninfo/bm-input-menu-bar cur_page_idx=cur_page_idx describe=describe guide=guide  status=session.status}}
+    {{else if (bmeq session.status 2)}}
         {{bmsessioninfo/bm-input-menu-bar cur_page_idx=cur_page_idx describe=describe guide=guide  status=session.status}}
     {{else}}
         {{bmsessioninfo/bm-input-menu-bar-actv cur_page_idx=cur_page_idx describe=describe guide=guide  status=session.status}}
