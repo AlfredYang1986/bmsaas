@@ -4,7 +4,6 @@ import { A } from '@ember/array';
 
 export default Route.extend({
     model(params) {
-        debugger
         if (params.studid == "stud/push") {
             let onSuccess = function() {
                 stud.guardians.pushObject(gard)
@@ -31,14 +30,18 @@ export default Route.extend({
             //         tech = that.store.createRecord('teacher')
             //     }
             // }
-            let stud = this.store.find('student', params.studid);
+            let str = params.studid;
+            let paramsArr = str.split(' ');
+            let studid = paramsArr[0];
+            let applyid = paramsArr[1];
+            let stud = this.store.find('student', studid);
             let techs = this.store.query('teacher', {"brand-id": localStorage.getItem("brandid")});
             return RSVP.hash({
                 isPushing: false,
                 stud: stud,
                 gards: stud.guardians,
                 techs: techs,
-                // tech: tech,
+                applyid: applyid
             })
         }
     },

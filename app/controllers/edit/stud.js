@@ -38,14 +38,23 @@ export default Controller.extend({
 
     actions: {
         cancelInputBtnClicked() {
-            this.store.unloadRecord(this.model.stud);
-            if (this.model.isPushing) {
-                this.transitionToRoute("stud")
+            let that = this
+            if(this.model.applyid != undefined) {
+                that.model.stud.deleteRecord();
+                that.model.stud.save();
+                that.transitionToRoute("inbox")
             } else {
-                this.transitionToRoute("detail.stud", this.model.stud.id)
+                this.store.unloadRecord(this.model.stud);
+                if (this.model.isPushing) {
+                    this.transitionToRoute("stud")
+                } else {
+                    this.transitionToRoute("detail.stud", this.model.stud.id)
+                }
             }
+
         },
         saveInputBtnClicked() {
+            let that = this;
             let tmpTech = null;
             if(this.cur_tech_id != null) {
                 tmpTech = this.store.peekRecord("teacher", this.cur_tech_id);
@@ -57,11 +66,21 @@ export default Controller.extend({
                 this.model.stud.guardians.objectAt(idx).save()
             }
             this.model.stud.save();
+            if(this.model.applyid != undefined) {
+                let onSuccess = function(res) {
+                    let apply = res;
+                    apply.set('status', 1);
+                    apply.save();
+                }
+                let onFail = function() {}
+                that.store.find('apply', that.model.applyid).then(onSuccess, onFail)
+            }
             if (this.model.isPushing) {
                 this.transitionToRoute("stud")
             } else {
                 this.transitionToRoute("detail.stud", this.model.stud.id)
             }
+
         },
         selectedOrigin() {
             let sel = document.getElementById("originSelect");
