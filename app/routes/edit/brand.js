@@ -3,13 +3,20 @@ import RSVP from 'rsvp';
 
 export default Route.extend({
     model() {
-        // let tmp = '5c4178918fb8073d04e89793';
+        // let brand = null;
+        var tmp = this.store.find('brand', localStorage.getItem("brandid")).then(data => {
+            return new Promise(function(resolve, reject) {
+                resolve(data)
+            }) 
+        })
         return RSVP.hash({
-            brand: this.store.query('brand', {"brand-id": localStorage.getItem("brandid")})
+            brand: tmp
         })
     },
     setupController(controller, model) {
         this._super(controller, model);
         controller.set('cur_idx', 0);
+        controller.set('tempHonorImgs', model.brand.images.filter((item) => {return item.flag === 1}));
+        controller.set('tempCertImgs', model.brand.images.filter((item) => {return item.flag === 2}));
     },
 });

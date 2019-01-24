@@ -6,14 +6,56 @@ export default Controller.extend({
     listInputs: A([]),
     cur_idx: 0,
     cateArr: A([{name: '音樂'}, {name: '藝術'}, {name: '運動'}, {name: '科學'}, {name: 'steam'}]),
+
+    tempHonorImgs: A(),
+    tempCertImgs: A(),
+
     actions: {
         cancelBrandClicked() {
             this.store.unloadRecord(this.model.brand);
             this.transitionToRoute("home")
         },
         saveBrand() {
-            this.model.brand.save();
-            this.transitionToRoute("home")
+            // this.model.brand.save();
+            // this.transitionToRoute("home")
+            let flag1 = false;
+            let flag2 = false;
+            let flag1Count = 0;
+            let flag2Count = 0;
+            let doneFlag = false;         
+            if(this.tempHonorImgs.length === 0) {
+                flag1 = true;
+            }
+            if(this.tempCertImgs.length === 0) {
+                flag2 = true;
+            }
+            if(this.tempHonorImgs.length === 0 && this.tempCertImgs.length === 0) {
+                this.saveBrand();
+            }
+            this.tempHonorImgs.forEach((data, index, arr) => {
+                data.save().then(() => {
+                    flag1Count++
+                    if(flag1Count === arr.length) {
+                        flag1 = true;
+                    }
+                    if(flag1 && flag2 && !doneFlag) {
+                        doneFlag = true;
+                        this.saveBrand();
+                    }
+                });
+            })
+            this.tempCertImgs.forEach((data, index, arr) => {
+                data.save().then(() => {
+                    flag2Count++
+                    if(flag2Count === arr.length) {
+                        flag2 = true;
+                    }
+                    if(flag1 && flag2 && !doneFlag) {
+                        doneFlag = true;
+                        this.saveBrand();
+                    }
+                });
+            })
         },
         selectedCate() {
             let sel = document.getElementById("cateSelect");
@@ -24,30 +66,23 @@ export default Controller.extend({
             }
         },
         addHonorPicOnClick() {
-            // let newObj = this.bm_brand_service.genNewImgObj('BmHonor');
-            // newObj.tag = "initTag"
-            // let tempArr = [];
-            // if (this.bm_brand_service.brand.Honors !== null) {
-            //     tempArr = this.bm_brand_service.brand.Honors;
-            // }
-            // tempArr.pushObject(newObj);
-            // this.set('bm_brand_service.brand.Honors', tempArr)
-        },
-        deleteHonorImg(param) {
-            // this.bm_brand_service.brand.Honors.removeObject(param);
+            let tempHonorImg = this.store.createRecord("image", {"flag": 1})
+            this.tempHonorImgs.pushObject(tempHonorImg)
         },
         addCertPicOnClick() {
-            // let newObj = this.bm_brand_service.genNewImgObj('BmCertification');
-            // newObj.tag = "initTag"
-            // let tempArr = [];
-            // if (this.bm_brand_service.brand.Certifications !== null) {
-            //     tempArr = this.bm_brand_service.brand.Certifications;
-            // }
-            // tempArr.pushObject(newObj);
-            // this.set('bm_brand_service.brand.Certifications', tempArr)
+            let tempCertImg = this.store.createRecord("image", {"flag": 2})
+            this.tempCertImgs.pushObject(tempCertImg)
+        },
+        deleteHonorImg(param) {
+            this.tempHonorImgs.removeObject(param);
         },
         deleteCertImg(param) {
-            // this.bm_brand_service.brand.Certifications.removeObject(param);
+            this.tempCertImgs.removeObject(param);
         },
     },
+    saveBrand() {
+        this.model.brand.set("images", this.tempHonorImgs)
+        this.model.brand.get("images").pushObjects(this.tempCertImgs)
+        this.model.brand.save().then(this.transitionToRoute("home"));
+    }
 });

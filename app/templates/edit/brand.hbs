@@ -120,15 +120,15 @@
         <span class="edit_subtitle ">如:2016-年度中国最具价值品牌服务机构奖</span>
         <span class="edit_subtitle_nomargin ">每张图片小于100 KB，至多添加5项</span>
         <div class='line_conatainer_warp'>
-            {{#each model.brand.Honors as |item|}}
+            {{#each tempHonorImgs as |item|}}
                 {{bmcom/bm-img-uploader needTag=true canEdit=true canEditTag=true canDeleteImg=false canDeleteObj=true imgObj=item img=item.img tag=item.tag onDeleteObj=(action "deleteHonorImg") classNames='brand-honor-pic-upload'}}
             {{/each}}
-            {{#if (bmcom/bm-nil-obj model.brand.Honors)}}
+            {{#if (bmcom/bm-nil-obj tempHonorImgs)}}
                 {{#layout-push direction='row' mid=true classNames="add-img-div"}}
                     <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addHonorPicOnClick"}}/>
                 {{/layout-push}}
             {{else}}
-                {{#if (lt model.brand.Honors.length 5)}}
+                {{#if (lt tempHonorImgs.length 5)}}
                     {{#layout-push direction='row' mid=true classNames="add-img-div"}}
                         <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addHonorPicOnClick"}}/>
                     {{/layout-push}}
@@ -154,15 +154,15 @@
         <span class="edit_subtitle_nomargin ">每张图片小于100 KB，至多添加5项</span>
 
         <div class='line_conatainer_warp'>
-            {{#each model.brand.Certifications as |item|}}
+            {{#each tempCertImgs as |item|}}
                 {{bmcom/bm-img-uploader needTag=true canEdit=true canEditTag=true canDeleteImg=false canDeleteObj=true imgObj=item img=item.img tag=item.tag onDeleteObj=(action "deleteCertImg") classNames='brand-cert-pic-upload'}}
             {{/each}}
-            {{#if (bmcom/bm-nil-obj model.brand.Certifications)}}
+            {{#if (bmcom/bm-nil-obj tempCertImgs)}}
                 {{#layout-push direction='row' mid=true classNames="add-img-div"}}
                     <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addCertPicOnClick"}}/>
                 {{/layout-push}}
             {{else}}
-                {{#if (lt model.brand.Certifications.length 5)}}
+                {{#if (lt tempCertImgs.length 5)}}
                     {{#layout-push direction='row' mid=true classNames="add-img-div"}}
                         <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addCertPicOnClick"}}/>
                     {{/layout-push}}

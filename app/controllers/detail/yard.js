@@ -178,6 +178,6 @@ export default Controller.extend({
         },
     },
     checkValidate() {
-        return this.tempRoom.title != "";
+        return this.tempRoomTitle != "";
     },
 });

@@ -1,7 +1,7 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-    brandId: DS.attr('string'),
+    brandId: DS.attr('string', { defaultValue: localStorage.getItem("brandid")}),
     createTime: DS.attr('number'),
     endDate: DS.attr('number'),
     startDate: DS.attr('number'),

@@ -2,22 +2,21 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 
 export default Component.extend({
-    // bm_session_service: service(),
+    store: service(),
     positionalParams: ['session'],
-    
+    tempImgs: null,
+
+    didReceiveAttrs() {
+        this.set("tempImgs", this.session.images);
+    },
     actions: {
         addPicOnClick() {
-            // let newObj = this.bm_session_service.genNewImgObj('BmTagImg');
-            // newObj.tag = "initTag"
-            // let tempArr = [];
-            // if (this.session.Tagimgs !== null) {
-                // tempArr = this.session.Tagimgs;
-            // }
-            // tempArr.pushObject(newObj);
-            // this.set('session.Tagimgs', tempArr)
+            let tempImg = this.store.createRecord("image")
+            this.tempImgs.pushObject(tempImg)
         },
         deleteImg(param) {
-            // this.session.Tagimgs.removeObject(param);
+            this.tempImgs.removeObject(param);
+            // this.store.deleteRecord(param)
         },
     },
 });

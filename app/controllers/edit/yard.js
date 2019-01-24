@@ -78,49 +78,25 @@ export default Controller.extend({
 
             this.model.yard.set('facilities', tempArr);
         },
+        addYardPicOnClick() {
+            let tempYardImg = this.store.createRecord("image", {"flag": 0})
+            this.tempYardImgs.pushObject(tempYardImg)
+        },
         addCertPicOnClick() {
-            // let newObj = this.bm_yard_service.genNewImgObj('BmCertification');
-            // newObj.tag = "initTag"
-            // let tempArr = [];
-            // if (this.bm_yard_service.yard.Certifications !== null) {
-            //     tempArr = this.bm_yard_service.yard.Certifications;
-            // }
-            // tempArr.pushObject(newObj);
-            // this.set('bm_yard_service.yard.Certifications', tempArr);
-            // console.log(this.bm_yard_service.yard.Certifications)
-
             let tempCertImg = this.store.createRecord("image", {"flag": 2})
             this.tempCertImgs.pushObject(tempCertImg)
-            console.log(tempCertImg)
-            console.log(this.tempCertImgs)
-            
-            // tempCertImgs()
-
-
-        },
-        addYardPicOnClick() {
-            // let newObj = this.bm_yard_service.genNewImgObj('BmTagImg');
-            // newObj.tag = "initTag"
-            // let tempArr = [];
-            // if (this.bm_yard_service.yard.Tagimgs !== null) {
-            //     tempArr = this.bm_yard_service.yard.Tagimgs;
-            // }
-            // tempArr.pushObject(newObj);
-            // this.set('bm_yard_service.yard.Tagimgs', tempArr)
-        },
-        deleteCertImg(param) {
-            // this.bm_yard_service.yard.Certifications.removeObject(param);
-
         },
         deleteYardImg(param) {
-            // this.bm_yard_service.yard.Tagimgs.removeObject(param);
-        }
+            this.tempYardImgs.removeObject(param);
+        },
+        deleteCertImg(param) {
+            this.tempCertImgs.removeObject(param);
+        },
     },
 
     saveYard() {
         this.model.yard.set("images", this.tempYardImgs)
         this.model.yard.get("images").pushObjects(this.tempCertImgs)
-        console.log(this.model.yard)
         this.model.yard.save().then(this.transitionToRoute("detail.yard"));
     }
 });

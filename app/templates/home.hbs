@@ -69,7 +69,7 @@
                         <p class="brand_detail_list_title">品牌荣誉</p>
                         {{#layout-push direction="row" classNames="detail_reward_content"}}
                             {{#each model.brand.images as |item|}}
-                                {{#if (eq item.flag 0)}}
+                                {{#if (eq item.flag 1)}}
                                     {{!-- {{bmcom/bm-img-uploader needTag=true canEdit=false img=item.img tag=item.tag classNames='detail_reward_content_honor'}} --}}
                                     {{bmcom/bm-img-uploader needTag=true canEdit=false img=item.img tag=item.tag classNames='detail_reward_content_cert'}}
                                 {{/if}}
@@ -80,7 +80,7 @@
                         <p class="brand_detail_list_title">资质认证</p>
                         {{#layout-push direction="row" classNames="detail_reward_content"}}
                             {{#each model.brand.images as |item|}}
-                                {{#if (eq item.flag 1)}}
+                                {{#if (eq item.flag 2)}}
                                     {{bmcom/bm-img-uploader needTag=true canEdit=false img=item.img tag=item.tag classNames='detail_reward_content_cert'}}
                                 {{/if}}
                             {{/each}}

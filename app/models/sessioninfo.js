@@ -5,7 +5,7 @@ export default DS.Model.extend({
     acquisition: DS.attr(),
     alb: DS.attr('number'),
     aub: DS.attr('number'),
-    brandId: DS.attr('string'),
+    brandId: DS.attr('string', { defaultValue: localStorage.getItem("brandid")}),
     carrying: DS.attr(),
     count: DS.attr('number'),
     cover: DS.attr('string'),

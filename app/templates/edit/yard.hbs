@@ -200,15 +200,15 @@
                 <span class='edit_sub_title'>每张图片小于150KB，至多上传9项</span>
                 {{#layout-push direction='row'}}
                     <div class='line_conatainer_warp'>
-                        {{#each model.yard.Tagimgs as |item|}}
+                        {{#each tempYardImgs as |item|}}
                             {{bmcom/bm-img-uploader needTag=true canEdit=true canEditTag=true canDeleteImg=false canDeleteObj=true imgObj=item img=item.img tag=item.tag onDeleteObj=(action "deleteYardImg") classNames='alt-yard-edit-tag-img-adjust'}}
                         {{/each}}
-                        {{#if (bmcom/bm-nil-obj tempCertImgs)}}
+                        {{#if (bmcom/bm-nil-obj tempYardImgs)}}
                             {{#layout-push direction='row' mid=true classNames="add-img-div"}}
                                 <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addYardPicOnClick"}}/>
                             {{/layout-push}}
                         {{else}}
-                            {{#if (lt tempCertImgs.length 9)}}
+                            {{#if (lt tempYardImgs.length 9)}}
                                 {{#layout-push direction='row' mid=true classNames="add-img-div"}}
                                     <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addYardPicOnClick"}}/>
                                 {{/layout-push}}
