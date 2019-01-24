@@ -201,7 +201,7 @@
         {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs}}
 
         {{#if (bmeq cur_idx 0)}}
-            {{#if (bmcom/bm-nil-obj model.actv.classes)}}
+            {{#if (eq model.actv.classes.length 0)}}
                 {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="暂无场次" des="点击右上角添加场次，安排活动时间与场地吧"}}
             {{else}}
                 {{bmpage/bm-sessionable-lst titles=model.titles listData=model.actv.classes action="linkToActvField" onEditSessionClick="onEditSessionClick" onDeleteSessionClick="onDeleteSessionClick"}}

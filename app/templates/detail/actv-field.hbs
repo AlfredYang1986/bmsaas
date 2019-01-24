@@ -54,10 +54,10 @@
                 {{/layout-push}}
             {{/layout-push}}
         </div>
-        {{#if (bmcom/bm-nil-obj model.class.students)}}
+        {{#if (eq model.class.students.length 0)}}
             {{bmcom/bm-empty-state class="field-empty-state" picUrl="/images/img_empty@2x.png" title="暂无参与者" des="暂无数据"}}
         {{else}}
-            {{bmtable/bm-table-course-field  title=tableTitle attendees=bm_sessionable_service.curAttendeesPage action=""}}
+            {{bmtable/bm-table-course-field  title=tableTitle attendees=model.class.students action=""}}
             {{!-- {{bmcom/bm-pagination pageCount=bm_sessionable_service.attendeesPageCount sendPageNum=(action "handlePageChange")}} --}}
         {{/if}}
     </div>

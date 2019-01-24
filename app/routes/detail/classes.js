@@ -1,10 +1,10 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
-import { inject as service } from '@ember/service';
+// import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 
 export default Route.extend({
-    mock_data: service(),
+    // mock_data: service(),
     model(params) {
         return RSVP.hash({
             classid : params.classid,
@@ -13,6 +13,7 @@ export default Route.extend({
             studTitles: A(['姓名', '性别', '年龄', '联系方式', '']),
             arrTitles: A(['课次', '时间', '教室', '']),
             class: this.store.findRecord('class', params.clsid),
+            courses: this.store.query('sessioninfo', { "brand-id": localStorage.getItem("brandid"), "status": 2}),
             studentTableHead: [{
                 title:"姓名"
             },{

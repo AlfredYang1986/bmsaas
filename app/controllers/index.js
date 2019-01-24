@@ -15,7 +15,7 @@ export default Controller.extend({
                         localStorage.setItem('brandid', res.result["brand-id"]);
                         // that.bm_brand_service.set('brandid', res.data.attributes.brandId);
                         // document.cookie.write('token', res.token, { path: '/' });
-                        document.cookie="token="+res.result.token;
+                        // document.cookie="token="+res.result.token;
                         that.setCookie("token",res.result.token,365*24)
                         // that.bm_brand_service.set('refresh_token', that.bm_brand_service.guid());
                         that.set('errorInfo', false);

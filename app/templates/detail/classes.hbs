@@ -93,7 +93,7 @@
         {{/layout-push}}
     </div>
 </div>
-{{#bmcom/bm-modal-container title="" mswitch=addArrClassDlg
+{{#bmcom/bm-modal-container title="" mswitch=editClassDlg
     successbtncss='exp-modal-confirm'
     cancelbtncss='exp-modal-cancel'
     canceltext='取消'
@@ -113,7 +113,7 @@
                 </div>
             {{/if}}
             {{#layout-push direction="col" classNames='input_area' }}
-                {{bmform/bm-base-select selTitle="选择课程" options=sessions curSelect=model.class.reservableId chooseReservable=true sessionId=model.class.sessioninfo.id classNames="input_area area-margin-bottom"}}
+                {{bmform/bm-base-select selTitle="选择课程" options=model.courses curSelect=model.class.reservableId chooseReservable=true sessionId=model.class.sessioninfo.id classNames="input_area area-margin-bottom"}}
             {{/layout-push}}
             {{#if noteError}}
                 {{#layout-push direction="row"  classNames='input_area' }}

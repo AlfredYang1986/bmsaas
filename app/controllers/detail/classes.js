@@ -23,11 +23,11 @@ export default Controller.extend({
     // tmpUnit: null,
 
     cur_idx: 0,
-    sessions: computed(function(){
-        // TODO : 这里为啥是reservalbeitem， 问产品
-        return this.store.findAll('reservableitem');
-        // return this.store.findAll('sessioninfo');
-    }),
+    // sessions: computed(function(){
+    //     // TODO : 这里为啥是reservalbeitem， 问产品
+    //     // return this.store.findAll('reservableitem');
+    //     return this.store.findAll('sessioninfo');
+    // }),
     techs: computed(function(){
         return this.store.findAll('teacher');
     }),
@@ -131,7 +131,7 @@ export default Controller.extend({
             this.set('noteError', false);
         },
         onEditClassClick() {
-            // this.set('classTitle', this.bm_class_service.class.classTitle);
+            this.set('classTitle', this.model.class.classTitle);
             this.set('editClassDlg', true);
         },
         editClassHandled() {
@@ -209,19 +209,19 @@ export default Controller.extend({
             }
         },
         onDeleteClassClick() {
-            // let that = this;
-            // let callback = {
-            //     onSuccess: function() {
-            //         debug('delete success')
-            //         that.set('deleteClassDlg', false);
-            //         that.transitionToRoute('classes');
-            //         that.toast.success('', '删除班级成功', that.toastOptions);
-            //     },
-            //     onFail: function() {
-            //         that.toast.error('', '删除班级失败', that.toastOptions);
-            //         debug('delete fail')
-            //     }
-            // }
+            let that = this;
+                let onSuccess = function() {
+                    that.set('deleteClassDlg', false);
+                    that.transitionToRoute('classes');
+                    that.toast.success('', '删除班级成功', that.toastOptions);
+                }
+                let onFail = function() {
+                    that.toast.error('', '删除班级失败', that.toastOptions);
+                    this.model.class.rollbackAttributes();
+                    return
+                }
+            this.model.class.deleteRecord()
+            this.model.class.save().then(onSuccess, onFail)
             // this.bm_class_service.delete(callback);
         },
     },

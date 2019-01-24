@@ -23,7 +23,8 @@ export default Controller.extend({
     cur_page: 1,
     cls: computed('cur_idx', 'cur_page', function(){
         // @sun 通过cur_idx 调整query的filter
-        return this.store.query('class', { 'page[number]': this.cur_page, 'page[size]': 20})
+        // return this.store.query('class', { 'page[number]': this.cur_page, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), "status": 2})
+        return this.store.query('class', { "brand-id": localStorage.getItem("brandid"), "status": 2})
     }),
     
     actions: {

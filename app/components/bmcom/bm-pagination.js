@@ -70,7 +70,6 @@ export default Component.extend({
             }
         }
         this.set('pageGroup', arr);
-        // console.log(this.pageGroup)
     },
     updatePageGroup() {
         let arr = [];
@@ -98,6 +97,5 @@ export default Component.extend({
             }
         }
         this.set('pageGroup', arr);
-        // console.log(this.pageGroup)
     }
 });
