@@ -7,7 +7,7 @@ import { debug } from '@ember/debug';
 export default Controller.extend({
     cur_tab_idx: 0,
     cur_reserve_type: 0,
-
+    pageNum: 1,
     toast: service(),
     tabs: A(['预约', '预注册']),
     toastOptions: {
@@ -17,7 +17,7 @@ export default Controller.extend({
         timeOut: '2000',
     },
 
-    applies: computed('cur_tab_idx', 'cur_reserve_type', function() {
+    applies: computed('cur_tab_idx', 'cur_reserve_type', 'pageNum',  function() {
         let today = new Date();
         today.setHours(0);
         today.setMinutes(0);
@@ -25,17 +25,25 @@ export default Controller.extend({
         today.setMilliseconds(0);
 
         if(this.cur_tab_idx == 1 && this.cur_reserve_type == 0) {
-            return this.store.query('apply', { 'page[number]': 1, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), 'course-type': -1})
+            let apply = this.store.query('apply', { 'page[number]': this.pageNum, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), 'course-type': -1})
+            this.set('applies_count', localStorage.getItem('applies-count'))
+            return apply
         } else if(this.cur_tab_idx == 0 && this.cur_reserve_type == 0){
-            return this.store.query('apply', { 'page[number]': 1, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), "ne[course-type]": -1})
+            let apply = this.store.query('apply', { 'page[number]':  this.pageNum, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), "ne[course-type]": -1});
+            this.set('applies_count', localStorage.getItem('applies-count'))
+            return apply
         } else if(this.cur_tab_idx == 1 && this.cur_reserve_type == 1) {
-            return this.store.query('apply', { 'page[number]': 1, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), 'course-type': -1, 'gte[apply-time]': today.getTime()})
+            let apply = this.store.query('apply', { 'page[number]':  this.pageNum, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), 'course-type': -1, 'gte[apply-time]': today.getTime()})
+            this.set('applies_count', localStorage.getItem('applies-count'))
+            return apply
         } else if (this.cur_tab_idx == 0 && this.cur_reserve_type == 1) {
-            return this.store.query('apply', { 'page[number]': 1, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), "ne[course-type]": -1, 'gte[apply-time]': today.getTime()})
+            let apply = this.store.query('apply', { 'page[number]':  this.pageNum, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), "ne[course-type]": -1, 'gte[apply-time]': today.getTime()})
+            this.set('applies_count', localStorage.getItem('applies-count'))
+            return apply
         }
 
     }),
-    page_count: computed('cur_tab_idx', 'cur_reserve_type', function(){
+    page_count: computed('applies', function(){
         return Number.parseInt(localStorage.getItem('applies'));
     }),
 
@@ -63,18 +71,14 @@ export default Controller.extend({
             let onSrSuccess = function(res) {
                 that.set('srClasses', res.classes);
             }
-            let onSrFail = function(res) {
-
-            }
+            let onSrFail = function(res) {}
             that.store.find('reservableitem', that.sr).then(onSrSuccess, onSrFail)
         }
         if(this.sa != null) {
             let onSaSuccess = function(res) {
                 that.set('saClasses', res.classes);
             }
-            let onSaFail = function(res) {
-
-            }
+            let onSaFail = function(res) {}
             that.store.find('reservableitem', that.sa).then(onSaSuccess, onSaFail)
         }
         // let a = Date.parse( new Date());
@@ -88,21 +92,21 @@ export default Controller.extend({
     }),
     actions: {
         /* 今天全部预约与注册*/
-        handleBookPageChange (pageNum) {
-
-        },
-        handlePrePageChange (pageNum) {
-
-        },
-        handleTodayBookPageChange (pageNum) {
-
-        },
-        handleTodayPrePageChange (pageNum) {
-
+        handleBookPageChange (pagenum) {
+            // if(this.cur_tab_idx == 1 && this.cur_reserve_type == 0) {
+            //     this.set('applies', this.store.query('apply', { 'page[number]': pageNum, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), 'course-type': -1}))
+            // } else if(this.cur_tab_idx == 0 && this.cur_reserve_type == 0){
+            //     this.set('applies', this.store.query('apply', { 'page[number]': pageNum, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), "ne[course-type]": -1}))
+            // } else if(this.cur_tab_idx == 1 && this.cur_reserve_type == 1) {
+            //     this.set('applies', this.store.query('apply', { 'page[number]': pageNum, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), 'course-type': -1, 'gte[apply-time]': today.getTime()}))
+            // } else if (this.cur_tab_idx == 0 && this.cur_reserve_type == 1) {
+            //     this.set('applies', this.store.query('apply', { 'page[number]': pageNum, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), "ne[course-type]": -1, 'gte[apply-time]': today.getTime()}))
+            // }
+            //
+            // this.set('pageNum', pagenum);
         },
 
         onTabClicked(tabIdx) {
-
         },
         saveInfo() {
             this.set('modal3',false);
@@ -112,7 +116,6 @@ export default Controller.extend({
             },500);
         },
         setCurrentApply(item) {
-            debugger
             let that = this;
             this.set('current_apply', item);
             if(item.courseType == -1) {
@@ -126,6 +129,7 @@ export default Controller.extend({
                 stud.set('gender', kid.gender)
                 stud.set('dob', kid.dob);
                 stud.set('guardianRole', kid.guardianRole);
+                stud.set('brandId', localStorage.getItem('brandid') )
 
                 stud.guardians.pushObject(guar)
                 stud.guardians.objectAt(0).set('name', applicant.content.name);
@@ -136,11 +140,8 @@ export default Controller.extend({
                 let onSuccess = function() {
                     that.transitionToRoute('edit.stud', stud.id + ' ' + apply.id);
                 }
-                let onFail = function(err) {
-                    console.log(err)
-                }
+                let onFail = function(err) {}
                 stud.save().then(onSuccess, onFail)
-
             } else {
                 this.set('sr', null);
                 this.set('sy', null);
@@ -156,7 +157,12 @@ export default Controller.extend({
 
         },
         toggleAction() {
-
+            let that = this;
+            if(this.current_apply.courseType == 1) {
+                that.set('current_apply.courseType', 0)
+            } else if (this.current_apply.courseType == 0) {
+                that.set('current_apply.courseType', 1)
+            }
         },
         successSave() {
 
@@ -197,6 +203,7 @@ export default Controller.extend({
         stud.set('gender', kid.gender)
         stud.set('dob', kid.dob);
         stud.set('guardianRole', kid.guardianRole);
+        stud.set('brandId', localStorage.getItem('brandid') )
 
         stud.guardians.pushObject(guar)
         stud.guardians.objectAt(0).set('name', applicant.content.name);
@@ -211,25 +218,19 @@ export default Controller.extend({
             apply.save();
             that.set('showhandledlg', false);
         }
-        let onApplyFail = function(err) {
-
-        }
+        let onApplyFail = function(err) {}
 
         let onClassSuccess = function(res) {
             res.students.pushObject(stud);
             res.save().then(onApplySuccess, onApplyFail)
 
         }
-        let onClassFail = function(err) {
-
-        }
+        let onClassFail = function(err) {}
 
         let onStudSuccess = function() {
             that.store.find('class', that.sy).then(onClassSuccess, onClassFail)
         }
-        let onStudFail = function() {
-
-        }
+        let onStudFail = function() {}
 
         stud.save().then(onStudSuccess, onStudFail);
 
@@ -246,6 +247,7 @@ export default Controller.extend({
         stud.set('gender', kid.gender)
         stud.set('dob', kid.dob);
         stud.set('guardianRole', kid.guardianRole);
+        stud.set('brandId', localStorage.getItem('brandid') )
 
         stud.guardians.pushObject(guar)
         stud.guardians.objectAt(0).set('name', applicant.content.name);
@@ -259,25 +261,19 @@ export default Controller.extend({
             apply.save();
             that.set('showhandledlg', false);
         }
-        let onApplyFail = function(err) {
-
-        }
+        let onApplyFail = function(err) {}
 
         let onClassSuccess = function(res) {
             res.students.pushObject(stud);
             res.save().then(onApplySuccess, onApplyFail)
         }
-        let onClassFail = function() {
-
-        }
+        let onClassFail = function() {}
 
         let onStudSuccess = function() {
             // let actv = that.store.find('reservableitem', that.sa).then();
             that.store.find('class', that.ss).then(onClassSuccess, onClassFail)
         }
-        let onStudFail = function() {
-
-        }
+        let onStudFail = function() {}
 
         stud.save().then(onStudSuccess, onStudFail);
     },

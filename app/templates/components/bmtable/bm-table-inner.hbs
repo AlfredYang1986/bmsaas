@@ -18,11 +18,12 @@
             <td class="ib_table_content_item">{{bmdob/bmdobformat item.exceptTime}}</td>
             <td class="ib_table_content_item">
                 {{item.applicant.name}} &nbsp;&nbsp;
-                {{#each item.Kids as |kd kdIndex|}}
+                {{!-- {{#each item.Kids as |kd kdIndex|}}
                     {{#if (eq kdIndex 0)}}
                         {{kd.guardian_role}}
                     {{/if}}
-                {{/each}}
+                {{/each}} --}}
+                {{item.kids.firstObject.guardianRole}}
             </td>
             <td class="ib_table_content_item">{{item.contact}}</td>
             {{#if (bmeq item.status 0)}}
@@ -36,48 +37,31 @@
             {{/if}}
         {{else if (bmeq type "preRegister")}}
             <td class='ib_table_content_item'>
-                {{!-- {{#each item.Kids as |kd|}}
-                    {{kd.name}}
-                {{/each}} --}}
-                {{item.kid.name}}
+                {{#each item.kids as |list|}}
+                    {{list.name}}
+                {{/each}}
             </td>
             <td class="ib_table_content_item">
-                {{!-- {{#each item.Kids as |kd|}}
-                    {{#if (bmeq kd.gender 0)}}
-                        女
-                    {{else}}
-                        男
-                    {{/if}}
-                {{/each}} --}}
-                {{#if (bmeq item.kid.gender 0)}}
+                {{#if (bmeq item.kids.firstObject.gender 0)}}
                     女生
                 {{else}}
                     男生
                 {{/if}}
             </td>
             <td class='ib_table_content_item'>
-                {{!-- {{#each item.Kids as |kd|}}
-                    {{bmdob/bmdobformat kd.dob}}
-                {{/each}} --}}
-                {{bmdob/bmdob2age item.kid.dob}}岁
+                {{bmdob/bmdob2age item.kids.firstObject.dob}}岁
             </td>
             <td class="ib_table_content_item">
-                {{item.Applyee.name}} &nbsp;&nbsp;
-                {{item.kid.guardianRole}}
-                {{!-- {{#each item.Kids as |kd|}}
-                    {{kd.guardian_role}}
-                {{/each}} --}}
+                {{item.applicant.name}} &nbsp;&nbsp;
+                {{item.kids.firstObject.guardianRole}}
             </td>
             <td class="ib_table_content_item">
                 {{item.contact}}
             </td>
             <td class='ib_table_content_item'>
-                {{!-- {{#link-to 'edit.stud' item.id  classNames="ib_table_content_btn"}} --}}
-                      {{!-- <span {{action 'addStud'}}>点击注册</span> --}}
-                {{!-- {{/link-to}} --}}
                 {{#if (bmeq item.status 0)}}
                     <td class='ib_table_content_item'>
-                        {{#bs-button classNames="ib_table_content_btn" onClick=(action 'addStud' item)}}<span>点击注册</span>{{/bs-button}}
+                        {{#bs-button classNames="ib_table_content_btn" onClick=(action 'onClickInner' item)}}<span>点击注册</span>{{/bs-button}}
                     </td>
                 {{else}}
                     <td class='ib_table_content_item'>

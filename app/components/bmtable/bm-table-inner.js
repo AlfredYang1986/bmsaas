@@ -62,5 +62,12 @@ export default Component.extend({
 				this.iconData.pushObject(tmpObj);
 			}
 		}
+		let that = this
+		if(this.type == 'inbox') {
+			console.log(this)
+			if(this.attrs.listData.value.firstObject.courseType == -1) {
+				this.set('type', 'preRegister');
+			}
+		}
     }
 });
