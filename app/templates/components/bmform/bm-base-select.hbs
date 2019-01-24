@@ -20,6 +20,12 @@
                         {{else}}
                             <option value={{item.id}}>{{item.name}}</option>
                         {{/if}}
+                    {{else if chooseCourse}}
+                        {{#if (eq curSelect item.id)}}
+                            <option selected value={{item.id}}>{{item.title}}</option>
+                        {{else}}
+                            <option value={{item.id}}>{{item.title}}</option>
+                        {{/if}}
                     {{else}}
                         {{#if (eq curSelect item.name)}}
                             <option selected value={{item.name}}>{{item.name}}</option>

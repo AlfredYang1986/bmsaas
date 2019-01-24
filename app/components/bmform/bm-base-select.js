@@ -4,6 +4,7 @@ export default Component.extend({
     positionalParams: ['selTitle', 'options', 'curSelect', 'pHolder', "selId", "type"],
     idType: false,
     chooseReservable: false,
+    chooseCourse: false,
     sessionId: "",
     type: "",
     pHolder: "请选择",

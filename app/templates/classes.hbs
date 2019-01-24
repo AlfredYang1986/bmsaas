@@ -42,20 +42,22 @@
             {{/if}}
             {{#if noteCourseError}}
                 {{#layout-push direction="col" classNames='input_area' }}
+                    {{bmform/bm-base-select type="id" chooseCourse=true selTitle="选择课程" options=model.courses curSelect=cur_course_id classNames="input_area area-margin-bottom error-border"}}
                     {{!-- {{bmform/bm-base-select selTitle="选择课程" options=bm_session_service.sessions curSelect=bm_class_service.class.reservableId chooseReservable=true sessionId=sessionId classNames="input_area area-margin-bottom error-border"}} --}}
                 {{/layout-push}}
             {{else}}
                 {{#layout-push direction="col" classNames='input_area' }}
+                    {{bmform/bm-base-select type="id" chooseCourse=true selTitle="选择课程" options=model.courses curSelect=cur_course_id classNames="input_area area-margin-bottom"}}
                     {{!-- {{bmform/bm-base-select selTitle="选择课程" options=bm_session_service.sessions curSelect=bm_class_service.class.reservableId chooseReservable=true sessionId=sessionId classNames="input_area area-margin-bottom"}} --}}
                 {{/layout-push}}
             {{/if}}
             {{#if noteError}}
                 {{#layout-push direction="row"  classNames='input_area' }}
-                    {{!-- {{bmform/bm-edit-line title='班级名称' needTitleDes=true titleDes="请为班级设定名称，方便识别" inputVal=bm_class_service.class.classTitle classNames='input_area input-full-width error-border'}} --}}
+                    {{bmform/bm-edit-line title='班级名称' needTitleDes=true titleDes="请为班级设定名称，方便识别" inputVal=classTitle classNames='input_area input-full-width error-border'}}
                 {{/layout-push}}
             {{else}}
                 {{#layout-push direction="row"  classNames='input_area' }}
-                    {{!-- {{bmform/bm-edit-line title='班级名称' needTitleDes=true titleDes="请为班级设定名称，方便识别" inputVal=bm_class_service.class.classTitle classNames='input_area input-full-width'}} --}}
+                    {{bmform/bm-edit-line title='班级名称' needTitleDes=true titleDes="请为班级设定名称，方便识别" inputVal=classTitle classNames='input_area input-full-width'}}
                 {{/layout-push}}
             {{/if}}
             

@@ -19,6 +19,10 @@ export default Controller.extend({
     noteError: false,
     noteCourseError: false,
 
+    cur_course_id: "",
+    tmpClass: null,
+    classTitle: "",
+
     cur_idx: 0,
     cur_page: 1,
     cls: computed('cur_idx', 'cur_page', function(){
@@ -48,29 +52,69 @@ export default Controller.extend({
         // }
         onAddClassClick() {
             this.set('addClassDlg', true);
+            this.set("tmpClass", this.store.createRecord("class"))
         },
         cancelSuccessHandled() {
             this.set('addSuccessDlg', false);
         },
         cancelHandled() {
+            this.set('classTitle', "");
+            this.set('cur_course_id', "");
+            this.tmpClass.unloadRecord();
             this.set('addClassDlg', false);
             this.set('noteError', false);
             this.set('noteCourseError', false);
         },
         successHandled() {
+            if(this.classTitle == "" && this.cur_course_id == "") {
+                this.set('noteError', true);
+                this.set('noteCourseError', true);
+                return;
+            } else if (this.classTitle == "" && this.cur_course_id != "") {
+                this.set('noteError', true);
+                this.set('noteCourseError', false);
+                return;
+            } else if (this.classTitle != "" && this.cur_course_id == "") {
+                this.set('noteCourseError', true);
+                this.set('noteError', false);
+                return;
+            } else {
+                this.set('noteCourseError', false);
+                this.set('noteError', false);
+            }
+
+            let that = this;
+            let onSuccess = function () {
+                that.set('addClassDlg', false);
+                that.set('classTitle', "");
+                that.set('cur_course_id', "");
+                // that.cls.reloadRecord();
+                that.toast.success('', '新增班级成功', that.toastOptions);
+            }
+            let onFail = function () {
+                that.toast.error('', '新增班级失败', that.toastOptions);
+            }
+            this.tmpClass.save().then(() => {
+                this.tmpClass.set("brandId", localStorage.getItem("brandid"))
+                this.tmpClass.set("status", 2)
+                this.tmpClass.set("classTitle", this.classTitle)
+                this.tmpClass.set("sessioninfo", this.store.peekRecord("sessioninfo", this.cur_course_id))
+                this.tmpClass.save().then(onSuccess, onFail)
+            })
+
             // this.bm_class_service.resetInfoAndYard(this.bm_yard_service.yard.id, this.sessionId);
             // this.bm_class_service.resetTechs([]);
             // this.bm_class_service.resetAttendee([]);
 
-            // if(this.bm_class_service.class.classTitle == "" && this.bm_class_service.class.reservableId == "") {
+            // if(this.classTitle == "" && this.cur_course_id == "") {
             //     this.set('noteError', true);
             //     this.set('noteCourseError', true);
             //     return;
-            // } else if (this.bm_class_service.class.classTitle == "" && this.bm_class_service.class.reservableId != "") {
+            // } else if (this.classTitle == "" && this.cur_course_id != "") {
             //     this.set('noteError', true);
             //     this.set('noteCourseError', false);
             //     return;
-            // } else if (this.bm_class_service.class.classTitle != "" && this.bm_class_service.class.reservableId == "") {
+            // } else if (this.classTitle != "" && this.cur_course_id == "") {
             //     this.set('noteCourseError', true);
             //     this.set('noteError', false);
             //     return;

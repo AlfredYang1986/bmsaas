@@ -25,4 +25,8 @@ export default Route.extend({
             },]
         })
     },
+    setupController(controller, model) {
+        this._super(controller, model);
+        this.controller.set('cur_course_id', model.class.sessioninfo.get("id"));
+    }
 });

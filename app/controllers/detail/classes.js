@@ -14,6 +14,7 @@ export default Controller.extend({
 
     jobDuty: A([{name:'主讲'}, {name:'助教'}]),
     classTitle: "",
+    cur_course_id: "",
 
     // TODO: 用ember-data 做
     // addTechId: "",
@@ -137,8 +138,20 @@ export default Controller.extend({
         editClassHandled() {
             if(this.classTitle == "" || this.classTitle == null ) {
                 this.set('noteError', true);
-                return;
+                return; 
             }
+            let that = this;
+            let onSuccess = function () {
+                that.set('editClassDlg', false);
+                that.toast.success('', '编辑班级成功', that.toastOptions);
+            }
+            let onFail = function () {
+                that.toast.error('', '编辑班级失败', that.toastOptions);
+            }
+            this.model.class.set("title", this.classTitle)
+            this.model.class.set("sessioninfo", this.store.peekRecord("sessioninfo", this.cur_course_id))
+            this.model.class.save().then(onSuccess, onFail)
+
             // this.set('bm_class_service.class.classTitle', this.classTitle);
             // this.bm_class_service.resetInfoAndYard(this.bm_class_service.class.Yard.id, this.bm_class_service.class.SessionInfo.id);
             // // this.bm_class_service.resetTechs(this.bm_class_service.class.Teachers);
@@ -222,7 +235,6 @@ export default Controller.extend({
                 }
             this.model.class.deleteRecord()
             this.model.class.save().then(onSuccess, onFail)
-            // this.bm_class_service.delete(callback);
         },
     },
 });

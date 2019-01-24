@@ -113,7 +113,7 @@
                 </div>
             {{/if}}
             {{#layout-push direction="col" classNames='input_area' }}
-                {{bmform/bm-base-select selTitle="选择课程" options=model.courses curSelect=model.class.reservableId chooseReservable=true sessionId=model.class.sessioninfo.id classNames="input_area area-margin-bottom"}}
+                {{bmform/bm-base-select type="id" chooseCourse=true selTitle="选择课程" options=model.courses curSelect=cur_course_id classNames="input_area area-margin-bottom"}}
             {{/layout-push}}
             {{#if noteError}}
                 {{#layout-push direction="row"  classNames='input_area' }}
