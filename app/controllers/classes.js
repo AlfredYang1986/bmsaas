@@ -13,7 +13,7 @@ export default Controller.extend({
         timeOut: '2000',
     },
     titles: A(['全部', '未排课', 'On Going', 'Finished']),
-    openFlag: true,
+    openFlag: false,
 
     refreshFlag: false,
 
