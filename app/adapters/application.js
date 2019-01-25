@@ -2,7 +2,7 @@ import DS from 'ember-data';
 import {computed} from '@ember/object';
 
 export default DS.JSONAPIAdapter.extend({
-    // host: 'http://demo.dongdakid.com',
+    // host: 'https://api.dongdakid.com',
     // 发布时揭开注释强制过滤掉后端返回link里的主机
     headers: computed(function() {
         return {
