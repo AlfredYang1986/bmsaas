@@ -77,7 +77,7 @@
                 {{#if (eq model.class.students.length 0)}}
                     {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无学生" des="快去添加孩子们吧" btnText="添加学生" onBtnClick=(action (mut addStudDlg) true)}}
                 {{else}}
-                    {{bmtable/bm-table-class-stud titles=model.studTitles onRemoveStudClick="onRemoveStudClick"}}
+                    {{bmtable/bm-table-class-stud listData=model.class.students titles=model.studTitles onRemoveStudClick="onRemoveStudClick"}}
                     {{!-- {{bmcom/bm-pagination pageCount=bm_sessionable_service.totalPageCount sendPageNum=(action "handlePageChange")}} --}}
                 {{/if}}
             {{/if}}
@@ -86,7 +86,7 @@
                 {{#if (eq model.class.units.length 0)}}
                     {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无课程安排" des="快去添加课程安排吧" btnText="添加课程安排" onBtnClick=(action (mut addArrClassDlg) true)}}
                 {{else}}
-                    {{bmtable/bm-table-class-arrcourse titles=model.arrTitles onRemoveArrcourseClick="onRemoveArrcourseClick"}}
+                    {{bmtable/bm-table-class-arrcourse listData=model.class.units titles=model.arrTitles onRemoveArrcourseClick="onRemoveArrcourseClick"}}
                     {{!-- {{bmcom/bm-pagination pageCount=bm_sessionable_service.totalPageCount sendPageNum=(action "handlePageChange")}} --}}
                 {{/if}}
             {{/if}}

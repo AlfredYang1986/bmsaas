@@ -127,14 +127,14 @@
             <td  class="ib_table_content_item">
                 {{#bs-button classNames="ib_table_content_link_btn" onClick=(action 'onClickInner' item.id)}}<span>查看</span>{{/bs-button}}
             </td>
-        {{else if (bmeq type "room")}}
+        {{else if (bmeq type "r")}}
             <td class='ib_table_content_item'>{{item.title}}</td>
             <td class='ib_table_content_item'>
-                {{#if (bmeq item.roomType 0)}}
+                {{#if (bmeq item.rType 0)}}
                 自有
-                {{else if (bmeq item.roomType 1)}}
+                {{else if (bmeq item.rType 1)}}
                 租用
-                {{else if (bmeq item.roomType 2)}}
+                {{else if (bmeq item.rType 2)}}
                 公共
                 {{/if}}
             </td>
@@ -144,8 +144,8 @@
                     {{#dd.menu align="right" as |menu|}}
                         {{#menu.item align="right"}}
                             {{#layout-push direction='col' classNames="dropdown-content"}}
-                                <a onclick={{action 'onEditRoomClick' item dd.closeDropdown}}>编辑教室</a>
-                                <a class="warning" onclick={{action 'onDeleteRoomClick' item dd.closeDropdown}}>删除教室</a>
+                                <a onclick={{action 'onEditrClick' item dd.closeDropdown}}>编辑教室</a>
+                                <a class="warning" onclick={{action 'onDeleterClick' item dd.closeDropdown}}>删除教室</a>
                             {{/layout-push}}
                         {{/menu.item}}
                     {{/dd.menu}}
@@ -208,7 +208,7 @@
                 {{bmdob/bmdobformat item.startDate}} {{bmdob/bmdob2weekday item.startDate}}<br/>
                 {{bmdob/bmdob2clocktime item.startDate}}-{{bmdob/bmdob2clocktime item.endDate}}
             </td>
-            <td class='ib_table_content_item'>{{item.Room.title}}</td>
+            <td class='ib_table_content_item'>{{item.room.title}}</td>
             {{!-- <td class='ib_table_content_item'>{{item.contact}}</td> --}}
             <td class="ib_table_content_item">
                 {{#bs-dropdown class="btn-dropdown" as |dd|}}
