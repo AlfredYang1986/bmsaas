@@ -24,18 +24,22 @@ export default Controller.extend({
             let onFail = function () {
             }
             // this.model.si.save().then(onSuccess, onFail);
-            this.model.si.images.forEach((item, index, arr) => {
-                if(index + 1 == arr.length) {
-                    this.set("savePicDoneFlag", true);
-                }
-                if(item.dirtyType !== undefined) {
-                    item.save().then(() => {
-                        if(this.savePicDoneFlag) {
-                            this.model.si.save().then(onSuccess, onFail);
-                        }
-                    });
-                }
-            });
+            if(this.model.si.images.length === 0) {
+                this.model.si.save().then(onSuccess, onFail);
+            } else {
+                this.model.si.images.forEach((item, index, arr) => {
+                    if(index + 1 == arr.length) {
+                        this.set("savePicDoneFlag", true);
+                    }
+                    if(item.dirtyType !== undefined) {
+                        item.save().then(() => {
+                            if(this.savePicDoneFlag) {
+                                this.model.si.save().then(onSuccess, onFail);
+                            }
+                        });
+                    }
+                });
+            }
         },
         reserveCourse() {
             this.transitionToRoute('actv');

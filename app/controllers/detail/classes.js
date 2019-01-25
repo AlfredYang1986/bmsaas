@@ -97,6 +97,18 @@ export default Controller.extend({
             this.set('removeTechDlg', true);
         },
         onRemoveTeacherClickOk() {
+            let that = this;
+            let onSuccess = function () {
+                that.set('removeTechDlg', false);
+                that.set('tmpTech', null);
+                that.toast.success('', '移除老师成功', that.toastOptions);
+            }
+            let onFail = function () {
+                that.toast.error('', '移除老师失败', that.toastOptions);
+            }
+            this.model.class.teachers.removeObject(this.tmpTech)
+            this.model.class.save().then(onSuccess, onFail)
+
             // for(let idx = 0;idx < this.bm_class_service.class.Teachers.length;idx++) {
             //     if(this.bm_class_service.class.Teachers[idx].id == this.tmpTech.id) {
             //         this.bm_class_service.class.Teachers.removeObject(this.bm_class_service.class.Teachers[idx])

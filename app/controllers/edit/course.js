@@ -13,18 +13,22 @@ export default Controller.extend({
                 debug('error');
             }
             // this.model.course.save().then(onSuccess, onFail);
-            this.model.course.images.forEach((item, index, arr) => {
-                if(index + 1 == arr.length) {
-                    this.set("savePicDoneFlag", true);
-                }
-                if(item.dirtyType !== undefined) {
-                    item.save().then(() => {
-                        if(this.savePicDoneFlag) {
-                            this.model.course.save().then(onSuccess, onFail);
-                        }
-                    });
-                }
-            });
+            if(this.model.course.images.length === 0) {
+                this.model.course.save().then(onSuccess, onFail);
+            } else {
+                this.model.course.images.forEach((item, index, arr) => {
+                    if(index + 1 == arr.length) {
+                        this.set("savePicDoneFlag", true);
+                    }
+                    if(item.dirtyType !== undefined) {
+                        item.save().then(() => {
+                            if(this.savePicDoneFlag) {
+                                this.model.course.save().then(onSuccess, onFail);
+                            }
+                        });
+                    }
+                });
+            }
         },
         cancelCourseBtnClicked() {
             if(this.model.isPushing) {
