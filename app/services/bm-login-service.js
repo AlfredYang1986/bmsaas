@@ -92,7 +92,7 @@ export default Service.extend({
         let that = this
         $.ajax({
             method: 'POST',
-            url: '/v0/AccountValidation',
+            url: '/v2/AccountValidation',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',

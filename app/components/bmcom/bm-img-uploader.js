@@ -35,7 +35,7 @@ export default Component.extend({
 
             var that = this;
             $.ajax({
-                url: '/v0/UploadToOss',
+                url: '/v2/UploadToOss',
                 type: 'post',
                 data: formData,
                 processData: false,
@@ -68,7 +68,7 @@ export default Component.extend({
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
     },
     // lala(){ console.log(1)},
-    
+
     didRender() {
         if (this.tag == "initTag") {
             this.set('tag', '图片描述');
