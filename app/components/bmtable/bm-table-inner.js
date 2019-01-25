@@ -58,10 +58,12 @@ export default Component.extend({
 				// }
 				// this.listData[idx].iconUrl = client.signatureUrl(this.listData[idx].icon);
 				let tmpObj = {};
-				tmpObj.iconUrl = client.signatureUrl(this.listData[idx].icon);
+				tmpObj.iconUrl = client.signatureUrl(this.listData.objectAt(idx).icon);
 				this.iconData.pushObject(tmpObj);
 			}
 		}
+
+		
 		let that = this
 		if(this.type == 'inbox') {
 			if(this.attrs.listData.value.firstObject.courseType == -1) {

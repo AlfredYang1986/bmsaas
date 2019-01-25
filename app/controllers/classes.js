@@ -14,6 +14,9 @@ export default Controller.extend({
     },
     titles: A(['全部', '未排课', 'On Going', 'Finished']),
     openFlag: false,
+
+    refreshFlag: false,
+
     addClassDlg: false,
     addSuccessDlg: false,
     noteError: false,
@@ -25,7 +28,7 @@ export default Controller.extend({
 
     cur_idx: 0,
     cur_page: 1,
-    cls: computed('cur_idx', 'cur_page', function(){
+    cls: computed('cur_idx', 'cur_page', "refreshFlag", function(){
         // @sun 通过cur_idx 调整query的filter
         // return this.store.query('class', { 'page[number]': this.cur_page, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), "status": 2})
         return this.store.query('class', { "brand-id": localStorage.getItem("brandid"), "status": 2})
@@ -88,7 +91,8 @@ export default Controller.extend({
                 that.set('addClassDlg', false);
                 that.set('classTitle', "");
                 that.set('cur_course_id', "");
-                // that.cls.reloadRecord();
+                that.store.unloadAll('class');
+                that.toggleProperty("refreshFlag")
                 that.toast.success('', '新增班级成功', that.toastOptions);
             }
             let onFail = function () {
@@ -99,6 +103,7 @@ export default Controller.extend({
                 this.tmpClass.set("status", 2)
                 this.tmpClass.set("classTitle", this.classTitle)
                 this.tmpClass.set("sessioninfo", this.store.peekRecord("sessioninfo", this.cur_course_id))
+                this.tmpClass.set("yard", this.model.yard)
                 this.tmpClass.save().then(onSuccess, onFail)
             })
 

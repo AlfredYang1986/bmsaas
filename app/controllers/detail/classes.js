@@ -17,11 +17,11 @@ export default Controller.extend({
     cur_course_id: "",
 
     // TODO: 用ember-data 做
-    // addTechId: "",
-    // addJobDuty: "",
-    // tmpTech: null,
-    // tmpStud: null,
-    // tmpUnit: null,
+    addTechId: "",
+    addJobDuty: "",
+    tmpTech: null,
+    tmpStud: null,
+    tmpUnit: null,
 
     cur_idx: 0,
     // sessions: computed(function(){
@@ -29,9 +29,9 @@ export default Controller.extend({
     //     // return this.store.findAll('reservableitem');
     //     return this.store.findAll('sessioninfo');
     // }),
-    techs: computed(function(){
-        return this.store.findAll('teacher');
-    }),
+    // techs: computed(function(){
+    //     return this.store.findAll('teacher');
+    // }),
 
     editClassDlg: false,
     deleteClassDlg: false,
@@ -172,6 +172,39 @@ export default Controller.extend({
             // this.bm_class_service.saveUpdate(callback);
         },
         addTechHandled() {
+            if(this.model.class.teachers != null) {
+                for(let idx = 0;idx < this.model.class.teachers.length;idx++) {
+                    if(this.addTechId == this.model.class.teachers.objectAt(idx).get("id")) {
+                        this.toast.error('', '已存在当前教师', this.toastOptions);
+                        return;
+                    }
+                }
+            } 
+            let that = this;
+            let onSuccess = function () {
+                that.set('addTechDlg', false);
+                that.set("addTechId", "");
+                that.set("addJobDuty", "");
+                that.toast.success('', '添加老师成功', that.toastOptions);
+            }
+            let onFail = function () {
+                that.toast.error('', '添加老师失败', that.toastOptions);
+            }
+            let addTech = null
+            for(let idx = 0;idx < this.model.techs.length;idx++) {
+                if(this.addTechId == this.model.techs.objectAt(idx).id) {
+                    // this.model.transTech(this.model.techs.objectAt(idx))
+                    addTech = this.model.techs.objectAt(idx);
+                }
+            }
+            // addTech.set()duty = this.addJobDuty;
+            this.model.class.teachers.pushObject(addTech);
+            this.model.class.save().then(onSuccess, onFail)
+
+            // else {
+            //     this.set("bm_class_service.class.Teachers", []);
+            // }
+
             // if(this.bm_class_service.class.Teachers != null) {
             //     for(let idx = 0;idx < this.bm_class_service.class.Teachers.length;idx++) {
             //         if(this.addTechId == this.bm_class_service.class.Teachers[idx].id) {

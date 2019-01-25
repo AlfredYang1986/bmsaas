@@ -14,6 +14,7 @@ export default Route.extend({
             arrTitles: A(['课次', '时间', '教室', '']),
             class: this.store.findRecord('class', params.clsid),
             courses: this.store.query('sessioninfo', { "brand-id": localStorage.getItem("brandid"), "status": 2}),
+            techs: this.store.query('teacher', { "brand-id": localStorage.getItem("brandid")}),
             studentTableHead: [{
                 title:"姓名"
             },{

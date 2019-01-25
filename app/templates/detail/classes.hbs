@@ -68,7 +68,7 @@
                 {{#if (eq model.class.teachers.length 0)}}
                     {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无教师" des="快去为孩子们选择教师吧" btnText="添加教师" onBtnClick=(action (mut addTechDlg) true)}}
                 {{else}}
-                    {{bmtable/bm-table-class-tech titles=model.techTitles onRemoveTeacherClick="onRemoveTeacherClick"}}
+                    {{bmtable/bm-table-class-tech listData=model.class.teachers titles=model.techTitles onRemoveTeacherClick="onRemoveTeacherClick"}}
                     {{!-- {{bmcom/bm-pagination pageCount=bm_sessionable_service.totalPageCount sendPageNum=(action "handlePageChange")}} --}}
                 {{/if}}
             {{/if}}
@@ -154,7 +154,7 @@
                 </div>
             {{/if}}
             {{#layout-push direction="col" classNames='input_area' }}
-                {{bmform/bm-base-select selTitle="选择教师" options=techs curSelect=addTechId idType=true classNames="input_area area-margin-bottom"}}
+                {{bmform/bm-base-select type="id" idType=true selTitle="选择教师" options=model.techs curSelect=addTechId classNames="input_area area-margin-bottom"}}
             {{/layout-push}}
             {{#layout-push direction="col" classNames='input_area' }}
                 {{bmform/bm-base-select selId="job" selTitle="选择职责" options=jobDuty curSelect=addJobDuty classNames="input_area area-margin-bottom"}}
