@@ -18,7 +18,7 @@
 
 .detail_content_top {
     @extend %detail_content_basic;
-    padding-top: 50px;
+    padding-top: 64px;
     height: 100%;
     min-width: 1200px;
 
@@ -367,7 +367,7 @@ span.list-status {
             .bm-upload-container {
                 width: 128px;
                 height: 128px;
-                
+
                 img {
                     width: 128px;
                     height: 128px;
@@ -433,7 +433,7 @@ span.list-status {
         }
 
         .tech_info_area {
-            
+
             // padding-top: 40px;
             min-height: 0;
             // border-bottom: 1px solid rgba(0,0,0,0.12);
