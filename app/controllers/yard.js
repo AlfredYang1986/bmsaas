@@ -9,7 +9,7 @@ export default Controller.extend({
     //     console.log(123)
     // },
     // bm_yard_service: service(),
-    openFlag: true,
+    openFlag: false,
     actions: {
         cardClicked(idx) {
             this.transitionToRoute('detail.yard', idx);
@@ -28,7 +28,7 @@ export default Controller.extend({
     //             console.log(that.bm_yard_service.yards.id);
     //         },
     //         onFail: function () {
-                
+
     //         }
     //     }
     //     this.bm_yard_service.queryMultiObjects(callback);

@@ -1,16 +1,20 @@
 <div class="course_content_top" >
-    {{#layout-push direction="col" classNames="course_content"}}
-        {{#layout-push direction="row" split=true classNames="course-title-flex"}}
-            <p class="page_title">课程</p>
-            {{#link-to 'edit.course' 'course/push' classNames='course_add_btn'}}+ 创建课程{{/link-to}}
+    {{#if openFlag}}
+        {{#layout-push direction="col" classNames="course_content"}}
+            {{#layout-push direction="row" split=true classNames="course-title-flex"}}
+                <p class="page_title">课程</p>
+                {{#link-to 'edit.course' 'course/push' classNames='course_add_btn'}}+ 创建课程{{/link-to}}
+            {{/layout-push}}
+            {{#layout-push direction="row" wrap=true classNames="course-card-wrap"}}
+                {{#each model as |item|}}
+                    <div class="line_container_warp course_card_container" >
+                        {{bmcard/course-card onCourseCardClicked=(action 'cardClicked') course=item}}
+                    </div>
+                {{/each}}
+            {{/layout-push}}
         {{/layout-push}}
-        {{#layout-push direction="row" wrap=true classNames="course-card-wrap"}}
-            {{#each model as |item|}}
-                <div class="line_container_warp course_card_container" >
-                    {{bmcard/course-card onCourseCardClicked=(action 'cardClicked') course=item}}
-                </div>
-            {{/each}}
-        {{/layout-push}}
-    {{/layout-push}}
+    {{else}}
+        {{bmcom/bm-empty-state class="yard-not-open" picUrl="/images/img_openningsoon.png" title="即将开放" des="更加强大便捷的功能马上到来"}}
+    {{/if}}
 </div>
 {{outlet}}

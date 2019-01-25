@@ -1,16 +1,21 @@
 <div class="class_content_top" >
-    {{#layout-push direction="col" classNames="class_content"}}
-        {{#layout-push direction="row" split=true}}
-            <p class="class-content-title">班级</p>
-            <button class="class_add_btn" {{action 'onAddClassClick'}}>+ 创建班级</button>
+    {{#if openFlag}}
+        {{#layout-push direction="col" classNames="class_content"}}
+            {{#layout-push direction="row" split=true}}
+                <p class="class-content-title">班级</p>
+                <button class="class_add_btn" {{action 'onAddClassClick'}}>+ 创建班级</button>
+            {{/layout-push}}
         {{/layout-push}}
-    {{/layout-push}}
 
-    {{#layout-push direction='col' classNames='class-content-tab-bar'}}
-        {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=titles }}
-    {{/layout-push}} 
+        {{#layout-push direction='col' classNames='class-content-tab-bar'}}
+            {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=titles }}
+        {{/layout-push}}
 
-    {{bmclass/bm-class-scroller cls=cls onCardClicked=(action 'cardClicked')}}
+        {{bmclass/bm-class-scroller cls=cls onCardClicked=(action 'cardClicked')}}
+    {{else}}
+        {{bmcom/bm-empty-state class="yard-not-open" picUrl="/images/img_openningsoon.png" title="即将开放" des="更加强大便捷的功能马上到来"}}
+    {{/if}}
+
 </div>
 
 {{#bmcom/bm-modal-container title="" mswitch=addClassDlg
@@ -60,7 +65,7 @@
                     {{bmform/bm-edit-line title='班级名称' needTitleDes=true titleDes="请为班级设定名称，方便识别" inputVal=classTitle classNames='input_area input-full-width'}}
                 {{/layout-push}}
             {{/if}}
-            
+
         {{/layout-push}}
     </div>
 {{/bmcom/bm-modal-container}}

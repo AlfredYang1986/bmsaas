@@ -3,6 +3,7 @@ import { computed } from '@ember/object';
 
 export default Controller.extend({
     selectedYard: '',
+    openFlag: false,
     refreshSelected: computed(function(){
         var sel = document.getElementById("yardselect");
         this.set('selectedYard', sel.options[sel.selectedIndex].value);

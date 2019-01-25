@@ -13,7 +13,7 @@ export default Controller.extend({
         timeOut: '2000',
     },
     titles: A(['全部', '未排课', 'On Going', 'Finished']),
-
+    openFlag: false,
     addClassDlg: false,
     addSuccessDlg: false,
     noteError: false,
@@ -30,7 +30,7 @@ export default Controller.extend({
         // return this.store.query('class', { 'page[number]': this.cur_page, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), "status": 2})
         return this.store.query('class', { "brand-id": localStorage.getItem("brandid"), "status": 2})
     }),
-    
+
     actions: {
         onTabClicked(tabIdx) {
             // this.set('bm_class_service.page', 0)

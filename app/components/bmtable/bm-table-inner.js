@@ -64,7 +64,6 @@ export default Component.extend({
 		}
 		let that = this
 		if(this.type == 'inbox') {
-			console.log(this)
 			if(this.attrs.listData.value.firstObject.courseType == -1) {
 				this.set('type', 'preRegister');
 			}
