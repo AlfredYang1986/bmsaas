@@ -11,6 +11,7 @@ export default Controller.extend({
 
     actions: {
         saveCourseBtnClicked(/*idx*/) {
+            debugger
             let that = this;
             let onSuccess = function () {
                 let tmp = that.store.peekRecord('sessioninfo', that.model.si.id)

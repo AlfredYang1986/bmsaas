@@ -6,7 +6,7 @@ export default Route.extend({
         if (params.techid == "tech/push") {
             return RSVP.hash({
                 isPushing: true,
-                tech: this.store.createRecord('teacher'),
+                tech: this.store.createRecord('teacher', {"brandId": localStorage.getItem("brandid")}),
             })
         } else {
             return RSVP.hash({
