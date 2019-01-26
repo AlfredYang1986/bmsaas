@@ -6,15 +6,22 @@ import { computed } from '@ember/object';
 export default Component.extend({
     // bm_brand_service: service(),
     bmOss: service(),
-    brandlogo: computed(function(){
+    store: service(),
+    logo: '',
+    title: '',
+    init() {
+        this._super(...arguments);
+        let that = this;
         let client = this.bmOss.get('ossClient');
-        // return  client.signatureUrl(this.bm_brand_service.brand.logo);
-        return  "";
-    }),
-    // didInsertElement() {
-    //     // this._super(...arguments);
-    //     this.onExitSystem(this);
-    // },
+        let onSuccess = function(res) {
+            let logoImage = client.signatureUrl(res.logo);
+            that.set('logo', logoImage);
+            that.set('title', res.title);
+        }
+        let onFail = function() {}
+        this.store.findRecord('brand', localStorage.getItem("brandid")).then(onSuccess, onFail);
+    },
+
     actions: {
         exitSystem() {
             this.sendAction('onExitSystem');
