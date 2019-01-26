@@ -15,17 +15,17 @@ export default Component.extend({
         return this.cls != null;
     }),
     arrangedDate: computed('hasSetCls', function(){
-        if (!this.hasSetCls || this.cls.start_date == null) {
+        if (!this.hasSetCls || this.cls.startDate == null) {
             return '没有安排';
         } else {
-            let s = new Date(this.cls.start_date);
-            let e = new Date(this.cls.end_date);
+            let s = new Date(this.cls.startDate);
+            let e = new Date(this.cls.endDate);
             return s.getFullYear() + '/' + (s.getMonth() + 1) + '/' + s.getDate() + 
                 ' ---- ' + e.getFullYear() + '/' + (e.getMonth() + 1) + '/' + e.getDate()
         }
     }),
-    background: computed('background', function(){
-        if (!this.hasSetCls || this.cls.start_date == null) {
+    background: computed('hasSetCls', function(){
+        if (!this.hasSetCls || this.cls.startDate == null) {
             return;
         } else {
             if (this.cls.courseTotalCount == 0) {
