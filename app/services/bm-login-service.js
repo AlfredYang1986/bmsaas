@@ -92,7 +92,7 @@ export default Service.extend({
         let that = this
         $.ajax({
             method: 'POST',
-            url: '/v2/AccountValidation',
+            url: 'https://demo.dongdakid.com/v2/AccountValidation',
             headers: {
                 'Content-Type': 'application/json', // 默认值
                 'Accept': 'application/json',

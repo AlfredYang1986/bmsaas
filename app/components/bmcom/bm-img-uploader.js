@@ -35,7 +35,7 @@ export default Component.extend({
 
             var that = this;
             $.ajax({
-                url: '/v2/UploadToOss',
+                url: 'https://demo.dongdakid.com/v2/UploadToOss',
                 type: 'post',
                 data: formData,
                 processData: false,
