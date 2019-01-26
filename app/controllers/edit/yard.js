@@ -27,7 +27,7 @@ export default Controller.extend({
             let flag2 = false;
             let flag1Count = 0;
             let flag2Count = 0;
-            let doneFlag = false;         
+            let doneFlag = false;
             if(this.tempYardImgs.length === 0) {
                 flag1 = true;
             }
@@ -97,6 +97,13 @@ export default Controller.extend({
     saveYard() {
         this.model.yard.set("images", this.tempYardImgs)
         this.model.yard.get("images").pushObjects(this.tempCertImgs)
-        this.model.yard.save().then(this.transitionToRoute("detail.yard"));
+        // this.model.yard.save().then(this.transitionToRoute("detail.yard"));
+        let that = this;
+        let onSuccess = function() {
+            that.transitionToRoute("detail.yard");
+        }
+        let onFail = function() {}
+        this.model.yard.save().then(onSuccess, onFail);
+
     }
 });

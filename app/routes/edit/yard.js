@@ -10,7 +10,8 @@ export default Route.extend({
                 } else {
                     resolve(res.firstObject)
                 }
-            }) 
+            })
+
         })
         return RSVP.hash({
             yard: tmp,
