@@ -3,7 +3,6 @@ import { computed } from '@ember/object';
 
 export default Controller.extend({
     // studs: computed(function() {
-    //     debugger
     //     return this.store.query('student', { 'page[number]': 1, 'page[size]': 20, "brand-id": localStorage.getItem("brandid")})
     // }),
     page_count: computed(function(){
