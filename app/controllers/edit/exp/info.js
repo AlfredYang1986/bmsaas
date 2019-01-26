@@ -29,6 +29,10 @@ export default Controller.extend({
                                 this.model.course.save().then(onSuccess, onFail);
                             }
                         });
+                    } else {
+                        if(this.savePicDoneFlag) {
+                            this.model.course.save().then(onSuccess, onFail);
+                        }
                     }
                 });
             }

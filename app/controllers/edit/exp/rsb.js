@@ -36,6 +36,10 @@ export default Controller.extend({
                                 this.model.si.save().then(onSuccess, onFail);
                             }
                         });
+                    } else {
+                        if(this.savePicDoneFlag) {
+                            this.model.si.save().then(onSuccess, onFail);
+                        }
                     }
                 });
             }
