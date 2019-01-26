@@ -47,18 +47,18 @@ export default Component.extend({
     },
 
     didReceiveAttrs() {
-        if(this.cls.Teachers != null) {
+        if(this.cls.teachers != null) {
             this.set("techPics", A([]));
             let client = this.bmOss.get('ossClient');
-            for(let idx = 0;idx < this.cls.Teachers.length;idx++) {
+            for(let idx = 0;idx < this.cls.teachers.length;idx++) {
                 if(idx < 3) {
                     let tmpObj = {};
-                    tmpObj.url = client.signatureUrl(this.cls.Teachers[idx].icon);
+                    tmpObj.url = client.signatureUrl(this.cls.teachers.objectAt(idx).icon);
                     this.techPics.pushObject(tmpObj)
                 }
             }
-            if(this.cls.Teachers.length > 3) {
-                this.set("techPicsOverFlow", this.cls.Teachers.length - 3)
+            if(this.cls.teachers.length > 3) {
+                this.set("techPicsOverFlow", this.cls.teachers.length - 3)
             }
         } else {
             this.set("techPics", A([]))

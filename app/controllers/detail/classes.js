@@ -22,6 +22,7 @@ export default Controller.extend({
     tmpTech: null,
     tmpStud: null,
     tmpUnit: null,
+    selectedStuds: null,
 
     cur_idx: 0,
     // sessions: computed(function(){
@@ -52,45 +53,42 @@ export default Controller.extend({
         },
         onRemoveArrcourseClickOk() {
             let that = this;
-            let callback = {
-                onSuccess: function() {
-                    // that.set('removeUnitDlg', false);
-                    // this.bm_courseunit_service.set('refresh_all_token', this.bm_session_service.guid());
-                    // that.toast.success('', '删除课程安排成功', that.toastOptions);
-                },
-                onFail: function() {
-                    // that.toast.error('', '删除课程安排失败', that.toastOptions);
-                }
+            let onSuccess = function () {
+                debugger
+                that.tmpUnit.deleteRecord();                
+                that.tmpUnit.save().then(() => {
+                    window.console.log('213');
+                    
+                    that.set('removeUnitDlg', false);
+                    that.set('tmpUnit', null);
+                    that.toast.success('', '移除课程安排成功', that.toastOptions);
+                })
+
             }
-            // this.bm_courseunit_service.delete(callback,this.tmpUnit.id);
+            let onFail = function () {
+                that.toast.error('', '移除课程安排失败', that.toastOptions);
+            }
+            this.model.class.units.removeObject(this.tmpUnit)
+            console.log(this.model.class.units)
+            debugger
+            this.model.class.save().then(onSuccess, onFail)
         },
         onRemoveStudClick(param) {
             this.set('tmpStud', param);
             this.set('removeStudDlg', true);
         },
         onRemoveStudClickOk() {
-            // for(let idx = 0;idx < this.bm_class_service.class.Attendees.length;idx++) {
-            //     if(this.bm_class_service.class.Attendees[idx].id == this.tmpTech.id) {
-            //         this.bm_class_service.class.Attendees.removeObject(this.bm_class_service.class.Attendees[idx])
-            //     }
-            // }
-            // this.bm_class_service.resetInfoAndYard(this.bm_class_service.class.Yard.id, this.bm_class_service.class.SessionInfo.id);
-            // this.bm_class_service.resetTechs(this.bm_class_service.class.Teachers);
-            // this.bm_class_service.resetAttendee(this.bm_class_service.class.Attendees);
-            // let that = this
-            // let callback = {
-            //     onSuccess: function() {
-            //         that.set('removeStudDlg', false);
-            //         that.toast.success('', '移除学生成功', that.toastOptions);
-            //         that.bm_class_service.set('refresh_token', that.bm_class_service.guid());
-            //         debug('push sessionable success')
-            //     },
-            //     onFail: function() {
-            //         that.toast.error('', '移除学生失败', that.toastOptions);
-            //         debug('push sessionable fail')
-            //     }
-            // }
-            // this.bm_class_service.saveUpdate(callback);
+            let that = this;
+            let onSuccess = function () {
+                that.set('removeStudDlg', false);
+                that.set('tmpStud', null);
+                that.toast.success('', '移除学生成功', that.toastOptions);
+            }
+            let onFail = function () {
+                that.toast.error('', '移除学生失败', that.toastOptions);
+            }
+            this.model.class.students.removeObject(this.tmpStud)
+            this.model.class.save().then(onSuccess, onFail)
         },
         onRemoveTeacherClick(param) {
             this.set('tmpTech', param);
@@ -108,29 +106,6 @@ export default Controller.extend({
             }
             this.model.class.teachers.removeObject(this.tmpTech)
             this.model.class.save().then(onSuccess, onFail)
-
-            // for(let idx = 0;idx < this.bm_class_service.class.Teachers.length;idx++) {
-            //     if(this.bm_class_service.class.Teachers[idx].id == this.tmpTech.id) {
-            //         this.bm_class_service.class.Teachers.removeObject(this.bm_class_service.class.Teachers[idx])
-            //     }
-            // }
-            // this.bm_class_service.resetInfoAndYard(this.bm_class_service.class.Yard.id, this.bm_class_service.class.SessionInfo.id);
-            // // this.bm_class_service.resetTechs(this.bm_class_service.class.Teachers);
-            // this.bm_class_service.resetAttendee(this.bm_class_service.class.Attendees);
-            // let that = this
-            // let callback = {
-            //     onSuccess: function() {
-            //         that.set('removeTechDlg', false);
-            //         that.toast.success('', '移除老师成功', that.toastOptions);
-            //         that.bm_class_service.set('refresh_token', that.bm_class_service.guid());
-            //         debug('push sessionable success')
-            //     },
-            //     onFail: function() {
-            //         that.toast.error('', '移除老师失败', that.toastOptions);
-            //         debug('push sessionable fail')
-            //     }
-            // }
-            // this.bm_class_service.saveUpdate(callback);
         },
         cancelHandled() {
             this.set('editClassDlg', false);
@@ -163,25 +138,6 @@ export default Controller.extend({
             this.model.class.set("title", this.classTitle)
             this.model.class.set("sessioninfo", this.store.peekRecord("sessioninfo", this.cur_course_id))
             this.model.class.save().then(onSuccess, onFail)
-
-            // this.set('bm_class_service.class.classTitle', this.classTitle);
-            // this.bm_class_service.resetInfoAndYard(this.bm_class_service.class.Yard.id, this.bm_class_service.class.SessionInfo.id);
-            // // this.bm_class_service.resetTechs(this.bm_class_service.class.Teachers);
-            // this.bm_class_service.resetAttendee(this.bm_class_service.class.Attendees);
-            // let that = this
-            // let callback = {
-            //     onSuccess: function() {
-            //         that.set('editClassDlg', false);
-            //         that.toast.success('', '编辑班级成功', that.toastOptions);
-            //         that.bm_class_service.set('refresh_token', that.bm_class_service.guid());
-            //         debug('push sessionable success')
-            //     },
-            //     onFail: function() {
-            //         that.toast.error('', '编辑班级失败', that.toastOptions);
-            //         debug('push sessionable fail')
-            //     }
-            // }
-            // this.bm_class_service.saveUpdate(callback);
         },
         addTechHandled() {
             if(this.model.class.teachers != null) {
@@ -212,59 +168,27 @@ export default Controller.extend({
             // addTech.set()duty = this.addJobDuty;
             this.model.class.teachers.pushObject(addTech);
             this.model.class.save().then(onSuccess, onFail)
-
-            // else {
-            //     this.set("bm_class_service.class.Teachers", []);
-            // }
-
-            // if(this.bm_class_service.class.Teachers != null) {
-            //     for(let idx = 0;idx < this.bm_class_service.class.Teachers.length;idx++) {
-            //         if(this.addTechId == this.bm_class_service.class.Teachers[idx].id) {
-            //             this.toast.error('', '已存在当前教师', this.toastOptions);
-            //             return;
-            //         }
-            //     }
-            // } else {
-            //     this.set("bm_class_service.class.Teachers", []);
-            // }
-
-            // let addTech = null
-            // for(let idx = 0;idx < this.bm_tech_service.techs.length;idx++) {
-            //     if(this.addTechId == this.bm_tech_service.techs[idx].id) {
-            //         this.bm_class_service.transTech(this.bm_tech_service.techs[idx])
-            //         addTech = this.bm_tech_service.techs[idx];
-            //     }
-            // }
-            // addTech.duty = this.addJobDuty;
-            // this.bm_class_service.class.Teachers.pushObject(addTech);
-
-            // this.bm_class_service.resetInfoAndYard(this.bm_class_service.class.Yard.id, this.bm_class_service.class.SessionInfo.id);
-            // // this.bm_class_service.resetTechs(this.bm_class_service.class.Teachers);
-            // this.bm_class_service.resetAttendee(this.bm_class_service.class.Attendees);
-            // let that = this
-            // let callback = {
-            //     onSuccess: function() {
-            //         that.set('addTechDlg', false);
-            //         that.set("addTechId", "");
-            //         that.set("addJobDuty", "");
-            //         that.toast.success('', '添加老师成功', that.toastOptions);
-            //         that.bm_class_service.set('refresh_token', that.bm_class_service.guid());
-            //         debug('push success')
-            //     },
-            //     onFail: function() {
-            //         that.toast.error('', '添加老师失败', that.toastOptions);
-            //         debug('push fail')
-            //     }
-            // }
-            // this.bm_class_service.saveUpdate(callback);
         },
         addStudHandled() {
-
+            // console.log(this.selectedStuds)
+            let that = this;
+            let onSuccess = function () {
+                that.set('addStudDlg', false);
+                that.set("selectedStuds", null);
+                that.toast.success('', '添加学生成功', that.toastOptions);
+            }
+            let onFail = function () {
+                that.toast.error('', '添加学生失败', that.toastOptions);
+            }
+            if(this.selectedStuds != null) {
+                this.model.class.students.pushObjects(this.selectedStuds);
+                this.model.class.save().then(onSuccess, onFail)
+            } else {
+                this.toast.success('', '请选择学生', this.toastOptions);
+            }
         },
         onTabClicked(params) {
-            if(params == 2) {
-                // this.bm_courseunit_service.set('refresh_all_token', this.bm_session_service.guid());
-            }
+
         },
         onDeleteClassClick() {
             let that = this;

@@ -163,7 +163,7 @@
     </div>
 {{/bmcom/bm-modal-container}}
 {{#bmcom/bm-warning-modal title="移出班级" mainBtnText="移出" type="error" switchParam=removeTechDlg cancelHandled='cancelHandled' successHandled="onRemoveTeacherClickOk"}}
-    <p class="warning-modal-body-content">确定要将「{{tmpTech.name}}」老师移出「{{model.class.classTitle}}」吗？</p>
+    <p class="warning-modal-body-content">确定要将老师「{{tmpTech.name}}」移出「{{model.class.classTitle}}」吗？</p>
 {{/bmcom/bm-warning-modal}}
 
 {{#bmcom/bm-modal-container title="" mswitch=addStudDlg
@@ -177,7 +177,7 @@
             {{#layout-push direction='row'}}
                 <p class="title">添加班级学生</p>
             {{/layout-push}}
-            {{bmform/bm-search-multi-check multiData=bm_stud_service.studs type="" curItems="" filterData=model.class.Attendees}}
+            {{bmform/bm-search-multi-check multiData=model.studs type="" curItems=selectedStuds filterData=model.class.students}}
             {{!-- {{#if noteError}}
                 <div class="form-checked">
                     {{#layout-push direction='row' classNames="error-line"}}
@@ -196,10 +196,10 @@
     </div>
 {{/bmcom/bm-modal-container}}
 {{#bmcom/bm-warning-modal title="移出班级" mainBtnText="移出" type="error" switchParam=removeStudDlg cancelHandled='cancelHandled' successHandled="onRemoveStudClickOk"}}
-    <p class="warning-modal-body-content">确定要将「{{tmpStud.name}}」学生移出「{{model.class.classTitle}}」吗？</p>
+    <p class="warning-modal-body-content">确定要将学生「{{tmpStud.name}}」移出「{{model.class.classTitle}}」吗？</p>
 {{/bmcom/bm-warning-modal}}
 
-{{#bmcom/bm-warning-modal title="删除课程安排" mainBtnText="删除" type="error" switchParam=removeStudDlg cancelHandled='cancelHandled' successHandled="onRemoveArrcourseClickOk"}}
+{{#bmcom/bm-warning-modal title="删除课程安排" mainBtnText="删除" type="error" switchParam=removeUnitDlg cancelHandled='cancelHandled' successHandled="onRemoveArrcourseClickOk"}}
     <p class="warning-modal-body-content">确定要删除此节课程安排吗？</p>
 {{/bmcom/bm-warning-modal}}
 {{outlet}}

@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 
 export default Controller.extend({
-    openFlag: false,
+    openFlag: true,
     actions: {
         cardClicked(idx) {
             this.transitionToRoute('detail.course', idx);

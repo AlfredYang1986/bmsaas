@@ -23,6 +23,10 @@
     // margin-bottom: 0;
     min-height: calc(100vh - 88px);
 
+    .stud-empty-state {
+        margin-top: 16px;
+        height: calc(100vh - 208px);
+    }
     .stud-title-flex{
         align-items: center;
         height: 72px;

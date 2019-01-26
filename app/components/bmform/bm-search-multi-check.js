@@ -1,8 +1,14 @@
 import Component from '@ember/component';
+import { A } from '@ember/array';
+import { inject as service } from '@ember/service';
+import { set } from '@ember/object';
+import EmberObject from '@ember/object';
 
 export default Component.extend({
+    store: service(),
     // tagName: '',
     positionalParams: ['multiData' ,'type', 'curItems', 'filterData'],
+    curItems: A([]),
     searchTitle: "选择学生",
     handledMultiData: null,
     filterData: null,
@@ -11,42 +17,75 @@ export default Component.extend({
 
     actions: {
         onSearchChange(keyWord) {
-            // console.log(keyWord)
             let reg = new RegExp(keyWord);
             let arr = [];
             for (let i = 0; i < this.clonedData.length; i++) {
-                if (reg.test(this.clonedData[i].name) || reg.test(this.clonedData[i].Guardians[0].contact)) {
+                if (reg.test(this.clonedData[i].name) || reg.test(this.clonedData[i].contact)) {
                     arr.push(this.clonedData[i]);
                 }
             }
-            this.set('handledMultiData', this.deepClone(arr))
+            this.set('handledMultiData', arr)
             // console.log(this.handledMultiData)
         },
         onCheckChange(param) {
-            // console.log(param)
+
+            this.handledMultiData.forEach(item => {
+                if(item.id === param.id) {
+                    item.state ? set(item, "state", 0) : set(item, "state", 1)
+                }
+                // console.log(item.state)
+            })
+
+            let tempObj = this.store.peekRecord("student", param.id)
+            let haveCurItemFlag = false;
+            
+            if(this.curItems == null) {
+                this.set("curItems", A([]));
+                this.curItems.pushObject(tempObj);
+            } else {
+                this.curItems.forEach(item => {
+                    if(item.id == tempObj.id) {
+                        haveCurItemFlag = true;
+                    }
+                })
+                if(haveCurItemFlag) {
+                    this.curItems.removeObject(tempObj);
+                } else {
+                    this.curItems.pushObject(tempObj);
+                }
+            }
+            window.console.log(this.curItems);
         },
     },
 
     didReceiveAttrs() {
-        this.clonedData = this.deepClone(this.multiData)
-        this.handledMultiData = this.deepClone(this.multiData)
-        // console.log(this.multiData)
-        // console.log(this.handledMultiData)
-        if(this.filterData != null) {
+        let tempArr = A([])
+        for(let idx = 0;idx < this.multiData.length;idx++) {
+            let tempObj = EmberObject.create({})
+            tempObj.id = this.multiData.objectAt(idx).id;
+            tempObj.name = this.multiData.objectAt(idx).name;
+            tempObj.gender = this.multiData.objectAt(idx).gender;
+            tempObj.dob = this.multiData.objectAt(idx).dob;
+            tempObj.contact = this.multiData.objectAt(idx).guardians.firstObject.contact;
+            tempObj.state = 0;
+            tempArr.pushObject(tempObj)
+        }
+        this.set('handledMultiData', tempArr)
+        if (this.filterData != null) {
             for(let idx = 0;idx < this.handledMultiData.length;idx++) {
-                for(let idx2 = 0;idx2 < this.filterData.length;idx2++) {
-                    if(this.handledMultiData[idx].id == this.filterData[idx2].id) {
+                for (let idx2 = 0; idx2 < this.filterData.length; idx2++) {
+                    if (this.handledMultiData[idx].id == this.filterData.objectAt(idx2).id) {
                         this.handledMultiData.removeObject(this.handledMultiData[idx]);
                     }
                 }
             }
         }
+        this.set('clonedData', this.handledMultiData)
         
-        // console.log(this.handledMultiData)
     },
-    deepClone(source){
-        return ''
-        // return JSON.parse(JSON.stringify(source));
-    },
+    // deepClone(source){
+    //     return source;
+    //     // return JSON.parse(JSON.stringify(source));
+    // },
 
 });

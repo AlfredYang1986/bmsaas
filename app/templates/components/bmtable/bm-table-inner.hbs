@@ -127,14 +127,14 @@
             <td  class="ib_table_content_item">
                 {{#bs-button classNames="ib_table_content_link_btn" onClick=(action 'onClickInner' item.id)}}<span>查看</span>{{/bs-button}}
             </td>
-        {{else if (bmeq type "r")}}
+        {{else if (bmeq type "room")}}
             <td class='ib_table_content_item'>{{item.title}}</td>
             <td class='ib_table_content_item'>
-                {{#if (bmeq item.rType 0)}}
+                {{#if (bmeq item.roomType 0)}}
                 自有
-                {{else if (bmeq item.rType 1)}}
+                {{else if (bmeq item.roomType 1)}}
                 租用
-                {{else if (bmeq item.rType 2)}}
+                {{else if (bmeq item.roomType 2)}}
                 公共
                 {{/if}}
             </td>
@@ -144,8 +144,8 @@
                     {{#dd.menu align="right" as |menu|}}
                         {{#menu.item align="right"}}
                             {{#layout-push direction='col' classNames="dropdown-content"}}
-                                <a onclick={{action 'onEditrClick' item dd.closeDropdown}}>编辑教室</a>
-                                <a class="warning" onclick={{action 'onDeleterClick' item dd.closeDropdown}}>删除教室</a>
+                                <a onclick={{action 'onEditRoomClick' item dd.closeDropdown}}>编辑教室</a>
+                                <a class="warning" onclick={{action 'onDeleteRoomClick' item dd.closeDropdown}}>删除教室</a>
                             {{/layout-push}}
                         {{/menu.item}}
                     {{/dd.menu}}
@@ -185,16 +185,21 @@
                 {{/if}}
             </td>
             <td class='ib_table_content_item'>{{bmdob/bmdob2age item.dob}}岁</td>
-            <td class='ib_table_content_item'>{{item.contact}}</td>
+            <td class='ib_table_content_item'>
+                {{#each item.guardians as |elem index|}}
+                    {{#if (eq index 0)}}
+                        {{elem.contact}}
+                    {{/if}}
+                {{/each}}
+            </td>
             <td class="ib_table_content_item">
                 {{#bs-dropdown class="btn-dropdown" as |dd|}}
                     {{#dd.button class="reserve-more-btn"}}{{/dd.button}}
                     {{#dd.menu align="right" as |menu|}}
                         {{#menu.item align="right"}}
                             {{#layout-push direction='col' classNames="dropdown-content"}}
-                                {{!-- <a class="" onclick={{action 'onStudDetailClick' item dd.closeDropdown}}>学生详情</a> --}}
                                 {{#link-to 'detail.stud' item.id}}
-                                    <a class="">学生详情</a>
+                                    <a class="normal">学生详情</a>
                                 {{/link-to}}
                                 <a class="warning" onclick={{action 'onRemoveStudClick' item dd.closeDropdown}}>移出班级</a>
                             {{/layout-push}}
@@ -203,7 +208,7 @@
                 {{/bs-dropdown}}
             </td>
         {{else if (bmeq type "classArr")}}
-            <td class='ib_table_content_item'>第{{item.courseTime}}节</td>
+            <td class='ib_table_content_item'>{{item.courseTime}}课时</td>
             <td class='ib_table_content_item'>
                 {{bmdob/bmdobformat item.startDate}} {{bmdob/bmdob2weekday item.startDate}}<br/>
                 {{bmdob/bmdob2clocktime item.startDate}}-{{bmdob/bmdob2clocktime item.endDate}}

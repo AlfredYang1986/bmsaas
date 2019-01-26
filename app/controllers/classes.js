@@ -13,7 +13,7 @@ export default Controller.extend({
         timeOut: '2000',
     },
     titles: A(['全部', '未排课', 'On Going', 'Finished']),
-    openFlag: false,
+    openFlag: true,
 
     refreshFlag: false,
 
@@ -31,7 +31,15 @@ export default Controller.extend({
     cls: computed('cur_idx', 'cur_page', "refreshFlag", function(){
         // @sun 通过cur_idx 调整query的filter
         // return this.store.query('class', { 'page[number]': this.cur_page, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), "status": 2})
-        return this.store.query('class', { "brand-id": localStorage.getItem("brandid"), "status": 2})
+        if(this.cur_idx == 0) {
+            return this.store.query('class', { "brand-id": localStorage.getItem("brandid"), "status": 2, "flag": 0})
+        } else if(this.cur_idx == 1) {
+            return this.store.query('class', { "brand-id": localStorage.getItem("brandid"), "status": 2, "flag": -1})
+        } else if(this.cur_idx == 2) {
+            return this.store.query('class', { "brand-id": localStorage.getItem("brandid"), "status": 2, "flag": 1})
+        } else {
+            return this.store.query('class', { "brand-id": localStorage.getItem("brandid"), "status": 2, "flag": 2})
+        }
     }),
 
     actions: {

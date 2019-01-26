@@ -2,7 +2,12 @@
 {{#layout-push direction='col' classNames="bm-search-check-container"}}
     {{#layout-push direction='row' split=true classNames="title-container"}}
         <p class="search-title">{{searchTitle}}</p>
-        <p class="choose-num">已选X</p>
+        {{!-- {{log curItems.length}} --}}
+        {{#if (eq curItems null)}}
+            <p class="choose-num">已选0个</p>
+        {{else}} 
+            <p class="choose-num">已选{{curItems.length}}个</p>
+        {{/if}}
     {{/layout-push}}
     {{#layout-push direction='col' classNames="search-container"}}
         {{input classNames="search-input" value=inputVal keyUp=(action "onSearchChange" inputVal)}}
@@ -21,14 +26,14 @@
                     </td>
                     <td class='ib_table_content_item'>{{bmdob/bmdob2age item.dob}}岁</td>
                     <td class='ib_table_content_item'>
-                        {{#each item.Guardians as |elem idx|}}
-                            {{#if (eq idx 0)}}
-                                {{elem.contact}}
-                            {{/if}}
-                        {{/each}}
+                        {{!-- {{#each item.guardians as |elem idx|}}
+                            {{#if (eq idx 0)}} --}}
+                                {{item.contact}}
+                            {{!-- {{/if}}
+                        {{/each}} --}}
                         </td>
                     <td class='ib_table_content_item'>
-                        {{input classNames="multi-check" type="checkbox" click=(action "onCheckChange" item)}}
+                        {{input classNames="multi-check" type="checkbox" checked=item.state click=(action "onCheckChange" item)}}
                     </td>
                 </tr>
             {{/each}}
