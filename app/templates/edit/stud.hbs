@@ -1,15 +1,6 @@
 {{#layout-push direction='row' split=true classNames='edit_nav' }}
 	<span classNames='edit_nav_title'>编辑学生信息</span>
 	<span>
-		{{!-- {{#if isPushing}}
-			{{#link-to 'stud' class="edit_nav_btn btn_cacel"}}
-				取消
-			{{/link-to}}
-		{{else}}
-			{{#link-to 'detail.stud' model.stud.id class="edit_nav_btn btn_cacel"}}
-				取消
-			{{/link-to}}
-		{{/if}} --}}
 		<button class="edit_nav_btn btn_cacel" {{action 'cancelInputBtnClicked'}}>取消</button>
 		<button class="edit_nav_btn btn_save" {{action 'saveInputBtnClicked'}}>提交</button>
 	</span>
@@ -41,7 +32,6 @@
 
 			{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
 				<p class="edit_title">性别</p>
-
 				{{bmcom/bm-radio-inline cur_idx=sex_idx judge=sex titles=genderCheck}}
 			{{/layout-push}}
 
@@ -59,17 +49,14 @@
 				{{bmform/bm-edit-line title='就读学校' largeInput=true  inputVal=model.stud.school classNames='input_area area-margin-bottom'}}
 			{{/layout-push}}
 
-			{{!-- {{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
-				{{bmform/bm-edit-line title='地址' largeInput=true  inputVal=bm_stud_service.stud.address classNames='input_area area-margin-bottom'}}
-			{{/layout-push}} --}}
-			{{bmform/bm-detail-address 
-                provinces=provinces 
-                citys=citys 
-                areas=areas 
+			{{bmform/bm-detail-address
+                provinces=provinces
+                citys=citys
+                areas=areas
                 province=model.stud.province
                 city=model.stud.city
                 area=model.stud.district
-                title='地址' 
+                title='地址'
                 detailAddress=model.stud.address
 				classNames="area-margin-bottom"}}
 		</section>
@@ -93,38 +80,6 @@
 
 		<section class="kids_info stu_section" id="other-info">
 			<p class="title-name">更多信息</p>
-			{{!-- {{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
-				<p class="edit_title">课程顾问</p>
-				{{#layout-push direction="row" classNames="area-margin-bottom"}}
-					<div class="course-reserve-modal-select error-border">
-						<select class="" id='techSelect' name="" onChange={{action 'selectedTech'}}>
-						   {{#if (eq bm_stud_service.stud.teacherName "")}}
-						   		<option value="" disabled selected hidden>请选择</option>
-						   {{/if}}
-						   {{#each bm_tech_service.techs as |item|}}
-							{{#if (eq bm_stud_service.stud.teacherName item.name)}}
-								<option selected value={{item.name}}>{{item.name}}</option>
-							{{else}}
-								<option value={{item.name}}>{{item.name}}</option>
-							{{/if}}
-						   {{/each}}
-						</select>
-					</div>
-				{{/layout-push}}
-			{{/layout-push}} --}}
-			{{!-- {{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
-				<p class="edit_title">渠道来源</p>
-				{{#layout-push direction="row" classNames="area-margin-bottom"}}
-					<div class="course-reserve-modal-select error-border">
-						<select class="" id="originSelect"  name="" onChange={{action 'selectedOrigin'}}>
-						   <option value="">{{bm_stud_service.stud.sourceWay}}</option>
-						   {{#each origin as |item|}}
-							   <option value={{item}}>{{item}}</option>
-						   {{/each}}
-						</select>
-					</div>
-				{{/layout-push}}
-			{{/layout-push}} --}}
 			{{bmform/bm-base-select type="id" idType=true selId='teacherName' selTitle="课程顾问" options=model.techs curSelect=cur_tech_id classNames="input_area area-margin-bottom"}}
 			{{bmform/bm-base-select selId='sourceWay' selTitle="渠道来源" options=origin curSelect=model.stud.sourceWay classNames="input_area"}}
 		</section>

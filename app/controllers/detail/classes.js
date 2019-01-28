@@ -46,7 +46,7 @@ export default Controller.extend({
     noteError: false,
 
     actions: {
-        
+
         onRemoveArrcourseClick(param) {
             this.set('tmpUnit', param);
             this.set('removeUnitDlg', true);
@@ -54,11 +54,10 @@ export default Controller.extend({
         onRemoveArrcourseClickOk() {
             let that = this;
             let onSuccess = function () {
-                debugger
-                that.tmpUnit.deleteRecord();                
+                that.tmpUnit.deleteRecord();
                 that.tmpUnit.save().then(() => {
                     window.console.log('213');
-                    
+
                     that.set('removeUnitDlg', false);
                     that.set('tmpUnit', null);
                     that.toast.success('', '移除课程安排成功', that.toastOptions);
@@ -70,7 +69,6 @@ export default Controller.extend({
             }
             this.model.class.units.removeObject(this.tmpUnit)
             console.log(this.model.class.units)
-            debugger
             this.model.class.save().then(onSuccess, onFail)
         },
         onRemoveStudClick(param) {
@@ -125,7 +123,7 @@ export default Controller.extend({
         editClassHandled() {
             if(this.classTitle == "" || this.classTitle == null ) {
                 this.set('noteError', true);
-                return; 
+                return;
             }
             let that = this;
             let onSuccess = function () {
@@ -147,7 +145,7 @@ export default Controller.extend({
                         return;
                     }
                 }
-            } 
+            }
             let that = this;
             let onSuccess = function () {
                 that.set('addTechDlg', false);

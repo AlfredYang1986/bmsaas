@@ -10,27 +10,30 @@ export default Controller.extend({
     cur_tech_id: "",
     sex_idx: 0,
     rela_idx: 0,
-    genderCheck: A(['男', '女', '未知']),
+    genderCheck: A(['男', '女']),
     relaChecked: A(['父亲', '母亲', '其他']),
+    init() {
+        this._super(...arguments);
+        this.set('sex_idx', 0);
+        this.set('rela_idx', 0);
+    },
     sex: computed('sex_idx', function() {
         if(this.sex_idx == 1) {
             this.model.stud.set('gender', 0);
-        } else if(this.sex_idx == 0) {
-            this.model.stud.set('gender', 1);
         } else {
-            this.model.stud.set('gender', 3);
+            this.model.stud.set('gender', 1);
         }
     }),
 
     rela: computed('rela_idx', function() {
         if(this.model.stud.guardians.length > 0) {
             if(this.rela_idx == 0) {
-                this.model.stud.guardians.objectAt(0).set("relationShip", "爸爸")
-            } else if(this.rela_idx == 1) {
-                this.model.stud.guardians.objectAt(0).set("relationShip", '妈妈')
-            } else {
-                this.model.stud.guardians.objectAt(0).set("relationShip", '其他')
-            }
+            this.model.stud.guardians.objectAt(0).set("relationShip", "爸爸")
+        } else if(this.rela_idx == 1) {
+            this.model.stud.guardians.objectAt(0).set("relationShip", '妈妈')
+        } else {
+            this.model.stud.guardians.objectAt(0).set("relationShip", '其他')
+        }
         }
     }),
 
@@ -64,6 +67,12 @@ export default Controller.extend({
             this.model.stud.set('teacher', tmpTech);
             for(let idx = 0;idx < this.model.stud.guardians.length;idx++) {
                 this.model.stud.guardians.objectAt(idx).save()
+            }
+            if(this.model.stud.guardians.firstObject.relationShip == '') {
+                that.model.stud.guardians.objectAt(0).set("relationShip", '爸爸')
+            }
+            if(this.model.stud.gender == undefined || this.model.stud.gender == null) {
+                that.model.stud.set('gender', 1);
             }
             this.model.stud.save();
             if(this.model.applyid != undefined) {
