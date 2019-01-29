@@ -1,10 +1,48 @@
 {{yield}}
 
-{{#layout-push direction='col' className="arr-cls-card-outer"}}
-    {{#layout-push direction='col' className="arr-cls-card-top"}}
-        
+{{#layout-push direction='col' classNames="arr-cls-card-outer"}}
+    {{#layout-push direction='col' classNames="arr-cls-card-top"}}
+        {{#layout-push direction='row' split=true classNames="arr-cls-card-top-head"}}
+            {{#layout-push direction='row' classNames="arr-cls-card-top-inner-left"}}
+                <img class="top-img-btn" src="/images/search.png"/>
+                <img class="top-img-btn" src="/images/search.png"/>
+            {{/layout-push}}
+            {{#layout-push direction='row' classNames="arr-cls-card-top-inner-right"}}
+                <img class="top-img-btn" src="/images/search.png"/>
+            {{/layout-push}}
+        {{/layout-push}}
+        {{#layout-push direction='row' classNames="arr-cls-card-top-label"}}
+            <p class="type-label">课程</p>
+        {{/layout-push}}
+        {{#layout-push direction='row' classNames="arr-cls-card-top-title"}}
+            <p class="top-title">乐高机器人创意拼一班</p>
+        {{/layout-push}}
+        {{#layout-push direction='row' classNames="arr-cls-card-top-subtitle"}}
+            <p class="top-subtitle">第03节</p>
+            <p class="top-subtitle">乐高机器人创意搭babababababababa</p>
+        {{/layout-push}}
     {{/layout-push}}
-    {{#layout-push direction='col' className="arr-cls-card-bottom"}}
+    {{#layout-push direction='col' classNames="arr-cls-card-bottom"}}
+        {{#layout-push direction='row' classNames="arr-cls-card-bottom-title"}}
+            <img class="bottom-img" src="/images/search.png"/>
+            <p class="bottom-title">8月12日 周二</p>
+        {{/layout-push}}
+        {{#layout-push direction='row' classNames="arr-cls-card-bottom-subtitle"}}
+            <p class="bottom-subtitle">10:00-12:00</p>
+        {{/layout-push}}
+        {{#layout-push direction='row' classNames="arr-cls-card-bottom-content"}}
+            <img class="bottom-img" src="/images/search.png"/>
+            <p class="bottom-title">30人</p>
+        {{/layout-push}}
+
+        {{!-- {{#if }} --}}
+            {{#layout-push direction='row' classNames="arr-cls-card-split"}}
         
+            {{/layout-push}}
+            {{#layout-push direction='row' classNames="arr-cls-card-icon"}}
+                <img class="tech-img" src="/images/search.png"/>
+                <img class="tech-img" src="/images/search.png"/>
+            {{/layout-push}}
+        {{!-- {{/if}} --}}
     {{/layout-push}}
 {{/layout-push}}

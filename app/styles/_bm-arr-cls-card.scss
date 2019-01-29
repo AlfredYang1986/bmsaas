@@ -1,0 +1,114 @@
+.arr-cls-card-outer {
+    width: 255px;
+    background: #FFFFFF;
+    box-shadow: 0 4px 8px -2px rgba(9,30,66,0.25);
+    border-radius: 4px;
+
+    .arr-cls-card-top {
+        height: 149px;
+        background-color: #8BC34A;
+        padding: 16px 24px;
+        border-radius: 4px 4px 0 0;
+        
+        .arr-cls-card-top-head {
+            margin-bottom: 24px;
+
+            img {
+                width: 24px;
+                height: 24px;
+                
+                &:nth-child(1) {
+                    margin-right: 8px;
+                }
+            }
+        }
+        .arr-cls-card-top-label {
+            margin-bottom: 8px;
+
+            .type-label {
+                background: #FFFFFF;
+                border-radius: 4px;
+                font-family: PingFangSC-Medium;
+                font-size: 11px;
+                color: #6B778C;
+                height: 20px;
+                min-width: 38px;
+                text-align: center;
+            }
+        }
+        .arr-cls-card-top-title {
+            height: 22px;
+            
+            .top-title {
+                font-family: PingFangSC-Medium;
+                font-size: 16px;
+                color: #FFFFFF;
+            }
+        }
+        .arr-cls-card-top-subtitle {
+            height: 20px;
+
+            .top-subtitle {
+                opacity: 0.7;
+                font-family: PingFangSC-Regular;
+                font-size: 14px;
+                color: #FFFFFF;
+                
+                &:nth-child(1) {
+                    margin-right: 8px;
+                    min-width: 45px;
+                }
+                &:nth-child(2) {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
+    .arr-cls-card-bottom {
+        background: #FFFFFF;
+        min-height: 112px;
+        padding: 16px 24px;
+        border-radius: 0 0 4px 4px;
+
+        .arr-cls-card-bottom-title {
+            align-items: center;
+        }
+        .arr-cls-card-bottom-subtitle {
+            margin-left: 24px;
+        }
+        .arr-cls-card-bottom-content {
+            margin-top: 16px;
+            align-items: center;
+        }
+        .bottom-title {
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #172B4D;
+        }
+        .bottom-subtitle {
+            font-family: SFUIText-Regular;
+            font-size: 14px;
+            color: #6B778C;
+        }
+        .bottom-img {
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+        }
+        .arr-cls-card-split {
+            margin-top: 16px;
+            border-bottom: 1px solid rgba(0,0,0,0.05)
+        }
+        .arr-cls-card-icon {
+            margin-top: 16px;
+
+            .tech-img {
+                width: 32px;
+                height: 32px;
+                margin-right: 8px;
+            }
+        }
+    }
+}
