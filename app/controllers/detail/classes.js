@@ -69,6 +69,7 @@ export default Controller.extend({
             }
             this.model.class.units.removeObject(this.tmpUnit)
             console.log(this.model.class.units)
+            debugger
             this.model.class.save().then(onSuccess, onFail)
         },
         onRemoveStudClick(param) {

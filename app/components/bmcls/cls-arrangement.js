@@ -5,15 +5,19 @@ import { inject as service } from '@ember/service';
 export default Component.extend({
     store: service(),
     bm_clsarr_service: service(),
-    selectedYard: '',
+    selectedRoom: '',
     showAddDlg: false,
     refreshSelected: computed(function(){
         this.refresh_date();
         return '';
     }),
 
-    yards: computed(function(){
-        return this.store.findAll('yard');
+    // yards: computed(function(){
+    //     return this.store.findAll('yard');
+    // }),
+
+    rooms: computed(function(){
+        return this.store.query('room', { "brand-id": localStorage.getItem("brandid")});
     }),
 
     init() {
@@ -38,12 +42,13 @@ export default Component.extend({
         return tmp.getTime();
     },
     refresh_date() {
-        var sel = document.getElementById("yardselect");
-        this.set('selectedYard', sel.options[sel.selectedIndex].value);
-        this.bm_clsarr_service.set('yardid', this.selectedYard);
+        var sel = document.getElementById("roomselect");
+        this.set('selectedRoom', sel.options[sel.selectedIndex].value);
+        // this.bm_clsarr_service.set('yardid', this.selectedRoom);
         this.bm_clsarr_service.set('st', this.start_date);
         this.bm_clsarr_service.set('et', this.end_date);
-        this.bm_clsarr_service.set('refresh_all_token', this.bm_clsarr_service.guid());
+        // this.bm_clsarr_service.set('refresh_all_token', this.bm_clsarr_service.guid());
+        this.store.query("unit",{ "room-id": this.selectedRoom})
     },
     actions: {
         prevBtnClicked(/*args*/) {
@@ -65,7 +70,7 @@ export default Component.extend({
         todayBtnClicked(/*args*/) {
 
         },
-        yardChanged() {
+        roomChanged() {
             this.refresh_date();
         },
         cancelHandled() {
@@ -73,6 +78,9 @@ export default Component.extend({
         },
         successHandled() {
             this.set('showAddDlg', false);
-        }        
+        },
+        addUnitOnClick() {
+            this.onAddUnitClick()
+        },
     }
 });

@@ -6,11 +6,12 @@
         {{#if (eq curItems null)}}
             <p class="choose-num">已选0个</p>
         {{else}} 
+            {{!-- {{log curItems}} --}}
             <p class="choose-num">已选{{curItems.length}}个</p>
         {{/if}}
     {{/layout-push}}
     {{#layout-push direction='col' classNames="search-container"}}
-        {{input classNames="search-input" value=inputVal keyUp=(action "onSearchChange" inputVal)}}
+        {{input classNames="search-input" value=inputVal placeholder="输入姓名或联系方式以检索" keyUp=(action "onSearchChange" inputVal)}}
     {{/layout-push}}
     {{#layout-push direction='col' classNames="table-container"}}
         <table class='ib_table_head class_add_stud_table'>

@@ -66,7 +66,11 @@ export default Component.extend({
             tempObj.name = this.multiData.objectAt(idx).name;
             tempObj.gender = this.multiData.objectAt(idx).gender;
             tempObj.dob = this.multiData.objectAt(idx).dob;
-            tempObj.contact = this.multiData.objectAt(idx).guardians.firstObject.contact;
+            if(this.multiData.objectAt(idx).guardians.length != 0) {
+                tempObj.contact = this.multiData.objectAt(idx).guardians.firstObject.contact;
+            } else {
+                tempObj.contact = ""
+            }
             tempObj.state = 0;
             tempArr.pushObject(tempObj)
         }
