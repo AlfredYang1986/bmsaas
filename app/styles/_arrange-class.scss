@@ -387,3 +387,21 @@
 
     // border:1px solid #000000;
 }
+
+.session-modal {
+    .input_area {
+        .input-inline-select {
+            .input_area {
+                flex-direction: row;
+                justify-content: start;
+                align-items: center;
+
+                p {
+                    min-width: 56px;
+                    margin-bottom: 0;
+                    margin-right: 16px;
+                }
+            }
+        }
+    }
+}
