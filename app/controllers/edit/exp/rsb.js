@@ -14,10 +14,9 @@ export default Controller.extend({
                 let tmp = that.store.peekRecord('sessioninfo', that.model.si.id)
                 that.model.exp.set('sessioninfo', tmp);
                 that.model.exp.save().then(() => {
-                    window.console.log("保存出错")
-                }, () => {
-                    window.console.log("保存正常")
                     that.transitionToRoute('exp');
+                }, () => {
+                    window.console.log("保存出错")
                 })
             }
             let onFail = function () {
