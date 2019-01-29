@@ -68,8 +68,6 @@ export default Controller.extend({
                 that.toast.error('', '移除课程安排失败', that.toastOptions);
             }
             this.model.class.units.removeObject(this.tmpUnit)
-            console.log(this.model.class.units)
-            debugger
             this.model.class.save().then(onSuccess, onFail)
         },
         onRemoveStudClick(param) {
