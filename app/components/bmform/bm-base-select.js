@@ -13,7 +13,6 @@ export default Component.extend({
     separator: "&and&",
     actions: {
         selectedChange() {
-            // debugger
             let sel = document.getElementById(this.selId);
             this.set('sel', sel)
             // if (sel.selectedIndex == 0) {
