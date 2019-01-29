@@ -54,7 +54,8 @@ export default Component.extend({
                     this.curItems.pushObject(tempObj);
                 }
             }
-            window.console.log(this.curItems);
+            // this.rerender()
+            // window.console.log(this.curItems);
         },
     },
 

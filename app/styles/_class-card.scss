@@ -50,6 +50,7 @@
         }
         .class-teachers {
             // margin-bottom: 20px;
+            height: 32px;
             img {
                 margin-right: 8px;
                 width: 32px;
@@ -124,9 +125,9 @@
     .class-card-head-info {
         background:  #5A74DB;
     }
-    .list, .split-line, .class-teachers {
-        display: none;
-    }
+    // .list, .split-line, .class-teachers {
+    //     display: none;
+    // }
     .class-card-content {
         .course-count {
             display: none;

@@ -35,6 +35,7 @@
                         </td>
                     <td class='ib_table_content_item'>
                         {{input classNames="multi-check" type="checkbox" checked=item.state click=(action "onCheckChange" item)}}
+                        {{!-- <input class="multi-check" type="checkbox" checked={{item.state}} onclick={{action "onCheckChange" item}}> --}}
                     </td>
                 </tr>
             {{/each}}
