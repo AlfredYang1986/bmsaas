@@ -97,13 +97,16 @@ export default Controller.extend({
     saveYard() {
         this.model.yard.set("images", this.tempYardImgs)
         this.model.yard.get("images").pushObjects(this.tempCertImgs)
-        // this.model.yard.save().then(this.transitionToRoute("detail.yard"));
         let that = this;
-        let onSuccess = function() {
-            that.transitionToRoute("detail.yard");
-        }
-        let onFail = function() {}
-        this.model.yard.save().then(onSuccess, onFail);
+        this.model.yard.save().then(function() {
+            that.transitionToRoute("detail.yard")
+        });
+        // let that = this;
+        // let onSuccess = function() {
+        //     that.transitionToRoute("detail.yard");
+        // }
+        // let onFail = function() {}
+        // this.model.yard.save().then(onSuccess, onFail);
 
     }
 });

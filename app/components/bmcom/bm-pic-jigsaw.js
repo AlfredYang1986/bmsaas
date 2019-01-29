@@ -22,10 +22,8 @@ export default Component.extend({
         this.picData.then(data => {
             let result = data.
             filter((item) => {return item.img !== ""}).
-            map(v => {return {url: client.signatureUrl(v.img), tag: v.tag}})
-           
-        //    this.images.pushObjects(result)
-           this.set("images", result)
+            map(v => {return {url: client.signatureUrl(v.img), tag: v.tag}})           
+            this.set("images", result)
         })
     },
     actions: {

@@ -15,4 +15,22 @@ export default Route.extend({
             })
         }
     },
+    setupController(controller, model) {
+        this._super(controller, model);
+        if(model.isPushing) {
+            controller.set("sex_idx", 0);
+            controller.set('jobTypeIdx', 0);
+        } else {
+            if (model.tech.gender == 0) {
+                controller.set("sex_idx", 1);
+            } else {
+                controller.set("sex_idx", 0);
+            }
+            if (model.tech.jobType == 0) {
+                controller.set('jobTypeIdx', 1)
+            } else {
+                controller.set('jobTypeIdx', 0)
+            }
+        }
+    }
 });
