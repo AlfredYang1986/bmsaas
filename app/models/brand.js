@@ -10,7 +10,7 @@ export default DS.Model.extend({
     slogan: DS.attr('string'),
     subtitle: DS.attr('string'),
     title: DS.attr('string'),
-    cate: DS.belongsTo('category'),
+    category: DS.belongsTo('category'),
     // certifications: DS.hasMany('image'),
     // honors: DS.hasMany('image'),
     images: DS.hasMany('image'),
