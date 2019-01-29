@@ -11,5 +11,9 @@ export default DS.JSONAPISerializer.extend({
         localStorage.setItem(tr+'-count', tc);
 
         return normalizedDocument;
+    },
+    normalizeResponse(store, primaryModelClass, payload, id, requestType) {
+        return this._super(store, primaryModelClass, payload, id, requestType);
     }
+
 });
