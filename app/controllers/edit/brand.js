@@ -22,7 +22,7 @@ export default Controller.extend({
             let flag2 = false;
             let flag1Count = 0;
             let flag2Count = 0;
-            let doneFlag = false;         
+            let doneFlag = false;
             if(this.tempHonorImgs.length === 0) {
                 flag1 = true;
             }
@@ -83,6 +83,8 @@ export default Controller.extend({
     saveBrand() {
         this.model.brand.set("images", this.tempHonorImgs)
         this.model.brand.get("images").pushObjects(this.tempCertImgs)
-        this.model.brand.save().then(this.transitionToRoute("home"));
+        this.model.brand.save().then(()=> {
+            this.transitionToRoute("home")
+        });
     }
 });
