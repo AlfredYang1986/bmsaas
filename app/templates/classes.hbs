@@ -11,7 +11,11 @@
             {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=titles }}
         {{/layout-push}}
 
-        {{bmclass/bm-class-scroller cls=cls onCardClicked=(action 'cardClicked')}}
+        {{#if (eq cls.length 0)}}
+            {{bmcom/bm-empty-state class="class-empty-state" picUrl="/images/img_empty@2x.png" title="暂无数据" des="请创建班级"}}
+        {{else}}
+            {{bmclass/bm-class-scroller cls=cls onCardClicked=(action 'cardClicked')}}
+        {{/if}}
     {{else}}
         {{bmcom/bm-empty-state class="class-not-open" picUrl="/images/img_openningsoon.png" title="即将开放" des="更加强大便捷的功能马上到来"}}
     {{/if}}

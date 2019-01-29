@@ -16,9 +16,9 @@ export default Controller.extend({
                 let tmp = that.store.peekRecord('sessioninfo', that.model.si.id)
                 that.model.actv.set('sessioninfo', tmp);
                 that.model.actv.save().then(() => {
-                    // that.transitionToRoute('actv');
-                }, () => {
                     that.transitionToRoute('actv');
+                }, () => {
+                    window.console.log("保存出错")
                 })
             }
             let onFail = function () {
