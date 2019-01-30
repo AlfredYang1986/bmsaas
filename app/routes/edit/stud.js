@@ -5,19 +5,13 @@ import { A } from '@ember/array';
 export default Route.extend({
     model(params) {
         if (params.studid == "stud/push") {
-            let onSuccess = function() {
-                stud.guardians.pushObject(gard)
-            }
             let stud = this.store.createRecord('student', {"brandId": localStorage.getItem("brandid")});
-            let gard = this.store.createRecord('guardian', {"brandId": localStorage.getItem("brandid")});
-            gard.save().then(onSuccess).catch()
-            // stud.guardians.pushObject(gard);
-
+            let gards = this.store.createRecord('guardian', {"brandId": localStorage.getItem("brandid")});
             let techs = this.store.query('teacher', {"brand-id": localStorage.getItem("brandid")});
             return RSVP.hash({
                 isPushing: true,
                 stud: stud,
-                gards: stud.guardians,
+                gards: gards,
                 techs: techs,
             })
         } else {

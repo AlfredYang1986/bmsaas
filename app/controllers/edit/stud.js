@@ -58,37 +58,47 @@ export default Controller.extend({
         },
         saveInputBtnClicked() {
             let that = this;
-            let tmpTech = null;
-            if(this.cur_tech_id != null) {
-                tmpTech = this.store.peekRecord("teacher", this.cur_tech_id);
-            } else {
-                tmpTech = this.model.techs.objectAt(0)
-            }
-            this.model.stud.set('teacher', tmpTech);
-            for(let idx = 0;idx < this.model.stud.guardians.length;idx++) {
-                this.model.stud.guardians.objectAt(idx).save()
-            }
-            if(this.model.stud.guardians.firstObject.relationShip == '') {
-                that.model.stud.guardians.objectAt(0).set("relationShip", '爸爸')
-            }
             if(this.model.stud.gender == undefined || this.model.stud.gender == null) {
                 that.model.stud.set('gender', 1);
             }
-            this.model.stud.save();
-            if(this.model.applyid != undefined) {
-                let onSuccess = function(res) {
-                    let apply = res;
-                    apply.set('status', 1);
-                    apply.save();
+
+            this.model.stud.save()
+            .then((result) => {
+                let tmpTech = null;
+                if(that.cur_tech_id != null) {
+                    tmpTech = that.store.peekRecord("teacher", that.cur_tech_id);
+                } else {
+                    tmpTech = that.model.techs.objectAt(0)
                 }
-                let onFail = function() {}
-                that.store.find('apply', that.model.applyid).then(onSuccess, onFail)
-            }
-            if (this.model.isPushing) {
-                this.transitionToRoute("stud")
-            } else {
-                this.transitionToRoute("detail.stud", this.model.stud.id)
-            }
+                that.model.stud.set('teacher', tmpTech);
+                that.model.gards.save().then((res) => {
+                    that.model.stud.guardians.pushObject(that.model.gards)
+                    for(let idx = 0;idx < that.model.stud.guardians.length;idx++) {
+                        that.model.stud.guardians.objectAt(idx).save()
+                    }
+                    if(that.model.stud.guardians.firstObject.relationShip == '') {
+                        that.model.stud.guardians.objectAt(0).set("relationShip", '爸爸')
+                    }
+                })
+
+                if(that.model.applyid != undefined) {
+                    let onSuccess = function(res) {
+                        let apply = res;
+                        apply.set('status', 1);
+                        apply.save();
+                    }
+                    let onFail = function() {}
+                    that.store.find('apply', that.model.applyid).then(onSuccess, onFail)
+                }
+                if (that.model.isPushing) {
+                    debugger
+                    that.transitionToRoute("detail.stud", result.id)
+                } else {
+                    that.transitionToRoute("detail.stud", that.model.stud.id)
+                }
+            }).catch(error => window.console.info(error));
+
+
 
         },
         selectedOrigin() {
