@@ -15,11 +15,11 @@ export default Controller.extend({
             let onSuccess = function () {
                 let tmp = that.store.peekRecord('sessioninfo', that.model.si.id)
                 that.model.actv.set('sessioninfo', tmp);
-                that.model.actv.save().then(() => {
-                    that.transitionToRoute('actv');
-                }, () => {
-                    window.console.log("保存出错")
-                })
+                that.model.actv.save()
+                    .then((res) => {
+                        that.transitionToRoute('detail.exp', res.id);
+                    })
+                    .catch(error => window.console.info(error))
             }
             let onFail = function () {
             }

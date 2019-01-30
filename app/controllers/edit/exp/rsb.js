@@ -13,11 +13,11 @@ export default Controller.extend({
             let onSuccess = function () {
                 let tmp = that.store.peekRecord('sessioninfo', that.model.si.id)
                 that.model.exp.set('sessioninfo', tmp);
-                that.model.exp.save().then(() => {
-                    that.transitionToRoute('exp');
-                }, () => {
-                    window.console.log("保存出错")
-                })
+                that.model.exp.save()
+                    .then((res) => {
+                        that.transitionToRoute('detail.exp', res.id);
+                    })
+                    .catch(error => window.console.info(error))
             }
             let onFail = function () {
             }
