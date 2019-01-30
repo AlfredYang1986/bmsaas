@@ -9,6 +9,8 @@ export default Controller.extend({
 
     actions: {
         saveCourseBtnClicked(/*idx*/) {
+            let imgCount = 0;
+            this.set('savePicDoneFlag', false)
             let that = this;
             let onSuccess = function () {
                 let tmp = that.store.peekRecord('sessioninfo', that.model.si.id)
@@ -26,11 +28,12 @@ export default Controller.extend({
                 this.model.si.save().then(onSuccess, onFail);
             } else {
                 this.model.si.images.forEach((item, index, arr) => {
-                    if(index + 1 == arr.length) {
-                        this.set("savePicDoneFlag", true);
-                    }
                     if(item.dirtyType !== undefined) {
                         item.save().then(() => {
+                            if(imgCount + 1 == arr.length) {
+                                this.set("savePicDoneFlag", true);
+                            }
+                            imgCount ++;
                             if(this.savePicDoneFlag) {
                                 this.model.si.save().then(onSuccess, onFail);
                             }
