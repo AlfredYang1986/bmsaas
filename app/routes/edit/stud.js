@@ -8,6 +8,11 @@ export default Route.extend({
             let stud = this.store.createRecord('student', {"brandId": localStorage.getItem("brandid")});
             let gards = this.store.createRecord('guardian', {"brandId": localStorage.getItem("brandid")});
             let techs = this.store.query('teacher', {"brand-id": localStorage.getItem("brandid")});
+            stud.save().then((result) => {
+                gards.save().then((res) => {
+                    stud.guardians.pushObject(gards)
+                })
+            })
             return RSVP.hash({
                 isPushing: true,
                 stud: stud,
@@ -33,7 +38,6 @@ export default Route.extend({
             return RSVP.hash({
                 isPushing: false,
                 stud: stud,
-                gards: stud.guardians,
                 techs: techs,
                 applyid: applyid
             })
