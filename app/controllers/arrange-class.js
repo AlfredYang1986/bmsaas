@@ -58,18 +58,42 @@ export default Controller.extend({
         successHandled() {
             this.set('addUnitDlg', false);
 
-            this.tempUnit = this.store.createRecord("unit")
+            // let tempclass = this.store.peekRecord("class", this.cur_class_id);
+
+            // this.tempUnit = this.store.createRecord("unit");
+            // this.tempUnit.set("courseTime", this.cur_course_time)
+            // this.tempUnit.set("startDate", this.handleDate(this.cur_tmp_date,this.cur_start_date))
+            // this.tempUnit.set("endDate", this.cur_end_date)
+            // this.tempUnit.set("room", this.store.peekRecord("room", this.cur_room_id))
+            // this.tempUnit.set("class", tempclass) //设置不了class关联 双绑问题
+            // this.tempUnit.set("teacher", this.store.peekRecord("teacher", this.cur_tech_id))
+            // this.tempUnit.save().then(result => {
+            //     window.console.info(tempclass.toJSON())
+            //     // tempclass.save().then(result => {
+            //     //     window.console.info(result)
+            //     // })
+            // })
+
+            // tempclass.save().then(result => {
+            //     window.console.info(result)
+            // })
+
+            this.tempUnit = this.store.createRecord("unit");
             this.tempUnit.save().then(() => {
-                // let tmp = this.store.peekRecord("teacher", this.cur_tech_id)
+                let tempclass = this.store.peekRecord("class", this.cur_class_id)
                 this.tempUnit.set("courseTime", this.cur_course_time)
                 this.tempUnit.set("startDate", this.handleDate(this.cur_tmp_date,this.cur_start_date))
                 this.tempUnit.set("endDate", this.cur_end_date)
                 this.tempUnit.set("room", this.store.peekRecord("room", this.cur_room_id))
-                this.tempUnit.set("class", this.store.peekRecord("class", this.cur_class_id)) //设置不了class关联 双绑问题
+                this.tempUnit.set("class", tempclass) //设置不了class关联 双绑问题
                 this.tempUnit.set("teacher", this.store.peekRecord("teacher", this.cur_tech_id))
-                // console.log(this.tempUnit)
-                this.tempUnit.save().then(() => {
-                    this.toast.success('', '添加排课成功', this.toastOptions);
+                this.tempUnit.save().then(res => {
+                    // tempclass.units.pushObject(res)
+                    tempclass.save().then(() => {
+                        this.toast.success('', '添加排课成功', this.toastOptions);
+                    },() => {
+                        this.toast.error('', '添加排课失败', this.toastOptions);
+                    })
                 },(err) => {
                     this.toast.error('', '添加排课失败', this.toastOptions);
                 })
@@ -81,6 +105,9 @@ export default Controller.extend({
             let tempClass = this.store.peekRecord("class", this.cur_class_id);
             this.set("tempTechs", tempClass.teachers);
             // 有BUG 选择的班级没有老师时触发
+        },
+        onPanelClick(param) {
+            console.log(param)
         },
     },
     checkTime() {

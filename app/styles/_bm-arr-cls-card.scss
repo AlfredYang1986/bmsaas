@@ -12,15 +12,23 @@
         
         .arr-cls-card-top-head {
             margin-bottom: 24px;
-
+            
             img {
                 width: 24px;
                 height: 24px;
-                
-                &:nth-child(1) {
+                cursor: pointer;
+            }
+            .arr-cls-card-top-inner-left {   
+                img:nth-child(1) {
                     margin-right: 8px;
                 }
             }
+
+            // .arr-cls-card-top-inner-left {   
+            //     img:nth-child(1) {
+            //         margin-right: 8px;
+            //     }
+            // }
         }
         .arr-cls-card-top-label {
             margin-bottom: 8px;
@@ -105,9 +113,23 @@
             margin-top: 16px;
 
             .tech-img {
+                margin-right: 8px;
                 width: 32px;
                 height: 32px;
-                margin-right: 8px;
+                border-radius: 50%;
+            }
+
+            .teacher-num {
+                width: 32px;
+                height: 32px;
+                background: #DFE1E6;
+                border-radius: 50%;
+                line-height: 32px;
+                text-align: center;
+                font-size: 11px;
+                color: #42526E;
+                letter-spacing: -0.14px;
+                text-align: center;
             }
         }
     }

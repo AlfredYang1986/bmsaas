@@ -4,44 +4,51 @@
     {{#layout-push direction='col' classNames="arr-cls-card-top"}}
         {{#layout-push direction='row' split=true classNames="arr-cls-card-top-head"}}
             {{#layout-push direction='row' classNames="arr-cls-card-top-inner-left"}}
-                <img class="top-img-btn" src="/images/search.png"/>
-                <img class="top-img-btn" src="/images/search.png"/>
+                <img class="top-img-btn" src="/images/icon_edit-filled_dark@2x.png"/>
+                <img class="top-img-btn" src="/images/icon_trash_dark@2x.png"/>
             {{/layout-push}}
             {{#layout-push direction='row' classNames="arr-cls-card-top-inner-right"}}
-                <img class="top-img-btn" src="/images/search.png"/>
+                <img class="top-img-btn" src="/images/icon_cross_dark@2x.png" {{action "onCloseClick"}}/>
             {{/layout-push}}
         {{/layout-push}}
         {{#layout-push direction='row' classNames="arr-cls-card-top-label"}}
             <p class="type-label">课程</p>
         {{/layout-push}}
         {{#layout-push direction='row' classNames="arr-cls-card-top-title"}}
-            <p class="top-title">乐高机器人创意拼一班</p>
+            <p class="top-title">{{unit.class.classTitle}}</p>
         {{/layout-push}}
         {{#layout-push direction='row' classNames="arr-cls-card-top-subtitle"}}
-            <p class="top-subtitle">第03节</p>
-            <p class="top-subtitle">乐高机器人创意搭babababababababa</p>
+            {{!-- <p class="top-subtitle">第03节</p> --}}
+            <p class="top-subtitle">{{unit.class.sessioninfo.title}}</p>
         {{/layout-push}}
     {{/layout-push}}
     {{#layout-push direction='col' classNames="arr-cls-card-bottom"}}
         {{#layout-push direction='row' classNames="arr-cls-card-bottom-title"}}
-            <img class="bottom-img" src="/images/search.png"/>
-            <p class="bottom-title">8月12日 周二</p>
+            <img class="bottom-img" src="/images/icon_time.png"/>
+            <p class="bottom-title">{{bmdob/bmdobformat unit.startDate}} {{bmdob/bmdob2weekday unit.startDate}}</p>
         {{/layout-push}}
         {{#layout-push direction='row' classNames="arr-cls-card-bottom-subtitle"}}
-            <p class="bottom-subtitle">10:00-12:00</p>
+            <p class="bottom-subtitle">
+                {{bmdob/bmdob2clocktime unit.startDate}}
+                ~
+                {{bmdob/bmdob2clocktime unit.endDate}}
+            </p>
         {{/layout-push}}
         {{#layout-push direction='row' classNames="arr-cls-card-bottom-content"}}
-            <img class="bottom-img" src="/images/search.png"/>
-            <p class="bottom-title">30人</p>
+            <img class="bottom-img" src="/images/icon_card_students-number.png"/>
+            <p class="bottom-title">{{unit.class.students.length}}</p>
         {{/layout-push}}
 
         {{!-- {{#if }} --}}
             {{#layout-push direction='row' classNames="arr-cls-card-split"}}
-        
             {{/layout-push}}
             {{#layout-push direction='row' classNames="arr-cls-card-icon"}}
-                <img class="tech-img" src="/images/search.png"/>
-                <img class="tech-img" src="/images/search.png"/>
+                {{#each techPics as |item|}}
+                    <img class="tech-img" src={{item.url}} alt="">
+                {{/each}}
+                {{#if (gt techPicsOverFlow 0)}}
+                    <p class="teacher-num">+{{techPicsOverFlow}}</p>
+                {{/if}}
             {{/layout-push}}
         {{!-- {{/if}} --}}
     {{/layout-push}}

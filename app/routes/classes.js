@@ -14,7 +14,13 @@ export default Route.extend({
         })
         return RSVP.hash({
             courses: this.store.query('sessioninfo', { "brand-id": localStorage.getItem("brandid"), "status": 2}),
+            // classes: this.store.query('class', { "brand-id": localStorage.getItem("brandid"), "status": 2, "flag": 0}),
             yard: tmp,
         })
     },
+
+    setupController(controller, model) {
+        this._super(controller, model);
+        // this.controller.set('cls', model.classes);
+    }
 });

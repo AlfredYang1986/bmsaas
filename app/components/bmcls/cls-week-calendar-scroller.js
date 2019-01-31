@@ -26,4 +26,9 @@ export default Component.extend({
     }),
     inner_height: 1560,
     inner_margin: 0,
+    actions: {
+        onPanelClick(param) {
+            this.onPanelClick(param);
+        }
+    },
 });

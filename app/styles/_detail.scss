@@ -1006,3 +1006,15 @@ span.list-status {
     color: #6E7CD4;
     letter-spacing: 2px;
 }
+
+
+
+.popover {
+    border: none;
+    .arrow {
+        display: none;
+    }
+    .popover-body {
+        padding: 0;
+    }
+}

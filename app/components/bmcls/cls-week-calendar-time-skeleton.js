@@ -17,6 +17,9 @@ export default Component.extend({
     actions: {
         panelInserted() {
             
+        },
+        onPanelClick(unit) {
+            this.onPanelClick(unit);
         }
     },
 

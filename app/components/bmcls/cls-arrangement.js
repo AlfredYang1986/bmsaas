@@ -44,11 +44,16 @@ export default Component.extend({
     refresh_date() {
         var sel = document.getElementById("roomselect");
         this.set('selectedRoom', sel.options[sel.selectedIndex].value);
-        // this.bm_clsarr_service.set('yardid', this.selectedRoom);
+        this.bm_clsarr_service.set('roomid', this.selectedRoom);
         this.bm_clsarr_service.set('st', this.start_date);
         this.bm_clsarr_service.set('et', this.end_date);
-        // this.bm_clsarr_service.set('refresh_all_token', this.bm_clsarr_service.guid());
-        this.store.query("unit",{ "room-id": this.selectedRoom})
+        this.bm_clsarr_service.set('refresh_all_token', this.bm_clsarr_service.guid());
+        // this.store.query("unit",{ "room-id": this.selectedRoom}).then(res => {
+        //     this.bm_clsarr_service.set('units', res);
+        //     console.log(res)
+        // },() => {
+        //     window.console.log("query units error")
+        // })
     },
     actions: {
         prevBtnClicked(/*args*/) {
@@ -81,6 +86,9 @@ export default Component.extend({
         },
         addUnitOnClick() {
             this.onAddUnitClick()
+        },
+        onPanelClick(param) {
+            this.onPanelClick(param);
         },
     }
 });

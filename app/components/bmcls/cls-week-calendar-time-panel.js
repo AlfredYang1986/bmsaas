@@ -11,12 +11,12 @@ export default Component.extend({
     display: 'inline-flex',
     top: computed('unit', function(){
         let st = new Date();
-        st.setTime(this.unit.start_date);
+        st.setTime(this.unit.startDate);
 
         let sh = (st.getHours() - 8) * 4;
         let sm = st.getMinutes() / 15;
 
-        if (sh + sm > 40) {
+        if (sh + sm >= 60) {
             this.set('display', 'none');
         }
 
@@ -24,19 +24,19 @@ export default Component.extend({
     }),
     height: computed('unit', function(){
         let st = new Date();
-        st.setTime(this.unit.start_date);
+        st.setTime(this.unit.startDate);
         let sh = st.getHours();
         let sm = st.getMinutes();
 
         let et = new Date();
-        et.setTime(this.unit.end_date);
+        et.setTime(this.unit.endDate);
         let eh = et.getHours();
         let em = et.getMinutes();
 
         let tt = (eh - sh) * 4;
         let ee = (em - sm) / 15; 
 
-        return this.step * Math.max((tt + ee), 3) - 2 * this.margin;
+        return this.step * Math.max((tt + ee), 2) - 2 * this.margin;
     }),
     width: 96,
     bgcolor: '#F2F6FF',
@@ -55,7 +55,7 @@ export default Component.extend({
     didInsertElement() {
         this.onPanelInserted(this);
     },
-    click() {
-
-    }
+    // click() {
+    //     this.onPanelClick(this.unit);
+    // }
 });

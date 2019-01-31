@@ -13,7 +13,7 @@ export default Service.extend({
         this.unitSplits();
     },
 
-    yardid: '',
+    roomid: '',
     st: 0,
     et: 0,
     refresh_all_token: '',
@@ -33,8 +33,8 @@ export default Service.extend({
     },
 
     resetTimeUnits() {
-       let that = this;
-        this.store.query('unit', {}).then(res => {
+        let that = this;
+        this.store.query('unit', { "room-id": this.roomid}).then(res => {
             return new Promise(function(resolve, reject){
                 that.timeUnitsSplits(res)
                 resolve(res)
@@ -90,37 +90,37 @@ export default Service.extend({
     timeUnitsSplits(tmp) {
         function filterByMon(units) {
             let tmp = new Date();
-            tmp.setTime(units.start_date);
+            tmp.setTime(units.startDate);
             return tmp.getDay() == 1;
         }
         function filterByTus(units) {
             let tmp = new Date();
-            tmp.setTime(units.start_date);
+            tmp.setTime(units.startDate);
             return tmp.getDay() == 2;
         }
         function filterByWed(units) {
             let tmp = new Date();
-            tmp.setTime(units.start_date);
+            tmp.setTime(units.startDate);
             return tmp.getDay() == 3;
         }
         function filterByThu(units) {
             let tmp = new Date();
-            tmp.setTime(units.start_date);
+            tmp.setTime(units.startDate);
             return tmp.getDay() == 4;
-        }
+        } 
         function filterByFri(units) {
             let tmp = new Date();
-            tmp.setTime(units.start_date);
+            tmp.setTime(units.startDate);
             return tmp.getDay() == 5;
         }
         function filterBySat(units) {
             let tmp = new Date();
-            tmp.setTime(units.start_date);
+            tmp.setTime(units.startDate);
             return tmp.getDay() == 6;
         }
         function filterBySun(units) {
             let tmp = new Date();
-            tmp.setTime(units.start_date);
+            tmp.setTime(units.startDate);
             return tmp.getDay() == 0;
         }
 

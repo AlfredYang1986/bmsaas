@@ -56,8 +56,6 @@ export default Controller.extend({
             let onSuccess = function () {
                 that.tmpUnit.deleteRecord();
                 that.tmpUnit.save().then(() => {
-                    window.console.log('213');
-
                     that.set('removeUnitDlg', false);
                     that.set('tmpUnit', null);
                     that.toast.success('', '移除课程安排成功', that.toastOptions);
