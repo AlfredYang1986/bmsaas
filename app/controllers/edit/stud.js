@@ -61,26 +61,22 @@ export default Controller.extend({
             if(this.model.stud.gender == undefined || this.model.stud.gender == null) {
                 that.model.stud.set('gender', 1);
             }
-
-            this.model.stud.save()
-            .then((result) => {
-                let tmpTech = null;
-                if(that.cur_tech_id != null) {
-                    tmpTech = that.store.peekRecord("teacher", that.cur_tech_id);
-                } else {
-                    tmpTech = that.model.techs.objectAt(0)
+            let tmpTech = null;
+            if(that.cur_tech_id != null) {
+                tmpTech = that.store.peekRecord("teacher", that.cur_tech_id);
+            } else {
+                tmpTech = that.model.techs.objectAt(0)
+            }
+            that.model.stud.set('teacher', tmpTech);
+            if (that.model.isPushing) {
+                for(let idx = 0;idx < that.model.stud.guardians.length;idx++) {
+                    that.model.stud.guardians.objectAt(idx).save()
                 }
-                that.model.stud.set('teacher', tmpTech);
-                that.model.gards.save().then((res) => {
-                    that.model.stud.guardians.pushObject(that.model.gards)
-                    for(let idx = 0;idx < that.model.stud.guardians.length;idx++) {
-                        that.model.stud.guardians.objectAt(idx).save()
-                    }
-                    if(that.model.stud.guardians.firstObject.relationShip == '') {
-                        that.model.stud.guardians.objectAt(0).set("relationShip", '爸爸')
-                    }
-                })
-
+                if(that.model.stud.guardians.firstObject.relationShip == '') {
+                    that.model.stud.guardians.objectAt(0).set("relationShip", '爸爸')
+                }
+                that.transitionToRoute("detail.stud", that.model.stud.id)
+            } else {
                 if(that.model.applyid != undefined) {
                     let onSuccess = function(res) {
                         let apply = res;
@@ -90,16 +86,8 @@ export default Controller.extend({
                     let onFail = function() {}
                     that.store.find('apply', that.model.applyid).then(onSuccess, onFail)
                 }
-                if (that.model.isPushing) {
-                    debugger
-                    that.transitionToRoute("detail.stud", result.id)
-                } else {
-                    that.transitionToRoute("detail.stud", that.model.stud.id)
-                }
-            }).catch(error => window.console.info(error));
-
-
-
+                that.transitionToRoute("detail.stud", that.model.stud.id)
+            }
         },
         selectedOrigin() {
             let sel = document.getElementById("originSelect");
