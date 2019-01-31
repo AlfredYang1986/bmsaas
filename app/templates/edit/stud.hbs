@@ -60,11 +60,11 @@
                 detailAddress=model.stud.address
 				classNames="area-margin-bottom"}}
 		</section>
-		{{#each model.stud.guardians as |item|}}
+		{{!-- {{#each model.stud.guardians as |item|}} --}}
 			<section class="parent_info stu_section" id="par-story">
 				<p class="title-name">监护人信息</p>
 				{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
-					{{bmform/bm-edit-line title='姓名'  inputVal=item.name classNames='input_area area-margin-bottom'}}
+					{{bmform/bm-edit-line title='姓名'  inputVal=model.stud.guardians.firstObject.name classNames='input_area area-margin-bottom'}}
 				{{/layout-push}}
 
 				{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
@@ -72,11 +72,11 @@
 						{{bmcom/bm-radio-inline cur_idx=rela_idx titles=relaChecked judge=rela}}
 				{{/layout-push}}
 				{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
-					{{bmform/bm-edit-line numberInput=true title='联系方式'  inputVal=item.contact classNames='input_area area-margin-bottom'}}
-					{{bmform/bm-edit-line title='微信'  inputVal=item.wechat classNames='input_area area-margin-bottom'}}
+					{{bmform/bm-edit-line numberInput=true title='联系方式'  inputVal=model.stud.guardians.firstObject.contact classNames='input_area area-margin-bottom'}}
+					{{bmform/bm-edit-line title='微信'  inputVal=model.stud.guardians.firstObject.wechat classNames='input_area area-margin-bottom'}}
 				{{/layout-push}}
 			</section>
-		{{/each}}
+		{{!-- {{/each}} --}}
 
 		<section class="kids_info stu_section" id="other-info">
 			<p class="title-name">更多信息</p>

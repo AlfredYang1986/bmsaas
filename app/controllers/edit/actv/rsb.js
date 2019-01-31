@@ -12,14 +12,16 @@ export default Controller.extend({
     actions: {
         saveCourseBtnClicked(/*idx*/) {
             let that = this;
+            let imgCount = 0;
+            this.set('savePicDoneFlag', false)
             let onSuccess = function () {
                 let tmp = that.store.peekRecord('sessioninfo', that.model.si.id)
                 that.model.actv.set('sessioninfo', tmp);
-                that.model.actv.save().then(() => {
-                    that.transitionToRoute('actv');
-                }, () => {
-                    window.console.log("保存出错")
-                })
+                that.model.actv.save()
+                    .then((res) => {
+                        that.transitionToRoute('detail.exp', res.id);
+                    })
+                    .catch(error => window.console.info(error))
             }
             let onFail = function () {
             }
@@ -28,11 +30,13 @@ export default Controller.extend({
                 this.model.si.save().then(onSuccess, onFail);
             } else {
                 this.model.si.images.forEach((item, index, arr) => {
-                    if(index + 1 == arr.length) {
-                        this.set("savePicDoneFlag", true);
-                    }
+
                     if(item.dirtyType !== undefined) {
                         item.save().then(() => {
+                            if(imgCount + 1 == arr.length) {
+                               this.set("savePicDoneFlag", true);
+                           }
+                           imgCount ++; 
                             if(this.savePicDoneFlag) {
                                 this.model.si.save().then(onSuccess, onFail);
                             }
