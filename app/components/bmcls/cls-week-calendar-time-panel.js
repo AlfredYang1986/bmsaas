@@ -58,4 +58,22 @@ export default Component.extend({
     // click() {
     //     this.onPanelClick(this.unit);
     // }
+
+    
+    actions: {
+        onCloseClick() {
+            // this.onCloseClick(unit);
+            let cur = document.getElementsByClassName("popover")[0];
+            // let cur = document.getElementById(this.unit.id);
+            console.log(cur)
+            cur.popover('toggle')
+            // document.getElement
+        },
+        onEditClick(unit) {
+            this.onEditClick(unit);
+        },
+        onDeleteClick(unit) {
+            this.onDeleteClick(unit);
+        },
+    },
 });

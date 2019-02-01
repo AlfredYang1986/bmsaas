@@ -90,5 +90,11 @@ export default Component.extend({
         onPanelClick(param) {
             this.onPanelClick(param);
         },
+        onEditClick(unit) {
+            this.onEditClick(unit);
+        },
+        onDeleteClick(unit) {
+            this.onDeleteClick(unit);
+        },
     }
 });

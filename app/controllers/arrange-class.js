@@ -7,6 +7,7 @@ export default Controller.extend({
     selectedYard: '',
     openFlag: true,
 
+    bm_clsarr_service: service(),
     toast: service(),
     toastOptions: {
         closeButton: false,
@@ -26,6 +27,7 @@ export default Controller.extend({
     tempTechs: null,
 
     addUnitDlg: false,
+    removeUnitDlg: false,
 
     courseTimeArr:A([{name: 0.5}, {name: 1}, {name: 1.5}, {name: 2}, {name: 2.5}, {name: 3}, {name: 3.5}, {name: 4}, {name: 4.5}, {name: 5}]),
 
@@ -53,7 +55,9 @@ export default Controller.extend({
             this.set('cur_start_date',  new Date().getTime());
             this.set('cur_end_date',  new Date().getTime());
             this.set('tempTechs', null);
+            this.set("tempUnit", null)
             this.set('addUnitDlg', false);
+            this.set('removeUnitDlg', false);
         },
         successHandled() {
             this.set('addUnitDlg', false);
@@ -90,6 +94,8 @@ export default Controller.extend({
                 this.tempUnit.save().then(res => {
                     // tempclass.units.pushObject(res)
                     tempclass.save().then(() => {
+                        this.bm_clsarr_service.set('refresh_all_token', this.bm_clsarr_service.guid());
+                        this.set("tempUnit", null)
                         this.toast.success('', '添加排课成功', this.toastOptions);
                     },() => {
                         this.toast.error('', '添加排课失败', this.toastOptions);
@@ -109,6 +115,31 @@ export default Controller.extend({
         onPanelClick(param) {
             console.log(param)
         },
+        onEditClick(param) {
+            console.log(param)
+        },
+        onDeleteClick(param) {
+            this.set("tempUnit", param)
+            this.set('removeUnitDlg', true);
+        },
+        onDeleteUnitClickOk() {
+            let tempClass = this.store.peekRecord("class", this.tempUnit.class.get("id")) 
+            window.console.log(tempClass);
+            tempClass.get("units").removeObject(this.tempUnit)
+            tempClass.save().then(() => {
+                this.tempUnit.deleteRecord()
+                this.tempUnit.save().then(() => {
+                    this.set("tempUnit", null)
+                    this.set('removeUnitDlg', false);
+                    this.toast.success('', '删除排课成功', this.toastOptions);
+                },() => {
+                    this.toast.error('', '删除排课失败', this.toastOptions);
+                })
+            },() => {
+                this.toast.error('', '删除排课失败', this.toastOptions);
+            })
+        },
+
     },
     checkTime() {
         let checkStart = null;

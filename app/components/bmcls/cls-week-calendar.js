@@ -7,6 +7,12 @@ export default Component.extend({
     actions: {
         onPanelClick(param) {
             this.onPanelClick(param);
-        }
+        },
+        onEditClick(unit) {
+            this.onEditClick(unit);
+        },
+        onDeleteClick(unit) {
+            this.onDeleteClick(unit);
+        },
     },
 });

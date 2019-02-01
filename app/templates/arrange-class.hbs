@@ -2,13 +2,17 @@
     {{#if openFlag}}
         <div class="detail_page">
             <div class="content_page arrange-class">
-                {{bmcls/cls-arrangement onAddUnitClick=(action 'onAddUnitClick')  onPanelClick=(action 'onPanelClick')}}
+                {{bmcls/cls-arrangement onAddUnitClick=(action 'onAddUnitClick') onEditClick=(action "onEditClick") onDeleteClick=(action "onDeleteClick") onPanelClick=(action 'onPanelClick')}}
             </div>
         </div>
     {{else}}
         {{bmcom/bm-empty-state class="arr-class-not-open" picUrl="/images/img_openningsoon.png" title="即将开放" des="更加强大便捷的功能马上到来"}}
     {{/if}}
 </div>
+
+{{#bmcom/bm-warning-modal title="删除课程安排" mainBtnText="删除" type="error" switchParam=removeUnitDlg cancelHandled='cancelHandled' successHandled="onDeleteUnitClickOk"}}
+    <p class="warning-modal-body-content">确定要删除此节课程安排吗？</p>
+{{/bmcom/bm-warning-modal}}
 
 {{#bmcom/bm-modal-container title="" mswitch=addUnitDlg
         needSubmit=couldSubmit

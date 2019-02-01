@@ -20,7 +20,13 @@ export default Component.extend({
         },
         onPanelClick(unit) {
             this.onPanelClick(unit);
-        }
+        },
+        onEditClick(unit) {
+            this.onEditClick(unit);
+        },
+        onDeleteClick(unit) {
+            this.onDeleteClick(unit);
+        },
     },
 
 });

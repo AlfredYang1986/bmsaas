@@ -14,10 +14,10 @@ export default Component.extend({
             this.onCloseClick();
         },
         onEditClick() {
-            this.onEditClick();
+            this.onEditClick(this.unit);
         },
         onDeleteClick() {
-            this.onDeleteClick();
+            this.onDeleteClick(this.unit);
         },
     },
 

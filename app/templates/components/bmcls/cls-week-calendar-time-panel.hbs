@@ -1,6 +1,6 @@
 {{!-- {{yield}} --}}
 {{!-- <div class='bm-content-left'></div> --}}
-{{#layout-push direction='col' classNames='bm-content-right' tabindex="0"}}
+{{#layout-push id=unit.id direction='col' classNames='bm-content-right' tabindex="0"}}
     <span class='bm-content-cls-title'>{{unit.class.classTitle}}</span>
     <span class='bm-content-session-title'>{{unit.class.sessioninfo.title}}</span>
     {{!-- <span class='bm-content-session-time'>
@@ -8,8 +8,8 @@
         ~
         {{bmdob/bmdob2clocktime unit.endDate}}
     </span> --}}
-    {{#bs-popover triggerElement="parentView" title="" placement="right" autoPlacement=true viewportSelector=".bm-scroller" as |po|}}
+    {{#bs-popover triggerElement="parentView" title="" placement="right" autoPlacement=true viewportSelector=".bm-scroller" viewportPadding=8 as |po|}}
         {{!-- <button {{action po.close}}>Close</button> --}}
-        {{bmcard/bm-arr-cls-card unit=unit onCloseClick=(action po.close) onEditClick=(action po.close) onDeleteClick=(action po.close)}}
+        {{bmcard/bm-arr-cls-card unit=unit onCloseClick=(action po.close) onEditClick=(action "onEditClick") onDeleteClick=(action "onDeleteClick")}}                    
     {{/bs-popover}}
 {{/layout-push}}
