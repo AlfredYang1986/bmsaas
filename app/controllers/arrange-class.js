@@ -44,7 +44,6 @@ export default Controller.extend({
         },
         onAddUnitClick() {
             this.set('addUnitDlg', true);
-
         },
         cancelHandled() {
             this.set('cur_room_id', "");
@@ -60,51 +59,34 @@ export default Controller.extend({
             this.set('removeUnitDlg', false);
         },
         successHandled() {
-            this.set('addUnitDlg', false);
-
-            // let tempclass = this.store.peekRecord("class", this.cur_class_id);
-
-            // this.tempUnit = this.store.createRecord("unit");
-            // this.tempUnit.set("courseTime", this.cur_course_time)
-            // this.tempUnit.set("startDate", this.handleDate(this.cur_tmp_date,this.cur_start_date))
-            // this.tempUnit.set("endDate", this.cur_end_date)
-            // this.tempUnit.set("room", this.store.peekRecord("room", this.cur_room_id))
-            // this.tempUnit.set("class", tempclass) //设置不了class关联 双绑问题
-            // this.tempUnit.set("teacher", this.store.peekRecord("teacher", this.cur_tech_id))
-            // this.tempUnit.save().then(result => {
-            //     window.console.info(tempclass.toJSON())
-            //     // tempclass.save().then(result => {
-            //     //     window.console.info(result)
-            //     // })
-            // })
-
-            // tempclass.save().then(result => {
-            //     window.console.info(result)
-            // })
-
-            this.tempUnit = this.store.createRecord("unit");
+            let edit_flag_info = "编辑";
+            if(this.tempUnit == null) {
+                this.tempUnit = this.store.createRecord("unit");
+                edit_flag_info  = "添加";
+            }
             this.tempUnit.save().then(() => {
                 let tempclass = this.store.peekRecord("class", this.cur_class_id)
                 this.tempUnit.set("courseTime", this.cur_course_time)
                 this.tempUnit.set("startDate", this.handleDate(this.cur_tmp_date,this.cur_start_date))
                 this.tempUnit.set("endDate", this.cur_end_date)
                 this.tempUnit.set("room", this.store.peekRecord("room", this.cur_room_id))
-                this.tempUnit.set("class", tempclass) //设置不了class关联 双绑问题
+                this.tempUnit.set("class", tempclass)
                 this.tempUnit.set("teacher", this.store.peekRecord("teacher", this.cur_tech_id))
-                this.tempUnit.save().then(res => {
+                this.tempUnit.save().then(() => {
                     // tempclass.units.pushObject(res)
                     tempclass.save().then(() => {
                         this.bm_clsarr_service.set('refresh_all_token', this.bm_clsarr_service.guid());
                         this.set("tempUnit", null)
-                        this.toast.success('', '添加排课成功', this.toastOptions);
+                        this.set('addUnitDlg', false);
+                        this.toast.success('', edit_flag_info + '排课成功', this.toastOptions);
                     },() => {
-                        this.toast.error('', '添加排课失败', this.toastOptions);
+                        this.toast.error('', edit_flag_info + '排课失败', this.toastOptions);
                     })
-                },(err) => {
-                    this.toast.error('', '添加排课失败', this.toastOptions);
+                },() => {
+                    this.toast.error('', edit_flag_info + '排课失败', this.toastOptions);
                 })
-            },(err) => {
-                this.toast.error('', '添加排课失败', this.toastOptions);
+            },() => {
+                this.toast.error('', edit_flag_info + '排课失败', this.toastOptions);
             })
         },
         afterClassChange() {
@@ -112,11 +94,22 @@ export default Controller.extend({
             this.set("tempTechs", tempClass.teachers);
             // 有BUG 选择的班级没有老师时触发
         },
-        onPanelClick(param) {
-            console.log(param)
+        onPanelClick() {
+            // console.log(param)
         },
         onEditClick(param) {
-            console.log(param)
+            this.set("tempUnit", param)
+            this.set('addUnitDlg', true);
+            this.set("cur_course_time", this.tempUnit.courseTime)
+            this.set("cur_tmp_date", this.getTimeDay(this.tempUnit.startDate))
+            this.set("cur_start_date", this.tempUnit.startDate)
+            this.set("cur_end_date", this.tempUnit.endDate)
+            this.set("cur_room_id", this.tempUnit.room.get("id"))
+            this.set("cur_class_id", this.tempUnit.class.get("id"))
+            this.set("cur_tech_id", this.tempUnit.teacher.get("id"))
+
+            let tempClass = this.store.peekRecord("class", this.cur_class_id);
+            this.set("tempTechs", tempClass.teachers);
         },
         onDeleteClick(param) {
             this.set("tempUnit", param)
