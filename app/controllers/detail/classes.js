@@ -182,6 +182,15 @@ export default Controller.extend({
                 this.toast.success('', '请选择学生', this.toastOptions);
             }
         },
+        onAddArrClassClick() {
+            this.transitionToRoute("arrange-class")
+        },
+        onArrcourseClick() {
+
+        },
+        onEditArrcourseClick() {
+
+        },
         onTabClicked(params) {
 
         },

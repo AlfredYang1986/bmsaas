@@ -33,7 +33,7 @@
                         {{#dd.menu align="right" as |menu|}}
                             {{#menu.item align="right"}}
                                 {{#layout-push direction='col' classNames="dropdown-content"}}
-                                    <a onclick={{action (mut addArrClassDlg) true dd.closeDropdown}}>添加排课</a>
+                                    <a onclick={{action "onAddArrClassClick" dd.closeDropdown}}>添加排课</a>
                                     <a onclick={{action (mut addStudDlg) true dd.closeDropdown}}>添加学生</a>
                                     <a onclick={{action (mut addTechDlg) true dd.closeDropdown}}>添加老师</a>
                                 {{/layout-push}}
@@ -86,7 +86,7 @@
                 {{#if (eq model.class.units.length 0)}}
                     {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无课程安排" des="快去添加课程安排吧" btnText="添加课程安排" onBtnClick=(action (mut addArrClassDlg) true)}}
                 {{else}}
-                    {{bmtable/bm-table-class-arrcourse listData=model.class.units titles=model.arrTitles onRemoveArrcourseClick="onRemoveArrcourseClick"}}
+                    {{bmtable/bm-table-class-arrcourse listData=model.class.units titles=model.arrTitles onArrcourseClick="onArrcourseClick" onEditArrcourseClick="onEditArrcourseClick" onRemoveArrcourseClick="onRemoveArrcourseClick"}}
                     {{!-- {{bmcom/bm-pagination pageCount=bm_sessionable_service.totalPageCount sendPageNum=(action "handlePageChange")}} --}}
                 {{/if}}
             {{/if}}
