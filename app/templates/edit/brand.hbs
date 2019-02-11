@@ -125,12 +125,16 @@
             {{/each}}
             {{#if (bmcom/bm-nil-obj tempHonorImgs)}}
                 {{#layout-push direction='row' mid=true classNames="add-img-div"}}
-                    <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addHonorPicOnClick"}}/>
+                    <div class="add-new-img-div"  {{action "addHonorPicOnClick"}}>
+                        <img class="add-new-img" src='/images/icon_add-photo@3x.png'/>
+                    </div>
                 {{/layout-push}}
             {{else}}
                 {{#if (lt tempHonorImgs.length 5)}}
                     {{#layout-push direction='row' mid=true classNames="add-img-div"}}
-                        <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addHonorPicOnClick"}}/>
+                    <div class="add-new-img-div"  {{action "addHonorPicOnClick"}}>
+                        <img class="add-new-img" src='/images/icon_add-photo@3x.png'/>
+                    </div>
                     {{/layout-push}}
                 {{/if}}
             {{/if}}
@@ -159,12 +163,16 @@
             {{/each}}
             {{#if (bmcom/bm-nil-obj tempCertImgs)}}
                 {{#layout-push direction='row' mid=true classNames="add-img-div"}}
-                    <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addCertPicOnClick"}}/>
+                    <div class="add-new-img-div"  {{action "addCertPicOnClick"}}>
+                        <img class="add-new-img" src='/images/icon_add-photo@3x.png'/>
+                    </div>
                 {{/layout-push}}
             {{else}}
                 {{#if (lt tempCertImgs.length 5)}}
                     {{#layout-push direction='row' mid=true classNames="add-img-div"}}
-                        <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addCertPicOnClick"}}/>
+                        <div class="add-new-img-div"  {{action "addCertPicOnClick"}}>
+                            <img class="add-new-img" src='/images/icon_add-photo@3x.png'/>
+                        </div>
                     {{/layout-push}}
                 {{/if}}
             {{/if}}

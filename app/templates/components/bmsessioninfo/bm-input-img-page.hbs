@@ -23,12 +23,16 @@
                 {{/each}}
                 {{#if (bmcom/bm-nil-obj tempImgs)}}
                     {{#layout-push direction='row' mid=true classNames="add-img-div"}}
-                        <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addPicOnClick"}}/>
+                        <div class="add-new-img-div"  {{action "addPicOnClick"}}>
+                            <img class="add-new-img" src='/images/icon_add-photo@3x.png'/>
+                        </div>
                     {{/layout-push}}
                 {{else}}
                     {{#if (lt tempImgs.length 9)}}
                         {{#layout-push direction='row' mid=true classNames="add-img-div"}}
-                            <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addPicOnClick"}}/>
+                            <div class="add-new-img-div"  {{action "addPicOnClick"}}>
+                                <img class="add-new-img" src='/images/icon_add-photo@3x.png'/>
+                            </div>
                         {{/layout-push}}
                     {{/if}}
                 {{/if}}

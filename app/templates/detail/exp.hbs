@@ -69,46 +69,6 @@
                                     {{#layout-push direction='row' classNames="line-list"}}
                                         <p class="subtitle">校区设置</p>
                                         <p class="edit_subtitle_content">{{model.yard.title}}</p>
-                                        {{!-- {{#layout-push direction='col' }}
-                                            <span class="radio-col">
-                                                <input type="radio" name="rel01" value="fa" checked/>
-                                                <label for="">
-                                                    {{#layout-push direction=row}}
-                                                        {{#if noteError}}
-                                                            <select class="session-modal-select error-border" id='reservableselect' name="" onchange={{action 'reservableChanged'}}>
-                                                                <option value="">选择已有场地</option>
-                                                                {{#each bm_yard_service.yards as |item|}}
-                                                                    {{#if (eq item.id cur_yard_id)}}
-                                                                        <option selected="selected" value={{item.id}}>{{item.address}}</option>
-                                                                    {{else if (eq item.id tmpSessionable.Yard.id)}}
-                                                                        <option selected="selected" value={{item.id}}>{{item.address}}</option>
-                                                                    {{else}}
-                                                                        <option value={{item.id}}>{{item.address}}</option>
-                                                                    {{/if}}
-                                                                {{/each}}
-                                                            </select>
-                                                        {{else}}
-                                                            <select class="session-modal-select" id='reservableselect' name="" onchange={{action 'reservableChanged'}}>
-                                                                <option value="">选择已有场地</option>
-                                                                {{#each bm_yard_service.yards as |item|}}
-                                                                    {{#if  (eq item.id cur_yard_id)}}
-                                                                        <option selected="selected" value={{item.id}}>{{item.address}}</option>
-                                                                    {{else if (eq item.id tmpSessionable.Yard.id)}}
-                                                                        <option selected="selected" value={{item.id}}>{{item.address}}</option>
-                                                                    {{else}}
-                                                                        <option value={{item.id}}>{{item.address}}</option>
-                                                                    {{/if}}
-                                                                {{/each}}
-                                                            </select>
-                                                        {{/if}}
-                                                    {{/layout-push}}
-                                                </label>
-                                            </span> --}}
-                                            {{!-- <span class="radio-col">
-                                                <input type="radio" name="rel" value="ma"/>
-                                                <label for="">其他场地</label>
-                                            </span> --}}
-                                        {{!-- {{/layout-push}} --}}
                                     {{/layout-push}}
                                     {{#if (eq tmpSessionable "")}}
                                         {{#layout-push direction="row" classNames="line-list"}}
@@ -141,21 +101,6 @@
                                             {{/if}}
                                         {{/layout-push}}
                                     {{/if}}
-                                    {{!-- {{#layout-push direction='row' classNames="line-area "}}
-                                        <p class="subtitle">名额设置</p>
-                                        {{#layout-push direction='col' }}
-                                            <span class="radio-col">
-                                                <input type="radio" name="rel02" value="ma" checked/>
-                                                <label for="">不限制</label>
-                                            </span> --}}
-                                            {{!-- <span class="radio-col">
-                                                <input type="radio" name="rel" value="fa"/>
-                                                <label for="">
-                                                    <input type="text" name="" value="">
-                                                </label>
-                                            </span> --}}
-                                        {{!-- {{/layout-push}}
-                                    {{/layout-push}} --}}
                                 {{/layout-push}}
                             </div>
                     {{/bmcom/bm-modal-container}}

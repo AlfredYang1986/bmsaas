@@ -61,22 +61,22 @@
                 <span class='alt-edit-up-hit'>街道门牌号、小区楼号、楼层号</span>
                 {{input value=model.yard.address classNames='alt-edit-line'}}
             {{/layout-push}} --}}
-            {{bmform/bm-detail-address 
-                provinces=provinces 
-                citys=citys 
-                areas=areas 
+            {{bmform/bm-detail-address
+                provinces=provinces
+                citys=citys
+                areas=areas
                 province=model.yard.province
                 city=model.yard.city
                 area=model.yard.district
-                title='校区地址' 
+                title='校区地址'
                 detailAddress=model.yard.address
                 classNames="area-margin-bottom"}}
-            {{bmform/bm-edit-line 
-                maxlength='20' 
-                title='校区名称' 
-                inputVal=model.yard.title 
-                classNames='input_area area-margin-bottom yard-name' 
-                needTitleDes=true 
+            {{bmform/bm-edit-line
+                maxlength='20'
+                title='校区名称'
+                inputVal=model.yard.title
+                classNames='input_area area-margin-bottom yard-name'
+                needTitleDes=true
                 titleDes="如:PRO科学空间站 海淀校区"}}
             {{#layout-push direction="col" classNames='area-margin-bottom'}}
                 {{#layout-push direction="row"}}
@@ -104,17 +104,17 @@
                             }}
                 {{/layout-push}}
             {{/layout-push}}
-            {{bmform/bm-edit-line 
-                numberInput=true 
-                maxlength='20' 
-                title='客服联系电话' 
-                inputVal=model.yard.serviceContact 
+            {{bmform/bm-edit-line
+                numberInput=true
+                maxlength='20'
+                title='客服联系电话'
+                inputVal=model.yard.serviceContact
                 classNames='input_area area-margin-bottom yard-contact'}}
-            {{bmform/bm-edit-line 
-                title='营业时间' 
-                inputVal=model.yard.openTime 
+            {{bmform/bm-edit-line
+                title='营业时间'
+                inputVal=model.yard.openTime
                 classNames='input_area yard-contact'
-                needTitleDes=true 
+                needTitleDes=true
                 titleDes="如:周一，周三至周五，周日 10:00~22:00"}}
         {{/layout-push}}
         {{#layout-push classNames='edit_panel_bottom_btn_container' direction='row'}}
@@ -205,12 +205,16 @@
                         {{/each}}
                         {{#if (bmcom/bm-nil-obj tempYardImgs)}}
                             {{#layout-push direction='row' mid=true classNames="add-img-div"}}
-                                <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addYardPicOnClick"}}/>
+                                <div class="add-new-img-div"  {{action "addYardPicOnClick"}}>
+                                    <img class="add-new-img" src='/images/icon_add-photo@3x.png'/>
+                                </div>
                             {{/layout-push}}
                         {{else}}
                             {{#if (lt tempYardImgs.length 9)}}
                                 {{#layout-push direction='row' mid=true classNames="add-img-div"}}
-                                    <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addYardPicOnClick"}}/>
+                                    <div class="add-new-img-div"  {{action "addYardPicOnClick"}}>
+                                        <img class="add-new-img" src='/images/icon_add-photo@3x.png'/>
+                                    </div>
                                 {{/layout-push}}
                             {{/if}}
                         {{/if}}
@@ -263,12 +267,16 @@
                         {{/each}}
                         {{#if (bmcom/bm-nil-obj tempCertImgs)}}
                             {{#layout-push direction='row' mid=true classNames="add-img-div"}}
-                                <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addCertPicOnClick"}}/>
+                                <div class="add-new-img-div"  {{action "addCertPicOnClick"}}>
+                                    <img class="add-new-img" src='/images/icon_add-photo@3x.png'/>
+                                </div>
                             {{/layout-push}}
                         {{else}}
                             {{#if (lt tempCertImgs.length 8)}}
                                 {{#layout-push direction='row' mid=true classNames="add-img-div"}}
-                                    <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addCertPicOnClick"}}/>
+                                    <div class="add-new-img-div"  {{action "addCertPicOnClick"}}>
+                                        <img class="add-new-img" src='/images/icon_add-photo@3x.png'/>
+                                    </div>
                                 {{/layout-push}}
                             {{/if}}
                         {{/if}}
