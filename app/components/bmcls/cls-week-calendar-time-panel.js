@@ -65,7 +65,7 @@ export default Component.extend({
             // this.onCloseClick(unit);
             let cur = document.getElementsByClassName("popover")[0];
             // let cur = document.getElementById(this.unit.id);
-            console.log(cur)
+            // console.log(cur)
             cur.popover('toggle')
             // document.getElement
         },

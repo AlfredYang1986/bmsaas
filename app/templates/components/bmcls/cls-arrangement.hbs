@@ -1,8 +1,3 @@
-{{!-- {{yield}} --}}
-{{!-- {{#layout-push direction='row' split=true}}
-    {{bmcard/bm-arr-cls-card}}
-{{/layout-push}} --}}
-
 {{#layout-push direction='row' split=true}}
     {{#layout-push direction="row" split=true}}
         <p class="arrange-class-title">排课</p>
@@ -32,7 +27,7 @@
         {{#layout-push direction='row' classNames="options"}}
             <p class="title">选择教室</p>
             <form class="select-site">
-                <select name="cars" id='roomselect' onChange={{action 'roomChanged'}}>
+                <select name="" id='roomselect' onChange={{action 'roomChanged'}}>
                     {{#each rooms as |item idx|}}
                         <option value={{item.id}}>{{item.title}}</option>
                         {{#if (bmeq idx 0)}}
@@ -44,20 +39,20 @@
         {{/layout-push}}
     {{/layout-push}}
 
-    {{#layout-push direction='row'}}
+    {{#layout-push direction='row' classNames="calender-btn-group"}}
         {{#layout-push direction='col' mid=true}}
             {{bmcls/cls-week-display start_date=start_date end_date=end_date}}
         {{/layout-push}}
-        {{#bmcls/cls-btn isPrev=true onBtnClicked=(action 'prevBtnClicked')}}
-            {{#layout-push direction='col' mid=true}}
+        {{bmcls/cls-btn isPrev=true onBtnClicked=(action 'prevBtnClicked')}}
+            {{!-- {{#layout-push direction='col' mid=true}}
                 <span>&lt;</span>
-            {{/layout-push}}
-        {{/bmcls/cls-btn}}
-        {{#bmcls/cls-btn isNext=true onBtnClicked=(action 'nextBtnClicked')}}
-            {{#layout-push direction='col' mid=true}}
+            {{/layout-push}} --}}
+        {{!-- {{/bmcls/cls-btn}} --}}
+        {{bmcls/cls-btn isNext=true onBtnClicked=(action 'nextBtnClicked')}}
+            {{!-- {{#layout-push direction='col' mid=true}}
                 <span>&gt;</span>
-            {{/layout-push}}
-        {{/bmcls/cls-btn}}      
+            {{/layout-push}} --}}
+        {{!-- {{/bmcls/cls-btn}}       --}}
     {{/layout-push}}
 {{/layout-push}}
     

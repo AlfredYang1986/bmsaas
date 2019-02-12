@@ -21,23 +21,30 @@
     text-transform: capitalize;
 
     border-radius: 3px;
+
+    width: 24px;
+    height: 24px;
 }
 
 %cls-btn:hover {
-    background: #e3eaef;
+    background-color: #FFFFFF;
     border: none;
-    color: #6c757d;
+    // color: #6c757d;
 }
 
 %cls-btn:focus {
-    background: #e3eaef;
+    background-color: #FFFFFF;
     border: none;
-    color: #6c757d;
+    // color: #6c757d;
     outline: none;
 }
 
 .cls-click-enter {
-    background: black !important;
+    // background-color: black !important;
+}
+
+.calender-btn-group {
+    height: 24px;
 }
 
 .cls-normal {
@@ -50,12 +57,16 @@
     @extend %cls-btn;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
+    background: url('../images/chevron_left_normal@2x.png');
+    background-size: 24px;
 }
 
 .next-btn {
     @extend %cls-btn;
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
+    background: url('../images/chevron_right@2x.png');
+    background-size: 24px;
 }
 
 .today-cls-btn {
@@ -112,6 +123,7 @@
         border-spacing: 0;
         margin: 0;
         padding: 0;
+        border: none;
 
         .bm-head {
             border-color: #e3eaef;
@@ -135,13 +147,20 @@
         //     vertical-align: top;
         // }
 
+
         th.bm-widget-header {
-            background: #e3eaef;
+            background: #FFFFFF;
             font-size: 13px;
             line-height: 20px;
             padding: 10px 0;
             text-transform: uppercase;
             text-align: center;
+
+            .week-day {
+                font-family: PingFangSC-Regular;
+                font-size: 11px;
+                color: #6B778C;
+            }
         }
 
         .bm-axis {
@@ -210,6 +229,8 @@
             // }
 
             .bm-content-right {
+                display: flex;
+                flex-direction: column;
                 font-family: PingFangSC-Medium;
                 font-size: 12px;
                 color: #172B4D;
