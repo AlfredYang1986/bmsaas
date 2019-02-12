@@ -34,22 +34,32 @@
                         {{/layout-push}}
                     </div>
                 {{/if}} --}}
-                {{#if noteTimeError}}
+                {{#if formErrorFlag}}
                     <div class="form-checked">
                         {{#layout-push direction='row' classNames="error-line"}}
                             <img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
-                            <span class="error-info">时间错误</span>
+                            <span class="error-info">请检查填写内容</span>
                         {{/layout-push}}
                     </div>
                 {{/if}}
-                
-                {{#layout-push direction="col" classNames='input_area' }}
-                    {{bmform/bm-base-select selId="roomSel" type="id" chooseCourse=true selTitle="选择教室" options=model.rooms curSelect=cur_room_id classNames="input-inline-select input_area area-margin-bottom"}}
-                {{/layout-push}}
-                {{#layout-push direction="col" classNames='input_area' }}
-                    {{bmform/bm-base-select selId="classSel" handleChangeFlag=true handleChange=(action "afterClassChange") type="id" chooseClass=true selTitle="排课班级" options=model.classes curSelect=cur_class_id classNames="input-inline-select input_area area-margin-bottom"}}
-                {{/layout-push}}
-
+                {{#if roomErrorFlag}}
+                    {{#layout-push direction="col" classNames='input_area' }}
+                        {{bmform/bm-base-select selId="roomSel" type="id" chooseCourse=true selTitle="选择教室" options=model.rooms curSelect=cur_room_id classNames="error-border input-inline-select input_area area-margin-bottom"}}
+                    {{/layout-push}}
+                {{else}}
+                    {{#layout-push direction="col" classNames='input_area' }}
+                        {{bmform/bm-base-select selId="roomSel" type="id" chooseCourse=true selTitle="选择教室" options=model.rooms curSelect=cur_room_id classNames="input-inline-select input_area area-margin-bottom"}}
+                    {{/layout-push}}
+                {{/if}}
+                {{#if classErrorFlag}}
+                    {{#layout-push direction="col" classNames='input_area' }}
+                        {{bmform/bm-base-select selId="classSel" handleChangeFlag=true handleChange=(action "afterClassChange") type="id" chooseClass=true selTitle="排课班级" options=model.classes curSelect=cur_class_id classNames="error-border input-inline-select input_area area-margin-bottom"}}
+                    {{/layout-push}}
+                {{else}}
+                    {{#layout-push direction="col" classNames='input_area' }}
+                        {{bmform/bm-base-select selId="classSel" handleChangeFlag=true handleChange=(action "afterClassChange") type="id" chooseClass=true selTitle="排课班级" options=model.classes curSelect=cur_class_id classNames="input-inline-select input_area area-margin-bottom"}}
+                    {{/layout-push}}
+                {{/if}}
                 {{#if (eq tmpSessionable "")}}
                     {{#layout-push direction="row" classNames="line-list"}}
                         <p class="subtitle">日期设置</p>
@@ -57,7 +67,7 @@
                     {{/layout-push}}
                     {{#layout-push direction="row" classNames="line-list"}}
                         <p class="subtitle">时间设置</p>
-                        {{#if noteTimeError}}
+                        {{#if timeErrorFlag}}
                             {{bmform/bm-lay-date cssClass="error-border" inputVal=cur_start_date pickType="time"}}
                             {{bmform/bm-lay-date cssClass="error-border" inputVal=cur_end_date pickType="time"}}
                         {{else}}
@@ -72,7 +82,7 @@
                     {{/layout-push}}
                     {{#layout-push direction="row" classNames="line-list"}}
                         <p class="subtitle">时间设置</p>
-                        {{#if noteTimeError}}
+                        {{#if timeErrorFlag}}
                             {{bmform/bm-lay-date cssClass="error-border" inputVal=cur_start_date pickType="time"}}
                             {{bmform/bm-lay-date cssClass="error-border" inputVal=cur_end_date pickType="time"}}
                         {{else}}
@@ -81,12 +91,24 @@
                         {{/if}}
                     {{/layout-push}}
                 {{/if}}
-                {{#layout-push direction="col" classNames='input_area' }}
-                    {{bmform/bm-base-select selId="courseTimeSel" type="number" selTitle="课时/次" options=courseTimeArr curSelect=cur_course_time classNames="input-inline-select input_area area-margin-bottom"}}
-                {{/layout-push}}
-                {{#layout-push direction="col" classNames='input_area' }}
-                    {{bmform/bm-base-select selId="techSel" type="id" idType=true selTitle="选择教师" options=tempTechs curSelect=cur_tech_id classNames="input-inline-select input_area area-margin-bottom"}}
-                {{/layout-push}}
+                {{#if periodErrorFlag}}
+                    {{#layout-push direction="col" classNames='input_area' }}
+                        {{bmform/bm-base-select selId="courseTimeSel" type="number" selTitle="课时/次" options=courseTimeArr curSelect=cur_course_time classNames="error-border input-inline-select input_area area-margin-bottom"}}
+                    {{/layout-push}}
+                {{else}}
+                    {{#layout-push direction="col" classNames='input_area' }}
+                        {{bmform/bm-base-select selId="courseTimeSel" type="number" selTitle="课时/次" options=courseTimeArr curSelect=cur_course_time classNames="input-inline-select input_area area-margin-bottom"}}
+                    {{/layout-push}}
+                {{/if}}
+                {{#if techErrorFlag}}
+                    {{#layout-push direction="col" classNames='input_area' }}
+                        {{bmform/bm-base-select selId="techSel" type="id" idType=true selTitle="选择教师" options=tempTechs curSelect=cur_tech_id classNames="error-border input-inline-select input_area area-margin-bottom"}}
+                    {{/layout-push}}
+                {{else}}
+                    {{#layout-push direction="col" classNames='input_area' }}
+                        {{bmform/bm-base-select selId="techSel" type="id" idType=true selTitle="选择教师" options=tempTechs curSelect=cur_tech_id classNames="input-inline-select input_area area-margin-bottom"}}
+                    {{/layout-push}}
+                {{/if}}
             {{/layout-push}}
         </div>
 {{/bmcom/bm-modal-container}}
