@@ -9,12 +9,13 @@
         {{else}}
             <option value={{item.name}}>{{item.name}}</option>
         {{/if}} --}}
+        <option value="" disabled selected hidden>请选择省份</option>
         {{#if (eq province item)}}
             <option selected=true value={{item}}>{{item}}</option>
         {{else}}
             <option value={{item}}>{{item}}</option>
         {{/if}}
-        
+
     {{/each}}
 </select>
 <select class="address-select" onchange={{action 'changeCitys' value="target.value"}}>
@@ -27,6 +28,7 @@
         {{!-- {{else}} --}}
             {{!-- <option value={{item.name}}>{{item.name}}</option> --}}
         {{!-- {{/if}} --}}
+        <option value="" disabled selected hidden>请选择城市</option>
         {{#if (eq city item)}}
             <option selected=true value={{item}}>{{item}}</option>
         {{else}}
@@ -44,6 +46,7 @@
         {{else}}
             <option value={{item.name}}>{{item.name}}</option>
         {{/if}} --}}
+        <option value="" disabled selected hidden>请选择行政区域</option>
         {{#if (eq area item)}}
             <option selected=true value={{item}}>{{item}}</option>
         {{else}}
