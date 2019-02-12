@@ -11,6 +11,7 @@ export default Component.extend({
     mainPicIdx: 0,
     listPicIdxUp: 3,
     listPicIdxDown: 0,
+    flag:0,
     init() {
         this._super(...arguments);
 
@@ -21,8 +22,8 @@ export default Component.extend({
 
         this.picData.then(data => {
             let result = data.
-            filter((item) => {return item.img !== ""}).
-            map(v => {return {url: client.signatureUrl(v.img), tag: v.tag}})           
+            filter((item) => {return item.img !== "" && item.flag === this.get('flag')}).
+            map(v => {return {url: client.signatureUrl(v.img), tag: v.tag}})
             this.set("images", result)
         })
     },
