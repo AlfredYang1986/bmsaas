@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import EmberObject from '@ember/object';
+import { computed } from '@ember/object';
 import { A } from '@ember/array';
 import { set } from '@ember/object';
 
@@ -7,7 +8,7 @@ const inputObject = EmberObject.extend({});
 export default Component.extend({
     tagNmae: '',
     classNames: 'bm-dynamic-input',
-    disabled: false,
+    disabled: true,
     limit: 10,
     listInputs: A([]),
     innerData: A([]),
@@ -18,6 +19,9 @@ export default Component.extend({
         // this.set('inputTemp', this.listInputs.map(x => x));
         //变为内部自变量，内部component操作都属于闭环，也就是说放弃双向绑定 => DDAU，剩下的你想想怎么取这个内部的值，算是你的小任务，后续这个EmberObject应该会是EmberModel的形式展现，想想如何扩展
     },
+    disabled: computed(function(){
+        return this.innerData.length >= this.limit
+    }),
     actions: {
         addProject() {
             if (this.innerData == null || this.innerData == "") {
@@ -27,6 +31,9 @@ export default Component.extend({
                 let id = this.innerData.length + 1
                 this.innerData.pushObject(inputObject.create({ id, text: '' }))
             }
+            if (this.innerData.length +1 > this.limit) {
+                this.set('disabled', true);
+            }
             this.transToSourceFormat()
         },
 
@@ -35,6 +42,9 @@ export default Component.extend({
                 set(elem, 'id', index + 1)
                 return elem
             }))
+            if(this.innerData.length  < this.limit) {
+                this.set('disabled', false);
+            }
 
             // this.set('innerData', res);
             this.transToSourceFormat()

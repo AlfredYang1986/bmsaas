@@ -24,4 +24,9 @@ export default Route.extend({
             titles: A(["教室名称","使用类型",""]),
         })
     },
+    setupController(controller, model) {
+        this._super(controller, model);
+        controller.set('tempYardImgs', model.yard.images.filter(async item => {return item.flag === 0}));
+        controller.set('tempCertImgs', model.yard.images.filter((item) => {return item.flag === 2}));
+    },
 });

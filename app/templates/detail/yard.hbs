@@ -5,8 +5,8 @@
             {{bmcom/bm-empty-state class="yard-empty-state" picUrl="/images/img_empty@2x.png" title="暂无校区" des="点击下方添加校区，创建您的校区吧" btnText="+添加校区" onBtnClick=(action "onAddYardClick")}}
         {{else}}
             {{#layout-push direction='col' classNames="detail_title yard_detail_title"}}
-                <span class="title_text">{{model.yard.title}}</span> 
-                <span class="sub_title_text">{{bmcom/bm-trans-address model.yard}}</span> 
+                <span class="title_text">{{model.yard.title}}</span>
+                <span class="sub_title_text">{{bmcom/bm-trans-address model.yard}}</span>
             {{/layout-push}}
             {{#layout-push direction="col" classNames="detail_panel_tab_container"}}
                 {{bmcom/bm-tabs-bar cur_idx=curTabIdx titles=model.tabs}}
@@ -17,22 +17,14 @@
                 {{#layout-push direction='row' split=true}}
                     {{#layout-push direction='col' classNames='alt_yard_left_panel'}}
                         {{#layout-push direction='col' classNames='alt_yard_panel'}}
-                            {{bmdetail/course-basis-left-title 
+                            {{bmdetail/course-basis-left-title
                                 title=model.yard.title
                                 subTitle=(bmcom/bm-trans-address model.yard)
                                 subTitleBehind=""}}
                             {{bmdetail/yard-basis-left-tags tags1=model.yard.scenario tags2=model.yard.attribute}}
-                            {{!-- {{#layout-push direction='row' mid=true classNames='alt_yard_deltail_title'}}
-                                {{model.yard.title}}
-                            {{/layout-push}}
-                            {{#layout-push direction='row' mid=true classNames='alt_yard_detail_cat'}}
-                                {{model.yard.address}}
-                            {{/layout-push}}
-                            {{#layout-push direction='row' mid=true classNames='alt_yard_tag'}}
-                                <p>{{model.yard.attribute}}</p>
-                            {{/layout-push}} --}}
                             {{#if (bmcom/bm-nil-obj model.yard)}}
                             {{else}}
+                            {{log tempYardImgs}}
                             {{log model.yard.images}}
                                 {{bmcom/bm-pic-jigsaw picData=model.yard.images}}
                             {{/if}}
@@ -63,13 +55,13 @@
 
                         {{#layout-push direction='col' classNames='alt_yard_detail_panel'}}
                             <span class='alt_right_panel_perperty_title'>校区认证</span>
-                                {{#if (bmcom/bm-nil-obj model.yard.Certifications)}}
+                                {{#if (bmcom/bm-nil-obj tempCertImgs)}}
                                     {{#layout-push direction='row'}}
                                         <span class='alt_right_panel_perperty_des'>请上传信息</span>
                                     {{/layout-push}}
                                 {{else}}
                                     <div class='line_conatainer_warp'>
-                                        {{#each model.yard.Certifications as |item|}}
+                                        {{#each tempCertImgs as |item|}}
                                             {{bmcom/bm-img-uploader needTag=true canEdit=false img=item.img tag=item.tag classNames='alt-yard-tag-img-adjust'}}
                                         {{/each}}
                                     </div>
@@ -135,7 +127,7 @@
                         {{bmform/bm-edit-line title='教室名称' inputVal=tempRoomTitle classNames='input_area input-full-width'}}
                     {{/layout-push}}
                 {{/if}}
-                
+
             {{/layout-push}}
         </div>
 {{/bmcom/bm-modal-container}}

@@ -122,71 +122,6 @@
         {{/layout-push}}
     </section>
     {{/if}}
-
-    {{!-- {{#if (bmeq current_idx 1)}}
-    <section id="yard-info" class="yard-infos yard_section">
-        <div class="edit_panel v_push edit_second_panel">
-            {{#layout-push direction="row"}}
-                <span class="alt-edit-title">场地个性名称</span>
-            {{/layout-push}}
-            {{input type='text' value=model.yard.title classNames='alt-edit-half-line'}}
-
-            {{#layout-push direction="row" classNames='alt-edit-only-margin'}}
-                <span class="alt-edit-title alt-edit-title-des">场地描述</span>
-            {{/layout-push}}
-            <span class='alt-edit-up-hit'>您的场地都有哪些类型的空间呢，简单的描述您场地下拥有的空间数量和功能，能让家长更加了解您的规模和环境，让家长放心。同时贴心的服务也能为您的品牌加分喔！</span>
-            {{textarea value=model.yard.description classNames='alt-edit-text-area' rows=5}}
-
-            {{#layout-push classNames='r_end' direction='row'}}
-                <button class='alt-edit-step-btn' {{action (mut current_idx) 2}}>下一步</button>
-            {{/layout-push}}
-        </div>
-
-    </section>
-    {{/if}}
-
-    {{#if (bmeq current_idx 2)}}
-    <section id="yard-evn" class="yard-infos yard_section">
-        <div class="edit_panel v_push edit_third_panel">
-            {{#layout-push direction="row"}}
-                <span class="alt-edit-title">场地类型</span>
-            {{/layout-push}}
-            {{#layout-push direction="col" classNames="single-select card-wrap"}}
-                {{bmform/checkbox-label limit=1
-                        candidate=yardCandidate
-                        titlecss='edit_sub_title'
-                        btncss='form-check-label'
-                        curSel=model.yard.attribute
-                        }}
-            {{/layout-push}}
-            {{#layout-push direction="row"}}
-                <span class="alt-edit-title">周围环境</span>
-            {{/layout-push}}
-            {{#layout-push direction="col" classNames="single-select card-wrap"}}
-                {{bmform/checkbox-label limit=10
-                        candidate=surroundings
-                        titlecss='edit_sub_title'
-                        btncss='form-check-label'
-                    }}
-            {{/layout-push}}
-            {{#layout-push direction="row"}}
-                <span class="alt-edit-title alt-edit-title-loc">小区/校区/商圈 名称</span>
-            {{/layout-push}}
-            <span class='alt-edit-up-hit'>示例：天通苑、三里屯、央美附小</span>
-            {{input value=model.yard.scenario classNames='alt-edit-line alt-edit-line-area'}}
-
-            {{#layout-push direction="row"}}
-                <span class="alt-edit-title">周边交通路线信息</span>
-            {{/layout-push}}
-            {{input value=model.yard.traffic_info classNames='alt-edit-line alt-edit-line-traf'}}
-
-            {{#layout-push classNames='r_end' direction='row'}}
-                <button class='alt-edit-step-btn' {{action (mut current_idx) 4}}>下一步</button>
-            {{/layout-push}}
-        </div>
-    </section>
-    {{/if}} --}}
-
     {{#if (bmeq current_idx 1)}}
         <section class="yard-infos yard_section" >
             {{#layout-push direction='col' classNames='edit_panel edit_second_panel'}}
@@ -233,10 +168,6 @@
             {{#layout-push direction='row' classNames='edit_title_container'}}
                 <span class="edit_title">校区设施</span>
             {{/layout-push }}
-            {{!-- {{#layout-push direction='row' split=true}}
-                {{bmform/bm-edit-line title="停车场" isNeeded=true maxCount=1 classNames='line_half' inputVal=yard_parking}}
-                {{bmform/bm-edit-line title="急救包" isNeeded=true maxCount=1 classNames='line_half' inputVal=yard_embag}}
-            {{/layout-push}} --}}
             {{#layout-push direction="col" classNames="multi-select"}}
                 {{bmform/bm-checkbox
                     flag=changeFlag
@@ -283,9 +214,6 @@
                     </div>
                 {{/layout-push}}
             {{/layout-push }}
-            {{!-- {{#layout-push classNames='edit_panel_bottom_btn_container' direction='row'}}
-                <button class='edit_panel_bottom_btn' {{action 'saveYardBtnClicked'}}>完成</button>
-            {{/layout-push}} --}}
         </section>
     {{/if}} 
     </div>
