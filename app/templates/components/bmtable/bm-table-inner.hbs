@@ -221,8 +221,8 @@
                     {{#dd.menu align="right" as |menu|}}
                         {{#menu.item align="right"}}
                             {{#layout-push direction='col' classNames="dropdown-content"}}
-                                <a class="" onclick={{action 'onArrcourseClick' item dd.closeDropdown}}>查看</a>
-                                <a class="" onclick={{action 'onEditArrcourseClick' item dd.closeDropdown}}>编辑</a>
+                                {{!-- <a class="" onclick={{action 'onArrcourseClick' item dd.closeDropdown}}>查看</a>
+                                <a class="" onclick={{action 'onEditArrcourseClick' item dd.closeDropdown}}>编辑</a> --}}
                                 <a class="warning" onclick={{action 'onRemoveArrcourseClick' item dd.closeDropdown}}>删除</a>
                             {{/layout-push}}
                         {{/menu.item}}
