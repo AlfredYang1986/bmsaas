@@ -6,7 +6,7 @@ export default Route.extend({
     model(params) {
         return RSVP.hash({
             stud: this.store.find('student', params.studid),
-            tabs: A(['详细信息']),
+            tabs: A(['学生详情']),
             urls: A([
                 {
                     "pageName":"学生管理",

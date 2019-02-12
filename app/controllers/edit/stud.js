@@ -68,26 +68,28 @@ export default Controller.extend({
                 tmpTech = that.model.techs.objectAt(0)
             }
             that.model.stud.set('teacher', tmpTech);
-            if (that.model.isPushing) {
-                for(let idx = 0;idx < that.model.stud.guardians.length;idx++) {
-                    that.model.stud.guardians.objectAt(idx).save()
-                }
-                if(that.model.stud.guardians.firstObject.relationShip == '') {
-                    that.model.stud.guardians.objectAt(0).set("relationShip", '爸爸')
-                }
-                that.transitionToRoute("detail.stud", that.model.stud.id)
-            } else {
-                if(that.model.applyid != undefined) {
-                    let onSuccess = function(res) {
-                        let apply = res;
-                        apply.set('status', 1);
-                        apply.save();
-                    }
-                    let onFail = function() {}
-                    that.store.find('apply', that.model.applyid).then(onSuccess, onFail)
-                }
-                that.transitionToRoute("detail.stud", that.model.stud.id)
+            for(let idx = 0;idx < that.model.stud.guardians.length;idx++) {
+                that.model.stud.guardians.objectAt(idx).save()
             }
+            that.model.stud.save((res) => {
+                if (that.model.isPushing) {
+                    if(that.model.stud.guardians.firstObject.relationShip == '') {
+                        that.model.stud.guardians.objectAt(0).set("relationShip", '爸爸')
+                    }
+                    that.transitionToRoute("detail.stud", that.model.stud.id)
+                } else {
+                    if(that.model.applyid != undefined) {
+                        let onSuccess = function(res) {
+                            let apply = res;
+                            apply.set('status', 1);
+                            apply.save();
+                        }
+                        let onFail = function() {}
+                        that.store.find('apply', that.model.applyid).then(onSuccess, onFail)
+                    }
+                    that.transitionToRoute("detail.stud", that.model.stud.id)
+                }
+            }).catch(err => window.console.info(err))
         },
         selectedOrigin() {
             let sel = document.getElementById("originSelect");

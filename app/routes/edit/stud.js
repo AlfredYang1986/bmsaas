@@ -5,30 +5,32 @@ import { A } from '@ember/array';
 export default Route.extend({
     model(params) {
         if (params.studid == "stud/push") {
+            // let stud = this.store.createRecord('student', {"brandId": localStorage.getItem("brandid")});
+            // let gards = this.store.createRecord('guardian', {"brandId": localStorage.getItem("brandid")});
+            // let techs = this.store.query('teacher', {"brand-id": localStorage.getItem("brandid")});
+            //
+            // return RSVP.hash({
+            //     isPushing: true,
+            //     stud: stud,
+            //     gards: gards,
+            //     techs: techs,
+            // })
+            let onSuccess = function() {
+                stud.guardians.pushObject(gard)
+            }
             let stud = this.store.createRecord('student', {"brandId": localStorage.getItem("brandid")});
-            let gards = this.store.createRecord('guardian', {"brandId": localStorage.getItem("brandid")});
+            let gard = this.store.createRecord('guardian', {"brandId": localStorage.getItem("brandid")});
+            gard.save().then(onSuccess).catch()
+            // stud.guardians.pushObject(gard);
+
             let techs = this.store.query('teacher', {"brand-id": localStorage.getItem("brandid")});
-            stud.save().then((result) => {
-                gards.save().then((res) => {
-                    stud.guardians.pushObject(gards)
-                })
-            })
             return RSVP.hash({
                 isPushing: true,
                 stud: stud,
-                gards: gards,
+                gards: stud.guardians,
                 techs: techs,
             })
         } else {
-            // let that = this;
-            // let tech = null;
-            // let onSuccess = function() {
-            //     if(stud.teacher) {
-            //         tech = that.store.find('teacher', stud.teacher.id)
-            //     } else {
-            //         tech = that.store.createRecord('teacher')
-            //     }
-            // }
             let str = params.studid;
             let paramsArr = str.split(' ');
             let studid = paramsArr[0];
@@ -38,9 +40,23 @@ export default Route.extend({
             return RSVP.hash({
                 isPushing: false,
                 stud: stud,
+                gards: stud.guardians,
                 techs: techs,
                 applyid: applyid
             })
+            // let str = params.studid;
+            // let paramsArr = str.split(' ');
+            // let studid = paramsArr[0];
+            // let applyid = paramsArr[1];
+            // let stud = this.store.find('student', studid);
+            // let techs = this.store.query('teacher', {"brand-id": localStorage.getItem("brandid")});
+            // return RSVP.hash({
+            //     isPushing: false,
+            //     stud: stud,
+            //     techs: techs,
+            //     gards: stud.guardians,
+            //     applyid: applyid
+            // })
         }
     },
     setupController(controller, model) {
