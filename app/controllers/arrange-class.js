@@ -29,6 +29,13 @@ export default Controller.extend({
     addUnitDlg: false,
     removeUnitDlg: false,
 
+    roomErrorFlag: false,
+    classErrorFlag: false,
+    timeErrorFlag: false,
+    periodErrorFlag: false,
+    techErrorFlag: false,
+    formErrorFlag: false,
+
     courseTimeArr:A([{name: 0.5}, {name: 1}, {name: 1.5}, {name: 2}, {name: 2.5}, {name: 3}, {name: 3.5}, {name: 4}, {name: 4.5}, {name: 5}]),
 
 
@@ -57,37 +64,81 @@ export default Controller.extend({
             this.set("tempUnit", null)
             this.set('addUnitDlg', false);
             this.set('removeUnitDlg', false);
+
+            this.set("roomErrorFlag", false);
+            this.set("classErrorFlag", false);
+            this.set("periodErrorFlag", false);
+            this.set("techErrorFlag", false);
+            this.set("timeErrorFlag", false);
+            this.set("formErrorFlag", false);
         },
         successHandled() {
-            let edit_flag_info = "编辑";
-            if(this.tempUnit == null) {
-                this.tempUnit = this.store.createRecord("unit");
-                edit_flag_info  = "添加";
+            if(this.cur_room_id == null || this.cur_room_id == "") {
+                this.set("roomErrorFlag", true);
+            } else {
+                this.set("roomErrorFlag", false);
             }
-            this.tempUnit.save().then(() => {
-                let tempclass = this.store.peekRecord("class", this.cur_class_id)
-                this.tempUnit.set("courseTime", this.cur_course_time)
-                this.tempUnit.set("startDate", this.handleDate(this.cur_tmp_date,this.cur_start_date))
-                this.tempUnit.set("endDate", this.cur_end_date)
-                this.tempUnit.set("room", this.store.peekRecord("room", this.cur_room_id))
-                this.tempUnit.set("class", tempclass)
-                this.tempUnit.set("teacher", this.store.peekRecord("teacher", this.cur_tech_id))
+            if(this.cur_class_id == null || this.cur_class_id == "") {
+                this.set("classErrorFlag", true);
+            } else {
+                this.set("classErrorFlag", false);
+            }
+            if(this.cur_course_time == null || this.cur_course_time == "") {
+                this.set("periodErrorFlag", true);
+            } else {
+                this.set("periodErrorFlag", false);
+            }
+            if(this.cur_tech_id == null || this.cur_tech_id == "") {
+                this.set("techErrorFlag", true);
+            } else {
+                this.set("techErrorFlag", false);
+            }
+            if(!this.checkTime()) {
+                this.set("timeErrorFlag", true);
+            } else {
+                this.set("timeErrorFlag", false);
+            }
+            if(this.roomErrorFlag || this.classErrorFlag || this.timeErrorFlag || this.periodErrorFlag || this.timeErrorFlag) {
+                this.set("formErrorFlag", true);
+            } else {
+                this.set("formErrorFlag", false);
+            }
+            
+            if(this.formErrorFlag) {
+                return;
+            } else {
+                let edit_flag_info = "编辑";
+                if(this.tempUnit == null) {
+                    this.tempUnit = this.store.createRecord("unit");
+                    edit_flag_info  = "添加";
+                }
+                
                 this.tempUnit.save().then(() => {
-                    // tempclass.units.pushObject(res)
-                    tempclass.save().then(() => {
-                        this.bm_clsarr_service.set('refresh_all_token', this.bm_clsarr_service.guid());
-                        this.set("tempUnit", null)
-                        this.set('addUnitDlg', false);
-                        this.toast.success('', edit_flag_info + '排课成功', this.toastOptions);
+                    let tempclass = this.store.peekRecord("class", this.cur_class_id)
+                    this.tempUnit.set("courseTime", this.cur_course_time)
+                    this.tempUnit.set("startDate", this.handleDate(this.cur_tmp_date,this.cur_start_date))
+                    this.tempUnit.set("endDate", this.cur_end_date)
+                    this.tempUnit.set("room", this.store.peekRecord("room", this.cur_room_id))
+                    this.tempUnit.set("class", tempclass)
+                    this.tempUnit.set("teacher", this.store.peekRecord("teacher", this.cur_tech_id))
+                    this.tempUnit.save().then(() => {
+                        // tempclass.units.pushObject(res)
+                        tempclass.save().then(() => {
+                            this.bm_clsarr_service.set('refresh_all_token', this.bm_clsarr_service.guid());
+                            this.set("tempUnit", null)
+                            this.set('addUnitDlg', false);
+                            this.toast.success('', edit_flag_info + '排课成功', this.toastOptions);
+                        },() => {
+                            this.toast.error('', edit_flag_info + '排课失败', this.toastOptions);
+                        })
                     },() => {
                         this.toast.error('', edit_flag_info + '排课失败', this.toastOptions);
                     })
                 },() => {
                     this.toast.error('', edit_flag_info + '排课失败', this.toastOptions);
                 })
-            },() => {
-                this.toast.error('', edit_flag_info + '排课失败', this.toastOptions);
-            })
+
+            }
         },
         afterClassChange() {
             let tempClass = this.store.peekRecord("class", this.cur_class_id);
