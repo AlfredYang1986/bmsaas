@@ -7,7 +7,7 @@ export default Route.extend({
         var tmp = this.store.find('brand', localStorage.getItem("brandid")).then(data => {
             return new Promise(function(resolve, reject) {
                 resolve(data)
-            }) 
+            })
         })
         return RSVP.hash({
             brand: tmp
@@ -18,5 +18,10 @@ export default Route.extend({
         controller.set('cur_idx', 0);
         controller.set('tempHonorImgs', model.brand.images.filter((item) => {return item.flag === 1}));
         controller.set('tempCertImgs', model.brand.images.filter((item) => {return item.flag === 2}));
+        if(model.brand.category.get("id")) {
+            controller.set("cur_cate_id", model.brand.category.get("title"));
+        } else {
+            controller.set("cur_tech_id", "");
+        }
     },
 });
