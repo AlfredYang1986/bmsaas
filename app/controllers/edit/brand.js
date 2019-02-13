@@ -5,7 +5,8 @@ import { A } from '@ember/array'
 export default Controller.extend({
     listInputs: A([]),
     cur_idx: 0,
-    cateArr: A([{name: '音樂'}, {name: '藝術'}, {name: '運動'}, {name: '科學'}, {name: 'steam'}]),
+    cateArr: A([{name: '音乐'}, {name: '艺术'}, {name: '运动'}, {name: '科学'}, {name: 'steam'}]),
+    cur_cate_id: '',
 
     tempHonorImgs: A(),
     tempCertImgs: A(),
@@ -16,8 +17,6 @@ export default Controller.extend({
             this.transitionToRoute("home")
         },
         saveBrand() {
-            // this.model.brand.save();
-            // this.transitionToRoute("home")
             let flag1 = false;
             let flag2 = false;
             let flag1Count = 0;
@@ -60,9 +59,9 @@ export default Controller.extend({
         selectedCate() {
             let sel = document.getElementById("cateSelect");
             if (sel.selectedIndex == "") {
-                // this.set('bm_brand_service.brand.Cate.title', "");
+                this.set('cur_cate_id', "");
             } else {
-                // this.set('bm_brand_service.brand.Cate.title', sel.options[sel.selectedIndex].value);
+                this.set('cur_cate_id', sel.options[sel.selectedIndex].value);
             }
         },
         addHonorPicOnClick() {
@@ -81,6 +80,9 @@ export default Controller.extend({
         },
     },
     saveBrand() {
+        this.model.brand.category.set('title', this.cur_cate_id)
+        let cate = this.store.peekRecord("category", this.model.brand.category.get("id"))
+        cate.save()
         this.model.brand.set("images", this.tempHonorImgs)
         this.model.brand.get("images").pushObjects(this.tempCertImgs)
         this.model.brand.save().then(()=> {

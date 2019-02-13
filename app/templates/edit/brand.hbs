@@ -42,23 +42,7 @@
                 {{bmcom/bm-img-uploader needTag=false canEdit=true img=model.brand.logo classNames=''}}
             {{/layout-push }}
             {{#layout-push direction='col' classNames="brand-base-info-continer"}}
-                {{!-- {{bmform/bm-edit-line title="品牌名称" isNeeded=true maxCount=15 pholder="如：Black Mirror Tech" inputVal=model.brand.title}}
-                {{bmform/bm-edit-line title="品牌简称" isNeeded=true maxCount=15 pholder="简称更容易让大家记住您的品牌喔！如：Black Mirror" inputVal=model.brand.subtitle}}
-                {{bmform/bm-edit-line title="一句话介绍(slogan)" isNeeded=true maxCount=15 pholder="请用一句话想家长和孩子们传递您的品牌理念" inputVal=model.brand.slogan}} --}}
-                {{!-- {{#layout-push direction='row' split=false classNames="area-margin-bottom-cate"}}
-                    {{#layout-push direction='col' classNames="input_area"}}
-                        <p class="edit_title">分类</p>
-                        <select class="" id="cateSelect"  name="" onChange={{action 'selectedCate'}}>
-                            <option value="">{{model.brand.Cate.title}}</option>
-                            {{#each cateArr as |item|}}
-                                <option value={{item}}>{{item}}</option>
-                            {{/each}}
-                        </select>
-                    {{/layout-push}}
-                {{/layout-push}} --}}
-                {{bmform/bm-base-select selTitle="分类" options=cateArr curSelect=model.brand.Cate.title classNames="input_area area-margin-bottom"}}
-
-
+                {{bmform/bm-base-select selTitle="分类" options=cateArr curSelect=cur_cate_id classNames="input_area area-margin-bottom"}}
                 {{#layout-push direction="col" classNames='brand-input-group'}}
                     <span class="edit_title">品牌名称</span>
                     {{input type="text" class="edit_input_small" value=model.brand.title}}
