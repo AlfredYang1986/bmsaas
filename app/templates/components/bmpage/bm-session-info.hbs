@@ -9,7 +9,6 @@
             {{bmdetail/course-basis-left-infocard infoCardData=session}}
             {{#if (bmcom/bm-nil-obj session)}}
             {{else}}
-            {{log session.cover}}
                 {{bmcom/bm-pic-jigsaw picData=session.images cover=session.cover}}
             {{/if}}
         {{/layout-push}}

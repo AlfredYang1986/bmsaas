@@ -2,7 +2,7 @@
 
 {{#layout-push direction='col' classNames='right_detail_panel'}}
     <span class='right_panel_perperty_title'>{{label}}</span>
-    {{#if (bmcom/bm-nil-string content)}}
+    {{#if (bmcom/bm-nil-length content)}}
         <span class='right_panel_perperty_des'>{{nocontent}}</span>
     {{else}}
         <span class='right_panel_perperty_des'>{{content}}</span>

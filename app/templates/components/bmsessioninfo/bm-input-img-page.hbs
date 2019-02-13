@@ -17,7 +17,6 @@
                 {{!-- {{#each tempImgs as |item|}}
                     {{bmcom/bm-img-uploader needTag=true canEdit=true img=item.img tag=item.tag classNames='alt-course-edit-tag-img-adjust'}}
                 {{/each}} --}}
-                {{log tempImgs}}
                 {{#each tempImgs as |item|}}
                     {{bmcom/bm-img-uploader needTag=true canEdit=true canEditTag=true canDeleteImg=false canDeleteObj=true imgObj=item img=item.img tag=item.tag onDeleteObj=(action "deleteImg") classNames='alt-course-edit-tag-img-adjust'}}
                 {{/each}}
