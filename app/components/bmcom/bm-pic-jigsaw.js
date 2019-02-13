@@ -3,7 +3,7 @@ import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 
 export default Component.extend({
-    positionalParams: ['picData'],
+    positionalParams: ['picData', 'cover'],
     images: A(),
     classNames: ['pic-jigsaw'],
     bmOss: service(),
@@ -11,7 +11,8 @@ export default Component.extend({
     mainPicIdx: 0,
     listPicIdxUp: 3,
     listPicIdxDown: 0,
-    flag:0,
+    flag: 0,
+    cover: '',
     init() {
         this._super(...arguments);
 
@@ -19,11 +20,14 @@ export default Component.extend({
     },
     initPicJigsaw() {
         let client = this.bmOss.get('ossClient');
-
         this.picData.then(data => {
-            let result = data.
-            filter((item) => {return item.img !== "" && item.flag === this.get('flag')}).
-            map(v => {return {url: client.signatureUrl(v.img), tag: v.tag}})
+            let result = data
+            .filter((item) => {return item.img !== "" && item.flag === this.get('flag')})
+            .map(v => {return {url: client.signatureUrl(v.img), tag: v.tag}})
+            if (this.cover != '') {
+                let tmpCover = {url: client.signatureUrl(this.cover), tag: "封面图片"};
+                result.unshift(tmpCover);
+            }
             this.set("images", result)
         })
     },
