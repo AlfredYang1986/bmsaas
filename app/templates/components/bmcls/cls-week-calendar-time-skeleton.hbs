@@ -9,14 +9,23 @@
                     {{#each bm_clsarr_service.mon_lst as |item index|}}
                         <div class='bm-time-container'>
                             {{#each panelColors as |elem idx|}}
-                                {{#if (eq index idx)}}
+                                {{#if (not-eq item.status 0)}}
                                     {{bmcls/cls-week-calendar-time-panel
-                                        bgColor=elem
                                         unit=item
                                         onPanelClick=(action 'onPanelClick')
                                         onEditClick=(action "onEditClick") 
                                         onDeleteClick=(action "onDeleteClick")
                                         onPanelInserted=(action 'panelInserted')}}
+                                {{else}}
+                                    {{#if (eq index idx)}}
+                                        {{bmcls/cls-week-calendar-time-panel
+                                            bgColor=elem
+                                            unit=item
+                                            onPanelClick=(action 'onPanelClick')
+                                            onEditClick=(action "onEditClick") 
+                                            onDeleteClick=(action "onDeleteClick")
+                                            onPanelInserted=(action 'panelInserted')}}
+                                    {{/if}}
                                 {{/if}}
                             {{/each}}
                         </div>

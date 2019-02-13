@@ -12,14 +12,28 @@
             {{/layout-push}}
         {{/layout-push}}
         {{#layout-push direction='row' classNames="arr-cls-card-top-label"}}
-            <p class="type-label">课程</p>
+            {{#if (eq unit.status 0)}}
+                <p class="type-label">课程</p>
+            {{else if (eq unit.status 1)}}
+                <p class="type-label">体验课</p>
+            {{else if (eq unit.status 2)}}
+                <p class="type-label">活动</p>
+            {{/if}}
         {{/layout-push}}
         {{#layout-push direction='row' classNames="arr-cls-card-top-title"}}
-            <p class="top-title">{{unit.class.classTitle}}</p>
+            {{#if (eq unit.status 0)}}
+                <p class="top-title">{{unit.class.classTitle}}</p>
+            {{else}}
+                <p class="top-title">{{unit.class.sessioninfo.title}}</p>
+            {{/if}}
         {{/layout-push}}
         {{#layout-push direction='row' classNames="arr-cls-card-top-subtitle"}}
             {{!-- <p class="top-subtitle">第03节</p> --}}
-            <p class="top-subtitle">{{unit.class.sessioninfo.title}}</p>
+            {{#if (eq unit.status 0)}}
+                <p class="top-subtitle">{{unit.class.sessioninfo.title}}</p>
+            {{else}}
+                {{!-- <p class="top-subtitle">{{unit.class.sessioninfo.title}}</p> --}}
+            {{/if}}
         {{/layout-push}}
     {{/layout-push}}
     {{#layout-push direction='col' classNames="arr-cls-card-bottom"}}
@@ -39,7 +53,7 @@
             <p class="bottom-title">{{unit.class.students.length}}</p>
         {{/layout-push}}
 
-        {{!-- {{#if }} --}}
+        {{#if (eq unit.status 0)}}
             {{#layout-push direction='row' classNames="arr-cls-card-split"}}
             {{/layout-push}}
             {{#layout-push direction='row' classNames="arr-cls-card-icon"}}
@@ -50,6 +64,6 @@
                     <p class="teacher-num">+{{techPicsOverFlow}}</p>
                 {{/if}}
             {{/layout-push}}
-        {{!-- {{/if}} --}}
+        {{/if}}
     {{/layout-push}}
 {{/layout-push}}
