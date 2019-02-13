@@ -32,11 +32,7 @@ export default Route.extend({
     },
     setupController(controller, model) {
         this._super(controller, model);
-        // controller.set('tempYardImgs', model.yard.images.filter((item) => {return item.flag === 0}));
-        controller.set('tempYardImgs', model.yard.images.then(res => {
-            console.log(res.filterSync);
-            // res.filterSync(item => item.flag === 0));
-        }))
+        controller.set('tempYardImgs', model.yard.images.filter((item) => {return item.flag === 0}));
         controller.set('tempCertImgs', model.yard.images.filter((item) => {return item.flag === 2}));
         // [1, 2, 3].filterSync(item => item % 2 !== 0).then(result => {
         //     debugger
