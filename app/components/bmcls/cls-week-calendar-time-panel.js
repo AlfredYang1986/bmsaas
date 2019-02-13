@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 
 export default Component.extend({
-    positionalParams: ['left', 'top', 'width', 'height', 'bgcolor', 'unit'],
+    positionalParams: ['left', 'top', 'width', 'height', 'bgColor', 'unit'],
     tagName: 'div',
     classNames: ['bm-time-event', 'bm-time-container-panel', 'bm-content', 'line_container'],
     margin: 3,
@@ -39,15 +39,15 @@ export default Component.extend({
         return this.step * Math.max((tt + ee), 2) - 2 * this.margin;
     }),
     width: 96,
-    bgcolor: '#F2F6FF',
+    bgColor: '#FFB165',
     unit: null,
     attributeBindings: ['style'],
-    style: computed('width', 'height', 'margin', 'bgcolor', function(){
+    style: computed('width', 'height', 'margin', 'bgColor', function(){
         return 'left:' + this.left + 'px;' + 
                'top:' + this.top + 'px;' + 
                'width:' + this.width + '%;' + 
                'height:' + this.height + 'px;' + 
-               'background:' + this.bgcolor + ';' + 
+               'background:' + this.bgColor + ';' + 
                'margin:' + this.margin + 'px;' + 
                'display:' + this.display;
     }),

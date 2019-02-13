@@ -1,13 +1,22 @@
 import Component from '@ember/component';
 import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
+
 
 export default Component.extend({
     bmOss: service(),
     positionalParams: ['unit'],
+    attributeBindings: ['style'],
+    style: computed('headColor', function(){
+        return 'border-radius:' + '4px;' + 
+               'background-color:' + this.headColor;
+    }),
 
+    headColor: '#FFB165',
     techPics: A([]),
     techPicsOverFlow: 0,
+    isUnit: false,
 
     actions: {
         onCloseClick() {

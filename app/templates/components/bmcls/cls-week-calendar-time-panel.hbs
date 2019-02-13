@@ -11,7 +11,7 @@
     </span> --}}
     {{#bs-popover triggerElement="parentView" triggerEvents="focus" title="" placement="right" autoPlacement=true viewportSelector=".bm-scroller" viewportPadding=8 as |po|}}
         {{!-- <button {{action po.close}}>Close</button> --}}
-        {{bmcard/bm-arr-cls-card unit=unit onCloseClick=(action po.close) onEditClick=(action "onEditClick") onDeleteClick=(action "onDeleteClick")}}                    
+        {{bmcard/bm-arr-cls-card headColor=bgColor unit=unit onCloseClick=(action po.close) onEditClick=(action "onEditClick") onDeleteClick=(action "onDeleteClick")}}                    
     {{/bs-popover}}
 </a>
 {{!-- {{/layout-push}} --}}

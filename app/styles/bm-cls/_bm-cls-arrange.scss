@@ -238,8 +238,12 @@
                 padding: 8px;
                 width: 100%;
 
-                background: #8BC34A;
+                // background: #8BC34A;
                 border-radius: 4px;
+
+                &:focus {
+                    outline: none;
+                }
 
                 .bm-content-cls-title {
                     font-family: PingFangSC-Medium;
@@ -308,6 +312,7 @@
 
             .bm-time-container-panel {
                 position: absolute;
+                border-radius: 4px;
             }
         }
     }
