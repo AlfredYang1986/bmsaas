@@ -6,86 +6,121 @@
                     <span></span>
                 {{/bmcls/cls-week-calendar-axis}}
                 <th class='bm-day bm-widget-content' >
-                    {{#each bm_clsarr_service.mon_lst as |item|}}
+                    {{#each bm_clsarr_service.mon_lst as |item index|}}
                         <div class='bm-time-container'>
-                            {{bmcls/cls-week-calendar-time-panel
-                                unit=item
-                                onPanelClick=(action 'onPanelClick')
-                                onEditClick=(action "onEditClick") 
-                                onDeleteClick=(action "onDeleteClick")
-                                onPanelInserted=(action 'panelInserted')}}
+                            {{#each panelColors as |elem idx|}}
+                                {{#if (eq index idx)}}
+                                    {{bmcls/cls-week-calendar-time-panel
+                                        bgColor=elem
+                                        unit=item
+                                        onPanelClick=(action 'onPanelClick')
+                                        onEditClick=(action "onEditClick") 
+                                        onDeleteClick=(action "onDeleteClick")
+                                        onPanelInserted=(action 'panelInserted')}}
+                                {{/if}}
+                            {{/each}}
                         </div>
                     {{/each}}
                 </th>
                 <th class='bm-day bm-widget-content' >
-                    {{#each bm_clsarr_service.tus_lst as |item|}}
+                    {{#each bm_clsarr_service.tus_lst as |item index|}}
                         <div class='bm-time-container'>
-                            {{bmcls/cls-week-calendar-time-panel
-                                unit=item
-                                onPanelClick=(action 'onPanelClick')
-                                onEditClick=(action "onEditClick") 
-                                onDeleteClick=(action "onDeleteClick")
-                                onPanelInserted=(action 'panelInserted')}}
+                            {{#each panelColors as |elem idx|}}
+                                {{#if (eq index idx)}}
+                                    {{bmcls/cls-week-calendar-time-panel
+                                        bgColor=elem
+                                        unit=item
+                                        onPanelClick=(action 'onPanelClick')
+                                        onEditClick=(action "onEditClick") 
+                                        onDeleteClick=(action "onDeleteClick")
+                                        onPanelInserted=(action 'panelInserted')}}
+                                {{/if}}
+                            {{/each}}
                         </div>
                     {{/each}}
                 </th>
                 <th class='bm-day bm-widget-content' >
-                    {{#each bm_clsarr_service.wed_lst as |item|}}
+                    {{#each bm_clsarr_service.wed_lst as |item index|}}
                         <div class='bm-time-container'>
-                            {{bmcls/cls-week-calendar-time-panel
-                                unit=item
-                                onPanelClick=(action 'onPanelClick')
-                                onEditClick=(action "onEditClick") 
-                                onDeleteClick=(action "onDeleteClick")
-                                onPanelInserted=(action 'panelInserted')}}
+                            {{#each panelColors as |elem idx|}}
+                                {{#if (eq index idx)}}
+                                    {{bmcls/cls-week-calendar-time-panel
+                                        bgColor=elem
+                                        unit=item
+                                        onPanelClick=(action 'onPanelClick')
+                                        onEditClick=(action "onEditClick") 
+                                        onDeleteClick=(action "onDeleteClick")
+                                        onPanelInserted=(action 'panelInserted')}}
+                                {{/if}}
+                            {{/each}}
                         </div>
                     {{/each}}
                 </th>
                 <th class='bm-day bm-widget-content' >
-                    {{#each bm_clsarr_service.thu_lst as |item|}}
+                    {{#each bm_clsarr_service.thu_lst as |item index|}}
                         <div class='bm-time-container'>
-                            {{bmcls/cls-week-calendar-time-panel
-                                unit=item
-                                onPanelClick=(action 'onPanelClick')
-                                onEditClick=(action "onEditClick") 
-                                onDeleteClick=(action "onDeleteClick")
-                                onPanelInserted=(action 'panelInserted')}}
+                            {{#each panelColors as |elem idx|}}
+                                {{#if (eq index idx)}}
+                                    {{bmcls/cls-week-calendar-time-panel
+                                        bgColor=elem
+                                        unit=item
+                                        onPanelClick=(action 'onPanelClick')
+                                        onEditClick=(action "onEditClick") 
+                                        onDeleteClick=(action "onDeleteClick")
+                                        onPanelInserted=(action 'panelInserted')}}
+                                {{/if}}
+                            {{/each}}
                         </div>
                     {{/each}}
                 </th>
                 <th class='bm-day bm-widget-content' >
-                    {{#each bm_clsarr_service.fri_lst as |item|}}
+                    {{#each bm_clsarr_service.fri_lst as |item index|}}
                         <div class='bm-time-container'>
-                            {{bmcls/cls-week-calendar-time-panel
-                                unit=item
-                                onPanelClick=(action 'onPanelClick')
-                                onEditClick=(action "onEditClick") 
-                                onDeleteClick=(action "onDeleteClick")
-                                onPanelInserted=(action 'panelInserted')}}
+                            {{#each panelColors as |elem idx|}}
+                                {{#if (eq index idx)}}
+                                    {{bmcls/cls-week-calendar-time-panel
+                                        bgColor=elem
+                                        unit=item
+                                        onPanelClick=(action 'onPanelClick')
+                                        onEditClick=(action "onEditClick") 
+                                        onDeleteClick=(action "onDeleteClick")
+                                        onPanelInserted=(action 'panelInserted')}}
+                                {{/if}}
+                            {{/each}}
                         </div>
                     {{/each}}
                 </th>
                 <th class='bm-day bm-widget-content' >
-                    {{#each bm_clsarr_service.sat_lst as |item|}}
+                    {{#each bm_clsarr_service.sat_lst as |item index|}}
                         <div class='bm-time-container'>
-                            {{bmcls/cls-week-calendar-time-panel
-                                unit=item
-                                onPanelClick=(action 'onPanelClick')
-                                onEditClick=(action "onEditClick") 
-                                onDeleteClick=(action "onDeleteClick")
-                                onPanelInserted=(action 'panelInserted')}}
+                            {{#each panelColors as |elem idx|}}
+                                {{#if (eq index idx)}}
+                                    {{bmcls/cls-week-calendar-time-panel
+                                        bgColor=elem
+                                        unit=item
+                                        onPanelClick=(action 'onPanelClick')
+                                        onEditClick=(action "onEditClick") 
+                                        onDeleteClick=(action "onDeleteClick")
+                                        onPanelInserted=(action 'panelInserted')}}
+                                {{/if}}
+                            {{/each}}
                         </div>
                     {{/each}}
                 </th>
                 <th class='bm-day bm-widget-content' >
-                    {{#each bm_clsarr_service.sun_lst as |item|}}
+                    {{#each bm_clsarr_service.sun_lst as |item index|}}
                         <div class='bm-time-container'>
-                            {{bmcls/cls-week-calendar-time-panel
-                                unit=item
-                                onPanelClick=(action 'onPanelClick')
-                                onEditClick=(action "onEditClick") 
-                                onDeleteClick=(action "onDeleteClick")
-                                onPanelInserted=(action 'panelInserted')}}
+                            {{#each panelColors as |elem idx|}}
+                                {{#if (eq index idx)}}
+                                    {{bmcls/cls-week-calendar-time-panel
+                                        bgColor=elem
+                                        unit=item
+                                        onPanelClick=(action 'onPanelClick')
+                                        onEditClick=(action "onEditClick") 
+                                        onDeleteClick=(action "onDeleteClick")
+                                        onPanelInserted=(action 'panelInserted')}}
+                                {{/if}}
+                            {{/each}}
                         </div>
                     {{/each}}
                 </th>

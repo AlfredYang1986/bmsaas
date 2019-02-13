@@ -8,6 +8,6 @@ export default DS.Model.extend({
     status: DS.attr('number', { defaultValue: 0}),
 
     room: DS.belongsTo('room'),
-    class: DS.belongsTo('class'),  //反向绑定导致更新class时不带units的rela
+    class: DS.belongsTo('class'), 
     teacher: DS.belongsTo('teacher'),
 });
