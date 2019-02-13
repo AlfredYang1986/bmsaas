@@ -24,8 +24,6 @@
                             {{bmdetail/yard-basis-left-tags tags1=model.yard.scenario tags2=model.yard.attribute}}
                             {{#if (bmcom/bm-nil-obj model.yard)}}
                             {{else}}
-                            {{log tempYardImgs}}
-                            {{log model.yard.images}}
                                 {{bmcom/bm-pic-jigsaw picData=model.yard.images}}
                             {{/if}}
                         {{/layout-push}}

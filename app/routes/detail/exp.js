@@ -32,4 +32,9 @@ export default Route.extend({
             ]),
         })
     },
+    setupController(controller, model) {
+        this._super(controller, model);
+        this.controller.set('cur_yard_id', model.yard.get("id"));
+        this.controller.set('cur_rooms', this.store.query("room", {"brand-id": localStorage.getItem("brandid")}));
+    }
 });

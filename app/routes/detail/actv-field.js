@@ -1,6 +1,5 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
-import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 
 export default Route.extend({
@@ -36,6 +35,7 @@ export default Route.extend({
     },
     setupController(controller, model) {
         this._super(controller, model);
-        // this.bm_sessionable_service.set('refresh_token', this.bm_sessionable_service.guid());
-    },
+        // this.controller.set('cur_yard_id', model.yard.get("id"));
+        this.controller.set('cur_rooms', this.store.query("room", {"brand-id": localStorage.getItem("brandid")}));
+    }
 });

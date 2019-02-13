@@ -17,6 +17,8 @@ export default Controller.extend({
         timeOut: '2000',
     },
 
+    cur_room_id: "",
+    cur_rooms: null,
     cur_idx: 0,
     cur_yard_id: '',
     cur_tmp_date: Date(),
@@ -93,6 +95,7 @@ export default Controller.extend({
         },
         onEditSessionClick(params) {
             this.set('tmpSessionable', params);
+            this.set('cur_room_id', params.units.objectAt(0).room.get("id"));
             this.set('cur_tmp_date', this.getTimeDay(params.startDate));
             this.set('cur_start_date', params.startDate);
             this.set('cur_end_date', params.endDate);
@@ -107,14 +110,25 @@ export default Controller.extend({
         onDeleteSessionClickOk() {
             let that = this;
             let onSuccess = function() {
+                that.tmpSessionable.units.removeAt(0);
                 that.tmpSessionable.deleteRecord();
-                that.tmpSessionable.save();
-                that.toast.success('', '删除场次成功', that.toastOptions);
-                that.set('deleteSessionDlg', false);
+                tmpUnit.deleteRecord();
+                that.tmpSessionable.save().then(() => {
+                    tmpUnit.save().then(() => {
+                        that.toast.success('', '删除场次成功', that.toastOptions);
+                        that.set('deleteSessionDlg', false);
+                    },() => {
+                        that.toast.error('', '删除场次失败', that.toastOptions);
+                    })
+                },() => {
+                    that.toast.error('', '删除场次失败', that.toastOptions);
+                });
             }
             let onFail = function() {
                 that.toast.error('', '删除场次失败', that.toastOptions);
             }
+
+            let tmpUnit = this.tmpSessionable.units.objectAt(0);
             this.model.actv.classes.removeObject(this.tmpSessionable)
             this.model.actv.save().then(onSuccess, onFail);
         },
@@ -130,6 +144,7 @@ export default Controller.extend({
             this.set('cur_tmp_date', new Date());
             this.set('cur_start_date', new Date());
             this.set('cur_end_date', new Date());
+            this.set('cur_room_id', "");
         },
         successHandled() {
             if (this.checkValidate() & this.checkTime()) {
@@ -146,6 +161,7 @@ export default Controller.extend({
                         that.set('cur_tmp_date', new Date());
                         that.set('cur_start_date', new Date());
                         that.set('cur_end_date', new Date());
+                        that.set('edit_flag', false);
                         that.set('showAddSessionDlg', false);
                     }
                     let onFail = function() {
@@ -153,8 +169,16 @@ export default Controller.extend({
                     }
                     this.tmpSessionable.set("startDate", this.handleDate(this.cur_tmp_date, this.cur_start_date))
                     this.tmpSessionable.set("endDate", new Date(this.cur_end_date).getTime())
-                    this.tmpSessionable.save().then(onSuccess, onFail)
-                    this.set('edit_flag', false);
+
+                    let tmpUnit = this.tmpSessionable.units.objectAt(0);
+                    tmpUnit.set("room", that.store.peekRecord("room", that.cur_room_id));
+                    tmpUnit.set("startDate", this.tmpSessionable.startDate);
+                    tmpUnit.set("endDate", this.tmpSessionable.endDate);
+                    tmpUnit.save().then(() => {
+                        this.tmpSessionable.save().then(onSuccess, onFail)
+                    },() => {
+                        this.toast.error('', edit_flag_info + '场次失败', this.toastOptions);
+                    })
                 }else{
                     let onSuccess = function() {
                         tmpClass.set("yard",that.model.yard)
@@ -168,23 +192,35 @@ export default Controller.extend({
                     }
 
                     let onSuccess1 = function() {
-                        that.toast.success('', edit_flag_info + '场次成功', that.toastOptions);
-                        that.set('cur_tmp_date', new Date());
-                        that.set('cur_start_date', new Date());
-                        that.set('cur_end_date', new Date());
-                        that.set('showAddSessionDlg', false);
+                        tmpUnit.set("startDate", tmpClass.startDate);
+                        tmpUnit.set("endDate", tmpClass.endDate);
+                        tmpUnit.set("room", that.store.peekRecord("room", that.cur_room_id));
+                        tmpUnit.set("class", tmpClass);
+                        tmpUnit.save().then(() => {
+                            that.toast.success('', edit_flag_info + '场次成功', that.toastOptions);
+                            that.set('cur_tmp_date', new Date());
+                            that.set('cur_start_date', new Date());
+                            that.set('cur_end_date', new Date());
+                            that.set('showAddSessionDlg', false);
+                        },() => {
+                            that.toast.error('', edit_flag_info + '场次失败', that.toastOptions);
+                        })
                     }
                     let onFail1 = function() {
                         that.toast.error('', edit_flag_info + '场次失败', that.toastOptions);
                     }
 
-                    let tmpClass = this.store.createRecord("class")
-                    tmpClass.set("startDate", this.handleDate(this.cur_tmp_date, this.cur_start_date))
-                    tmpClass.set("endDate", new Date(this.cur_end_date).getTime())
-                    tmpClass.set("status", 0)
-                    // tmpClass.set("yard", this.model.yard)
-
-                    tmpClass.save().then(onSuccess, onFail)
+                    let tmpUnit = this.store.createRecord("unit", {"status": 1})
+                    let tmpClass = this.store.createRecord("class");
+                    tmpUnit.save().then(() => {
+                        tmpClass.set("startDate", this.handleDate(this.cur_tmp_date, this.cur_start_date));
+                        tmpClass.set("endDate", new Date(this.cur_end_date).getTime());
+                        tmpClass.set("status", 1);
+                        tmpClass.units.pushObject(tmpUnit);
+                        tmpClass.save().then(onSuccess, onFail);
+                    },() => {
+                        this.toast.error('', edit_flag_info + '场次失败', this.toastOptions);
+                    })
                 }
             // if (this.checkValidate() & this.checkTime()) {
             // let that = this;
@@ -252,7 +288,8 @@ export default Controller.extend({
 
     checkValidate() {
         // return this.cur_yard_id != null && this.cur_yard_id != "";
-        return true;
+        // return true;
+        return this.cur_room_id != null && this.cur_room_id != "";
     },
     checkTime() {
         let checkStart = null;

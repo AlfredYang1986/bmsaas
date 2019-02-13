@@ -1,7 +1,6 @@
 {{!-- {{yield}} --}}
 {{#each innerData as |item index|}}
     {{!-- {{#bmform/bm-edit-line title=(concat "第" item.id "项") maxCount="6" maxlength="6" pholder="请输入" inputVal=item.text}} --}}
-    {{log item.text}}
     {{#bmform/bm-edit-line onKeyUp=(action "onChange") pholder="请输入" maxCount="6" maxlength="6" needBottomHint=needBottomHint inputVal=item.text classNames="dynamic-input-edit"}}
         {{!-- <span class="edit_input_remove" {{action "remove" item.id}}> --}}
             <img src="/images/remove.png" class="edit_input_remove" {{action "remove" item.id}}/>
