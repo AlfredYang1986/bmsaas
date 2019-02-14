@@ -35,7 +35,6 @@ export default Route.extend({
         controller.set('tempYardImgs', model.yard.images.filter((item) => {return item.flag === 0}));
         controller.set('tempCertImgs', model.yard.images.filter((item) => {return item.flag === 2}));
         // [1, 2, 3].filterSync(item => item % 2 !== 0).then(result => {
-        //     debugger
         //     console.log(result)
         // })
     },

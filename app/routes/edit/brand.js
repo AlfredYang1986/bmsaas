@@ -21,7 +21,7 @@ export default Route.extend({
         if(model.brand.category.get("id")) {
             controller.set("cur_cate_id", model.brand.category.get("title"));
         } else {
-            controller.set("cur_tech_id", "");
+            controller.set("cur_cate_id", "");
         }
     },
 });

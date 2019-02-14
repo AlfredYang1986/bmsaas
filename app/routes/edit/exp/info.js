@@ -15,5 +15,10 @@ export default Route.extend({
     setupController(controller, model) {
         this._super(controller, model);
         controller.set('cur_page_idx', 0);
+        if(model.course.category.get("id")) {
+            controller.set("cur_cate_id", model.course.category.get("title"));
+        } else {
+            controller.set("cur_tech_id", "");
+        }
     },
 });

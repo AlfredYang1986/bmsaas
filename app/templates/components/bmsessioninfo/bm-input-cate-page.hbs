@@ -6,7 +6,7 @@
             {{#layout-push direction="row"}}
                 {{#if (bmcom/bm-nil-obj session)}}
                 {{else}}
-                {{bmform/bm-cate-choose cat_candi=cat_exp crs_cat=session.Cate.title crs_sub_cat=session.Cate.subtitle}}
+                {{bmform/bm-cate-choose cat_candi=cat_exp crs_cat=cur_cate_id crs_sub_cat=cur_cate_sub_id}}
                 {{/if}}
             {{/layout-push}}
         {{else}}
@@ -15,7 +15,7 @@
             {{#layout-push direction="row"}}
                 {{#if (bmcom/bm-nil-obj session)}}
                 {{else}}
-                {{bmform/bm-cate-choose cat_candi=cat_actv crs_cat=session.Cate.title crs_sub_cat=session.Cate.subtitle}}
+                {{bmform/bm-cate-choose cat_candi=cat_actv crs_cat=cur_cate_id crs_sub_cat=cur_cate_sub_id}}
                 {{/if}}
             {{/layout-push}}
         {{/if}}

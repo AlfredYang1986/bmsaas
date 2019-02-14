@@ -4,7 +4,7 @@ export default Controller.extend({
 
     isCreate: true,
     isPushing: false,
-
+    cur_cate_id: '',
     savePicDoneFlag: false,
 
     actions: {
@@ -15,6 +15,7 @@ export default Controller.extend({
             let onSuccess = function () {
                 let tmp = that.store.peekRecord('sessioninfo', that.model.si.id)
                 that.model.exp.set('sessioninfo', tmp);
+                that.model.exp.set()
                 that.model.exp.save()
                     .then((res) => {
                         that.transitionToRoute('detail.exp', res.id);

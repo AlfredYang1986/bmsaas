@@ -56,14 +56,6 @@ export default Controller.extend({
                 });
             })
         },
-        selectedCate() {
-            let sel = document.getElementById("cateSelect");
-            if (sel.selectedIndex == "") {
-                this.set('cur_cate_id', "");
-            } else {
-                this.set('cur_cate_id', sel.options[sel.selectedIndex].value);
-            }
-        },
         addHonorPicOnClick() {
             let tempHonorImg = this.store.createRecord("image", {"flag": 1})
             this.tempHonorImgs.pushObject(tempHonorImg)
