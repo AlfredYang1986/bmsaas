@@ -23,8 +23,6 @@
     {{/if}}
     <div class="input_container">
         {{#if (bmeq cur_page_idx 0)}}
-        {{log 222}}
-        {{log cur_cate}}
             {{#bmsessioninfo/bm-input-cate-page session=session  isCreate=isCreate cur_cate=cur_cate}}
                 {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
                     {{!-- <button class="edit_between_btn" {{action (mut cur_page_idx) 1}}>下一步</button> --}}

@@ -7,7 +7,6 @@
                 {{#if (bmcom/bm-nil-obj session)}}
                 {{else}}
                 {{!-- {{bmform/bm-cate-choose cat_candi=cat_exp crs_cat=cur_cate_id}} --}}
-                {{!-- {{log cur_cate}} --}}
                 {{bmform/bm-base-select options=cat_exp curSelect=cur_cate}}
                 {{/if}}
             {{/layout-push}}

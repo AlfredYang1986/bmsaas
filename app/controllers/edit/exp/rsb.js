@@ -20,13 +20,12 @@ export default Controller.extend({
             let imgCount = 0;
             this.set('savePicDoneFlag', false)
             let that = this;
-            debugger
             let onSuccess = function () {
                 if(that.model.si.category.get("id")) {
                     that.model.si.category.set('title', that.model.si.category.get("title"));
                     let cate = that.store.peekRecord("category", that.model.si.category.get("id"));
                     cate.save();
-                } 
+                }
                 let tmp = that.store.peekRecord('sessioninfo', that.model.si.id)
                 that.model.exp.set('sessioninfo', tmp);
                 that.model.exp.save()

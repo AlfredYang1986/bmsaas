@@ -5,7 +5,6 @@
         <div class="course-reserve-modal-select">
             <select class="" id={{selId}} name="" onChange={{action 'selectedChange'}}>
                 <option value="" disabled selected hidden>{{pHolder}}</option>
-                {{log options}}
                 {{#each options as |item|}}
                     {{#if chooseReservable}}
                         {{#if (eq curSelect item.id)}}

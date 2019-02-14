@@ -9,7 +9,6 @@ export default Component.extend({
 
     actions: {
         catChanged() {
-            debugger
             let sel = document.getElementById('catselected');
             this.set('crs_cat', sel.options[sel.selectedIndex].value.split(this.separator)[0]);
         },

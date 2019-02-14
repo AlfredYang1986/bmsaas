@@ -1,12 +1,9 @@
-{{!-- {{yield}} --}}
 {{#layout-push direction='col' classNames="bm-search-check-container"}}
     {{#layout-push direction='row' split=true classNames="title-container"}}
         <p class="search-title">{{searchTitle}}</p>
-        {{!-- {{log curItems.length}} --}}
         {{#if (eq curItems null)}}
             <p class="choose-num">已选0个</p>
-        {{else}} 
-            {{!-- {{log curItems}} --}}
+        {{else}}
             <p class="choose-num">已选{{curItems.length}}个</p>
         {{/if}}
     {{/layout-push}}
