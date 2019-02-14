@@ -33,12 +33,16 @@ export default Component.extend({
         while (tmp.getDay() != 1) {
             tmp.setDate(tmp.getDate() - 1)
         }
+        tmp.setSeconds(0)
+        tmp.setMilliseconds(0)
         return tmp.getTime();
     },
     computedEndDate() {
         let tmp = new Date();
         let span = this.start_date + 6 * 24 * 60 * 60 * 1000;
         tmp.setTime(span);
+        tmp.setSeconds(0)
+        tmp.setMilliseconds(0)
         return tmp.getTime();
     },
     refresh_date() {
@@ -46,7 +50,7 @@ export default Component.extend({
         this.set('selectedRoom', sel.options[sel.selectedIndex].value);
         this.bm_clsarr_service.set('roomid', this.selectedRoom);
         this.bm_clsarr_service.set('st', this.start_date);
-        this.bm_clsarr_service.set('et', this.end_date);
+        this.bm_clsarr_service.set('et', new Date(this.end_date + 24 * 60 * 60 * 1000).getTime());
         this.bm_clsarr_service.set('refresh_all_token', this.bm_clsarr_service.guid());
         // this.store.query("unit",{ "room-id": this.selectedRoom}).then(res => {
         //     this.bm_clsarr_service.set('units', res);

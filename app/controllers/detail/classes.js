@@ -19,7 +19,7 @@ export default Controller.extend({
     // TODO: 用ember-data 做
     addTechId: "",
     addJobDuty: "",
-    tmpTech: null,
+    tmpDuty: null,
     tmpStud: null,
     tmpUnit: null,
     selectedStuds: null,
@@ -86,20 +86,24 @@ export default Controller.extend({
             this.model.class.save().then(onSuccess, onFail)
         },
         onRemoveTeacherClick(param) {
-            this.set('tmpTech', param);
+            this.set('tmpDuty', param);
             this.set('removeTechDlg', true);
         },
         onRemoveTeacherClickOk() {
             let that = this;
             let onSuccess = function () {
-                that.set('removeTechDlg', false);
-                that.set('tmpTech', null);
-                that.toast.success('', '移除老师成功', that.toastOptions);
+                that.tmpDuty.deleteRecord();
+                that.tmpDuty.save().then(() => {
+                    that.set('removeTechDlg', false);
+                    that.set('tmpDuty', null);
+                    that.toast.success('', '移除老师成功', that.toastOptions);
+                },() => {
+                })
             }
             let onFail = function () {
                 that.toast.error('', '移除老师失败', that.toastOptions);
             }
-            this.model.class.teachers.removeObject(this.tmpTech)
+            this.model.class.duties.removeObject(this.tmpDuty)
             this.model.class.save().then(onSuccess, onFail)
         },
         cancelHandled() {
@@ -135,9 +139,11 @@ export default Controller.extend({
             this.model.class.save().then(onSuccess, onFail)
         },
         addTechHandled() {
-            if(this.model.class.teachers != null) {
-                for(let idx = 0;idx < this.model.class.teachers.length;idx++) {
-                    if(this.addTechId == this.model.class.teachers.objectAt(idx).get("id")) {
+            let addTech = null
+            let addDuty = this.store.createRecord("duty")
+            if(this.model.class.duties != null) {
+                for(let idx = 0;idx < this.model.class.duties.length;idx++) {
+                    if(this.addTechId == this.model.class.duties.objectAt(idx).teacher.get("id")) {
                         this.toast.error('', '已存在当前教师', this.toastOptions);
                         return;
                     }
@@ -153,16 +159,25 @@ export default Controller.extend({
             let onFail = function () {
                 that.toast.error('', '添加老师失败', that.toastOptions);
             }
-            let addTech = null
+
             for(let idx = 0;idx < this.model.techs.length;idx++) {
                 if(this.addTechId == this.model.techs.objectAt(idx).id) {
                     // this.model.transTech(this.model.techs.objectAt(idx))
                     addTech = this.model.techs.objectAt(idx);
                 }
             }
-            // addTech.set()duty = this.addJobDuty;
-            this.model.class.teachers.pushObject(addTech);
-            this.model.class.save().then(onSuccess, onFail)
+            addDuty.save().then(() => {
+                addDuty.set("teacherDuty", this.addJobDuty)
+                addDuty.set("teacher", addTech)
+                addDuty.save().then(() => {
+                    this.model.class.duties.pushObject(addDuty);
+                    this.model.class.save().then(onSuccess, onFail)
+                },() => {
+                    that.toast.error('', '添加老师失败', that.toastOptions);
+                })
+            },() => {
+                that.toast.error('', '添加老师失败', that.toastOptions);
+            })
         },
         addStudHandled() {
             // console.log(this.selectedStuds)

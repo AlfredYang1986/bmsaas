@@ -11,6 +11,9 @@ export default Service.extend({
         this._super(...arguments);
         this.addObserver('refresh_all_token', this, 'resetTimeUnits');
         this.unitSplits();
+        this.set("st", this.initStartDate());
+        this.set("et", this.computedEndDate());
+        window.console.log(this.st, this.et);
     },
 
     roomid: '',
@@ -32,9 +35,30 @@ export default Service.extend({
         return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
     },
 
+    initStartDate() {
+        let tmp = new Date();
+        tmp.setHours(0);
+        tmp.setMinutes(0);
+        this.current_date = tmp.getTime();
+        while (tmp.getDay() != 1) {
+            tmp.setDate(tmp.getDate() - 1)
+        }
+        tmp.setSeconds(0)
+        tmp.setMilliseconds(0)
+        return tmp.getTime();
+    },
+    computedEndDate() {
+        let tmp = new Date();
+        let span = this.start_date + 7 * 24 * 60 * 60 * 1000;
+        tmp.setTime(span);
+        tmp.setSeconds(0)
+        tmp.setMilliseconds(0)
+        return tmp.getTime();
+    },
+
     resetTimeUnits() {
         let that = this;
-        this.store.query('unit', { "room-id": this.roomid}).then(res => {
+        this.store.query('unit', {"room-id": this.roomid, 'gte[start-date]': this.st, 'lt[end-date]': this.et}).then(res => {
             return new Promise(function(resolve, reject){
                 that.timeUnitsSplits(res)
                 resolve(res)

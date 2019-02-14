@@ -31,19 +31,12 @@ export default Component.extend({
     },
 
     didReceiveAttrs() {
-        if(this.unit.class.get("teachers") != null) {
+        if(this.unit.get("teacher") != null) {
             this.set("techPics", A([]));
             let client = this.bmOss.get('ossClient');
-            for(let idx = 0;idx < this.unit.class.get("teachers").length;idx++) {
-                if(idx < 3) {
-                    let tmpObj = {};
-                    tmpObj.url = client.signatureUrl(this.unit.class.get("teachers").objectAt(idx).icon);
-                    this.techPics.pushObject(tmpObj)
-                }
-            }
-            if(this.unit.class.get("teachers").length > 3) {
-                this.set("techPicsOverFlow", this.unit.class.get("teachers").length - 3)
-            }
+            let tmpObj = {};
+            tmpObj.url = client.signatureUrl(this.unit.get("teacher").get("icon"));
+            this.techPics.pushObject(tmpObj)
         } else {
             this.set("techPics", A([]))
             this.set("techPicsOverFlow", 0)

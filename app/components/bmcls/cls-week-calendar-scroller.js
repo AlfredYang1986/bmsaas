@@ -8,7 +8,7 @@ export default Component.extend({
         this._super(...arguments);
         this.get('resizeService').on('didResize', event => {
             debug(event)
-            this.set('height', window.innerHeight - 375);
+            this.set('height', window.innerHeight - 344);
         })
     },
 
@@ -16,7 +16,7 @@ export default Component.extend({
     tagName: 'div',
     classNames: ['bm-scroller bm-time-grid-container'],
     height: computed(function(){
-        return window.innerHeight - 375;
+        return window.innerHeight - 344;
     }),
     attributeBindings: ['style'],
     overflow: 'hidden scroll',

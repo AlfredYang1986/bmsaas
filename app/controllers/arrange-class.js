@@ -24,6 +24,7 @@ export default Controller.extend({
     cur_start_date: new Date().getTime(),
     cur_end_date: new Date().getTime(),
     tempUnit: null,
+    tempDuties: null,
     tempTechs: null,
 
     addUnitDlg: false,
@@ -51,6 +52,7 @@ export default Controller.extend({
         },
         onAddUnitClick() {
             this.set('addUnitDlg', true);
+            console.log(this.tempTechs)
         },
         cancelHandled() {
             this.set('cur_room_id', "");
@@ -60,7 +62,8 @@ export default Controller.extend({
             this.set('cur_tmp_date',  new Date().getTime());
             this.set('cur_start_date',  new Date().getTime());
             this.set('cur_end_date',  new Date().getTime());
-            this.set('tempTechs', null);
+            this.set('tempDuties', null);
+            this.set("tempTechs", null);
             this.set("tempUnit", null)
             this.set('addUnitDlg', false);
             this.set('removeUnitDlg', false);
@@ -142,7 +145,12 @@ export default Controller.extend({
         },
         afterClassChange() {
             let tempClass = this.store.peekRecord("class", this.cur_class_id);
-            this.set("tempTechs", tempClass.teachers);
+            this.set("tempDuties", tempClass.duties);
+            let tmpArr = A([]);
+            tempClass.duties.forEach((item) => {
+                tmpArr.pushObject(item.teacher)
+            });
+            this.set("tempTechs", tmpArr);
             // 有BUG 选择的班级没有老师时触发
         },
         onPanelClick() {
@@ -160,28 +168,51 @@ export default Controller.extend({
             this.set("cur_tech_id", this.tempUnit.teacher.get("id"))
 
             let tempClass = this.store.peekRecord("class", this.cur_class_id);
-            this.set("tempTechs", tempClass.teachers);
+            this.set("tempDuties", tempClass.duties);
+            let tmpArr = A([]);
+            tempClass.duties.forEach((item) => {
+                tmpArr.pushObject(item.teacher)
+            });
+            this.set("tempTechs", tmpArr);
         },
         onDeleteClick(param) {
             this.set("tempUnit", param)
             this.set('removeUnitDlg', true);
         },
         onDeleteUnitClickOk() {
-            let tempClass = this.store.peekRecord("class", this.tempUnit.class.get("id")) 
-            window.console.log(tempClass);
-            tempClass.get("units").removeObject(this.tempUnit)
-            tempClass.save().then(() => {
-                this.tempUnit.deleteRecord()
-                this.tempUnit.save().then(() => {
-                    this.set("tempUnit", null)
-                    this.set('removeUnitDlg', false);
-                    this.toast.success('', '删除排课成功', this.toastOptions);
+            // if(this.tempUnit.status == 0) {
+                let tempClass = this.store.peekRecord("class", this.tempUnit.class.get("id")) 
+                tempClass.get("units").removeObject(this.tempUnit)
+                tempClass.save().then(() => {
+                    this.tempUnit.deleteRecord()
+                    this.tempUnit.save().then(() => {
+                        this.set("tempUnit", null)
+                        this.set('removeUnitDlg', false);
+                        this.bm_clsarr_service.set('refresh_all_token', this.bm_clsarr_service.guid());
+                        this.toast.success('', '删除排课成功', this.toastOptions);
+                    },() => {
+                        this.toast.error('', '删除排课失败', this.toastOptions);
+                    })
                 },() => {
                     this.toast.error('', '删除排课失败', this.toastOptions);
                 })
-            },() => {
-                this.toast.error('', '删除排课失败', this.toastOptions);
-            })
+            // } else {
+            //     let tempClass = this.store.peekRecord("class", this.tempUnit.class.get("id")) 
+            //     tempClass.get("units").removeObject(this.tempUnit)
+            //     tempClass.deleteRecord();
+            //     tempClass.save().then(() => {
+            //         this.tempUnit.deleteRecord()
+            //         this.tempUnit.save().then(() => {
+            //             this.set("tempUnit", null)
+            //             this.set('removeUnitDlg', false);
+            //             this.toast.success('', '删除排课成功', this.toastOptions);
+            //         },() => {
+            //             this.toast.error('', '删除排课失败', this.toastOptions);
+            //         })
+            //     },() => {
+            //         this.toast.error('', '删除排课失败', this.toastOptions);
+            //     })
+            // }
         },
 
     },

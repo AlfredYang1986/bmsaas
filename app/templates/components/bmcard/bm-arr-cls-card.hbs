@@ -4,8 +4,10 @@
     {{#layout-push direction='col' classNames="arr-cls-card-top"}}
         {{#layout-push direction='row' split=true classNames="arr-cls-card-top-head"}}
             {{#layout-push direction='row' classNames="arr-cls-card-top-inner-left"}}
-                <img class="top-img-btn" src="/images/icon_edit-filled_dark@2x.png"  {{action "onEditClick"}}/>
-                <img class="top-img-btn" src="/images/icon_trash_dark@2x.png"  {{action "onDeleteClick"}}/>
+                {{#if (eq unit.status 0)}}
+                    <img class="top-img-btn" src="/images/icon_edit-filled_dark@2x.png"  {{action "onEditClick"}}/>
+                    <img class="top-img-btn" src="/images/icon_trash_dark@2x.png"  {{action "onDeleteClick"}}/>
+                {{/if}}
             {{/layout-push}}
             {{#layout-push direction='row' classNames="arr-cls-card-top-inner-right"}}
                 <img class="top-img-btn" src="/images/icon_cross_dark@2x.png" {{action "onCloseClick"}}/>

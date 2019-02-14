@@ -48,6 +48,8 @@ export default Component.extend({
 		},
 	},
 	didReceiveAttrs() {
+		window.console.log(this.listData);
+		
 		if(this.type == "classTeacher" && this.listData != null) {
 			let client = this.bmOss.get('ossClient');
 			this.iconData = [];
@@ -58,17 +60,17 @@ export default Component.extend({
 				// }
 				// this.listData[idx].iconUrl = client.signatureUrl(this.listData[idx].icon);
 				let tmpObj = {};
-				tmpObj.iconUrl = client.signatureUrl(this.listData.objectAt(idx).icon);
+				tmpObj.iconUrl = client.signatureUrl(this.listData.objectAt(idx).teacher.get("icon"));
 				this.iconData.pushObject(tmpObj);
 			}
 		}
 
 		
-		let that = this
-		if(this.type == 'inbox') {
-			if(this.attrs.listData.value.firstObject.courseType == -1) {
-				this.set('type', 'preRegister');
-			}
-		}
+		// let that = this
+		// if(this.type == 'inbox') {
+		// 	if(this.attrs.listData.value.firstObject.courseType == -1) {
+		// 		this.set('type', 'preRegister');
+		// 	}
+		// }
     }
 });
