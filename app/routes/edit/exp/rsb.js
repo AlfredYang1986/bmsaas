@@ -8,7 +8,7 @@ export default Route.extend({
         exp.set("status", 1)  // TODO: 体验课的status？1？2
         let si = this.store.createRecord('sessioninfo');
         si.set("status", 1)
-        
+
         return RSVP.hash({
                 exp: exp,
                 si: si,
@@ -20,5 +20,10 @@ export default Route.extend({
     setupController(controller, model) {
         this._super(controller, model);
         controller.set('cur_page_idx', 0);
+        if(model.si.category.get("id")) {
+            controller.set("cur_cate_id", model.si.category.get("title"));
+        } else {
+            controller.set("cur_tech_id", "");
+        }
     },
 });

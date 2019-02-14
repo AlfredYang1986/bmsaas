@@ -6,7 +6,8 @@
             {{#layout-push direction="row"}}
                 {{#if (bmcom/bm-nil-obj session)}}
                 {{else}}
-                {{bmform/bm-cate-choose cat_candi=cat_exp crs_cat=session.Cate.title crs_sub_cat=session.Cate.subtitle}}
+                {{!-- {{bmform/bm-cate-choose cat_candi=cat_exp crs_cat=cur_cate_id}} --}}
+                {{bmform/bm-base-select options=cat_exp curSelect=cur_cate}}
                 {{/if}}
             {{/layout-push}}
         {{else}}
@@ -15,18 +16,11 @@
             {{#layout-push direction="row"}}
                 {{#if (bmcom/bm-nil-obj session)}}
                 {{else}}
-                {{bmform/bm-cate-choose cat_candi=cat_actv crs_cat=session.Cate.title crs_sub_cat=session.Cate.subtitle}}
+                {{!-- {{bmform/bm-cate-choose cat_candi=cat_actv crs_cat=cur_cate_id crs_sub_cat=cur_cate_sub_id}} --}}
+                {{bmform/bm-base-select options=cat_actv curSelect=cur_cate}}
                 {{/if}}
             {{/layout-push}}
         {{/if}}
-
-
-        {{!-- {{#layout-push direction="row"}}
-            {{#if (bmcom/bm-nil-obj session)}}
-            {{else}}
-            {{bmform/bm-cate-choose cat_candi=cat_exp crs_cat=session.Cate.title crs_sub_cat=session.Cate.subtitle}}
-            {{/if}}
-        {{/layout-push}} --}}
         {{yield}}
     {{/layout-push}}
 </section>
