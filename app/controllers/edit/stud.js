@@ -71,7 +71,7 @@ export default Controller.extend({
             for(let idx = 0;idx < that.model.stud.guardians.length;idx++) {
                 that.model.stud.guardians.objectAt(idx).save()
             }
-            that.model.stud.save((res) => {
+            that.model.stud.save().then((res) => {
                 if (that.model.isPushing) {
                     if(that.model.stud.guardians.firstObject.relationShip == '') {
                         that.model.stud.guardians.objectAt(0).set("relationShip", '爸爸')
