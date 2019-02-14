@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 
 export default Component.extend({
-    positionalParams: ['session'],
+    positionalParams: ['session', 'cur_cate'],
     cur_page_idx: 0,
     stauts: 0,
     actions: {

@@ -1,7 +1,6 @@
 @import './bm-saas-standard/args';
-
+@import 'bm-saas-standard/bm-select-box';
 .edit_container {
-
 	.input_container {
 		flex: 1;
 		padding-top: 24px;
@@ -24,7 +23,9 @@
 				margin: 0;
 				box-shadow: none;
                 width: 100%;
-
+				select {
+					@extend %select-box-dropdown-default;
+				}
                 .bm-dynamic-input {
                     margin-top: 16px;
                 }

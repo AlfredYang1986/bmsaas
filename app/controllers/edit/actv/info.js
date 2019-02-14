@@ -19,6 +19,11 @@ export default Controller.extend({
         saveCourseBtnClicked(/*idx*/) {
             let that = this;
             let onSuccess = function () {
+                if(that.model.course.category.get("id")) {
+                    that.model.course.category.set('title', that.model.course.category.get("title"));
+                    let cate = that.store.peekRecord("category", that.model.course.category.get("id"));
+                    cate.save();
+                }
                 that.transitionToRoute('detail.actv', that.model.reservable.id);
                 that.set("savePicDoneFlag", false)
             }
@@ -49,7 +54,7 @@ export default Controller.extend({
                 }
             } else {
                 that.toast.error('', '请检查年龄信息', that.toastOptions);
-            }            
+            }
         },
         reserveCourse() {
             this.transitionToRoute('courseReserve');
