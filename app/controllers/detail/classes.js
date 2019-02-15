@@ -211,18 +211,33 @@ export default Controller.extend({
         },
         onDeleteClassClick() {
             let that = this;
-                let onSuccess = function() {
-                    that.set('deleteClassDlg', false);
-                    that.transitionToRoute('classes');
-                    that.toast.success('', '删除班级成功', that.toastOptions);
-                }
-                let onFail = function() {
-                    that.toast.error('', '删除班级失败', that.toastOptions);
-                    this.model.class.rollbackAttributes();
-                    return
-                }
-            this.model.class.deleteRecord()
-            this.model.class.save().then(onSuccess, onFail)
+            let onSuccess = function() {
+                tmpUnits.forEach((elem, index, arr) => {
+                    elem.deleteRecord();
+                    elem.save().then(() => {
+                        countIdx++;
+                        if(countIdx == arr.length) {
+                            that.set('deleteClassDlg', false);
+                            that.transitionToRoute('classes');
+                            that.toast.success('', '删除班级成功', that.toastOptions);
+                        }
+                    },() => {
+                        that.toast.error('', '删除班级失败', that.toastOptions);
+                    });
+                });
+            }
+            let onFail = function() {
+                that.toast.error('', '删除班级失败', that.toastOptions);
+                // this.model.class.rollbackAttributes();
+                return
+            }
+            let countIdx = 0;
+            let tmpUnits = A([])
+            this.model.class.units.forEach((elem) => {
+                tmpUnits.pushObject(elem)
+            })
+            this.model.class.deleteRecord();
+            this.model.class.save().then(onSuccess, onFail);
         },
     },
 });

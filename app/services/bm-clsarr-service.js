@@ -13,7 +13,6 @@ export default Service.extend({
         this.unitSplits();
         this.set("st", this.initStartDate());
         this.set("et", this.computedEndDate());
-        window.console.log(this.st, this.et);
     },
 
     roomid: '',
