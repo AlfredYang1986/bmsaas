@@ -1,0 +1,53 @@
+<section id="start-story" class="alt_course_section" >
+    {{#layout-push direction='col' classNames='alt_course_panel edit_panel edit_second_panel'}}
+        <span class='alt_course_title alt_course_big_title'>课程定价</span>
+
+        {{#layout-push direction="col" split=true classNames=""}}
+            <span class='alt_course_title'>收费模式</span>
+            {{bmcom/bm-radio-inline cur_idx=mode_idx judge=mode titles=modeCheck classNames='course-edit-check'}}
+        {{/layout-push}}
+
+        <span class='alt_course_title_class'>标准课时数</span>
+        {{#layout-push direction="col" classNames="alt-course-age-group"}}
+            {{#if lengthIf}}
+                <div class="course-edit-check course-edit-check-low">
+                    <div class="input-group">
+                        {{input value=session.length class="edit_input_age" disabled='' type="number"}}
+                        <div class="input-group-append">
+                            <span class="input-group-text">课时</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-edit-check course-edit-check-low" {{action 'lengthNoSelected'}}>
+                    <span class="radio-inline">
+                        <input type="checkbox" name="length" value="l"/>
+                        <label for="female">不限时长</label>
+                    </span>
+                </div>
+            {{else}}
+                <div class="course-edit-check course-edit-check-low">
+                    <div class="input-group">
+                        {{input value='' class="edit_input_age" disabled='disabled' type="number"}}
+                        <div class="input-group-append">
+                            <span class="input-group-text">分钟</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-edit-check course-edit-check-low" {{action 'lengthNoSelected'}}>
+                    <span class="radio-inline">
+                        <input type="checkbox" name="length" value="ma" checked='checked'/>
+                        <label for="female">不限时长</label>
+                    </span>
+                </div>
+            {{/if}}
+        {{/layout-push}}
+
+        {{#layout-push direction="col" split=true classNames=""}}
+            <span class='alt_course_title_class'>课程时长(分钟)</span>
+            {{bmform/bm-base-select options=cat_exp curSelect=cur_cate}}
+        {{/layout-push}}
+
+
+        {{yield}}
+    {{/layout-push}}
+</section>

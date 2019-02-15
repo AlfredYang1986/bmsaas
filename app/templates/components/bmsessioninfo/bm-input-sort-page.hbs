@@ -1,56 +1,9 @@
 <section id="start-story" class="alt_course_section" >
     {{#layout-push direction='col' classNames='alt_course_panel edit_panel edit_second_panel'}}
-        <span class='alt_course_title alt_course_big_title'>基本信息</span>
-
-        {{#if (bmeq session.status 1)}}
-            <span class='alt_course_title'>体验课名称</span>
-        {{else}}
-            <span class='alt_course_title'>活动名称</span>
-        {{/if}}
-        <span class='alt_course_des'>生動、有趣的名稱更能激发孩子们的好奇心。</span>
-        <span class='alt_course_des'>如：奇妙的色彩艺术之旅</span>
-        {{input type="text" class="edit_input" value=session.title}}
-
-        {{#layout-push direction="col" classNames="alt-course-input-group"}}
-            {{#if (bmeq session.status 1)}}
-                <span class='alt_course_title'>体验课时长（min）</span>
-            {{else}}
-                <span class='alt_course_title'>活动时长（min）</span>
-            {{/if}}
-            {{#layout-push direction="col" classNames="alt-course-age-group"}}
-                {{#if lengthIf}}
-                    <div class="course-edit-check course-edit-check-low">
-                        <div class="input-group">
-                            {{input value=session.length class="edit_input_age" disabled='' type="number"}}
-                            <div class="input-group-append">
-                                <span class="input-group-text">分钟</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="course-edit-check course-edit-check-low" {{action 'lengthNoSelected'}}>
-                        <span class="radio-inline">
-                            <input type="checkbox" name="length" value="l"/>
-                            <label for="female">不限时长</label>
-                        </span>
-                    </div>
-                {{else}}
-                    <div class="course-edit-check course-edit-check-low">
-                        <div class="input-group">
-                            {{input value='' class="edit_input_age" disabled='disabled' type="number"}}
-                            <div class="input-group-append">
-                                <span class="input-group-text">分钟</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="course-edit-check course-edit-check-low" {{action 'lengthNoSelected'}}>
-                        <span class="radio-inline">
-                            <input type="checkbox" name="length" value="ma" checked='checked'/>
-                            <label for="female">不限时长</label>
-                        </span>
-                    </div>
-                {{/if}}
-            {{/layout-push}}
-        {{/layout-push}}
+        <span class='alt_course_title alt_course_big_title'>分类/标签</span>
+        <span class='alt_course_title'>课程特色</span>
+        <span class='alt_course_des'>如:蒙特梭利</span>
+        {{bmform/dynamic-input listInputs=session.acquisition disabled=checkFlag needBottomHint=true}}
 
         {{#layout-push direction='col' classNames='select-age'}}
             <span class='alt_course_title alt_course_title_age'>适宜年龄</span>
@@ -99,6 +52,10 @@
             </div>
         {{/layout-push}}
 
+        {{#layout-push direction="col" split=true classNames="alt_course_title_mode"}}
+            <span class='alt_course_title'>授课模式</span>
+            {{bmcom/bm-radio-inline cur_idx=mode_idx judge=mode titles=modeCheck classNames='course-edit-check'}}
+        {{/layout-push}}
         {{yield}}
     {{/layout-push}}
 </section>

@@ -8,16 +8,10 @@
                 {{textarea value=session.description classNames='alt-edit-area' rows=5}}
             {{/layout-push}}
         {{else if (bmeq session.status 2)}}
-            <span class='alt_course_title alt_course_big_title'>课程详情</span>
+            <span class='alt_course_title alt_course_big_title'>课程名称</span>
             {{#layout-push direction="col" classNames='alt-course-input-group'}}
-                <span class="alt-edit-title alt-edit-title-des">课程目标</span>
-                <span class='alt-edit-up-hit'>向家长清楚准确地描述课程的目标和带给孩子们的收获，能让家长产生深入了解课程的愿望和参与的想法喔！</span>
-                {{textarea value=session.description classNames='alt-edit-area' rows=2}}
-            {{/layout-push}}
-            {{#layout-push direction="col" classNames='alt-course-input-group'}}
-                <span class="alt-edit-title alt-edit-title-des">课程内容</span>
-                <span class='alt-edit-up-hit'>丰富精彩的课程内容加上准确的描述，让家长产生向让孩子参与的欲望，同时也增加了对您品牌的了解与信任。</span>
-                {{textarea value=session.description classNames='alt-edit-area' rows=2}}
+                    <span class='alt-edit-up-hit'>有趣的课程名称能让家长和孩子对您的课程内容产生兴趣和好奇心。如：跟小明老师一起学跆拳道，从小白新手到黑带高手！</span>
+                {{input type="text" class="edit_input" value=session.title}}
             {{/layout-push}}
         {{else}}
             <span class='alt_course_title alt_course_big_title'>描述一下活动的内容吧</span>
