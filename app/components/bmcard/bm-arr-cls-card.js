@@ -35,8 +35,11 @@ export default Component.extend({
             this.set("techPics", A([]));
             let client = this.bmOss.get('ossClient');
             let tmpObj = {};
-            tmpObj.url = client.signatureUrl(this.unit.get("teacher").get("icon"));
-            this.techPics.pushObject(tmpObj)
+            let tmpIcon = this.unit.get("teacher").get("icon")
+            if(tmpIcon != undefined) {
+                tmpObj.url = client.signatureUrl(tmpIcon);
+                this.techPics.pushObject(tmpObj)
+            }
         } else {
             this.set("techPics", A([]))
             this.set("techPicsOverFlow", 0)
