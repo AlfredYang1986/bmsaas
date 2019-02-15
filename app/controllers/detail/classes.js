@@ -211,16 +211,16 @@ export default Controller.extend({
         },
         onDeleteClassClick() {
             let that = this;
-                let onSuccess = function() {
-                    that.set('deleteClassDlg', false);
-                    that.transitionToRoute('classes');
-                    that.toast.success('', '删除班级成功', that.toastOptions);
-                }
-                let onFail = function() {
-                    that.toast.error('', '删除班级失败', that.toastOptions);
-                    this.model.class.rollbackAttributes();
-                    return
-                }
+            let onSuccess = function() {
+                that.set('deleteClassDlg', false);
+                that.transitionToRoute('classes');
+                that.toast.success('', '删除班级成功', that.toastOptions);
+            }
+            let onFail = function() {
+                that.toast.error('', '删除班级失败', that.toastOptions);
+                this.model.class.rollbackAttributes();
+                return
+            }
             this.model.class.deleteRecord()
             this.model.class.save().then(onSuccess, onFail)
         },

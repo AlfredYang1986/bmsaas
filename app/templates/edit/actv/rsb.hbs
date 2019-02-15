@@ -1,4 +1,4 @@
-{{#bmpage/bm-session-edit session=model.si onSaveSessionBtnClicked=(action 'saveCourseBtnClicked') describe=model.describe guide=model.guide  isCreate=isCreate}}
+{{#bmpage/bm-session-edit session=model.si onSaveSessionBtnClicked=(action 'saveCourseBtnClicked') describe=model.describe guide=model.guide  isCreate=isCreate cur_cate=model.si.category.title}}
     {{#link-to 'actv' class="edit_nav_btn btn_cacel"}}
         取消
     {{/link-to}}

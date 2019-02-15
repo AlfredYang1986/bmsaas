@@ -8,6 +8,11 @@ export default Route.extend({
         exp.set("status", 1)  // TODO: 体验课的status？1？2
         let si = this.store.createRecord('sessioninfo');
         si.set("status", 1)
+        let cate = this.store.createRecord('category');
+        cate.set('title', '请选择');
+        cate.set('subTitle', "体验课")
+        cate.save();
+        si.set('category', cate);
 
         return RSVP.hash({
                 exp: exp,
