@@ -42,13 +42,15 @@ export default Controller.extend({
             }
         },
         saveTechBtnClicked() {
-            this.model.tech.save();
-            if (this.model.isPushing) {
-                this.transitionToRoute("tech")
-            } else {
-                // this.store.unloadAll("tech")
-                this.transitionToRoute("detail.tech", this.model.tech.id)
-            }
+            let that = this;
+            this.model.tech.save().then((res) => {
+                if (that.model.isPushing) {
+                    that.transitionToRoute("detail.tech", that.model.tech.id)
+                } else {
+                    that.transitionToRoute("detail.tech", that.model.tech.id)
+                }
+            })
+
         },
         selectedYears() {
             let sel = document.getElementById("yearsSelect");
