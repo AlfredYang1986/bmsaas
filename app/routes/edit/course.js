@@ -10,6 +10,11 @@ export default Route.extend({
             si = this.store.createRecord('sessioninfo');
             si.set("status", 2)
             isPushing = true;
+            let cate = this.store.createRecord('category');
+            cate.set('title', '请选择');
+            cate.set('subTitle', "")
+            cate.save();
+            si.set('category', cate);
         } else {
             si = this.store.findRecord('sessioninfo', params.courseid);
         }

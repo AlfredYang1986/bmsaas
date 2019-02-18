@@ -18,13 +18,14 @@
             {{#layout-push direction='col' classNames='info-block-outer'}}
                 <p class="parent_info">更多信息</p>
                 <div class="self_info">
-                    {{bmdetail/stud-basis-info label="课程定价" content='8000元'}}
-                    {{bmdetail/stud-basis-info label="标准课时(次)数" content='30次'}}
+                    {{log session}}
+                    {{bmdetail/stud-basis-info label="课程定价" content=session.standardPrice}}
+                    {{bmdetail/stud-basis-info label="标准课时(次)数" content=session.standardCourseCount}}{{standardPriceUnit}}
                 </div>
             {{/layout-push}}
             {{#layout-push direction='col' classNames='alt_course_panel alt_course_right_panel'}}
-                {{bmdetail/course-basis-right-info label="课程目标" content=session.description nocontent="请上传体验内容"}}
-                {{bmdetail/course-basis-right-info label="课程内容" content=session.playChildren nocontent="请上传与孩子互动信息"}}
+                {{bmdetail/course-basis-right-info label="课程目标" content=session.courseObjective nocontent="请上传课程目标"}}
+                {{bmdetail/course-basis-right-info label="课程内容" content=session.description nocontent="请上传课程内容"}}
             {{/layout-push}}
         {{/layout-push}}
     {{/layout-push}}

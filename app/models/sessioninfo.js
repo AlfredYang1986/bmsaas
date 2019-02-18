@@ -21,6 +21,10 @@ export default DS.Model.extend({
     title: DS.attr('string'),
     category: DS.belongsTo('category'),
     images: DS.hasMany('image'),
+    standardPrice: DS.attr('number'),
+    standardCourseCount: DS.attr('number'),
+    standardPriceUnit: DS.attr('string'),
+    courseObjective: DS.attr('string'),
 
     // reservableItem: DS.belongsTo('reservable-item'),
     // sessionable: DS.belongsTo('sessionable'),

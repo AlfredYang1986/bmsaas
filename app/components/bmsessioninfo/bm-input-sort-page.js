@@ -5,6 +5,7 @@ import { computed } from '@ember/object';
 export default Component.extend({
     positionalParams: ['session'],
     modeCheck: A(['班级', '一对一']),
+    sel_time: A([{name: '15'}, {name: '30'}, {name: '45'}, {name: '60'}]),
     ageInput: true,
     ageInputChecked: 'checked',
     ageNoInput: '',
