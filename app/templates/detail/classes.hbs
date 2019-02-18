@@ -59,7 +59,7 @@
                     <p class="sec-right-num">{{model.class.courseTotalCount}}</p>
                     <p class="sec-right-des">课次</p>
                 {{/layout-push}}
-            
+
             {{/layout-push}}
 
             {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs needAction=true onTabClicked=(action "onTabClicked")}}
@@ -84,7 +84,7 @@
 
             {{#if (bmeq cur_idx 2)}}
                 {{#if (eq model.class.units.length 0)}}
-                    {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无课程安排" des="快去添加课程安排吧" btnText="添加课程安排" onBtnClick=(action (mut addArrClassDlg) true)}}
+                    {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无课程安排" des="快去添加课程安排吧" btnText="添加课程安排" onBtnClick=(action 'onAddArrClassClick')}}
                 {{else}}
                     {{bmtable/bm-table-class-arrcourse listData=model.class.units titles=model.arrTitles onArrcourseClick="onArrcourseClick" onEditArrcourseClick="onEditArrcourseClick" onRemoveArrcourseClick="onRemoveArrcourseClick"}}
                     {{!-- {{bmcom/bm-pagination pageCount=bm_sessionable_service.totalPageCount sendPageNum=(action "handlePageChange")}} --}}
@@ -124,7 +124,7 @@
                     {{bmform/bm-edit-line title='班级名称' needTitleDes=true titleDes="请为班级设定名称，方便识别" inputVal=classTitle classNames='input_area input-full-width'}}
                 {{/layout-push}}
             {{/if}}
-            
+
         {{/layout-push}}
     </div>
 {{/bmcom/bm-modal-container}}
@@ -158,7 +158,7 @@
             {{/layout-push}}
             {{#layout-push direction="col" classNames='input_area' }}
                 {{bmform/bm-base-select selId="job" selTitle="选择职责" options=jobDuty curSelect=addJobDuty classNames="input_area area-margin-bottom"}}
-            {{/layout-push}}   
+            {{/layout-push}}
         {{/layout-push}}
     </div>
 {{/bmcom/bm-modal-container}}
