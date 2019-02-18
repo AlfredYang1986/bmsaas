@@ -49,7 +49,7 @@
 	.basis_margin {
 		flex: 1;
 		height: 252px;
-		
+
 		.head-img {
         	margin-bottom: 16px;
 
@@ -97,22 +97,22 @@
 		flex-direction: column;
 		align-items: center;
 		font-size: 0;
-	
+
 		span{
 			padding: 0 10px;
 			@extend %font-main-text;
 		}
-	
+
 		.basis_dob_title {
 			min-width: 80px;
 			text-align: left;
 			@extend %font-form-info-title;
 		}
-	
+
 		.basis_contact_margin_bottom {
 			margin-bottom: 24px;
 		}
-		
+
 		.basis_contact {
 			min-width: 150px;
 			text-align: left;
@@ -130,20 +130,20 @@
 		.info-block-outer {
 			background-color: #FFF;
 			margin-top: 8px;
-		
+
 			&:nth-child(1) {
 				margin-top: 0;
 			}
 		}
-	
+
 		.self_info {
 			padding: 24px;
 		}
-	
+
 		.self_container {
 			font-size: 0;
 			margin-bottom: 16px;
-		
+
 			span {
 				display: inline-block;
 			}
@@ -154,7 +154,7 @@
 				@extend %font-help-text;
 			}
 
-		
+
 			span:last-child {
 				@extend %font-main-text;
 			}
@@ -172,19 +172,19 @@
 			padding: 16px 24px ;
 			@extend %font-form-info-title;
 		}
-	
+
 		.follower-info {
 			.follower-head-img {
 				margin-right: 24px;
 				width: 48px;
 				height: 48px;
-				
+
 				img {
 					border-radius: 50%;
 				}
 			}
 		}
-	
+
 		.follower-line {
 			margin: 0 24px;
 			opacity: 0.12;

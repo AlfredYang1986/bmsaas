@@ -5,7 +5,7 @@
 {{/layout-push}}
 {{#layout-push direction='row' mid=true classNames='detail_cat'}}
     {{subTitle}}
-    {{#if (bmcom/bm-nil-string subTitleBehind)}}
+    {{#if (bmcom/bm-nil-length subTitleBehind)}}
     {{else}}
     · {{subTitleBehind}}
     {{/if}}

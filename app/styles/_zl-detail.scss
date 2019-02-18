@@ -241,13 +241,23 @@ a.reserve_detail_href_ref {
     margin-top: 24px;
     height: 72px;
 }
+.detail_margin_bottom {
+    margin-bottom: 24px;
+}
+.detail_margin_top.course_margin_top_big {
+    height: 110px;
+    padding: 24px;
 
+    .reserve-detail-head{
+        min-height: 32px;
+    }
+}
 .detail_margin_top.detail_margin_top_big {
     height: 80px;
     padding: 24px;
 
     .reserve-detail-head{
-        height: 32px;
+        min-height: 32px;
     }
 }
 
@@ -493,7 +503,7 @@ a.reserve_detail_href_ref {
         .area-margin-bottom {
             margin-bottom: 32px;
         }
-        
+
         .form-checked {
             margin-bottom: 16px;
             img.error {
@@ -578,7 +588,7 @@ a.reserve_detail_href_ref {
 
     }
     .modal-footer {
-        padding: 24px; 
+        padding: 24px;
         height: 80px;
     }
     .session-modal-footer {
@@ -689,7 +699,7 @@ a.btn_sign {
 
 .ib_table_head.room_table {
     margin-top: 24px;
-    
+
     .session-list {
         &:nth-child(even) {
             background-color: #fbfbfb;
@@ -709,7 +719,7 @@ a.btn_sign {
 
 .ib_table_head.class_teacher_table {
     margin-top: 24px;
-    
+
     .session-list {
         &:nth-child(even) {
             background-color: #fbfbfb;
@@ -1043,7 +1053,7 @@ a.btn_sign {
         }
         &.toast-error{
             background-image: url("/images/icon_cross-circle copy@2x.png")!important;
-            background-color: #DE350B 
+            background-color: #DE350B
         }
     }
 }

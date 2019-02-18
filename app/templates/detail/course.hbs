@@ -1,13 +1,42 @@
 <section class='alt_course_selection alt_course_padding'>
     {{#layout-push direction='col' classNames='alt_course_container'}}
-        {{#link-to 'course' class="alt_href_link"}}
-            返回 
-        {{/link-to}}
-        {{#bmpage/bm-session-info session=model.course}}
+    {{#bmcom/bm-breadcrumb urls=model.urls as |url|}}
+        {{#if (not-eq url.id "")}}
+            {{#link-to url.link url.id class="reserve_detail_href_ref"}}{{url.pageName}}{{/link-to}}
+        {{else}}
+            {{#link-to url.link class="reserve_detail_href_ref"}}{{url.pageName}}{{/link-to}}
+        {{/if}}
+    {{/bmcom/bm-breadcrumb}}
+    <div class='detail_panel detail_margin_top course_margin_top_big detail_margin_bottom' >
+        {{#layout-push direction='row' split=true classNames="reserve-detail-head"}}
+            {{#layout-push direction='col' mid=true }}
+            {{log model.course}}
+                {{#layout-push direction='col' classNames="detail_margin_top_left"}}
+                    <span class="detail_panel_title_name">{{model.course.title}}</span>
+                    {{#layout-push direction='row'}}
+                    <p class="detail_panel_role_num">{{model.course.category.title}}</p>
+                    {{/layout-push}}
+                {{/layout-push}}
+            {{/layout-push}}
+            {{#layout-push direction="row" classNames="reserve-detail-btn"}}
+                {{#bs-dropdown class="btn-dropdown" as |dd|}}
+                    {{#dd.button class="reserve-more-btn"}}{{/dd.button}}
+                    {{#dd.menu align="right" as |menu|}}
+                        {{#menu.item align="right"}}
+                            {{#layout-push direction='col' classNames="dropdown-content"}}
+                                <a class="warning" onclick={{action (mut deleteExpDlg) true dd.closeDropdown}}>删除体验课</a>
+                            {{/layout-push}}
+                        {{/menu.item}}
+                    {{/dd.menu}}
+                {{/bs-dropdown}}
+                {{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteExpDlg cancelHandled='cancelHandled' successHandled="onDeleteExpClick"}}
+                    <p class="warning-modal-body-content">您确定要删除体验课「{{model.exp.sessioninfo.title}}」吗？</p>
+                {{/bmcom/bm-warning-modal}}
+            {{/layout-push}}
+        {{/layout-push}}
+    </div>
+        {{#bmpage/bm-session-info session=model.course isCourse=true}}
             {{bmdetail/bm-top-title-panel title="课程详情" rightText="编辑" linkAddr='edit.course' linkParam=model.course.id}}
-            {{!-- {{#link-to 'edit.course' bm_session_service.session.id classNames='alt_course_btn'}}
-                编辑
-            {{/link-to}} --}}
         {{/bmpage/bm-session-info}}
     {{/layout-push}}
 </section>
