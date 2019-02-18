@@ -53,6 +53,11 @@ export default Controller.extend({
                 that.toast.error('', '请检查年龄信息', that.toastOptions);
             }
         },
+        cancelClicked() {
+            debugger
+            this.store.unloadRecord(this.model.course);
+            this.transitionToRoute("detail.exp", this.model.reservable.id)
+        },
         reserveCourse() {},
     },
 });

@@ -15,9 +15,9 @@ export default Route.extend({
         })
         return RSVP.hash({
             yard: tmp,
-            exp: this.store.findRecord('reservableitem', params.expid),
+            exp: this.store.find('reservableitem', params.expid),
             tabs: A(['场次安排', '体验课详情']),
-            titles: A(["时间段","校区","人数","", "操作"]),
+            titles: A(["时间段","场地/教室","人数","", "操作"]),
             urls: A([
                 {
                     "pageName":"体验课开放",

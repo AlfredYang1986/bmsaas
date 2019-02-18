@@ -80,7 +80,7 @@ export default Controller.extend({
         onOpenExpClick() {
             this.model.exp.set("startDate", 0)
             this.model.exp.set("endDate", 0)
-            
+
             let that = this;
             let onSuccess = function() {
                 that.set('closeExpDlg', false);
@@ -121,7 +121,7 @@ export default Controller.extend({
             }
             this.model.exp.deleteRecord(this.model.exp)
             this.model.exp.save().then(onSuccess, onFail);
-            
+
         },
         onEditSessionClick(params) {
             this.set('tmpSessionable', params);
@@ -200,7 +200,7 @@ export default Controller.extend({
         },
         successHandled() {
             if (this.checkValidate() & this.checkTime()) {
-                
+
                 let that = this;
                 let edit_flag_info = "添加";
                 if (this.get('edit_flag_info')) {
@@ -219,7 +219,7 @@ export default Controller.extend({
                     let onFail = function() {
                         that.toast.error('', edit_flag_info + '场次失败', that.toastOptions);
                     }
-                    
+
                     this.tmpSessionable.set("startDate", this.handleDate(this.cur_tmp_date, this.cur_start_date))
                     this.tmpSessionable.set("endDate", new Date(this.cur_end_date).getTime())
 
@@ -243,7 +243,7 @@ export default Controller.extend({
                     let onFail = function() {
                         that.toast.error('', edit_flag_info + '场次失败', that.toastOptions);
                     }
-                    
+
                     let onSuccess1 = function() {
                         tmpUnit.set("startDate", tmpClass.startDate);
                         tmpUnit.set("endDate", tmpClass.endDate);
@@ -280,7 +280,7 @@ export default Controller.extend({
                 //     alert('shold add yard')
                 //     return
                 // }
-                                
+
                 // let callback = {
                 //     onSuccess: function() {
                 //         that.set('showAddSessionDlg', false);
@@ -293,7 +293,7 @@ export default Controller.extend({
                 //         debug('push sessionable fail')
                 //     }
                 // }
-            
+
                 // this.bm_sessionable_service.resetInfoAndYard(this.cur_yard_id, this.bm_exp_service.exp.SessionInfo.id);
                 // if(this.tmpSessionable === ""){
                 //     this.bm_sessionable_service.resetTechs([]);

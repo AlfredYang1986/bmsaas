@@ -11,14 +11,14 @@ export default Route.extend({
                 } else {
                     resolve(res.firstObject)
                 }
-            }) 
+            })
         })
         let actv = this.store.findRecord('reservableitem', params.actvid);
         return RSVP.hash({
             yard: tmp,
             actv: actv,
             tabs: A(['场次安排', '活动详情']),
-            titles: A(["时间段","校区","人数","", "操作"]),
+            titles: A(["时间段","场地/教室","人数","", "操作"]),
             urls: A([
                 {
                     "pageName":"活动",

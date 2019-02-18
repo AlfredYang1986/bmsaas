@@ -9,17 +9,16 @@ export default Component.extend({
     store: service(),
     logo: '',
     title: '',
-    init() {
-        this._super(...arguments);
+    didRender() {
         let that = this;
         let client = this.bmOss.get('ossClient');
         let onSuccess = function(res) {
-            let logoImage = client.signatureUrl(res.logo);
+            let logoImage = client.signatureUrl(res.get('logo'));
             that.set('logo', logoImage);
-            that.set('title', res.title);
+            that.set('title', res.get('title'));
         }
         let onFail = function() {}
-        this.store.findRecord('brand', localStorage.getItem("brandid")).then(onSuccess, onFail);
+        let tmp = this.store.findRecord('brand', localStorage.getItem("brandid")).then(onSuccess, onFail);
     },
 
     actions: {
