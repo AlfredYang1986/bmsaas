@@ -1,10 +1,6 @@
 <section id="start-story" class="alt_course_section" >
     {{#layout-push direction='col' classNames='alt_course_panel edit_panel edit_second_panel'}}
         <span class='alt_course_title alt_course_big_title'>分类/标签</span>
-        {{!-- <span class='alt_course_title'>课程特色</span>
-        <span class='alt_course_des'>如:蒙特梭利</span> --}}
-        {{!-- {{bmform/dynamic-input listInputs=session.acquisition disabled=checkFlag needBottomHint=true}} --}}
-
         {{#layout-push direction='col' classNames='select-age'}}
             <span class='alt_course_title'>适宜年龄</span>
             <div class="course-edit-check">
@@ -51,11 +47,6 @@
                 {{/if}}
             </div>
         {{/layout-push}}
-
-        {{!-- {{#layout-push direction="col" split=true classNames="alt_course_title_mode"}}
-            <span class='alt_course_title'>授课模式</span>
-            {{bmcom/bm-radio-inline cur_idx=mode_idx judge=mode titles=modeCheck classNames='course-edit-check'}}
-        {{/layout-push}} --}}
         {{#layout-push direction="col" split=true classNames="alt_course_title_top"}}
             <span class='alt_course_title_class'>课程时长(分钟)</span>
             {{bmform/bm-base-select options=sel_time curSelect=cur_time}}

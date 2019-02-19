@@ -65,9 +65,6 @@
 
             {{#if (bmeq cur_page_idx 5)}}
                 {{#bmsessioninfo/bm-input-img-page session=session isCreate=isCreate}}
-                    {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                        <button class="edit_between_btn" {{action (mut cur_page_idx) 6}}>下一步</button>
-                    {{/layout-push}}
                 {{/bmsessioninfo/bm-input-img-page}}
             {{/if}}
         </div>

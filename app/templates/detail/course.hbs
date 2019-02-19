@@ -24,13 +24,13 @@
                     {{#dd.menu align="right" as |menu|}}
                         {{#menu.item align="right"}}
                             {{#layout-push direction='col' classNames="dropdown-content"}}
-                                <a class="warning" onclick={{action (mut deleteExpDlg) true dd.closeDropdown}}>删除体验课</a>
+                                <a class="warning" onclick={{action (mut deleteExpDlg) true dd.closeDropdown}}>删除课程</a>
                             {{/layout-push}}
                         {{/menu.item}}
                     {{/dd.menu}}
                 {{/bs-dropdown}}
-                {{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteExpDlg cancelHandled='cancelHandled' successHandled="onDeleteExpClick"}}
-                    <p class="warning-modal-body-content">您确定要删除体验课「{{model.exp.sessioninfo.title}}」吗？</p>
+                {{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteExpDlg cancelHandled='cancelHandled' successHandled="onDeleteCourseClick"}}
+                    <p class="warning-modal-body-content">您确定要删除课程「{{model.course.title}}」吗？</p>
                 {{/bmcom/bm-warning-modal}}
             {{/layout-push}}
         {{/layout-push}}
