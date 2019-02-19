@@ -62,7 +62,6 @@ export default Controller.extend({
             this.store.unloadRecord(this.model.course);
             this.store.unloadRecord(this.model.reservable);
             // this.store.find('reservableitem', this.model.reservable.id).then((res) => {
-            //     debugger
             //     that.transitionToRoute('detail.exp', res.id)
             // })
             this.transitionToRoute("detail.exp", resid)
