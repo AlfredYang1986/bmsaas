@@ -1,5 +1,6 @@
 {{#bmpage/bm-session-edit session=model.course onSaveSessionBtnClicked=(action 'saveCourseBtnClicked') describe=model.describe guide=model.guide cur_cate=model.course.category.title}}
-    {{#link-to 'detail.actv' model.reservable.id class="edit_nav_btn btn_cacel"}}
+    {{!-- {{#link-to 'detail.actv' model.reservable.id class="edit_nav_btn btn_cacel"}}
         取消
-    {{/link-to}}
+    {{/link-to}} --}}
+    <button class="edit_nav_btn btn_cacel" {{action 'cancelClicked'}}>取消</button>
 {{/bmpage/bm-session-edit}}
