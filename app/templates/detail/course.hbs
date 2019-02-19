@@ -18,7 +18,7 @@
                     {{/layout-push}}
                 {{/layout-push}}
             {{/layout-push}}
-            {{#layout-push direction="row" classNames="reserve-detail-btn"}}
+            {{!-- {{#layout-push direction="row" classNames="reserve-detail-btn"}}
                 {{#bs-dropdown class="btn-dropdown" as |dd|}}
                     {{#dd.button class="reserve-more-btn"}}{{/dd.button}}
                     {{#dd.menu align="right" as |menu|}}
@@ -32,7 +32,7 @@
                 {{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteExpDlg cancelHandled='cancelHandled' successHandled="onDeleteCourseClick"}}
                     <p class="warning-modal-body-content">您确定要删除课程「{{model.course.title}}」吗？</p>
                 {{/bmcom/bm-warning-modal}}
-            {{/layout-push}}
+            {{/layout-push}} --}}
         {{/layout-push}}
     </div>
         {{#bmpage/bm-session-info session=model.course isCourse=true}}

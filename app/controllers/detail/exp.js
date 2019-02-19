@@ -5,13 +5,6 @@ import { computed } from '@ember/object';
 
 
 export default Controller.extend({
-
-    init() {
-        this._super(...arguments);
-        // this.addObserver('showAddSessionDlg', this, 'generateSessionable');
-        // debug(this.bm_sessionable_service.page)
-    },
-
     toast: service(),
     toastOptions: {
         closeButton: false,

@@ -13,7 +13,6 @@ export default Controller.extend({
         progressBar: false,
         timeOut: '2000',
     },
-
     actions: {
         saveCourseBtnClicked(/*idx*/) {
             let that = this;
@@ -54,9 +53,15 @@ export default Controller.extend({
             }
         },
         cancelClicked() {
-            debugger
+            let that = this;
+            let resid = this.model.reservable.id;
             this.store.unloadRecord(this.model.course);
-            this.transitionToRoute("detail.exp", this.model.reservable.id)
+            this.store.unloadRecord(this.model.reservable);
+            // this.store.find('reservableitem', this.model.reservable.id).then((res) => {
+            //     debugger
+            //     that.transitionToRoute('detail.exp', res.id)
+            // })
+            this.transitionToRoute("detail.exp", resid)
         },
         reserveCourse() {},
     },
