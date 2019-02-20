@@ -9,8 +9,8 @@
         {{bmcom/bm-tabs-bar cur_idx=cur_tab_idx titles=tabs needAction=true onTabClicked=(action "onTabClicked")}}
 
         {{#layout-push direction='row' split=true classNames='ib_table_select_area'}}
-            {{!-- <span class="ib_table_num">共{{model.applies_count}}条</span> --}}
-            <span class="ib_table_num"></span> 
+            <span class="ib_table_num">共{{model.applies_count}}条</span>
+            <span class="ib_table_num"></span>
             <select class="ib_table_select" name="" id='selectReserve' onChange={{action 'reserveTypeChanged'}}>
                 <option selected value="0">全部</option>
                 <option value="1">今天</option>
