@@ -20,7 +20,7 @@ export default Component.extend({
         } else {
             let s = new Date(this.cls.startDate);
             let e = new Date(this.cls.endDate);
-            return s.getFullYear() + '/' + (s.getMonth() + 1) + '/' + s.getDate() + 
+            return s.getFullYear() + '/' + (s.getMonth() + 1) + '/' + s.getDate() +
                 ' - ' + e.getFullYear() + '/' + (e.getMonth() + 1) + '/' + e.getDate()
         }
     }),
@@ -28,7 +28,6 @@ export default Component.extend({
         if (!this.hasSetCls || this.cls.startDate == null) {
             return;
         } else {
-            console.log(this.cls)
             if (this.cls.courseTotalCount == 0) {
                 return "notarr";
             } else {
