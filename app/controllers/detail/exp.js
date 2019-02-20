@@ -21,7 +21,8 @@ export default Controller.extend({
     //         return 0;
     //     }
     // }),
-
+    
+    urls: null,
     cur_room_id: "",
     cur_rooms: null,
     cur_idx: 0,

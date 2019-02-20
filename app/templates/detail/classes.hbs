@@ -1,12 +1,12 @@
 <div class="detail_content_top" >
     <div class="detail_page" >
-        {{!-- {{#bmcom/bm-breadcrumb urls=model.urls as |url|}}
+        {{#bmcom/bm-breadcrumb urls=urls as |url|}}
             {{#if (not-eq url.id "")}}
                 {{#link-to url.link url.id class="reserve_detail_href_ref"}}{{url.pageName}}{{/link-to}}
             {{else}}
                 {{#link-to url.link class="reserve_detail_href_ref"}}{{url.pageName}}{{/link-to}}
             {{/if}}
-        {{/bmcom/bm-breadcrumb}} --}}
+        {{/bmcom/bm-breadcrumb}}
 
         {{#layout-push direction='col' classNames="detail_panel class-detail-outer"}}
             {{#layout-push direction='row' split=true classNames="class-detail-title-top"}}

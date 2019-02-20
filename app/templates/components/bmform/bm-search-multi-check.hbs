@@ -32,6 +32,11 @@
                         </td>
                     <td class='ib_table_content_item'>
                         {{input classNames="multi-check" type="checkbox" checked=item.state click=(action "onCheckChange" item)}}
+                        {{!-- {{#if (eq item.state 1)}}
+                            <img src="/images/checkbox_Checked@3x.png" class="multi-check" onclick={{action "onCheckChange" item}}/>
+                        {{else}}
+                            <img src="/images/checkbox_Unchecked -resting@3x.png" class="multi-check" onclick={{action "onCheckChange" item}}/>
+                        {{/if}} --}}
                         {{!-- <input class="multi-check" type="checkbox" checked={{item.state}} onclick={{action "onCheckChange" item}}> --}}
                     </td>
                 </tr>

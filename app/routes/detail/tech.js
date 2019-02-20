@@ -21,4 +21,21 @@ export default Route.extend({
                 ]),
             })
     },
+    setupController(controller, model) {
+        this._super(controller, model);
+
+        let urls = A([
+            {
+                "pageName":"教师",
+                "link":"tech",
+                "id":"",
+            },
+            {
+                "pageName":model.tech.get("name"),
+                "link":"",
+                "id":"",
+            }
+        ])
+        this.controller.set("urls", urls)
+    },
 });

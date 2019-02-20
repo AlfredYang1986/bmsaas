@@ -1,6 +1,6 @@
 <section class='alt_course_selection alt_course_padding'>
     {{#layout-push direction='col' classNames='alt_course_container'}}
-    {{#bmcom/bm-breadcrumb urls=model.urls as |url|}}
+    {{#bmcom/bm-breadcrumb urls=urls as |url|}}
         {{#if (not-eq url.id "")}}
             {{#link-to url.link url.id class="reserve_detail_href_ref"}}{{url.pageName}}{{/link-to}}
         {{else}}

@@ -4,6 +4,7 @@ import { inject as service } from '@ember/service';
 export default Controller.extend({
     deleteExpDlg: false,
     toast: service(),
+    urls: null,
     toastOptions: {
         closeButton: false,
         positionClass: 'toast-top-center',

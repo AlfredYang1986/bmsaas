@@ -11,6 +11,8 @@ export default Controller.extend({
         progressBar: false,
         timeOut: '2000',
     },
+    
+    urls: null,
 
     jobDuty: A([{name:'主讲'}, {name:'助教'}]),
     classTitle: "",

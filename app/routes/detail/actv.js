@@ -19,23 +19,24 @@ export default Route.extend({
             actv: actv,
             tabs: A(['场次安排', '活动详情']),
             titles: A(["时间段","场地/教室","人数","", "操作"]),
-            urls: A([
-                {
-                    "pageName":"活动",
-                    "link":"actv",
-                    "id":"",
-                },
-                {
-                    "pageName":"场次安排",
-                    "link":"",
-                    "id":"",
-                }
-            ]),
         })
     },
     setupController(controller, model) {
         this._super(controller, model);
         this.controller.set('cur_yard_id', model.yard.get("id"));
         this.controller.set('cur_rooms', this.store.query("room", {"brand-id": localStorage.getItem("brandid")}));
+        let urls = A([
+            {
+                "pageName":"活动",
+                "link":"actv",
+                "id":"",
+            },
+            {
+                "pageName": model.actv.sessioninfo.get("title"),
+                "link":"",
+                "id":"",
+            }
+        ])
+        this.controller.set("urls", urls)
     }
 });
