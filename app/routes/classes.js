@@ -14,23 +14,26 @@ export default Route.extend({
         })
         return RSVP.hash({
             courses: this.store.query('sessioninfo', { "brand-id": localStorage.getItem("brandid"), "status": 2}),
-            classes: this.store.query('class', { "brand-id": localStorage.getItem("brandid"), "status": 2, "flag": 0}),
+            // classes: this.store.query('class', { "brand-id": localStorage.getItem("brandid"), "status": 2, "flag": 0}),
             yard: tmp,
         })
     },
 
     // setupController(controller, model) {
     //     this._super(controller, model);
-    //     this.controller.set('cls', model.classes);
-    //     window.console.log(this.controller.get('cls'));
-    // }
+        // this.controller.set('refreshFlag', 0);
+        // window.console.log(this.controller.get('cls'));
+    // },
 
-    // activate() {
+    activate() {
+        if(this.get("controller") != undefined) {
+            this.get("controller").toggleProperty("refreshFlag")
+        }
     //     this.store.query('class', { "brand-id": localStorage.getItem("brandid"), "status": 2, "flag": 0}).then(res => {
     //         this.controllerFor('classes').set("cls", res)
     //     },
     //     () => {
     //         window.console.log("query failed")
     //     })
-    // }
+    }
 });

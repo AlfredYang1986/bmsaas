@@ -16,7 +16,7 @@
         padding: 16px 24px;
         width: 100%;
         height: 75px;
-        background:  #5ACADC;
+        background:  #8BC34A;
         border-radius: 4px 4px 0 0;
     }
     p.headline {
@@ -123,13 +123,13 @@
 }
 .notarr {
     .class-card-head-info {
-        background:  #5A74DB;
+        // background:  #5A74DB;
     }
-    // .list, .split-line, .class-teachers {
-    //     display: none;
-    // }
     .class-card-content {
         .course-count {
+            display: none;
+        }
+        .list {
             display: none;
         }
         .no-course-count {
@@ -137,6 +137,7 @@
         }
         .no-arr-des {
             display: flex;
+            margin-bottom: 16px;
             .no-arr-des-title {
                 font-family: PingFangSC-Regular;
                 font-size: 14px;
@@ -147,11 +148,11 @@
 }
 .going {
     .class-card-head-info {
-        background:  #5ACADC;
+        // background:  #5ACADC;
     }
 }
 .finish {
     .class-card-head-info {
-        background:  rgba(152,160,175,0.5);
+        // background:  rgba(152,160,175,0.5);
     }
 }

@@ -21,13 +21,14 @@ export default Component.extend({
             let s = new Date(this.cls.startDate);
             let e = new Date(this.cls.endDate);
             return s.getFullYear() + '/' + (s.getMonth() + 1) + '/' + s.getDate() + 
-                ' ---- ' + e.getFullYear() + '/' + (e.getMonth() + 1) + '/' + e.getDate()
+                ' - ' + e.getFullYear() + '/' + (e.getMonth() + 1) + '/' + e.getDate()
         }
     }),
     background: computed('hasSetCls', function(){
         if (!this.hasSetCls || this.cls.startDate == null) {
             return;
         } else {
+            console.log(this.cls)
             if (this.cls.courseTotalCount == 0) {
                 return "notarr";
             } else {
@@ -47,18 +48,18 @@ export default Component.extend({
     },
 
     didReceiveAttrs() {
-        if(this.cls.teachers != null) {
+        if(this.cls.duties != null) {
             this.set("techPics", A([]));
             let client = this.bmOss.get('ossClient');
-            for(let idx = 0;idx < this.cls.teachers.length;idx++) {
+            for(let idx = 0;idx < this.cls.duties.length;idx++) {
                 if(idx < 3) {
                     let tmpObj = {};
-                    tmpObj.url = client.signatureUrl(this.cls.teachers.objectAt(idx).icon);
+                    tmpObj.url = client.signatureUrl(this.cls.duties.objectAt(idx).teacher.get("icon"));
                     this.techPics.pushObject(tmpObj)
                 }
             }
-            if(this.cls.teachers.length > 3) {
-                this.set("techPicsOverFlow", this.cls.teachers.length - 3)
+            if(this.cls.duties.length > 3) {
+                this.set("techPicsOverFlow", this.cls.duties.length - 3)
             }
         } else {
             this.set("techPics", A([]))
