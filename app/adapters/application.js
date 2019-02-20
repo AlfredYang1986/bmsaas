@@ -10,6 +10,7 @@ export default DS.JSONAPIAdapter.extend({
         };
     }),
     namespace: "v2", // 根据后端发布版本修改命名空间
+    host: 'http://localhost:4200',
     urlForFindHasMany(id, modelName) {
         let baseUrl = this.buildURL(modelName, id);
         return `${baseUrl}/relationships`;
