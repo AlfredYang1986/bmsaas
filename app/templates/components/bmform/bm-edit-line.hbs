@@ -53,6 +53,8 @@
             {{input type="password" classNames="edit_text_field_login" maxlength=maxlength placeholder=pholder value=inputVal}}
         {{else if numberInput}}
             {{input type="number" classNames="edit_text_field edit_text_field_number" placeholder=pholder value=inputVal key-press=(action "onKeyPress")}}
+        {{else if largeNumberInput}}
+            {{input type="number" classNames="edit_text_field edit_text_field_large" placeholder=pholder value=inputVal key-press=(action "onKeyPress")}}
         {{else}}
             {{input classNames="edit_text_field" maxlength=maxlength  placeholder=pholder value=inputVal key-up=(action "onKeyUp")}}
         {{/if}}

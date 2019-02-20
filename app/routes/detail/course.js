@@ -4,16 +4,17 @@ import { A } from '@ember/array';
 
 export default Route.extend({
     model(params) {
+        var si = this.store.findRecord('sessioninfo', params.courseid)
         return RSVP.hash({
-            course: this.store.findRecord('sessioninfo', params.courseid),
+            course: si,
             urls: A([
                 {
                     "pageName":"课程",
-                    "link":"exp",
+                    "link":"course",
                     "id":"",
                 },
                 {
-                    "pageName":"课程详情",
+                    "pageName": '课程详情',
                     "link":"",
                     "id":"",
                 }

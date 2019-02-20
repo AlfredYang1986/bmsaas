@@ -49,7 +49,10 @@
         {{/layout-push}}
         {{#layout-push direction="col" split=true classNames="alt_course_title_top"}}
             <span class='alt_course_title_class'>课程时长(分钟)</span>
+            {{#if (bmcom/bm-nil-obj session)}}
+            {{else}}
             {{bmform/bm-base-select options=sel_time curSelect=cur_time}}
+            {{/if}}
         {{/layout-push}}
         {{yield}}
     {{/layout-push}}
