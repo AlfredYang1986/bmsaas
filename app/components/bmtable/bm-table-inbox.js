@@ -29,11 +29,11 @@ export default Component.extend({
 		}
 		result.then(res => {
 			let pageCount = localStorage.getItem('applies-count')
-			this.onRefreshDataComplete(pageCount)
+			let page = Number.parseInt(localStorage.getItem('applies'));
+			this.onRefreshDataComplete(pageCount+' '+page)
 		})
         return result
     }),
-
 	actions: {
 		setCurrentApply(params) {
 			this.sendAction("action", params);

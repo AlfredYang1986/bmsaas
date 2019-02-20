@@ -17,35 +17,6 @@ export default Controller.extend({
         timeOut: '2000',
     },
 
-    // applies: computed('cur_tab_idx', 'cur_reserve_type', 'pageNum',  function() {
-    //     let today = new Date();
-    //     today.setHours(0);
-    //     today.setMinutes(0);
-    //     today.setSeconds(0);
-    //     today.setMilliseconds(0);
-
-    //     if(this.cur_tab_idx == 1 && this.cur_reserve_type == 0) {
-    //         let apply = this.store.query('apply', { 'page[number]': this.pageNum, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), 'course-type': -1})
-    //         this.set('applies_count', localStorage.getItem('applies-count'))
-    //         return apply
-    //     } else if(this.cur_tab_idx == 0 && this.cur_reserve_type == 0){
-    //         let apply = this.store.query('apply', { 'page[number]':  this.pageNum, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), "ne[course-type]": -1});
-    //         this.set('applies_count', localStorage.getItem('applies-count'))
-    //         return apply
-    //     } else if(this.cur_tab_idx == 1 && this.cur_reserve_type == 1) {
-    //         let apply = this.store.query('apply', { 'page[number]':  this.pageNum, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), 'course-type': -1, 'gte[apply-time]': today.getTime()})
-    //         this.set('applies_count', localStorage.getItem('applies-count'))
-    //         return apply
-    //     } else if (this.cur_tab_idx == 0 && this.cur_reserve_type == 1) {
-    //         let apply = this.store.query('apply', { 'page[number]':  this.pageNum, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), "ne[course-type]": -1, 'gte[apply-time]': today.getTime()})
-    //         this.set('applies_count', localStorage.getItem('applies-count'))
-    //         return apply
-    //     }
-    // }),
-    // page_count: computed('applies', function(){
-    //     return Number.parseInt(localStorage.getItem('applies'));
-    // }),
-
     showhandledlg: false,
     showRegister: false,
     current_apply: null,
@@ -80,11 +51,6 @@ export default Controller.extend({
             let onSaFail = function(res) {}
             that.store.find('reservableitem', that.sa).then(onSaSuccess, onSaFail)
         }
-        // let a = Date.parse( new Date());
-        // debug(a)
-        // this.set('sy', null);
-        // this.set('ss', null);
-        // return this.sy == null && this.ss == null;
     }),
     couldSubmit: computed('sy', 'ss', function() {
         return this.sr != null && this.sy != null || this.sa != null && this.ss != null;
@@ -92,21 +58,9 @@ export default Controller.extend({
     actions: {
         /* 今天全部预约与注册*/
         handleBookPageChange (pagenum) {
-            // if(this.cur_tab_idx == 1 && this.cur_reserve_type == 0) {
-            //     this.set('applies', this.store.query('apply', { 'page[number]': pageNum, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), 'course-type': -1}))
-            // } else if(this.cur_tab_idx == 0 && this.cur_reserve_type == 0){
-            //     this.set('applies', this.store.query('apply', { 'page[number]': pageNum, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), "ne[course-type]": -1}))
-            // } else if(this.cur_tab_idx == 1 && this.cur_reserve_type == 1) {
-            //     this.set('applies', this.store.query('apply', { 'page[number]': pageNum, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), 'course-type': -1, 'gte[apply-time]': today.getTime()}))
-            // } else if (this.cur_tab_idx == 0 && this.cur_reserve_type == 1) {
-            //     this.set('applies', this.store.query('apply', { 'page[number]': pageNum, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), "ne[course-type]": -1, 'gte[apply-time]': today.getTime()}))
-            // }
-            //
-            // this.set('pageNum', pagenum);
-        },
 
-        onTabClicked(tabIdx) {
         },
+        onTabClicked(tabIdx) {},
         saveInfo() {
             this.set('modal3',false);
             let that = this;
@@ -150,11 +104,8 @@ export default Controller.extend({
             }
         },
 
-        successRegisterHandled(item) {
-        },
-        onPreRegisterClick(item) {
-
-        },
+        successRegisterHandled(item) {},
+        onPreRegisterClick(item) {},
         toggleAction() {
             let that = this;
             if(this.current_apply.courseType == 1) {
@@ -163,16 +114,12 @@ export default Controller.extend({
                 that.set('current_apply.courseType', 1)
             }
         },
-        successSave() {
-
-        },
+        successSave() {},
         reserveTypeChanged() {
             let sel = document.getElementById('selectReserve');
             this.set("cur_reserve_type", sel.options[sel.selectedIndex].value);
         },
-        preRegisterChanged() {
-
-        },
+        preRegisterChanged() {},
         successHandled() {
             if (this.current_apply.courseType == 1) {
                     this.signCoureReserve();
@@ -183,16 +130,16 @@ export default Controller.extend({
         cancelHandled() {
             this.set('showhandledlg', false);
         },
-        cancelRegisterHandled() {
-
-        },
-        refreshDataComplete(pageCount) {
-            this.set('applies_count', pageCount)
+        cancelRegisterHandled() {},
+        refreshDataComplete(appliesCount) {
+            let paramsArr = appliesCount.split(' ');
+            let applies_Count = paramsArr[0];
+            let page_Count = paramsArr[1];
+            this.set('applies_count', applies_Count)
+            this.set('page_count', page_Count)
         }
     },
-    checkValidate() {
-
-    },
+    checkValidate() {},
     signCoureReserve() {
         let that = this;
         let apply = this.current_apply;

@@ -13,20 +13,21 @@
 
         {{#layout-push direction="col" classNames="alt-course-input-group"}}
             {{#if (bmeq session.status 1)}}
-                <span class='alt_course_title'>体验课时长（min）</span>
+                <span class='alt_course_title'>体验课时长（分钟）</span>
             {{else}}
-                <span class='alt_course_title'>活动时长（min）</span>
+                <span class='alt_course_title'>活动时长（分钟）</span>
             {{/if}}
             {{#layout-push direction="col" classNames="alt-course-age-group"}}
                 {{#if lengthIf}}
-                    <div class="course-edit-check course-edit-check-low">
+                    {{!-- <div class="course-edit-check course-edit-check-low">
                         <div class="input-group">
                             {{input value=session.length class="edit_input_age" disabled='' type="number"}}
                             <div class="input-group-append">
                                 <span class="input-group-text">分钟</span>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
+                    {{bmform/bm-base-select options=sel_time curSelect=cur_time}}
                     <div class="course-edit-check course-edit-check-low" {{action 'lengthNoSelected'}}>
                         <span class="radio-inline">
                             <input type="checkbox" name="length" value="l"/>
@@ -34,14 +35,9 @@
                         </span>
                     </div>
                 {{else}}
-                    <div class="course-edit-check course-edit-check-low">
-                        <div class="input-group">
-                            {{input value='' class="edit_input_age" disabled='disabled' type="number"}}
-                            <div class="input-group-append">
-                                <span class="input-group-text">分钟</span>
-                            </div>
-                        </div>
-                    </div>
+                    <select class="" name="" disabled>
+                        <option value="">请选择</option>
+                    </select>
                     <div class="course-edit-check course-edit-check-low" {{action 'lengthNoSelected'}}>
                         <span class="radio-inline">
                             <input type="checkbox" name="length" value="ma" checked='checked'/>
@@ -58,14 +54,14 @@
                 {{#if ageInput}}
                     {{#layout-push direction="row" classNames="alt-course-age-group"}}
                         <div class="input-group">
-                            {{input value=session.alb  maxlength='2' class="edit_input_age"  type="number"}}
+                            {{input value=session.alb  maxlength='2' class="edit_input_age"  type="number" key-press=(action "onKeyPress")}}
                             <div class="input-group-append">
                                 <span class="input-group-text">岁</span>
                             </div>
                         </div>
                         <span class="alt_course_des">至</span>
                         <div class="input-group">
-                            {{input value=session.aub class="edit_input_age"  type="number"  maxlength='2'}}
+                            {{input value=session.aub class="edit_input_age"  type="number"  maxlength='2' key-press=(action "onKeyPress")}}
                             <div class="input-group-append">
                                 <span class="input-group-text">岁</span>
                             </div>
@@ -78,14 +74,14 @@
                 {{else}}
                     {{#layout-push direction="row" classNames="alt-course-age-group"}}
                         <div class="input-group">
-                            {{input value='' maxlength='2' class="edit_input_age" readonly='readonly'  type="number"}}
+                            {{input value='' maxlength='2' class="edit_input_age" readonly='readonly'  type="number" key-press=(action "onKeyPress")}}
                             <div class="input-group-append">
                                 <span class="input-group-text">岁</span>
                             </div>
                         </div>
                         <span class="alt_course_des">至</span>
                         <div class="input-group">
-                            {{input value='' class="edit_input_age"  type="number" readonly='readonly'  maxlength='2'}}
+                            {{input value='' class="edit_input_age"  type="number" readonly='readonly'  maxlength='2' key-press=(action "onKeyPress")}}
                             <div class="input-group-append">
                                 <span class="input-group-text">岁</span>
                             </div>

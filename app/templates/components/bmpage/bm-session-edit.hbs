@@ -80,7 +80,7 @@
             {{/if}}
 
             {{#if (bmeq cur_page_idx 1)}}
-                {{#bmsessioninfo/bm-input-basic-page session=session isCreate=isCreate}}
+                {{#bmsessioninfo/bm-input-basic-page session=session isCreate=isCreate cur_time=cur_time}}
                     {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
                         <button class="edit_between_btn" {{action (mut cur_page_idx) 2}}>下一步</button>
                     {{/layout-push}}
