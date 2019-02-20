@@ -48,16 +48,16 @@
                         <p class="course-reserve-label select-title">场次安排</p>
                         {{#if noSy}}
                             <select class="course-reserve-modal-select error-border" id='yardselect' name="" onChange={{action 'yardChanged'}}>
-                                <option value="">请选择场次安排</option>
+                                <option value="" disabled selected hidden>请选择场次安排</option>
                                 {{#each sr as |item|}}
-                                    <option value={{item.id}}>{{bmdob/bmdobformat item.startDate}}至{{bmdob/bmdobformat item.endDate}} {{item.yard.title}} -</option>
+                                    <option value={{item.id}}>{{bmdob/bmdobformat item.startDate}} {{bmdob/bmdob2clocktime item.startDate}}-{{bmdob/bmdob2clocktime item.endDate}} {{item.yard.title}}</option>
                                 {{/each}}
                             </select>
                         {{else}}
                             <select class="course-reserve-modal-select" id='yardselect' name="" onChange={{action 'yardChanged'}}>
-                                <option value="">请选择场次安排</option>
+                                <option value="" disabled selected hidden>请选择场次安排</option>
                                 {{#each sr as |item|}}
-                                    <option value={{item.id}}>{{bmdob/bmdobformat item.startDate}}至{{bmdob/bmdobformat item.endDate}} {{item.yard.title}} -</option>
+                                    <option value={{item.id}}>{{bmdob/bmdobformat item.startDate}} {{bmdob/bmdob2clocktime item.startDate}}-{{bmdob/bmdob2clocktime item.endDate}} {{item.yard.title}}</option>
                                 {{/each}}
                             </select>
                         {{/if}}
@@ -132,16 +132,16 @@
                         <p class="course-reserve-label select-title">场次安排</p>
                         {{#if noSs}}
                             <select class="course-reserve-modal-select error-border" id='sessionselect' name="" onChange={{action 'sessionChanged'}}>
-                              <option value="">请选择场次安排</option>
+                              <option value="" disabled selected hidden>请选择场次安排</option>
                               {{#each sa as |item|}}
-                                  <option value={{item.id}}>{{bmdob/bmdobformat item.startDate}}至{{bmdob/bmdobformat item.endDate}} {{item.yard.title}} -</option>
+                                  <option value={{item.id}}>{{bmdob/bmdobformat item.startDate}} {{bmdob/bmdob2clocktime item.startDate}}-{{bmdob/bmdob2clocktime item.endDate}} {{item.yard.title}}</option>
                               {{/each}}
                             </select>
                         {{else}}
                             <select class="course-reserve-modal-select" id='sessionselect' name="" onChange={{action 'sessionChanged'}}>
-                              <option value="">请选择场次安排</option>
+                              <option value="" disabled selected hidden>请选择场次安排</option>
                               {{#each sa as |item|}}
-                                  <option value={{item.id}}>{{bmdob/bmdobformat item.startDate}}至{{bmdob/bmdobformat item.endDate}} {{item.yard.title}} -</option>
+                                  <option value={{item.id}}>{{bmdob/bmdobformat item.startDate}} {{bmdob/bmdob2clocktime item.startDate}}-{{bmdob/bmdob2clocktime item.endDate}} {{item.yard.title}}</option>
                               {{/each}}
                             </select>
                         {{/if}}

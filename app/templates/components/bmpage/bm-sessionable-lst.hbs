@@ -1,4 +1,3 @@
-{{!-- {{yield}} --}}
 <table class='ib_table_head exp_table'>
     <tr>
         {{#each titles as |item|}}
@@ -6,17 +5,4 @@
         {{/each}}
     </tr>
     {{bmtable/bm-table-inner type="course" listData=listData action="onClick" onEditSessionClick="onEditSessionClick" onDeleteSessionClick="onDeleteSessionClick"}}
-    {{!-- {{#each bm_sessionable_service.sessionables as |item index|}}
-    <tr class="session-list">
-        <td class='ib_table_content_item'>{{index}}</td>
-        <td class='ib_table_content_item'>{{bmdob/bmdobformat item.start_date}}</td>
-        <td class="ib_table_content_item"></td>
-        {{#if (bmcom/bm-nil-obj item.Attendees)}}
-        <td class="ib_table_content_item">0</td>
-        {{else}}
-        <td class="ib_table_content_item">{{item.Attendees.length}}</td>
-        {{/if}}
-        <td  class="ib_table_content_item">{{#bs-button classNames="ib_table_content_btn" onClick=(action 'onClick' item.id)}}<span>查看详情</span>{{/bs-button}}</td>
-    </tr>
-    {{/each}} --}}
 </table>
