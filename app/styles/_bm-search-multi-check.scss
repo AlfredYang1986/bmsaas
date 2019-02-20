@@ -36,6 +36,10 @@
             .session-list {
                 height: 52px;
 
+                .multi-check {
+                    height: 24px;
+                    width: 24px;
+                }
                 &:nth-child(even) {
                     background-color: #fbfbfb;
                 }

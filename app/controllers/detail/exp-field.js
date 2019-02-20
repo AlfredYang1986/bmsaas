@@ -16,6 +16,7 @@ export default Controller.extend({
         timeOut: '2000',
     },
 
+    urls: null,
     cur_room_id: "",
     cur_rooms: null,
     cur_yard_id: "",

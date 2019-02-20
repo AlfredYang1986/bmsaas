@@ -8,7 +8,8 @@ export default Controller.extend({
         this._super(...arguments);
         // this.addObserver('showAddSessionDlg', this, 'generateSessionable');
     },
-
+    
+    urls: null,
     toast: service(),
     toastOptions: {
         closeButton: false,

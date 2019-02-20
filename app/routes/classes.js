@@ -1,7 +1,11 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
+// import { inject as service } from '@ember/service';
+
 
 export default Route.extend({
+    // bm_breadcrumb_service: service(),
+    
     model() {
         var tmp = this.store.query('yard', {"brand-id": localStorage.getItem("brandid")}).then(res => {
             return new Promise(function(resolve, reject) {
@@ -19,21 +23,17 @@ export default Route.extend({
         })
     },
 
-    // setupController(controller, model) {
-    //     this._super(controller, model);
-        // this.controller.set('refreshFlag', 0);
-        // window.console.log(this.controller.get('cls'));
+    // afterModel(model, transition) {
+    //     this.set("curTransition", transition)
+    //     window.console.log(transition);
+    //     window.console.log(this.curTransition);
+    //     this.bm_breadcrumb_service.changeRoutes(transition,"班级")
+    //     debugger
     // },
 
     activate() {
         if(this.get("controller") != undefined) {
             this.get("controller").toggleProperty("refreshFlag")
         }
-    //     this.store.query('class', { "brand-id": localStorage.getItem("brandid"), "status": 2, "flag": 0}).then(res => {
-    //         this.controllerFor('classes').set("cls", res)
-    //     },
-    //     () => {
-    //         window.console.log("query failed")
-    //     })
     }
 });

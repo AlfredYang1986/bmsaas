@@ -30,5 +30,19 @@ export default Route.extend({
     setupController(controller, model) {
         this._super(controller, model);
         this.controller.set('cur_course_id', model.class.sessioninfo.get("id"));
+        
+        let urls = A([
+            {
+                "pageName":"班级",
+                "link":"classes",
+                "id":"",
+            },
+            {
+                "pageName": model.class.get("classTitle"),
+                "link":"",
+                "id":"",
+            }
+        ])
+        this.controller.set("urls", urls)
     }
 });
