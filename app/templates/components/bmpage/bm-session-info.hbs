@@ -16,9 +16,8 @@
         {{/layout-push}}
         {{#layout-push direction='col' classNames='alt_course_right_panel_group'}}
             {{#layout-push direction='col' classNames='info-block-outer'}}
-                <p class="parent_info">更多信息</p>
+                <p class="parent_info">收费模式</p>
                 <div class="self_info">
-                    {{log session}}
                     {{bmdetail/stud-basis-info label="课程定价" content=session.standardPrice}}
                     {{bmdetail/stud-basis-info label="标准课时(次)数" content=session.standardCourseCount}}{{standardPriceUnit}}
                 </div>

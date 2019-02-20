@@ -17,35 +17,34 @@ export default Controller.extend({
         timeOut: '2000',
     },
 
-    applies: computed('cur_tab_idx', 'cur_reserve_type', 'pageNum',  function() {
-        let today = new Date();
-        today.setHours(0);
-        today.setMinutes(0);
-        today.setSeconds(0);
-        today.setMilliseconds(0);
+    // applies: computed('cur_tab_idx', 'cur_reserve_type', 'pageNum',  function() {
+    //     let today = new Date();
+    //     today.setHours(0);
+    //     today.setMinutes(0);
+    //     today.setSeconds(0);
+    //     today.setMilliseconds(0);
 
-        if(this.cur_tab_idx == 1 && this.cur_reserve_type == 0) {
-            let apply = this.store.query('apply', { 'page[number]': this.pageNum, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), 'course-type': -1})
-            this.set('applies_count', localStorage.getItem('applies-count'))
-            return apply
-        } else if(this.cur_tab_idx == 0 && this.cur_reserve_type == 0){
-            let apply = this.store.query('apply', { 'page[number]':  this.pageNum, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), "ne[course-type]": -1});
-            this.set('applies_count', localStorage.getItem('applies-count'))
-            return apply
-        } else if(this.cur_tab_idx == 1 && this.cur_reserve_type == 1) {
-            let apply = this.store.query('apply', { 'page[number]':  this.pageNum, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), 'course-type': -1, 'gte[apply-time]': today.getTime()})
-            this.set('applies_count', localStorage.getItem('applies-count'))
-            return apply
-        } else if (this.cur_tab_idx == 0 && this.cur_reserve_type == 1) {
-            let apply = this.store.query('apply', { 'page[number]':  this.pageNum, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), "ne[course-type]": -1, 'gte[apply-time]': today.getTime()})
-            this.set('applies_count', localStorage.getItem('applies-count'))
-            return apply
-        }
-
-    }),
-    page_count: computed('applies', function(){
-        return Number.parseInt(localStorage.getItem('applies'));
-    }),
+    //     if(this.cur_tab_idx == 1 && this.cur_reserve_type == 0) {
+    //         let apply = this.store.query('apply', { 'page[number]': this.pageNum, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), 'course-type': -1})
+    //         this.set('applies_count', localStorage.getItem('applies-count'))
+    //         return apply
+    //     } else if(this.cur_tab_idx == 0 && this.cur_reserve_type == 0){
+    //         let apply = this.store.query('apply', { 'page[number]':  this.pageNum, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), "ne[course-type]": -1});
+    //         this.set('applies_count', localStorage.getItem('applies-count'))
+    //         return apply
+    //     } else if(this.cur_tab_idx == 1 && this.cur_reserve_type == 1) {
+    //         let apply = this.store.query('apply', { 'page[number]':  this.pageNum, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), 'course-type': -1, 'gte[apply-time]': today.getTime()})
+    //         this.set('applies_count', localStorage.getItem('applies-count'))
+    //         return apply
+    //     } else if (this.cur_tab_idx == 0 && this.cur_reserve_type == 1) {
+    //         let apply = this.store.query('apply', { 'page[number]':  this.pageNum, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), "ne[course-type]": -1, 'gte[apply-time]': today.getTime()})
+    //         this.set('applies_count', localStorage.getItem('applies-count'))
+    //         return apply
+    //     }
+    // }),
+    // page_count: computed('applies', function(){
+    //     return Number.parseInt(localStorage.getItem('applies'));
+    // }),
 
     showhandledlg: false,
     showRegister: false,
@@ -186,6 +185,9 @@ export default Controller.extend({
         },
         cancelRegisterHandled() {
 
+        },
+        refreshDataComplete(pageCount) {
+            this.set('applies_count', pageCount)
         }
     },
     checkValidate() {

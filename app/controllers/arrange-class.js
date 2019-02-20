@@ -52,7 +52,6 @@ export default Controller.extend({
         },
         onAddUnitClick() {
             this.set('addUnitDlg', true);
-            console.log(this.tempTechs)
         },
         cancelHandled() {
             this.set('cur_room_id', "");
@@ -106,7 +105,7 @@ export default Controller.extend({
             } else {
                 this.set("formErrorFlag", false);
             }
-            
+
             if(this.formErrorFlag) {
                 return;
             } else {
@@ -115,7 +114,7 @@ export default Controller.extend({
                     this.tempUnit = this.store.createRecord("unit");
                     edit_flag_info  = "添加";
                 }
-                
+
                 this.tempUnit.save().then(() => {
                     let tempclass = this.store.peekRecord("class", this.cur_class_id)
                     this.tempUnit.set("courseTime", this.cur_course_time)
@@ -181,7 +180,7 @@ export default Controller.extend({
         },
         onDeleteUnitClickOk() {
             // if(this.tempUnit.status == 0) {
-                let tempClass = this.store.peekRecord("class", this.tempUnit.class.get("id")) 
+                let tempClass = this.store.peekRecord("class", this.tempUnit.class.get("id"))
                 tempClass.get("units").removeObject(this.tempUnit)
                 tempClass.save().then(() => {
                     this.tempUnit.deleteRecord()
@@ -197,7 +196,7 @@ export default Controller.extend({
                     this.toast.error('', '删除排课失败', this.toastOptions);
                 })
             // } else {
-            //     let tempClass = this.store.peekRecord("class", this.tempUnit.class.get("id")) 
+            //     let tempClass = this.store.peekRecord("class", this.tempUnit.class.get("id"))
             //     tempClass.get("units").removeObject(this.tempUnit)
             //     tempClass.deleteRecord();
             //     tempClass.save().then(() => {

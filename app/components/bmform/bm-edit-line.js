@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 
 export default Component.extend({
-    positionalParams: ['title', 'pholder', 'maxCount', 'notNeeded', 'inputVal','height', 'group', 'largeInput', 'numberInput', 'maxlength', 'needTitleDes', 'titleDes', 'fullWidthInput', 'needBottomHint'],
+    positionalParams: ['title', 'pholder', 'maxCount', 'notNeeded', 'inputVal','height', 'group', 'largeInput', 'numberInput', 'largeNumberInput', 'maxlength', 'needTitleDes', 'titleDes', 'fullWidthInput', 'needBottomHint'],
     count: computed('inputVal', function() {
         if (typeof this.inputVal == 'string')
             return this.inputVal.length;
@@ -18,16 +18,16 @@ export default Component.extend({
             if(regex.test(String.fromCharCode(event.keyCode))) {
                 return;
             } else {
-                if ( event && event.preventDefault ){  
-                    //非IE浏览器  
+                if ( event && event.preventDefault ){
+                    //非IE浏览器
                     event.preventDefault();
                 } else {
-                    //IE浏览器  
-                    window.event.returnValue = false;  
-                } 
+                    //IE浏览器
+                    window.event.returnValue = false;
+                }
             }
             // if(regex.test(value)) {
-                
+
             // };
         },
         onKeyUp() {
