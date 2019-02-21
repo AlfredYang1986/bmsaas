@@ -6,35 +6,41 @@
             {{/layout-push}}
         {{/layout-push}}
 
-        {{bmcom/bm-tabs-bar cur_idx=cur_tab_idx titles=tabs needAction=true onTabClicked=(action "onTabClicked")}}
+        {{bmcom/bm-tabs-bar cur_idx=cur_tab_idx  titles=tabs needAction=true onTabClicked=(action "onTabClicked")}}
 
         {{#layout-push direction='row' split=true classNames='ib_table_select_area'}}
             <span class="ib_table_num">共{{applies_count}}条</span>
             <span class="ib_table_num"></span>
-            <select class="ib_table_select" name="" id='selectReserve' onChange={{action 'reserveTypeChanged'}}>
-                <option selected value="0">全部</option>
-                <option value="1">今天</option>
-            </select>
+            {{#if (eq cur_reserve_type 0)}}
+                <select class="ib_table_select" name="" id='selectReserve' onChange={{action 'reserveTypeChanged'}}>
+                    <option selected value="0">全部</option>
+                    <option value="1">今天</option>
+                </select>
+            {{else}}
+                <select class="ib_table_select" name="" id='selectReserve' onChange={{action 'reserveTypeChanged'}}>
+                    <option  value="0">全部</option>
+                    <option selected value="1">今天</option>
+                </select>
+            {{/if}}
         {{/layout-push}}
 
-        {{#if (eq applies.length 0)}}
-            {{bmcom/bm-empty-state class="inbox-empty-state" picUrl="/images/img_empty@2x.png" title="暂无数据" des="请添加待预约学员"}}
+        <table class='ib_table_head exp_table'>
+            <tr class='ib_table_title'>
+                {{#if (eq cur_tab_idx 0)}}
+                    {{#each model.reserveTitle as |item|}}
+                        <th class='ib_table_item'>{{item}}</th>
+                    {{/each}}
+                {{else}}
+                    {{#each model.preRegisterTtitle as |item|}}
+                        <th class='ib_table_item'>{{item}}</th>
+                    {{/each}}
+                {{/if}}
+            </tr>
+        </table>
+        {{bmtable/bm-table-inbox reserveType=true isPreReg=cur_tab_idx reserveType=cur_reserve_type curPage=pageNum action="setCurrentApply" onRefreshDataComplete=(action 'refreshDataComplete')}}
+        {{#if (eq page_count '0')}}
         {{else}}
-            <table class='ib_table_head exp_table'>
-                <tr class='ib_table_title'>
-                    {{#if (eq cur_tab_idx 0)}}
-                        {{#each model.reserveTitle as |item|}}
-                            <th class='ib_table_item'>{{item}}</th>
-                        {{/each}}
-                    {{else}}
-                        {{#each model.preRegisterTtitle as |item|}}
-                            <th class='ib_table_item'>{{item}}</th>
-                        {{/each}}
-                    {{/if}}
-                </tr>
-            </table>
-            {{bmtable/bm-table-inbox reserveType=true isPreReg=cur_tab_idx reserveType=cur_reserve_type curPage=pageNum action="setCurrentApply" onRefreshDataComplete=(action 'refreshDataComplete')}}
-            {{!-- {{bmcom/bm-pagination pageCount=page_count sendPageNum=(action "handleBookPageChange")}} --}}
+            {{bmcom/bm-pagination pageCount=page_count sendPageNum=(action "handleBookPageChange")}}
         {{/if}}
 
         {{#bmcom/bm-modal-container

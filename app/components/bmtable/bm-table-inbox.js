@@ -16,7 +16,6 @@ export default Component.extend({
         today.setMinutes(0);
         today.setSeconds(0);
         today.setMilliseconds(0);
-
 		let result;
         if(this.isPreReg == 1 && this.reserveType == 0) {
             result = this.store.query('apply', { 'page[number]': this.curPage, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), 'course-type': -1})
@@ -41,5 +40,8 @@ export default Component.extend({
 		onPreRegisterClick(params) {
 			this.sendAction('onPreRegisterClick', params)
 		},
+		handleBookPageChange() {
+
+		}
 	}
 });

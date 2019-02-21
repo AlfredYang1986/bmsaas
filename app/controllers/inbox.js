@@ -137,6 +137,11 @@ export default Controller.extend({
             let page_Count = paramsArr[1];
             this.set('applies_count', applies_Count)
             this.set('page_count', page_Count)
+            // if(page_Count == 0) {
+            //     this.set('page_count', 1)
+            // } else {
+            //     this.set('page_count', page_Count)
+            // }
         }
     },
     checkValidate() {},

@@ -17,7 +17,7 @@ export default Component.extend({
         }
     }),
     previousFlag: computed('curPage', 'pageCount', function() {
-        if (this.curPage == 1) {
+        if (this.curPage == 1 || this.curPage == 0) {
             return false;
         } else {
             return true;
