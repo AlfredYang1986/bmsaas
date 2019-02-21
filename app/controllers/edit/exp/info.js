@@ -28,7 +28,7 @@ export default Controller.extend({
                 debug('error');
             }
             if(that.model.course.cover) {
-                if(that.model.course.alb <= that.model.course.aub) {
+                if(parseInt(that.model.course.alb) <= parseInt(that.model.course.aub)) {
                     if(this.model.course.images.length === 0) {
                         this.model.course.save().then(onSuccess, onFail);
                     } else {
