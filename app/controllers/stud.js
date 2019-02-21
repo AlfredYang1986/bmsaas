@@ -2,9 +2,9 @@ import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 
 export default Controller.extend({
-    // studs: computed(function() {
-    //     return this.store.query('student', { 'page[number]': 1, 'page[size]': 20, "brand-id": localStorage.getItem("brandid")})
-    // }),
+    studs: computed(function() {
+        return this.store.query('student', { 'page[number]': 1, 'page[size]': 20, "brand-id": localStorage.getItem("brandid")})
+    }),
     page_count: computed(function(){
         return Number.parseInt(localStorage.getItem('students'));
     }),
@@ -16,7 +16,10 @@ export default Controller.extend({
             this.transitionToRoute('edit.stud', "stud/push");
         },
         handlePageChange(target_page) {
-            this.set("studs", this.store.query('student', { 'page[number]': target_page, 'page[size]': 20, "brand-id": localStorage.getItem("brandid")}))
+            let that = this;
+            this.store.query('student', { 'page[number]': target_page, 'page[size]': 20, "brand-id": localStorage.getItem("brandid")}).then((res) => {
+                that.set('studs', res)
+            })
         },
     },
 });
