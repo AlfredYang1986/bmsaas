@@ -25,7 +25,6 @@ export default Component.extend({
                 }
             }
             this.set('handledMultiData', arr)
-            // console.log(this.handledMultiData)
         },
         onCheckChange(param) {
 
@@ -33,9 +32,7 @@ export default Component.extend({
                 if(item.id === param.id) {
                     item.state ? set(item, "state", 0) : set(item, "state", 1)
                 }
-                // console.log(item.state)
             })
-
             let tempObj = this.store.peekRecord("student", param.id)
             let haveCurItemFlag = false;
             
@@ -54,8 +51,6 @@ export default Component.extend({
                     this.curItems.pushObject(tempObj);
                 }
             }
-            // this.rerender()
-            // window.console.log(this.curItems);
         },
     },
 
