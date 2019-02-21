@@ -18,10 +18,10 @@ export default Component.extend({
                 if(this.type == "number") {
                     this.set('curSelect', parseInt(sel.options[sel.selectedIndex].value));
                 } else if(this.type == "id") {
-                    this.set('curSelect', sel.options[sel.selectedIndex].value);
+                    this.set('curSelect', parseInt(sel.options[sel.selectedIndex].value));
                 } else {
-                    this.set('curSelect', sel.options[sel.selectedIndex].value.split(this.separator)[0]);
-                    this.set('sessionId', sel.options[sel.selectedIndex].value.split(this.separator)[1]);
+                    this.set('curSelect', parseInt(sel.options[sel.selectedIndex].value.split(this.separator)[0]));
+                    this.set('sessionId', parseInt(sel.options[sel.selectedIndex].value.split(this.separator)[1]));
                 }
             if (this.handleChangeFlag) {
                 this.handleChange()
