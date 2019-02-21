@@ -56,7 +56,7 @@ export default Component.extend({
             }
         },
         onKeyPress() {
-            let regex = new RegExp(/^\d+(\.{0,1}\d+){0,1}$/);
+            let regex = new RegExp(/^[0-9]+(.[0-9]{2})?$/);
             if(regex.test(String.fromCharCode(event.keyCode))) {
                 return;
             } else {
