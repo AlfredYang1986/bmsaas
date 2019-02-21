@@ -1,20 +1,13 @@
 {{yield}}
 
 <table class='ib_table_head inbox_table'>
-    {{#if reserveType}}
-        {{!-- <tr class='ib_table_title'>
-            {{#each title as |item|}}
-                <th class='ib_table_item'>{{item}}</th>
-            {{/each}}
-        </tr> --}}
-        {{bmtable/bm-table-inner type="inbox" listData=applies action="setCurrentApply"}}
+    {{#if (eq applies.length 0)}}
+        {{bmcom/bm-empty-state class="inbox-empty-state" picUrl="/images/img_empty@2x.png" title="暂无数据" des="请添加待预约学员"}}
     {{else}}
-        {{!-- <tr class='ib_table_title'>
-            {{#each title as |item|}}
-                <th class='ib_table_item'>{{item}}</th>
-            {{/each}}
-        </tr> --}}
-        {{bmtable/bm-table-inner type="preRegister" listData=applies registerId=registerId addStud=(action 'onPreRegisterClick')}}
+        {{#if (eq applies.firstObject.courseType -1)}}
+            {{bmtable/bm-table-inner type="preRegister" listData=applies registerId=registerId action='setCurrentApply'}}
+        {{else}}
+            {{bmtable/bm-table-inner type="inbox" listData=applies action="setCurrentApply"}}
+        {{/if}}
     {{/if}}
-
 </table>

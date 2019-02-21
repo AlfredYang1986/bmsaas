@@ -157,7 +157,7 @@
                 {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="暂无场次" des="点击右上角添加场次，安排体验课时间与场地吧"}}
             {{else}}
                 {{bmpage/bm-sessionable-lst titles=model.titles listData=model.exp.classes action="linkToExpField" onEditSessionClick="onEditSessionClick" onDeleteSessionClick="onDeleteSessionClick"}}
-                {{!-- {{bmcom/bm-pagination pageCount=page_count sendPageNum=(action "handlePageChange")}} --}}
+                {{!-- {{bmcom/bm-pagination pageCount=page_count curPage=pagenum sendPageNum=(action "handlePageChange")}} --}}
             {{/if}}
         {{/if}}
 

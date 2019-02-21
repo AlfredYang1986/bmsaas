@@ -12,7 +12,6 @@ export default Controller.extend({
         progressBar: false,
         timeOut: '2000',
     },
-
     // openStatus: computed('bm_exp_service', function(){
     //     debug(this.bm_exp_service.exp)
     //     if(this.bm_exp_service.exp.start_date === -1 || this.bm_exp_service.exp.end_date === -1){
@@ -21,7 +20,7 @@ export default Controller.extend({
     //         return 0;
     //     }
     // }),
-    
+    pagenum: 1,
     urls: null,
     cur_room_id: "",
     cur_rooms: null,
@@ -47,10 +46,10 @@ export default Controller.extend({
     closeExpDlg: false,
     deleteSessionDlg: false,
 
-    classes: computed(function() {
-        return this.store.query('class', { 'page[number]': 1, 'page[size]': 20, "reservableitem-id": this.model.exp.get("id")}) //TODO: 拼接成正确URL
-        // this.store.query('reservableitem',this.model.exp.get("id")).query('class', { 'page[number]': 1, 'page[size]': 20})
-    }),
+    // classes: computed(function() {
+    //     return this.store.query('class', { 'page[number]': 1, 'page[size]': 20, "reservableitem-id": this.model.exp.get("id")}) //TODO: 拼接成正确URL
+    //     // this.store.query('reservableitem',this.model.exp.get("id")).query('class', { 'page[number]': 1, 'page[size]': 20})
+    // }),
     page_count: computed(function(){
         return Number.parseInt(localStorage.getItem('classes'));
     }),

@@ -44,8 +44,10 @@
             <td class="ib_table_content_item">
                 {{#if (bmeq item.kids.firstObject.gender 0)}}
                     女生
-                {{else}}
+                {{else if (bmeq item.kids.firstObject.gender 1)}}
                     男生
+                {{else}}
+                    其他
                 {{/if}}
             </td>
             <td class='ib_table_content_item'>
@@ -101,8 +103,10 @@
             <td class="ib_table_content_item">
                 {{#if (bmeq item.gender 1)}}
                 男
-                {{else}}
+                {{else if (bmeq item.gender 0)}}
                 女
+                {{else}}
+                其他
                 {{/if}}
             </td>
             <td class="ib_table_content_item">
@@ -119,8 +123,10 @@
             <td class="ib_table_content_item">
                 {{#if (bmeq item.gender 1)}}
                 男
-                {{else}}
+                {{else if (bmeq item.gender 0)}}
                 女
+                {{else}}
+                其他
                 {{/if}}
             </td>
             <td class='ib_table_content_item'>{{bmdob/bmdob2age item.dob}}岁</td>
@@ -180,8 +186,10 @@
             <td class="ib_table_content_item">
                 {{#if (bmeq item.gender 1)}}
                 男
-                {{else}}
+                {{else if (bmeq item.gender 0)}}
                 女
+                {{else}}
+                其他
                 {{/if}}
             </td>
             <td class='ib_table_content_item'>{{bmdob/bmdob2age item.dob}}岁</td>

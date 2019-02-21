@@ -5,7 +5,7 @@ import RSVP from 'rsvp';
 
 export default Route.extend({
     // bm_breadcrumb_service: service(),
-    
+
     model() {
         var tmp = this.store.query('yard', {"brand-id": localStorage.getItem("brandid")}).then(res => {
             return new Promise(function(resolve, reject) {
@@ -14,7 +14,7 @@ export default Route.extend({
                 } else {
                     resolve(res.firstObject)
                 }
-            }) 
+            })
         })
         return RSVP.hash({
             courses: this.store.query('sessioninfo', { "brand-id": localStorage.getItem("brandid"), "status": 2}),
@@ -28,7 +28,6 @@ export default Route.extend({
     //     window.console.log(transition);
     //     window.console.log(this.curTransition);
     //     this.bm_breadcrumb_service.changeRoutes(transition,"班级")
-    //     debugger
     // },
 
     activate() {
