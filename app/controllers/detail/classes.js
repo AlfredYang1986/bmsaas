@@ -24,7 +24,7 @@ export default Controller.extend({
     tmpDuty: null,
     tmpStud: null,
     tmpUnit: null,
-    selectedStuds: null,
+    selectedStuds: A([]),
 
     cur_idx: 0,
     // sessions: computed(function(){
@@ -118,6 +118,7 @@ export default Controller.extend({
             this.set('removeStudDlg', false);
             this.set('removeUnitDlg', false);
             this.set('noteError', false);
+            this.set('selectedStuds', A([]));
         },
         onEditClassClick() {
             this.set('classTitle', this.model.class.classTitle);
@@ -182,21 +183,20 @@ export default Controller.extend({
             })
         },
         addStudHandled() {
-            // console.log(this.selectedStuds)
             let that = this;
             let onSuccess = function () {
                 that.set('addStudDlg', false);
-                that.set("selectedStuds", null);
+                that.set("selectedStuds", A([]));
                 that.toast.success('', '添加学生成功', that.toastOptions);
             }
             let onFail = function () {
                 that.toast.error('', '添加学生失败', that.toastOptions);
             }
-            if(this.selectedStuds != null) {
+            if(this.selectedStuds.length > 0) {
                 this.model.class.students.pushObjects(this.selectedStuds);
                 this.model.class.save().then(onSuccess, onFail)
             } else {
-                this.toast.success('', '请选择学生', this.toastOptions);
+                this.toast.error('', '请选择学生', this.toastOptions);
             }
         },
         onAddArrClassClick() {

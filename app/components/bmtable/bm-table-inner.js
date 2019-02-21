@@ -47,9 +47,7 @@ export default Component.extend({
 			this.sendAction("onRemoveArrcourseClick", params);
 		},
 	},
-	didReceiveAttrs() {
-		window.console.log(this.listData);
-		
+	didReceiveAttrs() {		
 		if(this.type == "classTeacher" && this.listData != null) {
 			let client = this.bmOss.get('ossClient');
 			this.iconData = [];

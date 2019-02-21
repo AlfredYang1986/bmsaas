@@ -12,6 +12,6 @@ export default Service.extend({
         }
 
         this.routes.pushObject(tempRouteInfo);
-        console.log(this.routes)
+        // console.log(this.routes)
     },
 });
