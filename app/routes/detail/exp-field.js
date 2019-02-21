@@ -20,7 +20,7 @@ export default Route.extend({
         this.controller.set('cur_rooms', this.store.query("room", {"brand-id": localStorage.getItem("brandid")}));
         let urls = A([
             {
-                "pageName":"体验课开放",
+                "pageName":"体验课",
                 "link":"exp",
                 "id":"",
             },

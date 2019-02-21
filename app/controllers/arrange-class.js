@@ -100,7 +100,7 @@ export default Controller.extend({
             } else {
                 this.set("timeErrorFlag", false);
             }
-            if(this.roomErrorFlag || this.classErrorFlag || this.timeErrorFlag || this.periodErrorFlag || this.timeErrorFlag) {
+            if(this.roomErrorFlag || this.classErrorFlag || this.techErrorFlag || this.periodErrorFlag || this.timeErrorFlag) {
                 this.set("formErrorFlag", true);
             } else {
                 this.set("formErrorFlag", false);
@@ -150,6 +150,7 @@ export default Controller.extend({
                 tmpArr.pushObject(item.teacher)
             });
             this.set("tempTechs", tmpArr);
+            this.set("cur_tech_id", "");
             // 有BUG 选择的班级没有老师时触发
         },
         onPanelClick() {

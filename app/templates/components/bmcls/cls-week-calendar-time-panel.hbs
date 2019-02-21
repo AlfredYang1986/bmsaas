@@ -2,8 +2,12 @@
 {{!-- <div class='bm-content-left'></div> --}}
 {{!-- {{#layout-push id=unit.id direction='col' classNames='bm-content-right' tabindex="0"}} --}}
 <a id={{unit.id}} class='bm-content-right' tabindex="0">
-    <span class='bm-content-cls-title'>{{unit.class.classTitle}}</span>
-    <span class='bm-content-session-title'>{{unit.class.sessioninfo.title}}</span>
+    {{#if (eq unit.status 0)}}
+        <span class='bm-content-cls-title'>{{unit.class.classTitle}}</span>
+        <span class='bm-content-session-title'>{{unit.class.sessioninfo.title}}</span>
+    {{else}}
+        <span class='bm-content-cls-title'>{{unit.class.sessioninfo.title}}</span>
+    {{/if}}
     {{!-- <span class='bm-content-session-time'>
         {{bmdob/bmdob2clocktime unit.startDate}}
         ~

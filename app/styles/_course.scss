@@ -63,6 +63,7 @@
         flex-wrap: wrap;
         padding: 24px;
         min-height: calc(100vh - 168px);
+        align-content: flex-start;
 
         .course_card_container {
             height: fit-content;

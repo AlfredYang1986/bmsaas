@@ -30,7 +30,7 @@ export default Controller.extend({
         }
     }),
     teachYearsArr:A([{name: 0}, {name: 1}, {name: 2}, {name: 3}, {name: 4}, {name: 5}, {name: 6}, {name: 7}, {name: 8}, {name: 9}, {name: 10}, {name: 11}, {name: 12}, {name: 13}, {name: 14}, {name: 15}, {name: 16}, {name: 17}, {name: 18}, {name: 19}, {name: 20}]),
-    jobArr:A([{name: '校長'}, {name: '教務主任'}, {name: '課程顧問'}, {name: '教師'}]),
+    jobArr:A([{name: '校长'}, {name: '教务主任'}, {name: '课程顾问'}, {name: '教师'}]),
 
     actions: {
         cancelTechBtnClicked() {

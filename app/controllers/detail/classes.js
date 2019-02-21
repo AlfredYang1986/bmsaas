@@ -26,6 +26,10 @@ export default Controller.extend({
     tmpUnit: null,
     selectedStuds: A([]),
 
+    techErrorFlag: false,
+    dutyErrorFlag: false,
+    formErrorFlag: false,
+
     cur_idx: 0,
     // sessions: computed(function(){
     //     // TODO : 这里为啥是reservalbeitem， 问产品
@@ -117,8 +121,12 @@ export default Controller.extend({
             this.set('removeTechDlg', false);
             this.set('removeStudDlg', false);
             this.set('removeUnitDlg', false);
-            this.set('noteError', false);
+            this.set('techErrorFlag', false);
+            this.set('dutyErrorFlag', false);
+            this.set('formErrorFlag', false);
             this.set('selectedStuds', A([]));
+            this.set('addTechId', "");
+            this.set('addJobDuty', "");
         },
         onEditClassClick() {
             this.set('classTitle', this.model.class.classTitle);
@@ -142,45 +150,64 @@ export default Controller.extend({
             this.model.class.save().then(onSuccess, onFail)
         },
         addTechHandled() {
-            let addTech = null
-            let addDuty = this.store.createRecord("duty")
-            if(this.model.class.duties != null) {
-                for(let idx = 0;idx < this.model.class.duties.length;idx++) {
-                    if(this.addTechId == this.model.class.duties.objectAt(idx).teacher.get("id")) {
-                        this.toast.error('', '已存在当前教师', this.toastOptions);
-                        return;
+            if(this.addTechId == null || this.addTechId == "") {
+                this.set("techErrorFlag", true);
+            } else {
+                this.set("techErrorFlag", false);
+            }
+            if(this.addJobDuty == null || this.addJobDuty == "") {
+                this.set("dutyErrorFlag", true);
+            } else {
+                this.set("dutyErrorFlag", false);
+            }
+            if(this.techErrorFlag || this.dutyErrorFlag) {
+                this.set("formErrorFlag", true);
+            } else {
+                this.set("formErrorFlag", false);
+            }
+            if(this.formErrorFlag) {
+                return;
+            } else {
+                let addTech = null
+                let addDuty = this.store.createRecord("duty")
+                if(this.model.class.duties != null) {
+                    for(let idx = 0;idx < this.model.class.duties.length;idx++) {
+                        if(this.addTechId == this.model.class.duties.objectAt(idx).teacher.get("id")) {
+                            this.toast.error('', '已存在当前教师', this.toastOptions);
+                            return;
+                        }
                     }
                 }
-            }
-            let that = this;
-            let onSuccess = function () {
-                that.set('addTechDlg', false);
-                that.set("addTechId", "");
-                that.set("addJobDuty", "");
-                that.toast.success('', '添加老师成功', that.toastOptions);
-            }
-            let onFail = function () {
-                that.toast.error('', '添加老师失败', that.toastOptions);
-            }
-
-            for(let idx = 0;idx < this.model.techs.length;idx++) {
-                if(this.addTechId == this.model.techs.objectAt(idx).id) {
-                    // this.model.transTech(this.model.techs.objectAt(idx))
-                    addTech = this.model.techs.objectAt(idx);
+                let that = this;
+                let onSuccess = function () {
+                    that.set('addTechDlg', false);
+                    that.set("addTechId", "");
+                    that.set("addJobDuty", "");
+                    that.toast.success('', '添加老师成功', that.toastOptions);
                 }
-            }
-            addDuty.save().then(() => {
-                addDuty.set("teacherDuty", this.addJobDuty)
-                addDuty.set("teacher", addTech)
+                let onFail = function () {
+                    that.toast.error('', '添加老师失败', that.toastOptions);
+                }
+    
+                for(let idx = 0;idx < this.model.techs.length;idx++) {
+                    if(this.addTechId == this.model.techs.objectAt(idx).id) {
+                        // this.model.transTech(this.model.techs.objectAt(idx))
+                        addTech = this.model.techs.objectAt(idx);
+                    }
+                }
                 addDuty.save().then(() => {
-                    this.model.class.duties.pushObject(addDuty);
-                    this.model.class.save().then(onSuccess, onFail)
+                    addDuty.set("teacherDuty", this.addJobDuty)
+                    addDuty.set("teacher", addTech)
+                    addDuty.save().then(() => {
+                        this.model.class.duties.pushObject(addDuty);
+                        this.model.class.save().then(onSuccess, onFail)
+                    },() => {
+                        that.toast.error('', '添加老师失败', that.toastOptions);
+                    })
                 },() => {
                     that.toast.error('', '添加老师失败', that.toastOptions);
                 })
-            },() => {
-                that.toast.error('', '添加老师失败', that.toastOptions);
-            })
+            }
         },
         addStudHandled() {
             let that = this;

@@ -145,20 +145,32 @@
             {{#layout-push direction='row'}}
                 <p class="title">添加教师</p>
             {{/layout-push}}
-            {{#if noteError}}
+            {{#if formErrorFlag}}
                 <div class="form-checked">
                     {{#layout-push direction='row' classNames="error-line"}}
                         <img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
-                        <span class="error-info">请填写完整信息</span>
+                        <span class="error-info">请检查表单内容</span>
                     {{/layout-push}}
                 </div>
             {{/if}}
-            {{#layout-push direction="col" classNames='input_area' }}
-                {{bmform/bm-base-select type="id" idType=true selTitle="选择教师" options=model.techs curSelect=addTechId classNames="input_area area-margin-bottom"}}
-            {{/layout-push}}
-            {{#layout-push direction="col" classNames='input_area' }}
-                {{bmform/bm-base-select selId="job" selTitle="选择职责" options=jobDuty curSelect=addJobDuty classNames="input_area area-margin-bottom"}}
-            {{/layout-push}}
+            {{#if techErrorFlag}}
+                {{#layout-push direction="col" classNames='input_area' }}
+                    {{bmform/bm-base-select type="id" idType=true selTitle="选择教师" options=model.techs curSelect=addTechId classNames="error-border input_area area-margin-bottom"}}
+                {{/layout-push}}
+            {{else}}
+                {{#layout-push direction="col" classNames='input_area' }}
+                    {{bmform/bm-base-select type="id" idType=true selTitle="选择教师" options=model.techs curSelect=addTechId classNames="input_area area-margin-bottom"}}
+                {{/layout-push}}
+            {{/if}}
+            {{#if dutyErrorFlag}}
+                {{#layout-push direction="col" classNames='input_area' }}
+                    {{bmform/bm-base-select selId="job" selTitle="选择职责" options=jobDuty curSelect=addJobDuty classNames="error-border input_area area-margin-bottom"}}
+                {{/layout-push}}
+            {{else}}
+                {{#layout-push direction="col" classNames='input_area' }}
+                    {{bmform/bm-base-select selId="job" selTitle="选择职责" options=jobDuty curSelect=addJobDuty classNames="input_area area-margin-bottom"}}
+                {{/layout-push}}
+            {{/if}}
         {{/layout-push}}
     </div>
 {{/bmcom/bm-modal-container}}
