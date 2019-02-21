@@ -58,7 +58,7 @@ export default Controller.extend({
     actions: {
         /* 今天全部预约与注册*/
         handleBookPageChange (pagenum) {
-
+            this.set('pageNum', pagenum)
         },
         onTabClicked(tabIdx) {},
         saveInfo() {
