@@ -4,10 +4,10 @@
     {{#if (eq applies.length 0)}}
         {{bmcom/bm-empty-state class="inbox-empty-state" picUrl="/images/img_empty@2x.png" title="暂无数据" des="请添加待预约学员"}}
     {{else}}
-        {{#if reserveType}}
-            {{bmtable/bm-table-inner type="inbox" listData=applies action="setCurrentApply"}}
+        {{#if (eq applies.firstObject.courseType -1)}}
+            {{bmtable/bm-table-inner type="preRegister" listData=applies registerId=registerId action='setCurrentApply'}}
         {{else}}
-            {{bmtable/bm-table-inner type="preRegister" listData=applies registerId=registerId addStud=(action 'onPreRegisterClick')}}
+            {{bmtable/bm-table-inner type="inbox" listData=applies action="setCurrentApply"}}
         {{/if}}
     {{/if}}
 </table>
