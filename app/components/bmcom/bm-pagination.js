@@ -6,7 +6,7 @@ export default Component.extend({
         this._super(...arguments);
         this.createPageGroup()
     },
-    positionalParams: ['pageCount'],
+    positionalParams: ['pageCount', 'curPage'],
     curPage: 1,
     pageGroup: null,
     nextFlag: computed('curPage', 'pageCount', function() {
