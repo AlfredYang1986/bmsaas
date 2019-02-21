@@ -143,6 +143,7 @@ export default Controller.extend({
             }
         },
         afterClassChange() {
+            // window.console.log(this.cur_class_id);
             let tempClass = this.store.peekRecord("class", this.cur_class_id);
             this.set("tempDuties", tempClass.duties);
             let tmpArr = A([]);
@@ -151,6 +152,7 @@ export default Controller.extend({
             });
             this.set("tempTechs", tmpArr);
             this.set("cur_tech_id", "");
+            
             // 有BUG 选择的班级没有老师时触发
         },
         onPanelClick() {
@@ -233,7 +235,7 @@ export default Controller.extend({
         checkEnd.setDate(1);
         checkEnd.setSeconds(0);
         checkEnd.setMilliseconds(0);
-        return checkStart <= checkEnd;
+        return checkStart < checkEnd;
     },
     handleDate(date,time) {
         let tmpDate = new Date(date)
