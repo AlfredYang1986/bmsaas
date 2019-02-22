@@ -21,10 +21,9 @@
 
 .course_content {
     background: #f7f8fa;
-    padding: 0;
-    margin: 24px;
-    margin-bottom: 0;
-    min-height: calc(100vh - 88px);
+    padding: 24px;
+    // margin-bottom: 0;
+    height: calc(100vh - 79px);
 
     .course-title-flex{
         background: $color-neutral-N000;
@@ -63,10 +62,13 @@
         height: calc(100vh - 192px);
     }
     .course-card-wrap{
+        margin-bottom: 24px;
         background: $color-neutral-N000;
         flex-wrap: wrap;
         padding: 24px;
-        min-height: calc(100vh - 168px);
+        height: 750px;
+        overflow: auto;
+        // height: calc(100vh - 168px);
         align-content: flex-start;
 
         .course_card_container {
