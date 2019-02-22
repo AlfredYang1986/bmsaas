@@ -10,6 +10,7 @@ export default DS.Model.extend({
     // reservableId: DS.attr('string'),
     startDate: DS.attr('number', { defaultValue: 0}),
     status: DS.attr('number', { defaultValue: 0}),
+    flag: DS.attr('number'),
     
     yard: DS.belongsTo('yard'),
     sessioninfo: DS.belongsTo('sessioninfo'),

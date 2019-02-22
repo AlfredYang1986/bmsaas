@@ -499,7 +499,7 @@
     min-width: 912px;
     margin-top: 24px;
     height: 24px;
-    cursor: pointer;
+    
     .ib_tab_btn {
         min-width: 80px;
         padding: 0 16px;
@@ -509,7 +509,7 @@
         color: #42526E;
         text-align: center;
         line-height: 20px;
-
+        cursor: pointer;
     }
     .ib_tab_btn_active {
         color: #3172E0;
