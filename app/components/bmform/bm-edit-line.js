@@ -31,8 +31,8 @@ export default Component.extend({
             // };
         },
         onKeyUp() {
-            // this.sendAction("onKeyUp");
-            this.onKeyUp();
+            this.sendAction("onKeyUp");
+            // this.onKeyUp();
         }
     }
 });

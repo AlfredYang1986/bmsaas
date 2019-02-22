@@ -5,9 +5,9 @@
         {{bmcom/bm-empty-state class="inbox-empty-state" picUrl="/images/img_empty@2x.png" title="暂无数据" des="请添加待预约学员"}}
     {{else}}
         {{#if (eq applies.firstObject.courseType -1)}}
-            {{bmtable/bm-table-inner type="preRegister" listData=applies registerId=registerId action='setCurrentApply'}}
+            {{bmtable/bm-table-inner type="preRegister" listData=applies registerId=registerId onClickInner=(action 'setCurrentApply')}}
         {{else}}
-            {{bmtable/bm-table-inner type="inbox" listData=applies action="setCurrentApply"}}
+            {{bmtable/bm-table-inner type="inbox" listData=applies onClickInner=(action "setCurrentApply")}}
         {{/if}}
     {{/if}}
 </table>
