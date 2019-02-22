@@ -153,10 +153,10 @@
         {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs needAction=true onTabClicked=(action "onTabClicked")}}
 
         {{#if (bmeq cur_idx 0)}}
-            {{#if (eq model.exp.classes.length 0)}}
+            {{#if (eq classes.length 0)}}
                 {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="暂无场次" des="点击右上角添加场次，安排体验课时间与场地吧"}}
             {{else}}
-                {{bmpage/bm-sessionable-lst titles=model.titles listData=model.exp.classes onClickInner=(action "linkToExpField") onEditSessionClick=(action "onEditSessionClick") onDeleteSessionClick=(action "onDeleteSessionClick")}}
+                {{bmpage/bm-sessionable-lst titles=model.titles listData=classes onClickInner=(action "linkToExpField") onEditSessionClick=(action "onEditSessionClick") onDeleteSessionClick=(action "onDeleteSessionClick")}}
                 {{!-- {{bmcom/bm-pagination pageCount=page_count curPage=pagenum sendPageNum=(action "handlePageChange")}} --}}
             {{/if}}
         {{/if}}
