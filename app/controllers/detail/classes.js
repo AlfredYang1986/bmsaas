@@ -235,9 +235,9 @@ export default Controller.extend({
         onEditArrcourseClick() {
 
         },
-        // onTabClicked(params) {
+        onTabClicked() {
 
-        // },
+        },
         onDeleteClassClick() {
             let that = this;
             let onSuccess = function() {

@@ -58,14 +58,14 @@ export default Controller.extend({
         handlePageChange (target_page) {
             this.set("classes",this.store.query('class', { 'page[number]': target_page, 'page[size]': 20, "sessioninfo-id": this.model.exp.get("id")}))
         },
-        // onTabClicked(tabIdx) {
+        onTabClicked() {
             // this.set('bm_sessionable_service.page', 0);
             // if (tabIdx == 0) {
             //     this.bm_sessionable_service.queryMultiObjects();
             // } else {
             //     // this.bm_sessionable_service.queryMultiObjects();
             // }
-        // },
+        },
         linkToExpField(idx) {
             // debug(this.model.expid)
             this.transitionToRoute('detail.exp-field', idx, this.model.exp.id);

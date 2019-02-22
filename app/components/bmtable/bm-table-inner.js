@@ -52,13 +52,19 @@ export default Component.extend({
 			let client = this.bmOss.get('ossClient');
 			this.iconData = [];
 			for(let idx = 0;idx < this.listData.length;idx++) {
+				window.console.log(this.listData);
+				
 				// if(this.listData[idx].iconUrl) {
 				// 	console.log(1)
 				// 	this.set("listData[idx].iconUrl", client.signatureUrl(this.listData[idx].icon));
 				// }
 				// this.listData[idx].iconUrl = client.signatureUrl(this.listData[idx].icon);
 				let tmpObj = {};
-				tmpObj.iconUrl = client.signatureUrl(this.listData.objectAt(idx).teacher.get("icon"));
+				if(this.listData.objectAt(idx).teacher.get("icon") != "" && this.listData.objectAt(idx).teacher.get("icon") != undefined) {
+					tmpObj.iconUrl = client.signatureUrl(this.listData.objectAt(idx).teacher.get("icon"));
+				} else {
+					tmpObj.iconUrl = ""
+				}
 				this.iconData.pushObject(tmpObj);
 			}
 		}

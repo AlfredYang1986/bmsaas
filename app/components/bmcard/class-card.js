@@ -53,7 +53,11 @@ export default Component.extend({
             for(let idx = 0;idx < this.cls.duties.length;idx++) {
                 if(idx < 3) {
                     let tmpObj = {};
-                    tmpObj.url = client.signatureUrl(this.cls.duties.objectAt(idx).teacher.get("icon"));
+                    if(this.cls.duties.objectAt(idx).teacher.get("icon") != "" && this.cls.duties.objectAt(idx).teacher.get("icon") != undefined) {
+                        tmpObj.url = client.signatureUrl(this.cls.duties.objectAt(idx).teacher.get("icon"));
+                    } else {
+                        tmpObj.url = ""
+                    }
                     this.techPics.pushObject(tmpObj)
                 }
             }
