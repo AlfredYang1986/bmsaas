@@ -350,7 +350,7 @@ export default Controller.extend({
         checkEnd.setDate(1);
         checkEnd.setSeconds(0);
         checkEnd.setMilliseconds(0);
-        return checkStart <= checkEnd;
+        return checkStart < checkEnd;
     },
     // generateSessionable() {
     //     if (this.showAddSessionDlg == true) {
