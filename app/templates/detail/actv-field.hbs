@@ -13,8 +13,8 @@
                     {{#layout-push direction='col' classNames="detail_margin_top_left"}}
                         {{!-- <span class="detail_panel_title_name">sda65f4d5f4ds65</span> --}}
                         <span class="detail_panel_title_name">
-                            {{bmdob/bmdobformat model.class.startDate}} 
-                            {{bmdob/bmdob2weekday model.class.startDate}} 
+                            {{bmdob/bmdobformat model.class.startDate}}
+                            {{bmdob/bmdob2weekday model.class.startDate}}
                             {{bmdob/bmdob2clocktime model.class.startDate}}-{{bmdob/bmdob2clocktime model.class.endDate}}
                         </span>
                     {{/layout-push}}
@@ -26,7 +26,7 @@
                             {{#menu.item align="right"}}
                                 {{#layout-push direction='col' classNames="dropdown-content"}}
                                     <a onclick={{action "onEditSessionable" dd.closeDropdown}}>编辑场次</a>
-                                    <a class="warning" onclick={{action (mut deleteSessionDlg) true dd.closeDropdown}}>删除场次</a>
+                                    {{!-- <a class="warning" onclick={{action (mut deleteSessionDlg) true dd.closeDropdown}}>删除场次</a> --}}
                                 {{/layout-push}}
                             {{/menu.item}}
                         {{/dd.menu}}

@@ -23,7 +23,7 @@
                             {{#menu.item align="right"}}
                                 {{#layout-push direction='col' classNames="dropdown-content"}}
                                     <a onclick={{action "onEditClassClick" dd.closeDropdown}}>编辑班级</a>
-                                    <a class="warning" onclick={{action (mut deleteClassDlg) true dd.closeDropdown}}>删除班级</a>
+                                    {{!-- <a class="warning" onclick={{action (mut deleteClassDlg) true dd.closeDropdown}}>删除班级</a> --}}
                                 {{/layout-push}}
                             {{/menu.item}}
                         {{/dd.menu}}
