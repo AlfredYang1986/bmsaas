@@ -16,7 +16,7 @@ export default Component.extend({
             let sel = document.getElementById(this.selId);
             this.set('sel', sel)
                 if(this.type == "number") {
-                    this.set('curSelect', parseInt(sel.options[sel.selectedIndex].value));
+                    this.set('curSelect', Number(sel.options[sel.selectedIndex].value));
                 } else if(this.type == "id") {
                     this.set('curSelect', sel.options[sel.selectedIndex].value);
                 } else {
