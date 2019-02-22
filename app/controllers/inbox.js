@@ -39,14 +39,20 @@ export default Controller.extend({
         let that = this;
         if(this.sr != null) {
             let onSrSuccess = function(res) {
-                that.set('srClasses', res.classes);
+                that.store.query('class', { 'page[number]': 1, 'page[size]': 20, "reservableitem-id": res.id}).then((resu) =>{
+                    that.set('srClasses', resu);
+                })
+
             }
             let onSrFail = function() {}
             that.store.find('reservableitem', that.sr).then(onSrSuccess, onSrFail)
         }
         if(this.sa != null) {
             let onSaSuccess = function(res) {
-                that.set('saClasses', res.classes);
+                // that.set('saClasses', res.classes);
+                that.store.query('class', { 'page[number]': 1, 'page[size]': 20, "reservableitem-id": res.get("id")}).then((resu) =>{
+                    that.set('srClasses', resu);
+                })
             }
             let onSaFail = function() {}
             that.store.find('reservableitem', that.sa).then(onSaSuccess, onSaFail)
@@ -82,12 +88,13 @@ export default Controller.extend({
                 stud.set('gender', kid.gender)
                 stud.set('dob', kid.dob);
                 stud.set('guardianRole', kid.guardianRole);
+                stud.set('contact', apply.contact)
                 stud.set('brandId', localStorage.getItem('brandid') )
 
                 stud.guardians.pushObject(guar)
                 stud.guardians.objectAt(0).set('name', applicant.content.name);
                 stud.guardians.objectAt(0).set('gender', applicant.content.gender);
-                stud.guardians.objectAt(0).set('contact', applicant.content.regiPhone);
+                stud.guardians.objectAt(0).set('contact', apply.contact);
                 stud.guardians.objectAt(0).set('regDate', new Date().getTime());
                 stud.guardians.objectAt(0).set('relationShip', kid.guardianRole);
                 let onSuccess = function() {
@@ -157,12 +164,13 @@ export default Controller.extend({
         stud.set('gender', kid.gender)
         stud.set('dob', kid.dob);
         stud.set('guardianRole', kid.guardianRole);
+        stud.set('contact', apply.contact)
         stud.set('brandId', localStorage.getItem('brandid') )
 
         stud.guardians.pushObject(guar)
         stud.guardians.objectAt(0).set('name', applicant.content.name);
         stud.guardians.objectAt(0).set('gender', applicant.content.gender);
-        stud.guardians.objectAt(0).set('contact', applicant.content.regiPhone);
+        stud.guardians.objectAt(0).set('contact', apply.contact);
         stud.guardians.objectAt(0).set('regDate', new Date().getTime());
         stud.guardians.objectAt(0).set('relationShip', kid.guardianRole);
 
@@ -201,12 +209,13 @@ export default Controller.extend({
         stud.set('gender', kid.gender)
         stud.set('dob', kid.dob);
         stud.set('guardianRole', kid.guardianRole);
+        stud.set('contact', apply.contact)
         stud.set('brandId', localStorage.getItem('brandid') )
 
         stud.guardians.pushObject(guar)
         stud.guardians.objectAt(0).set('name', applicant.content.name);
         stud.guardians.objectAt(0).set('gender', applicant.content.gender);
-        stud.guardians.objectAt(0).set('contact', applicant.content.regiPhone);
+        stud.guardians.objectAt(0).set('contact', apply.contact);
         stud.guardians.objectAt(0).set('regDate', new Date().getTime());
         stud.guardians.objectAt(0).set('relationShip', kid.guardianRole);
 

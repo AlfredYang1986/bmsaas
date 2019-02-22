@@ -98,6 +98,7 @@
             </td>
         {{else if (bmeq type "courseInner")}}
             {{!-- <td class='ib_table_content_item'>{{index}}</td> --}}
+            {{log item}}
             <td class='ib_table_content_item'>{{item.name}}</td>
             <td class="ib_table_content_item">{{bmdob/bmdobformat item.dob}}</td>
             <td class="ib_table_content_item">
@@ -110,9 +111,10 @@
                 {{/if}}
             </td>
             <td class="ib_table_content_item">
-                {{#each item.guardians as |gardianItem|}}
+                {{!-- {{#each item.guardians as |gardianItem|}}
                     {{gardianItem.contact}}<br/>
-                {{/each}}
+                {{/each}} --}}
+                {{item.contact}}
             </td>
             <td class="ib_table_content_item">小程序</td>
             {{!-- <td  class="ib_table_content_item">
