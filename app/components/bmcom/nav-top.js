@@ -1,6 +1,5 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
 
 
 export default Component.extend({
@@ -18,7 +17,7 @@ export default Component.extend({
             that.set('title', res.get('title'));
         }
         let onFail = function() {}
-        let tmp = this.store.findRecord('brand', localStorage.getItem("brandid")).then(onSuccess, onFail);
+        this.store.findRecord('brand', localStorage.getItem("brandid")).then(onSuccess, onFail);
     },
 
     actions: {

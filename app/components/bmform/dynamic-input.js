@@ -8,7 +8,7 @@ const inputObject = EmberObject.extend({});
 export default Component.extend({
     tagNmae: '',
     classNames: 'bm-dynamic-input',
-    disabled: true,
+    // disabled: true,
     limit: 10,
     listInputs: A([]),
     innerData: A([]),

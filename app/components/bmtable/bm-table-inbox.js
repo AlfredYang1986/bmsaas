@@ -26,7 +26,7 @@ export default Component.extend({
         } else if (this.isPreReg == 0 && this.reserveType == 1) {
             result = this.store.query('apply', { 'page[number]':  this.curPage, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), "ne[course-type]": -1, 'gte[apply-time]': today.getTime()})
 		}
-		result.then(res => {
+		result.then(() => {
 			let pageCount = localStorage.getItem('applies-count')
 			let page = Number.parseInt(localStorage.getItem('applies'));
 			this.onRefreshDataComplete(pageCount+' '+page)

@@ -1,17 +1,17 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import { debug } from '@ember/debug';
 import { computed } from '@ember/object';
+import EmberObject from '@ember/object';
 
 
 export default Controller.extend({
     toast: service(),
-    toastOptions: {
+    toastOptions: EmberObject.create({
         closeButton: false,
         positionClass: 'toast-top-center',
         progressBar: false,
         timeOut: '2000',
-    },
+    }),
     // openStatus: computed('bm_exp_service', function(){
     //     debug(this.bm_exp_service.exp)
     //     if(this.bm_exp_service.exp.start_date === -1 || this.bm_exp_service.exp.end_date === -1){
@@ -58,16 +58,16 @@ export default Controller.extend({
         handlePageChange (target_page) {
             this.set("classes",this.store.query('class', { 'page[number]': target_page, 'page[size]': 20, "sessioninfo-id": this.model.exp.get("id")}))
         },
-        onTabClicked(tabIdx) {
+        // onTabClicked(tabIdx) {
             // this.set('bm_sessionable_service.page', 0);
             // if (tabIdx == 0) {
             //     this.bm_sessionable_service.queryMultiObjects();
             // } else {
             //     // this.bm_sessionable_service.queryMultiObjects();
             // }
-        },
+        // },
         linkToExpField(idx) {
-            debug(this.model.expid)
+            // debug(this.model.expid)
             this.transitionToRoute('detail.exp-field', idx, this.model.exp.id);
         },
         onOpenExpClick() {
@@ -161,21 +161,6 @@ export default Controller.extend({
             let tmpUnit = this.tmpSessionable.units.objectAt(0);
             this.model.exp.classes.removeObject(this.tmpSessionable)
             this.model.exp.save().then(onSuccess, onFail);
-
-            // let callback = {
-            //     onSuccess: function() {
-            //         that.bm_sessionable_service.set('refresh_all_token', that.bm_sessionable_service.guid());
-            //         that.toast.success('', '删除场次成功', that.toastOptions);
-            //         that.set('deleteSessionDlg', false);
-            //         debug('delete　reservable　success')
-            //     },
-            //     onFail: function() {
-            //         that.toast.error('', '删除场次失败', that.toastOptions);
-            //         debug('delete　reservable　fail')
-            //     }
-            // }
-            // this.bm_sessionable_service.deleteSessionable(callback,this.tmpSessionable);
-            // this.set('tmpSessionable', "");
         },
         cancelHandled() {
             this.set('tmpSessionable', "");
@@ -362,8 +347,8 @@ export default Controller.extend({
         let tmpDate = new Date(date)
         let tmpTime = new Date(time)
         let result = new Date(tmpDate.getFullYear(), tmpDate.getMonth(), tmpDate.getDate(), tmpTime.getHours(), tmpTime.getMinutes(), tmpTime.getSeconds())
-        debug(tmpTime)
-        debug(result)
+        // debug(tmpTime)
+        // debug(result)
         return result.getTime();
     },
     getTimeDay(time) {

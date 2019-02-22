@@ -1,5 +1,6 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
+import EmberObject from '@ember/object';
 
 export default Controller.extend({
     isCreate: false,
@@ -7,12 +8,12 @@ export default Controller.extend({
     cur_cate_id: '',
     savePicDoneFlag: false,
     toast: service(),
-    toastOptions: {
+    toastOptions: EmberObject.create({
         closeButton: false,
         positionClass: 'toast-top-center',
         progressBar: false,
         timeOut: '2000',
-    },
+    }),
     actions: {
         saveCourseBtnClicked(/*idx*/) {
             let that = this;
@@ -25,7 +26,6 @@ export default Controller.extend({
                 that.transitionToRoute('detail.exp', that.model.reservable.id);
             }
             let onFail = function ( /*err*/ ) {
-                debug('error');
             }
             if(that.model.course.cover) {
                 if(parseInt(that.model.course.alb) <= parseInt(that.model.course.aub)) {
@@ -58,7 +58,7 @@ export default Controller.extend({
 
         },
         cancelClicked() {
-            let that = this;
+            // let that = this;
             let resid = this.model.reservable.id;
             this.store.unloadRecord(this.model.course);
             this.store.unloadRecord(this.model.reservable);

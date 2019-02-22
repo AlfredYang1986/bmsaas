@@ -1,16 +1,17 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
+import EmberObject from '@ember/object';
 
 export default Controller.extend({
     deleteExpDlg: false,
     toast: service(),
     urls: null,
-    toastOptions: {
+    toastOptions: EmberObject.create({
         closeButton: false,
         positionClass: 'toast-top-center',
         progressBar: false,
         timeOut: '2000',
-    },
+    }),
     actions: {
         cancelHandled() {
             this.set('deleteExpDlg', false);

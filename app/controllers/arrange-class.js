@@ -1,7 +1,9 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
+// import { computed } from '@ember/object';
+import EmberObject from '@ember/object';
 import { A } from '@ember/array';
+
 
 export default Controller.extend({
     selectedYard: '',
@@ -9,12 +11,12 @@ export default Controller.extend({
 
     bm_clsarr_service: service(),
     toast: service(),
-    toastOptions: {
+    toastOptions: EmberObject.create({
         closeButton: false,
         positionClass: 'toast-top-center',
         progressBar: false,
         timeOut: '2000',
-    },
+    }),
 
     cur_room_id: "",
     cur_class_id: "",
@@ -40,11 +42,11 @@ export default Controller.extend({
     courseTimeArr:A([{name: 0.5}, {name: 1}, {name: 1.5}, {name: 2}, {name: 2.5}, {name: 3}, {name: 3.5}, {name: 4}, {name: 4.5}, {name: 5}]),
 
 
-    refreshSelected: computed(function(){
-        var sel = document.getElementById("yardselect");
-        this.set('selectedYard', sel.options[sel.selectedIndex].value);
-        return '';
-    }),
+    // refreshSelected: computed(function(){ 
+    //     var sel = document.getElementById("yardselect");
+    //     this.set('selectedYard', sel.options[sel.selectedIndex].value);
+    //     return '';
+    // }),
     actions: {
         yardChanged() {
             var sel = document.getElementById("yardselect");

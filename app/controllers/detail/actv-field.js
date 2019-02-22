@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
-import { debug } from '@ember/debug';
+import EmberObject from '@ember/object';
 
 export default Controller.extend({
     tableTitle: A(["孩子","生日","性别", "联系方式", "渠道"]),
@@ -9,12 +9,12 @@ export default Controller.extend({
     // bm_sessionable_service: service(),
     // bm_yard_service: service(),
     toast: service(),
-    toastOptions: {
+    toastOptions: EmberObject.create({
         closeButton: false,
         positionClass: 'toast-top-center',
         progressBar: false,
         timeOut: '2000',
-    },
+    }),
 
     urls: null,
     cur_room_id: "",

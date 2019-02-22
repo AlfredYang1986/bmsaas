@@ -43,7 +43,7 @@ export default Controller.extend({
         },
         saveTechBtnClicked() {
             let that = this;
-            this.model.tech.save().then((res) => {
+            this.model.tech.save().then(() => {
                 if (that.model.isPushing) {
                     that.transitionToRoute("detail.tech", that.model.tech.id)
                 } else {

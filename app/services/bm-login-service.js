@@ -1,7 +1,6 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import $ from 'jquery';
-import { debug } from '@ember/debug';
 
 export default Service.extend({
     // store: service(),
@@ -108,7 +107,6 @@ export default Service.extend({
                 callback.onSuccess(res);
             },
             error: function(err) {
-                debug(err);
                 callback.onFail(err);
             },
         })

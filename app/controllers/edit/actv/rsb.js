@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import { debug } from '@ember/debug';
+import EmberObject from '@ember/object';
 
 export default Controller.extend({
 
@@ -9,12 +9,12 @@ export default Controller.extend({
 
     savePicDoneFlag: false,
     toast: service(),
-    toastOptions: {
+    toastOptions: EmberObject.create({
         closeButton: false,
         positionClass: 'toast-top-center',
         progressBar: false,
         timeOut: '2000',
-    },
+    }),
 
     actions: {
         saveCourseBtnClicked(/*idx*/) {

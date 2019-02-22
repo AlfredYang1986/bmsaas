@@ -1,15 +1,15 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import { debug } from '@ember/debug';
+import EmberObject from '@ember/object';
 
 export default Controller.extend({
     toast: service(),
-    toastOptions: {
+    toastOptions: EmberObject.create({
         closeButton: false,
         positionClass: 'toast-top-center',
         progressBar: false,
         timeOut: '2000',
-    },
+    }),
     actions: {
         saveCourseBtnClicked() {
             let that = this;
@@ -22,7 +22,6 @@ export default Controller.extend({
                 that.transitionToRoute('detail.course', that.model.course.id);
             }
             let onFail = function ( /*err*/ ) {
-                debug('error');
             }
             // this.model.course.save().then(onSuccess, onFail);
             if(that.model.course.cover) {

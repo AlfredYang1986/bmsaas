@@ -2,16 +2,18 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 import { computed } from '@ember/object';
+import EmberObject from '@ember/object';
+
 
 export default Controller.extend({
 
     toast: service(),
-    toastOptions: {
+    toastOptions: EmberObject.create({
         closeButton: false,
         positionClass: 'toast-top-center',
         progressBar: false,
         timeOut: '2000',
-    },
+    }),
     titles: A(['全部', '未排课', 'On Going', 'Finished']),
     openFlag: true,
 

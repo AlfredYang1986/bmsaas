@@ -2,7 +2,7 @@ import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
-import { debug } from '@ember/debug';
+import EmberObject from '@ember/object';
 
 export default Controller.extend({
     cur_tab_idx: 0,
@@ -10,12 +10,12 @@ export default Controller.extend({
     pageNum: 1,
     toast: service(),
     tabs: A(['预约', '预注册']),
-    toastOptions: {
+    toastOptions: EmberObject.create({
         closeButton: false,
         positionClass: 'toast-top-center',
         progressBar: false,
         timeOut: '2000',
-    },
+    }),
 
     showhandledlg: false,
     showRegister: false,
@@ -41,14 +41,14 @@ export default Controller.extend({
             let onSrSuccess = function(res) {
                 that.set('srClasses', res.classes);
             }
-            let onSrFail = function(res) {}
+            let onSrFail = function() {}
             that.store.find('reservableitem', that.sr).then(onSrSuccess, onSrFail)
         }
         if(this.sa != null) {
             let onSaSuccess = function(res) {
                 that.set('saClasses', res.classes);
             }
-            let onSaFail = function(res) {}
+            let onSaFail = function() {}
             that.store.find('reservableitem', that.sa).then(onSaSuccess, onSaFail)
         }
     }),
@@ -60,7 +60,7 @@ export default Controller.extend({
         handleBookPageChange (pagenum) {
             this.set('pageNum', pagenum)
         },
-        onTabClicked(tabIdx) {},
+        onTabClicked() {},
         saveInfo() {
             this.set('modal3',false);
             let that = this;
@@ -93,7 +93,7 @@ export default Controller.extend({
                 let onSuccess = function() {
                     that.transitionToRoute('edit.stud', stud.id + ' ' + apply.id);
                 }
-                let onFail = function(err) {}
+                let onFail = function() {}
                 stud.save().then(onSuccess, onFail)
             } else {
                 this.set('sr', null);
@@ -104,8 +104,8 @@ export default Controller.extend({
             }
         },
 
-        successRegisterHandled(item) {},
-        onPreRegisterClick(item) {},
+        successRegisterHandled() {},
+        onPreRegisterClick() {},
         toggleAction() {
             let that = this;
             if(this.current_apply.courseType == 1) {
@@ -167,19 +167,19 @@ export default Controller.extend({
         stud.guardians.objectAt(0).set('relationShip', kid.guardianRole);
 
 
-        let onApplySuccess = function(res) {
+        let onApplySuccess = function() {
             apply.set('status', 1);
             apply.save();
             that.set('showhandledlg', false);
         }
-        let onApplyFail = function(err) {}
+        let onApplyFail = function() {}
 
         let onClassSuccess = function(res) {
             res.students.pushObject(stud);
             res.save().then(onApplySuccess, onApplyFail)
 
         }
-        let onClassFail = function(err) {}
+        let onClassFail = function() {}
 
         let onStudSuccess = function() {
             that.store.find('class', that.sy).then(onClassSuccess, onClassFail)
@@ -210,12 +210,12 @@ export default Controller.extend({
         stud.guardians.objectAt(0).set('regDate', new Date().getTime());
         stud.guardians.objectAt(0).set('relationShip', kid.guardianRole);
 
-        let onApplySuccess = function(res) {
+        let onApplySuccess = function() {
             apply.set('status', 1);
             apply.save();
             that.set('showhandledlg', false);
         }
-        let onApplyFail = function(err) {}
+        let onApplyFail = function() {}
 
         let onClassSuccess = function(res) {
             res.students.pushObject(stud);

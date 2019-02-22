@@ -1,5 +1,4 @@
 import Controller from '@ember/controller';
-import { debug } from '@ember/debug';
 import { A } from '@ember/array'
 
 export default Controller.extend({

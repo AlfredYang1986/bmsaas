@@ -1,6 +1,5 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
-import { inject as service } from '@ember/service';
 
 export default Component.extend({
 
@@ -33,7 +32,7 @@ export default Component.extend({
     }),
 
     exp_session_lst: computed('selectedReservable', function(){
-        let reservableitemid = this.selectedReservable;
+        // let reservableitemid = this.selectedReservable;
         return '';
     }),
 

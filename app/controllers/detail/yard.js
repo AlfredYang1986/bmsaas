@@ -1,15 +1,16 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
+import EmberObject from '@ember/object';
 
 export default Controller.extend({
     toast: service(),
-    toastOptions: {
+    toastOptions: EmberObject.create({
         closeButton: false,
         positionClass: 'toast-top-center',
         progressBar: false,
         timeOut: '2000',
-    },
+    }),
     edit_flag_info: "",
     edit_flag: false,
 
@@ -38,10 +39,10 @@ export default Controller.extend({
     curTabIdx: 0,
 
     actions: {
-        handlePageChange(pageNum) {
+        // handlePageChange(pageNum) {
             // this.set('bm_room_service.page', pageNum - 1);
             // this.bm_room_service.queryMultiObjects();
-        },
+        // },
         onAddYardClick() {
             this.transitionToRoute('edit.yard',"yard/push")
         },
@@ -90,22 +91,7 @@ export default Controller.extend({
             }
             this.model.yard.rooms.removeObject(this.tempRoom)
             this.model.yard.save().then(onSuccess, onFail);
-            // this.set('bm_room_service.roomid', this.tempRoom.id);
-            // let that = this;
-            // let callback = {
-            //     onSuccess: function () {
-            //         that.toast.success('', '删除教室成功', that.toastOptions);
-            //         that.bm_room_service.set('refresh_all_token', that.bm_room_service.guid());
-            //         that.set('deleteRoomDlg', false);
-            //         debug('delete　reservable　success')
-            //     },
-            //     onFail: function () {
-            //         that.toast.error('', '删除教室失败', that.toastOptions);
-            //         debug('delete　reservable　fail')
-            //     }
-            // }
-            // this.bm_room_service.deleteRoom(callback);
-            // this.set('tempRoom', null);
+
         },
         cancelHandled() {
             // this.set('tmpSessionable', "");

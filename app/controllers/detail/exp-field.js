@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
-import { debug } from '@ember/debug';
+import EmberObject from '@ember/object';
 
 export default Controller.extend({
     tableTitle: A(["孩子","生日","性别", "联系方式", "渠道"]),
@@ -9,12 +9,12 @@ export default Controller.extend({
     // bm_sessionable_service: service(),
     // bm_yard_service: service(),
     toast: service(),
-    toastOptions: {
+    toastOptions: EmberObject.create({
         closeButton: false,
         positionClass: 'toast-top-center',
         progressBar: false,
         timeOut: '2000',
-    },
+    }),
 
     urls: null,
     cur_room_id: "",
@@ -41,9 +41,9 @@ export default Controller.extend({
     
 
     actions: {
-        handlePageChange (pageNum) {
+        // handlePageChange (pageNum) {
             // this.set('bm_sessionable_service.curAttendeesPage',this.bm_sessionable_service.localAttendeesPages[pageNum - 1]) 
-        },
+        // },
         onEditSessionable() {
             // this.set('cur_yard_id', this.model.class.yard.id);
             this.set('cur_room_id', this.model.class.units.objectAt(0).room.get("id"));
@@ -77,34 +77,6 @@ export default Controller.extend({
             let tmpUnit = this.model.class.units.objectAt(0);
             this.model.exp.classes.removeObject(this.model.class)
             this.model.exp.save().then(onSuccess, onFail);
-            // let that = this;
-            // let onSuccess = function() {
-            //     that.model.class.deleteRecord();
-            //     that.model.class.save();
-            //     that.toast.success('', '删除场次成功', that.toastOptions);
-            //     that.set('deleteSessionDlg', false);
-            //     that.transitionToRoute("detail.exp", that.model.reexpid)
-            // }
-            // let onFail = function() {
-            //     that.toast.error('', '删除场次失败', that.toastOptions);
-            // }
-            // this.model.exp.classes.removeObject(this.model.class)
-            // this.model.exp.save().then(onSuccess, onFail);
-
-
-            // let that = this;
-            // let callback = {
-            //     onSuccess: function() {
-            //         that.set('deleteSessionDlg', false);
-            //         that.transitionToRoute('detail.exp', that.model.reexpid);
-            //         that.toast.success('', '删除场次成功', that.toastOptions);
-            //     },
-            //     onFail: function() {
-            //         that.toast.error('', '删除场次失败', that.toastOptions);
-            //         debug('delete　reservable　fail')
-            //     }
-            // }
-            // this.bm_sessionable_service.deleteSessionable(callback);
         },
         cancelHandled() {
             this.set('noteError', false);
@@ -119,20 +91,6 @@ export default Controller.extend({
         successHandled() {
             if (this.checkValidate() & this.checkTime()) {
                 let that = this;
-                // let onSuccess = function() {
-                //     that.toast.success('', '修改场次成功', that.toastOptions);
-                //     that.set('cur_tmp_date', new Date());
-                //     that.set('cur_start_date', new Date());
-                //     that.set('cur_end_date', new Date());
-                //     that.set('showEditSessionDlg', false);
-                // }
-                // let onFail = function() {
-                //     that.toast.error('', '修改场次失败', that.toastOptions);
-                // }
-                // this.model.class.set("startDate", this.handleDate(this.cur_tmp_date, this.cur_start_date))
-                // this.model.class.set("endDate", new Date(this.cur_end_date).getTime())
-                // this.model.class.save().then(onSuccess, onFail)
-                // this.set('edit_flag', false);
 
                 let onSuccess = function() {
                     that.toast.success('', '编辑场次成功', that.toastOptions);
@@ -156,35 +114,7 @@ export default Controller.extend({
                 },() => {
                     this.toast.error('', '编辑场次失败', this.toastOptions);
                 })
-            
-            // let that = this;
-            // if (this.cur_yard_id.length == 0) {
-            //     alert('shold add yard')
-            //     return
-            // }
 
-            // this.set("model.class.tmp_date", this.cur_tmp_date);
-            // this.set("model.class.start_date", this.cur_start_date);
-            // this.set("model.class.end_date", this.cur_end_date);
-
-            // let callback = {
-            //     onSuccess: function() {
-            //         that.bm_sessionable_service.set('refresh_token', that.bm_sessionable_service.guid());
-            //         that.toast.success('', '修改场次成功', that.toastOptions);
-            //     },
-            //     onFail: function() {
-            //         that.toast.error('', '修改场次失败', that.toastOptions);
-            //         debug('push sessionable fail')
-            //     }
-            // }
-
-            // this.bm_sessionable_service.resetInfoAndYard(this.cur_yard_id, this.bm_exp_service.exp.SessionInfo.id);
-            // this.bm_sessionable_service.resetTechs(this.model.class.Teachers);
-            // this.bm_sessionable_service.resetAttendee(this.model.class.Attendees);
-            // this.bm_sessionable_service.saveUpdate(callback);
-
-            // this.set('cur_yard_id', "");
-            // this.set('showEditSessionDlg', false);
             } else if (!this.checkValidate() & this.checkTime()) {
                 this.set('noteError', true);
                 this.set('noteTimeError', false);
@@ -207,8 +137,6 @@ export default Controller.extend({
         },
     },
     checkValidate() {
-        // return this.cur_yard_id != null && this.cur_yard_id != "";
-        // return true;
         return this.cur_room_id != null && this.cur_room_id != "";
     },
     checkTime() {

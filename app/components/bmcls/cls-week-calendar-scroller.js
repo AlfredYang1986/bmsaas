@@ -1,13 +1,12 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
-import { debug } from '@ember/debug';
 
 export default Component.extend({
 
     init() {
         this._super(...arguments);
-        this.get('resizeService').on('didResize', event => {
-            debug(event)
+        // this.get('resizeService').on('didResize', event => {
+        this.get('resizeService').on('didResize', () => {
             this.set('height', window.innerHeight - 344);
         })
     },

@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import { debug } from '@ember/debug';
+import EmberObject from '@ember/object';
 
 export default Controller.extend({
 
@@ -11,12 +11,12 @@ export default Controller.extend({
     
     urls: null,
     toast: service(),
-    toastOptions: {
+    toastOptions: EmberObject.create({
         closeButton: false,
         positionClass: 'toast-top-center',
         progressBar: false,
         timeOut: '2000',
-    },
+    }),
 
     cur_room_id: "",
     cur_rooms: null,
@@ -41,10 +41,10 @@ export default Controller.extend({
     deleteSessionDlg: false,
 
     actions: {
-        handlePageChange (pageNum) {
+        // handlePageChange (pageNum) {
             // this.set('bm_sessionable_service.page', pageNum - 1)
             // this.bm_sessionable_service.queryMultiObjects();
-        },
+        // },
         linkToActvField(idx) {
             // this.transitionToRoute('detail.actv-field', idx, this.bm_actv_service.actv.id);
             this.transitionToRoute('detail.actv-field', idx, this.model.actv.id);
@@ -240,11 +240,11 @@ export default Controller.extend({
             //         that.set('showAddSessionDlg', false);
             //         that.toast.success('', edit_flag_info + "场次成功", that.toastOptions);
             //         that.bm_sessionable_service.set('refresh_all_token', that.bm_sessionable_service.guid());
-            //         debug('push sessionable success')
+                    // debug('push sessionable success')
             //     },
             //     onFail: function() {
             //         that.toast.error('', edit_flag_info + '场次失败', that.toastOptions);
-            //         debug('push sessionable fail')
+                    // debug('push sessionable fail')
             //     }
             // }
             
@@ -324,8 +324,8 @@ export default Controller.extend({
         let tmpDate = new Date(date)
         let tmpTime = new Date(time)
         let result = new Date(tmpDate.getFullYear(), tmpDate.getMonth(), tmpDate.getDate(), tmpTime.getHours(), tmpTime.getMinutes(), tmpTime.getSeconds())
-        debug(tmpTime)
-        debug(result)
+        // debug(tmpTime)
+        // debug(result)
         return result.getTime();
     },
     getTimeDay(time) {
