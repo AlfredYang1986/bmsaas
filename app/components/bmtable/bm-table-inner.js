@@ -8,43 +8,48 @@ export default Component.extend({
 	dealed: false,
 	iconData: null,
     actions: {
-		onClickInner: function (params) {
-			this.sendAction("action", params);
+		onClickInner(params) {
+			// this.sendAction("action", params);
+			this.onClickInner(params)
 		},
-		onEditSessionClick: function (params) {
-			this.sendAction("onEditSessionClick", params);
+		onEditSessionClick(params) {
+			// this.sendAction("onEditSessionClick", params);
+			this.onEditSessionClick(params);
 		},
-		onDeleteSessionClick: function (params) {
-			this.sendAction("onDeleteSessionClick", params);
+		onDeleteSessionClick(params) {
+			// this.sendAction("onDeleteSessionClick", params);
+			this.onDeleteSessionClick(params);
 		},
-		onEditRoomClick: function (params) {
-			this.sendAction("onEditRoomClick", params);
+		onEditRoomClick(params) {
+			// this.sendAction("onEditRoomClick", params);
+			this.onEditRoomClick(params);
 		},
-		onDeleteRoomClick: function (params) {
-			this.sendAction("onDeleteRoomClick", params);
+		onDeleteRoomClick(params) {
+			// this.sendAction("onDeleteRoomClick", params);
+			this.onDeleteRoomClick(params);
 		},
         registerClick: function() {
         },
-        addStud(params) {
-            this.sendAction("addStud", params);
-		},
 		onRemoveTeacherClick(params) {
-			this.sendAction("onRemoveTeacherClick", params);
+			// this.sendAction("onRemoveTeacherClick", params);
+			this.onRemoveTeacherClick(params);
 		},
-		onStudDetailClick(params) {
-			this.sendAction("onStudDetailClick", params);
-		},
+		// onStudDetailClick(params) {
+		// 	this.sendAction("onStudDetailClick", params);
+		// },
 		onRemoveStudClick(params) {
-			this.sendAction("onRemoveStudClick", params);
+			// this.sendAction("onRemoveStudClick", params);
+			this.onRemoveStudClick(params);
 		},
-		onArrcourseClick(params) {
-			this.sendAction("onArrcourseClick", params);
-		},
-		onEditArrcourseClick(params) {
-			this.sendAction("onEditArrcourseClick", params);
-		},
+		// onArrcourseClick(params) {
+		// 	this.sendAction("onArrcourseClick", params);
+		// },
+		// onEditArrcourseClick(params) {
+		// 	this.sendAction("onEditArrcourseClick", params);
+		// },
 		onRemoveArrcourseClick(params) {
-			this.sendAction("onRemoveArrcourseClick", params);
+			// this.sendAction("onRemoveArrcourseClick", params);
+			this.onRemoveArrcourseClick(params);
 		},
 	},
 	didReceiveAttrs() {		
@@ -52,7 +57,7 @@ export default Component.extend({
 			let client = this.bmOss.get('ossClient');
 			this.iconData = [];
 			for(let idx = 0;idx < this.listData.length;idx++) {
-				window.console.log(this.listData);
+				// window.console.log(this.listData);
 				
 				// if(this.listData[idx].iconUrl) {
 				// 	console.log(1)

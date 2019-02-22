@@ -229,12 +229,12 @@ export default Controller.extend({
         onAddArrClassClick() {
             this.transitionToRoute("arrange-class")
         },
-        onArrcourseClick() {
+        // onArrcourseClick() {
 
-        },
-        onEditArrcourseClick() {
+        // },
+        // onEditArrcourseClick() {
 
-        },
+        // },
         onTabClicked() {
 
         },

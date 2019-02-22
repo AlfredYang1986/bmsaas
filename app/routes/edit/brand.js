@@ -7,6 +7,7 @@ export default Route.extend({
         var tmp = this.store.find('brand', localStorage.getItem("brandid")).then(data => {
             return new Promise(function(resolve, reject) {
                 resolve(data)
+                reject()
             })
         })
         return RSVP.hash({

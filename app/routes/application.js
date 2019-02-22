@@ -7,7 +7,7 @@ export default Route.extend({
 		// let token = this.get('cookies').read('token'),
 		let loginController = this.controllerFor('index');
 		let token = false;
-		let coo = document.cookie.split(";").map((ele) => {
+		document.cookie.split(";").map((ele) => {
 			if(ele != undefined) {
 				if(ele.indexOf('token') > -1) {
 					token = true;

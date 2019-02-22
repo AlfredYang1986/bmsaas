@@ -35,10 +35,12 @@ export default Component.extend({
     }),
 	actions: {
 		setCurrentApply(params) {
-			this.sendAction("action", params);
+			// this.sendAction("action", params);
+			this.setCurrentApply(params);
 		},
 		onPreRegisterClick(params) {
-			this.sendAction('onPreRegisterClick', params)
+			// this.sendAction('onPreRegisterClick', params)
+			this.onPreRegisterClick(params);
 		},
 		handleBookPageChange() {
 

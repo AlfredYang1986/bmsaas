@@ -31,8 +31,8 @@ export default Component.extend({
             // };
         },
         onKeyUp() {
-            // console.log("asfasd")
-            this.sendAction("onKeyUp");
+            // this.sendAction("onKeyUp");
+            this.onKeyUp();
         }
     }
 });

@@ -37,7 +37,7 @@
                 {{/if}}
             </tr>
         </table>
-        {{bmtable/bm-table-inbox reserveType=true isPreReg=cur_tab_idx reserveType=cur_reserve_type curPage=pageNum action="setCurrentApply" onRefreshDataComplete=(action 'refreshDataComplete')}}
+        {{bmtable/bm-table-inbox reserveType=true isPreReg=cur_tab_idx reserveType=cur_reserve_type curPage=pageNum setCurrentApply=(action "setCurrentApply") onRefreshDataComplete=(action 'refreshDataComplete')}}
         {{#if (eq page_count '0')}}
         {{else}}
             {{bmcom/bm-pagination pageCount=page_count curPage=pageNum sendPageNum=(action "handleBookPageChange")}}

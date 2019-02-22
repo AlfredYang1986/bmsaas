@@ -174,7 +174,7 @@
             {{/layout-push}}
         </div>
     {{/bmcom/bm-modal-container}}
-    {{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteSessionDlg cancelHandled='cancelHandled' successHandled="onDeleteSessionableClick"}}
+    {{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteSessionDlg cancelHandled=(action 'cancelHandled') successHandled=(action "onDeleteSessionableClick")}}
     <p class="warning-modal-body-content">您确定要删除该场次吗？</p>
     {{/bmcom/bm-warning-modal}}
 </div>

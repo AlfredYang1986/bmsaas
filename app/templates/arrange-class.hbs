@@ -10,7 +10,7 @@
     {{/if}}
 </div>
 
-{{#bmcom/bm-warning-modal title="删除课程安排" mainBtnText="删除" type="error" switchParam=removeUnitDlg cancelHandled='cancelHandled' successHandled="onDeleteUnitClickOk"}}
+{{#bmcom/bm-warning-modal title="删除课程安排" mainBtnText="删除" type="error" switchParam=removeUnitDlg cancelHandled=(action 'cancelHandled') successHandled=(action "onDeleteUnitClickOk")}}
     <p class="warning-modal-body-content">确定要删除此节课程安排吗？</p>
 {{/bmcom/bm-warning-modal}}
 

@@ -1,14 +1,6 @@
 import Controller from '@ember/controller';
-import { inject as service } from '@ember/service';
 
 export default Controller.extend({
-    // init() {
-    //     this._super(...arguments);
-    //     console.log(123)
-    //     this.skipListPage();
-    //     console.log(123)
-    // },
-    // bm_yard_service: service(),
     openFlag: false,
     actions: {
         cardClicked(idx) {

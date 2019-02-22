@@ -10,7 +10,7 @@
 			{{else}}
 				{{#layout-push direction="row" classNames="stud-list-area" }}
 					<table class='ib_table_head stud_list_table'>
-						{{bmtable/bm-table-inner type="studsList" listData=studs action="cardClicked"}}
+						{{bmtable/bm-table-inner type="studsList" listData=studs onClickInner=(action "cardClicked")}}
 					</table>
 				{{/layout-push}}
 				{{bmcom/bm-pagination pageCount=page_count curPage=pagenum sendPageNum=(action "handlePageChange")}}

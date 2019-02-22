@@ -1,7 +1,7 @@
 import Service from '@ember/service';
 import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
+// import { computed } from '@ember/object';
 
 export default Service.extend({
     store: service(),
@@ -61,6 +61,7 @@ export default Service.extend({
             return new Promise(function(resolve, reject){
                 that.timeUnitsSplits(res)
                 resolve(res)
+                reject()
             })
         })
     },

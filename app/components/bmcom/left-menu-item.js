@@ -14,7 +14,7 @@ export default Component.extend({
     positionalParams: ['icon', 'title', 'expendable'],
     actions: {
         toggle2() {
-            this.sendAction('toggle2');
+            // this.sendAction('toggle2');
             if(this.get('title') == "工作台") {
                 if(this.workClick) {
                     this.set('workClick', false);

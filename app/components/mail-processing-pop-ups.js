@@ -51,7 +51,8 @@ export default Component.extend({
                 this.set('courseReserve', true);
                 this.set('experienceApply', false);
             }
-            this.sendAction('toggleAction');
+            // this.sendAction('toggleAction');
+            this.toggleAction();
 
         },
         reservableChanged() {

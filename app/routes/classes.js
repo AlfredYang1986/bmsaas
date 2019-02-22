@@ -14,6 +14,7 @@ export default Route.extend({
                 } else {
                     resolve(res.firstObject)
                 }
+                reject()
             })
         })
         return RSVP.hash({

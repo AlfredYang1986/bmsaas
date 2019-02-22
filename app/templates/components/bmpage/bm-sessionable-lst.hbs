@@ -4,5 +4,5 @@
             <th class='ib_table_item'>{{item}}</th>
         {{/each}}
     </tr>
-    {{bmtable/bm-table-inner type="course" listData=listData action="onClick" onEditSessionClick="onEditSessionClick" onDeleteSessionClick="onDeleteSessionClick"}}
+    {{bmtable/bm-table-inner type="course" listData=listData onClickInner=(action "onClickInner") onEditSessionClick=(action "onEditSessionClick") onDeleteSessionClick=(action "onDeleteSessionClick")}}
 </table>

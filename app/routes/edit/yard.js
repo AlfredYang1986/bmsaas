@@ -2,17 +2,17 @@ import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 // import A from '@ember/array';
 
-Array.prototype.filterSync = async function (callback, thisArg) {
+// Array.prototype.filterSync = async function (callback, thisArg) {
 
-  let filterResult = await Promise.all(this.map(callback))
+//   let filterResult = await Promise.all(this.map(callback))
 
-  // > [true, false, true]
+//   // > [true, false, true]
 
 
 
-  return this.filter((_, index) => filterResult[index])
+//   return this.filter((_, index) => filterResult[index])
 
-}
+// }
 
 export default Route.extend({
     model() {
@@ -23,6 +23,7 @@ export default Route.extend({
                 } else {
                     resolve(res.firstObject)
                 }
+                reject()
             })
 
         })

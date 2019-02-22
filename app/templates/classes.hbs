@@ -72,7 +72,7 @@
         {{/layout-push}}
     </div>
 {{/bmcom/bm-modal-container}}
-{{#bmcom/bm-warning-modal title="创建成功" mainBtnText="完善班级信息" type="normal" switchParam=addSuccessDlg cancelHandled="cancelSuccessHandled" successHandled="onAddSuccess"}}
+{{#bmcom/bm-warning-modal title="创建成功" mainBtnText="完善班级信息" type="normal" switchParam=addSuccessDlg cancelHandled=(action "cancelSuccessHandled") successHandled=(action "onAddSuccess")}}
     <p class="warning-modal-body-content">您可以前往班级为该班级安排上课时间与授课教师</p>
 {{/bmcom/bm-warning-modal}}
 

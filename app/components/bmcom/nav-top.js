@@ -22,7 +22,8 @@ export default Component.extend({
 
     actions: {
         exitSystem() {
-            this.sendAction('onExitSystem');
+            // this.sendAction('onExitSystem');
+            this.onExitSystem();
         },
     }
 });

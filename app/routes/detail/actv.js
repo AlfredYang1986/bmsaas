@@ -11,6 +11,7 @@ export default Route.extend({
                 } else {
                     resolve(res.firstObject)
                 }
+                reject()
             })
         })
         let actv = this.store.findRecord('reservableitem', params.actvid);

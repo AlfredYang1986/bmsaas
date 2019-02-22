@@ -113,15 +113,15 @@
                                 {{/layout-push}}
                             </div>
                     {{/bmcom/bm-modal-container}}
-                    {{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteExpDlg cancelHandled='cancelHandled' successHandled="onDeleteExpClick"}}
+                    {{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteExpDlg cancelHandled=(action 'cancelHandled') successHandled=(action "onDeleteExpClick")}}
                         <p class="warning-modal-body-content">您确定要删除体验课「{{model.exp.sessioninfo.title}}」吗？</p>
                         <p class="warning-modal-body-content">删除后所有场次信息都将删除。</p>
                     {{/bmcom/bm-warning-modal}}
-                    {{#bmcom/bm-warning-modal title="关闭" mainBtnText="关闭" type="warning" switchParam=closeExpDlg cancelHandled='cancelHandled' successHandled="onShutdownExpClick"}}
+                    {{#bmcom/bm-warning-modal title="关闭" mainBtnText="关闭" type="warning" switchParam=closeExpDlg cancelHandled=(action 'cancelHandled') successHandled=(action "onShutdownExpClick")}}
                         <p class="warning-modal-body-content">您确定要关闭体验课吗？</p>
                         <p class="warning-modal-body-content">关闭后体验课将不在小程序中显示。</p>
                     {{/bmcom/bm-warning-modal}}
-                    {{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteSessionDlg cancelHandled='cancelHandled' successHandled="onDeleteSessionClickOk"}}
+                    {{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteSessionDlg cancelHandled=(action 'cancelHandled') successHandled=(action "onDeleteSessionClickOk")}}
                         <p class="warning-modal-body-content">您确定要删除该场次吗？</p>
                     {{/bmcom/bm-warning-modal}}
                 {{/layout-push}}
@@ -156,7 +156,7 @@
             {{#if (eq model.exp.classes.length 0)}}
                 {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="暂无场次" des="点击右上角添加场次，安排体验课时间与场地吧"}}
             {{else}}
-                {{bmpage/bm-sessionable-lst titles=model.titles listData=model.exp.classes action="linkToExpField" onEditSessionClick="onEditSessionClick" onDeleteSessionClick="onDeleteSessionClick"}}
+                {{bmpage/bm-sessionable-lst titles=model.titles listData=model.exp.classes onClickInner=(action "linkToExpField") onEditSessionClick=(action "onEditSessionClick") onDeleteSessionClick=(action "onDeleteSessionClick")}}
                 {{!-- {{bmcom/bm-pagination pageCount=page_count curPage=pagenum sendPageNum=(action "handlePageChange")}} --}}
             {{/if}}
         {{/if}}

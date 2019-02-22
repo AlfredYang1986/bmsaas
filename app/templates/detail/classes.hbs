@@ -68,7 +68,7 @@
                 {{#if (eq model.class.duties.length 0)}}
                     {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无教师" des="快去为孩子们选择教师吧" btnText="添加教师" onBtnClick=(action (mut addTechDlg) true)}}
                 {{else}}
-                    {{bmtable/bm-table-class-tech listData=model.class.duties titles=model.techTitles onRemoveTeacherClick="onRemoveTeacherClick"}}
+                    {{bmtable/bm-table-class-tech listData=model.class.duties titles=model.techTitles onRemoveTeacherClick=(action "onRemoveTeacherClick")}}
                     {{!-- {{bmcom/bm-pagination pageCount=bm_sessionable_service.totalPageCount sendPageNum=(action "handlePageChange")}} --}}
                 {{/if}}
             {{/if}}
@@ -77,7 +77,7 @@
                 {{#if (eq model.class.students.length 0)}}
                     {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无学生" des="快去添加孩子们吧" btnText="添加学生" onBtnClick=(action (mut addStudDlg) true)}}
                 {{else}}
-                    {{bmtable/bm-table-class-stud listData=model.class.students titles=model.studTitles onRemoveStudClick="onRemoveStudClick"}}
+                    {{bmtable/bm-table-class-stud listData=model.class.students titles=model.studTitles onRemoveStudClick=(action "onRemoveStudClick")}}
                     {{!-- {{bmcom/bm-pagination pageCount=bm_sessionable_service.totalPageCount sendPageNum=(action "handlePageChange")}} --}}
                 {{/if}}
             {{/if}}
@@ -86,7 +86,7 @@
                 {{#if (eq model.class.units.length 0)}}
                     {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无课程安排" des="快去添加课程安排吧" btnText="添加课程安排" onBtnClick=(action 'onAddArrClassClick')}}
                 {{else}}
-                    {{bmtable/bm-table-class-arrcourse listData=model.class.units titles=model.arrTitles onArrcourseClick="onArrcourseClick" onEditArrcourseClick="onEditArrcourseClick" onRemoveArrcourseClick="onRemoveArrcourseClick"}}
+                    {{bmtable/bm-table-class-arrcourse listData=model.class.units titles=model.arrTitles onRemoveArrcourseClick=(action "onRemoveArrcourseClick")}}
                     {{!-- {{bmcom/bm-pagination pageCount=bm_sessionable_service.totalPageCount sendPageNum=(action "handlePageChange")}} --}}
                 {{/if}}
             {{/if}}
@@ -128,7 +128,7 @@
         {{/layout-push}}
     </div>
 {{/bmcom/bm-modal-container}}
-{{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteClassDlg cancelHandled='cancelHandled' successHandled="onDeleteClassClick"}}
+{{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteClassDlg cancelHandled=(action 'cancelHandled') successHandled=(action "onDeleteClassClick")}}
     <p class="warning-modal-body-content">确定要删除「{{model.class.classTitle}}」的全部班级信息吗？</p>
     <p class="warning-modal-body-content">删除班级后与该班级相关的排课信息也会随之删除</p>
 {{/bmcom/bm-warning-modal}}
@@ -174,7 +174,7 @@
         {{/layout-push}}
     </div>
 {{/bmcom/bm-modal-container}}
-{{#bmcom/bm-warning-modal title="移出班级" mainBtnText="移出" type="error" switchParam=removeTechDlg cancelHandled='cancelHandled' successHandled="onRemoveTeacherClickOk"}}
+{{#bmcom/bm-warning-modal title="移出班级" mainBtnText="移出" type="error" switchParam=removeTechDlg cancelHandled=(action 'cancelHandled') successHandled=(action "onRemoveTeacherClickOk")}}
     <p class="warning-modal-body-content">确定要将老师「{{tmpTech.name}}」移出「{{model.class.classTitle}}」吗？</p>
 {{/bmcom/bm-warning-modal}}
 
@@ -193,11 +193,11 @@
         {{/layout-push}}
     </div>
 {{/bmcom/bm-modal-container}}
-{{#bmcom/bm-warning-modal title="移出班级" mainBtnText="移出" type="error" switchParam=removeStudDlg cancelHandled='cancelHandled' successHandled="onRemoveStudClickOk"}}
+{{#bmcom/bm-warning-modal title="移出班级" mainBtnText="移出" type="error" switchParam=removeStudDlg cancelHandled=(action 'cancelHandled') successHandled=(action "onRemoveStudClickOk")}}
     <p class="warning-modal-body-content">确定要将学生「{{tmpStud.name}}」移出「{{model.class.classTitle}}」吗？</p>
 {{/bmcom/bm-warning-modal}}
 
-{{#bmcom/bm-warning-modal title="删除课程安排" mainBtnText="删除" type="error" switchParam=removeUnitDlg cancelHandled='cancelHandled' successHandled="onRemoveArrcourseClickOk"}}
+{{#bmcom/bm-warning-modal title="删除课程安排" mainBtnText="删除" type="error" switchParam=removeUnitDlg cancelHandled=(action 'cancelHandled') successHandled=(action "onRemoveArrcourseClickOk")}}
     <p class="warning-modal-body-content">确定要删除此节课程安排吗？</p>
 {{/bmcom/bm-warning-modal}}
 {{outlet}}
