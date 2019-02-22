@@ -5,18 +5,17 @@
             {{#link-to 'edit.exp.rsb' classNames='course_add_btn'}}+ 创建体验课{{/link-to}}
         {{/layout-push}}
         {{#if (eq model.length 0)}}
-            {{bmcom/bm-empty-state class="yard-empty-state" picUrl="/images/img_empty@2x.png" title="暂无活动" des="请创建活动"}}
+            {{bmcom/bm-empty-state class="reservable-empty-state" picUrl="/images/img_empty@2x.png" title="暂无活动" des="请创建活动"}}
         {{else}}
             {{#layout-push direction="row" wrap=true classNames="course-card-wrap"}}
-                {{#each model as |item|}}
+                {{#each exp as |item|}}
                     <div class="line_container_warp course_card_container" >
                         {{bmcard/bm-reservable-card onCourseCardClicked=(action 'cardClicked') exp=item}}
                     </div>
                 {{/each}}
-                {{!-- {{bmcom/bm-pagination pageCount=page_count curPage=pagenum sendPageNum=(action "handlePageChange")}} --}}
             {{/layout-push}}
+            {{bmcom/bm-pagination pageCount=page_count curPage=pagenum sendPageNum=(action "handlePageChange")}}
         {{/if}}
-
     {{/layout-push}}
 </div>
 {{outlet}}
