@@ -21,23 +21,33 @@ export default Service.extend({
     }),
 
     token: computed('allCookies', function(){
-        let tmp = this.allCookies['token']
-        if (tmp !== null && tmp !== undefined && tmp.length > 0) {
-            localStorage.setItem('token', t)
-            return tmp
-        } else {
-            return ''
+        let value = ''
+        for (let idx = 0; idx < this.allCookies.length; idx++) {
+            let tmp = this.allCookies[idx]
+            if (tmp.name == 'token') {
+                value = tmp.value
+            } 
         }
+
+        if (value.length > 0) {
+            localStorage.setItem('token', value)
+        } 
+        return value
     }),
 
     brandId: computed('allCookies', function(){
-        let tmp = this.allCookies['brand-id']
-        if (tmp !== null && tmp !== undefined && tmp.length > 0) {
-            localStorage.setItem('brandid', bid)
-            return tmp
-        } else {
-            return ''
+        let value = ''
+        for (let idx = 0; idx < this.allCookies.length; idx++) {
+            let tmp = this.allCookies[idx]
+            if (tmp.name == 'brand-id') {
+                value = tmp.value
+            } 
         }
+
+        if (value.length > 0) {
+            localStorage.setItem('brandid', value)
+        } 
+        return value
     }),
 
     resetData(t, bid) {
@@ -57,5 +67,9 @@ export default Service.extend({
 
     bearerToken: computed('token', function(){
         return 'bearer ' + token
-    })
+    }),
+
+    isTokenValidata() {
+        return this.token.length > 0
+    },
 });

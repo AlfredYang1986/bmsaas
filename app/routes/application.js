@@ -1,31 +1,25 @@
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service'
 
 export default Route.extend({
-	// cookies: service(),
-	// bm_brand_service: service(),
+	bm_token: service(),
 	beforeModel(transition) {
-		// let token = this.get('cookies').read('token'),
-		let loginController = this.controllerFor('index');
-		let token = false;
-		document.cookie.split(";").map((ele) => {
-			if(ele != undefined) {
-				if(ele.indexOf('token') > -1) {
-					token = true;
-				}
-			}
-		});
-		
-		if (!token) {
-			if (transition.targetName !== 'index') {
-				loginController.set('previousTransition', transition);
-				loginController.set('applicationController', this.controllerFor('application'));
-			}
-			this.transitionTo('index');
-		} else if (transition.targetName === 'index') {
-			this.transitionTo('index');
-		} else {
-			loginController.set('previousTransition', transition);
-			loginController.set('applicationController', this.controllerFor('application'));
+		// TODO: 下面代码我都没看懂，写的什么意思
+		// if (!this.bm_token.isTokenValidata()) {
+		// 	if (transition.targetName !== 'index') {
+		// 		loginController.set('previousTransition', transition);
+		// 		loginController.set('applicationController', this.controllerFor('application'));
+		// 	}
+		// 	this.transitionTo('index');
+		// } else if (transition.targetName === 'index') {
+		// 	this.transitionTo('index');
+		// } else {
+		// 	loginController.set('previousTransition', transition);
+		// 	loginController.set('applicationController', this.controllerFor('application'));
+		// }
+
+		if (this.bm_token.isTokenValidata()) {
+			this.transitionTo('inbox');
 		}
 	},
 });
