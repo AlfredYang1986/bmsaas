@@ -20,7 +20,7 @@ export default Route.extend({
 		// }
 		
 		if (this.bm_token.isTokenValidata()) {
-			this.transitionTo('inbox');
+			// this.transitionTo('inbox');
 		} else {
 			this.transitionTo('index');
 		}
