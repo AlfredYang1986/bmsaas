@@ -49,21 +49,11 @@ export default Controller.extend({
     deleteExpDlg: false,
     closeExpDlg: false,
     deleteSessionDlg: false,
-
-    // classes: computed('pagenum', 'expid', function() {
-    //     debugger
-    //     let ps = this.store.query('class', { 'page[number]': this.pagenum, 'page[size]': 3, "reservable-id": this.model.exp.get("id")})
-    //     ps.then(res => {
-    //         this.set('total_count', localStorage.getItem('classes-count'))
-    //     })
-    //     return ps
-    // }),
     actions: {
         handlePageChange (target_page) {
             this.set('pagenum', target_page);
         },
         refreshDataComplete(res) {
-            debugger
             let paramsArr = res.split(' ');
             let count = paramsArr[0];
             let page = paramsArr[1];
@@ -71,15 +61,8 @@ export default Controller.extend({
             this.set('page_count', page)
         },
         onTabClicked() {
-            // this.set('bm_sessionable_service.page', 0);
-            // if (tabIdx == 0) {
-            //     this.bm_sessionable_service.queryMultiObjects();
-            // } else {
-            //     // this.bm_sessionable_service.queryMultiObjects();
-            // }
         },
         linkToExpField(idx) {
-            // debug(this.model.expid)
             this.transitionToRoute('detail.exp-field', idx, this.model.exp.id);
         },
         onOpenExpClick() {
@@ -147,14 +130,6 @@ export default Controller.extend({
             }).catch(err => {
                 that.toast.error('', that.edit_flag_info + '场次失败', that.toastOptions);
             })
-
-                        // let sel = document.getElementById('reservableselect');
-            // debug(sel)
-            // for(let idx = 0;idx < sel.options.length;idx++){
-            //     if (params.Yard.id === sel.options[idx].value) {
-            //         sel.options[idx].selected = "selected";
-            //     }
-            // }
         },
         onDeleteSessionClick(params) {
             this.set('tmpSessionable', params);
