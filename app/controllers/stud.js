@@ -3,7 +3,9 @@ import { computed } from '@ember/object';
 
 export default Controller.extend({
     pagenum: 1,
-    studs: computed(function() {
+    refreshFlag: false,
+
+    studs: computed("refreshFlag", function() {
         return this.store.query('student', { 'page[number]': 1, 'page[size]': 20, "brand-id": localStorage.getItem("brandid")})
     }),
     page_count: computed(function(){

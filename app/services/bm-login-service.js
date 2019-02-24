@@ -23,13 +23,13 @@ export default Service.extend({
                 },
                 data: dt,
                 success: function(res) {
-                    return resolve(new Promise(function(reso, rejtj){
-                        if (res.statue == 'error') {
-                            rejtj(res.error)
+                    return new Promise(function(){
+                        if (res.status == 'error') {
+                            reject(res.error)
                         } else {
-                            reso(res.result)
+                            resolve(res.result)
                         }
-                    }))
+                    })
                 },
                 error: function(err) {
                     reject(err)
