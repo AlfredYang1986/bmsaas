@@ -519,9 +519,10 @@
 }
 
 .bm-inbox-table {
-    height: 550px;
+    // height: 550px;
+    height: calc(100vh - 400px);
     overflow: auto;
-    margin: 24px 0;
+    margin-bottom: 24px;
 }
 .bm-sessionable-table {
     height: 560px;
