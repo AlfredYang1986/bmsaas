@@ -1,7 +1,6 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 import { A } from '@ember/array';
-import { inject as service } from '@ember/service';
 
 export default Route.extend({
     model(params) {
