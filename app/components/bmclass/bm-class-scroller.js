@@ -6,7 +6,7 @@ export default Component.extend({
         this._super(...arguments);
         // this.get('resizeService').on('didResize', event => {
         this.get('resizeService').on('didResize', () => {
-            this.set('height', window.innerHeight - 266);
+            this.set('height', window.innerHeight - 266 + 58);
         })
     },
 
@@ -14,7 +14,7 @@ export default Component.extend({
     tagName: 'div',
     classNames: ['bm-scroller', 'class-content-panel-scroller'],
     height: computed(function() {
-        return window.innerHeight - 266;
+        return window.innerHeight - 266 + 58;
     }),
     attributeBindings: ['style'],
     overflow: 'hidden auto',
