@@ -30,9 +30,13 @@ export default Component.extend({
 
             // };
         },
-        onKeyUp() {
-            this.sendAction("onKeyUp");
-            // this.onKeyUp();
+        // onKeyUp() {
+        //     this.sendAction("onKeyUp");
+        //     // this.onKeyUp();
+        // },
+        onFocusOut() {
+            // this.sendAction("onFocusOut");
+            this.onFocusOut();
         }
     }
 });

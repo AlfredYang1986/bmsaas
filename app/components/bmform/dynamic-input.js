@@ -49,7 +49,9 @@ export default Component.extend({
             // this.set('innerData', res);
             this.transToSourceFormat()
         },
-        onChange() {
+        onTextChange() {
+            // debugger
+            // e.preventDefault()
             this.transToSourceFormat()
         }
     },
