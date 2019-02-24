@@ -48,8 +48,6 @@ export default Controller.extend({
             this.set('total_count', count)
             this.set('page_count', page)
         },
-        onTabClicked() {
-        },
         linkToExpField(idx) {
             this.transitionToRoute('detail.exp-field', idx, this.model.exp.id);
         },

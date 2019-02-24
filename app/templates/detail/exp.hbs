@@ -150,7 +150,7 @@
             {{/layout-push}}
         </div>
 
-        {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs needAction=true onTabClicked=(action "onTabClicked")}}
+        {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs}}
 
         {{#if (bmeq cur_idx 0)}}
             {{bmpage/bm-sessionable-lst titles=model.titles resid=model.exp.id curPage=pagenum totalCount=totalCount onRefreshDataComplete=(action 'refreshDataComplete')  onClickInner=(action "linkToExpField") onEditSessionClick=(action "onEditSessionClick") onDeleteSessionClick=(action "onDeleteSessionClick")}}

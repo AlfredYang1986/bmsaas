@@ -4,11 +4,6 @@ import EmberObject from '@ember/object';
 import { computed } from '@ember/object';
 
 export default Controller.extend({
-
-    init() {
-        this._super(...arguments);
-    },
-    
     toast: service(),
     toastOptions: EmberObject.create({
         closeButton: false,
@@ -18,8 +13,9 @@ export default Controller.extend({
     }),
 
     pagenum: 1,
+    totalCount: 0,
     urls: null,
-    
+
     cur_room_id: "",
     cur_rooms: null,
 
@@ -29,7 +25,7 @@ export default Controller.extend({
     cur_tmp_date: Date(),
     cur_start_date: Date(),
     cur_end_date: Date(),
-    
+
     edit_flag_info: "",
     edit_flag: false,
     noteError: false,
@@ -48,18 +44,23 @@ export default Controller.extend({
         return ps
     }),
     actions: {
-        // handlePageChange (pageNum) {
-            // this.set('bm_sessionable_service.page', pageNum - 1)
-            // this.bm_sessionable_service.queryMultiObjects();
-        // },
+        handlePageChange (target_page) {
+            this.set('pagenum', target_page);
+        },
+        refreshDataComplete(res) {
+            let paramsArr = res.split(' ');
+            let count = paramsArr[0];
+            let page = paramsArr[1];
+            this.set('total_count', count)
+            this.set('page_count', page)
+        },
         linkToActvField(idx) {
-            // this.transitionToRoute('detail.actv-field', idx, this.bm_actv_service.actv.id);
             this.transitionToRoute('detail.actv-field', idx, this.model.actv.id);
         },
         onOpenActvClick() {
             this.model.actv.set("startDate", 0)
             this.model.actv.set("endDate", 0)
-            
+
             let that = this;
             let onSuccess = function() {
                 that.set('closeActvDlg', false);
@@ -103,7 +104,7 @@ export default Controller.extend({
         },
         onEditSessionClick(params) {
             this.set('tmpSessionable', params);
-            this.set('cur_room_id', params.units.objectAt(0).room.get("id"));
+            // this.set('cur_room_id', params.units.objectAt(0).room.get("id"));
             this.set('cur_tmp_date', this.getTimeDay(params.startDate));
             this.set('cur_start_date', params.startDate);
             this.set('cur_end_date', params.endDate);
