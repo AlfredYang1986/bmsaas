@@ -7,13 +7,7 @@
         {{#if (eq model.length 0)}}
             {{bmcom/bm-empty-state class="reservable-empty-state" picUrl="/images/img_empty@2x.png" title="暂无活动" des="请创建活动"}}
         {{else}}
-            {{#layout-push direction="row" wrap=true classNames="course-card-wrap"}}
-                {{#each exp as |item|}}
-                    <div class="line_container_warp course_card_container" >
-                        {{bmcard/bm-reservable-card onCourseCardClicked=(action 'cardClicked') exp=item}}
-                    </div>
-                {{/each}}
-            {{/layout-push}}
+            {{bmcom/bm-card-area onCourseCardClicked=(action 'cardClicked')  onRefreshDataComplete=(action 'refreshDataComplete') type='exp' curPage=pagenum}}
             {{bmcom/bm-pagination pageCount=page_count curPage=pagenum sendPageNum=(action "handlePageChange")}}
         {{/if}}
     {{/layout-push}}

@@ -8,13 +8,7 @@
             {{#if (eq model.length 0)}}
                 {{bmcom/bm-empty-state class="course-empty-state" picUrl="/images/img_empty@2x.png" title="暂无数据" des="请添加课程"}}
             {{else}}
-                {{#layout-push direction="row" wrap=true classNames="course-card-wrap"}}
-                    {{#each course as |item|}}
-                        <div class="line_container_warp course_card_container" >
-                            {{bmcard/course-card onCourseCardClicked=(action 'cardClicked') course=item}}
-                        </div>
-                    {{/each}}
-                {{/layout-push}}
+                {{bmcom/bm-card-area onCourseCardClicked=(action 'cardClicked')  onRefreshDataComplete=(action 'refreshDataComplete') type='course' curPage=pagenum}}
                 {{bmcom/bm-pagination pageCount=page_count curPage=pagenum sendPageNum=(action "handlePageChange")}}
             {{/if}}
         {{/layout-push}}

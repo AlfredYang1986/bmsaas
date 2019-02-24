@@ -17,11 +17,10 @@ export default Controller.extend({
             // this.transitionToRoute('edit.course');
         },
         handlePageChange(page_num) {
-            let that = this;
             this.set('pagenum', page_num)
-            this.store.query('reservableitem', { 'page[number]': page_num, 'page[size]': 16, 'status': 0, "brand-id": localStorage.getItem("brandid")}).then((res) => {
-                that.set('actv', res)
-            })
+        },
+        refreshDataComplete(page_Count) {
+            this.set('page_count', page_Count)
         }
     }
 });
