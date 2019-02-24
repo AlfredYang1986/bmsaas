@@ -50,7 +50,6 @@ export default Component.extend({
             this.transToSourceFormat()
         },
         onTextChange() {
-            // debugger
             // e.preventDefault()
             this.transToSourceFormat()
         }

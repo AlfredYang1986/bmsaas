@@ -97,7 +97,6 @@ export default Controller.extend({
             this.model.exp.save().then(onSuccess, onFail);
         },
         onEditSessionClick(params) {
-
             this.set('cur_tmp_date', this.getTimeDay(params.startDate));
             this.set('cur_start_date', params.startDate);
             this.set('cur_end_date', params.endDate);
