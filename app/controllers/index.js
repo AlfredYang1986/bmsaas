@@ -17,6 +17,7 @@ export default Controller.extend({
                 that.transitionToRoute('inbox');
             }).catch(err => {
                 // TODO: 错误处理    
+                window.console.log(err);
             })
         }
     },

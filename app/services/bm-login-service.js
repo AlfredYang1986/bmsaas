@@ -1,7 +1,7 @@
 import Service from '@ember/service';
-import { inject as service } from '@ember/service';
+// import { inject as service } from '@ember/service';
 import $ from 'jquery';
-import { reject } from 'rsvp';
+// import { reject } from 'rsvp';
 
 export default Service.extend({
     accountLogin(a, p) {
@@ -13,7 +13,7 @@ export default Service.extend({
         let dt = JSON.stringify(tmp);
 
         // let that = this
-        return new Promise(function(resolve, rejact){
+        return new Promise(function(resolve, reject){
             $.ajax({
                 method: 'POST',
                 url: '/v2/AccountValidation',
@@ -32,7 +32,7 @@ export default Service.extend({
                     }))
                 },
                 error: function(err) {
-                    reject(res)
+                    reject(err)
                 },
             })
         })

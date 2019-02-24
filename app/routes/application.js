@@ -4,6 +4,7 @@ import { inject as service } from '@ember/service'
 export default Route.extend({
 	bm_token: service(),
 	beforeModel(transition) {
+		window.console.log(transition);
 		// TODO: 下面代码我都没看懂，写的什么意思
 		// if (!this.bm_token.isTokenValidata()) {
 		// 	if (transition.targetName !== 'index') {
