@@ -19,17 +19,10 @@ export default Route.extend({
         })
         return RSVP.hash({
             courses: this.store.query('sessioninfo', { "brand-id": localStorage.getItem("brandid"), "status": 2}),
-            // classes: this.store.query('class', { "brand-id": localStorage.getItem("brandid"), "status": 2, "flag": 0}),
+            // courses: this.store.query('reservableitem', { "brand-id": localStorage.getItem("brandid"), "status": 2}),
             yard: tmp,
         })
     },
-
-    // afterModel(model, transition) {
-    //     this.set("curTransition", transition)
-    //     window.console.log(transition);
-    //     window.console.log(this.curTransition);
-    //     this.bm_breadcrumb_service.changeRoutes(transition,"班级")
-    // },
 
     activate() {
         if(this.get("controller") != undefined) {

@@ -13,9 +13,9 @@ export default DS.Model.extend({
     flag: DS.attr('number'),
     
     yard: DS.belongsTo('yard'),
-    // sessioninfo: DS.belongsTo('sessioninfo'),
+    sessioninfo: DS.belongsTo('sessioninfo'),
     students: DS.hasMany('student'),
-    // teachers: DS.hasMany('teacher'),
+    teachers: DS.hasMany('teacher'),
     duties: DS.hasMany('duty'),
     // units: DS.hasMany('unit'),
     reservableitem: DS.belongsTo('reservableitem'),

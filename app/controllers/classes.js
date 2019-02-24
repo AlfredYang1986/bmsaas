@@ -32,16 +32,16 @@ export default Controller.extend({
     cur_page: 1,
     cls: computed('cur_idx', 'cur_page', "refreshFlag", function(){
         // @sun 通过cur_idx 调整query的filter
-        // return this.store.query('class', { 'page[number]': this.cur_page, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), "status": 2})
-        if(this.cur_idx == 0) {
-            return this.store.query('class', { "brand-id": localStorage.getItem("brandid"), "status": 2, "flag": 0})
-        } else if(this.cur_idx == 1) {
-            return this.store.query('class', { "brand-id": localStorage.getItem("brandid"), "status": 2, "flag": -1})
-        } else if(this.cur_idx == 2) {
-            return this.store.query('class', { "brand-id": localStorage.getItem("brandid"), "status": 2, "flag": 1})
-        } else {
-            return this.store.query('class', { "brand-id": localStorage.getItem("brandid"), "status": 2, "flag": 2})
-        }
+        return this.store.query('class', { 'page[number]': this.cur_page, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), "status": 2})
+        // if(this.cur_idx == 0) {
+        //     return this.store.query('class', { "brand-id": localStorage.getItem("brandid"), "status": 2, "flag": 0})
+        // } else if(this.cur_idx == 1) {
+        //     return this.store.query('class', { "brand-id": localStorage.getItem("brandid"), "status": 2, "flag": -1})
+        // } else if(this.cur_idx == 2) {
+        //     return this.store.query('class', { "brand-id": localStorage.getItem("brandid"), "status": 2, "flag": 1})
+        // } else {
+        //     return this.store.query('class', { "brand-id": localStorage.getItem("brandid"), "status": 2, "flag": 2})
+        // }
     }),
 
     actions: {

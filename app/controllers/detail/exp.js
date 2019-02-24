@@ -135,14 +135,6 @@ export default Controller.extend({
             }).catch(err => {
                 that.toast.error('', that.edit_flag_info + '场次失败', that.toastOptions);
             })
-
-                        // let sel = document.getElementById('reservableselect');
-            // debug(sel)
-            // for(let idx = 0;idx < sel.options.length;idx++){
-            //     if (params.Yard.id === sel.options[idx].value) {
-            //         sel.options[idx].selected = "selected";
-            //     }
-            // }
         },
         onDeleteSessionClick(params) {
             this.set('tmpSessionable', params);
