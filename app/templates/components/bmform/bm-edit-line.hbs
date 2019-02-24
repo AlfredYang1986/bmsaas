@@ -56,7 +56,7 @@
         {{else if largeNumberInput}}
             {{input type="number" classNames="edit_text_field edit_text_field_large" placeholder=pholder value=inputVal key-press=(action "onKeyPress")}}
         {{else}}
-            {{input classNames="edit_text_field" maxlength=maxlength  placeholder=pholder value=inputVal key-up=(action "onKeyUp")}}
+            {{input classNames="edit_text_field" maxlength=maxlength  placeholder=pholder value=inputVal focusOut=(action "onFocusOut")}}
         {{/if}}
         {{#if (eq group 'append')}}
             <div class="input-group-append">
