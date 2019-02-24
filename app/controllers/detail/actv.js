@@ -4,6 +4,7 @@ import EmberObject from '@ember/object';
 import { computed } from '@ember/object';
 
 export default Controller.extend({
+
     toast: service(),
     toastOptions: EmberObject.create({
         closeButton: false,
@@ -191,10 +192,10 @@ export default Controller.extend({
 
                     //     return tmpUnit.save()
                     // })
-                    
+
                     this.tmpSessionable.set("startDate", this.handleDate(this.cur_tmp_date, this.cur_start_date))
                     this.tmpSessionable.set("endDate", new Date(this.cur_end_date).getTime())
-                    
+
                     tmpUnit.set("room", that.store.peekRecord("room", that.cur_room_id));
                     tmpUnit.set("startDate", this.tmpSessionable.startDate);
                     tmpUnit.set("endDate", this.tmpSessionable.endDate);
@@ -210,7 +211,7 @@ export default Controller.extend({
                         that.set('cur_end_date', new Date());
                         that.set('edit_flag', false);
                         that.set('showAddSessionDlg', false);
-                       
+
                     }).catch(err => {
                         this.toast.error('', edit_flag_info + '场次失败', this.toastOptions);
                     })
@@ -259,13 +260,15 @@ export default Controller.extend({
                     }).then(res => {
                         let ps = this.store.query('class', { 'page[number]': this.pagenum, 'page[size]': 20, "reservable-id": this.model.actv.get("id")})
                         this.set('classes', ps)
-                        ps.then(res => { this.set('total_count', localStorage.getItem('classes-count')) })
-                        
+                        ps.then(res => {
+                            that.set('totalCount', localStorage.getItem('classes-count'))
+                        })
+
                         that.set('showAddSessionDlg', false);
                         that.set('cur_tmp_date', new Date());
                         that.set('cur_start_date', new Date());
                         that.set('cur_end_date', new Date());
-                        
+
                         that.toast.success('', edit_flag_info + '场次成功', that.toastOptions);
                     }).catch(err => {
                         that.toast.error('', edit_flag_info + '场次失败', that.toastOptions);

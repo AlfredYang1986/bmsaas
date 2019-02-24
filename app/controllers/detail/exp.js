@@ -95,7 +95,6 @@ export default Controller.extend({
             }
             this.model.exp.deleteRecord(this.model.exp)
             this.model.exp.save().then(onSuccess, onFail);
-
         },
         onEditSessionClick(params) {
 
