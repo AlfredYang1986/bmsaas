@@ -18,9 +18,11 @@ export default Route.extend({
 		// 	loginController.set('previousTransition', transition);
 		// 	loginController.set('applicationController', this.controllerFor('application'));
 		// }
-
+		
 		if (this.bm_token.isTokenValidata()) {
 			this.transitionTo('inbox');
+		} else {
+			this.transitionTo('index');
 		}
 	},
 });

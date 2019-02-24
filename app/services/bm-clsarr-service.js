@@ -5,7 +5,6 @@ import { inject as service } from '@ember/service';
 
 export default Service.extend({
     store: service(),
-    bm_config: service(),
 
     init() {
         this._super(...arguments);

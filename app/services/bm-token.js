@@ -50,6 +50,10 @@ export default Service.extend({
         return value
     }),
 
+    bearerToken: computed('token', function(){
+        return 'bearer ' + this.token
+    }),
+
     resetData(t, bid) {
         this.set('token', t)
         this.set('brandId', bid)
@@ -62,12 +66,21 @@ export default Service.extend({
     clearToken() {
         this.set('token', '')
         this.set('brandId', '')
-        cookies.clear()
+        this.cookies.clear("brand-id")
+        this.cookies.clear("token")
+        this.cookies.clear("now")
+        // let options = {
+        //     // domain : "demo.dongdakid.com",
+        //     domain : "localhost",
+        //     path : "/"
+        // };
+        // this.cookies.clear(options)
     },
 
-    bearerToken: computed('token', function(){
-        return 'bearer ' + token
-    }),
+    clearAllCache() {
+        localStorage.clear();
+        this.clearToken();
+    },
 
     isTokenValidata() {
         return this.token.length > 0
