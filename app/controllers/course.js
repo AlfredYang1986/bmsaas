@@ -3,12 +3,6 @@ import { computed } from '@ember/object';
 
 export default Controller.extend({
     openFlag: true,
-    course: computed(function() {
-        return this.store.query('sessioninfo', { 'page[number]': 1, 'page[size]': 16, 'status': 2, "brand-id": localStorage.getItem("brandid")});
-    }),
-    page_count: computed(function(){
-        return Number.parseInt(localStorage.getItem('reservableitems'));
-    }),
     pagenum: 1,
     actions: {
         cardClicked(idx) {
@@ -23,6 +17,9 @@ export default Controller.extend({
             this.store.query('sessioninfo', { 'page[number]': page_num, 'page[size]': 16, 'status': 2,  "brand-id": localStorage.getItem("brandid")}).then((res) => {
                 that.set('course', res)
             })
+        },
+        refreshDataComplete(page_Count) {
+            this.set('page_count', page_Count)
         }
     }
 });
