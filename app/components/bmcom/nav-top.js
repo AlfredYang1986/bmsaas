@@ -1,9 +1,7 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 
-
 export default Component.extend({
-    // bm_brand_service: service(),
     bmOss: service(),
     store: service(),
     logo: '',
@@ -17,12 +15,19 @@ export default Component.extend({
             that.set('title', res.get('title'));
         }
         let onFail = function() {}
-        this.store.findRecord('brand', localStorage.getItem("brandid")).then(onSuccess, onFail);
+        
+        let tempBrand = this.store.peekRecord('brand', localStorage.getItem("brandid"));
+        if(tempBrand == null) {
+            this.store.findRecord('brand', localStorage.getItem("brandid")).then(onSuccess, onFail);
+        } else {
+            let logoImage = client.signatureUrl(tempBrand.get('logo'));
+            that.set('logo', logoImage);
+            that.set('title', tempBrand.get('title'));
+        }
     },
 
     actions: {
         exitSystem() {
-            // this.sendAction('onExitSystem');
             this.onExitSystem();
         },
     }

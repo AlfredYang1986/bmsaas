@@ -5,9 +5,7 @@ import EmberObject from '@ember/object';
 
 export default Controller.extend({
     tableTitle: A(["孩子","生日","性别", "联系方式", "渠道"]),
-    // bm_exp_service: service(),
-    // bm_sessionable_service: service(),
-    // bm_yard_service: service(),
+
     toast: service(),
     toastOptions: EmberObject.create({
         closeButton: false,
