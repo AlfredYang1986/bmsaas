@@ -230,7 +230,6 @@ export default Controller.extend({
                         that.toast.error('', edit_flag_info + '场次失败', that.toastOptions);
                     }
 
-                    // let tmpUnit = this.store.createRecord("unit", {"status": 1})
                     let tmpClass = this.store.createRecord("class");
                     tmpClass.set("startDate", this.handleDate(this.cur_tmp_date, this.cur_start_date));
                     tmpClass.set("endDate", new Date(this.cur_end_date).getTime());
@@ -239,10 +238,24 @@ export default Controller.extend({
                     tmpClass.set("brandId", localStorage.getItem('brandid'))
                     tmpClass.set("reservableitem", this.model.exp)
                     tmpClass.save().then(res => {
+                        let tmpUnit = this.store.createRecord("unit", {"status": 1})
+                        tmpUnit.set("brandId", localStorage.getItem('brandid'))
+                        tmpUnit.set("startDate", tmpClass.startDate);
+                        tmpUnit.set("endDate", tmpClass.endDate);
+                        tmpUnit.set("room", that.store.peekRecord("room", that.cur_room_id));
+                        tmpUnit.set("class", tmpClass);
+                        return tmpUnit.save()
+
+                    }).then(res => {
                         let ps = this.store.query('class', { 'page[number]': this.pagenum, 'page[size]': 20, "reservable-id": this.model.exp.get("id")})
                         this.set('classes', ps)
                         ps.then(res => { this.set('total_count', localStorage.getItem('classes-count')) })
+                        
                         that.set('showAddSessionDlg', false);
+                        that.toast.success('', edit_flag_info + '场次成功', that.toastOptions);
+                        that.set('cur_tmp_date', new Date());
+                        that.set('cur_start_date', new Date());
+                        that.set('cur_end_date', new Date());
                     }).catch(err => {
                         that.toast.error('', edit_flag_info + '场次失败', that.toastOptions);
                     })
