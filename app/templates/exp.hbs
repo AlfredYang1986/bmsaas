@@ -7,7 +7,7 @@
         {{#if (eq model.length 0)}}
             {{bmcom/bm-empty-state class="reservable-empty-state" picUrl="/images/img_empty@2x.png" title="暂无活动" des="请创建活动"}}
         {{else}}
-            {{bmcom/bm-card-area onCourseCardClicked=(action 'cardClicked')  onRefreshDataComplete=(action 'refreshDataComplete')}}
+            {{bmcom/bm-card-area onCourseCardClicked=(action 'cardClicked')  onRefreshDataComplete=(action 'refreshDataComplete') type='exp'}}
             {{bmcom/bm-pagination pageCount=page_count curPage=pagenum sendPageNum=(action "handlePageChange")}}
         {{/if}}
     {{/layout-push}}
