@@ -117,15 +117,26 @@ export default Controller.extend({
 
         },
         onEditSessionClick(params) {
-            this.set('tmpSessionable', params);
-            this.set('cur_room_id', params.units.objectAt(0).room.get("id"));
+
             this.set('cur_tmp_date', this.getTimeDay(params.startDate));
             this.set('cur_start_date', params.startDate);
             this.set('cur_end_date', params.endDate);
-            this.set('edit_flag_info', "编辑");
+            this.set('tmpSessionable', params);
             this.set('edit_flag', true);
+            this.set('edit_flag_info', "编辑");
             this.set('showAddSessionDlg', true);
-            // let sel = document.getElementById('reservableselect');
+            
+            let tmpClassId = this.tmpSessionable.id
+            let that = this
+            this.store.query('unit',  { 'class-id': tmpClassId }).then(res => {
+                let ut = res.objectAt(0)
+                that.set('cur_room_id', ut.room.get("id"));
+                that.set('tmpUnit', ut)
+            }).catch(err => {
+                that.toast.error('', that.edit_flag_info + '场次失败', that.toastOptions);
+            })
+
+                        // let sel = document.getElementById('reservableselect');
             // debug(sel)
             // for(let idx = 0;idx < sel.options.length;idx++){
             //     if (params.Yard.id === sel.options[idx].value) {
@@ -186,50 +197,71 @@ export default Controller.extend({
                 }
 
                 if(this.edit_flag) {
-                    let onSuccess = function() {
+
+                    let tmpUnit = this.get('tmpUnit')
+
+                    // let tmpClassId = this.tmpSessionable.id
+                    // this.store.queryRecord('unit',  { 'class-id': tmpClassId }).then(res => {
+                    //     // save unit
+                    //     this.tmpSessionable.set("startDate", this.handleDate(this.cur_tmp_date, this.cur_start_date))
+                    //     this.tmpSessionable.set("endDate", new Date(this.cur_end_date).getTime())
+
+                    //     let tmpUnit = res
+                    //     tmpUnit.set("room", that.store.peekRecord("room", that.cur_room_id));
+                    //     tmpUnit.set("startDate", this.tmpSessionable.startDate);
+                    //     tmpUnit.set("endDate", this.tmpSessionable.endDate);
+
+                    //     return tmpUnit.save()
+                    // })
+                    
+                    this.tmpSessionable.set("startDate", this.handleDate(this.cur_tmp_date, this.cur_start_date))
+                    this.tmpSessionable.set("endDate", new Date(this.cur_end_date).getTime())
+                    
+                    tmpUnit.set("room", that.store.peekRecord("room", that.cur_room_id));
+                    tmpUnit.set("startDate", this.tmpSessionable.startDate);
+                    tmpUnit.set("endDate", this.tmpSessionable.endDate);
+                    tmpUnit.save()
+                    .then(res => {
+                        // save class
+                        return this.tmpSessionable.save()
+
+                    }).then(res => {
                         that.toast.success('', edit_flag_info + '场次成功', that.toastOptions);
                         that.set('cur_tmp_date', new Date());
                         that.set('cur_start_date', new Date());
                         that.set('cur_end_date', new Date());
                         that.set('edit_flag', false);
                         that.set('showAddSessionDlg', false);
-                    }
-                    let onFail = function() {
-                        that.toast.error('', edit_flag_info + '场次失败', that.toastOptions);
-                    }
-
-                    this.tmpSessionable.set("startDate", this.handleDate(this.cur_tmp_date, this.cur_start_date))
-                    this.tmpSessionable.set("endDate", new Date(this.cur_end_date).getTime())
-
-                    let tmpUnit = this.tmpSessionable.units.objectAt(0);
-                    tmpUnit.set("room", that.store.peekRecord("room", that.cur_room_id));
-                    tmpUnit.set("startDate", this.tmpSessionable.startDate);
-                    tmpUnit.set("endDate", this.tmpSessionable.endDate);
-                    tmpUnit.save().then(() => {
-                        this.tmpSessionable.save().then(onSuccess, onFail)
-                    },() => {
+                       
+                    }).catch(err => {
                         this.toast.error('', edit_flag_info + '场次失败', this.toastOptions);
                     })
-                }else{
-                    let onSuccess1 = function() {
-                        tmpUnit.set("startDate", tmpClass.startDate);
-                        tmpUnit.set("endDate", tmpClass.endDate);
-                        tmpUnit.set("room", that.store.peekRecord("room", that.cur_room_id));
-                        tmpUnit.set("class", tmpClass);
-                        tmpUnit.save().then(() => {
-                            that.toast.success('', edit_flag_info + '场次成功', that.toastOptions);
-                            that.set('cur_tmp_date', new Date());
-                            that.set('cur_start_date', new Date());
-                            that.set('cur_end_date', new Date());
-                            // that.set('showAddSessionDlg', false);
-                        },() => {
-                            that.toast.error('', edit_flag_info + '场次失败', that.toastOptions);
-                        })
-                    }
-                    let onFail1 = function() {
-                        that.toast.error('', edit_flag_info + '场次失败', that.toastOptions);
-                    }
 
+                    // let onSuccess = function() {
+                    //     that.toast.success('', edit_flag_info + '场次成功', that.toastOptions);
+                    //     that.set('cur_tmp_date', new Date());
+                    //     that.set('cur_start_date', new Date());
+                    //     that.set('cur_end_date', new Date());
+                    //     that.set('edit_flag', false);
+                    //     that.set('showAddSessionDlg', false);
+                    // }
+                    // let onFail = function() {
+                    //     that.toast.error('', edit_flag_info + '场次失败', that.toastOptions);
+                    // }
+
+                    // this.tmpSessionable.set("startDate", this.handleDate(this.cur_tmp_date, this.cur_start_date))
+                    // this.tmpSessionable.set("endDate", new Date(this.cur_end_date).getTime())
+
+                    // let tmpUnit = this.tmpSessionable.units.objectAt(0);
+                    // tmpUnit.set("room", that.store.peekRecord("room", that.cur_room_id));
+                    // tmpUnit.set("startDate", this.tmpSessionable.startDate);
+                    // tmpUnit.set("endDate", this.tmpSessionable.endDate);
+                    // tmpUnit.save().then(() => {
+                    //     this.tmpSessionable.save().then(onSuccess, onFail)
+                    // },() => {
+                    //     this.toast.error('', edit_flag_info + '场次失败', this.toastOptions);
+                    // })
+                }else{
                     let tmpClass = this.store.createRecord("class");
                     tmpClass.set("startDate", this.handleDate(this.cur_tmp_date, this.cur_start_date));
                     tmpClass.set("endDate", new Date(this.cur_end_date).getTime());
@@ -252,50 +284,15 @@ export default Controller.extend({
                         ps.then(res => { this.set('total_count', localStorage.getItem('classes-count')) })
                         
                         that.set('showAddSessionDlg', false);
-                        that.toast.success('', edit_flag_info + '场次成功', that.toastOptions);
                         that.set('cur_tmp_date', new Date());
                         that.set('cur_start_date', new Date());
                         that.set('cur_end_date', new Date());
+                        
+                        that.toast.success('', edit_flag_info + '场次成功', that.toastOptions);
                     }).catch(err => {
                         that.toast.error('', edit_flag_info + '场次失败', that.toastOptions);
                     })
                 }
-
-                // if (this.cur_yard_id.length == 0) {
-                //     alert('shold add yard')
-                //     return
-                // }
-
-                // let callback = {
-                //     onSuccess: function() {
-                //         that.set('showAddSessionDlg', false);
-                //         that.toast.success('', edit_flag_info + '场次成功', that.toastOptions);
-                //         that.bm_sessionable_service.set('refresh_all_token', that.bm_sessionable_service.guid());
-                //         debug('push sessionable success')
-                //     },
-                //     onFail: function() {
-                //         that.toast.error('', edit_flag_info + '场次失败', that.toastOptions);
-                //         debug('push sessionable fail')
-                //     }
-                // }
-
-                // this.bm_sessionable_service.resetInfoAndYard(this.cur_yard_id, this.bm_exp_service.exp.SessionInfo.id);
-                // if(this.tmpSessionable === ""){
-                //     this.bm_sessionable_service.resetTechs([]);
-                //     this.bm_sessionable_service.resetAttendee([]);
-                //     this.bm_sessionable_service.saveUpdate(callback);
-                // }else{
-                //     this.set("tmpSessionable.tmp_date", this.cur_tmp_date);
-                //     this.set("tmpSessionable.start_date", this.cur_start_date);
-                //     this.set("tmpSessionable.end_date", this.cur_end_date);
-                //     this.bm_sessionable_service.resetTechs(this.tmpSessionable.Teachers);
-                //     this.bm_sessionable_service.resetAttendee(this.tmpSessionable.Attendees);
-                //     this.bm_sessionable_service.saveUpdate(callback,this.tmpSessionable);
-                // }
-
-                // this.set('edit_flag_info', "");
-                // this.set('tmpSessionable', "");
-                // this.set('cur_yard_id', "");
             } else if (!this.checkValidate() & this.checkTime()) {
                 this.set('noteError', true);
                 this.set('noteTimeError', false);
