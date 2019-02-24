@@ -41,7 +41,7 @@ export default Controller.extend({
 
     classes: computed('pagenum', function() {
         let ps = this.store.query('class', { 'page[number]': this.pagenum, 'page[size]': 20, "reservable-id": this.model.actv.get("id")})
-        ps.then(res => { this.set('total_count', localStorage.getItem('classes-count')) })
+        ps.then(() => { this.set('total_count', localStorage.getItem('classes-count')) })
         return ps
     }),
     actions: {
@@ -119,7 +119,7 @@ export default Controller.extend({
                 let ut = res.objectAt(0)
                 that.set('cur_room_id', ut.room.get("id"));
                 that.set('tmpUnit', ut)
-            }).catch(err => {
+            }).catch(() => {
                 that.toast.error('', that.edit_flag_info + '场次失败', that.toastOptions);
             })
         },
@@ -200,11 +200,11 @@ export default Controller.extend({
                     tmpUnit.set("startDate", this.tmpSessionable.startDate);
                     tmpUnit.set("endDate", this.tmpSessionable.endDate);
                     tmpUnit.save()
-                    .then(res => {
+                    .then(() => {
                         // save class
                         return this.tmpSessionable.save()
 
-                    }).then(res => {
+                    }).then(() => {
                         that.toast.success('', edit_flag_info + '场次成功', that.toastOptions);
                         that.set('cur_tmp_date', new Date());
                         that.set('cur_start_date', new Date());
@@ -212,7 +212,7 @@ export default Controller.extend({
                         that.set('edit_flag', false);
                         that.set('showAddSessionDlg', false);
 
-                    }).catch(err => {
+                    }).catch(() => {
                         this.toast.error('', edit_flag_info + '场次失败', this.toastOptions);
                     })
 
@@ -248,7 +248,7 @@ export default Controller.extend({
                     tmpClass.set("yard",that.model.yard)
                     tmpClass.set("brandId", localStorage.getItem('brandid'))
                     tmpClass.set("reservableitem", this.model.actv)
-                    tmpClass.save().then(res => {
+                    tmpClass.save().then(() => {
                         let tmpUnit = this.store.createRecord("unit", {"status": 1})
                         tmpUnit.set("brandId", localStorage.getItem('brandid'))
                         tmpUnit.set("startDate", tmpClass.startDate);
@@ -257,10 +257,10 @@ export default Controller.extend({
                         tmpUnit.set("class", tmpClass);
                         return tmpUnit.save()
 
-                    }).then(res => {
+                    }).then(() => {
                         let ps = this.store.query('class', { 'page[number]': this.pagenum, 'page[size]': 20, "reservable-id": this.model.actv.get("id")})
                         this.set('classes', ps)
-                        ps.then(res => {
+                        ps.then(() => {
                             that.set('totalCount', localStorage.getItem('classes-count'))
                         })
 
@@ -270,7 +270,7 @@ export default Controller.extend({
                         that.set('cur_end_date', new Date());
 
                         that.toast.success('', edit_flag_info + '场次成功', that.toastOptions);
-                    }).catch(err => {
+                    }).catch(() => {
                         that.toast.error('', edit_flag_info + '场次失败', that.toastOptions);
                     })
                 }

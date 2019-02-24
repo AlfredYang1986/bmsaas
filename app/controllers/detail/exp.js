@@ -1,6 +1,5 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
 import EmberObject from '@ember/object';
 
 export default Controller.extend({
@@ -97,7 +96,6 @@ export default Controller.extend({
             this.model.exp.save().then(onSuccess, onFail);
         },
         onEditSessionClick(params) {
-
             this.set('cur_tmp_date', this.getTimeDay(params.startDate));
             this.set('cur_start_date', params.startDate);
             this.set('cur_end_date', params.endDate);
@@ -112,7 +110,7 @@ export default Controller.extend({
                 let ut = res.objectAt(0)
                 that.set('cur_room_id', ut.room.get("id"));
                 that.set('tmpUnit', ut)
-            }).catch(err => {
+            }).catch(() => {
                 that.toast.error('', that.edit_flag_info + '场次失败', that.toastOptions);
             })
         },
@@ -193,11 +191,11 @@ export default Controller.extend({
                     tmpUnit.set("startDate", this.tmpSessionable.startDate);
                     tmpUnit.set("endDate", this.tmpSessionable.endDate);
                     tmpUnit.save()
-                    .then(res => {
+                    .then(() => {
                         // save class
                         return this.tmpSessionable.save()
 
-                    }).then(res => {
+                    }).then(() => {
                         that.toast.success('', edit_flag_info + '场次成功', that.toastOptions);
                         that.set('cur_tmp_date', new Date());
                         that.set('cur_start_date', new Date());
@@ -205,7 +203,7 @@ export default Controller.extend({
                         that.set('edit_flag', false);
                         that.set('showAddSessionDlg', false);
 
-                    }).catch(err => {
+                    }).catch(() => {
                         this.toast.error('', edit_flag_info + '场次失败', this.toastOptions);
                     })
 
@@ -263,7 +261,7 @@ export default Controller.extend({
                         that.set('cur_end_date', new Date());
 
                         that.toast.success('', edit_flag_info + '场次成功', that.toastOptions);
-                    }).catch(err => {
+                    }).catch(() => {
                         that.toast.error('', edit_flag_info + '场次失败', that.toastOptions);
                     })
                 }

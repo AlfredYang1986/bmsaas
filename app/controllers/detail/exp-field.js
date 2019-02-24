@@ -36,19 +36,29 @@ export default Controller.extend({
     // totalPageCount: 0,
     // attendeesCount: 0,
     // attendeesPageCount: 0,
-    
+
 
     actions: {
         // handlePageChange (pageNum) {
-            // this.set('bm_sessionable_service.curAttendeesPage',this.bm_sessionable_service.localAttendeesPages[pageNum - 1]) 
+            // this.set('bm_sessionable_service.curAttendeesPage',this.bm_sessionable_service.localAttendeesPages[pageNum - 1])
         // },
         onEditSessionable() {
             // this.set('cur_yard_id', this.model.class.yard.id);
-            this.set('cur_room_id', this.model.class.units.objectAt(0).room.get("id"));
+            // this.set('cur_room_id', this.model.class.units.objectAt(0).room.get("id"));
+            this.set('tmpSessionable', this.model.class);
             this.set('cur_tmp_date', this.getTimeDay(this.model.class.startDate));
             this.set('cur_start_date', this.model.class.startDate);
             this.set('cur_end_date', this.model.class.endDate);
             this.set('showEditSessionDlg', true);
+
+            let that = this
+            this.store.query('unit',  { 'class-id': this.model.class.id }).then(res => {
+                let ut = res.objectAt(0)
+                that.set('cur_room_id', ut.room.get("id"));
+                that.set('tmpUnit', ut)
+            }).catch(() => {
+                that.toast.error('', that.edit_flag_info + '场次失败', that.toastOptions);
+            })
         },
         onDeleteSessionableClick() {
             let that = this;
@@ -103,7 +113,8 @@ export default Controller.extend({
                 this.model.class.set("startDate", this.handleDate(this.cur_tmp_date, this.cur_start_date))
                 this.model.class.set("endDate", new Date(this.cur_end_date).getTime())
 
-                let tmpUnit = this.model.class.units.objectAt(0);
+                // let tmpUnit = this.model.class.units.objectAt(0);
+                let tmpUnit = this.get('tmpUnit');
                 tmpUnit.set("room", that.store.peekRecord("room", that.cur_room_id));
                 tmpUnit.set("startDate", this.model.class.startDate);
                 tmpUnit.set("endDate", this.model.class.endDate);
