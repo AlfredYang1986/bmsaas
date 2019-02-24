@@ -15,7 +15,7 @@ export default Component.extend({
             result = this.store.query('sessioninfo', { 'page[number]': this.curPage, 'page[size]': 16, 'status': 2, "brand-id": localStorage.getItem("brandid")});
         }
 
-        result.then((res) => {
+        result.then(() => {
 			let page = Number.parseInt(localStorage.getItem('reservableitems'));
 			this.onRefreshDataComplete(page)
         })
