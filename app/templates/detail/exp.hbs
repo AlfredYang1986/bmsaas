@@ -153,11 +153,10 @@
         {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs needAction=true onTabClicked=(action "onTabClicked")}}
 
         {{#if (bmeq cur_idx 0)}}
-            {{#if (eq classes.length 0)}}
-                {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="暂无场次" des="点击右上角添加场次，安排体验课时间与场地吧"}}
+            {{bmpage/bm-sessionable-lst titles=model.titles resid=model.exp.id curPage=pagenum totalCount=totalCount onRefreshDataComplete=(action 'refreshDataComplete')  onClickInner=(action "linkToExpField") onEditSessionClick=(action "onEditSessionClick") onDeleteSessionClick=(action "onDeleteSessionClick")}}
+            {{#if (bmeq total_count 0)}}
             {{else}}
-                {{bmpage/bm-sessionable-lst titles=model.titles listData=classes onClickInner=(action "linkToExpField") onEditSessionClick=(action "onEditSessionClick") onDeleteSessionClick=(action "onDeleteSessionClick")}}
-                {{!-- {{bmcom/bm-pagination pageCount=page_count curPage=pagenum sendPageNum=(action "handlePageChange")}} --}}
+                {{bmcom/bm-pagination pageCount=page_count curPage=pagenum sendPageNum=(action "handlePageChange")}}
             {{/if}}
         {{/if}}
 
@@ -166,9 +165,6 @@
                 {{#layout-push direction='col' classNames='alt_course_container'}}
                     {{#bmpage/bm-session-info session=model.exp.sessioninfo}}
                         {{bmdetail/bm-top-title-panel title="体验详情" rightText="编辑" linkAddr='edit.exp.info' linkParam=model.exp.sessioninfo.id linkParam2=model.exp.id}}
-                        {{!-- {{#link-to 'edit.exp.info' model.exp.sessioninfo.id classNames='alt_course_btn'}}
-                            编辑
-                        {{/link-to}} --}}
                     {{/bmpage/bm-session-info}}
                 {{/layout-push}}
             </section>
