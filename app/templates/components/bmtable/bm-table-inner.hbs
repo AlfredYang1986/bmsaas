@@ -87,7 +87,7 @@
                         {{#menu.item align="right"}}
                             {{#layout-push direction='col' classNames="dropdown-content"}}
                                 <a onclick={{action 'onEditSessionClick' item dd.closeDropdown}}>编辑场次</a>
-                                <a class="warning" onclick={{action 'onDeleteSessionClick' item dd.closeDropdown}}>删除场次</a>
+                                {{!-- <a class="warning" onclick={{action 'onDeleteSessionClick' item dd.closeDropdown}}>删除场次</a> --}}
                             {{/layout-push}}
                         {{/menu.item}}
                     {{/dd.menu}}

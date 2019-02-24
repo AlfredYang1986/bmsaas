@@ -11,14 +11,7 @@ export default Controller.extend({
         progressBar: false,
         timeOut: '2000',
     }),
-    // openStatus: computed('bm_exp_service', function(){
-    //     debug(this.bm_exp_service.exp)
-    //     if(this.bm_exp_service.exp.start_date === -1 || this.bm_exp_service.exp.end_date === -1){
-    //         return 1;
-    //     }else{
-    //         return 0;
-    //     }
-    // }),
+
     pagenum: 1,
     totalCount: 0,
     urls: null,
@@ -37,11 +30,6 @@ export default Controller.extend({
     edit_flag: false,
     noteError: false,
     noteTimeError: false,
-    // couldSubmit: computed('cur_yard_id', function() {
-    //     debug(this.cur_yard_id)
-    //     debug(this.cur_yard_id != null && this.cur_yard_id != "")
-    //     return this.cur_yard_id != null && this.cur_yard_id != "";
-    // }),
 
     tmpSessionable: '',
 
@@ -304,20 +292,13 @@ export default Controller.extend({
     },
 
     checkValidate() {
-        // return this.cur_yard_id != null && this.cur_yard_id != "";
-        // return true
         return this.cur_room_id != null && this.cur_room_id != "";
     },
     checkTime() {
         let checkStart = null;
         let checkEnd = null;
-        // if(this.tmpSessionable === "") {
-        //     checkStart = new Date(this.bm_sessionable_service.sessionable.start_date);
-        //     checkEnd = new Date(this.bm_sessionable_service.sessionable.end_date);
-        // } else {
         checkStart = new Date(this.cur_start_date);
         checkEnd = new Date(this.cur_end_date);
-        // }
         checkStart.setFullYear(2000);
         checkStart.setMonth(1);
         checkStart.setDate(1);
@@ -330,18 +311,10 @@ export default Controller.extend({
         checkEnd.setMilliseconds(0);
         return checkStart < checkEnd;
     },
-    // generateSessionable() {
-    //     if (this.showAddSessionDlg == true) {
-    //         this.bm_sessionable_service.set('sessionableid', 'sessionable/push');
-    //         this.bm_sessionable_service.querySessionable();
-    //     }
-    // }
     handleDate(date,time) {
         let tmpDate = new Date(date)
         let tmpTime = new Date(time)
         let result = new Date(tmpDate.getFullYear(), tmpDate.getMonth(), tmpDate.getDate(), tmpTime.getHours(), tmpTime.getMinutes(), tmpTime.getSeconds())
-        // debug(tmpTime)
-        // debug(result)
         return result.getTime();
     },
     getTimeDay(time) {
