@@ -56,7 +56,8 @@
                 {{#layout-push direction='row' split=true classNames="class-detail-title-sec-right"}}
                     <p class="sec-right-num">{{model.class.students.length}}</p>
                     <p class="sec-right-des">学生人数</p>
-                    <p class="sec-right-num">{{model.class.courseTotalCount}}</p>
+                    {{!-- <p class="sec-right-num">{{model.class.courseTotalCount}}</p> --}}
+                    <p class="sec-right-num">{{model.units.length}}</p>
                     <p class="sec-right-des">课次</p>
                 {{/layout-push}}
 
@@ -83,10 +84,10 @@
             {{/if}}
 
             {{#if (bmeq cur_idx 2)}}
-                {{#if (eq model.class.units.length 0)}}
+                {{#if (eq model.units.length 0)}}
                     {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无课程安排" des="快去添加课程安排吧" btnText="添加课程安排" onBtnClick=(action 'onAddArrClassClick')}}
                 {{else}}
-                    {{bmtable/bm-table-class-arrcourse listData=model.class.units titles=model.arrTitles onRemoveArrcourseClick=(action "onRemoveArrcourseClick")}}
+                    {{bmtable/bm-table-class-arrcourse listData=model.units titles=model.arrTitles onRemoveArrcourseClick=(action "onRemoveArrcourseClick")}}
                     {{!-- {{bmcom/bm-pagination pageCount=bm_sessionable_service.totalPageCount sendPageNum=(action "handlePageChange")}} --}}
                 {{/if}}
             {{/if}}
@@ -175,7 +176,7 @@
     </div>
 {{/bmcom/bm-modal-container}}
 {{#bmcom/bm-warning-modal title="移出班级" mainBtnText="移出" type="error" switchParam=removeTechDlg cancelHandled=(action 'cancelHandled') successHandled=(action "onRemoveTeacherClickOk")}}
-    <p class="warning-modal-body-content">确定要将老师「{{tmpTech.name}}」移出「{{model.class.classTitle}}」吗？</p>
+    <p class="warning-modal-body-content">确定要将老师「{{tmpDuty.teacher.name}}」移出「{{model.class.classTitle}}」吗？</p>
 {{/bmcom/bm-warning-modal}}
 
 {{#bmcom/bm-modal-container title="" mswitch=addStudDlg
