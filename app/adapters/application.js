@@ -11,7 +11,7 @@ export default DS.JSONAPIAdapter.extend({
     // 发布时揭开注释强制过滤掉后端返回link里的主机
     headers: computed(function() {
         return {
-            // 'Authorization': this.bm_token.bearerToken //token验证，需要时揭开注释
+            'Authorization': this.bm_token.bearerToken //token验证，需要时揭开注释
         };
     }),
     namespace: "v2", // 根据后端发布版本修改命名空间

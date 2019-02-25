@@ -8,9 +8,9 @@ export default Route.extend({
         return RSVP.hash({
             classid : params.classid,
             tabs: A(['班级教师', '学生名单', '课程安排']),
-            techTitles: A(['教师', '职责', '手机', '微信', '']),
-            studTitles: A(['姓名', '性别', '年龄', '联系方式', '']),
-            arrTitles: A(['课时数', '时间', '教室', '']),
+            techTitles: A(['教师', '职责', '手机', '微信']),
+            studTitles: A(['姓名', '性别', '年龄', '联系方式']),
+            arrTitles: A(['课时数', '时间', '教室']),
             class: this.store.findRecord('class', params.clsid),
             units: this.store.query('unit', { "class-id": params.clsid}),
             courses: this.store.query('sessioninfo', { "brand-id": localStorage.getItem("brandid"), "status": 2}),
