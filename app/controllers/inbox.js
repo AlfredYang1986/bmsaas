@@ -39,7 +39,7 @@ export default Controller.extend({
         let that = this;
         if(this.sr != null) {
             let onSrSuccess = function(res) {
-                that.store.query('class', { 'page[number]': 1, 'page[size]': 20, "reservableitem-id": res.id}).then((resu) =>{
+                that.store.query('class', { "reservable-id": res.id}).then((resu) =>{
                     that.set('srClasses', resu);
                 })
 
@@ -49,9 +49,8 @@ export default Controller.extend({
         }
         if(this.sa != null) {
             let onSaSuccess = function(res) {
-                // that.set('saClasses', res.classes);
-                that.store.query('class', { 'page[number]': 1, 'page[size]': 20, "reservableitem-id": res.get("id")}).then((resu) =>{
-                    that.set('srClasses', resu);
+                that.store.query('class', { "reservable-id": res.get("id")}).then((resu) =>{
+                    that.set('saClasses', resu);
                 })
             }
             let onSaFail = function() {}
