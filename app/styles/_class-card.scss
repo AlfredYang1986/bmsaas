@@ -7,7 +7,8 @@
     flex-direction: column;
     justify-content: space-between;
     width: 208px;
-    height: 246px;
+    // height: 246px;
+    height: 155px;
     background: #FFFFFF;
     box-shadow: 0 4px 8px -2px rgba(9,30,66,0.25);
     border-radius: 4px;
@@ -42,9 +43,8 @@
         white-space: nowrap;
     }
     .class-card-content {
-        // margin: 17px 12px;
         padding: 24px;
-        height: 171px;
+        // height: 171px;
         .no-arr-des {
             display: none;
         }

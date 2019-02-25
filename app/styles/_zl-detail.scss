@@ -1036,7 +1036,8 @@ a.btn_sign {
     top: 88px;
 
     .toast {
-        width: 320px;
+        min-width: 320px;
+        width: fit-content;
         height: 56px;
         border-radius: 4px;
         box-shadow: none;

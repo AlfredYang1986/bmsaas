@@ -23,7 +23,7 @@
             {{/if}}
         {{/layout-push}}
         {{#layout-push direction='row' classNames="arr-cls-card-top-title"}}
-            {{#if (eq unit.status 2)}}
+            {{#if (eq unit.class.status 2)}}
                 <p class="top-title">{{bmcom/bm-get unit.class "classTitle"}}</p>
             {{else}}
                 <p class="top-title">{{bmcom/bm-get unit.class "reservableitem.sessioninfo.title"}}</p>

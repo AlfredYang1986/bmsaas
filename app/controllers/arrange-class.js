@@ -154,6 +154,10 @@ export default Controller.extend({
             });
             this.set("tempTechs", tmpArr);
             this.set("cur_tech_id", "");
+
+            if(tmpArr.length == 0) {
+                this.toast.error('', '此班级无授课教师，请先为该班级添加教师！', this.toastOptions);
+            }
             
             // 有BUG 选择的班级没有老师时触发
         },
@@ -185,21 +189,25 @@ export default Controller.extend({
         },
         onDeleteUnitClickOk() {
             // if(this.tempUnit.status == 0) {
-                let tempClass = this.store.peekRecord("class", this.tempUnit.class.get("id"))
-                tempClass.get("units").removeObject(this.tempUnit)
-                tempClass.save().then(() => {
-                    this.tempUnit.deleteRecord()
-                    this.tempUnit.save().then(() => {
-                        this.set("tempUnit", null)
-                        this.set('removeUnitDlg', false);
-                        this.bm_clsarr_service.set('refresh_all_token', this.bm_clsarr_service.guid());
-                        this.toast.success('', '删除排课成功', this.toastOptions);
-                    },() => {
-                        this.toast.error('', '删除排课失败', this.toastOptions);
-                    })
-                },() => {
-                    this.toast.error('', '删除排课失败', this.toastOptions);
-                })
+
+
+                // let tempClass = this.store.peekRecord("class", this.tempUnit.class.get("id"))
+                // tempClass.get("units").removeObject(this.tempUnit)
+                // tempClass.save().then(() => {
+            this.tempUnit.deleteRecord()
+            this.tempUnit.save().then(() => {
+                this.set("tempUnit", null)
+                this.set('removeUnitDlg', false);
+                this.bm_clsarr_service.set('refresh_all_token', this.bm_clsarr_service.guid());
+                this.toast.success('', '删除排课成功', this.toastOptions);
+            },() => {
+                this.toast.error('', '删除排课失败', this.toastOptions);
+            })
+                // },() => {
+                //     this.toast.error('', '删除排课失败', this.toastOptions);
+                // })
+
+
             // } else {
             //     let tempClass = this.store.peekRecord("class", this.tempUnit.class.get("id"))
             //     tempClass.get("units").removeObject(this.tempUnit)
