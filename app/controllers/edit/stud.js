@@ -1,6 +1,8 @@
 import Controller from '@ember/controller';
 import { A } from '@ember/array';
 import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import EmberObject from '@ember/object';
 
 export default Controller.extend({
     provinces: A(['北京']),
@@ -12,6 +14,15 @@ export default Controller.extend({
     rela_idx: 0,
     genderCheck: A(['男', '女']),
     relaChecked: A(['父亲', '母亲', '其他']),
+
+    toast: service(),
+    toastOptions: EmberObject.create({
+        closeButton: false,
+        positionClass: 'toast-top-center',
+        progressBar: false,
+        timeOut: '2000',
+    }),
+
     init() {
         this._super(...arguments);
         this.set('sex_idx', 0);
@@ -71,25 +82,34 @@ export default Controller.extend({
             for(let idx = 0;idx < that.model.stud.guardians.length;idx++) {
                 that.model.stud.guardians.objectAt(idx).save()
             }
-            that.model.stud.save().then(() => {
-                if (that.model.isPushing) {
-                    if(that.model.stud.guardians.firstObject.relationShip == '') {
-                        that.model.stud.guardians.objectAt(0).set("relationShip", '爸爸')
-                    }
-                    that.transitionToRoute("detail.stud", that.model.stud.id)
-                } else {
-                    if(that.model.applyid != undefined) {
-                        let onSuccess = function(res) {
-                            let apply = res;
-                            apply.set('status', 1);
-                            apply.save();
+            let name = that.model.stud.name;
+            let nickname = that.model.stud.nickname;
+            if( name == '' || name == undefined || name.replace(/(^\s*)|(\s*$)/g, "").length == 0) {
+                that.toast.error('', '孩子姓名不能为空', that.toastOptions);
+            } else if(nickname == '' || nickname == undefined || nickname.replace(/(^\s*)|(\s*$)/g, "").length == 0) {
+                that.toast.error('', '孩子昵称不能为空', that.toastOptions);
+            } else {
+                that.model.stud.save().then(() => {
+                    if (that.model.isPushing) {
+                        if(that.model.stud.guardians.firstObject.relationShip == '') {
+                            that.model.stud.guardians.objectAt(0).set("relationShip", '爸爸')
                         }
-                        let onFail = function() {}
-                        that.store.find('apply', that.model.applyid).then(onSuccess, onFail)
+                        that.transitionToRoute("detail.stud", that.model.stud.id)
+                    } else {
+                        if(that.model.applyid != undefined) {
+                            let onSuccess = function(res) {
+                                let apply = res;
+                                apply.set('status', 1);
+                                apply.save();
+                            }
+                            let onFail = function() {}
+                            that.store.find('apply', that.model.applyid).then(onSuccess, onFail)
+                        }
+                        that.transitionToRoute("detail.stud", that.model.stud.id)
                     }
-                    that.transitionToRoute("detail.stud", that.model.stud.id)
-                }
-            }).catch(err => window.console.info(err))
+                }).catch(err => window.console.info(err))
+            }
+
         },
         selectedOrigin() {
             let sel = document.getElementById("originSelect");
