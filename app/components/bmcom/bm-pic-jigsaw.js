@@ -33,38 +33,44 @@ export default Component.extend({
     },
     actions: {
         nextPic() {
-            let idx = this.get('mainPicIdx');
+            // let idx = this.get('mainPicIdx');
             let up = this.get('listPicIdxUp');
             let down = this.get('listPicIdxDown');
-            idx++;
-            up++;
-            down++;
-            if(idx >= (this.images.length - 4)) {
-                up = this.images.length - 1;
-                down = this.images.length - 4;
+            // idx++;
+            // up++;
+            // down++;
+            if (up < this.images.length - 1) {
+                up++;
+                down++;
             }
-            if(idx >= (this.images.length - 1)) {
-                idx = this.images.length - 1;
-            }
-            this.set('mainPicIdx', idx);
+            // if(idx >= (this.images.length - 4)) {
+            //     up = this.images.length - 1;
+            //     down = this.images.length - 4;
+            // }
+            // if(idx >= (this.images.length - 1)) {
+            //     idx = this.images.length - 1;
+            // }
+            // this.set('mainPicIdx', idx);
             this.set('listPicIdxUp', up);
             this.set('listPicIdxDown', down);
         },
         prevPic() {
-            let idx = this.get('mainPicIdx');
+            // let idx = this.get('mainPicIdx');
             let up = this.get('listPicIdxUp');
             let down = this.get('listPicIdxDown');
-            idx--;
-            up--;
-            down--;
-            if(idx < 3) {
-                up = 3;
-                down = 0;
+            // idx--;
+            if (down > 0) {
+                up--;
+                down--;
             }
-            if(idx < 0) {
-                idx = 0;
-            }
-            this.set('mainPicIdx', idx);
+            // if(idx < 3) {
+            //     up = 3;
+            //     down = 0;
+            // }
+            // if(idx < 0) {
+            //     idx = 0;
+            // }
+            // this.set('mainPicIdx', idx);
             this.set('listPicIdxUp', up);
             this.set('listPicIdxDown', down);
         },
@@ -73,6 +79,11 @@ export default Component.extend({
         },
         closeMorePic() {
             this.set('isMorePic', false);
+        },
+        onSmPicClick(selIndex) {
+            let idx = this.get('mainPicIdx');
+            idx = selIndex
+            this.set('mainPicIdx', idx);
         }
     },
 });

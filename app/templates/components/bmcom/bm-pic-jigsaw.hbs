@@ -60,12 +60,12 @@
                             {{#if (lte index listPicIdxUp)}}
                                 {{#if (eq index mainPicIdx)}}
                                     {{#layout-push direction='col' split=true classNames='more-pic-list-each'}}
-                                        <img src={{item.url}} class="list-each-img pic-checked">
+                                        <img src={{item.url}} class="list-each-img pic-checked" onclick={{action "onSmPicClick"}}>
                                         <p class="list-each-img-des">{{item.tag}}</p>
                                     {{/layout-push}}
                                 {{else}}
                                     {{#layout-push direction='col' split=true classNames='more-pic-list-each'}}
-                                        <img src={{item.url}} class="list-each-img">
+                                        <img src={{item.url}} class="list-each-img" onclick={{action "onSmPicClick" index}}>
                                         <p class="list-each-img-des">{{item.tag}}</p>
                                     {{/layout-push}}
                                 {{/if}}
