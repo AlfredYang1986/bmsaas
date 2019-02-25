@@ -1,20 +1,19 @@
 import Component from '@ember/component';
+import { computed } from '@ember/object';
 
 export default Component.extend({
+    positionalParams: ['icon', 'title', 'expendable', 'pageUrl', ],
+
+    expands: false,
     collapsed: false,
+
     manageClick: false,
     teachClick: false,
-    workClick: false,
     expClick: false,
-    expands: false,
-    isInbox: false,
-    isSpace: false,
-    isDeActive: false,
-    isActive: false,
-    positionalParams: ['icon', 'title', 'expendable'],
+
+
     actions: {
         toggle2() {
-            // this.sendAction('toggle2');
             if(this.get('title') == "工作台") {
                 if(this.workClick) {
                     this.set('workClick', false);
