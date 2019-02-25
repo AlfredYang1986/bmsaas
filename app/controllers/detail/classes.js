@@ -58,21 +58,23 @@ export default Controller.extend({
             this.set('removeUnitDlg', true);
         },
         onRemoveArrcourseClickOk() {
-            let that = this;
-            let onSuccess = function () {
-                that.tmpUnit.deleteRecord();
-                that.tmpUnit.save().then(() => {
-                    that.set('removeUnitDlg', false);
-                    that.set('tmpUnit', null);
-                    that.toast.success('', '移除课程安排成功', that.toastOptions);
-                })
+            // let that = this;
+            // let onSuccess = function () {
+            this.tmpUnit.deleteRecord();
+            this.tmpUnit.save().then(() => {
+                this.set('removeUnitDlg', false);
+                this.set('tmpUnit', null);
+                this.toast.success('', '移除课程安排成功', this.toastOptions);
+            },() => {
+                this.toast.error('', '移除课程安排失败', this.toastOptions);
+            })
 
-            }
-            let onFail = function () {
-                that.toast.error('', '移除课程安排失败', that.toastOptions);
-            }
-            this.model.class.units.removeObject(this.tmpUnit)
-            this.model.class.save().then(onSuccess, onFail)
+            // }
+            // let onFail = function () {
+            //     that.toast.error('', '移除课程安排失败', that.toastOptions);
+            // }
+            // this.model.class.units.removeObject(this.tmpUnit)
+            // this.model.class.save().then(onSuccess, onFail)
         },
         onRemoveStudClick(param) {
             this.set('tmpStud', param);
@@ -145,7 +147,7 @@ export default Controller.extend({
             let onFail = function () {
                 that.toast.error('', '编辑班级失败', that.toastOptions);
             }
-            this.model.class.set("title", this.classTitle)
+            this.model.class.set("classTitle", this.classTitle)
             this.model.class.set("sessioninfo", this.store.peekRecord("sessioninfo", this.cur_course_id))
             this.model.class.save().then(onSuccess, onFail)
         },
