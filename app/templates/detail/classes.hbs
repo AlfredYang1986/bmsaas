@@ -44,14 +44,14 @@
             {{/layout-push}}
             {{#layout-push direction='row' split=true classNames="class-detail-title-sec"}}
                 {{#layout-push direction='col' split=true classNames="class-detail-title-sec-left"}}
-                    {{#layout-push direction='row' classNames="sec-left-top"}}
+                    {{!-- {{#layout-push direction='row' classNames="sec-left-top"}}
                         <p class="sec-title">时间</p>
                         {{#if (eq model.units.length 0)}}
                             <p class="sec-des">暂无安排</p>
                         {{else}}
                             <p class="sec-des">{{bmdob/bmdobformat model.class.startDate}}~{{bmdob/bmdobformat model.class.endDate}}</p>
                         {{/if}}
-                    {{/layout-push}}
+                    {{/layout-push}} --}}
                     {{#layout-push direction='row' classNames="sec-left-bottom"}}
                         <p class="sec-title">校区</p>
                         <p class="sec-des">{{model.class.yard.title}}</p>
