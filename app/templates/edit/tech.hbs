@@ -1,34 +1,6 @@
-{{!-- <ul class="nav">
-    <li class="nav-item">
-        <a class="nav-link active brand_name tech-nav-title" href="#">编辑-老师信息</a>
-    </li>
-    <li class="nav-item menu_mid">
-        <div class="menu_container">
-            {{#if isPushing}}
-                {{#link-to 'home' class="nav_cancel_btn menu_button_between"}}
-                    取消
-                {{/link-to}}
-            {{else}}
-                {{#link-to 'detail.tech' model.tech.id class="nav_cancel_btn menu_button_between"}}
-                    取消
-                {{/link-to}}
-            {{/if}}
-            <button class="nav_save_btn menu_button_between tech-nav-savebtn" {{action 'saveTechBtnClicked'}}>保存</button>
-        </div>
-    </li>
-</ul> --}}
 {{#layout-push direction='row' split=true classNames='edit_nav' }}
   <span>编辑教师信息</span>
   <span>
-      {{!-- {{#if isPushing}}
-          {{#link-to 'tech' class="edit_nav_btn btn_cacel"}}
-              取消
-          {{/link-to}}
-      {{else}}
-          {{#link-to 'detail.tech' model.tech.id class="edit_nav_btn btn_cacel"}}
-              取消
-          {{/link-to}}
-      {{/if}} --}}
       <button class="edit_nav_btn btn_cacel" {{action 'cancelTechBtnClicked'}}>取消</button>
       <button class="edit_nav_btn btn_save" {{action 'saveTechBtnClicked'}}>提交</button>
   </span>
@@ -36,10 +8,10 @@
 {{#layout-push direction='row' split=true classNames='edit_container' }}
     <ul class="edit_left_nav">
         <li class="left_bar_item">
-            <a class="edit_left_menu_text" href="#tech-info">职务</a>
+            <a class="edit_left_menu_text" href="#job-info">职务</a>
         </li>
         <li class="left_bar_item">
-            <a class="edit_left_menu_text" href="#edu-life">基础信息</a>
+            <a class="edit_left_menu_text" href="#tech-info">基础信息</a>
         </li>
     </ul>
 
@@ -47,17 +19,6 @@
         <section id="job-info" class="job-infos tech_section">
             {{#layout-push direction='col' split=true classNames="job-infos-container"}}
                 {{bmform/bm-base-select selTitle="职务" options=jobArr curSelect=model.tech.jobTitle classNames="input_area area-margin-bottom-job"}}
-                {{!-- {{#layout-push direction='row' split=false classNames="area-margin-bottom-job"}}
-                    {{#layout-push direction='col' classNames="input_area"}}
-                        <p class="edit_title">职务</p>
-                        <select class="" id="jobSelect"  name="" onChange={{action 'selectedJob'}}>
-                            <option value="">{{model.tech.jobTitle}}</option>
-                            {{#each jobArr as |item|}}
-                                <option value={{item}}>{{item}}</option>
-                            {{/each}}
-                        </select>
-                    {{/layout-push}}
-                {{/layout-push}} --}}
                 {{#layout-push direction='col' classNames="input_area"}}
                     <p class="edit_title">类型</p>
                     {{bmcom/bm-radio-inline cur_idx=jobTypeIdx judge=jobType titles=jobTypeCheck}}
@@ -104,14 +65,14 @@
                         {{bmform/bm-base-select selId="yearsSelect" type="number" selTitle="教龄" options=teachYearsArr curSelect=model.tech.teachYears classNames="input_area years-select" pHolder=0}}
                         {{bmform/bm-edit-line fullWidthInput=true title='擅长科目' inputVal=model.tech.major classNames='input_area area-margin-bottom area-margin-left'}}
                     {{/layout-push}}
-                    {{bmform/bm-detail-address 
-                        provinces=provinces 
-                        citys=citys 
-                        areas=areas 
+                    {{bmform/bm-detail-address
+                        provinces=provinces
+                        citys=citys
+                        areas=areas
                         province=model.tech.province
                         city=model.tech.city
                         area=model.tech.district
-                        title='地址' 
+                        title='地址'
                         detailAddress=model.tech.address
                         classNames="area-margin-bottom"}}
                     {{!-- {{bmform/bm-edit-line notNeeded=true fullWidthInput=true title='地址' inputVal=model.tech.address classNames='input_area area-margin-bottom'}} --}}
