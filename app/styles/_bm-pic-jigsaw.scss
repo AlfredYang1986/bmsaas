@@ -9,6 +9,8 @@
         margin-top: 16px;
 
         .jigsaw_pic_left{
+            width: 120px;
+            height: 154px;
             margin-right: 8px;
 
             .img_left {
@@ -18,6 +20,7 @@
             }
         }
         .jigsaw_pic_right{
+            width: 120px;
 
             .img_right {
                 border-radius: 4px;
@@ -26,8 +29,12 @@
             }
             .jigsaw_pic_right_top{
                 margin-bottom: 8px;
+                width: 120px;
+                height: 73px;
             }
             .jigsaw_pic_right_bottom{
+                width: 120px;
+                height: 73px;
                 position: relative;
 
                 .more-pic-link{
