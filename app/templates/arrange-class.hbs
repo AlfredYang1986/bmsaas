@@ -2,7 +2,7 @@
     {{#if openFlag}}
         <div class="detail_page">
             <div class="content_page arrange-class">
-                {{bmcls/cls-arrangement onAddUnitClick=(action 'onAddUnitClick') onEditClick=(action "onEditClick") onDeleteClick=(action "onDeleteClick") onPanelClick=(action 'onPanelClick')}}
+                {{bmcls/cls-arrangement rooms=model.rooms onAddUnitClick=(action 'onAddUnitClick') onEditClick=(action "onEditClick") onDeleteClick=(action "onDeleteClick") onPanelClick=(action 'onPanelClick')}}
             </div>
         </div>
     {{else}}

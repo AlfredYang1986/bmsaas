@@ -16,9 +16,11 @@ export default Component.extend({
     //     return this.store.findAll('yard');
     // }),
 
-    rooms: computed(function(){
-        return this.store.query('room', { "brand-id": localStorage.getItem("brandid")});
-    }),
+    // rooms: computed(function(){
+    //     return this.store.query('room', { "brand-id": localStorage.getItem("brandid")});
+    // }),
+
+    rooms: null,
 
     init() {
         this._super(...arguments);
