@@ -40,7 +40,7 @@ export default Component.extend({
             let form = document.getElementById(this.upid);
             let formData = new FormData(form)
             // console.log(form[0].files[0])
-            if (form[0].files[0].size > 100) {
+            if (form[0].files[0].size > 100000) {
                 this.toast.error('', '文件大小超过100KB，请重新上传！', this.toastOptions);
                 return;
             }
