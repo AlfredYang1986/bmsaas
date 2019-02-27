@@ -16,7 +16,8 @@
     </ul>
 
     <div class="input_container tech_input_container">
-        <section id="job-info" class="job-infos tech_section">
+        <a id="job-info" class="anchor-point"></a>
+        <section class="job-infos tech_section">
             {{#layout-push direction='col' split=true classNames="job-infos-container"}}
                 {{bmform/bm-base-select selTitle="职务" options=jobArr curSelect=model.tech.jobTitle classNames="input_area area-margin-bottom-job"}}
                 {{#layout-push direction='col' classNames="input_area"}}
@@ -25,7 +26,8 @@
                 {{/layout-push}}
             {{/layout-push}}
         </section>
-        <section id="tech-info" class="tech-infos tech_section">
+        <a id="tech-info" class="anchor-point"></a>
+        <section class="tech-infos tech_section">
             {{#layout-push direction='row' split=true classNames="tech-infos-container"}}
                 {{#layout-push direction='col' classNames="tech-infos-icon"}}
                     <p class="edit_title">教师头像</p>
