@@ -38,7 +38,7 @@ export default Controller.extend({
             let onFail = function () {
             }
             if(that.model.si.cover) {
-                if(parseInt(that.model.si.alb) <= parseInt(that.model.si.aub)) {
+                if(Number(that.model.si.alb) <= Number(that.model.si.aub)) {
                     if(this.model.si.images.length === 0) {
                         this.model.si.save().then(onSuccess, onFail);
                     } else {

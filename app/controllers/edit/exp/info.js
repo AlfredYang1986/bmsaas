@@ -28,7 +28,7 @@ export default Controller.extend({
             let onFail = function ( /*err*/ ) {
             }
             if(that.model.course.cover) {
-                if(parseInt(that.model.course.alb) <= parseInt(that.model.course.aub)) {
+                if(Number(that.model.course.alb) <= Number(that.model.course.aub)) {
                     if(this.model.course.images.length === 0) {
                         this.model.course.save().then(onSuccess, onFail);
                     } else {

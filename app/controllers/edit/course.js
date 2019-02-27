@@ -12,6 +12,10 @@ export default Controller.extend({
     }),
     actions: {
         saveCourseBtnClicked() {
+            if(Number(this.model.course.alb) > Number(this.model.course.aub)) {
+                this.toast.error('', '请检查年龄信息', this.toastOptions);
+                return;
+            }
             let that = this;
             let onSuccess = function () {
                 if(that.model.course.category.get("id")) {
