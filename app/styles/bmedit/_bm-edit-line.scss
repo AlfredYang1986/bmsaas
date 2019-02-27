@@ -39,6 +39,9 @@ input.edit_text_field_number[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+input.edit_text_field_age {
+    width: 80px;
+}
 .edit_subtitle {
     margin-bottom: 16px;
     @extend %font-form-info-title;

@@ -1,40 +1,42 @@
-{{#if needTitleDes}}
-    {{#layout-push direction="row" split=true classNames="pre-input"}}
-        {{#layout-push direction="row" classNames="title-area"}}
-            {{#unless notitlt}}
-                <span class="edit_subtitle edit_title_with_des" >{{title}}</span>
-            {{/unless}}
-            {{#if notNeeded}}
-                <div class="v_end must">
-                    <span class="edit_required" >(选填)</span>
-                </div>
-            {{/if}}
+{{#if haveHeader}}
+    {{#if needTitleDes}}
+        {{#layout-push direction="row" split=true classNames="pre-input"}}
+            {{#layout-push direction="row" classNames="title-area"}}
+                {{#unless notitlt}}
+                    <span class="edit_subtitle edit_title_with_des" >{{title}}</span>
+                {{/unless}}
+                {{#if notNeeded}}
+                    <div class="v_end must">
+                        <span class="edit_required" >(选填)</span>
+                    </div>
+                {{/if}}
+            {{/layout-push}}
+            <div class="v_end">
+                <span class="edit_condition" >{{countHint}}</span>
+            </div>
         {{/layout-push}}
-        <div class="v_end">
-            <span class="edit_condition" >{{countHint}}</span>
-        </div>
-    {{/layout-push}}
-    {{#layout-push direction="row" split=true}}
-        {{#layout-push direction="row" classNames="title-des-area"}}
-            <span class="edit_title_des">{{titleDes}}</span>
+        {{#layout-push direction="row" split=true}}
+            {{#layout-push direction="row" classNames="title-des-area"}}
+                <span class="edit_title_des">{{titleDes}}</span>
+            {{/layout-push}}
         {{/layout-push}}
-    {{/layout-push}}
-{{else}}
-    {{#layout-push direction="row" split=true classNames="pre-input"}}
-        {{#layout-push direction="row" classNames="title-area"}}
-            {{#unless notitlt}}
-                <span class="edit_subtitle" >{{title}}</span>
-            {{/unless}}
-            {{#if notNeeded}}
-                <div class="v_end must">
-                    <span class="edit_required" >(选填)</span>
-                </div>
-            {{/if}}
+    {{else}}
+        {{#layout-push direction="row" split=true classNames="pre-input"}}
+            {{#layout-push direction="row" classNames="title-area"}}
+                {{#unless notitlt}}
+                    <span class="edit_subtitle" >{{title}}</span>
+                {{/unless}}
+                {{#if notNeeded}}
+                    <div class="v_end must">
+                        <span class="edit_required" >(选填)</span>
+                    </div>
+                {{/if}}
+            {{/layout-push}}
+            <div class="v_end">
+                <span class="edit_condition" >{{countHint}}</span>
+            </div>
         {{/layout-push}}
-        <div class="v_end">
-            <span class="edit_condition" >{{countHint}}</span>
-        </div>
-    {{/layout-push}}
+    {{/if}}
 {{/if}}
 {{#layout-push direction="col" classNames="input-group-outer"}}
     {{#layout-push direction="row" classNames="input-group"}}
@@ -52,9 +54,16 @@
         {{else if passwordInput}}
             {{input type="password" classNames="edit_text_field_login" maxlength=maxlength placeholder=pholder value=inputVal}}
         {{else if numberInput}}
-            {{input type="number" classNames="edit_text_field edit_text_field_number" placeholder=pholder value=inputVal key-press=(action "onKeyPress")}}
+            {{input type="number" classNames="edit_text_field edit_text_field_number" maxlength=maxlength placeholder=pholder value=inputVal key-press=(action "onKeyPress")}}
+        {{else if ageInput}}
+            <div class="input-group">
+                {{input classNames="edit_text_field_number edit_text_field_age" readonly=readonly maxlength=maxlength placeholder=pholder value=inputVal key-press=(action "onKeyPress")}}
+                <div class="input-group-append">
+                    <span class="input-group-text">岁</span>
+                </div>
+            </div>
         {{else if largeNumberInput}}
-            {{input type="number" classNames="edit_text_field edit_text_field_large" placeholder=pholder value=inputVal key-press=(action "onKeyPress")}}
+            {{input type="number" classNames="edit_text_field edit_text_field_number edit_text_field_large" maxlength=maxlength placeholder=pholder value=inputVal key-press=(action "onKeyPress")}}
         {{else if needFocusOut}}
             {{input classNames="edit_text_field" maxlength=maxlength  placeholder=pholder value=inputVal focusOut=(action "onFocusOut")}}
         {{else}}
