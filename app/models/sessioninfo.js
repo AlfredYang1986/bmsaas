@@ -11,7 +11,7 @@ export default DS.Model.extend({
     cover: DS.attr('string'),
     description: DS.attr('string'),
     harvest: DS.attr('string'),
-    inc: DS.attr(),
+    including: DS.attr(),
     length: DS.attr('number'),
     level: DS.attr('string'),
     notice: DS.attr('string'),
