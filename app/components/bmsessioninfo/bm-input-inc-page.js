@@ -16,7 +16,7 @@ export default Component.extend({
         //         this.set('incInput', false);
         //     }
         // }
-        if(this.session.inc == null || this.session.inc == '') {
+        if(this.session.including == null || this.session.including == '') {
             // this.set('ifAcqInput', 'disabled');
             this.set('checkFlag', true)
         } else {
@@ -36,7 +36,7 @@ export default Component.extend({
             //     this.set('incInput', true);
             // }
             this.toggleProperty('checkFlag');
-            this.set("session.inc", [])
+            this.set("session.including", [])
         }
     }
 });
