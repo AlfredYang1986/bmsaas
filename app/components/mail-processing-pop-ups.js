@@ -1,7 +1,6 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { A } from '@ember/array';
 import EmberObject from '@ember/object';
 
 export default Component.extend({
@@ -90,7 +89,7 @@ export default Component.extend({
             }
 
             let tempItem = this.store.peekRecord("reservableitem", this.selectedReservable);
-            let tempClass = this.store.query('class', { "reservable-id": tempItem.id}).then((res) => {
+            this.store.query('class', { "reservable-id": tempItem.id}).then((res) => {
                 if(res.length == 0) {
                     that.toast.error('', '此参与内容暂无场次，请先添加场次！', this.toastOptions);
                 }
@@ -115,7 +114,7 @@ export default Component.extend({
             }
 
             let tempItem = this.store.peekRecord("reservableitem", this.selectedActivity);
-            let tempClass = this.store.query('class', { "reservable-id": tempItem.id}).then((res) => {
+            this.store.query('class', { "reservable-id": tempItem.id}).then((res) => {
                 if(res.length == 0) {
                     that.toast.error('', '此参与内容暂无场次，请先添加场次！', this.toastOptions);
                 }
