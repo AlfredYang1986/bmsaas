@@ -1,5 +1,8 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { A } from '@ember/array';
+import EmberObject from '@ember/object';
 
 export default Component.extend({
 
@@ -15,13 +18,24 @@ export default Component.extend({
 
     },
 
+    store: service(),
+    toast: service(),
+    toastOptions: EmberObject.create({
+        closeButton: false,
+        positionClass: 'toast-top-center',
+        progressBar: false,
+        timeOut: '2000',
+    }),
+
     sr: computed('srClasses', function() {
         return this.srClasses;
     }),
     sa: computed('saClasses', function() {
         return this.saClasses;
     }),
-    positionalParams: ['saClasses','srClasses','exp', 'actv', 'apply', 'selectedReservable', 'selectedYard', 'selectedDate', 'selectedActivity', 'selectedSession', 'innerCat', 'courseType', 'noteError', 'noSr', 'noSy', 'noSa', 'noSs'],
+    positionalParams: ['formErrorFlag', 'saClasses','srClasses','exp', 'actv', 'apply', 'selectedReservable', 'selectedYard', 'selectedDate', 'selectedActivity', 'selectedSession', 'innerCat', 'courseType', 'noteError', 'noSr', 'noSy', 'noSa', 'noSs'],
+
+    tempItem: null,
     courseReserve: true,
     experienceApply: false,
     noteError: false,
@@ -46,16 +60,27 @@ export default Component.extend({
         toggleAction() {
             if(this.courseReserve) {
                 this.set('experienceApply', true);
-                this.set('courseReserve', false)
+                this.set('courseReserve', false);
+                this.set('formErrorFlag', false);
+                this.set('noSr', false);
+                this.set('noSa', false);
+                this.set('noSy', false);
+                this.set('noSs', false);
             } else {
                 this.set('courseReserve', true);
                 this.set('experienceApply', false);
+                this.set('formErrorFlag', false);
+                this.set('noSr', false);
+                this.set('noSa', false);
+                this.set('noSy', false);
+                this.set('noSs', false);
             }
             // this.sendAction('toggleAction');
             this.toggleAction();
 
         },
         reservableChanged() {
+            let that = this;
             let sel = document.getElementById("reservableselect");
             this.set('sel', sel)
             if (sel.selectedIndex == 0) {
@@ -63,6 +88,14 @@ export default Component.extend({
             } else {
                 this.set('selectedReservable', sel.options[sel.selectedIndex].value);
             }
+
+            let tempItem = this.store.peekRecord("reservableitem", this.selectedReservable);
+            let tempClass = this.store.query('class', { "reservable-id": tempItem.id}).then((res) => {
+                if(res.length == 0) {
+                    that.toast.error('', '此参与内容暂无场次，请先添加场次！', this.toastOptions);
+                }
+            })
+
         },
         yardChanged() {
             var sel = document.getElementById("yardselect");
@@ -73,12 +106,20 @@ export default Component.extend({
             }
         },
         activityChanged() {
+            let that = this;
             var sel = document.getElementById('actselect');
             if (sel.selectedIndex == 0) {
                 this.set('selectedActivity', null);
             } else {
                 this.set('selectedActivity', sel.options[sel.selectedIndex].value);
             }
+
+            let tempItem = this.store.peekRecord("reservableitem", this.selectedActivity);
+            let tempClass = this.store.query('class', { "reservable-id": tempItem.id}).then((res) => {
+                if(res.length == 0) {
+                    that.toast.error('', '此参与内容暂无场次，请先添加场次！', this.toastOptions);
+                }
+            })
         },
         sessionChanged() {
             var sel = document.getElementById('sessionselect');

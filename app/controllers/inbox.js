@@ -26,13 +26,19 @@ export default Controller.extend({
 
     sr : null,
     sy: null,
-    dt: '2018-10-01',
-
     sa: null,
     ss: null,
+    noSr: false,
+    noSy: false,
+    noSa: false,
+    noSs: false,
+    formErrorFlag: false,
+
+    dt: '2018-10-01',
+
     isCourse: true,
     noteError: false,
-    noSr: false,
+
     srClasses: null,
     saClasses: null,
     contentSubmit: computed('sr', 'sa', function() {
@@ -107,6 +113,7 @@ export default Controller.extend({
                 this.set('sa', null);
                 this.set('ss', null);
                 this.set('showhandledlg', true);
+                this.set('formErrorFlag', false)
             }
         },
 
@@ -135,6 +142,11 @@ export default Controller.extend({
         },
         cancelHandled() {
             this.set('showhandledlg', false);
+            this.set('formErrorFlag', false);
+            this.set('noSa', false);
+            this.set('noSs', false);
+            this.set('noSr', false);
+            this.set('noSy', false);
         },
         cancelRegisterHandled() {},
         refreshDataComplete(appliesCount) {
@@ -152,91 +164,134 @@ export default Controller.extend({
     },
     checkValidate() {},
     signCoureReserve() {
-        let that = this;
-        let apply = this.current_apply;
-        let kid = this.current_apply.kids.firstObject;
-        let applicant = this.current_apply.applicant;
-        let stud = this.store.createRecord('student');
-        let guar = this.store.createRecord('guardian');
-        stud.set('name', kid.name);
-        stud.set('nickname', kid.nickname)
-        stud.set('gender', kid.gender)
-        stud.set('dob', kid.dob);
-        stud.set('guardianRole', kid.guardianRole);
-        stud.set('contact', apply.contact)
-        stud.set('brandId', localStorage.getItem('brandid') )
-
-        stud.guardians.pushObject(guar)
-        stud.guardians.objectAt(0).set('name', applicant.content.name);
-        stud.guardians.objectAt(0).set('gender', applicant.content.gender);
-        stud.guardians.objectAt(0).set('contact', apply.contact);
-        stud.guardians.objectAt(0).set('regDate', new Date().getTime());
-        stud.guardians.objectAt(0).set('relationShip', kid.guardianRole);
-
-
-        let onApplySuccess = function() {
-            apply.set('status', 1);
-            apply.save();
-            that.set('showhandledlg', false);
+        if(this.sy == null || this.sy == '') {
+            this.set('noSy', true)
+        } else {
+            this.set('noSy', false)
         }
-        let onApplyFail = function() {}
 
-        let onClassSuccess = function(res) {
-            res.students.pushObject(stud);
-            res.save().then(onApplySuccess, onApplyFail)
-
+        if(this.sr == null || this.sr == '') {
+            this.set('noSr', true)
+        } else {
+            this.set('noSr', false)
         }
-        let onClassFail = function() {}
 
-        let onStudSuccess = function() {
-            that.store.find('class', that.sy).then(onClassSuccess, onClassFail)
+        if(this.noSy || this.noSr) {
+            this.set('formErrorFlag', true)
+        } else {
+            this.set('formErrorFlag', false)
         }
-        let onStudFail = function() {}
+        if(this.formErrorFlag) {
+            return true
+        } else {
+            let that = this;
+            let apply = this.current_apply;
+            let kid = this.current_apply.kids.firstObject;
+            let applicant = this.current_apply.applicant;
+            let stud = this.store.createRecord('student');
+            let guar = this.store.createRecord('guardian');
+            stud.set('name', kid.name);
+            stud.set('nickname', kid.nickname)
+            stud.set('gender', kid.gender)
+            stud.set('dob', kid.dob);
+            stud.set('guardianRole', kid.guardianRole);
+            stud.set('contact', apply.contact)
+            stud.set('brandId', localStorage.getItem('brandid') )
 
-        stud.save().then(onStudSuccess, onStudFail);
+            stud.guardians.pushObject(guar)
+            stud.guardians.objectAt(0).set('name', applicant.content.name);
+            stud.guardians.objectAt(0).set('gender', applicant.content.gender);
+            stud.guardians.objectAt(0).set('contact', apply.contact);
+            stud.guardians.objectAt(0).set('regDate', new Date().getTime());
+            stud.guardians.objectAt(0).set('relationShip', kid.guardianRole);
+
+
+            let onApplySuccess = function() {
+                apply.set('status', 1);
+                apply.save();
+                that.set('showhandledlg', false);
+            }
+            let onApplyFail = function() {}
+
+            let onClassSuccess = function(res) {
+                res.students.pushObject(stud);
+                res.save().then(onApplySuccess, onApplyFail)
+
+            }
+            let onClassFail = function() {}
+
+            let onStudSuccess = function() {
+                that.store.find('class', that.sy).then(onClassSuccess, onClassFail)
+            }
+            let onStudFail = function() {}
+
+            stud.save().then(onStudSuccess, onStudFail);
+        }
+
 
     },
     signActivityReserve() {
-        let that = this;
-        let apply = this.current_apply;
-        let kid = this.current_apply.kids.firstObject;
-        let applicant = this.current_apply.applicant;
-        let stud = this.store.createRecord('student');
-        let guar = this.store.createRecord('guardian');
-        stud.set('name', kid.name);
-        stud.set('nickname', kid.nickname)
-        stud.set('gender', kid.gender)
-        stud.set('dob', kid.dob);
-        stud.set('guardianRole', kid.guardianRole);
-        stud.set('contact', apply.contact)
-        stud.set('brandId', localStorage.getItem('brandid') )
-
-        stud.guardians.pushObject(guar)
-        stud.guardians.objectAt(0).set('name', applicant.content.name);
-        stud.guardians.objectAt(0).set('gender', applicant.content.gender);
-        stud.guardians.objectAt(0).set('contact', apply.contact);
-        stud.guardians.objectAt(0).set('regDate', new Date().getTime());
-        stud.guardians.objectAt(0).set('relationShip', kid.guardianRole);
-
-        let onApplySuccess = function() {
-            apply.set('status', 1);
-            apply.save();
-            that.set('showhandledlg', false);
+        if(this.sa == null || this.sa == '') {
+            this.set('noSa', true)
+        } else {
+            this.set('noSa', false)
         }
-        let onApplyFail = function() {}
 
-        let onClassSuccess = function(res) {
-            res.students.pushObject(stud);
-            res.save().then(onApplySuccess, onApplyFail)
+        if(this.ss == null || this.sa == '') {
+            this.set('noSs', true)
+        } else {
+            this.set('noSs', false)
         }
-        let onClassFail = function() {}
 
-        let onStudSuccess = function() {
-            // let actv = that.store.find('reservableitem', that.sa).then();
-            that.store.find('class', that.ss).then(onClassSuccess, onClassFail)
+        if(this.noSa || this.noSs) {
+            this.set('formErrorFlag', true)
+        } else {
+            this.set('formErrorFlag', false)
         }
-        let onStudFail = function() {}
+        if(this.formErrorFlag) {
+            return true
+        } else {
+            let that = this;
+            let apply = this.current_apply;
+            let kid = this.current_apply.kids.firstObject;
+            let applicant = this.current_apply.applicant;
+            let stud = this.store.createRecord('student');
+            let guar = this.store.createRecord('guardian');
+            stud.set('name', kid.name);
+            stud.set('nickname', kid.nickname)
+            stud.set('gender', kid.gender)
+            stud.set('dob', kid.dob);
+            stud.set('guardianRole', kid.guardianRole);
+            stud.set('contact', apply.contact)
+            stud.set('brandId', localStorage.getItem('brandid') )
 
-        stud.save().then(onStudSuccess, onStudFail);
+            stud.guardians.pushObject(guar)
+            stud.guardians.objectAt(0).set('name', applicant.content.name);
+            stud.guardians.objectAt(0).set('gender', applicant.content.gender);
+            stud.guardians.objectAt(0).set('contact', apply.contact);
+            stud.guardians.objectAt(0).set('regDate', new Date().getTime());
+            stud.guardians.objectAt(0).set('relationShip', kid.guardianRole);
+
+            let onApplySuccess = function() {
+                apply.set('status', 1);
+                apply.save();
+                that.set('showhandledlg', false);
+            }
+            let onApplyFail = function() {}
+
+            let onClassSuccess = function(res) {
+                res.students.pushObject(stud);
+                res.save().then(onApplySuccess, onApplyFail)
+            }
+            let onClassFail = function() {}
+
+            let onStudSuccess = function() {
+                // let actv = that.store.find('reservableitem', that.sa).then();
+                that.store.find('class', that.ss).then(onClassSuccess, onClassFail)
+            }
+            let onStudFail = function() {}
+
+            stud.save().then(onStudSuccess, onStudFail);
+        }
     },
 });

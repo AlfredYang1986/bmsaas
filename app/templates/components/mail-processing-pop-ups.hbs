@@ -2,8 +2,17 @@
         {{#layout-push direction='col' classNames="course-reserve-content"}}
             {{#layout-push direction='row' split=true classNames='content-title-area'}}
                 <p class="title">预约处理</p>
-                {{!-- <span class="base-info">申请时间：{{display_apply_date}}</span> --}}
             {{/layout-push}}
+
+            {{#if formErrorFlag}}
+                <div class="form-checked">
+                    {{#layout-push direction='row' classNames="error-line"}}
+                        <img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
+                        <span class="error-info">请填写完整信息</span>
+                    {{/layout-push}}
+                </div>
+            {{/if}}
+
             {{#if courseReserve}}
                 {{#layout-push direction='col'}}
                     {{#if noteError}}

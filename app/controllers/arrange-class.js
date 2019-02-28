@@ -42,7 +42,7 @@ export default Controller.extend({
     courseTimeArr:A([{name: 0.5}, {name: 1}, {name: 1.5}, {name: 2}, {name: 2.5}, {name: 3}, {name: 3.5}, {name: 4}, {name: 4.5}, {name: 5}]),
 
 
-    // refreshSelected: computed(function(){ 
+    // refreshSelected: computed(function(){
     //     var sel = document.getElementById("yardselect");
     //     this.set('selectedYard', sel.options[sel.selectedIndex].value);
     //     return '';
@@ -156,9 +156,9 @@ export default Controller.extend({
             this.set("cur_tech_id", "");
 
             if(tmpArr.length == 0) {
-                this.toast.error('', '此班级无授课教师，请先为该班级添加教师！', this.toastOptions);
+                this.toast.error('', '请先在班级中添加教师！', this.toastOptions);
             }
-            
+
             // 有BUG 选择的班级没有老师时触发
         },
         onPanelClick() {
