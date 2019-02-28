@@ -18,8 +18,7 @@ export default Route.extend({
             })
         })
         return RSVP.hash({
-            courses: this.store.query('sessioninfo', { "brand-id": localStorage.getItem("brandid"), "status": 2}),
-            // courses: this.store.query('reservableitem', { "brand-id": localStorage.getItem("brandid"), "status": 2}),
+            courses: this.store.query('reservableitem', { "brand-id": localStorage.getItem("brandid"), "status": 2}),
             yard: tmp,
         })
     },

@@ -12,8 +12,8 @@
             {{#layout-push direction='row' split=true classNames="class-detail-title-top"}}
                 {{#layout-push direction='col' split=true classNames="class-detail-title-top-left"}}
                     <p class="class-title">{{model.class.classTitle}}</p>
-                    {{#link-to 'detail.course' model.class.sessioninfo.id}}
-                        <p class="class-subtitle">{{model.class.sessioninfo.title}}</p>
+                    {{#link-to 'detail.course' model.class.reservableitem.id}}
+                        <p class="class-subtitle">{{model.class.reservableitem.sessioninfo.title}}</p>
                     {{/link-to}}
                 {{/layout-push}}
                 {{#layout-push direction='row' classNames="class-detail-title-top-right"}}
@@ -118,7 +118,7 @@
                 </div>
             {{/if}}
             {{#layout-push direction="col" classNames='input_area' }}
-                {{bmform/bm-base-select type="id" chooseCourse=true selTitle="选择课程" options=model.courses curSelect=cur_course_id classNames="input_area area-margin-bottom"}}
+                {{bmform/bm-base-select type="id" chooseReservable=true selTitle="选择课程" options=model.courses curSelect=cur_course_id classNames="input_area area-margin-bottom"}}
             {{/layout-push}}
             {{#if noteError}}
                 {{#layout-push direction="row"  classNames='input_area' }}

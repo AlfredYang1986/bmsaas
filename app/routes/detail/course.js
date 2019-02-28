@@ -6,7 +6,7 @@ export default Route.extend({
     model(params) {
         // var si = this.store.findRecord('sessioninfo', params.courseid)
         return RSVP.hash({
-            course: this.store.findRecord('sessioninfo', params.courseid),
+            course: this.store.findRecord('reservableitem', params.courseid),
             // urls: A([
             //     {
             //         "pageName":"课程",
@@ -36,7 +36,7 @@ export default Route.extend({
                 "id":"",
             },
             {
-                "pageName": model.course.get("title"),
+                "pageName": model.course.sessioninfo.get("title"),
                 "link":"",
                 "id":"",
             }
