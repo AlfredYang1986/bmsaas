@@ -24,7 +24,7 @@ Router.map(function() {
     this.route('tech', { path: '/tech/:techid' });
     this.route('yard', { path: '/yard/:yardid' });
     this.route('classes');
-    this.route('course', { path: '/course/:courseid' });
+    this.route('course', { path: '/course/:courseid/:resid' });
     this.route('session', { path: '/session/:actid'});
 
     this.route('actv', function() {

@@ -11,9 +11,9 @@
         {{#layout-push direction='row' split=true classNames="reserve-detail-head"}}
             {{#layout-push direction='col' mid=true }}
                 {{#layout-push direction='col' classNames="detail_margin_top_left"}}
-                    <span class="detail_panel_title_name">{{model.course.title}}</span>
+                    <span class="detail_panel_title_name">{{model.course.sessioninfo.title}}</span>
                     {{#layout-push direction='row'}}
-                    <p class="detail_panel_role_num">{{model.course.category.title}}</p>
+                    <p class="detail_panel_role_num">{{model.course.sessioninfo.category.title}}</p>
                     {{/layout-push}}
                 {{/layout-push}}
             {{/layout-push}}
@@ -29,13 +29,13 @@
                     {{/dd.menu}}
                 {{/bs-dropdown}}
                 {{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteExpDlg cancelHandled='cancelHandled' successHandled="onDeleteCourseClick"}}
-                    <p class="warning-modal-body-content">您确定要删除课程「{{model.course.title}}」吗？</p>
+                    <p class="warning-modal-body-content">您确定要删除课程「{{model.course.sessioninfo.title}}」吗？</p>
                 {{/bmcom/bm-warning-modal}}
             {{/layout-push}} --}}
         {{/layout-push}}
     </div>
-        {{#bmpage/bm-session-info session=model.course isCourse=true}}
-            {{bmdetail/bm-top-title-panel title="课程详情" rightText="编辑" linkAddr='edit.course' linkParam=model.course.id}}
+        {{#bmpage/bm-session-info session=model.course.sessioninfo}}
+            {{bmdetail/bm-top-title-panel title="课程详情" rightText="编辑" linkAddr='edit.course' linkParam=model.course.sessioninfo.id linkParam2=model.course.id}}
         {{/bmpage/bm-session-info}}
     {{/layout-push}}
 </section>

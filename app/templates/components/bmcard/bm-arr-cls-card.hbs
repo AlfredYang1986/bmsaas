@@ -31,7 +31,7 @@
         {{/layout-push}}
         {{#layout-push direction='row' classNames="arr-cls-card-top-subtitle"}}
             {{#if (eq unit.class.status 2)}}
-                <p class="top-subtitle">{{unit.class.sessioninfo.title}}</p>
+                <p class="top-subtitle">{{bmcom/bm-get unit.class "reservableitem.sessioninfo.title"}}</p>
             {{else}}
                 {{!-- <p class="top-subtitle">{{unit.class.sessioninfo.title}}</p> --}}
             {{/if}}

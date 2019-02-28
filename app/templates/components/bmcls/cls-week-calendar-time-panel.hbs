@@ -4,7 +4,7 @@
 <a id={{unit.id}} class='bm-content-right' tabindex="0">
     {{#if (eq unit.class.status 2)}}
         <span class='bm-content-cls-title'>{{unit.class.classTitle}}</span>
-        <span class='bm-content-session-title'>{{unit.class.sessioninfo.title}}</span>
+        <span class='bm-content-session-title'>{{bmcom/bm-get unit.class "reservableitem.sessioninfo.title"}}</span>
     {{else}}
         <span class='bm-content-cls-title'>{{bmcom/bm-get unit.class "reservableitem.sessioninfo.title"}}</span>
         

@@ -13,7 +13,7 @@ export default Route.extend({
             arrTitles: A(['课时数', '时间', '教室']),
             class: this.store.findRecord('class', params.clsid),
             units: this.store.query('unit', { "class-id": params.clsid}),
-            courses: this.store.query('sessioninfo', { "brand-id": localStorage.getItem("brandid"), "status": 2}),
+            courses: this.store.query('reservableitem', { "brand-id": localStorage.getItem("brandid"), "status": 2}),
             techs: this.store.query('teacher', { "brand-id": localStorage.getItem("brandid")}),
             studs: this.store.query('student', { "brand-id": localStorage.getItem("brandid")}),
             studentTableHead: [{
@@ -29,7 +29,7 @@ export default Route.extend({
     },
     setupController(controller, model) {
         this._super(controller, model);
-        this.controller.set('cur_course_id', model.class.sessioninfo.get("id"));
+        this.controller.set('cur_course_id', model.class.reservableitem.get("id"));
         
         let urls = A([
             {

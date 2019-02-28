@@ -148,7 +148,8 @@ export default Controller.extend({
                 that.toast.error('', '编辑班级失败', that.toastOptions);
             }
             this.model.class.set("classTitle", this.classTitle)
-            this.model.class.set("sessioninfo", this.store.peekRecord("sessioninfo", this.cur_course_id))
+            // this.model.class.set("sessioninfo", this.store.peekRecord("sessioninfo", this.cur_course_id))
+            this.model.class.set("reservableitem", this.store.peekRecord("reservableitem", this.cur_course_id))
             this.model.class.save().then(onSuccess, onFail)
         },
         addTechHandled() {
