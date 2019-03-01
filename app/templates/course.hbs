@@ -5,7 +5,7 @@
                 <p class="page_title">课程</p>
                 {{#link-to 'edit.course' 'course/push' 'course/push' classNames='course_add_btn'}}+ 创建课程{{/link-to}}
             {{/layout-push}}
-            {{#if (eq model.length 0)}}
+            {{#if (eq page_count 0)}}
                 {{bmcom/bm-empty-state class="course-empty-state" picUrl="/images/img_empty@2x.png" title="暂无数据" des="请添加课程"}}
             {{else}}
                 {{bmcom/bm-card-area onCourseCardClicked=(action 'cardClicked')  onRefreshDataComplete=(action 'refreshDataComplete') type='course' curPage=pagenum}}
