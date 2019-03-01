@@ -1,7 +1,7 @@
 import DS from 'ember-data';
 import {computed} from '@ember/object';
 import { inject as service } from '@ember/service'
-// import CustomError from './error';
+import CustomError from './error';
 
 export default DS.JSONAPIAdapter.extend({
     bm_token: service(),
@@ -11,8 +11,11 @@ export default DS.JSONAPIAdapter.extend({
     // host: 'https://demo.dongdakid.com',
     // 发布时揭开注释强制过滤掉后端返回link里的主机
     headers: computed(function() {
+        window.console.log(this.bm_token.token)
         return {
-            'Authorization': this.bm_token.bearerToken //token验证，需要时揭开注释
+            // 'Authorization': this.bm_token.bearerToken //token验证，需要时揭开注释
+            
+            'Authorization': 'bearer ' + this.bm_token.token
         };
     }),
     namespace: "v2", // 根据后端发布版本修改命名空间
@@ -21,11 +24,40 @@ export default DS.JSONAPIAdapter.extend({
         return `${baseUrl}/relationships`;
     },
 
-    // handleResponse(status) {
-    //     if (401 === status) {
-    //         return new CustomError();
-    //     }
+    handleResponse(status, headers, payload) {
+        if (400 === status && payload.errors) {
+            return new DS.InvalidError(payload.errors);
+        } else if (401 === status && payload.errors) {
+            return new CustomError(payload.errors);
+        } else if (200 === status) {
+            return this._super(...arguments);
+        } else {
+            return new DS.AdapterError();
+        }
+        // else if (401 === status) {
+        // } else if (401 === status) {
+        // } else if (401 === status) {
+        // } else if (401 === status) {
+        // } else if (401 === status) {
+        // } else if (401 === status) {
+        // } else if (401 === status) {
+        // } else if (401 === status) {
+        // } else if (401 === status) {
+        // } else if (401 === status) {
+        // } else if (401 === status) {
+        // } else if (401 === status) {
+        // } else if (401 === status) {
+        // } else if (401 === status) {
+        // } else if (401 === status) {
+        // } else if (401 === status) {
+        // } else if (401 === status) {
+        // } else if (401 === status) {
+        // } else if (401 === status) {
+        // } else if (401 === status) {
+        // } else if (401 === status) {
+        // } else if (401 === status) {
+        // }
+        
 
-    //     return this._super(...arguments);
-    // }
+    }
 });

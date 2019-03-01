@@ -2,7 +2,7 @@ import DS from 'ember-data';
 
 export default DS.JSONAPISerializer.extend({
     normalizeArrayResponse() {
-        debugger
+        // debugger
         let normalizedDocument = this._super(...arguments);
 
         let tr =  normalizedDocument.meta['query-res']
@@ -13,13 +13,14 @@ export default DS.JSONAPISerializer.extend({
 
         return normalizedDocument;
     },
-    extractErrors(store, typeClass, payload, id) {
-        if (payload && typeof payload === 'object' && payload._problems) {
-          payload = payload._problems;
-          this.normalizeErrors(typeClass, payload);
-        }
-        window.console.log(payload);
-        debugger
-        return payload;
-      }
+
+    // extractErrors(store, typeClass, payload, id) {
+    //     if (payload && typeof payload === 'object' && payload._problems) {
+    //       payload = payload._problems;
+    //       this.normalizeErrors(typeClass, payload);
+    //     }
+    //     window.console.log(payload);
+    //     // debugger
+    //     return payload;
+    //   }
 });

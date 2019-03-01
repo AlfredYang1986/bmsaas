@@ -7,20 +7,12 @@ export default Service.extend({
     cookies: service(),
 
     allCookies: computed(function() {
-        let cookieService = this.get('cookies');
-        cookieService.write('now', new Date().getTime());
-    
-        let cookies = cookieService.read();
-        return keys(cookies).reduce((acc, key) => {
-            let value = cookies[key];
-            acc.push({ name: key, value });
-    
-            return acc;
-        }, []);
-        // return cookies;
+        debugger
+        return this.refreshCookies()
     }),
 
     token: computed('allCookies', function(){
+        debugger
         let value = ''
         for (let idx = 0; idx < this.allCookies.length; idx++) {
             let tmp = this.allCookies[idx]
@@ -51,7 +43,8 @@ export default Service.extend({
     }),
 
     bearerToken: computed('token', function(){
-        return 'bearer ' + this.token
+        debugger
+        return 'bearer ' + localStorage.getItem('token')
     }),
 
     resetData(t, bid) {
@@ -61,6 +54,7 @@ export default Service.extend({
         localStorage.setItem('token', t)
         this.cookies.write('brand-id', bid) // TODO: add options
         localStorage.setItem('brandid', bid)
+        this.refreshCookies()
     },
 
     clearToken() {
@@ -69,12 +63,6 @@ export default Service.extend({
         this.cookies.clear("brand-id")
         this.cookies.clear("token")
         this.cookies.clear("now")
-        // let options = {
-        //     // domain : "demo.dongdakid.com",
-        //     domain : "localhost",
-        //     path : "/"
-        // };
-        // this.cookies.clear(options)
     },
 
     clearAllCache() {
@@ -85,4 +73,19 @@ export default Service.extend({
     isTokenValidata() {
         return this.token.length > 0
     },
+
+    refreshCookies() {
+        let cookieService = this.get('cookies');
+        cookieService.write('now', new Date().getTime());
+    
+        let cookies = cookieService.read();
+        this.set('allCookies', keys(cookies).reduce((acc, key) => {
+            let value = cookies[key];
+            acc.push({ name: key, value });
+    
+            return acc;
+        }, []))
+        // return cookies;
+        debugger
+    }
 });
