@@ -16,19 +16,51 @@ export default Service.extend({
     }),
 
     handleError(errors) {
-        debugger
-        this.set("error", null)
+        this.set("error", null);
         if(errors.length == 1) {
             this.set("error", errors.objectAt(0));
             window.console.log(this.error)
         }
     },
-    toastError() {
-        debugger
-        if(this.error.status == 401) {
-            this.toast.error('', '授权失败，请重新登录', this.toastOptions);
-            this.bm_token.clearAllCache();
-            this.get('router').transitionTo('index');
+
+    toastError(errorHint) {
+        let status = Number(this.get("error.status"))
+        if (400 <= status && 500 > status) {
+            let tempHint = "";
+            if(status == 401) {
+                tempHint = ": 授权失败,请重新登录!";
+                this.redirectToIndex()
+            } else if(status == 404) {
+                tempHint = ": 资源未找到!";
+                this.redirectTo404()
+            } else {
+                this.redirectTo404()
+            }
+            
+            if(errorHint != undefined) {
+                this.toast.error('', errorHint, this.toastOptions);
+            } else {
+                this.toast.error('', '请求失败' + tempHint, this.toastOptions);
+            }
+            window.console.log(this.error);
+        } else if (500 <= status && 600 >= status) {
+            this.toast.error('', '服务器错误', this.toastOptions);
+            window.console.log(this.error);
+            this.redirectTo404()
+        } else {
+            this.toast.error('', '未知错误', this.toastOptions);
+            window.console.log(this.error);
+            this.redirectTo404()
         }
     },
+
+    redirectToIndex() {
+        this.bm_token.clearAllCache();
+        this.get('router').transitionTo('index');
+    },
+
+    redirectTo404() {
+        this.get('router').transitionTo('not-found');
+    }
+
 });

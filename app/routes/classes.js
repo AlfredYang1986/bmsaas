@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
-import CustomError from '../adapters/error';
+// import CustomError from '../adapters/error';
 import { inject as service } from '@ember/service';
 
 
@@ -25,6 +25,7 @@ export default Route.extend({
         // }
         )
         return RSVP.hash({
+            // courses: this.store.find('reservableitem',"fdsagojudfszh"),
             courses: this.store.query('reservableitem', { "brand-id": localStorage.getItem("brandid"), "status": 2}),
             yard: tmp,
         })
@@ -36,17 +37,16 @@ export default Route.extend({
         }
     },
 
-    actions:{
-        error(error, transition) {
-            debugger
-            if (error instanceof CustomError) {
-                window.console.log(error, transition);
-                this.bm_error_service.handleError(error.errors)
-                this.bm_error_service.toastError()
-                return;
-            }
+    // actions:{
+    //     error(error, transition) {
+    //         if (error instanceof CustomError) {
+    //             window.console.log(error, transition);
+    //             this.bm_error_service.handleError(error.errors)
+    //             this.bm_error_service.toastError()
+    //             return;
+    //         }
       
-            // ...other error handling logic
-        }
-    },
+    //         // ...other error handling logic
+    //     }
+    // },
 });

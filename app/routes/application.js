@@ -1,8 +1,11 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service'
+import CustomError from '../adapters/error';
 
 export default Route.extend({
 	bm_token: service(),
+    bm_error_service: service(),
+
 	beforeModel(transition) {
 		window.console.log(transition);
 		// TODO: 下面代码我都没看懂，写的什么意思
@@ -25,4 +28,17 @@ export default Route.extend({
 			this.transitionTo('index');
 		}
 	},
+
+	actions:{
+        error(error, transition) {
+            if (error instanceof CustomError) {
+                window.console.log(error, transition);
+                this.bm_error_service.handleError(error.errors)
+                this.bm_error_service.toastError()
+                return;
+            }
+      
+            // ...other error handling logic
+        }
+    },
 });

@@ -63,6 +63,7 @@ Router.map(function() {
   this.route('arrange-class');
   this.route('exp');
   this.route('actv');
+  this.route('not-found');
 });
 
 export default Router;

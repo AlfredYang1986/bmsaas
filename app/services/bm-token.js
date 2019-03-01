@@ -6,13 +6,12 @@ const { keys } = Object;
 export default Service.extend({
     cookies: service(),
 
-    allCookies: computed(function() {
-        debugger
-        return this.refreshCookies()
-    }),
+    init() {
+        this._super(...arguments)
+        this.set('allCookies', this.refreshCookies())
+    },
 
-    token: computed('allCookies', function(){
-        debugger
+    token: computed('allCookies', function(){``
         let value = ''
         for (let idx = 0; idx < this.allCookies.length; idx++) {
             let tmp = this.allCookies[idx]
@@ -43,7 +42,6 @@ export default Service.extend({
     }),
 
     bearerToken: computed('token', function(){
-        debugger
         return 'bearer ' + localStorage.getItem('token')
     }),
 
@@ -79,13 +77,13 @@ export default Service.extend({
         cookieService.write('now', new Date().getTime());
     
         let cookies = cookieService.read();
-        this.set('allCookies', keys(cookies).reduce((acc, key) => {
+
+        return keys(cookies).reduce((acc, key) => {
             let value = cookies[key];
             acc.push({ name: key, value });
     
             return acc;
-        }, []))
+        }, [])
         // return cookies;
-        debugger
     }
 });

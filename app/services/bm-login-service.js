@@ -215,7 +215,6 @@ export default Service.extend({
 
         let dt = JSON.stringify(tmp);
 
-        // let that = this
         return new Promise(function(resolve, reject){
             $.ajax({
                 method: 'POST',
