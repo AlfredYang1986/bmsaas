@@ -4,7 +4,7 @@
             <p class="page_title">活动</p>
             {{#link-to 'edit.actv.rsb' classNames='course_add_btn'}}+ 创建活动{{/link-to}}
         {{/layout-push}}
-        {{#if (eq model.length 0)}}
+        {{#if (eq page_count 0)}}
             {{bmcom/bm-empty-state class="reservable-empty-state" picUrl="/images/img_empty@2x.png" title="暂无活动" des="请创建活动"}}
         {{else}}
             {{bmcom/bm-card-area onCourseCardClicked=(action 'cardClicked')  onRefreshDataComplete=(action 'refreshDataComplete') type='actv' curPage=pagenum}}
