@@ -1,6 +1,7 @@
 import DS from 'ember-data';
 import {computed} from '@ember/object';
 import { inject as service } from '@ember/service'
+// import CustomError from './error';
 
 export default DS.JSONAPIAdapter.extend({
     bm_token: service(),
@@ -18,5 +19,13 @@ export default DS.JSONAPIAdapter.extend({
     urlForFindHasMany(id, modelName) {
         let baseUrl = this.buildURL(modelName, id);
         return `${baseUrl}/relationships`;
-      }
+    },
+
+    // handleResponse(status) {
+    //     if (401 === status) {
+    //         return new CustomError();
+    //     }
+
+    //     return this._super(...arguments);
+    // }
 });

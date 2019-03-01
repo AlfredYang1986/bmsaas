@@ -1,5 +1,6 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
+// import CustomError from '../adapters/error';
 // import { inject as service } from '@ember/service';
 
 
@@ -27,5 +28,17 @@ export default Route.extend({
         if(this.get("controller") != undefined) {
             this.get("controller").toggleProperty("refreshFlag")
         }
-    }
+    },
+    // actions:{
+    //     error(error, transition) {
+    //         if (error instanceof CustomError) {
+    //         //   this.transitionTo('under-maintenance');
+    //             window.console.log(error, transition);
+                
+    //             return;
+    //         }
+      
+    //         // ...other error handling logic
+    //     }
+    // },
 });
