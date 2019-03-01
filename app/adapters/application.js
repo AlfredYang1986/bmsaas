@@ -10,14 +10,7 @@ export default DS.JSONAPIAdapter.extend({
     
     // host: 'https://demo.dongdakid.com',
     // 发布时揭开注释强制过滤掉后端返回link里的主机
-    headers: computed(function() {
-        window.console.log(this.bm_token.token)
-        return {
-            // 'Authorization': this.bm_token.bearerToken //token验证，需要时揭开注释
-            
-            'Authorization': 'bearer ' + this.bm_token.token
-        };
-    }),
+    headers:  this.bm_token.bearerToken,
     namespace: "v2", // 根据后端发布版本修改命名空间
     urlForFindHasMany(id, modelName) {
         let baseUrl = this.buildURL(modelName, id);
