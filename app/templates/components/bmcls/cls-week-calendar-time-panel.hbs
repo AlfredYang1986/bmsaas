@@ -1,22 +1,25 @@
 {{!-- {{yield}} --}}
 {{!-- <div class='bm-content-left'></div> --}}
 {{!-- {{#layout-push id=unit.id direction='col' classNames='bm-content-right' tabindex="0"}} --}}
-<a id={{unit.id}} class='bm-content-right' tabindex="0">
-    {{#if (eq unit.class.status 2)}}
+{{#if (eq unit.class.status 2)}}
+    <a id={{unit.id}} class='bm-content-right' tabindex="0">
         <span class='bm-content-cls-title'>{{unit.class.classTitle}}</span>
         <span class='bm-content-session-title'>{{bmcom/bm-get unit.class "reservableitem.sessioninfo.title"}}</span>
-    {{else}}
+        {{!-- <span class='bm-content-session-time'>
+            {{bmdob/bmdob2clocktime unit.startDate}}
+            ~
+            {{bmdob/bmdob2clocktime unit.endDate}}
+        </span> --}}
+        {{#bs-popover triggerElement="parentView" triggerEvents="focus" title="" placement="right" autoPlacement=true viewportSelector=".bm-scroller" viewportPadding=8 as |po|}}
+            {{bmcard/bm-arr-cls-card headColor=bgColor unit=unit onCloseClick=(action po.close) onEditClick=(action "onEditClick") onDeleteClick=(action "onDeleteClick")}}
+        {{/bs-popover}}
+    </a>
+{{else}}
+    <a id={{unit.id}} class='bm-content-right bm-content-exp' tabindex="0">
         <span class='bm-content-cls-title'>{{bmcom/bm-get unit.class "reservableitem.sessioninfo.title"}}</span>
-        
-    {{/if}}
-    {{!-- <span class='bm-content-session-time'>
-        {{bmdob/bmdob2clocktime unit.startDate}}
-        ~
-        {{bmdob/bmdob2clocktime unit.endDate}}
-    </span> --}}
-    {{#bs-popover triggerElement="parentView" triggerEvents="focus" title="" placement="right" autoPlacement=true viewportSelector=".bm-scroller" viewportPadding=8 as |po|}}
-        {{!-- <button {{action po.close}}>Close</button> --}}
-        {{bmcard/bm-arr-cls-card headColor=bgColor unit=unit onCloseClick=(action po.close) onEditClick=(action "onEditClick") onDeleteClick=(action "onDeleteClick")}}                    
-    {{/bs-popover}}
-</a>
+        {{#bs-popover triggerElement="parentView" triggerEvents="focus" title="" placement="right" autoPlacement=true viewportSelector=".bm-scroller" viewportPadding=8 as |po|}}
+            {{bmcard/bm-arr-cls-card headColor=bgColor unit=unit onCloseClick=(action po.close) onEditClick=(action "onEditClick") onDeleteClick=(action "onDeleteClick")}}
+        {{/bs-popover}}
+    </a>
+{{/if}}
 {{!-- {{/layout-push}} --}}

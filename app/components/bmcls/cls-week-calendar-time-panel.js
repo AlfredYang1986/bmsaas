@@ -39,7 +39,7 @@ export default Component.extend({
         return this.step * Math.max((tt + ee), 2) - 2 * this.margin;
     }),
     width: 96,
-    bgColor: '#FFB165',
+    bgColor: '#FFFAE6',
     unit: null,
     attributeBindings: ['style'],
     style: computed('width', 'height', 'margin', 'bgColor', function(){

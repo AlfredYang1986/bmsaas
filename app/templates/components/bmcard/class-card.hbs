@@ -1,10 +1,9 @@
-{{#layout-push direction="col" classNames="class-card"}}
+{{!-- {{#layout-push direction="col" classNames="class-card"}}
     {{#layout-push direction="col" classNames="class-card-head-info"}}
         <p class="headline">{{cls.classTitle}}</p>
         <p class="secondary-title">{{cls.sessioninfo.title}}</p>
-        {{!-- <p class="class-address">{{cls.yard.address}}</p> --}}
     {{/layout-push}}
-    {{#layout-push direction="col" classNames="class-card-content"}}
+    {{#layout-push direction="col" classNames="class-card-content"}} --}}
         {{!-- {{#layout-push direction="col"}}
             <div class="progress-label">
                 <p>课程进度</p>
@@ -23,6 +22,26 @@
         {{/layout-push}}
         {{#layout-push direction='row' classNames="split-line"}}
         {{/layout-push}} --}}
+        {{!-- {{#layout-push direction="row" classNames="class-teachers"}}
+            {{#each techPics as |item|}}
+                <img src={{item.url}} alt="">
+            {{/each}}
+            {{#if (gt techPicsOverFlow 0)}}
+                <p class="teacher-num">+{{techPicsOverFlow}}</p>
+            {{/if}}
+        {{/layout-push}}
+    {{/layout-push}}
+{{/layout-push}} --}}
+
+
+{{#layout-push direction="col" classNames="class-card"}}
+    {{#layout-push direction="col" classNames="class-card-head-info"}}
+        <p class="headline">{{cls.classTitle}}</p>
+        <p class="secondary-title">{{cls.sessioninfo.title}}</p>
+    {{/layout-push}}
+    {{#layout-push direction="col" classNames="class-card-content"}}
+        {{#layout-push direction='row' classNames="split-line"}}
+        {{/layout-push}}
         {{#layout-push direction="row" classNames="class-teachers"}}
             {{#each techPics as |item|}}
                 <img src={{item.url}} alt="">
@@ -33,4 +52,5 @@
         {{/layout-push}}
     {{/layout-push}}
 {{/layout-push}}
+
 {{yield}}

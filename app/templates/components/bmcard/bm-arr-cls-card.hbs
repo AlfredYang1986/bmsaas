@@ -4,23 +4,23 @@
     {{#layout-push direction='col' classNames="arr-cls-card-top"}}
         {{#layout-push direction='row' split=true classNames="arr-cls-card-top-head"}}
             {{#layout-push direction='row' classNames="arr-cls-card-top-inner-left"}}
-                {{#if (eq unit.class.status 2)}}
-                    <img class="top-img-btn" src="/images/icon_edit-filled_dark@2x.png"  {{action "onEditClick"}}/>
-                    {{!-- <img class="top-img-btn" src="/images/icon_trash_dark@2x.png"  {{action "onDeleteClick"}}/> --}}
-                {{/if}}
+                {{#layout-push direction='row' classNames="arr-cls-card-top-label"}}
+                    {{#if (eq unit.class.status 2)}}
+                        <p class="type-label type-label-course">课程</p>
+                    {{else if (eq unit.class.status 1)}}
+                        <p class="type-label">体验课</p>
+                    {{else if (eq unit.class.status 0)}}
+                        <p class="type-label">活动</p>
+                    {{/if}}
+                {{/layout-push}}
             {{/layout-push}}
             {{#layout-push direction='row' classNames="arr-cls-card-top-inner-right"}}
-                <img class="top-img-btn" src="/images/icon_cross_dark@2x.png" {{action "onCloseClick"}}/>
+                {{#if (eq unit.class.status 2)}}
+                    <img class="top-img-btn" src="/images/icon_edit.png"  {{action "onEditClick"}}/>
+                    {{!-- <img class="top-img-btn" src="/images/icon_trash_dark@2x.png"  {{action "onDeleteClick"}}/> --}}
+                {{/if}}
+                <img class="top-img-btn" src="/images/icon_cross.png" {{action "onCloseClick"}}/>
             {{/layout-push}}
-        {{/layout-push}}
-        {{#layout-push direction='row' classNames="arr-cls-card-top-label"}}
-            {{#if (eq unit.class.status 2)}}
-                <p class="type-label">课程</p>
-            {{else if (eq unit.class.status 1)}}
-                <p class="type-label">体验课</p>
-            {{else if (eq unit.class.status 0)}}
-                <p class="type-label">活动</p>
-            {{/if}}
         {{/layout-push}}
         {{#layout-push direction='row' classNames="arr-cls-card-top-title"}}
             {{#if (eq unit.class.status 2)}}
@@ -29,18 +29,18 @@
                 <p class="top-title">{{bmcom/bm-get unit.class "reservableitem.sessioninfo.title"}}</p>
             {{/if}}
         {{/layout-push}}
-        {{#layout-push direction='row' classNames="arr-cls-card-top-subtitle"}}
-            {{#if (eq unit.class.status 2)}}
+        {{#if (eq unit.class.status 2)}}
+            {{#layout-push direction='row' classNames="arr-cls-card-top-subtitle"}}
                 <p class="top-subtitle">{{bmcom/bm-get unit.class "reservableitem.sessioninfo.title"}}</p>
-            {{else}}
-                {{!-- <p class="top-subtitle">{{unit.class.sessioninfo.title}}</p> --}}
-            {{/if}}
-        {{/layout-push}}
+            {{/layout-push}}
+        {{else}}
+            {{!-- <p class="top-subtitle">{{unit.class.sessioninfo.title}}</p> --}}
+        {{/if}}
     {{/layout-push}}
     {{#layout-push direction='col' classNames="arr-cls-card-bottom"}}
         {{#layout-push direction='row' classNames="arr-cls-card-bottom-title"}}
             <img class="bottom-img" src="/images/icon_time.png"/>
-            <p class="bottom-title">{{bmdob/bmdobformat unit.startDate}} {{bmdob/bmdob2weekday unit.startDate}}</p>
+            <p class="bottom-subtitle">{{bmdob/bmdobformat unit.startDate}} {{bmdob/bmdob2weekday unit.startDate}}</p>
         {{/layout-push}}
         {{#layout-push direction='row' classNames="arr-cls-card-bottom-subtitle"}}
             <p class="bottom-subtitle">
@@ -51,7 +51,7 @@
         {{/layout-push}}
         {{#layout-push direction='row' classNames="arr-cls-card-bottom-content"}}
             <img class="bottom-img" src="/images/icon_card_students-number.png"/>
-            <p class="bottom-title">{{unit.class.students.length}}</p>
+            <p class="bottom-subtitle">{{unit.class.students.length}}人</p>
         {{/layout-push}}
 
         {{#if (eq unit.class.status 2)}}
