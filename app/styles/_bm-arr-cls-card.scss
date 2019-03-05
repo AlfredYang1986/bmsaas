@@ -31,7 +31,11 @@
                 align-items: center;
 
                 img:nth-last-child(2) {
-                    margin-right: 16px;
+                    margin-right: 8px;
+                }
+
+                img:nth-last-child(3) {
+                    margin-right: 8px;
                 }
             }
         }
