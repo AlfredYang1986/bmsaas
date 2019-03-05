@@ -8,17 +8,17 @@ export default DS.JSONAPIAdapter.extend({
         this._super(...arguments)
         this.addObserver('bm_token.token', this, 'tokenChanges')
     },
-
+    
+    bm_token: service(),
+    
     tokenChanges() {
         // debugger
         this.set('headers', {
             'Authorization': 'bearer ' + this.bm_token.token//token验证，需要时揭开注释
         })
     },
-
-    bm_token: service(),
-
-    // host: 'http://localhost:4200',
+    
+    host: 'http://localhost:4200',
     
     // host: 'https://demo.dongdakid.com',
     // 发布时揭开注释强制过滤掉后端返回link里的主机

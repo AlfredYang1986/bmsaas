@@ -35,7 +35,7 @@ export default Service.extend({
                 tempHint = ": 资源未找到!";
                 this.redirectTo404()
             } else {
-                this.redirectTo404()
+                // this.redirectTo404()
             }
             
             if(errorHint != undefined) {

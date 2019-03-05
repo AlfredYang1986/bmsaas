@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service'
-import CustomError from '../adapters/error';
+// import CustomError from '../adapters/error';
 
 export default Route.extend({
 	bm_token: service(),
