@@ -42,11 +42,6 @@ export default DS.JSONAPIAdapter.extend({
     //     return hash;
     // }, 
 
-    urlForFindHasMany(id, modelName) {
-        let baseUrl = this.buildURL(modelName, id);
-        return `${baseUrl}/relationships`;
-    },
-
     handleResponse(status, headers, payload) {
         if(200 <= status && 300 > status) {
             return this._super(...arguments);
