@@ -7,6 +7,8 @@ export default Component.extend({
     tagName: '',
 	dealed: false,
 	iconData: null,
+	headImg: 'https://bm-web.oss-cn-beijing.aliyuncs.com/avatar_defautl_96px%20%401x.png',
+
     actions: {
 		onClickInner(params) {
 			// this.sendAction("action", params);
@@ -68,7 +70,7 @@ export default Component.extend({
 				if(this.listData.objectAt(idx).teacher.get("icon") != "" && this.listData.objectAt(idx).teacher.get("icon") != undefined) {
 					tmpObj.iconUrl = client.signatureUrl(this.listData.objectAt(idx).teacher.get("icon"));
 				} else {
-					tmpObj.iconUrl = ""
+					tmpObj.iconUrl = this.headImg;
 				}
 				this.iconData.pushObject(tmpObj);
 			}

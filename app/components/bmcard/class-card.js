@@ -11,6 +11,7 @@ export default Component.extend({
     classNameBindings: ['background'],
     techPics: A([]),
     techPicsOverFlow: 0,
+    headImg: 'https://bm-web.oss-cn-beijing.aliyuncs.com/avatar_defautl_96px%20%401x.png',
     hasSetCls: computed(function(){
         return this.cls != null;
     }),
@@ -56,7 +57,7 @@ export default Component.extend({
                     if(this.cls.duties.objectAt(idx).teacher.get("icon") != "" && this.cls.duties.objectAt(idx).teacher.get("icon") != undefined) {
                         tmpObj.url = client.signatureUrl(this.cls.duties.objectAt(idx).teacher.get("icon"));
                     } else {
-                        tmpObj.url = ""
+                        tmpObj.url = this.headImg;
                     }
                     this.techPics.pushObject(tmpObj)
                 }

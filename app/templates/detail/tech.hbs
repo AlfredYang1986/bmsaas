@@ -18,10 +18,7 @@
         {{#layout-push direction="row" classNames=""}}
             <div class='detail_panel detail_panel_col_between tech_info_card' >
                 {{#layout-push direction="col" classNames="tech_info_base"}}
-                    {{#if (bmcom/bm-nil-obj model.tech)}}
-                    {{else}}
-                        {{bmcom/bm-img-uploader needTag=false canEdit=false img=model.tech.icon}}
-                    {{/if}}
+                    <img src={{iconImg}} class="tech-icon"/>
                     <span class="detail_panel_role_name">{{model.tech.name}}</span>
                     {{bmdetail/stud-basis-left-subtitle gender=model.tech.gender dob=model.tech.dob contentBelow=""}}
                 {{/layout-push}}

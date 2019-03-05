@@ -17,6 +17,7 @@ export default Component.extend({
     techPics: A([]),
     techPicsOverFlow: 0,
     isUnit: false,
+    headImg: 'https://bm-web.oss-cn-beijing.aliyuncs.com/avatar_defautl_96px%20%401x.png',
 
     actions: {
         onCloseClick() {
@@ -36,10 +37,12 @@ export default Component.extend({
             let client = this.bmOss.get('ossClient');
             let tmpObj = {};
             let tmpIcon = this.unit.get("teacher").get("icon")
-            if(tmpIcon != undefined) {
+            if(tmpIcon == undefined || tmpIcon == '') {
+                tmpObj.url = this.headImg
+            } else {
                 tmpObj.url = client.signatureUrl(tmpIcon);
-                this.techPics.pushObject(tmpObj)
             }
+            this.techPics.pushObject(tmpObj)
         } else {
             this.set("techPics", A([]))
             this.set("techPicsOverFlow", 0)
