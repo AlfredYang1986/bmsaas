@@ -18,7 +18,7 @@
                             {{bmdob/bmdob2clocktime model.class.startDate}}-{{bmdob/bmdob2clocktime model.class.endDate}}
                         </span>
                     {{/layout-push}}
-                {{/layout-push}}
+                {{/layout-push}} 
                 {{#layout-push direction="row" classNames="reserve-detail-btn"}}
                     {{#bs-dropdown class="btn-dropdown" as |dd|}}
                         {{#dd.button class="reserve-more-btn"}}{{/dd.button}}
@@ -26,7 +26,7 @@
                             {{#menu.item align="right"}}
                                 {{#layout-push direction='col' classNames="dropdown-content"}}
                                     <a onclick={{action "onEditSessionable" dd.closeDropdown}}>编辑场次</a>
-                                    {{!-- <a class="warning" onclick={{action (mut deleteSessionDlg) true dd.closeDropdown}}>删除场次</a> --}}
+                                    <a class="warning" onclick={{action (mut deleteSessionDlg) true dd.closeDropdown}}>删除场次</a>
                                 {{/layout-push}}
                             {{/menu.item}}
                         {{/dd.menu}}

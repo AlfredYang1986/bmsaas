@@ -26,7 +26,7 @@
                             {{#menu.item align="right"}}
                                 {{#layout-push direction='col' classNames="dropdown-content"}}
                                     <a onclick={{action "onEditSessionable" true dd.closeDropdown}}>编辑场次</a>
-                                    {{!-- <a class="warning" onclick={{action (mut deleteSessionDlg) true dd.closeDropdown}}>删除场次</a> --}}
+                                    <a class="warning" onclick={{action (mut deleteSessionDlg) true dd.closeDropdown}}>删除场次</a>
                                 {{/layout-push}}
                             {{/menu.item}}
                         {{/dd.menu}}
