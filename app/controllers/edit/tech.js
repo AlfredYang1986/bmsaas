@@ -1,8 +1,11 @@
 import Controller from '@ember/controller';
 import { computed} from '@ember/object';
+import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 
 export default Controller.extend({
+    bm_error_service: service(),
+
     provinces: A(['北京']),
     citys: A(['北京市']),
     areas: A(["密云区", "延庆区", "朝阳区", "丰台区", "石景山区", "海淀区", "门头沟区", "房山区", "通州区", "顺义区", "昌平区", "大兴区", "怀柔区", "平谷区", "东城区", "西城区"]),
@@ -42,13 +45,15 @@ export default Controller.extend({
             }
         },
         saveTechBtnClicked() {
-            let that = this;
+            // let that = this;
             this.model.tech.save().then(() => {
-                if (that.model.isPushing) {
-                    that.transitionToRoute("detail.tech", that.model.tech.id)
-                } else {
-                    that.transitionToRoute("detail.tech", that.model.tech.id)
-                }
+                // if (this.model.isPushing) {
+                //     this.transitionToRoute("detail.tech", this.model.tech.id)
+                // } else {
+                this.transitionToRoute("detail.tech", this.model.tech.id)
+                // }
+            }, error => {
+                this.bm_error_service.handleError(error)
             })
 
         },

@@ -9,6 +9,7 @@ export default Component.extend({
 	reserveType: 0,
 	curPage: 1,
 	store: service(),
+	bm_error_service: service(),
 
 	applies: computed('isPreReg', 'reserveType', 'curPage',  function() {
         let today = new Date();
@@ -30,7 +31,9 @@ export default Component.extend({
 			let pageCount = localStorage.getItem('applies-count')
 			let page = Number.parseInt(localStorage.getItem('applies'));
 			this.onRefreshDataComplete(pageCount+' '+page)
-		})
+		}, error => {
+            this.bm_error_service.handleError(error)
+        })
         return result
     }),
 	actions: {

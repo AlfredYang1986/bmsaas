@@ -1,9 +1,11 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service'
 import rsvp from 'rsvp';
+// import CustomError from './error';
 
 export default Controller.extend({
     bm_token: service(),
+    // bm_error_service: service(),
     
     actions: {
         exitSystem() {
@@ -19,7 +21,24 @@ export default Controller.extend({
                 this.transitionToRoute('index');
             });
         },
+
+        // error(error, transition) {
+        //     debugger
+        //     console.log(error)
+            // debugger
+            // if (error instanceof CustomError) {
+            //     debugger
+            //     window.console.log(error, transition);
+            //     this.bm_error_service.handleError(error)
+            //     this.bm_error_service.toastError()
+            //     return;
+            // }
+      
+            // ...other error handling logic
+        // },
     },
+
+
     // deleteCookie(name) {
     //     this.setCookie(name,"",-1);
     // },

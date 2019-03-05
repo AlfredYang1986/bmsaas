@@ -6,6 +6,7 @@ export default Component.extend({
     classNames: ['bm-sessionable-table'],
     positionalParams: ['titles', 'listData', 'resid', 'totalCount'],
     store: service(),
+    bm_error_service: service(),
     hasDataFlag: false,
     attributeBindings: ['style'],
     style: computed('hasDataFlag', function(){
@@ -29,6 +30,8 @@ export default Component.extend({
             } else {
                 this.set("hasDataFlag", true);
             }
+        }, error => {
+            this.bm_error_service.handleError(error)
         })
         return ps
     }),

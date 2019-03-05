@@ -10,6 +10,7 @@ export default Controller.extend({
     openFlag: true,
 
     bm_clsarr_service: service(),
+    bm_error_service: service(),
     toast: service(),
     toastOptions: EmberObject.create({
         closeButton: false,
@@ -132,14 +133,17 @@ export default Controller.extend({
                             this.set("tempUnit", null)
                             this.set('addUnitDlg', false);
                             this.toast.success('', edit_flag_info + '排课成功', this.toastOptions);
-                        },() => {
-                            this.toast.error('', edit_flag_info + '排课失败', this.toastOptions);
+                        }, error => {
+                            this.bm_error_service.handleError(error, edit_flag_info + '排课失败')
+                            // this.toast.error('', edit_flag_info + '排课失败', this.toastOptions);
                         })
-                    },() => {
-                        this.toast.error('', edit_flag_info + '排课失败', this.toastOptions);
+                    }, error => {
+                        this.bm_error_service.handleError(error, edit_flag_info + '排课失败')
+                        // this.toast.error('', edit_flag_info + '排课失败', this.toastOptions);
                     })
-                },() => {
-                    this.toast.error('', edit_flag_info + '排课失败', this.toastOptions);
+                }, error => {
+                    this.bm_error_service.handleError(error, edit_flag_info + '排课失败')
+                    // this.toast.error('', edit_flag_info + '排课失败', this.toastOptions);
                 })
 
             }
@@ -200,8 +204,9 @@ export default Controller.extend({
                 this.set('removeUnitDlg', false);
                 this.bm_clsarr_service.set('refresh_all_token', this.bm_clsarr_service.guid());
                 this.toast.success('', '删除排课成功', this.toastOptions);
-            },() => {
-                this.toast.error('', '删除排课失败', this.toastOptions);
+            }, error => {
+                this.bm_error_service.handleError(error, '删除排课失败')
+                // this.toast.error('', '删除排课失败', this.toastOptions);
             })
                 // },() => {
                 //     this.toast.error('', '删除排课失败', this.toastOptions);

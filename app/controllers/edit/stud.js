@@ -15,6 +15,7 @@ export default Controller.extend({
     genderCheck: A(['男', '女']),
     relaChecked: A(['父亲', '母亲', '其他']),
 
+    bm_error_service: service(),
     toast: service(),
     toastOptions: EmberObject.create({
         closeButton: false,
@@ -55,8 +56,11 @@ export default Controller.extend({
             let that = this
             if(this.model.applyid != undefined) {
                 that.model.stud.deleteRecord();
-                that.model.stud.save();
-                that.transitionToRoute("inbox")
+                that.model.stud.save().then(() => {
+                    that.transitionToRoute("inbox")
+                }, error => {
+                    that.bm_error_service.handleError(error)
+                });
             } else {
                 this.store.unloadRecord(this.model.stud);
                 if (this.model.isPushing) {
@@ -80,7 +84,11 @@ export default Controller.extend({
             }
             that.model.stud.set('teacher', tmpTech);
             for(let idx = 0;idx < that.model.stud.guardians.length;idx++) {
-                that.model.stud.guardians.objectAt(idx).save()
+                that.model.stud.guardians.objectAt(idx).save().then(() => {
+                    
+                }, error => {
+                    that.bm_error_service.handleError(error)
+                })
             }
             let name = that.model.stud.name;
             let nickname = that.model.stud.nickname;
@@ -100,14 +108,23 @@ export default Controller.extend({
                             let onSuccess = function(res) {
                                 let apply = res;
                                 apply.set('status', 1);
-                                apply.save();
+                                apply.save().then(() => {
+                                    
+                                }, error => {
+                                    that.bm_error_service.handleError(error)
+                                });
                             }
-                            let onFail = function() {}
+                            let onFail = function(error) {
+                                that.bm_error_service.handleError(error)
+                            }
                             that.store.find('apply', that.model.applyid).then(onSuccess, onFail)
                         }
                         that.transitionToRoute("detail.stud", that.model.stud.id)
                     }
-                }).catch(err => window.console.info(err))
+                }, error => {
+                    that.bm_error_service.handleError(error)
+                })
+                // .catch(err => window.console.info(err))
             }
 
         },

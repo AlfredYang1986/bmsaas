@@ -1,6 +1,7 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import EmberObject from '@ember/object';
+import CustomError from '../adapters/error';
 
 export default Service.extend({
     bm_token: service(),
@@ -14,16 +15,15 @@ export default Service.extend({
         progressBar: false,
         timeOut: '2000',
     }),
-
-    handleError(errors) {
-        this.set("error", null);
-        if(errors.length == 1) {
-            this.set("error", errors.objectAt(0));
-            window.console.log(this.error)
+    
+    handleError(error, errorHint) {
+        if (!(error instanceof CustomError)) {
+            window.console.log(error);
+            return;
         }
-    },
+        this.set("error", null);
+        this.logError(error);
 
-    toastError(errorHint) {
         let status = Number(this.get("error.status"))
         if (400 <= status && 500 > status) {
             let tempHint = "";
@@ -52,6 +52,13 @@ export default Service.extend({
             window.console.log(this.error);
             this.redirectTo404()
         }
+    },
+
+    logError(error) {
+        // if(error.length == 1) {
+        this.set("error", error.errors.objectAt(0));
+        window.console.log(this.error)
+        // }
     },
 
     redirectToIndex() {

@@ -8,6 +8,7 @@ export default Controller.extend({
     isPushing: false,
 
     savePicDoneFlag: false,
+    bm_error_service: service(),
     toast: service(),
     toastOptions: EmberObject.create({
         closeButton: false,
@@ -23,13 +24,18 @@ export default Controller.extend({
                 if(that.model.course.category.get("id")) {
                     that.model.course.category.set('title', that.model.course.category.get("title"));
                     let cate = that.store.peekRecord("category", that.model.course.category.get("id"));
-                    cate.save();
+                    cate.save().then(() => {
+
+                    }, error => {
+                        this.bm_error_service.handleError(error)
+                    });
                 }
                 that.transitionToRoute('detail.actv', that.model.reservable.id);
                 that.set("savePicDoneFlag", false)
             }
-            let onFail = function ( /*err*/ ) {
+            let onFail = function (error) {
                 that.set("savePicDoneFlag", false)
+                that.bm_error_service.handleError(error)
             }
             if(that.model.course.cover) {
                 if(Number(that.model.course.alb) <= Number(that.model.course.aub)) {
@@ -45,6 +51,8 @@ export default Controller.extend({
                                     if(this.savePicDoneFlag) {
                                         this.model.course.save().then(onSuccess, onFail);
                                     }
+                                }, error => {
+                                    this.bm_error_service.handleError(error)
                                 });
                             } else {
                                 if(this.savePicDoneFlag) {

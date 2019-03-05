@@ -41,7 +41,7 @@ export default Route.extend({
     //     error(error, transition) {
     //         if (error instanceof CustomError) {
     //             window.console.log(error, transition);
-    //             this.bm_error_service.handleError(error.errors)
+    //             this.bm_error_service.handleError(error)
     //             this.bm_error_service.toastError()
     //             return;
     //         }

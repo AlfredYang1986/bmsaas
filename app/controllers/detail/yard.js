@@ -5,6 +5,7 @@ import EmberObject from '@ember/object';
 
 export default Controller.extend({
     toast: service(),
+    bm_error_service: service(),
     toastOptions: EmberObject.create({
         closeButton: false,
         positionClass: 'toast-top-center',
@@ -79,15 +80,17 @@ export default Controller.extend({
                 that.tempRoom.deleteRecord()
                 that.tempRoom.save().then(onSuccess1, onFail1);
             }
-            let onFail = function () {
-                that.toast.error('', "删除教室失败", that.toastOptions);
+            let onFail = function (error) {
+                that.bm_error_service.handleError(error, '删除教室失败')
+                // that.toast.error('', "删除教室失败", that.toastOptions);
             }
             let onSuccess1 = function () {
                 that.toast.success('', "删除教室成功", that.toastOptions);
                 that.set('deleteRoomDlg', false);
             }
-            let onFail1 = function () {
-                that.toast.error('', "删除教室失败", that.toastOptions);
+            let onFail1 = function (error) {
+                that.bm_error_service.handleError(error, '删除教室失败')
+                // that.toast.error('', "删除教室失败", that.toastOptions);
             }
             this.model.yard.rooms.removeObject(this.tempRoom)
             this.model.yard.save().then(onSuccess, onFail);
@@ -115,8 +118,9 @@ export default Controller.extend({
                         that.toast.success('', that.edit_flag_info + '教室成功', that.toastOptions);
                         that.set('editRoomDlg', false);
                     }
-                    let onFail = function () {
-                        that.toast.error('', that.edit_flag_info + '教室失败', that.toastOptions);
+                    let onFail = function (error) {
+                        that.bm_error_service.handleError(error, that.edit_flag_info + '教室失败')
+                        // that.toast.error('', that.edit_flag_info + '教室失败', that.toastOptions);
                     }
                     this.set('tempRoom.title', this.tempRoomTitle);
                     this.set('tempRoom.roomType', this.type_idx);
@@ -126,15 +130,17 @@ export default Controller.extend({
                         that.model.yard.rooms.pushObject(that.tempRoom)
                         that.model.yard.save().then(onSuccess1, onFail1);
                     }
-                    let onFail = function () {
-                        that.toast.error('', that.edit_flag_info + '教室失败', that.toastOptions);
+                    let onFail = function (error) {
+                        that.bm_error_service.handleError(error, that.edit_flag_info + '教室失败')
+                        // that.toast.error('', that.edit_flag_info + '教室失败', that.toastOptions);
                     }
                     let onSuccess1 = function () {
                         that.toast.success('', that.edit_flag_info + '教室成功', that.toastOptions);
                         that.set('editRoomDlg', false);
                     }
-                    let onFail1 = function () {
-                        that.toast.error('', that.edit_flag_info + '教室失败', that.toastOptions);
+                    let onFail1 = function (error) {
+                        that.bm_error_service.handleError(error, that.edit_flag_info + '教室失败')
+                        // that.toast.error('', that.edit_flag_info + '教室失败', that.toastOptions);
                     }
                     this.set('tempRoom.title', this.tempRoomTitle);
                     this.set('tempRoom.roomType', this.type_idx);

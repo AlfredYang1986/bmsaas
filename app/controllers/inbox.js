@@ -8,6 +8,8 @@ export default Controller.extend({
     cur_tab_idx: 0,
     cur_reserve_type: 0,
     pageNum: 1,
+    
+    bm_error_service: service(),
     toast: service(),
     tabs: A(['预约', '预注册']),
     toastOptions: EmberObject.create({
@@ -47,19 +49,27 @@ export default Controller.extend({
             let onSrSuccess = function(res) {
                 that.store.query('class', { "reservable-id": res.id}).then((resu) =>{
                     that.set('srClasses', resu);
+                }, error => {
+                    that.bm_error_service.handleError(error)
                 })
 
             }
-            let onSrFail = function() {}
+            let onSrFail = function(error) {
+                that.bm_error_service.handleError(error)
+            }
             that.store.find('reservableitem', that.sr).then(onSrSuccess, onSrFail)
         }
         if(this.sa != null) {
             let onSaSuccess = function(res) {
                 that.store.query('class', { "reservable-id": res.get("id")}).then((resu) =>{
                     that.set('saClasses', resu);
+                }, error => {
+                    that.bm_error_service.handleError(error)
                 })
             }
-            let onSaFail = function() {}
+            let onSaFail = function(error) {
+                that.bm_error_service.handleError(error)
+            }
             that.store.find('reservableitem', that.sa).then(onSaSuccess, onSaFail)
         }
     }),
@@ -105,7 +115,9 @@ export default Controller.extend({
                 let onSuccess = function() {
                     that.transitionToRoute('edit.stud', stud.id + ' ' + apply.id);
                 }
-                let onFail = function() {}
+                let onFail = function(error) {
+                    that.bm_error_service.handleError(error)
+                }
                 stud.save().then(onSuccess, onFail)
             } else {
                 this.set('sr', null);
@@ -208,22 +220,32 @@ export default Controller.extend({
 
             let onApplySuccess = function() {
                 apply.set('status', 1);
-                apply.save();
+                apply.save().then(() => {
+
+                }, error => {
+                    that.bm_error_service.handleError(error)
+                });
                 that.set('showhandledlg', false);
             }
-            let onApplyFail = function() {}
+            let onApplyFail = function(error) {
+                that.bm_error_service.handleError(error)
+            }
 
             let onClassSuccess = function(res) {
                 res.students.pushObject(stud);
                 res.save().then(onApplySuccess, onApplyFail)
 
             }
-            let onClassFail = function() {}
+            let onClassFail = function(error) {
+                that.bm_error_service.handleError(error)
+            }
 
             let onStudSuccess = function() {
                 that.store.find('class', that.sy).then(onClassSuccess, onClassFail)
             }
-            let onStudFail = function() {}
+            let onStudFail = function(error) {
+                that.bm_error_service.handleError(error)
+            }
 
             stud.save().then(onStudSuccess, onStudFail);
         }
@@ -274,22 +296,32 @@ export default Controller.extend({
 
             let onApplySuccess = function() {
                 apply.set('status', 1);
-                apply.save();
+                apply.save().then(() => {
+
+                }, error => {
+                    this.bm_error_service.handleError(error)
+                });
                 that.set('showhandledlg', false);
             }
-            let onApplyFail = function() {}
+            let onApplyFail = function(error) {
+                that.bm_error_service.handleError(error)
+            }
 
             let onClassSuccess = function(res) {
                 res.students.pushObject(stud);
                 res.save().then(onApplySuccess, onApplyFail)
             }
-            let onClassFail = function() {}
+            let onClassFail = function(error) {
+                that.bm_error_service.handleError(error)
+            }
 
             let onStudSuccess = function() {
                 // let actv = that.store.find('reservableitem', that.sa).then();
                 that.store.find('class', that.ss).then(onClassSuccess, onClassFail)
             }
-            let onStudFail = function() {}
+            let onStudFail = function(error) {
+                that.bm_error_service.handleError(error)
+            }
 
             stud.save().then(onStudSuccess, onStudFail);
         }

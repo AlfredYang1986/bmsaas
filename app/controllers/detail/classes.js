@@ -4,6 +4,7 @@ import { A } from '@ember/array';
 import EmberObject from '@ember/object';
 
 export default Controller.extend({
+    bm_error_service: service(),
     toast: service(),
     toastOptions: EmberObject.create({
         closeButton: false,
@@ -65,8 +66,9 @@ export default Controller.extend({
                 this.set('removeUnitDlg', false);
                 this.set('tmpUnit', null);
                 this.toast.success('', '移除课程安排成功', this.toastOptions);
-            },() => {
-                this.toast.error('', '移除课程安排失败', this.toastOptions);
+            },error => {
+                this.bm_error_service.handleError(error, '移除课程安排失败')
+                // this.toast.error('', '移除课程安排失败', this.toastOptions);
             })
 
             // }
@@ -87,8 +89,9 @@ export default Controller.extend({
                 that.set('tmpStud', null);
                 that.toast.success('', '移除学生成功', that.toastOptions);
             }
-            let onFail = function () {
-                that.toast.error('', '移除学生失败', that.toastOptions);
+            let onFail = function (error) {
+                this.bm_error_service.handleError(error, '移除学生失败')
+                // that.toast.error('', '移除学生失败', that.toastOptions);
             }
             this.model.class.students.removeObject(this.tmpStud)
             this.model.class.save().then(onSuccess, onFail)
@@ -105,11 +108,13 @@ export default Controller.extend({
                     that.set('removeTechDlg', false);
                     that.set('tmpDuty', null);
                     that.toast.success('', '移除老师成功', that.toastOptions);
-                },() => {
+                }, error => {
+                    that.bm_error_service.handleError(error, '移除老师失败')
                 })
             }
-            let onFail = function () {
-                that.toast.error('', '移除老师失败', that.toastOptions);
+            let onFail = function (error) {
+                that.bm_error_service.handleError(error, '移除老师失败')
+                // that.toast.error('', '移除老师失败', that.toastOptions);
             }
             this.model.class.duties.removeObject(this.tmpDuty)
             this.model.class.save().then(onSuccess, onFail)
@@ -144,8 +149,9 @@ export default Controller.extend({
                 that.set('editClassDlg', false);
                 that.toast.success('', '编辑班级成功', that.toastOptions);
             }
-            let onFail = function () {
-                that.toast.error('', '编辑班级失败', that.toastOptions);
+            let onFail = function (error) {
+                that.bm_error_service.handleError(error, '编辑班级失败')
+                // that.toast.error('', '编辑班级失败', that.toastOptions);
             }
             this.model.class.set("classTitle", this.classTitle)
             // this.model.class.set("sessioninfo", this.store.peekRecord("sessioninfo", this.cur_course_id))
@@ -188,8 +194,9 @@ export default Controller.extend({
                     that.set("addJobDuty", "");
                     that.toast.success('', '添加老师成功', that.toastOptions);
                 }
-                let onFail = function () {
-                    that.toast.error('', '添加老师失败', that.toastOptions);
+                let onFail = function (error) {
+                    that.bm_error_service.handleError(error, '添加老师失败')
+                    // that.toast.error('', '添加老师失败', that.toastOptions);
                 }
     
                 for(let idx = 0;idx < this.model.techs.length;idx++) {
@@ -204,11 +211,13 @@ export default Controller.extend({
                     addDuty.save().then(() => {
                         this.model.class.duties.pushObject(addDuty);
                         this.model.class.save().then(onSuccess, onFail)
-                    },() => {
-                        that.toast.error('', '添加老师失败', that.toastOptions);
+                    }, error => {
+                        that.bm_error_service.handleError(error, '添加老师失败')
+                        // that.toast.error('', '添加老师失败', that.toastOptions);
                     })
-                },() => {
-                    that.toast.error('', '添加老师失败', that.toastOptions);
+                }, error => {
+                    that.bm_error_service.handleError(error, '添加老师失败')
+                    // that.toast.error('', '添加老师失败', that.toastOptions);
                 })
             }
         },
@@ -219,8 +228,9 @@ export default Controller.extend({
                 that.set("selectedStuds", A([]));
                 that.toast.success('', '添加学生成功', that.toastOptions);
             }
-            let onFail = function () {
-                that.toast.error('', '添加学生失败', that.toastOptions);
+            let onFail = function (error) {
+                that.bm_error_service.handleError(error, '添加学生失败')
+                // that.toast.error('', '添加学生失败', that.toastOptions);
             }
             if(this.selectedStuds.length > 0) {
                 this.model.class.students.pushObjects(this.selectedStuds);
@@ -253,13 +263,15 @@ export default Controller.extend({
                             that.transitionToRoute('classes');
                             that.toast.success('', '删除班级成功', that.toastOptions);
                         }
-                    },() => {
-                        that.toast.error('', '删除班级失败', that.toastOptions);
+                    }, error => {
+                        that.bm_error_service.handleError(error, '删除班级失败')
+                        // that.toast.error('', '删除班级失败', that.toastOptions);
                     });
                 });
             }
-            let onFail = function() {
-                that.toast.error('', '删除班级失败', that.toastOptions);
+            let onFail = function(error) {
+                that.bm_error_service.handleError(error, '删除班级失败')
+                // that.toast.error('', '删除班级失败', that.toastOptions);
                 // this.model.class.rollbackAttributes();
                 return
             }

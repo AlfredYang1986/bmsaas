@@ -2,6 +2,7 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 
 export default Component.extend({
+    bm_error_service: service(),
     bmOss: service(),
     store: service(),
     logo: '',
@@ -14,7 +15,9 @@ export default Component.extend({
             that.set('logo', logoImage);
             that.set('title', res.get('title'));
         }
-        let onFail = function() {}
+        let onFail = function(error) {
+            that.bm_error_service.handleError(error)
+        }
         
         let tempBrand = this.store.peekRecord('brand', localStorage.getItem("brandid"));
         if(tempBrand == null) {

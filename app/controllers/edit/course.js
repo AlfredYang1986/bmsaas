@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 import EmberObject from '@ember/object';
 
 export default Controller.extend({
+    bm_error_service: service(),
     toast: service(),
     toastOptions: EmberObject.create({
         closeButton: false,
@@ -20,16 +21,23 @@ export default Controller.extend({
                     if(that.model.course.category.get("id")) {
                         that.model.course.category.set('title', that.model.course.category.get("title"));
                         let cate = that.store.peekRecord("category", that.model.course.category.get("id"));
-                        cate.save();
+                        cate.save().then(() => {
+
+                        }, error => {
+                            this.bm_error_service.handleError(error)
+                        });
                     }
                     let tmp = that.store.peekRecord('sessioninfo', that.model.course.id)
                     that.model.reservable.set('sessioninfo', tmp);
                     that.model.reservable.save().then((res) => {
-                            that.transitionToRoute('detail.course', res.id);
-                        })
-                        .catch(error => window.console.info(error))
+                        that.transitionToRoute('detail.course', res.id);
+                    }, error => {
+                        this.bm_error_service.handleError(error)
+                    })
+                        // .catch(error => window.console.info(error))
                 }
-                let onFail = function () {
+                let onFail = function (error) {
+                    that.bm_error_service.handleError(error)
                 }
                 if(that.model.course.cover) {
                     if(Number(that.model.course.alb) <= Number(that.model.course.aub)) {
@@ -46,6 +54,8 @@ export default Controller.extend({
                                         if(this.savePicDoneFlag) {
                                             this.model.course.save().then(onSuccess, onFail);
                                         }
+                                    }, error => {
+                                        this.bm_error_service.handleError(error)
                                     });
                                 } else {
                                     if(this.savePicDoneFlag) {
@@ -70,11 +80,16 @@ export default Controller.extend({
                     if(that.model.course.category.get("id")) {
                         that.model.course.category.set('title', that.model.course.category.get("title"));
                         let cate = that.store.peekRecord("category", that.model.course.category.get("id"));
-                        cate.save();
+                        cate.save().then(() => {
+
+                        }, error => {
+                            this.bm_error_service.handleError(error)
+                        });
                     }
                     that.transitionToRoute("detail.course", that.model.reservable.id)
                 }
-                let onFail = function ( /*err*/ ) {
+                let onFail = function (error) {
+                    that.bm_error_service.handleError(error)
                 }
                 // this.model.course.save().then(onSuccess, onFail);
                 if(that.model.course.cover) {
@@ -91,6 +106,8 @@ export default Controller.extend({
                                         if(this.savePicDoneFlag) {
                                             this.model.course.save().then(onSuccess, onFail);
                                         }
+                                    }, error => {
+                                        this.bm_error_service.handleError(error)
                                     });
                                 } else {
                                     if(this.savePicDoneFlag) {
@@ -112,7 +129,11 @@ export default Controller.extend({
                 this.store.unloadRecord(this.model.course)
                 this.store.unloadRecord(this.model.reservable);
                 this.store.deleteRecord(this.model.cate);
-                this.model.cate.save()
+                this.model.cate.save().then(() => {
+
+                }, error => {
+                    this.bm_error_service.handleError(error)
+                })
                 // .then(() => {
                 // })
                 this.transitionToRoute('course');

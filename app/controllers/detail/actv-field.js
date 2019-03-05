@@ -6,6 +6,7 @@ import EmberObject from '@ember/object';
 export default Controller.extend({
     tableTitle: A(["孩子","生日","性别", "联系方式", "渠道"]),
 
+    bm_error_service: service(),
     toast: service(),
     toastOptions: EmberObject.create({
         closeButton: false,
@@ -41,14 +42,17 @@ export default Controller.extend({
             this.set('cur_end_date', this.model.class.endDate);
             this.set('showEditSessionDlg', true);
 
-            let that = this
+            // let that = this
             this.store.query('unit',  { 'class-id': this.model.class.id }).then(res => {
                 let ut = res.objectAt(0)
-                that.set('cur_room_id', ut.room.get("id"));
-                that.set('tmpUnit', ut)
-            }).catch(() => {
-                that.toast.error('', that.edit_flag_info + '场次失败', that.toastOptions);
+                this.set('cur_room_id', ut.room.get("id"));
+                this.set('tmpUnit', ut)
+            }, error => {
+                this.bm_error_service.handleError(error)
             })
+            // .catch(() => {
+            //     that.toast.error('', that.edit_flag_info + '场次失败', that.toastOptions);
+            // })
         },
         onDeleteSessionableClick() {
             // let that = this;
@@ -75,15 +79,18 @@ export default Controller.extend({
                         that.toast.success('', '删除场次成功', that.toastOptions);
                         that.set('deleteSessionDlg', false);
                         that.transitionToRoute("detail.actv", that.model.reexpid)
-                    },() => {
-                        that.toast.error('', '删除场次失败', that.toastOptions);
+                    }, error => {
+                        that.bm_error_service.handleError(error, '删除场次失败')
+                        // that.toast.error('', '删除场次失败', that.toastOptions);
                     })
-                },() => {
-                    that.toast.error('', '删除场次失败', that.toastOptions);
+                }, error => {
+                    that.bm_error_service.handleError(error, '删除场次失败')
+                    // that.toast.error('', '删除场次失败', that.toastOptions);
                 });
             }
-            let onFail = function() {
-                that.toast.error('', '删除场次失败', that.toastOptions);
+            let onFail = function(error) {
+                that.bm_error_service.handleError(error, '删除场次失败')
+                // that.toast.error('', '删除场次失败', that.toastOptions);
             }
 
             let tmpUnit = this.model.class.units.objectAt(0);
@@ -110,8 +117,9 @@ export default Controller.extend({
                     that.set('cur_end_date', new Date());
                     that.set('showEditSessionDlg', false);
                 }
-                let onFail = function() {
-                    that.toast.error('', '编辑场次失败', that.toastOptions);
+                let onFail = function(error) {
+                    that.bm_error_service.handleError(error, '编辑场次失败')
+                    // that.toast.error('', '编辑场次失败', that.toastOptions);
                 }
                 this.model.class.set("startDate", this.handleDate(this.cur_tmp_date, this.cur_start_date))
                 this.model.class.set("endDate", new Date(this.cur_end_date).getTime())
@@ -123,8 +131,9 @@ export default Controller.extend({
                 tmpUnit.set("endDate", this.model.class.endDate);
                 tmpUnit.save().then(() => {
                     this.model.class.save().then(onSuccess, onFail)
-                },() => {
-                    this.toast.error('', '编辑场次失败', this.toastOptions);
+                }, error => {
+                    this.bm_error_service.handleError(error, '编辑场次失败')
+                    // this.toast.error('', '编辑场次失败', this.toastOptions);
                 })
                 // let onSuccess = function() {
                 //     that.toast.success('', '修改场次成功', that.toastOptions);

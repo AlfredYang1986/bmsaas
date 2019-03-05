@@ -6,7 +6,7 @@ import EmberObject from '@ember/object';
 
 
 export default Controller.extend({
-
+    bm_error_service: service(),
     toast: service(),
     toastOptions: EmberObject.create({
         closeButton: false,
@@ -32,7 +32,15 @@ export default Controller.extend({
     cur_page: 1,
     cls: computed('cur_idx', 'cur_page', "refreshFlag", function(){
         // @sun 通过cur_idx 调整query的filter
-        return this.store.query('class', { 'page[number]': this.cur_page, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), "status": 2})
+        // return this.store.query('class', { 'page[number]': this.cur_page, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), "status": 2})
+        let result;
+        result = this.store.query('class', { 'page[number]': this.cur_page, 'page[size]': 20, "brand-id": localStorage.getItem("brandid"), "status": 2})
+        result.then(() => {
+        }, error => {
+            // debugger
+            this.bm_error_service.handleError(error)
+        })
+        return result;
         // if(this.cur_idx == 0) {
         //     return this.store.query('class', { "brand-id": localStorage.getItem("brandid"), "status": 2, "flag": 0})
         // } else if(this.cur_idx == 1) {
@@ -105,8 +113,9 @@ export default Controller.extend({
                 that.toggleProperty("refreshFlag")
                 that.toast.success('', '新增班级成功', that.toastOptions);
             }
-            let onFail = function () {
-                that.toast.error('', '新增班级失败', that.toastOptions);
+            let onFail = function (error) {
+                this.bm_error_service.handleError(error, '新增班级失败')
+                // that.toast.error('', '新增班级失败', that.toastOptions);
             }
             this.tmpClass.save().then(() => {
                 this.tmpClass.set("brandId", localStorage.getItem("brandid"))
@@ -116,6 +125,8 @@ export default Controller.extend({
                 this.tmpClass.set("reservableitem", this.store.peekRecord("reservableitem", this.cur_course_id))
                 this.tmpClass.set("yard", this.model.yard)
                 this.tmpClass.save().then(onSuccess, onFail)
+            }, error => {
+                this.bm_error_service.handleError(error, '新增班级失败')
             })
 
             // this.bm_class_service.resetInfoAndYard(this.bm_yard_service.yard.id, this.sessionId);

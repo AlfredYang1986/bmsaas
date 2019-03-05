@@ -4,6 +4,7 @@ import EmberObject from '@ember/object';
 
 export default Controller.extend({
     toast: service(),
+    bm_error_service: service(),
     toastOptions: EmberObject.create({
         closeButton: false,
         positionClass: 'toast-top-center',
@@ -59,8 +60,9 @@ export default Controller.extend({
                 that.set('closeExpDlg', false);
                 that.toast.success('', '开启成功', that.toastOptions);
             }
-            let onFail = function() {
-                that.toast.error('', '开启失败', that.toastOptions);
+            let onFail = function(error) {
+                that.bm_error_service.handleError(error, '开启失败')
+                // that.toast.error('', '开启失败', that.toastOptions);
             }
             this.model.exp.save().then(onSuccess, onFail);
         },
@@ -73,7 +75,8 @@ export default Controller.extend({
                 that.set('closeExpDlg', false);
                 that.toast.success('', '关闭成功', that.toastOptions);
             }
-            let onFail = function() {
+            let onFail = function(error) {
+                that.bm_error_service.handleError(error, '关闭失败')
                 that.toast.error('', '关闭失败', that.toastOptions);
             }
             this.model.exp.save().then(onSuccess, onFail);
@@ -89,8 +92,9 @@ export default Controller.extend({
                 that.set('deleteExpDlg', false);
                 that.transitionToRoute('exp');
             }
-            let onFail = function() {
-                that.toast.error('', '删除体验课失败', that.toastOptions);
+            let onFail = function(error) {
+                that.bm_error_service.handleError(error, '删除体验课失败')
+                // that.toast.error('', '删除体验课失败', that.toastOptions);
             }
             this.model.exp.deleteRecord(this.model.exp)
             this.model.exp.save().then(onSuccess, onFail);
@@ -105,14 +109,17 @@ export default Controller.extend({
             this.set('showAddSessionDlg', true);
 
             let tmpClassId = this.tmpSessionable.id
-            let that = this
+            // let that = this
             this.store.query('unit',  { 'class-id': tmpClassId }).then(res => {
                 let ut = res.objectAt(0)
-                that.set('cur_room_id', ut.room.get("id"));
-                that.set('tmpUnit', ut)
-            }).catch(() => {
-                that.toast.error('', that.edit_flag_info + '场次失败', that.toastOptions);
+                this.set('cur_room_id', ut.room.get("id"));
+                this.set('tmpUnit', ut)
+            }, error => {
+                this.bm_error_service.handleError(error)
             })
+            // .catch(() => {
+            //     that.toast.error('', that.edit_flag_info + '场次失败', that.toastOptions);
+            // })
         },
         onDeleteSessionClick(params) {
             this.set('tmpSessionable', params);
@@ -128,15 +135,18 @@ export default Controller.extend({
                     tmpUnit.save().then(() => {
                         that.toast.success('', '删除场次成功', that.toastOptions);
                         that.set('deleteSessionDlg', false);
-                    },() => {
-                        that.toast.error('', '删除场次失败', that.toastOptions);
+                    }, error => {
+                        that.bm_error_service.handleError(error, '删除场次失败')
+                        // that.toast.error('', '删除场次失败', that.toastOptions);
                     })
-                },() => {
-                    that.toast.error('', '删除场次失败', that.toastOptions);
+                }, error => {
+                    that.bm_error_service.handleError(error, '删除场次失败')
+                    // that.toast.error('', '删除场次失败', that.toastOptions);
                 });
             }
-            let onFail = function() {
-                that.toast.error('', '删除场次失败', that.toastOptions);
+            let onFail = function(error) {
+                that.bm_error_service.handleError(error, '删除场次失败')
+                // that.toast.error('', '删除场次失败', that.toastOptions);
             }
 
             let tmpUnit = this.tmpSessionable.units.objectAt(0);
@@ -190,11 +200,12 @@ export default Controller.extend({
                     tmpUnit.set("room", that.store.peekRecord("room", that.cur_room_id));
                     tmpUnit.set("startDate", this.tmpSessionable.startDate);
                     tmpUnit.set("endDate", this.tmpSessionable.endDate);
-                    tmpUnit.save()
-                    .then(() => {
+                    tmpUnit.save().then(() => {
                         // save class
                         return this.tmpSessionable.save()
 
+                    }, error => {
+                        this.bm_error_service.handleError(error, edit_flag_info + '场次失败')
                     }).then(() => {
                         that.toast.success('', edit_flag_info + '场次成功', that.toastOptions);
                         that.set('cur_tmp_date', new Date());
@@ -203,9 +214,12 @@ export default Controller.extend({
                         that.set('edit_flag', false);
                         that.set('showAddSessionDlg', false);
 
-                    }).catch(() => {
-                        this.toast.error('', edit_flag_info + '场次失败', this.toastOptions);
+                    }, error => {
+                        that.bm_error_service.handleError(error, edit_flag_info + '场次失败')
                     })
+                    // .catch(() => {
+                    //     this.toast.error('', edit_flag_info + '场次失败', this.toastOptions);
+                    // })
 
                     // let onSuccess = function() {
                     //     that.toast.success('', edit_flag_info + '场次成功', that.toastOptions);
@@ -248,12 +262,16 @@ export default Controller.extend({
                         tmpUnit.set("class", tmpClass);
                         return tmpUnit.save()
 
+                    }, error => {
+                        this.bm_error_service.handleError(error, edit_flag_info + '场次失败')
                     }).then(() => {
                         let ps = this.store.query('class', { 'page[number]': this.pagenum, 'page[size]': 20, "reservable-id": this.model.exp.get("id")})
-                        this.set('classes', ps)
                         ps.then(() => {
                             that.set('totalCount', localStorage.getItem('classes-count'))
+                        }, error => {
+                            this.bm_error_service.handleError(error)
                         })
+                        this.set('classes', ps)
 
                         that.set('showAddSessionDlg', false);
                         that.set('cur_tmp_date', new Date());
@@ -261,9 +279,12 @@ export default Controller.extend({
                         that.set('cur_end_date', new Date());
 
                         that.toast.success('', edit_flag_info + '场次成功', that.toastOptions);
-                    }).catch(() => {
-                        that.toast.error('', edit_flag_info + '场次失败', that.toastOptions);
+                    }, error => {
+                        that.bm_error_service.handleError(error, edit_flag_info + '场次失败')
                     })
+                    // .catch(() => {
+                    //     that.toast.error('', edit_flag_info + '场次失败', that.toastOptions);
+                    // })
                 }
             } else if (!this.checkValidate() & this.checkTime()) {
                 this.set('noteError', true);

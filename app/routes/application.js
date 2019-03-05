@@ -31,12 +31,12 @@ export default Route.extend({
 
 	actions:{
         error(error, transition) {
-            if (error instanceof CustomError) {
+			// debugger
+            // if (error instanceof CustomError) {
                 window.console.log(error, transition);
-                this.bm_error_service.handleError(error.errors)
-                this.bm_error_service.toastError()
+                this.bm_error_service.handleError(error)
                 return;
-            }
+            // }
       
             // ...other error handling logic
         }

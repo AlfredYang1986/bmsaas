@@ -35,11 +35,12 @@ export default DS.JSONAPIAdapter.extend({
 
     namespace: "v2", // 根据后端发布版本修改命名空间
 
+    // 请求超时时间
     // ajaxOptions(url, type, options) {
     //     let hash = this._super(url, type, options);
     //     hash.timeout = 30000;
     //     return hash;
-    // },
+    // }, 
 
     urlForFindHasMany(id, modelName) {
         let baseUrl = this.buildURL(modelName, id);

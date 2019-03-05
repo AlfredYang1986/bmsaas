@@ -1,7 +1,9 @@
 import Controller from '@ember/controller';
+import { inject as service } from '@ember/service';
 import { A } from '@ember/array'
 
 export default Controller.extend({
+    bm_error_service: service(),
     listInputs: A([]),
     cur_idx: 0,
     cateArr: A([{name: '音乐'}, {name: '艺术'}, {name: '运动'}, {name: '科学'}, {name: 'steam'}]),
@@ -40,6 +42,8 @@ export default Controller.extend({
                         doneFlag = true;
                         this.saveBrand();
                     }
+                }, error => {
+                    this.bm_error_service.handleError(error)
                 });
             })
             this.tempCertImgs.forEach((data, index, arr) => {
@@ -52,6 +56,8 @@ export default Controller.extend({
                         doneFlag = true;
                         this.saveBrand();
                     }
+                }, error => {
+                    this.bm_error_service.handleError(error)
                 });
             })
         },
@@ -73,11 +79,17 @@ export default Controller.extend({
     saveBrand() {
         this.model.brand.category.set('title', this.cur_cate_id)
         let cate = this.store.peekRecord("category", this.model.brand.category.get("id"))
-        cate.save()
+        cate.save().then(() => {
+
+        }, error => {
+            this.bm_error_service.handleError(error)
+        })
         this.model.brand.set("images", this.tempHonorImgs)
         this.model.brand.get("images").pushObjects(this.tempCertImgs)
         this.model.brand.save().then(()=> {
             this.transitionToRoute("home")
+        }, error => {
+            this.bm_error_service.handleError(error)
         });
     }
 });

@@ -16,7 +16,8 @@ export default Component.extend({
         }
 
     },
-
+    
+	bm_error_service: service(),
     store: service(),
     toast: service(),
     toastOptions: EmberObject.create({
@@ -79,7 +80,7 @@ export default Component.extend({
 
         },
         reservableChanged() {
-            let that = this;
+            // let that = this;
             let sel = document.getElementById("reservableselect");
             this.set('sel', sel)
             if (sel.selectedIndex == 0) {
@@ -91,8 +92,10 @@ export default Component.extend({
             let tempItem = this.store.peekRecord("reservableitem", this.selectedReservable);
             this.store.query('class', { "reservable-id": tempItem.id}).then((res) => {
                 if(res.length == 0) {
-                    that.toast.error('', '此参与内容暂无场次，请先添加场次！', this.toastOptions);
+                    this.toast.error('', '此参与内容暂无场次，请先添加场次！', this.toastOptions);
                 }
+            }, error => {
+                this.bm_error_service.handleError(error)
             })
 
         },
@@ -105,7 +108,7 @@ export default Component.extend({
             }
         },
         activityChanged() {
-            let that = this;
+            // let that = this;
             var sel = document.getElementById('actselect');
             if (sel.selectedIndex == 0) {
                 this.set('selectedActivity', null);
@@ -116,8 +119,10 @@ export default Component.extend({
             let tempItem = this.store.peekRecord("reservableitem", this.selectedActivity);
             this.store.query('class', { "reservable-id": tempItem.id}).then((res) => {
                 if(res.length == 0) {
-                    that.toast.error('', '此参与内容暂无场次，请先添加场次！', this.toastOptions);
+                    this.toast.error('', '此参与内容暂无场次，请先添加场次！', this.toastOptions);
                 }
+            }, error => {
+                this.bm_error_service.handleError(error)
             })
         },
         sessionChanged() {

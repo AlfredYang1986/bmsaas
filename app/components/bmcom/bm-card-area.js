@@ -5,6 +5,7 @@ import { inject as service } from '@ember/service';
 export default Component.extend({
     positionalParams: ['type', 'curPage'],
     store: service(),
+    bm_error_service: service(),
     course: computed('curPage', function() {
         let result;
         if(this.type == 'exp') {
@@ -18,6 +19,8 @@ export default Component.extend({
         result.then(() => {
 			let page = Number.parseInt(localStorage.getItem('reservableitems'));
 			this.onRefreshDataComplete(page)
+        }, error => {
+            this.bm_error_service.handleError(error)
         })
         return result;
     }),

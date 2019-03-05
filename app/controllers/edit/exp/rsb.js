@@ -8,6 +8,7 @@ export default Controller.extend({
     isPushing: false,
     cur_cate_id: '',
     savePicDoneFlag: false,
+    bm_error_service: service(),
     toast: service(),
     toastOptions: EmberObject.create({
         closeButton: false,
@@ -25,17 +26,24 @@ export default Controller.extend({
                 if(that.model.si.category.get("id")) {
                     that.model.si.category.set('title', that.model.si.category.get("title"));
                     let cate = that.store.peekRecord("category", that.model.si.category.get("id"));
-                    cate.save();
+                    cate.save().then(() => {
+
+                    }, error => {
+                        this.bm_error_service.handleError(error)
+                    });
                 }
                 let tmp = that.store.peekRecord('sessioninfo', that.model.si.id)
                 that.model.exp.set('sessioninfo', tmp);
                 that.model.exp.save()
                     .then((res) => {
                         that.transitionToRoute('detail.exp', res.id);
+                    }, error => {
+                        this.bm_error_service.handleError(error)
                     })
-                    .catch(error => window.console.info(error))
+                    // .catch(error => window.console.info(error))
             }
-            let onFail = function () {
+            let onFail = function (error) {
+                that.bm_error_service.handleError(error)
             }
             if(that.model.si.cover) {
                 if(Number(that.model.si.alb) <= Number(that.model.si.aub)) {
@@ -52,6 +60,8 @@ export default Controller.extend({
                                     if(this.savePicDoneFlag) {
                                         this.model.si.save().then(onSuccess, onFail);
                                     }
+                                }, error => {
+                                    this.bm_error_service.handleError(error)
                                 });
                             } else {
                                 if(this.savePicDoneFlag) {

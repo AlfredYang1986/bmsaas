@@ -1,7 +1,9 @@
 import Controller from '@ember/controller';
+import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 
 export default Controller.extend({
+    bm_error_service: service(),
     isPushing: false,
     current_idx: 0,
     changeFlag: false,
@@ -47,6 +49,8 @@ export default Controller.extend({
                         doneFlag = true;
                         this.saveYard();
                     }
+                }, error => {
+                    this.bm_error_service.handleError(error)
                 });
             })
             this.tempCertImgs.forEach((data, index, arr) => {
@@ -59,6 +63,8 @@ export default Controller.extend({
                         doneFlag = true;
                         this.saveYard();
                     }
+                }, error => {
+                    this.bm_error_service.handleError(error)
                 });
             })
         },
@@ -97,9 +103,11 @@ export default Controller.extend({
     saveYard() {
         this.model.yard.set("images", this.tempYardImgs)
         this.model.yard.get("images").pushObjects(this.tempCertImgs)
-        let that = this;
-        this.model.yard.save().then(function() {
-            that.transitionToRoute("detail.yard")
+        // let that = this;
+        this.model.yard.save().then(() => {
+            this.transitionToRoute("detail.yard")
+        }, error => {
+            this.bm_error_service.handleError(error)
         });
         // let that = this;
         // let onSuccess = function() {
