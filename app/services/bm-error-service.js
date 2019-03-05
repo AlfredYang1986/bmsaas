@@ -18,6 +18,7 @@ export default Service.extend({
     
     handleError(error, errorHint) {
         if (!(error instanceof CustomError)) {
+            this.toast.error('', '未知错误', this.toastOptions);
             window.console.log(error);
             return;
         }
