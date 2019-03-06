@@ -14,7 +14,6 @@
             <span class='alt_course_title alt_course_big_title'>课程类别</span>
             <span class='alt_course_des'>明确的分类，能让家长们对课程有明确的初步印象。</span>
             {{#layout-push direction="row"}}
-                {{log session}}
                 {{#if (bmcom/bm-nil-obj session)}}
                 {{else}}
                 {{!-- {{bmform/bm-cate-choose cat_candi=cat_exp crs_cat=cur_cate_id}} --}}
