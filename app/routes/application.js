@@ -30,10 +30,11 @@ export default Route.extend({
 	},
 
 	actions:{
-        error(error, transition) {
+        // error(error, transition) {
+		error(error) {	
 			// debugger
             // if (error instanceof CustomError) {
-                window.console.log(error, transition);
+                // window.console.log(error, transition);
                 this.bm_error_service.handleError(error)
                 return;
             // }
