@@ -8,19 +8,19 @@ export default DS.JSONAPIAdapter.extend({
         this._super(...arguments)
         this.addObserver('bm_token.token', this, 'tokenChanges')
     },
-    
+
     bm_token: service(),
-    
+
     tokenChanges() {
         // debugger
         this.set('headers', {
             'Authorization': 'bearer ' + this.bm_token.token//token验证，需要时揭开注释
         })
     },
-    
-    host: 'http://localhost:4200',
-    
-    // host: 'https://demo.dongdakid.com',
+
+    // host: 'http://localhost:4200',
+
+    host: 'https://saas.dongdakid.com',
     // 发布时揭开注释强制过滤掉后端返回link里的主机
 
     headers: computed('bm_refresh', function() {
@@ -28,7 +28,7 @@ export default DS.JSONAPIAdapter.extend({
         // window.console.log(this.bm_token.token)
         return {
             // 'Authorization': this.bm_token.bearerToken //token验证，需要时揭开注释
-            
+
             'Authorization': 'bearer ' + this.bm_token.token
         };
     }),
@@ -40,7 +40,7 @@ export default DS.JSONAPIAdapter.extend({
     //     let hash = this._super(url, type, options);
     //     hash.timeout = 30000;
     //     return hash;
-    // }, 
+    // },
 
     handleResponse(status, headers, payload) {
         if(200 <= status && 300 > status) {
