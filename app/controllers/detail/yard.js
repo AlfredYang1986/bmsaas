@@ -95,6 +95,26 @@ export default Controller.extend({
             this.model.yard.rooms.removeObject(this.tempRoom)
             this.model.yard.save().then(onSuccess, onFail);
 
+            // let that = this;
+            // // let onSuccess = function () {
+            // this.tempRoom.deleteRecord()
+            // this.tempRoom.save().then(onSuccess1, onFail1);
+            // // }
+            // // let onFail = function (error) {
+            // //     that.bm_error_service.handleError(error, '删除教室失败')
+            // //     // that.toast.error('', "删除教室失败", that.toastOptions);
+            // // }
+            // let onSuccess1 = function () {
+            //     that.toast.success('', "删除教室成功", that.toastOptions);
+            //     that.set('deleteRoomDlg', false);
+            // }
+            // let onFail1 = function (error) {
+            //     that.bm_error_service.handleError(error, '删除教室失败')
+            //     // that.toast.error('', "删除教室失败", that.toastOptions);
+            // }
+            // // this.model.yard.rooms.removeObject(this.tempRoom)
+            // // this.model.yard.save().then(onSuccess, onFail);
+
         },
         cancelHandled() {
             // this.set('tmpSessionable', "");

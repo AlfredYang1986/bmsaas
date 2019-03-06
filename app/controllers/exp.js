@@ -2,6 +2,7 @@ import Controller from '@ember/controller';
 
 export default Controller.extend({
     pagenum: 1,
+    
     actions: {
         cardClicked(idx) {
             this.transitionToRoute('detail.exp', idx);

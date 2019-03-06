@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import EmberObject from '@ember/object';
+import { A } from '@ember/array';
 
 export default Controller.extend({
     toast: service(),
@@ -83,10 +84,10 @@ export default Controller.extend({
         },
         onDeleteExpClick() {
             let that = this;
-            for(let idx = 0;idx < this.model.exp.classes.length;idx++) {
-                that.model.exp.classes.objectAt(idx).deleteRecord()
-                that.model.exp.classes.objectAt(idx).save()
-            }
+            // for(let idx = 0;idx < this.model.exp.classes.length;idx++) {
+            //     that.model.exp.classes.objectAt(idx).deleteRecord()
+            //     that.model.exp.classes.objectAt(idx).save()
+            // }
             let onSuccess = function() {
                 that.toast.success('', '删除体验课成功', that.toastOptions);
                 that.set('deleteExpDlg', false);
@@ -126,32 +127,32 @@ export default Controller.extend({
             this.set('deleteSessionDlg', true);
         },
         onDeleteSessionClickOk() {
-            let that = this;
-            let onSuccess = function() {
-                that.tmpSessionable.units.removeAt(0);
-                that.tmpSessionable.deleteRecord();
-                tmpUnit.deleteRecord();
-                that.tmpSessionable.save().then(() => {
-                    tmpUnit.save().then(() => {
-                        that.toast.success('', '删除场次成功', that.toastOptions);
-                        that.set('deleteSessionDlg', false);
-                    }, error => {
-                        that.bm_error_service.handleError(error, '删除场次失败')
-                        // that.toast.error('', '删除场次失败', that.toastOptions);
-                    })
+            // let that = this;
+            // let onSuccess = function() {
+                // that.tmpSessionable.units.removeAt(0);
+                this.tmpSessionable.deleteRecord();
+                // tmpUnit.deleteRecord();
+                this.tmpSessionable.save().then(() => {
+                    // tmpUnit.save().then(() => {
+                this.toast.success('', '删除场次成功', this.toastOptions);
+                this.set('deleteSessionDlg', false);
+                    // }, error => {
+                    //     that.bm_error_service.handleError(error, '删除场次失败')
+                    //     // that.toast.error('', '删除场次失败', that.toastOptions);
+                    // })
                 }, error => {
-                    that.bm_error_service.handleError(error, '删除场次失败')
+                    this.bm_error_service.handleError(error, '删除场次失败')
                     // that.toast.error('', '删除场次失败', that.toastOptions);
                 });
-            }
-            let onFail = function(error) {
-                that.bm_error_service.handleError(error, '删除场次失败')
+            // }
+            // let onFail = function(error) {
+                // that.bm_error_service.handleError(error, '删除场次失败')
                 // that.toast.error('', '删除场次失败', that.toastOptions);
-            }
+            // }
 
-            let tmpUnit = this.tmpSessionable.units.objectAt(0);
-            this.model.exp.classes.removeObject(this.tmpSessionable)
-            this.model.exp.save().then(onSuccess, onFail);
+            // let tmpUnit = this.tmpSessionable.units.objectAt(0);
+            // this.model.exp.classes.removeObject(this.tmpSessionable)
+            // this.model.exp.save().then(onSuccess, onFail);
         },
         cancelHandled() {
             this.set('tmpSessionable', "");

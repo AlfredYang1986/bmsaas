@@ -18,5 +18,19 @@ export default Component.extend({
     }),
     click() {
         this.onCourseCardClicked(this.course.id);
-    }
+    },
+    actions: {
+        promiseResovled(proObj) {
+            let client = this.bmOss.get('ossClient');
+            let c = proObj.get('cover')
+            if (c !== undefined && c != '') {
+                let url = client.signatureUrl(c)
+                this.set("cover", url)
+                // return url;
+            } else {
+                this.set("cover", '')
+                // return '';
+            }
+        },
+    },
 });

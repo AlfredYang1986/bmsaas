@@ -65,33 +65,33 @@ export default Controller.extend({
             // })
         },
         onDeleteSessionableClick() {
-            let that = this;
-            let onSuccess = function() {
-                that.model.class.units.removeAt(0);
-                that.model.class.deleteRecord();
-                tmpUnit.deleteRecord();
-                that.model.class.save().then(() => {
-                    tmpUnit.save().then(() => {
-                        that.toast.success('', '删除场次成功', that.toastOptions);
-                        that.set('deleteSessionDlg', false);
-                        that.transitionToRoute("detail.exp", that.model.reexpid)
-                    }, error => {
-                        that.bm_error_service.handleError(error, '删除场次失败')
-                        // that.toast.error('', '删除场次失败', that.toastOptions);
-                    })
+            // let that = this;
+            // let onSuccess = function() {
+                // that.model.class.units.removeAt(0);
+                this.model.class.deleteRecord();
+                // tmpUnit.deleteRecord();
+                this.model.class.save().then(() => {
+                    // tmpUnit.save().then(() => {
+                        this.toast.success('', '删除场次成功', this.toastOptions);
+                        this.set('deleteSessionDlg', false);
+                        this.transitionToRoute("detail.exp", this.model.reexpid)
+                    // }, error => {
+                    //     that.bm_error_service.handleError(error, '删除场次失败')
+                    //     // that.toast.error('', '删除场次失败', that.toastOptions);
+                    // })
                 }, error => {
-                    that.bm_error_service.handleError(error, '删除场次失败')
+                    this.bm_error_service.handleError(error, '删除场次失败')
                     // that.toast.error('', '删除场次失败', that.toastOptions);
                 });
-            }
-            let onFail = function(error) {
-                that.bm_error_service.handleError(error, '删除场次失败')
+            // }
+            // let onFail = function(error) {
+                // that.bm_error_service.handleError(error, '删除场次失败')
                 // that.toast.error('', '删除场次失败', that.toastOptions);
-            }
+            // }
 
-            let tmpUnit = this.model.class.units.objectAt(0);
-            this.model.exp.classes.removeObject(this.model.class)
-            this.model.exp.save().then(onSuccess, onFail);
+            // let tmpUnit = this.model.class.units.objectAt(0);
+            // this.model.exp.classes.removeObject(this.model.class)
+            // this.model.exp.save().then(onSuccess, onFail);
         },
         cancelHandled() {
             this.set('noteError', false);
