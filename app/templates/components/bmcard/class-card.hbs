@@ -53,4 +53,10 @@
     {{/layout-push}}
 {{/layout-push}}
 
+{{!-- {{bmcom/bm-handle-promise promiseResovled=(action 'promiseResovled') promiseObj=cls.duties}}
+{{#if (not-eq duties.length 0)}}
+    {{#each cls.duties as |item|}}
+        {{bmcom/bm-handle-promise promiseResovled=(action 'promiseResovled') promiseObj=item.teacher}}
+    {{/each}}
+{{/if}} --}}
 {{yield}}
