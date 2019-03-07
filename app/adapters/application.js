@@ -19,16 +19,11 @@ export default DS.JSONAPIAdapter.extend({
     },
 
     // host: 'http://localhost:4200',
-
     // host: 'https://saas.dongdakid.com',
     // 发布时揭开注释强制过滤掉后端返回link里的主机
 
     headers: computed('bm_refresh', function() {
-        // debugger
-        // window.console.log(this.bm_token.token)
         return {
-            // 'Authorization': this.bm_token.bearerToken //token验证，需要时揭开注释
-
             'Authorization': 'bearer ' + this.bm_token.token
         };
     }),

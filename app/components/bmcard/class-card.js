@@ -62,38 +62,36 @@ export default Component.extend({
         //         this.set("techPicsOverFlow", this.cls.duties.length - 3)
         //     }
         //     console.log(this.techPics)
-        this.duties.forEach((item, index, arr) => {
-            item.get("teacher").then(res => {
-                // console.log(index)
-                // console.log(res)
-                if (index > 2) {
-                    this.set("techPicsOverFlow", arr.length - 3)
-                } else {
-                    let tmpObj = {};
-                    if(res.get("icon") != "" && res.get("icon") != undefined) {
-                        tmpObj.url = client.signatureUrl(res.get("icon"));
-                    } else {
-                        tmpObj.url = this.headImg;
-                    }
-                    this.techPics.pushObject(tmpObj)
-                }
-                console.log(this.techPics)
-            }, error => {
-                this.bm_error_service.handleError(error)
-            })
-        })
+        
+        // this.duties.forEach((item, index, arr) => {
+        //     item.get("teacher").then(res => {
+        //         // console.log(index)
+        //         // console.log(res)
+        //         if (index > 2) {
+        //             this.set("techPicsOverFlow", arr.length - 3)
+        //         } else {
+        //             let tmpObj = {};
+        //             if(res.get("icon") != "" && res.get("icon") != undefined) {
+        //                 tmpObj.url = client.signatureUrl(res.get("icon"));
+        //             } else {
+        //                 tmpObj.url = this.headImg;
+        //             }
+        //             this.techPics.pushObject(tmpObj)
+        //         }
+        //         console.log(this.techPics)
+        //     }, error => {
+        //         this.bm_error_service.handleError(error)
+        //     })
+        // })
     },
 
     didReceiveAttrs() {
-        debugger
-        console.log(this.cls.get("duties"))
-        this.cls.get("duties").then(res => {
-            
-            this.set("duties", res)
-            this.handleDuty()
-        }, error => {
-            this.bm_error_service.handleError(error)
-        })
+        // this.cls.get("duties").then(res => {
+        //     this.set("duties", res)
+        //     this.handleDuty()
+        // }, error => {
+        //     this.bm_error_service.handleError(error)
+        // })
         // if(this.cls.duties != null) {
         //     this.set("techPics", A([]));
         //     let client = this.bmOss.get('ossClient');

@@ -43,12 +43,15 @@
         {{#layout-push direction='row' classNames="split-line"}}
         {{/layout-push}}
         {{#layout-push direction="row" classNames="class-teachers"}}
-            {{#each techPics as |item|}}
+            {{#each cls.duties as |item|}}
+                <img src={{bmcom/bm-img-uri item.teacher.icon bmOss}} alt="">
+            {{/each}}
+            {{!-- {{#each techPics as |item|}}
                 <img src={{item.url}} alt="">
             {{/each}}
             {{#if (gt techPicsOverFlow 0)}}
                 <p class="teacher-num">+{{techPicsOverFlow}}</p>
-            {{/if}}
+            {{/if}} --}}
         {{/layout-push}}
     {{/layout-push}}
 {{/layout-push}}
