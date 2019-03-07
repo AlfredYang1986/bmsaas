@@ -43,8 +43,17 @@
         {{#layout-push direction='row' classNames="split-line"}}
         {{/layout-push}}
         {{#layout-push direction="row" classNames="class-teachers"}}
-            {{#each cls.duties as |item|}}
-                <img src={{bmcom/bm-img-uri item.teacher.icon bmOss}} alt="">
+            {{#each cls.duties as |item index|}}
+                {{#if (lt index 3)}}
+                    {{#if (eq item.teacher.icon "")}}
+                        <img src={{headImg}} alt="">
+                    {{else}}
+                        <img src={{bmcom/bm-img-uri item.teacher.icon bmOss}} alt="">
+                    {{/if}}
+                {{/if}}
+                {{#if (gt index 2)}}
+                    <p class="teacher-num">+{{bmcom/bm-minus cls.duties.length 3}}</p>
+                {{/if}}
             {{/each}}
             {{!-- {{#each techPics as |item|}}
                 <img src={{item.url}} alt="">
