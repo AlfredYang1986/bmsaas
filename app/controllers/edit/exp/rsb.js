@@ -3,7 +3,7 @@ import { inject as service } from '@ember/service';
 import EmberObject from '@ember/object';
 
 export default Controller.extend({
-
+    saveInfo: false,
     isCreate: true,
     isPushing: false,
     cur_cate_id: '',
@@ -46,7 +46,14 @@ export default Controller.extend({
                 that.bm_error_service.handleError(error)
             }
             if(that.model.si.cover) {
-                if(Number(that.model.si.alb) <= Number(that.model.si.aub)) {
+                if(Number(that.model.si.alb) == -1 || Number(that.model.si.aub) == -1) {
+                    that.set('saveInfo', true)
+                } else if(Number(that.model.si.alb) < Number(that.model.si.aub)) {
+                    that.set('saveInfo', true)
+                } else {
+                    that.set('saveInfo', false)
+                }
+                if(that.saveInfo) {
                     if(this.model.si.images.length === 0) {
                         this.model.si.save().then(onSuccess, onFail);
                     } else {
