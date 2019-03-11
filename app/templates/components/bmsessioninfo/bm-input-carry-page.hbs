@@ -4,7 +4,7 @@
         <span class='alt_course_title'>参与者要带些什么东西？</span>
         <span class='alt_course_des'>如:画笔工具</span>
         {{!-- {{input type="text" class="edit_input" value=session.carrying disabled=ifCarryInput}} --}}
-        {{bmform/dynamic-input listInputs=session.carrying disabled=checkFlag needBottomHint=true}}
+        {{bmform/dynamic-input listInputs=session.carrying disabled=checkFlag needBottomHint=true maxlength='10' maxCount='10'}}
         <div class="course-edit-check course-edit-check-low no-inc-margin">
             <span class="radio-inline" {{action 'noCarry'}}>
                 {{#if checkFlag}}
