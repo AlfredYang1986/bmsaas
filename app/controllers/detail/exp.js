@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import EmberObject from '@ember/object';
-import { A } from '@ember/array';
+// import { A } from '@ember/array';
 
 export default Controller.extend({
     toast: service(),
