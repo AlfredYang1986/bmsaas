@@ -30,7 +30,11 @@ export default Route.extend({
     setupController(controller, model) {
         this._super(controller, model);
         this.controller.set('cur_course_id', model.class.reservableitem.get("id"));
-        
+        if(model.class.students.length > 0) {
+            this.controller.set("able", true);
+        } else {
+            this.controller.set("able", false);
+        }
         let urls = A([
             {
                 "pageName":"班级",
