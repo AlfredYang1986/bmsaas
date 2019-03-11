@@ -207,9 +207,9 @@
                     {{#dd.menu align="right" as |menu|}}
                         {{#menu.item align="right"}}
                             {{#layout-push direction='col' classNames="dropdown-content"}}
-                                {{#link-to 'detail.stud' item.id}}
+                                {{!-- {{#link-to 'detail.stud' item.id}}
                                     <a class="normal">学生详情</a>
-                                {{/link-to}}
+                                {{/link-to}} --}}
                                 <a class="warning" onclick={{action 'onRemoveStudClick' item dd.closeDropdown}}>移出班级</a>
                             {{/layout-push}}
                         {{/menu.item}}
