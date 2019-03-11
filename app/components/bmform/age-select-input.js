@@ -3,7 +3,8 @@ import Component from '@ember/component';
 export default Component.extend({
     actions: {
         ageSelect() {
-            this.sendAction('ageSelect');
+            // this.sendAction('ageSelect');
+            this.ageSelect();
             if(this.alb == -1) {
                 this.set('alb', 0);
                 this.set('aub', 0);

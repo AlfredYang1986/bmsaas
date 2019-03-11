@@ -3,7 +3,7 @@
         <span class='alt_course_title alt_course_big_title'>添加图片</span>
         <span class='alt_course_title'>封面图片</span>
         <span class='alt_course_des'>挑选一张最具代表性的照片，这会是参与者浏览时看到的第一张照片</span>
-        <span class='alt_course_des'>图片小于150KB</span>
+        <span class='alt_course_des'>图片小于300KB</span>
         {{#layout-push direction='row'}}
             <div class='line_conatainer_warp'>
                 {{bmcom/bm-img-uploader needTag=false canEdit=true img=session.cover classNames='alt-course-edit-tag-img-adjust'}}
@@ -11,23 +11,27 @@
         {{/layout-push}}
         <span class='alt_course_title'>精彩时刻</span>
         <span class='alt_course_des'>添加最多9张照片</span>
-        <span class='alt_course_des'>支持jpg、jpeg、gif、png，每张图片小于100KB</span>
+        <span class='alt_course_des'>支持jpg、png，每张图片小于300KB</span>
         {{#layout-push direction='row'}}
             <div class='line_conatainer_warp'>
-                {{!-- {{#each session.Tagimgs as |item|}}
+                {{!-- {{#each tempImgs as |item|}}
                     {{bmcom/bm-img-uploader needTag=true canEdit=true img=item.img tag=item.tag classNames='alt-course-edit-tag-img-adjust'}}
                 {{/each}} --}}
-                {{#each session.Tagimgs as |item|}}
+                {{#each tempImgs as |item|}}
                     {{bmcom/bm-img-uploader needTag=true canEdit=true canEditTag=true canDeleteImg=false canDeleteObj=true imgObj=item img=item.img tag=item.tag onDeleteObj=(action "deleteImg") classNames='alt-course-edit-tag-img-adjust'}}
                 {{/each}}
-                {{#if (bmcom/bm-nil-obj session.Tagimgs)}}
+                {{#if (bmcom/bm-nil-obj tempImgs)}}
                     {{#layout-push direction='row' mid=true classNames="add-img-div"}}
-                        <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addPicOnClick"}}/>
+                        <div class="add-new-img-div"  {{action "addPicOnClick"}}>
+                            <img class="add-new-img" src='/images/icon_add-photo@3x.png'/>
+                        </div>
                     {{/layout-push}}
                 {{else}}
-                    {{#if (lt session.Tagimgs.length 9)}}
+                    {{#if (lt tempImgs.length 9)}}
                         {{#layout-push direction='row' mid=true classNames="add-img-div"}}
-                            <img class="add-new-img" src='/images/icon_add-photo@3x.png' {{action "addPicOnClick"}}/>
+                            <div class="add-new-img-div"  {{action "addPicOnClick"}}>
+                                <img class="add-new-img" src='/images/icon_add-photo@3x.png'/>
+                            </div>
                         {{/layout-push}}
                     {{/if}}
                 {{/if}}

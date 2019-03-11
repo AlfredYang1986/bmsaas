@@ -323,10 +323,10 @@ span.list-status {
     // margin-bottom: 100px;
 
     .inbox-empty-state {
-        height: calc(100vh - 328px);
+        height: calc(100vh - 471px);
     }
     .exp-empty-state {
-        height: calc(100vh - 356px);
+        // height: calc(100vh - 356px);
     }
     .field-empty-state {
         height: calc(100vh - 336px);
@@ -364,10 +364,17 @@ span.list-status {
             flex-direction: column;
             align-items: center;
 
+            .tech-icon {
+                width: 128px;
+                height: 128px;
+                border-radius: 50%;
+                border: none;
+            }
+
             .bm-upload-container {
                 width: 128px;
                 height: 128px;
-                
+
                 img {
                     width: 128px;
                     height: 128px;
@@ -433,7 +440,7 @@ span.list-status {
         }
 
         .tech_info_area {
-            
+
             // padding-top: 40px;
             min-height: 0;
             // border-bottom: 1px solid rgba(0,0,0,0.12);
@@ -1005,4 +1012,16 @@ span.list-status {
     font-size: 14px;
     color: #6E7CD4;
     letter-spacing: 2px;
+}
+
+
+
+.popover {
+    border: none;
+    .arrow {
+        display: none;
+    }
+    .popover-body {
+        padding: 0;
+    }
 }

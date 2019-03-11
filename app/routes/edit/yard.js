@@ -1,31 +1,42 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
-import { inject as service } from '@ember/service';
+// import A from '@ember/array';
+
+// Array.prototype.filterSync = async function (callback, thisArg) {
+
+//   let filterResult = await Promise.all(this.map(callback))
+
+//   // > [true, false, true]
+
+
+
+//   return this.filter((_, index) => filterResult[index])
+
+// }
 
 export default Route.extend({
-    mock_data: service(),
-    bm_yard_service: service(),
-
-    model(params) {
-        this.mock_data.regionSource();
-        this.bm_yard_service.set('yardid', params.yardid);
-        return RSVP.hash({
-                yardid: params.yardid,
+    model() {
+        var tmp = this.store.query('yard', {"brand-id": localStorage.getItem("brandid")}).then(res => {
+            return new Promise(function(resolve, reject) {
+                if (res.length == 0) {
+                    resolve(null)
+                } else {
+                    resolve(res.firstObject)
+                }
+                reject()
             })
-    },
 
+        })
+        return RSVP.hash({
+            yard: tmp,
+        })
+    },
     setupController(controller, model) {
         this._super(controller, model);
-        controller.set('yard_provinces', this.store.peekAll('bmprovinces'));
-        controller.set('yard_citys', this.store.peekAll('bmcitys'));
-        controller.set('yard_government_areas', this.store.peekAll('bmgovernment-areas'));
-
-        if (model.yardid == 'yard/push') {
-            controller.set('isPushing', true);
-        } else {
-            controller.set('isPushing', false);
-        }
-        this.controller.set('current_idx', 0);
-        this.bm_yard_service.set('refresh_token', this.bm_yard_service.guid());
+        controller.set('tempYardImgs', model.yard.images.filter((item) => {return item.flag === 0}));
+        controller.set('tempCertImgs', model.yard.images.filter((item) => {return item.flag === 2}));
+        // [1, 2, 3].filterSync(item => item % 2 !== 0).then(result => {
+        //     console.log(result)
+        // })
     },
 });

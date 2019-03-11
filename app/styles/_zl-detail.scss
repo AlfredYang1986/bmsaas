@@ -110,12 +110,19 @@
         text-align: center;
     }
 }
+
 .detail_content_top {
      height: 100%;
 }
+
+.detail_page_inbox {
+    height: calc(100vh - 64px);
+}
+
 .detail_page {
     padding: 24px;
     margin-top: 14px;
+    
     .tech_info_card {
         margin-right: 8px;
         width: 296px;
@@ -241,13 +248,23 @@ a.reserve_detail_href_ref {
     margin-top: 24px;
     height: 72px;
 }
+.detail_margin_bottom {
+    margin-bottom: 24px;
+}
+.detail_margin_top.course_margin_top_big {
+    height: 110px;
+    padding: 24px;
 
+    .reserve-detail-head{
+        min-height: 32px;
+    }
+}
 .detail_margin_top.detail_margin_top_big {
     height: 80px;
     padding: 24px;
 
     .reserve-detail-head{
-        height: 32px;
+        min-height: 32px;
     }
 }
 
@@ -493,7 +510,7 @@ a.reserve_detail_href_ref {
         .area-margin-bottom {
             margin-bottom: 32px;
         }
-        
+
         .form-checked {
             margin-bottom: 16px;
             img.error {
@@ -578,7 +595,7 @@ a.reserve_detail_href_ref {
 
     }
     .modal-footer {
-        padding: 24px; 
+        padding: 24px;
         height: 80px;
     }
     .session-modal-footer {
@@ -689,7 +706,7 @@ a.btn_sign {
 
 .ib_table_head.room_table {
     margin-top: 24px;
-    
+
     .session-list {
         &:nth-child(even) {
             background-color: #fbfbfb;
@@ -709,7 +726,7 @@ a.btn_sign {
 
 .ib_table_head.class_teacher_table {
     margin-top: 24px;
-    
+
     .session-list {
         &:nth-child(even) {
             background-color: #fbfbfb;
@@ -720,10 +737,10 @@ a.btn_sign {
         .ib_table_content_item {
             width: 40%;
         }
-        .ib_table_content_item:nth-last-child(1) {
-            width: 20%;
-            text-align: center;
-        }
+        // .ib_table_content_item:nth-last-child(1) {
+        //     width: 20%;
+        //     text-align: center;
+        // }
     }
 }
 
@@ -801,6 +818,10 @@ a.btn_sign {
             color: #172B4D;
             text-align: left;
             line-height: 32px;
+
+            .normal{
+                color: #172B4D;
+            }
 
             .warning {
                 color: #DE350B;
@@ -1015,7 +1036,8 @@ a.btn_sign {
     top: 88px;
 
     .toast {
-        width: 320px;
+        min-width: 320px;
+        width: fit-content;
         height: 56px;
         border-radius: 4px;
         box-shadow: none;
@@ -1039,7 +1061,7 @@ a.btn_sign {
         }
         &.toast-error{
             background-image: url("/images/icon_cross-circle copy@2x.png")!important;
-            background-color: #DE350B 
+            background-color: #DE350B
         }
     }
 }

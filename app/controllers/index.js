@@ -1,32 +1,33 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import { debug } from '@ember/debug';
+import EmberObject from '@ember/object';
 
 export default Controller.extend({
     bm_login_service: service(),
-    bm_brand_service: service(),
+    bm_token: service(),
+    toast: service(),
+    toastOptions: EmberObject.create({
+        closeButton: false,
+        positionClass: 'toast-top-center',
+        progressBar: false,
+        timeOut: '2000',
+    }),
     errorInfo: false,
+    account: '',
+    password: '',
     actions: {
         accountLogin() {
             let that = this
-            let callback = {
-                onSuccess: function(res) {
-                    if(res.data.attributes.account != '' && res.data.attributes.brandId != '') {
-                        localStorage.setItem('brandid', res.data.attributes.brandId);
-                        that.bm_brand_service.set('brandid', res.data.attributes.brandId);
-                        that.get('cookie').write('token', res.data.attributes.token, { path: '/' });
-                        that.bm_brand_service.set('refresh_token', that.bm_brand_service.guid());
-                        that.set('errorInfo', false);
-                        that.transitionToRoute('inbox');
-                    } else {
-                        that.set('errorInfo', true);
-                    }
-                },
-                onFail: function(err) {
-                    debug('error: ' + err);
-                }
-            }
-            this.bm_login_service.accountLogin(callback);
+            this.bm_login_service.accountLogin(this.account, this.password).then(res => {
+                that.bm_token.resetData(res['token'], res['brand-id'])
+                that.set('errorInfo', false);
+                // return that.store.find('brands', that.bm_token.brandId) // TODO: 缓存机制
+                that.toast.success('', '登陆成功', that.toastOptions);
+                that.transitionToRoute('inbox');
+            }).catch(err => {
+                // TODO: 错误处理  
+                that.toast.error('', err, that.toastOptions);
+            })
         }
-    }
+    },
 });

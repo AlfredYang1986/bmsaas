@@ -5,7 +5,7 @@ import { A } from '@ember/array';
 export default Component.extend({
     positionalParams: ['start_date', 'end_date'],
     tagName: 'div',
-    classNames: ['bm-row', 'bm-widght-header'],
+    classNames: ['bm-row', 'bm-widget-header'],
     attributeBindings: ['style'],
     didInsertElement() {
       

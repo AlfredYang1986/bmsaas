@@ -34,4 +34,4 @@ RUN ember b --environment production
 
 EXPOSE 4200
 
-ENTRYPOINT ["ember", "s"]
+ENTRYPOINT ["ember", "s", "--live-reload=false"]

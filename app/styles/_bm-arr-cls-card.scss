@@ -1,0 +1,155 @@
+.arr-cls-card-outer {
+    width: 222px;
+    background: #FFFFFF;
+    box-shadow: 0 4px 8px -2px rgba(9,30,66,0.25);
+    border-radius: 4px;
+    padding: 24px;
+
+    .arr-cls-card-top {
+        // height: 149px;
+        background-color: #FFFFFF;
+        // padding: 24px;
+        border-radius: 4px 4px 0 0;
+        
+        .arr-cls-card-top-head {
+            height: 32px;
+            margin-bottom: 24px;
+            
+            img {
+                width: 24px;
+                height: 24px;
+                cursor: pointer;
+            }
+
+            // .arr-cls-card-top-inner-left {   
+            //     img:nth-child(1) {
+            //         margin-right: 8px;
+            //     }
+            // }
+
+            .arr-cls-card-top-inner-right {   
+                align-items: center;
+
+                img:nth-last-child(2) {
+                    margin-right: 8px;
+                }
+
+                img:nth-last-child(3) {
+                    margin-right: 8px;
+                }
+            }
+        }
+        .arr-cls-card-top-label {
+            align-items: center;
+            // margin-bottom: 8px;
+
+            .type-label {
+                // background: rgba(255, 255, 255, 0.3);
+                background: #FFFAE6;
+                border-radius: 4px;
+                font-family: PingFangSC-Medium;
+                font-size: 11px;
+                color: #FF991F;
+                height: 20px;
+                min-width: 40px;
+                text-align: center;
+                padding: 0 8px;
+
+                &.type-label-course {
+                    color: #3881FF;
+                    background: #E1ECFF;
+                }
+            }
+        }
+        .arr-cls-card-top-title {
+            height: 22px;
+            
+            .top-title {
+                font-family: PingFangSC-Medium;
+                font-size: 16px;
+                color: #172B4D;
+                font-weight: bold;
+            }
+        }
+        .arr-cls-card-top-subtitle {
+            height: 20px;
+
+            .top-subtitle {
+                // opacity: 0.7;
+                font-family: PingFangSC-Regular;
+                font-size: 14px;
+                color: #6B778C;
+                
+                &:nth-child(1) {
+                    margin-right: 8px;
+                    min-width: 45px;
+                }
+                &:nth-child(2) {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
+    .arr-cls-card-bottom {
+        padding-top: 24px;
+        background: #FFFFFF;
+        min-height: 112px;
+        // padding: 16px 24px;
+        border-radius: 0 0 4px 4px;
+
+        .arr-cls-card-bottom-title {
+            align-items: center;
+        }
+        .arr-cls-card-bottom-subtitle {
+            margin-left: 24px;
+        }
+        .arr-cls-card-bottom-content {
+            margin-top: 16px;
+            align-items: center;
+        }
+        .bottom-title {
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #172B4D;
+        }
+        .bottom-subtitle {
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #6B778C;
+        }
+        .bottom-img {
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+        }
+        .arr-cls-card-split {
+            margin-top: 16px;
+            border-bottom: 1px solid rgba(0,0,0,0.05)
+        }
+        .arr-cls-card-icon {
+            margin-top: 16px;
+
+            .tech-img {
+                margin-right: 8px;
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+            }
+
+            .teacher-num {
+                width: 24px;
+                height: 24px;
+                background: #DFE1E6;
+                border-radius: 50%;
+                line-height: 32px;
+                text-align: center;
+                font-size: 11px;
+                color: #42526E;
+                letter-spacing: -0.14px;
+                text-align: center;
+            }
+        }
+    }
+}

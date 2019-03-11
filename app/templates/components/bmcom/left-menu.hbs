@@ -1,6 +1,6 @@
 <ul class="left_bar">
     {{#each menuList as |item|}}
-        {{bmcom/left-menu-item icon=item.icon title=item.title expendable=item.expond pageUrl=item.pageUrl isInbox=item.isInbox isSpace=item.isSpace}}
+        {{bmcom/left-menu-item menu=menuList icon=item.icon title=item.title expendable=item.expond pageUrl=item.pageUrl}}
     {{/each}}
 </ul>
 

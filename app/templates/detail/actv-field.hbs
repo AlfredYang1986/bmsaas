@@ -1,6 +1,6 @@
 <div class="detail_content_top">
     <div class="detail_page">
-        {{#bmcom/bm-breadcrumb urls=model.urls as |url|}}
+        {{#bmcom/bm-breadcrumb urls=urls as |url|}}
             {{#if (not-eq url.id "")}}
                 {{#link-to url.link url.id class="reserve_detail_href_ref"}}{{url.pageName}}{{/link-to}}
             {{else}}
@@ -13,12 +13,12 @@
                     {{#layout-push direction='col' classNames="detail_margin_top_left"}}
                         {{!-- <span class="detail_panel_title_name">sda65f4d5f4ds65</span> --}}
                         <span class="detail_panel_title_name">
-                            {{bmdob/bmdobformat bm_sessionable_service.sessionable.start_date}} 
-                            {{bmdob/bmdob2weekday bm_sessionable_service.sessionable.start_date}} 
-                            {{bmdob/bmdob2clocktime bm_sessionable_service.sessionable.start_date}}-{{bmdob/bmdob2clocktime bm_sessionable_service.sessionable.end_date}}
+                            {{bmdob/bmdobformat model.class.startDate}}
+                            {{bmdob/bmdob2weekday model.class.startDate}}
+                            {{bmdob/bmdob2clocktime model.class.startDate}}-{{bmdob/bmdob2clocktime model.class.endDate}}
                         </span>
                     {{/layout-push}}
-                {{/layout-push}}
+                {{/layout-push}} 
                 {{#layout-push direction="row" classNames="reserve-detail-btn"}}
                     {{#bs-dropdown class="btn-dropdown" as |dd|}}
                         {{#dd.button class="reserve-more-btn"}}{{/dd.button}}
@@ -40,29 +40,25 @@
                     {{#layout-push direction='col' classNames="detail_margin_top_left"}}
                         {{#layout-push direction='row' classNames="detail_margin_top_left_content"}}
                             <span class="detail_panel_role_num">活动</span>
-                            <span class="detail_panel_role_num">{{bm_sessionable_service.sessionable.SessionInfo.title}}</span>
+                            <span class="detail_panel_role_num">{{model.class.reservableitem.sessioninfo.title}}</span>
                         {{/layout-push}}
                         {{#layout-push direction='row' classNames="detail_margin_top_left_content"}}
                             <span class="detail_panel_role_num">校区</span>
-                            <span class="detail_panel_role_num">{{bm_sessionable_service.sessionable.Yard.address}}</span>
+                            <span class="detail_panel_role_num">{{model.class.yard.address}}</span>
                         {{/layout-push}}
                     {{/layout-push}}
                 {{/layout-push}}
                 {{#layout-push direction='row' classNames="detail_margin_top_right"}}
-                    {{#if (bmcom/bm-nil-obj bm_sessionable_service.sessionable.Attendees)}}
-                        <span class="detail_panel_role_num">0</span>
-                    {{else}}
-                        <span class="detail_panel_role_num">{{bm_sessionable_service.sessionable.Attendees.length}}</span>
-                    {{/if}}
+                    <span class="detail_panel_role_num">{{model.class.students.length}}</span>
                     <span class="detail_panel_role_num">报名人数</span>
                 {{/layout-push}}
             {{/layout-push}}
         </div>
-        {{#if (bmcom/bm-nil-obj bm_sessionable_service.curAttendeesPage)}}
+        {{#if (eq model.class.students.length 0)}}
             {{bmcom/bm-empty-state class="field-empty-state" picUrl="/images/img_empty@2x.png" title="暂无参与者" des="暂无数据"}}
         {{else}}
-            {{bmtable/bm-table-course-field  title=tableTitle attendees=bm_sessionable_service.curAttendeesPage action=""}}
-            {{bmcom/bm-pagination pageCount=bm_sessionable_service.attendeesPageCount sendPageNum=(action "handlePageChange")}}
+            {{bmtable/bm-table-course-field  title=tableTitle attendees=model.class.students action=""}}
+            {{!-- {{bmcom/bm-pagination pageCount=bm_sessionable_service.attendeesPageCount sendPageNum=(action "handlePageChange")}} --}}
         {{/if}}
     </div>
     {{#bmcom/bm-modal-container title="" mswitch=showEditSessionDlg
@@ -81,7 +77,7 @@
                     <div class="form-checked">
                         {{#layout-push direction='row' classNames="error-line"}}
                             <img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
-                            <span class="error-info">请填写完整信息</span>
+                            <span class="error-info">请检查表单信息</span>
                         {{/layout-push}}
                     </div>
                 {{/if}}
@@ -95,7 +91,8 @@
                 {{/if}}
                 {{#layout-push direction='row' classNames="line-list"}}
                     <p class="subtitle">校区设置</p>
-                    {{#layout-push direction='col' }}
+                    <p class="edit_subtitle_content">{{model.class.yard.title}}</p>
+                    {{!-- {{#layout-push direction='col' }}
                         <span class="radio-col">
                             <input type="radio" name="rel01" value="fa" checked/>
                             <label for="">
@@ -129,13 +126,22 @@
                                     {{/if}}
                                 {{/layout-push}}
                             </label>
-                        </span>
+                        </span> --}}
                         {{!-- <span class="radio-col">
                             <input type="radio" name="rel" value="ma"/>
                             <label for="">其他场地</label>
                         </span> --}}
-                    {{/layout-push}}
+                    {{!-- {{/layout-push}} --}}
                 {{/layout-push}}
+                {{#if noteError}}
+                    {{#layout-push direction="col" classNames='input_area' }}
+                        {{bmform/bm-base-select selId="roomSel" type="id" chooseCourse=true selTitle="选择教室" options=cur_rooms curSelect=cur_room_id classNames="error-border input-inline-select input_area area-margin-bottom"}}
+                    {{/layout-push}}
+                {{else}}
+                    {{#layout-push direction="col" classNames='input_area' }}
+                        {{bmform/bm-base-select selId="roomSel" type="id" chooseCourse=true selTitle="选择教室" options=cur_rooms curSelect=cur_room_id classNames="input-inline-select input_area area-margin-bottom"}}
+                    {{/layout-push}}
+                {{/if}}
                 {{#layout-push direction="row" classNames="line-list"}}
                     <p class="subtitle">日期设置</p>
                     {{bmform/bm-lay-date inputVal=cur_tmp_date}}
@@ -168,7 +174,7 @@
             {{/layout-push}}
         </div>
     {{/bmcom/bm-modal-container}}
-    {{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteSessionDlg cancelHandled='cancelHandled' successHandled="onDeleteSessionableClick"}}
+    {{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteSessionDlg cancelHandled=(action 'cancelHandled') successHandled=(action "onDeleteSessionableClick")}}
     <p class="warning-modal-body-content">您确定要删除该场次吗？</p>
     {{/bmcom/bm-warning-modal}}
 </div>

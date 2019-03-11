@@ -1,35 +1,20 @@
-{{!-- {{yield}} --}}
 {{#layout-push direction='row' split=true}}
     {{#layout-push direction="row" split=true}}
         <p class="arrange-class-title">排课</p>
     {{/layout-push}}
-
-    {{#bs-button classNames="cls-arr-add-btn" onClick=(action (mut showAddDlg) true)}}<span>+ 添加排课</span>{{/bs-button}}
+    {{!-- {{#bs-button classNames="cls-arr-add-btn" onClick=(action (mut showAddDlg) true)}}<span>+ 添加排课</span>{{/bs-button}} --}}
+    {{!-- {{#bs-button classNames="cls-arr-add-btn" onClick=(action "addUnitOnClick")}}<span>+ 添加排课</span>{{/bs-button}} --}}
+    <button class="cls-arr-add-btn" onClick={{action "addUnitOnClick"}}><span>+ 添加排课</span></button>
 {{/layout-push}}
-
-{{#bmcom/bm-modal-container
-        needTitle=false
-        mswitch=showAddDlg
-        needSubmit=true
-        contentSubmit=true
-        successbtncss='course-reserve-card-save'
-        cancelbtncss='course-reserve-card-cancel'
-        canceltext='取消'
-        onCancelBtnClicked=(action 'cancelHandled')
-        onSuccessBtnClicked=(action 'successHandled')}}
-
-    一个添加的Test
-
-{{/bmcom/bm-modal-container}}
 
 {{#layout-push direction='row' split=true}}
     {{#layout-push direction="row" split=true}}
         {{#layout-push direction='row' classNames="options"}}
-            <p class="title">选择场地</p>
+            <p class="title">选择教室</p>
             <form class="select-site">
-                <select name="cars" id='yardselect' onChange={{action 'yardChanged'}}>
-                    {{#each bm_yard_service.yards as |item idx|}}
-                        <option value={{item.id}}>{{item.address}}</option>
+                <select name="" id='roomselect' onChange={{action 'roomChanged'}}>
+                    {{#each rooms as |item idx|}}
+                        <option value={{item.id}}>{{item.title}}</option>
                         {{#if (bmeq idx 0)}}
                             {{refreshSelected}}
                         {{/if}}
@@ -39,21 +24,21 @@
         {{/layout-push}}
     {{/layout-push}}
 
-    {{#layout-push direction='row'}}
+    {{#layout-push direction='row' classNames="calender-btn-group"}}
         {{#layout-push direction='col' mid=true}}
             {{bmcls/cls-week-display start_date=start_date end_date=end_date}}
         {{/layout-push}}
-        {{#bmcls/cls-btn isPrev=true onBtnClicked=(action 'prevBtnClicked')}}
-            {{#layout-push direction='col' mid=true}}
+        {{bmcls/cls-btn isPrev=true onBtnClicked=(action 'prevBtnClicked')}}
+            {{!-- {{#layout-push direction='col' mid=true}}
                 <span>&lt;</span>
-            {{/layout-push}}
-        {{/bmcls/cls-btn}}
-        {{#bmcls/cls-btn isNext=true onBtnClicked=(action 'nextBtnClicked')}}
-            {{#layout-push direction='col' mid=true}}
+            {{/layout-push}} --}}
+        {{!-- {{/bmcls/cls-btn}} --}}
+        {{bmcls/cls-btn isNext=true onBtnClicked=(action 'nextBtnClicked')}}
+            {{!-- {{#layout-push direction='col' mid=true}}
                 <span>&gt;</span>
-            {{/layout-push}}
-        {{/bmcls/cls-btn}}      
+            {{/layout-push}} --}}
+        {{!-- {{/bmcls/cls-btn}}       --}}
     {{/layout-push}}
 {{/layout-push}}
     
-{{bmcls/cls-week-calendar start_date=start_date end_date=end_date}}
+{{bmcls/cls-week-calendar onPanelClick=(action 'onPanelClick') onEditClick=(action "onEditClick") onDeleteClick=(action "onDeleteClick") start_date=start_date end_date=end_date}}

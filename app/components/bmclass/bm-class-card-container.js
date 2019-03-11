@@ -1,11 +1,7 @@
 import Component from '@ember/component';
-import { computed } from '@ember/object';
-import { inject as service } from '@ember/service';
-import { debug } from '@ember/debug';
 
 export default Component.extend({
-    bm_class_service: service(),
-    positionalParams: ['outHeight'],
+    positionalParams: ['outHeight', 'cls'],
     tagName: 'div',
     classNames: ['class-content-panel'],
     attributeBindings: ['style'],
@@ -14,7 +10,6 @@ export default Component.extend({
     // }),
     actions: {
         cardClicked(id) {
-            debug('card clicked: ' + id);
             this.onCardClicked(id);
         }
     }

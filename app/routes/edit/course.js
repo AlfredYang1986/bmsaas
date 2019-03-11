@@ -1,26 +1,36 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
-import { inject as service } from '@ember/service';
+import { A } from '@ember/array';
 
 export default Route.extend({
-    bm_session_service: service(),
-
     model(params) {
-        this.bm_session_service.set('sessionid', params.courseid);
-        return RSVP.hash({
-                courseid : params.courseid
-            })
-    },
-
-    setupController(controller, model) {
-        this._super(controller, model);
-        if (model.course != null) {
-            controller.set('isPushing', false);
+        let res = null;
+        let si = null;
+        let cate = null;
+        let isPushing = false;
+        if(params.courseid === "course/push") {
+            isPushing = true;
+            res = this.store.createRecord('reservableitem')
+            res.set("status", 2)
+            si = this.store.createRecord('sessioninfo');
+            si.set("status", 2)
+            cate = this.store.createRecord('category');
+            cate.set('title', '请选择');
+            cate.set('subTitle', "")
+            cate.save();
+            si.set('category', cate);
+            res.set("sessioninfo", si)
         } else {
-            controller.set('isPushing', true);
+            res = this.store.findRecord('reservableitem', params.resid);
+            si = this.store.findRecord('sessioninfo', params.courseid);
         }
-        controller.set('cur_page_idx', 0);
-        this.bm_session_service.set('refresh_token', this.bm_session_service.guid());
-        controller.set('refresh_token', this.bm_session_service.guid());
+        return RSVP.hash({
+            isPushing: isPushing,
+            courseid: params.courseid,
+            reservable : res,
+            course : si,
+            cate: cate,
+            describe: A(["课程类别","课程名称","分类/标签","收费模式", "课程详情", "课程图片"]),
+        })
     },
 });

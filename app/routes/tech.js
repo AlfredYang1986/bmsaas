@@ -1,10 +1,10 @@
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
+import RSVP from 'rsvp';
 
 export default Route.extend({
-    bm_tech_service: service(),
-    setupController(controller, model) {
-        this._super(controller, model);
-        this.bm_tech_service.set('refresh_all_token', this.bm_tech_service.guid());
-    }
+    model() {
+        return RSVP.hash({
+            techs: this.store.query('teacher', {"brand-id": localStorage.getItem("brandid")})
+        })
+    },
 });

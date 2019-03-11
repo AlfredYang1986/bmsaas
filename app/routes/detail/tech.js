@@ -1,18 +1,11 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
-// import { computed } from '@ember/object';
-import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 
 export default Route.extend({
-    // mock_data: service(),
-    bm_tech_service: service(),
-
     model(params) {
-        this.bm_tech_service.set('techid', params.techid);
-
         return RSVP.hash({
-                techid : params.techid,
+                tech: this.store.find('teacher', params.techid),
                 tabs: A(['教师信息']),
                 urls: A([
                     {
@@ -30,6 +23,19 @@ export default Route.extend({
     },
     setupController(controller, model) {
         this._super(controller, model);
-        this.bm_tech_service.set('refresh_token', this.bm_tech_service.guid());
+
+        let urls = A([
+            {
+                "pageName":"教师",
+                "link":"tech",
+                "id":"",
+            },
+            {
+                "pageName":model.tech.get("name"),
+                "link":"",
+                "id":"",
+            }
+        ])
+        this.controller.set("urls", urls)
     },
 });

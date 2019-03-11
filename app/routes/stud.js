@@ -1,11 +1,16 @@
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
+import RSVP from 'rsvp';
 
 export default Route.extend({
-    bm_stud_service: service(),
-    setupController(controller, model) {
-        this._super(controller, model);
-        this.bm_stud_service.set('page', 0);
-        this.bm_stud_service.set('refresh_all_token', this.bm_stud_service.guid());
+    model() {
+        return RSVP.hash({
+            // studs: this.store.query('student',  { 'page[number]': 1, 'page[size]': 20, "brand-id": localStorage.getItem("brandid")})
+        })
     },
+
+    activate() {
+        if(this.get("controller") != undefined) {
+            this.get("controller").toggleProperty("refreshFlag")
+        }
+    }
 });

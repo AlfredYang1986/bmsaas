@@ -877,11 +877,19 @@ span.select-time-subtitle {
 	}
 
 }
-/*逐条添加样式*/
+/*逐条tag添加样式*/
 .edit_input_remove {
 	width: 10px;
 	height: 10px;
 	line-height: 40px;
 	margin-left: 5px;
 	cursor: pointer;
+}
+
+.anchor-point {
+	position: relative;
+	top: -64px;
+	display: block;
+	height: 0;
+	overflow: hidden;
 }

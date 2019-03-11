@@ -1,60 +1,50 @@
 <section class='alt_yard_selection' >
     {{#layout-push direction='col' classNames='alt_yard_container'}}
 
-        {{#if (bmcom/bm-nil-obj bm_yard_service.yard)}}
+        {{#if (bmcom/bm-nil-obj model.yard)}}
             {{bmcom/bm-empty-state class="yard-empty-state" picUrl="/images/img_empty@2x.png" title="暂无校区" des="点击下方添加校区，创建您的校区吧" btnText="+添加校区" onBtnClick=(action "onAddYardClick")}}
         {{else}}
             {{#layout-push direction='col' classNames="detail_title yard_detail_title"}}
-                <span class="title_text">{{bm_yard_service.yard.title}}</span> 
-                <span class="sub_title_text">{{bmcom/bm-trans-address bm_yard_service.yard}}</span> 
+                <span class="title_text">{{model.yard.title}}</span>
+                <span class="sub_title_text">{{bmcom/bm-trans-address model.yard}}</span>
             {{/layout-push}}
             {{#layout-push direction="col" classNames="detail_panel_tab_container"}}
-                {{bmcom/bm-tabs-bar cur_idx=bm_yard_service.curTabIdx titles=model.tabs}}
+                {{bmcom/bm-tabs-bar cur_idx=curTabIdx titles=model.tabs}}
             {{/layout-push}}
 
-
-            {{#if (eq bm_yard_service.curTabIdx 0)}}
-                {{bmdetail/bm-top-title-panel title="校区信息" rightText="编辑" linkAddr='edit.yard' linkParam=bm_yard_service.yard.id}}
+            {{#if (eq curTabIdx 0)}}
+                {{bmdetail/bm-top-title-panel title="校区信息" rightText="编辑" linkAddr='edit.yard' linkParam=model.yard.id}}
                 {{#layout-push direction='row' split=true}}
                     {{#layout-push direction='col' classNames='alt_yard_left_panel'}}
                         {{#layout-push direction='col' classNames='alt_yard_panel'}}
-                            {{bmdetail/course-basis-left-title 
-                                title=bm_yard_service.yard.title
-                                subTitle=(bmcom/bm-trans-address bm_yard_service.yard)
+                            {{bmdetail/course-basis-left-title
+                                title=model.yard.title
+                                subTitle=(bmcom/bm-trans-address model.yard)
                                 subTitleBehind=""}}
-                            {{bmdetail/yard-basis-left-tags tags1=bm_yard_service.yard.scenario tags2=bm_yard_service.yard.attribute}}
-                            {{!-- {{#layout-push direction='row' mid=true classNames='alt_yard_deltail_title'}}
-                                {{bm_yard_service.yard.title}}
-                            {{/layout-push}}
-                            {{#layout-push direction='row' mid=true classNames='alt_yard_detail_cat'}}
-                                {{bm_yard_service.yard.address}}
-                            {{/layout-push}}
-                            {{#layout-push direction='row' mid=true classNames='alt_yard_tag'}}
-                                <p>{{bm_yard_service.yard.attribute}}</p>
-                            {{/layout-push}} --}}
-                            {{#if (bmcom/bm-nil-obj bm_yard_service.yard)}}
+                            {{bmdetail/yard-basis-left-tags tags1=model.yard.scenario tags2=model.yard.attribute}}
+                            {{#if (bmcom/bm-nil-obj model.yard)}}
                             {{else}}
-                                {{bmcom/bm-pic-jigsaw picData=bm_yard_service.yard.Tagimgs}}
+                                {{bmcom/bm-pic-jigsaw picData=model.yard.images}}
                             {{/if}}
                         {{/layout-push}}
                     {{/layout-push}}
 
                     {{#layout-push direction='col' classNames='alt_yard_panel alt_yard_right_panel'}}
                         {{#layout-push direction='col' classNames='alt_yard_detail_panel'}}
-                            {{!-- {{bmdetail/course-basis-right-info label="交通路线" content=bm_yard_service.yard.traffic_info}} --}}
-                            {{bmdetail/stud-basis-info label="客服电话" content=bm_yard_service.yard.serviceContact}}
-                            {{bmdetail/stud-basis-info label="营业时间" content=bm_yard_service.yard.openTime}}
+                            {{!-- {{bmdetail/course-basis-right-info label="交通路线" content=model.yard.traffic_info}} --}}
+                            {{bmdetail/stud-basis-info label="客服电话" content=model.yard.serviceContact}}
+                            {{bmdetail/stud-basis-info label="营业时间" content=model.yard.openTime}}
                         {{/layout-push}}
 
                         {{#layout-push direction='col' classNames='alt_yard_detail_panel'}}
                             <span class='alt_right_panel_perperty_title'>校区设施</span>
-                            {{#if (bmcom/bm-nil-obj bm_yard_service.yard.facilities)}}
+                            {{#if (bmcom/bm-nil-obj model.yard.facilities)}}
                                 {{#layout-push direction='row'}}
                                     <span class='alt_right_panel_perperty_des'>请上传信息</span>
                                 {{/layout-push}}
                             {{else}}
                                 {{#layout-push direction='row' classNames='facilities_tag_container'}}
-                                    {{#each bm_yard_service.yard.facilities as |item|}}
+                                    {{#each model.yard.facilities as |item|}}
                                         <span class='alt_yard_detail_tag'>{{item}}</span>
                                     {{/each}}
                                 {{/layout-push}}
@@ -63,13 +53,13 @@
 
                         {{#layout-push direction='col' classNames='alt_yard_detail_panel'}}
                             <span class='alt_right_panel_perperty_title'>校区认证</span>
-                                {{#if (bmcom/bm-nil-obj bm_yard_service.yard.Certifications)}}
+                                {{#if (bmcom/bm-nil-obj tempCertImgs)}}
                                     {{#layout-push direction='row'}}
                                         <span class='alt_right_panel_perperty_des'>请上传信息</span>
                                     {{/layout-push}}
                                 {{else}}
                                     <div class='line_conatainer_warp'>
-                                        {{#each bm_yard_service.yard.Certifications as |item|}}
+                                        {{#each tempCertImgs as |item|}}
                                             {{bmcom/bm-img-uploader needTag=true canEdit=false img=item.img tag=item.tag classNames='alt-yard-tag-img-adjust'}}
                                         {{/each}}
                                     </div>
@@ -80,7 +70,7 @@
                     {{/layout-push}}
                 {{/layout-push}}
             {{/if}}
-            {{#if (eq bm_yard_service.curTabIdx 1)}}
+            {{#if (eq curTabIdx 1)}}
                 {{#layout-push direction='col' classNames='yard_room_container'}}
                     {{#layout-push direction='row' split=true classNames='yard_room_title_container'}}
                         <p class="room-title">教室/场地</p>
@@ -88,11 +78,11 @@
                     {{/layout-push}}
                 {{/layout-push}}
 
-                {{#if (bmcom/bm-nil-obj bm_room_service.rooms)}}
+                {{#if (eq model.yard.rooms.length 0)}}
                     {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="暂无教室/场地" des="点击右上角添加教室/场地，安排教室/场地吧"}}
                 {{else}}
-                    {{bmtable/bm-table-room titles=model.titles onEditRoomClick="onEditRoomClick" onDeleteRoomClick="onDeleteRoomClick"}}
-                    {{bmcom/bm-pagination pageCount=bm_room_service.totalPageCount sendPageNum=(action "handlePageChange")}}
+                    {{bmtable/bm-table-room titles=model.titles rooms=model.yard.rooms onEditRoomClick=(action "onEditRoomClick") onDeleteRoomClick=(action "onDeleteRoomClick")}}
+                    {{!-- {{bmcom/bm-pagination pageCount=model.yard.totalPageCount sendPageNum=(action "handlePageChange")}} --}}
                 {{/if}}
             {{/if}}
         {{/if}}
@@ -120,7 +110,7 @@
                 {{/if}}
                 {{#layout-push direction="col" classNames='input_area area-margin-bottom' }}
                     <p class="edit_subtitle">所属校区</p>
-                    <p class="edit_subtitle_content">{{bm_yard_service.yard.title}}</p>
+                    <p class="edit_subtitle_content">{{model.yard.title}}</p>
                 {{/layout-push}}
                 {{#layout-push direction="col" classNames='input_area area-margin-bottom' }}
                     <p class="edit_subtitle">使用类型</p>
@@ -128,19 +118,19 @@
                 {{/layout-push}}
                 {{#if noteError}}
                     {{#layout-push direction="row"  classNames='input_area' }}
-                        {{bmform/bm-edit-line title='教室名称' inputVal=bm_room_service.room.title classNames='input_area input-full-width error-border'}}
+                        {{bmform/bm-edit-line title='教室名称' inputVal=tempRoomTitle classNames='input_area input-full-width error-border'}}
                     {{/layout-push}}
                 {{else}}
                     {{#layout-push direction="row"  classNames='input_area' }}
-                        {{bmform/bm-edit-line title='教室名称' inputVal=bm_room_service.room.title classNames='input_area input-full-width'}}
+                        {{bmform/bm-edit-line title='教室名称' inputVal=tempRoomTitle classNames='input_area input-full-width'}}
                     {{/layout-push}}
                 {{/if}}
-                
+
             {{/layout-push}}
         </div>
 {{/bmcom/bm-modal-container}}
 
-{{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteRoomDlg cancelHandled='cancelHandled' successHandled="onDeleteRoomClickOk"}}
+{{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteRoomDlg cancelHandled=(action 'cancelHandled') successHandled=(action "onDeleteRoomClickOk")}}
     <p class="warning-modal-body-content">您确定要删除该教室吗？</p>
 {{/bmcom/bm-warning-modal}}
 

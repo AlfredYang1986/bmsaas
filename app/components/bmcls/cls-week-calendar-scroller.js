@@ -1,14 +1,13 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
-import { debug } from '@ember/debug';
 
 export default Component.extend({
 
     init() {
         this._super(...arguments);
-        this.get('resizeService').on('didResize', event => {
-            debug(event)
-            this.set('height', window.innerHeight - 375);
+        // this.get('resizeService').on('didResize', event => {
+        this.get('resizeService').on('didResize', () => {
+            this.set('height', window.innerHeight - 344);
         })
     },
 
@@ -16,7 +15,7 @@ export default Component.extend({
     tagName: 'div',
     classNames: ['bm-scroller bm-time-grid-container'],
     height: computed(function(){
-        return window.innerHeight - 375;
+        return window.innerHeight - 344;
     }),
     attributeBindings: ['style'],
     overflow: 'hidden scroll',
@@ -26,4 +25,15 @@ export default Component.extend({
     }),
     inner_height: 1560,
     inner_margin: 0,
+    actions: {
+        onPanelClick(param) {
+            this.onPanelClick(param);
+        },
+        onEditClick(unit) {
+            this.onEditClick(unit);
+        },
+        onDeleteClick(unit) {
+            this.onDeleteClick(unit);
+        },
+    },
 });

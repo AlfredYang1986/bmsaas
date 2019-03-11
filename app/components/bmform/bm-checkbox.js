@@ -1,6 +1,5 @@
 import Component from '@ember/component';
 import { A } from '@ember/array';
-import { computed } from '@ember/object';
 
 export default Component.extend({
     positionalParams: ['title', 'checkboxItem', 'checkboxTitle', 'curItems','flag'],

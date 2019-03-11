@@ -13,9 +13,9 @@
                 <tr>
                     <td class='bm-widget-content'>
                         <div class='bm-day-grid bm-unselectable'>
-                            {{bmcls/cls-week-calendar-allday-container}}
-                            <hr class='bm-divider bm-widget-header' >
-                            {{bmcls/cls-week-calendar-scroller}}
+                            {{!-- {{bmcls/cls-week-calendar-allday-container}} --}}
+                            {{!-- <hr class='bm-divider bm-widget-header' > --}}
+                            {{bmcls/cls-week-calendar-scroller onPanelClick=(action 'onPanelClick') onEditClick=(action "onEditClick") onDeleteClick=(action "onDeleteClick")}}
                         </div>
                     </td>
                 </tr>

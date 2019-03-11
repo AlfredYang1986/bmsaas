@@ -1,65 +1,220 @@
 @import "args";
 
+// .class-card {
+//     margin-right: 24px;
+//     margin-bottom: 24px;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-between;
+//     width: 208px;
+//     // height: 246px;
+//     height: 155px;
+//     background: #FFFFFF;
+//     box-shadow: 0 4px 8px -2px rgba(9,30,66,0.25);
+//     border-radius: 4px;
+//     font-family: PingFangSC-Semibold;
+//     .class-card-head-info {
+//         padding: 16px 24px;
+//         width: 100%;
+//         height: 75px;
+//         background:  #8BC34A;
+//         border-radius: 4px 4px 0 0;
+//     }
+//     p.headline {
+//         font-family: PingFangSC-Medium;
+//         font-size: 16px;
+//         color: #FFFFFF;
+//     }
+//     p.secondary-title {
+//         opacity: 0.7;
+//         font-family: PingFangSC-Regular;
+//         margin-bottom: 10px;
+//         font-size: 14px;
+//         color: #FFFFFF;
+//         text-align: left;
+//     }
+//     p.class-address {
+//         opacity: 0.7;
+//         font-family: PingFangSC-Regular;
+//         font-size: 11px;
+//         color: #FFFFFF;
+//         overflow: hidden;
+//         text-overflow:ellipsis;
+//         white-space: nowrap;
+//     }
+//     .class-card-content {
+//         padding: 24px;
+//         // height: 171px;
+//         .no-arr-des {
+//             display: none;
+//         }
+//         .class-teachers {
+//             // margin-bottom: 20px;
+//             height: 32px;
+//             img {
+//                 margin-right: 8px;
+//                 width: 32px;
+//                 height: 32px;
+//                 // background: #80AEFF;
+//                 border-radius: 50%;
+//             }
+//             .teacher-num {
+//                 width: 32px;
+//                 height: 32px;
+//                 background: #DFE1E6;
+//                 border-radius: 50%;
+//                 line-height: 32px;
+//                 text-align: center;
+//                 font-size: 11px;
+//                 color: #42526E;
+//                 letter-spacing: -0.14px;
+//                 text-align: center;
+//             }
+//         }
+//     }
+//     .list {
+//         margin-bottom: 16px;
+//         p.class-date {
+//             font-family: PingFangSC-Regular;
+//             font-size: 11px;
+//             color: #6B778C;
+//         }
+//     }
+//     .split-line {
+//         border-bottom: 1px solid  rgba(0,0,0,0.12);
+//         margin-bottom: 16px;
+//     }
+//     .stud {
+//         margin-top: 6px;
+//         margin-bottom: 12px;
+//         img {
+//             margin-right: 4px;
+//             border-radius: 50%;
+//             width: 30px;
+//             height: 30px;
+//         }
+//     }
+//     .progress-label {
+//         display: flex;
+//         flex-direction: row;
+//         justify-content: space-between;
+//         color: #767A80;
+//         // letter-spacing: 1.71px;
+//         p {
+//             margin-bottom: 8px;
+//             font-size: 14px;
+//             color: #172B4D;
+//             text-align: left;
+//         }
+//         .no-course-count {
+//             display: none;
+//         }
+//     }
+//     .progress {
+//         margin-bottom: 8px;
+//         padding: 0;
+//         width: 100%;
+//         height: 6px;
+//         // border-radius: 4px;
+//         .progress-bar {
+//             background: #172B4D;
+//         }
+//     }
+// }
+// .notarr {
+//     .class-card-head-info {
+//         // background:  #5A74DB;
+//     }
+//     .class-card-content {
+//         .course-count {
+//             display: none;
+//         }
+//         .list {
+//             display: none;
+//         }
+//         .no-course-count {
+//             display: inline-block;
+//         }
+//         .no-arr-des {
+//             display: flex;
+//             margin-bottom: 16px;
+//             .no-arr-des-title {
+//                 font-family: PingFangSC-Regular;
+//                 font-size: 14px;
+//                 color: #FF9C46;
+//             }
+//         }
+//     }
+// }
+// .going {
+//     .class-card-head-info {
+//         // background:  #5ACADC;
+//     }
+// }
+// .finish {
+//     .class-card-head-info {
+//         // background:  rgba(152,160,175,0.5);
+//     }
+// }
+
 .class-card {
+    padding: 24px;
     margin-right: 24px;
     margin-bottom: 24px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 208px;
-    height: 246px;
+    width: 222px;
+    height: 172px;
     background: #FFFFFF;
     box-shadow: 0 4px 8px -2px rgba(9,30,66,0.25);
     border-radius: 4px;
     font-family: PingFangSC-Semibold;
+    border-top: #4788F2 4px solid;
+
+    cursor: pointer;
+
     .class-card-head-info {
-        padding: 16px 24px;
+        // padding: 16px 24px;
         width: 100%;
-        height: 75px;
-        background:  #5ACADC;
-        border-radius: 4px 4px 0 0;
+        // height: 75px;
+        // background:  #8BC34A;
+        // border-radius: 4px 4px 0 0;
     }
     p.headline {
         font-family: PingFangSC-Medium;
         font-size: 16px;
-        color: #FFFFFF;
+        color: #3881FF;
     }
     p.secondary-title {
         opacity: 0.7;
         font-family: PingFangSC-Regular;
-        margin-bottom: 10px;
+        // margin-bottom: 10px;
         font-size: 14px;
-        color: #FFFFFF;
+        color: #6B778C;
         text-align: left;
     }
-    p.class-address {
-        opacity: 0.7;
-        font-family: PingFangSC-Regular;
-        font-size: 11px;
-        color: #FFFFFF;
-        overflow: hidden;
-        text-overflow:ellipsis;
-        white-space: nowrap;
-    }
+
     .class-card-content {
-        // margin: 17px 12px;
-        padding: 24px;
-        height: 171px;
-        .no-arr-des {
-            display: none;
+
+        .split-line {
+            border-bottom: 1px solid  rgba(0,0,0,0.12);
+            margin: 24px 0;
         }
+
         .class-teachers {
-            // margin-bottom: 20px;
+            height: 32px;
+
             img {
-                margin-right: 8px;
-                width: 32px;
-                height: 32px;
-                background: #80AEFF;
+                margin-right: 16px;
+                width: 24px;
+                height: 24px;
                 border-radius: 50%;
             }
+
             .teacher-num {
-                width: 32px;
-                height: 32px;
+                width: 24px;
+                height: 24px;
                 background: #DFE1E6;
                 border-radius: 50%;
                 line-height: 32px;
@@ -70,87 +225,5 @@
                 text-align: center;
             }
         }
-    }
-    .list {
-        margin-bottom: 16px;
-        p.class-date {
-            font-family: PingFangSC-Regular;
-            font-size: 11px;
-            color: #6B778C;
-        }
-    }
-    .split-line {
-        border-bottom: 1px solid  rgba(0,0,0,0.12);
-        margin-bottom: 16px;
-    }
-    .stud {
-        margin-top: 6px;
-        margin-bottom: 12px;
-        img {
-            margin-right: 4px;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-        }
-    }
-    .progress-label {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        color: #767A80;
-        // letter-spacing: 1.71px;
-        p {
-            margin-bottom: 8px;
-            font-size: 14px;
-            color: #172B4D;
-            text-align: left;
-        }
-        .no-course-count {
-            display: none;
-        }
-    }
-    .progress {
-        margin-bottom: 8px;
-        padding: 0;
-        width: 100%;
-        height: 6px;
-        // border-radius: 4px;
-        .progress-bar {
-            background: #172B4D;
-        }
-    }
-}
-.notarr {
-    .class-card-head-info {
-        background:  #5A74DB;
-    }
-    .list, .split-line, .class-teachers {
-        display: none;
-    }
-    .class-card-content {
-        .course-count {
-            display: none;
-        }
-        .no-course-count {
-            display: inline-block;
-        }
-        .no-arr-des {
-            display: flex;
-            .no-arr-des-title {
-                font-family: PingFangSC-Regular;
-                font-size: 14px;
-                color: #FF9C46;
-            }
-        }
-    }
-}
-.going {
-    .class-card-head-info {
-        background:  #5ACADC;
-    }
-}
-.finish {
-    .class-card-head-info {
-        background:  rgba(152,160,175,0.5);
     }
 }

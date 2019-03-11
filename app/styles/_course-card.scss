@@ -60,6 +60,8 @@
     margin-right: 16px;
     margin-bottom: 24px;
 
+    cursor: pointer;
+
     .alt_course_cover {
         width: 176px;
         min-height: 160px;
@@ -115,6 +117,7 @@
             overflow: hidden;
             text-overflow:ellipsis;
             white-space: nowrap;
+            font-weight: bold;
         }
 
         .alt_course_field_num {

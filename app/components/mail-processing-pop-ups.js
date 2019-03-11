@@ -1,15 +1,12 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
+import EmberObject from '@ember/object';
 
 export default Component.extend({
 
     init() {
         this._super(...arguments);
-        this.bm_actv_service.queryLocalMultiObject();
-        this.bm_exp_service.queryLocalMultiObject();
-        this.bm_yard_service.queryLocalMultiObject();
-        // this.bm_sessionable_service.queryMultiObjects();
         if(this.apply.courseType == 1) {
             this.set('courseReserve', true);
             this.set('experienceApply', false);
@@ -17,19 +14,28 @@ export default Component.extend({
             this.set('courseReserve', false);
             this.set('experienceApply', true);
         }
-    },
-   //
-   //  didUpdateAttrs() {
-   //     this._super(...arguments);
-   //     this.set('selectedReservable', this.sel.options[this.sel.selectedIndex].value);
-   // },
 
-    mock_data: service(),
-    bm_actv_service: service(),
-    bm_exp_service: service(),
-    bm_yard_service: service(),
-    bm_sessionable_service: service(),
-    positionalParams: ['apply', 'selectedReservable', 'selectedYard', 'selectedDate', 'selectedActivity', 'selectedSession', 'innerCat', 'courseType', 'noteError', 'noSr', 'noSy', 'noSa', 'noSs'],
+    },
+    
+	bm_error_service: service(),
+    store: service(),
+    toast: service(),
+    toastOptions: EmberObject.create({
+        closeButton: false,
+        positionClass: 'toast-top-center',
+        progressBar: false,
+        timeOut: '2000',
+    }),
+
+    sr: computed('srClasses', function() {
+        return this.srClasses;
+    }),
+    sa: computed('saClasses', function() {
+        return this.saClasses;
+    }),
+    positionalParams: ['formErrorFlag', 'saClasses','srClasses','exp', 'actv', 'apply', 'selectedReservable', 'selectedYard', 'selectedDate', 'selectedActivity', 'selectedSession', 'innerCat', 'courseType', 'noteError', 'noSr', 'noSy', 'noSa', 'noSs'],
+
+    tempItem: null,
     courseReserve: true,
     experienceApply: false,
     noteError: false,
@@ -39,47 +45,42 @@ export default Component.extend({
         return this.mock_data.courseCandi();
     }),
 
-    // yard_lst: computed(function(){
-    //     return this.mock_data.yardCondi();
-    // }),
-    // activity_lst: computed(function(){
-    //     return this.mock_data.activityCandi();
-    // }),
-    // session_lst: computed('selectedActivity', function(){
-        // return this.mock_data.sessionCandi(this.selectedActivity);
-    // }),
-
     exp_session_lst: computed('selectedReservable', function(){
-        this.bm_sessionable_service.set('reservableid', this.selectedReservable);
-        this.bm_sessionable_service.set('refresh_all_token', this.bm_sessionable_service.guid());
-        return ''
+        // let reservableitemid = this.selectedReservable;
+        return '';
     }),
 
     act_session_lst: computed("selectedActivity", function(){
         this.bm_sessionable_service.set('reservableid', this.selectedActivity);
         this.bm_sessionable_service.set('refresh_all_token', this.bm_sessionable_service.guid());
-        return ''
+        return '';
     }),
 
     actions: {
-        // courseReserve() {
-        //     this.set('courseReserve', true);
-        //     this.set('experienceApply', false);
-        //     this.set('innerCat', true);
-        // },
         toggleAction() {
-
             if(this.courseReserve) {
                 this.set('experienceApply', true);
-                this.set('courseReserve', false)
+                this.set('courseReserve', false);
+                this.set('formErrorFlag', false);
+                this.set('noSr', false);
+                this.set('noSa', false);
+                this.set('noSy', false);
+                this.set('noSs', false);
             } else {
                 this.set('courseReserve', true);
                 this.set('experienceApply', false);
+                this.set('formErrorFlag', false);
+                this.set('noSr', false);
+                this.set('noSa', false);
+                this.set('noSy', false);
+                this.set('noSs', false);
             }
-            this.sendAction('toggleAction');
+            // this.sendAction('toggleAction');
+            this.toggleAction();
 
         },
         reservableChanged() {
+            // let that = this;
             let sel = document.getElementById("reservableselect");
             this.set('sel', sel)
             if (sel.selectedIndex == 0) {
@@ -87,6 +88,16 @@ export default Component.extend({
             } else {
                 this.set('selectedReservable', sel.options[sel.selectedIndex].value);
             }
+
+            let tempItem = this.store.peekRecord("reservableitem", this.selectedReservable);
+            this.store.query('class', { "reservable-id": tempItem.id}).then((res) => {
+                if(res.length == 0) {
+                    this.toast.error('', '此参与内容暂无场次，请先添加场次！', this.toastOptions);
+                }
+            }, error => {
+                this.bm_error_service.handleError(error)
+            })
+
         },
         yardChanged() {
             var sel = document.getElementById("yardselect");
@@ -97,12 +108,22 @@ export default Component.extend({
             }
         },
         activityChanged() {
+            // let that = this;
             var sel = document.getElementById('actselect');
             if (sel.selectedIndex == 0) {
                 this.set('selectedActivity', null);
             } else {
                 this.set('selectedActivity', sel.options[sel.selectedIndex].value);
             }
+
+            let tempItem = this.store.peekRecord("reservableitem", this.selectedActivity);
+            this.store.query('class', { "reservable-id": tempItem.id}).then((res) => {
+                if(res.length == 0) {
+                    this.toast.error('', '此参与内容暂无场次，请先添加场次！', this.toastOptions);
+                }
+            }, error => {
+                this.bm_error_service.handleError(error)
+            })
         },
         sessionChanged() {
             var sel = document.getElementById('sessionselect');
@@ -115,7 +136,7 @@ export default Component.extend({
     },
 
     display_apply_date: computed(function(/*ele*/){
-        let date = new Date(this.apply.apply_time);
+        let date = new Date(this.apply.applyTime);
         var Y = date.getFullYear() + '-';
         var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
         var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate()) + ' ';

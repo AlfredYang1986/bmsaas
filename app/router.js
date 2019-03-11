@@ -24,16 +24,16 @@ Router.map(function() {
     this.route('tech', { path: '/tech/:techid' });
     this.route('yard', { path: '/yard/:yardid' });
     this.route('classes');
-    this.route('course', { path: '/course/:courseid' });
+    this.route('course', { path: '/course/:courseid/:resid' });
     this.route('session', { path: '/session/:actid'});
 
     this.route('actv', function() {
-      this.route('info', { path: '/info/:sessionid' });
+      this.route('info', { path: '/info/:sessionid/:resid' });
       this.route('rsb');
     });
 
     this.route('exp', function() {
-      this.route('info', { path: '/info/:sessionid' });
+      this.route('info', { path: '/info/:sessionid/:resid' });
       this.route('rsb');
     });
   });
@@ -63,6 +63,7 @@ Router.map(function() {
   this.route('arrange-class');
   this.route('exp');
   this.route('actv');
+  this.route('not-found');
 });
 
 export default Router;

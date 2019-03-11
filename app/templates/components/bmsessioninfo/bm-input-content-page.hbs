@@ -2,20 +2,31 @@
     {{#layout-push direction='col' classNames="alt_course_panel edit_panel edit_third_panel"}}
         {{#if (bmeq session.status 1)}}
             <span class='alt_course_title alt_course_big_title'>描述一下体验课的内容吧</span>
+            {{#layout-push direction="col" classNames='alt-course-input-group'}}
+                    <span class="alt-edit-title alt-edit-title-des">体验课内容</span>
+                    <span class='alt-edit-up-hit'>介绍体验课具体场景及内容，有趣、详细的内容介绍会引起参与者的极大兴趣。</span>
+                {{textarea value=session.description classNames='alt-edit-area' rows=5}}
+            {{/layout-push}}
+        {{else if (bmeq session.status 2)}}
+            <span class='alt_course_title alt_course_big_title'>课程详情</span>
+            {{#layout-push direction="col" classNames='alt-course-input-group'}}
+                <span class="alt-edit-title alt-edit-title-des">课程目标</span>
+                <span class='alt-edit-up-hit'>向家长清楚准确地描述课程的目标和带给孩子们的收获，能让家长产生深入了解课程的愿望和参与的想法喔！</span>
+                {{textarea value=session.courseObjective classNames='alt-edit-area' rows=2}}
+            {{/layout-push}}
+            {{#layout-push direction="col" classNames='alt-course-input-group'}}
+                <span class="alt-edit-title alt-edit-title-des alt-edit-title-top">课程内容</span>
+                <span class='alt-edit-up-hit'>丰富精彩的课程内容加上准确的描述，让家长产生向让孩子参与的欲望，同时也增加了对您品牌的了解与信任。</span>
+                {{textarea value=session.description classNames='alt-edit-area' rows=2}}
+            {{/layout-push}}
         {{else}}
             <span class='alt_course_title alt_course_big_title'>描述一下活动的内容吧</span>
+            {{#layout-push direction="col" classNames='alt-course-input-group'}}
+                    <span class="alt-edit-title alt-edit-title-des">活动内容</span>
+                    <span class='alt-edit-up-hit'>介绍活动具体场景及内容，有趣、详细的内容介绍会引起参与者的极大兴趣。</span>
+                {{textarea value=session.description classNames='alt-edit-area' rows=5}}
+            {{/layout-push}}
         {{/if}}
-        {{#layout-push direction="col" classNames='alt-course-input-group'}}
-            {{#if (bmeq session.status 1)}}
-                <span class="alt-edit-title alt-edit-title-des">体验课内容</span>
-                <span class='alt-edit-up-hit'>介绍体验课具体场景及内容，有趣、详细的內容介绍会引起参与者的极大兴趣。</span>
-            {{else}}
-                <span class="alt-edit-title alt-edit-title-des">活动内容</span>
-                <span class='alt-edit-up-hit'>介绍活动具体场景及内容，有趣、详细的內容介绍会引起参与者的极大兴趣。</span>
-            {{/if}}
-
-            {{textarea value=session.description classNames='alt-edit-area' rows=5}}
-        {{/layout-push}}
         {{yield}}
     {{/layout-push }}
 </section>

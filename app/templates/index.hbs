@@ -10,8 +10,8 @@
                     <p class="error-info">用户名或密码错误</p>
                 {{/layout-push}}
             {{/if}}
-            {{bmform/bm-edit-line accountInput=true notitlt=true pholder='用户名' inputVal=bm_login_service.account classNames=''}}
-            {{bmform/bm-edit-line passwordInput=true notitlt=true pholder='密码' inputVal=bm_login_service.secretword classNames=''}}
+            {{bmform/bm-edit-line accountInput=true notitlt=true pholder='用户名' inputVal=account classNames=''}}
+            {{bmform/bm-edit-line passwordInput=true notitlt=true pholder='密码' inputVal=password classNames=''}}
             <button type="button" name="button" class='login-button' {{action 'accountLogin'}}>登录</button>
         {{/layout-push}}
         {{#layout-push direction='col' mid=true classNames='img-area'}}

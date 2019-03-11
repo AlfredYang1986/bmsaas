@@ -14,6 +14,7 @@
 @import "experience-open";
 @import "course-reserve";
 @import "index";
+@import "not-found";
 
 @import 'bm-layouts/bm-layouts';
 @import 'bm-layouts/bm_layouts_item';
@@ -37,6 +38,7 @@
 @import 'bmedit/bm-detail-address';
 @import 'bmedit/dynamic-input';
 @import 'bm-cls/bm-cls-arrange';
+@import 'bm-arr-cls-card';
 
 body {
     min-width: 1200px;
@@ -127,4 +129,12 @@ a:hover {
     }
     background-color: #80AEFF;
     border-radius: 4px;
+}
+div {
+    table {
+        margin-bottom: 0;
+        td {
+            color: #172B4D;
+        }
+    }
 }

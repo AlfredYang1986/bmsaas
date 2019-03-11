@@ -1,6 +1,8 @@
 {{#layout-push direction='row' split=true classNames='edit_nav'}}
     {{#if (bmeq session.status 1)}}
         <span>编辑体验课信息</span>
+    {{else if (bmeq session.status 2)}}
+        <span>编辑课程信息</span>
     {{else}}
         <span>编辑活动信息</span>
     {{/if}}
@@ -14,91 +16,140 @@
     {{!-- {{bmsessioninfo/bm-input-menu cur_page_idx=cur_page_idx status=session.status}} --}}
     {{#if (bmeq session.status 1)}}
         {{bmsessioninfo/bm-input-menu-bar cur_page_idx=cur_page_idx describe=describe guide=guide  status=session.status}}
+    {{else if (bmeq session.status 2)}}
+        {{bmsessioninfo/bm-input-menu-bar-course cur_page_idx=cur_page_idx describe=describe guide=guide  status=session.status}}
     {{else}}
         {{bmsessioninfo/bm-input-menu-bar-actv cur_page_idx=cur_page_idx describe=describe guide=guide  status=session.status}}
     {{/if}}
-    <div class="input_container">
-        {{#if (bmeq cur_page_idx 0)}}
-            {{#bmsessioninfo/bm-input-cate-page session=session  isCreate=isCreate}}
-                {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    {{!-- <button class="edit_between_btn" {{action (mut cur_page_idx) 1}}>下一步</button> --}}
-                    <button class="edit_between_btn" {{action (mut cur_page_idx) 1}}>下一步</button>
-                {{/layout-push}}
-            {{/bmsessioninfo/bm-input-cate-page}}
-        {{/if}}
+    {{#if (bmeq session.status 2)}}
+        <div class="input_container">
+            {{#if (bmeq cur_page_idx 0)}}
+                {{#bmsessioninfo/bm-input-cate-page session=session  isCreate=isCreate cur_cate=cur_cate}}
+                    {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
+                        <button class="edit_between_btn" {{action (mut cur_page_idx) 1}}>下一步</button>
+                    {{/layout-push}}
+                {{/bmsessioninfo/bm-input-cate-page}}
+            {{/if}}
 
-        {{#if (bmeq cur_page_idx 1)}}
-            {{#bmsessioninfo/bm-input-basic-page session=session isCreate=isCreate}}
-                {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    <button class="edit_between_btn" {{action (mut cur_page_idx) 2}}>下一步</button>
-                {{/layout-push}}
-            {{/bmsessioninfo/bm-input-basic-page}}
-        {{/if}}
+            {{#if (bmeq cur_page_idx 1)}}
+                {{#bmsessioninfo/bm-input-name-page session=session isCreate=isCreate}}
+                    {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
+                        <button class="edit_between_btn" {{action (mut cur_page_idx) 2}}>下一步</button>
+                    {{/layout-push}}
+                {{/bmsessioninfo/bm-input-name-page}}
+            {{/if}}
 
-        {{#if (bmeq cur_page_idx 2)}}
-            {{#bmsessioninfo/bm-input-content-page session=session isCreate=isCreate}}
-                {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    <button class="edit_between_btn" {{action (mut cur_page_idx) 3}}>下一步</button>
-                {{/layout-push}}
-            {{/bmsessioninfo/bm-input-content-page}}
-        {{/if}}
+            {{#if (bmeq cur_page_idx 2)}}
+                {{#bmsessioninfo/bm-input-sort-page session=session isCreate=isCreate cur_time=cur_time}}
+                    {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
+                        <button class="edit_between_btn" {{action (mut cur_page_idx) 3}}>下一步</button>
+                    {{/layout-push}}
+                {{/bmsessioninfo/bm-input-sort-page}}
+            {{/if}}
 
-        {{#if (bmeq cur_page_idx 3)}}
-            {{#bmsessioninfo/bm-input-inter-page session=session isCreate=isCreate}}
-                {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    <button class="edit_between_btn" {{action (mut cur_page_idx) 4}}>下一步</button>
-                {{/layout-push}}
-            {{/bmsessioninfo/bm-input-inter-page}}
-        {{/if}}
+            {{#if (bmeq cur_page_idx 3)}}
+                {{#bmsessioninfo/bm-input-charge-page session=session isCreate=isCreate}}
+                    {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
+                        <button class="edit_between_btn" {{action (mut cur_page_idx) 4}}>下一步</button>
+                    {{/layout-push}}
+                {{/bmsessioninfo/bm-input-charge-page}}
+            {{/if}}
 
-        {{#if (bmeq cur_page_idx 4)}}
-            {{#bmsessioninfo/bm-input-img-page session=session isCreate=isCreate}}
-                {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    <button class="edit_between_btn" {{action (mut cur_page_idx) 5}}>下一步</button>
-                {{/layout-push}}
-            {{/bmsessioninfo/bm-input-img-page}}
-        {{/if}}
+            {{#if (bmeq cur_page_idx 4)}}
+                {{#bmsessioninfo/bm-input-content-page session=session isCreate=isCreate}}
+                    {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
+                        <button class="edit_between_btn" {{action (mut cur_page_idx) 5}}>下一步</button>
+                    {{/layout-push}}
+                {{/bmsessioninfo/bm-input-content-page}}
+            {{/if}}
 
-        {{#if (bmeq cur_page_idx 5)}}
-            {{#bmsessioninfo/bm-input-acq-page session=session isCreate=isCreate}}
-                {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    <button class="edit_between_btn" {{action (mut cur_page_idx) 6}}>下一步</button>
-                {{/layout-push}}
-            {{/bmsessioninfo/bm-input-acq-page}}
-        {{/if}}
+            {{#if (bmeq cur_page_idx 5)}}
+                {{#bmsessioninfo/bm-input-img-page session=session isCreate=isCreate}}
+                {{/bmsessioninfo/bm-input-img-page}}
+            {{/if}}
+        </div>
+    {{else}}
+        <div class="input_container">
+            {{#if (bmeq cur_page_idx 0)}}
+                {{#bmsessioninfo/bm-input-cate-page session=session  isCreate=isCreate cur_cate=cur_cate}}
+                    {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
+                        {{!-- <button class="edit_between_btn" {{action (mut cur_page_idx) 1}}>下一步</button> --}}
+                        <button class="edit_between_btn" {{action (mut cur_page_idx) 1}}>下一步</button>
+                    {{/layout-push}}
+                {{/bmsessioninfo/bm-input-cate-page}}
+            {{/if}}
 
-        {{#if (bmeq cur_page_idx 6)}}
-            {{#bmsessioninfo/bm-input-inc-page session=session isCreate=isCreate}}
-                {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    <button class="edit_between_btn" {{action (mut cur_page_idx) 7}}>下一步</button>
-                {{/layout-push}}
-            {{/bmsessioninfo/bm-input-inc-page}}
+            {{#if (bmeq cur_page_idx 1)}}
+                {{#bmsessioninfo/bm-input-basic-page session=session isCreate=isCreate cur_time=cur_time}}
+                    {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
+                        <button class="edit_between_btn" {{action (mut cur_page_idx) 2}}>下一步</button>
+                    {{/layout-push}}
+                {{/bmsessioninfo/bm-input-basic-page}}
+            {{/if}}
 
-        {{/if}}
+            {{#if (bmeq cur_page_idx 2)}}
+                {{#bmsessioninfo/bm-input-content-page session=session isCreate=isCreate}}
+                    {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
+                        <button class="edit_between_btn" {{action (mut cur_page_idx) 3}}>下一步</button>
+                    {{/layout-push}}
+                {{/bmsessioninfo/bm-input-content-page}}
+            {{/if}}
 
-        {{#if (bmeq cur_page_idx 7)}}
-            {{#bmsessioninfo/bm-input-carry-page session=session isCreate=isCreate}}
-                {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    <button class="edit_between_btn" {{action (mut cur_page_idx) 8}}>下一步</button>
-                {{/layout-push}}
-            {{/bmsessioninfo/bm-input-carry-page}}
+            {{#if (bmeq cur_page_idx 3)}}
+                {{#bmsessioninfo/bm-input-inter-page session=session isCreate=isCreate}}
+                    {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
+                        <button class="edit_between_btn" {{action (mut cur_page_idx) 4}}>下一步</button>
+                    {{/layout-push}}
+                {{/bmsessioninfo/bm-input-inter-page}}
+            {{/if}}
 
-        {{/if}}
+            {{#if (bmeq cur_page_idx 4)}}
+                {{#bmsessioninfo/bm-input-img-page session=session isCreate=isCreate}}
+                    {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
+                        <button class="edit_between_btn" {{action (mut cur_page_idx) 5}}>下一步</button>
+                    {{/layout-push}}
+                {{/bmsessioninfo/bm-input-img-page}}
+            {{/if}}
 
-        {{#if (bmeq cur_page_idx 8)}}
-            {{#bmsessioninfo/bm-input-acc-page session=session isCreate=isCreate}}
-                {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    <button class="edit_between_btn" {{action (mut cur_page_idx) 9}}>下一步</button>
-                {{/layout-push}}
-            {{/bmsessioninfo/bm-input-acc-page}}
-        {{/if}}
+            {{#if (bmeq cur_page_idx 5)}}
+                {{#bmsessioninfo/bm-input-acq-page session=session isCreate=isCreate}}
+                    {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
+                        <button class="edit_between_btn" {{action (mut cur_page_idx) 6}}>下一步</button>
+                    {{/layout-push}}
+                {{/bmsessioninfo/bm-input-acq-page}}
+            {{/if}}
 
-        {{#if (bmeq cur_page_idx 9)}}
-            {{#bmsessioninfo/bm-input-note-page session=session isCreate=isCreate}}
-                {{!-- {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
-                    <button class="edit_between_btn" {{action 'saveCourseBtnClicked'}}>提交</button>
-                {{/layout-push}} --}}
-            {{/bmsessioninfo/bm-input-note-page}}
-        {{/if}}
-    </div>
+            {{#if (bmeq cur_page_idx 6)}}
+                {{#bmsessioninfo/bm-input-inc-page session=session isCreate=isCreate}}
+                    {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
+                        <button class="edit_between_btn" {{action (mut cur_page_idx) 7}}>下一步</button>
+                    {{/layout-push}}
+                {{/bmsessioninfo/bm-input-inc-page}}
+
+            {{/if}}
+
+            {{#if (bmeq cur_page_idx 7)}}
+                {{#bmsessioninfo/bm-input-carry-page session=session isCreate=isCreate}}
+                    {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
+                        <button class="edit_between_btn" {{action (mut cur_page_idx) 8}}>下一步</button>
+                    {{/layout-push}}
+                {{/bmsessioninfo/bm-input-carry-page}}
+
+            {{/if}}
+
+            {{#if (bmeq cur_page_idx 8)}}
+                {{#bmsessioninfo/bm-input-acc-page session=session isCreate=isCreate}}
+                    {{#layout-push direction='row' classNames='alt_course_edit_btn_margin'}}
+                        <button class="edit_between_btn" {{action (mut cur_page_idx) 9}}>下一步</button>
+                    {{/layout-push}}
+                {{/bmsessioninfo/bm-input-acc-page}}
+            {{/if}}
+
+            {{#if (bmeq cur_page_idx 9)}}
+                {{#bmsessioninfo/bm-input-note-page session=session isCreate=isCreate}}
+                {{/bmsessioninfo/bm-input-note-page}}
+            {{/if}}
+        </div>
+    {{/if}}
+
 {{/layout-push}}

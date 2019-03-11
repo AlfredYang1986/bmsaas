@@ -1,17 +1,26 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
-// import { A } from '@ember/array';
 
 export default Component.extend({
-    bm_yard_service: service(),
+    store: service(),
     bm_clsarr_service: service(),
-    selectedYard: '',
+    selectedRoom: '',
     showAddDlg: false,
     refreshSelected: computed(function(){
         this.refresh_date();
         return '';
     }),
+
+    // yards: computed(function(){
+    //     return this.store.findAll('yard');
+    // }),
+
+    // rooms: computed(function(){
+    //     return this.store.query('room', { "brand-id": localStorage.getItem("brandid")});
+    // }),
+
+    rooms: null,
 
     init() {
         this._super(...arguments);
@@ -26,21 +35,31 @@ export default Component.extend({
         while (tmp.getDay() != 1) {
             tmp.setDate(tmp.getDate() - 1)
         }
+        tmp.setSeconds(0)
+        tmp.setMilliseconds(0)
         return tmp.getTime();
     },
     computedEndDate() {
         let tmp = new Date();
         let span = this.start_date + 6 * 24 * 60 * 60 * 1000;
         tmp.setTime(span);
+        tmp.setSeconds(0)
+        tmp.setMilliseconds(0)
         return tmp.getTime();
     },
     refresh_date() {
-        var sel = document.getElementById("yardselect");
-        this.set('selectedYard', sel.options[sel.selectedIndex].value);
-        this.bm_clsarr_service.set('yardid', this.selectedYard);
+        var sel = document.getElementById("roomselect");
+        this.set('selectedRoom', sel.options[sel.selectedIndex].value);
+        this.bm_clsarr_service.set('roomid', this.selectedRoom);
         this.bm_clsarr_service.set('st', this.start_date);
-        this.bm_clsarr_service.set('et', this.end_date);
+        this.bm_clsarr_service.set('et', new Date(this.end_date + 24 * 60 * 60 * 1000).getTime());
         this.bm_clsarr_service.set('refresh_all_token', this.bm_clsarr_service.guid());
+        // this.store.query("unit",{ "room-id": this.selectedRoom}).then(res => {
+        //     this.bm_clsarr_service.set('units', res);
+        //     console.log(res)
+        // },() => {
+        //     window.console.log("query units error")
+        // })
     },
     actions: {
         prevBtnClicked(/*args*/) {
@@ -62,7 +81,7 @@ export default Component.extend({
         todayBtnClicked(/*args*/) {
 
         },
-        yardChanged() {
+        roomChanged() {
             this.refresh_date();
         },
         cancelHandled() {
@@ -70,6 +89,18 @@ export default Component.extend({
         },
         successHandled() {
             this.set('showAddDlg', false);
-        }        
+        },
+        addUnitOnClick() {
+            this.onAddUnitClick()
+        },
+        onPanelClick(param) {
+            this.onPanelClick(param);
+        },
+        onEditClick(unit) {
+            this.onEditClick(unit);
+        },
+        onDeleteClick(unit) {
+            this.onDeleteClick(unit);
+        },
     }
 });

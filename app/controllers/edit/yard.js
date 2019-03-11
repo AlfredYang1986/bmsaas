@@ -1,18 +1,18 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
-import { debug } from '@ember/debug';
 
 export default Controller.extend({
-    bm_yard_service: service(),
-
-    yard_provinces: null,
-    yard_citys: null,
-    yard_government_areas: null,
-
+    bm_error_service: service(),
     isPushing: false,
     current_idx: 0,
     changeFlag: false,
+    tempCertImgs: A(),
+    tempYardImgs: A(),
+
+    provinces: A(['北京']),
+    citys: A(['北京市']),
+    areas: A(["密云区", "延庆区", "朝阳区", "丰台区", "石景山区", "海淀区", "门头沟区", "房山区", "通州区", "顺义区", "昌平区", "大兴区", "怀柔区", "平谷区", "东城区", "西城区"]),
 
     yardCandidate: A(['室内', '室外', '室内 + 室外']),
     surroundings: A(['写字楼', '社区', '购物中心', '学校', '其它']),
@@ -20,57 +20,101 @@ export default Controller.extend({
     tagsCandi: A(['阅读区', '教学区', '家长休息区', '生活区', '寄存区', '户外活动区', '室内活动区']),
 
     actions: {
+        cancelYardBtnClicked() {
+            this.model.yard.unloadRecord();
+            this.transitionToRoute("detail.yard")
+        },
         saveYardBtnClicked() {
-            let that = this
-            let callback = {
-                onSuccess: function() {
-                    that.transitionToRoute('detail.yard');
-                },
-                onFail: function(/*err*/) {
-                    debug('error');
-                }
+            let flag1 = false;
+            let flag2 = false;
+            let flag1Count = 0;
+            let flag2Count = 0;
+            let doneFlag = false;
+            if(this.tempYardImgs.length === 0) {
+                flag1 = true;
             }
-            this.bm_yard_service.saveUpdate(callback); 
+            if(this.tempCertImgs.length === 0) {
+                flag2 = true;
+            }
+            if(this.tempYardImgs.length === 0 && this.tempCertImgs.length === 0) {
+                this.saveYard();
+            }
+            this.tempYardImgs.forEach((data, index, arr) => {
+                data.save().then(() => {
+                    flag1Count++
+                    if(flag1Count === arr.length) {
+                        flag1 = true;
+                    }
+                    if(flag1 && flag2 && !doneFlag) {
+                        doneFlag = true;
+                        this.saveYard();
+                    }
+                }, error => {
+                    this.bm_error_service.handleError(error)
+                });
+            })
+            this.tempCertImgs.forEach((data, index, arr) => {
+                data.save().then(() => {
+                    flag2Count++
+                    if(flag2Count === arr.length) {
+                        flag2 = true;
+                    }
+                    if(flag1 && flag2 && !doneFlag) {
+                        doneFlag = true;
+                        this.saveYard();
+                    }
+                }, error => {
+                    this.bm_error_service.handleError(error)
+                });
+            })
         },
         multiCheckOnClick(value) {
+
             let tempArr = [];
-            if (this.bm_yard_service.yard.facilities != null) {
-                tempArr = this.bm_yard_service.yard.facilities;
+            if (this.model.yard.facilities != null) {
+                tempArr = this.model.yard.facilities;
             }
-            this.toggleProperty("changeFlag")
+
+            this.toggleProperty('changeFlag');
             if (tempArr.indexOf(value) == -1) {
                 tempArr.push(value)
             } else {
                 tempArr.splice(tempArr.indexOf(value), 1)
             }
-            this.set('bm_yard_service.yard.facilities', tempArr)
-        },
-        addCertPicOnClick() {
-            let newObj = this.bm_yard_service.genNewImgObj('BmCertification');
-            newObj.tag = "initTag"
-            let tempArr = [];
-            if (this.bm_yard_service.yard.Certifications !== null) {
-                tempArr = this.bm_yard_service.yard.Certifications;
-            }
-            tempArr.pushObject(newObj);
-            this.set('bm_yard_service.yard.Certifications', tempArr);
-            // console.log(this.bm_yard_service.yard.Certifications)
+
+            this.model.yard.set('facilities', tempArr);
         },
         addYardPicOnClick() {
-            let newObj = this.bm_yard_service.genNewImgObj('BmTagImg');
-            newObj.tag = "initTag"
-            let tempArr = [];
-            if (this.bm_yard_service.yard.Tagimgs !== null) {
-                tempArr = this.bm_yard_service.yard.Tagimgs;
-            }
-            tempArr.pushObject(newObj);
-            this.set('bm_yard_service.yard.Tagimgs', tempArr)
+            let tempYardImg = this.store.createRecord("image", {"flag": 0})
+            this.tempYardImgs.pushObject(tempYardImg)
         },
-        deleteCertImg(param) {
-            this.bm_yard_service.yard.Certifications.removeObject(param);
+        addCertPicOnClick() {
+            let tempCertImg = this.store.createRecord("image", {"flag": 2})
+            this.tempCertImgs.pushObject(tempCertImg)
         },
         deleteYardImg(param) {
-            this.bm_yard_service.yard.Tagimgs.removeObject(param);
-        }
+            this.tempYardImgs.removeObject(param);
+        },
+        deleteCertImg(param) {
+            this.tempCertImgs.removeObject(param);
+        },
     },
+
+    saveYard() {
+        this.model.yard.set("images", this.tempYardImgs)
+        this.model.yard.get("images").pushObjects(this.tempCertImgs)
+        // let that = this;
+        this.model.yard.save().then(() => {
+            this.transitionToRoute("detail.yard")
+        }, error => {
+            this.bm_error_service.handleError(error)
+        });
+        // let that = this;
+        // let onSuccess = function() {
+        //     that.transitionToRoute("detail.yard");
+        // }
+        // let onFail = function() {}
+        // this.model.yard.save().then(onSuccess, onFail);
+
+    }
 });

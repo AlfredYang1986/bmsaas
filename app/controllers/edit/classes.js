@@ -11,14 +11,14 @@ export default Controller.extend({
     successdlg: false,
 
     selected_course: null,
-    course_lst: computed(function(){
-        return this.mock_data.queryAllCourse();
-    }),
+    // course_lst: computed(function(){
+    //     return this.mock_data.queryAllCourse();
+    // }),
 
     selected_yard: null,
-    yard_lst: computed(function(){
-        return this.mock_data.queryAllYard();
-    }),
+    // yard_lst: computed(function(){
+    //     return this.mock_data.queryAllYard();
+    // }),
 
     insert_cls_name: '',
 

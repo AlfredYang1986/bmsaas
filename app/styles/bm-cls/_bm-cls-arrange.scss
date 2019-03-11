@@ -21,23 +21,30 @@
     text-transform: capitalize;
 
     border-radius: 3px;
+
+    width: 24px;
+    height: 24px;
 }
 
 %cls-btn:hover {
-    background: #e3eaef;
+    background-color: #FFFFFF;
     border: none;
-    color: #6c757d;
+    // color: #6c757d;
 }
 
 %cls-btn:focus {
-    background: #e3eaef;
+    background-color: #FFFFFF;
     border: none;
-    color: #6c757d;
+    // color: #6c757d;
     outline: none;
 }
 
 .cls-click-enter {
-    background: black !important;
+    // background-color: black !important;
+}
+
+.calender-btn-group {
+    height: 24px;
 }
 
 .cls-normal {
@@ -50,12 +57,16 @@
     @extend %cls-btn;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
+    background: url('../images/chevron_left_normal@2x.png');
+    background-size: 24px;
 }
 
 .next-btn {
     @extend %cls-btn;
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
+    background: url('../images/chevron_right@2x.png');
+    background-size: 24px;
 }
 
 .today-cls-btn {
@@ -63,15 +74,33 @@
 }
 
 .cls-arr-add-btn {
-    background: $color-theme-T100;
-    border-radius: 100px;
-    font-family: $font-family;
-    font-size: $font-size-main;
-    color: $color-neutral-N000;
-    letter-spacing: 2px;
+    // background: $color-theme-T100;
+    // border-radius: 100px;
+    // font-family: $font-family;
+    // font-size: $font-size-main;
+    // color: $color-neutral-N000;
+    // letter-spacing: 2px;
+    // height: 32px;
+    // line-height: 16px;
+    // padding: 8px 24px;
+
+    width: 100px;
     height: 32px;
-    line-height: 16px;
-    padding: 8px 24px;
+    padding: 6px 12px;
+    text-align: center;
+    background: #80AEFF;
+    border-radius: 100px;
+    font-family: PingFangSC-Medium, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #FFFFFF;
+
+    &:hover {
+        background-color: #80AEFF;
+    }
+    &:focus {
+        background-color: #80AEFF;
+        outline: none;
+    }
 }
 
 .bm-view-container {
@@ -94,6 +123,7 @@
         border-spacing: 0;
         margin: 0;
         padding: 0;
+        border: none;
 
         .bm-head {
             border-color: #e3eaef;
@@ -117,13 +147,20 @@
         //     vertical-align: top;
         // }
 
+
         th.bm-widget-header {
-            background: #e3eaef;
+            background: #FFFFFF;
             font-size: 13px;
             line-height: 20px;
             padding: 10px 0;
             text-transform: uppercase;
             text-align: center;
+
+            .week-day {
+                font-family: PingFangSC-Regular;
+                font-size: 11px;
+                color: #6B778C;
+            }
         }
 
         .bm-axis {
@@ -190,38 +227,53 @@
             //     height: 50px;
             //     width: 50px;
             // }
-
+            .bm-content-right.bm-content-exp {
+                border-left: #E59B4B 2px solid;
+                
+                .bm-content-cls-title {
+                    color: #FF991F;
+                }
+            }
             .bm-content-right {
+                display: flex;
+                flex-direction: column;
                 font-family: PingFangSC-Medium;
                 font-size: 12px;
                 color: #172B4D;
                 text-align: left;
-                padding: 0 7px;
+                padding: 16px;
                 width: 100%;
+
+                // background: #8BC34A;
+                border-left: #4788F2 2px solid;
+                border-radius: 4px;
+
+                &:focus {
+                    outline: none;
+                }
 
                 .bm-content-cls-title {
                     font-family: PingFangSC-Medium;
                     font-size: 14px;
-                    color: #172B4D;
-                    margin-top: 13px;
-                    margin-left: 7px;
+                    color: #3881FF;
+                    // margin-top: 13px;
+                    // margin-left: 7px;
                 }
 
                 .bm-content-session-title {
                     font-family: PingFangSC-Regular;
                     font-size: 11px;
-                    color: #6B778C;
-                    margin-top: 13px;
-                    margin-left: 7px;
+                    color: #73ABFF;
+                    // margin-top: 13px;
+                    // margin-left: 7px;
                 }
 
                 .bm-content-session-time {
-                    font-family: Helvetica;
-                    font-size: 14px;
-                    color: #6B778C;
-                    text-align: left;
-                    margin-top: 13px;
-                    margin-left: 7px;
+                    font-family: PingFangSC-Regular;
+                    font-size: 11px;
+                    color: #FFFFFF;
+                    // margin-top: 13px;
+                    // margin-left: 7px;
                 }
             }
         }
@@ -267,6 +319,7 @@
 
             .bm-time-container-panel {
                 position: absolute;
+                border-radius: 4px;
             }
         }
     }

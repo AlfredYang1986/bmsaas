@@ -4,12 +4,18 @@
         <option value="" disabled selected hidden>省份</option>
     {{/if}}
     {{#each provinces as |item|}}
-        {{#if (eq province item.name)}}
+        {{!-- {{#if (eq province item.name)}}
             <option selected=true value={{item.name}}>{{item.name}}</option>
         {{else}}
             <option value={{item.name}}>{{item.name}}</option>
+        {{/if}} --}}
+        <option value="" disabled selected hidden>请选择省份</option>
+        {{#if (eq province item)}}
+            <option selected=true value={{item}}>{{item}}</option>
+        {{else}}
+            <option value={{item}}>{{item}}</option>
         {{/if}}
-        
+
     {{/each}}
 </select>
 <select class="address-select" onchange={{action 'changeCitys' value="target.value"}}>
@@ -17,10 +23,16 @@
         <option value="" disabled selected hidden>城市</option>
     {{/if}}
     {{#each citys as |item|}}
-        {{#if (eq city item.name)}}
-            <option selected=true value={{item.name}}>{{item.name}}</option>
+        {{!-- {{#if (eq city item.name)}} --}}
+            {{!-- <option selected=true value={{item.name}}>{{item.name}}</option> --}}
+        {{!-- {{else}} --}}
+            {{!-- <option value={{item.name}}>{{item.name}}</option> --}}
+        {{!-- {{/if}} --}}
+        <option value="" disabled selected hidden>请选择城市</option>
+        {{#if (eq city item)}}
+            <option selected=true value={{item}}>{{item}}</option>
         {{else}}
-            <option value={{item.name}}>{{item.name}}</option>
+            <option value={{item}}>{{item}}</option>
         {{/if}}
     {{/each}}
 </select>
@@ -29,10 +41,16 @@
         <option value="" disabled selected hidden>行政区域</option>
     {{/if}}
     {{#each governmentAreas as |item|}}
-        {{#if (eq area item.name)}}
+        {{!-- {{#if (eq area item.name)}}
             <option selected=true value={{item.name}}>{{item.name}}</option>
         {{else}}
             <option value={{item.name}}>{{item.name}}</option>
+        {{/if}} --}}
+        <option value="" disabled selected hidden>请选择行政区域</option>
+        {{#if (eq area item)}}
+            <option selected=true value={{item}}>{{item}}</option>
+        {{else}}
+            <option value={{item}}>{{item}}</option>
         {{/if}}
     {{/each}}
 </select>

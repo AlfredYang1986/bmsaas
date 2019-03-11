@@ -1,13 +1,12 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 
-
 export default Component.extend({
     didReceiveAttrs() {
         this._super(...arguments);
         this.createPageGroup()
     },
-    positionalParams: ['pageCount'],
+    positionalParams: ['pageCount', 'curPage'],
     curPage: 1,
     pageGroup: null,
     nextFlag: computed('curPage', 'pageCount', function() {
@@ -18,7 +17,7 @@ export default Component.extend({
         }
     }),
     previousFlag: computed('curPage', 'pageCount', function() {
-        if (this.curPage == 1) {
+        if (this.curPage == 1 || this.curPage == 0) {
             return false;
         } else {
             return true;
@@ -71,7 +70,6 @@ export default Component.extend({
             }
         }
         this.set('pageGroup', arr);
-        // console.log(this.pageGroup)
     },
     updatePageGroup() {
         let arr = [];
@@ -99,6 +97,5 @@ export default Component.extend({
             }
         }
         this.set('pageGroup', arr);
-        // console.log(this.pageGroup)
     }
 });

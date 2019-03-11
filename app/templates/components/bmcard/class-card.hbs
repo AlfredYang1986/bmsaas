@@ -1,11 +1,10 @@
-{{#layout-push direction="col" classNames="class-card"}}
+{{!-- {{#layout-push direction="col" classNames="class-card"}}
     {{#layout-push direction="col" classNames="class-card-head-info"}}
         <p class="headline">{{cls.classTitle}}</p>
-        <p class="secondary-title">{{cls.SessionInfo.title}}</p>
-        {{!-- <p class="class-address">{{cls.yard.address}}</p> --}}
+        <p class="secondary-title">{{cls.sessioninfo.title}}</p>
     {{/layout-push}}
-    {{#layout-push direction="col" classNames="class-card-content"}}
-        {{#layout-push direction="col"}}
+    {{#layout-push direction="col" classNames="class-card-content"}} --}}
+        {{!-- {{#layout-push direction="col"}}
             <div class="progress-label">
                 <p>课程进度</p>
                 <p class="course-count">{{cls.courseExpireCount}}/{{cls.courseTotalCount}}</p>
@@ -16,16 +15,14 @@
             {{/bs-progress}}
         {{/layout-push}}
         {{#layout-push direction='row' classNames="no-arr-des"}}
-            <p class="no-arr-des-title">尚未排课</p>
+            <p class="no-arr-des-title">暂无安排</p>
         {{/layout-push}}
         {{#layout-push direction='row' classNames="list"}}
-            {{!-- <img src="../images/coursebooking_selected.png" alt="">
-            <p>{{arrangedDate}}</p> --}}
             <p class="class-date">{{arrangedDate}}</p>
         {{/layout-push}}
         {{#layout-push direction='row' classNames="split-line"}}
-        {{/layout-push}}
-        {{#layout-push direction="row" classNames="class-teachers"}}
+        {{/layout-push}} --}}
+        {{!-- {{#layout-push direction="row" classNames="class-teachers"}}
             {{#each techPics as |item|}}
                 <img src={{item.url}} alt="">
             {{/each}}
@@ -34,5 +31,44 @@
             {{/if}}
         {{/layout-push}}
     {{/layout-push}}
+{{/layout-push}} --}}
+
+
+{{#layout-push direction="col" classNames="class-card"}}
+    {{#layout-push direction="col" classNames="class-card-head-info"}}
+        <p class="headline">{{cls.classTitle}}</p>
+        <p class="secondary-title">{{cls.sessioninfo.title}}</p>
+    {{/layout-push}}
+    {{#layout-push direction="col" classNames="class-card-content"}}
+        {{#layout-push direction='row' classNames="split-line"}}
+        {{/layout-push}}
+        {{#layout-push direction="row" classNames="class-teachers"}}
+            {{#each cls.duties as |item index|}}
+                {{#if (lt index 3)}}
+                    {{#if (eq item.teacher.icon "")}}
+                        <img src={{headImg}} alt="">
+                    {{else}}
+                        <img src={{bmcom/bm-img-uri item.teacher.icon bmOss}} alt="">
+                    {{/if}}
+                {{/if}}
+                {{#if (gt index 2)}}
+                    <p class="teacher-num">+{{bmcom/bm-minus cls.duties.length 3}}</p>
+                {{/if}}
+            {{/each}}
+            {{!-- {{#each techPics as |item|}}
+                <img src={{item.url}} alt="">
+            {{/each}}
+            {{#if (gt techPicsOverFlow 0)}}
+                <p class="teacher-num">+{{techPicsOverFlow}}</p>
+            {{/if}} --}}
+        {{/layout-push}}
+    {{/layout-push}}
 {{/layout-push}}
+
+{{!-- {{bmcom/bm-handle-promise promiseResovled=(action 'promiseResovled') promiseObj=cls.duties}}
+{{#if (not-eq duties.length 0)}}
+    {{#each cls.duties as |item|}}
+        {{bmcom/bm-handle-promise promiseResovled=(action 'promiseResovled') promiseObj=item.teacher}}
+    {{/each}}
+{{/if}} --}}
 {{yield}}

@@ -1,0 +1,10 @@
+{{!-- <div class="class_content_top" >
+    {{#layout-push direction="col" mid=true}}
+        <p class="not-found">404</p>
+        <p class="not-found-des">PAGE NOT FOUND</p>
+        {{#link-to 'inbox' classNames='course_add_btn'}}返回首页{{/link-to}}
+    {{/layout-push}}
+</div> --}}
+{{#layout-push direction="col" mid=true classNames="not-found-page-outer"}}
+    {{bmcom/bm-empty-state class="not-found-empty-state" picUrl="/images/img_404@3x.png" title="404" des="抱歉，你访问的页面不存在" btnText="返回首页" onBtnClick=(action "linkToInbox")}}
+{{/layout-push}}

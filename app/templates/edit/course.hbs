@@ -1,11 +1,9 @@
-{{#bmpage/bm-session-edit session=bm_session_service.session onSaveSessionBtnClicked=(action 'saveCourseBtnClicked')}}
+{{#bmpage/bm-session-edit session=model.course onSaveSessionBtnClicked=(action 'saveCourseBtnClicked') describe=model.describe guide=model.guide cur_cate=model.course.category.title cur_time=model.course.length}}
     {{#if isPushing}}
         {{#link-to 'course' class="edit_nav_btn btn_cacel"}}
             取消
         {{/link-to}}
     {{else}}
-        {{#link-to 'detail.course' bm_session_service.session.id class="edit_nav_btn btn_cacel"}}
-            取消
-        {{/link-to}}
+        <button class="edit_nav_btn btn_cacel" {{action 'cancelCourseBtnClicked'}}>取消</button>
     {{/if}}
 {{/bmpage/bm-session-edit}}

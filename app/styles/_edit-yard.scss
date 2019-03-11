@@ -35,7 +35,7 @@
 
 
                 }
-                
+
                 .edit_title_container {
                     margin-bottom: 40px;
                 }
@@ -55,12 +55,12 @@
 
                 .alt-edit-only-margin {
                     margin-top: 20px;
-                    
+
                     .alt-edit-title-des {
                         margin-bottom: 4px;
                     }
                 }
-                
+
                 .line_half {
                     height: 32px;
                     margin-bottom: 32px;
@@ -77,7 +77,7 @@
                     margin: 0;
                     margin-bottom: 16px;
                 }
-                
+
                 .alt-edit-half-line {
                     width: 300px;
                     margin: 0;
@@ -94,7 +94,7 @@
                 .alt-edit-step-btn {
                     margin-top: 40px;
                 }
-                
+
                 input[type=text] {
                     margin: 0;
                     height: 32px;
@@ -106,18 +106,18 @@
 				&.edit_first_panel {
 
                     .yard-name {
-                        
+
                         input {
                             width: 228px;
                         }
                     }
                     .yard-contact {
-                        
+
                         input {
                             width: 592px;
                         }
                     }
-                    
+
 
 					.alt-edit-title {
                         // color: #172B4D;
@@ -134,7 +134,7 @@
 						margin: 0;
 						margin-bottom: 16px;
 					}
-                    
+
 					.alt-edit-up-hit {
 						margin: 0;
 						margin-bottom: 16px;
@@ -143,7 +143,7 @@
                     .alt-edit-step-btn {
 						margin-top: 40px;
                     }
-                    
+
 					input[type=text] {
                         margin: 0;
 						height: 32px;
@@ -152,14 +152,14 @@
 						box-shadow: none;
 					}
 				}
-                
+
 				&.edit_second_panel {
                     min-height: 0;
 
                     .alt-edit-title {
                         margin-bottom: 0;
                     }
-    
+
                     .line_conatainer_warp{
                         margin-top: 16px;
 
@@ -171,10 +171,18 @@
                             cursor: pointer;
                             background: #FAFBFC;
 
-                            .add-new-img {
-                                width: 32px;
-                                height: 32px;
-                            }
+							.add-new-img-div {
+								width: 80px;
+								height: 80px;
+								display: flex;
+								flex-direction: row;
+								justify-content: center;
+								align-items: center;
+								.add-new-img {
+	                                width: 32px;
+	                                height: 32px;
+	                            }
+							}
                         }
 
                         .alt-yard-edit-tag-img-adjust {
@@ -182,19 +190,19 @@
                             margin-bottom: 40px;
                             width: 272px;
                             height: 308px;
-                        
+
                             .bm-upload-form{
-                        
+
                                 div.bm-upload-container{
                                     width: 272px;
-                        
+
                                     img{
                                         width: 272px;
                                         height: 272px;
-    
+
                                     }
                                 }
-                                
+
                             }
                             .bm-upload-tag{
                                 margin-top: 288px;
@@ -257,10 +265,18 @@
                             // background-color: #fff;
 
 
-                            .add-new-img {
-                                width: 32px;
-                                height: 32px;
-                            }
+							.add-new-img-div {
+								width: 80px;
+								height: 80px;
+								display: flex;
+								flex-direction: row;
+								justify-content: center;
+								align-items: center;
+								.add-new-img {
+	                                width: 32px;
+	                                height: 32px;
+	                            }
+							}
                         }
 
                         .alt-yard-edit-tag-img-adjust {
@@ -268,28 +284,28 @@
                             margin-bottom: 40px;
                             width: 272px;
                             height: 230px;
-                        
+
                             .bm-upload-form{
-                        
+
                                 div.bm-upload-container{
                                     width: 272px;
-                        
+
                                     img{
                                         width: 272px;
                                         height: 182px;
-    
+
                                     }
 
                                     .delete {
                                         top: 158px;
                                     }
                                 }
-                                
+
                             }
                             .bm-upload-tag{
                                 margin-top: 198px;
                                 justify-content: flex-start;
-                                
+
                                 .bm-upload-tag-input {
 
                                     .pre-input {

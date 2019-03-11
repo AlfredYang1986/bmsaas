@@ -1,59 +1,95 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import { debug } from '@ember/debug';
 import { A } from '@ember/array'
 
 export default Controller.extend({
-    bm_brand_service: service(),
+    bm_error_service: service(),
     listInputs: A([]),
     cur_idx: 0,
-    cateArr: A([{name: '音樂'}, {name: '藝術'}, {name: '運動'}, {name: '科學'}, {name: 'steam'}]),
+    cateArr: A([{name: '音乐'}, {name: '艺术'}, {name: '运动'}, {name: '科学'}, {name: 'steam'}]),
+    cur_cate_id: '',
+
+    tempHonorImgs: A(),
+    tempCertImgs: A(),
+
     actions: {
-        saveBrand() {
-            let that = this
-            let callback = {
-                onSuccess: function() {
-                    that.transitionToRoute('home');
-                },
-                onFail: function(/*err*/) {
-                    debug('error');
-                }
-            }
-            this.bm_brand_service.saveUpdate(callback); 
+        cancelBrandClicked() {
+            this.store.unloadRecord(this.model.brand);
+            this.transitionToRoute("home")
         },
-        selectedCate() {
-            let sel = document.getElementById("cateSelect");
-            if (sel.selectedIndex == "") {
-                this.set('bm_brand_service.brand.Cate.title', "");
-            } else {
-                this.set('bm_brand_service.brand.Cate.title', sel.options[sel.selectedIndex].value);
+        saveBrand() {
+            let flag1 = false;
+            let flag2 = false;
+            let flag1Count = 0;
+            let flag2Count = 0;
+            let doneFlag = false;
+            if(this.tempHonorImgs.length === 0) {
+                flag1 = true;
             }
+            if(this.tempCertImgs.length === 0) {
+                flag2 = true;
+            }
+            if(this.tempHonorImgs.length === 0 && this.tempCertImgs.length === 0) {
+                this.saveBrand();
+            }
+            this.tempHonorImgs.forEach((data, index, arr) => {
+                data.save().then(() => {
+                    flag1Count++
+                    if(flag1Count === arr.length) {
+                        flag1 = true;
+                    }
+                    if(flag1 && flag2 && !doneFlag) {
+                        doneFlag = true;
+                        this.saveBrand();
+                    }
+                }, error => {
+                    this.bm_error_service.handleError(error)
+                });
+            })
+            this.tempCertImgs.forEach((data, index, arr) => {
+                data.save().then(() => {
+                    flag2Count++
+                    if(flag2Count === arr.length) {
+                        flag2 = true;
+                    }
+                    if(flag1 && flag2 && !doneFlag) {
+                        doneFlag = true;
+                        this.saveBrand();
+                    }
+                }, error => {
+                    this.bm_error_service.handleError(error)
+                });
+            })
         },
         addHonorPicOnClick() {
-            let newObj = this.bm_brand_service.genNewImgObj('BmHonor');
-            newObj.tag = "initTag"
-            let tempArr = [];
-            if (this.bm_brand_service.brand.Honors !== null) {
-                tempArr = this.bm_brand_service.brand.Honors;
-            }
-            tempArr.pushObject(newObj);
-            this.set('bm_brand_service.brand.Honors', tempArr)
-        },
-        deleteHonorImg(param) {
-            this.bm_brand_service.brand.Honors.removeObject(param);
+            let tempHonorImg = this.store.createRecord("image", {"flag": 1})
+            this.tempHonorImgs.pushObject(tempHonorImg)
         },
         addCertPicOnClick() {
-            let newObj = this.bm_brand_service.genNewImgObj('BmCertification');
-            newObj.tag = "initTag"
-            let tempArr = [];
-            if (this.bm_brand_service.brand.Certifications !== null) {
-                tempArr = this.bm_brand_service.brand.Certifications;
-            }
-            tempArr.pushObject(newObj);
-            this.set('bm_brand_service.brand.Certifications', tempArr)
+            let tempCertImg = this.store.createRecord("image", {"flag": 2})
+            this.tempCertImgs.pushObject(tempCertImg)
+        },
+        deleteHonorImg(param) {
+            this.tempHonorImgs.removeObject(param);
         },
         deleteCertImg(param) {
-            this.bm_brand_service.brand.Certifications.removeObject(param);
+            this.tempCertImgs.removeObject(param);
         },
     },
+    saveBrand() {
+        this.model.brand.category.set('title', this.cur_cate_id)
+        let cate = this.store.peekRecord("category", this.model.brand.category.get("id"))
+        cate.save().then(() => {
+
+        }, error => {
+            this.bm_error_service.handleError(error)
+        })
+        this.model.brand.set("images", this.tempHonorImgs)
+        this.model.brand.get("images").pushObjects(this.tempCertImgs)
+        this.model.brand.save().then(()=> {
+            this.transitionToRoute("home")
+        }, error => {
+            this.bm_error_service.handleError(error)
+        });
+    }
 });

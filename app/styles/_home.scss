@@ -165,7 +165,7 @@
         margin: 0;
 
         .title_text {
-            
+
         }
         .sub_title_text {
             font-family: SFUIText-Regular;
@@ -630,6 +630,7 @@
     text-align: center;
 }
 input.data-picker {
+    padding-left: 16px;
     width: 163px;
     height: 32px;
     background: #FAFBFC;
@@ -648,6 +649,9 @@ input.data-picker:focus {
     border: none;
     box-shadow: none;
     background: url('../images/icon_date@1x.png') no-repeat right center;
+    background-color: #FAFBFC;
+}
+input[type=text][readonly] {
     background-color: #FAFBFC;
 }
 div.time {

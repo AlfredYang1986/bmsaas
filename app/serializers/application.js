@@ -1,22 +1,26 @@
-import PharbersSerializer from 'pharbers-emberbasis-library/serializers/phserializer';
-import { dasherize, classify } from '@ember/string';
+import DS from 'ember-data';
 
-/**
- * 所有的Serializer都要继承phserializer
- * 数据有特殊需求直接在normalizeResponse自己修改
- */
+export default DS.JSONAPISerializer.extend({
+    normalizeArrayResponse() {
+        // debugger
+        let normalizedDocument = this._super(...arguments);
 
-export default PharbersSerializer.extend({
-    keyForAttribute(key) {
-		return key
-	},
-	keyForRelationship(key) {
-		return classify(key);
-	},
-    payloadKeyFromModelName(modelName) {
-		return classify(modelName);//capitalize(camelize(modelName))
-	},
-	modelNameFromPayloadKey(modelName) {
-		return dasherize(modelName);//dasherize(modelName);
-	}
+        let tr =  normalizedDocument.meta['query-res']
+        let tp =  normalizedDocument.meta['total-page']
+        let tc =  normalizedDocument.meta['total-count']
+        localStorage.setItem(tr, tp);
+        localStorage.setItem(tr+'-count', tc);
+
+        return normalizedDocument;
+    },
+
+    // extractErrors(store, typeClass, payload, id) {
+    //     if (payload && typeof payload === 'object' && payload._problems) {
+    //       payload = payload._problems;
+    //       this.normalizeErrors(typeClass, payload);
+    //     }
+    //     window.console.log(payload);
+    //     // debugger
+    //     return payload;
+    //   }
 });

@@ -1,9 +1,16 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
+import EmberObject from '@ember/object';
 import $ from 'jquery';
 
 export default Component.extend({
+    toastOptions: EmberObject.create({
+        closeButton: false,
+        positionClass: 'toast-top-center',
+        progressBar: false,
+        timeOut: '2000',
+    }),
     bmOss: service(),
     positionalParams: ['imgObj', 'img', 'tag', 'canEdit', 'canEditTag', 'needTag', 'canDeleteObj'],
     imgObj: '',
@@ -32,10 +39,14 @@ export default Component.extend({
 
             let form = document.getElementById(this.upid);
             let formData = new FormData(form)
-
+            // console.log(form[0].files[0])
+            if (form[0].files[0].size > 307200) {
+                this.toast.error('', '文件大小超过300KB，请重新上传！', this.toastOptions);
+                return;
+            }
             var that = this;
             $.ajax({
-                url: '/upload',
+                url: '/v2/UploadToOss',
                 type: 'post',
                 data: formData,
                 processData: false,
@@ -67,8 +78,7 @@ export default Component.extend({
         }
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
     },
-    // lala(){ console.log(1)},
-    
+
     didRender() {
         if (this.tag == "initTag") {
             this.set('tag', '图片描述');

@@ -7,7 +7,7 @@ export default Component.extend({
         choose() {
             let attrs = this.get('attrs');
             attrs.isChecked = this.isChecked
-            this.sendAction('radioClick', attrs)
+            // this.sendAction('radioClick', attrs)
         }
     }
 });

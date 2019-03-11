@@ -2,19 +2,19 @@
  * 学生详情界面
 */
 .detail_stud_nav {
-  height: 16px;
-  line-height: 16px;
-  margin-bottom: 16px;
+	height: 16px;
+	line-height: 16px;
+	margin-bottom: 16px;
 
-  a {
-    @extend %font-system-level-link;
-    font-size: 12px!important;
-  }
+	a {
+		@extend %font-system-level-link;
+		font-size: 12px!important;
+ 	}
 
-  span {
-    font-size: 12px;
-    color: #6B778C;
-  }
+	span {
+		font-size: 12px;
+		color: #6B778C;
+	}
 }
 
 .detail_title {
@@ -46,141 +46,151 @@
     margin-bottom: 24px;
 }
 .stud_detail {
-  .basis_margin {
-    flex: 1;
-    .head-img {
-        margin-bottom: 16px;
+	.basis_margin {
+		flex: 1;
+		height: 252px;
 
-        img {
-            width: 128px;
-            height: 128px;
-            border-radius: 50%;
-        }
+		.head-img {
+        	margin-bottom: 16px;
 
-    }
-
-    .stud_detail_basis {
-        min-height: 156px;
-        margin-right: 8px;
-        padding: 24px;
-        background-color: #FFF;
-        text-align: center;
-        min-width: 296px;
-
-    .basis_name {
-      margin-bottom: 8px;
-      @extend %font-page-header-title;
-      height: 28px;
-      line-height: 28px;
-    }
-    .stud-basis-left-subtitle {
-        height: 24px;
-
-    }
-
-    .basis_sex_age {
-      @extend %font-help-text;
-      margin:0 4px;
-      line-height: 24px;
-      img {
-        width: 24px;
-        height: 24px;
-      }
-    }
-
-    .basis_dob {
-        margin-top: 40px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        font-size: 0;
-        span{
-          padding: 0 10px;
-          @extend %font-main-text;
-        }
-        .basis_dob_title {
-            min-width: 80px;
-            text-align: left;
-            @extend %font-form-info-title;
-        }
-        .basis_contact_margin_bottom {
-            margin-bottom: 24px;
-        }
-        .basis_contact {
-            min-width: 150px;
-            text-align: left;
-
-        }
-    }
+        	img {
+            	width: 128px;
+            	height: 128px;
+            	border-radius: 50%;
+        	}
+		}
+	}
 }
-  }
 
-  .stud_detail_other {
-    flex: 2;
+.stud_detail_basis {
+	min-height: 156px;
+	margin-right: 8px;
+	padding: 24px;
+	background-color: #FFF;
+	text-align: center;
+	min-width: 296px;
 
-    .other_self {
-      background-color: transparent;
-      min-width: 608px;
+	.basis_name {
+		margin-bottom: 8px;
+		@extend %font-page-header-title;
+		height: 28px;
+		line-height: 28px;
+	}
 
-      .info-block-outer {
-        background-color: #FFF;
-        margin-top: 8px;
-        &:nth-child(1) {
-          margin-top: 0;
-        }
-      }
-      .self_info {
-        padding: 24px;
-      }
-      .self_container {
-        font-size: 0;
-        margin-bottom: 16px;
+	.stud-basis-left-subtitle {
+		height: 24px;
+	}
 
-        span {
-          display: inline-block;
-        }
+	.basis_sex_age {
+		  @extend %font-help-text;
+		  margin:0 4px;
+		  line-height: 24px;
+		  img {
+			width: 24px;
+			height: 24px;
+		  }
+	}
 
-        span:first-child {
-            min-width: 56px;
-            margin-right: 16px;
-            @extend %font-help-text;
-        }
+	.basis_dob {
+		margin-top: 40px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		font-size: 0;
 
-        span:last-child {
-            @extend %font-main-text;
-        }
-      }
+		span{
+			padding: 0 10px;
+			@extend %font-main-text;
+		}
 
-      .self_container:nth-last-child(1) {
-        margin-bottom: 0;
-      }
+		.basis_dob_title {
+			min-width: 80px;
+			text-align: left;
+			@extend %font-form-info-title;
+		}
 
-      .line {
-        // margin: 40px 0;
-        border-bottom: 8px solid #f7f8fa;
-      }
+		.basis_contact_margin_bottom {
+			margin-bottom: 24px;
+		}
 
-      .parent_info {
-        padding: 16px 24px ;
-        @extend %font-form-info-title;
-      }
-      .follower-info {
-          .follower-head-img {
-              margin-right: 24px;
-              width: 48px;
-              height: 48px;
-              img {
-                  border-radius: 50%;
-              }
-          }
-      }
-      .follower-line {
-          margin: 0 24px;
-          opacity: 0.12;
-          border: 0.5px solid rgba(0, 0, 0 ,0.12);
-      }
-    }
-  }
+		.basis_contact {
+			min-width: 150px;
+			text-align: left;
+		}
+	}
+}
+
+.stud_detail_other {
+	flex: 2;
+
+	.other_self {
+		background-color: transparent;
+		min-width: 608px;
+
+		.info-block-outer {
+			background-color: #FFF;
+			margin-top: 8px;
+
+			&:nth-child(1) {
+				margin-top: 0;
+			}
+		}
+
+		.self_info {
+			padding: 24px;
+		}
+
+		.self_container {
+			font-size: 0;
+			margin-bottom: 16px;
+
+			span {
+				display: inline-block;
+			}
+
+			span:first-child {
+				min-width: 56px;
+				margin-right: 16px;
+				@extend %font-help-text;
+			}
+
+
+			span:last-child {
+				@extend %font-main-text;
+			}
+		}
+
+		.self_container:nth-last-child(1) {
+			margin-bottom: 0;
+		}
+
+		.line {
+			border-bottom: 8px solid #f7f8fa;
+		}
+
+		.parent_info {
+			padding: 16px 24px ;
+			@extend %font-form-info-title;
+		}
+
+		.follower-info {
+			.follower-head-img {
+				margin-right: 24px;
+				width: 48px;
+				height: 48px;
+
+				img {
+					border-radius: 50%;
+				}
+			}
+		}
+
+		.follower-line {
+			margin: 0 24px;
+			opacity: 0.12;
+			border: 0.5px solid rgba(0, 0, 0 ,0.12);
+	  	}
+	}
 }
 /**
  * end 学生详情界面

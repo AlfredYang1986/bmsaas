@@ -34,6 +34,7 @@
     "ember-cli-shims": "^1.2.0",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-uglify": "^2.0.0",
+    "ember-cookies": "^0.3.1",
     "ember-data": "~3.2.0",
     "ember-export-application-global": "^2.0.0",
     "ember-load-initializers": "^1.1.0",
@@ -54,9 +55,9 @@
   },
   "dependencies": {
     "ali-oss": "^6.0.1",
+    "babel-polyfill": "^6.26.0",
     "ember-cli-sass": "^8.0.1",
     "heimdalljs-logger": "^0.1.10",
-    "pharbers-emberbasis-library": "^1.0.8",
     "sass": "^1.14.0"
   }
 }

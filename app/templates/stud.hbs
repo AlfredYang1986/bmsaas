@@ -2,23 +2,19 @@
 	{{#layout-push direction="col" classNames="stud_content" }}
 		{{#layout-push direction='row' split=true classNames="stud-title-flex"}}
 			<p class="page_title">学生管理</p>
-			{{!-- <span class="qr-code">
-				{{#link-to 'edit.stud' 'stud/push' classNames='stud_add_btn'}}+ 添加学生{{/link-to}}
-			</span> --}}
 			{{#link-to 'edit.stud' 'stud/push' classNames='stud_add_btn'}}+ 学生注册{{/link-to}}
 		{{/layout-push}}
 		{{#layout-push direction="col" classNames="stud-list-outer"}}
-			{{#layout-push direction="row" classNames="stud-list-area" }}
-				{{!-- {{#each bm_stud_service.studs as |item|}}
-					<div class="line_container_warp stud_list_container">
-						{{bmcard/stud-list onStudCardClicked=(action 'cardClicked') stud=item}}
-					</div>
-				{{/each}} --}}
-				<table class='ib_table_head stud_list_table'>
-					{{bmtable/bm-table-inner type="studsList" listData=bm_stud_service.studs action="cardClicked"}}
-				</table>
-			{{/layout-push}}
-			{{bmcom/bm-pagination pageCount=bm_stud_service.totalPageCount sendPageNum=(action "handlePageChange")}}
+			{{#if (eq studs.length 0)}}
+				{{bmcom/bm-empty-state class="stud-empty-state" picUrl="/images/img_empty@2x.png" title="暂无学生" des="暂无数据"}}
+			{{else}}
+				{{#layout-push direction="row" classNames="stud-list-area" }}
+					<table class='ib_table_head stud_list_table'>
+						{{bmtable/bm-table-inner type="studsList" listData=studs onClickInner=(action "cardClicked")}}
+					</table>
+				{{/layout-push}}
+				{{bmcom/bm-pagination pageCount=page_count curPage=pagenum sendPageNum=(action "handlePageChange")}}
+			{{/if}}
 		{{/layout-push}}
 	{{/layout-push}}
 </div>

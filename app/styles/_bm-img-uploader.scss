@@ -16,6 +16,7 @@
 
             border: 1px dashed #D2D4D9;
             border-radius: 4px;
+            // cursor: pointer;
         }
         span#uploadSpan {
             position: absolute;
@@ -31,9 +32,12 @@
             left: 0;
             width: 272px;
             min-height: 182px;
+            height: 248px;
             opacity: 0;
+            cursor: pointer;
         }
         .delete {
+            cursor: pointer;
             width: 272px;
             height: 24px;
             background: rgba(0,0,0,0.5);

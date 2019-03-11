@@ -1,18 +1,46 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
-import { inject as service } from '@ember/service';
+import { A } from '@ember/array';
 
 export default Route.extend({
-    bm_session_service: service(),
-
     model(params) {
-        this.bm_session_service.set('sessionid', params.courseid);
+        // var si = this.store.findRecord('sessioninfo', params.courseid)
         return RSVP.hash({
-                courseid: params.courseid
-            })
+            course: this.store.findRecord('reservableitem', params.courseid),
+            // urls: A([
+            //     {
+            //         "pageName":"课程",
+            //         "link":"course",
+            //         "id":"",
+            //     },
+            //     {
+            //         "pageName":"课程详情",
+            //         "link":"",
+            //         "id":"",
+            //     }
+            // ]),
+        })
     },
+
+    // afterModel(model, transition) {
+        
+    // },
+
     setupController(controller, model) {
         this._super(controller, model);
-        this.bm_session_service.set('refresh_token', this.bm_session_service.guid());
+
+        let urls = A([
+            {
+                "pageName":"课程",
+                "link":"course",
+                "id":"",
+            },
+            {
+                "pageName": model.course.sessioninfo.get("title"),
+                "link":"",
+                "id":"",
+            }
+        ])
+        this.controller.set("urls", urls)
     },
 });

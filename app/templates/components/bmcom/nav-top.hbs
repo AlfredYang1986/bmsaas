@@ -1,12 +1,12 @@
 <ul class="nav">
     <li class="nav-item">
         {{#layout-push direction='row' classNames="nav-item-left"}}
-            {{#if (bmcom/bm-nil-obj bm_brand_service.brand)}}
+            {{#if (bmcom/bm-nil-obj logo)}}
             {{else}}
-                <img src={{brandlogo}} alt="">
+                <img src='{{logo}}' alt="">
             {{/if}}
             {{!-- <a class="brand-name" href="home">{{bm_brand_service.brand.title}}</a> --}}
-            {{#link-to 'home' classNames='brand-name'}}{{bm_brand_service.brand.title}}{{/link-to}}
+            {{#link-to 'home' classNames='brand-name'}}{{title}}{{/link-to}}
         {{/layout-push}}
     </li>
     <li class="nav-item menu_mid">

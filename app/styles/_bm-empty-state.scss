@@ -2,12 +2,12 @@
     display: flex;
     justify-content: center;
     min-width: 350px;
-    // height: calc(100vh - 356px);
+    // height: calc(100vh - 112px);
     min-height: 360px;
     background-color: #FFF;
     padding: 24px;
     margin-top: 24px;
-    
+
     .empty-state-outer {
         width: 350px;
 
@@ -21,7 +21,7 @@
         }
         .empty-state-title-outer {
             height: 24px;
-            
+
             .empty-state-title {
                 font-family: SFUIDisplay-Medium;
                 font-size: 20px;
@@ -33,7 +33,7 @@
         }
         .empty-state-des-outer {
             padding-top: 16px;
-            
+
             .empty-state-des {
                 font-family: SFUIText-Regular;
                 font-size: 14px;
@@ -63,5 +63,14 @@
                 }
             }
         }
+    }
+}
+
+.bm-sessionable-table, .inbox_table {
+    
+    .bm-empty-state {
+        margin-top: 0;
+        height: 100%;
+        padding: 0;
     }
 }

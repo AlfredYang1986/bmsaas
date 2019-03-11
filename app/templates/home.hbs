@@ -3,8 +3,8 @@
         {{#layout-push direction="col" classNames="brand_detail_container_outer"}}
 
             {{#layout-push direction='col' classNames="detail_title brand_detail_title"}}
-                <span class="title_text">{{bm_brand_service.brand.title}}</span> 
-                <span class="sub_title_text">{{bm_brand_service.brand.Cate.title}}</span> 
+                <span class="title_text">{{model.brand.title}}</span>
+                <span class="sub_title_text">{{model.brand.category.title}}</span>
             {{/layout-push}}
 
             {{#layout-push direction="col" classNames="detail_panel_tab_container"}}
@@ -27,20 +27,20 @@
                     <div class="dd_container brand_detail_container_left_inner">
                         {{#layout-push direction="col" classNames="brand_info_card"}}
                             {{#layout-push direction="col" classNames="brand_info_card_head"}}
-                                {{#if (bmcom/bm-nil-obj bm_brand_service.brand)}}
+                                {{#if (bmcom/bm-nil-obj model.brand)}}
                                 {{else}}
                                     <img class="brand_logo" src={{logoPath}} />
                                 {{/if}}
-                                <p class="brand_title">{{bm_brand_service.brand.title}}</p>
+                                <p class="brand_title">{{model.brand.title}}</p>
                             {{/layout-push}}
                             {{#layout-push direction="col" classNames="brand_info_card_content"}}
                                 {{#layout-push direction="row" classNames="brand_info_card_list"}}
                                     <p>成立时间</p>
-                                    <span class="detail_content ">{{bmdob/bmdobformat bm_brand_service.brand.found}}</span>
+                                    <span class="detail_content ">{{bmdob/bmdobformat model.brand.found}}</span>
                                 {{/layout-push}}
                                 {{#layout-push direction="row" classNames=""}}
                                     <p>一句话介绍</p>
-                                    <span class="brand_subtitle">{{bm_brand_service.brand.slogan}}</span>
+                                    <span class="brand_subtitle">{{model.brand.slogan}}</span>
                                 {{/layout-push}}
                             {{/layout-push}}
                         {{/layout-push}}
@@ -50,35 +50,39 @@
                     {{#layout-push direction="col"  classNames="brand_detail_info"}}
                         <p class="brand_detail_list_title">品牌亮点</p>
                         {{#layout-push direction="row"}}
-                            {{#each bm_brand_service.brand.brand_tags as |item|}}
+                            {{#each model.brand.brandTags as |item|}}
                                 {{#layout-push direction='col' mid=true classNames="brand_tags brand_tag_margin"}}
-                                    <span>{{item.text}}</span>
+                                    <span>{{item}}</span>
                                 {{/layout-push}}
                             {{/each}}
                         {{/layout-push}}
                     {{/layout-push}}
                     {{#layout-push direction="col" classNames="brand_detail_info"}}
                         <p class="brand_detail_list_title">品牌故事</p>
-                        <span class="brand_detail_list_content">{{bm_brand_service.brand.foundStory}}</span>
+                        <span class="brand_detail_list_content">{{model.brand.foundStory}}</span>
                     {{/layout-push}}
                     {{!-- {{#layout-push direction="col" classNames="brand_detail_info"}}
                         <p class="brand_detail_list_title">师资团队</p>
-                        <span class="brand_detail_list_content">{{bm_brand_service.brand.edu_idea}}</span>
+                        <span class="brand_detail_list_content">{{model.brand.edu_idea}}</span>
                     {{/layout-push}} --}}
                     {{#layout-push direction="col" classNames="brand_detail_info"}}
                         <p class="brand_detail_list_title">品牌荣誉</p>
                         {{#layout-push direction="row" classNames="detail_reward_content"}}
-                            {{#each bm_brand_service.brand.Honors as |item|}}
-                                {{!-- {{bmcom/bm-img-uploader needTag=true canEdit=false img=item.img tag=item.tag classNames='detail_reward_content_honor'}} --}}
-                                {{bmcom/bm-img-uploader needTag=true canEdit=false img=item.img tag=item.tag classNames='detail_reward_content_cert'}}
+                            {{#each model.brand.images as |item|}}
+                                {{#if (eq item.flag 1)}}
+                                    {{!-- {{bmcom/bm-img-uploader needTag=true canEdit=false img=item.img tag=item.tag classNames='detail_reward_content_honor'}} --}}
+                                    {{bmcom/bm-img-uploader needTag=true canEdit=false img=item.img tag=item.tag classNames='detail_reward_content_cert'}}
+                                {{/if}}
                             {{/each}}
                         {{/layout-push}}
                     {{/layout-push}}
                     {{#layout-push direction="col" classNames="brand_detail_info"}}
                         <p class="brand_detail_list_title">资质认证</p>
                         {{#layout-push direction="row" classNames="detail_reward_content"}}
-                            {{#each bm_brand_service.brand.Certifications as |item|}}
-                                {{bmcom/bm-img-uploader needTag=true canEdit=false img=item.img tag=item.tag classNames='detail_reward_content_cert'}}
+                            {{#each model.brand.images as |item|}}
+                                {{#if (eq item.flag 2)}}
+                                    {{bmcom/bm-img-uploader needTag=true canEdit=false img=item.img tag=item.tag classNames='detail_reward_content_cert'}}
+                                {{/if}}
                             {{/each}}
                         {{/layout-push}}
                     {{/layout-push}}

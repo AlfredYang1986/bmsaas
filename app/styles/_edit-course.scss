@@ -1,7 +1,6 @@
 @import './bm-saas-standard/args';
-
+@import 'bm-saas-standard/bm-select-box';
 .edit_container {
-
 	.input_container {
 		flex: 1;
 		padding-top: 24px;
@@ -24,11 +23,13 @@
 				margin: 0;
 				box-shadow: none;
                 width: 100%;
-
+				select {
+					@extend %select-box-dropdown-default;
+				}
                 .bm-dynamic-input {
                     margin-top: 16px;
                 }
-                
+
                 .edit_between_btn {
                     padding: 6px 12px;
                     height: 32px;
@@ -50,6 +51,9 @@
                     margin: 0;
                 }
 
+				.alt-edit-title-top {
+					margin-top: 24px;
+				}
                 .alt-edit-title {
                     color: #172B4D;
                     margin-bottom: 8px;
@@ -137,9 +141,11 @@
 
                 .course-edit-check-age {
                     margin-top: 8px;
-
                 }
-
+				.course-edit-check-mode {
+					margin-top: 8px;
+					margin-bottom: 20px;
+				}
                 input[type=checkbox] {
                     margin-left: 0;
                     height: 15px;
@@ -163,6 +169,10 @@
                     }
                     .alt_course_title_age{
                         margin-top: 40px;
+                    }
+					.alt_course_title_mode{
+						margin-top: 40px;
+						margin-bottom: 20px;
                     }
 					.alt-course-age-group{
                         justify-content: flex-start;
@@ -233,11 +243,19 @@
                             border: 1px dashed #D2D4D9;
                             cursor: pointer;
                             background: #FAFBFC;
+							.add-new-img-div {
+								width: 80px;
+								height: 80px;
+								display: flex;
+								flex-direction: row;
+								justify-content: center;
+								align-items: center;
+								.add-new-img {
+	                                width: 32px;
+	                                height: 32px;
+	                            }
+							}
 
-                            .add-new-img {
-                                width: 32px;
-                                height: 32px;
-                            }
                         }
                         .alt-course-edit-tag-img-adjust {
                             margin-right: 24px;
@@ -272,7 +290,7 @@
                         }
                     }
                 }
-                
+
                 &.edit_eighth_panel {
                     .accompany-bottom-margin-div {
                         margin-bottom: 56px;
@@ -289,7 +307,11 @@
                 margin: 0 24px 24px 24px;
                 width: calc(100% - 48px);
                 padding: 24px;
-
+				.alt_course_title_class {
+					font-family: PingFangSC-Medium;
+					font-size: 14px;
+					color: #172B4D;
+				}
                 .alt_course_title.alt_course_big_title{
                     margin-bottom: 40px;
                     font-size: 20px;
@@ -298,6 +320,9 @@
                     margin-bottom: 4px;
                     // margin-top: 40px;
                 }
+				.alt_course_title_top {
+					margin-top: 40px;
+				}
                 .alt_course_des{
                     // margin-bottom: 16px;
                     // margin-top: 4px;

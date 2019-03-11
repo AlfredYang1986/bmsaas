@@ -509,7 +509,7 @@
         color: #42526E;
         text-align: center;
         line-height: 20px;
-
+        cursor: pointer;
     }
     .ib_tab_btn_active {
         color: #3172E0;
@@ -519,12 +519,13 @@
 }
 
 .bm-inbox-table {
-    height: 550px;
+    // height: 550px;
+    height: calc(100vh - 400px);
     overflow: auto;
-    margin: 24px 0;
+    margin-bottom: 24px;
 }
 .bm-sessionable-table {
-    height: 560px;
+    height: calc(100vh - 404px);
     overflow: auto;
     margin: 24px 0;
 }

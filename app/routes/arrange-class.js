@@ -1,10 +1,12 @@
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
+import RSVP from 'rsvp';
 
 export default Route.extend({
-    bm_yard_service: service(),
-    setupController(controller, model) {
-        this._super(controller, model);
-        this.bm_yard_service.set('refresh_all_token', this.bm_yard_service.guid());
-    }   
+    model() {
+        return RSVP.hash({
+            rooms: this.store.query('room', { "brand-id": localStorage.getItem("brandid")}),
+            classes: this.store.query('class', { "brand-id": localStorage.getItem("brandid"), "status": 2}),
+            techs: this.store.query('teacher', { "brand-id": localStorage.getItem("brandid")}),
+        })
+    },
 });

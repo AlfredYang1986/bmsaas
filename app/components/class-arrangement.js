@@ -2,7 +2,6 @@ import Component from '@ember/component';
 import { A } from '@ember/array';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { debug } from '@ember/debug';
 
 export default Component.extend({
     mock_data: service(),
@@ -65,7 +64,7 @@ export default Component.extend({
         this.start_date = this.initStartDate();
     },
     didRender() {
-        debug('data did render');
+        // debug('data did render');
         var canvas = document.getElementById('arrangement');
         var ctx = canvas.getContext('2d');
 
@@ -172,7 +171,7 @@ export default Component.extend({
         return this.sessions_on_cls.filter(filerSessionWithTime);
     }),
     drawSessions(ctx) {
-        debug('draw session');
+        // debug('draw session');
 
         // let s = this.get('start_date');
         // let sdd = s.getDay() == 0 ? 7 : s.getDay();
@@ -271,7 +270,7 @@ export default Component.extend({
         successHandled() {
 
             if (this.session_insert_is_validate) {
-                debug('insert session');
+                // debug('insert session');
                 let nse = this.store.createRecord('bmclssession', {
                     id: this.guid(),
                     length: this.session_insert_length,

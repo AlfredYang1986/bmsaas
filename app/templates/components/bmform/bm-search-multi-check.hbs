@@ -1,11 +1,14 @@
-{{!-- {{yield}} --}}
 {{#layout-push direction='col' classNames="bm-search-check-container"}}
     {{#layout-push direction='row' split=true classNames="title-container"}}
         <p class="search-title">{{searchTitle}}</p>
-        <p class="choose-num">已选X</p>
+        {{#if (eq curItems null)}}
+            <p class="choose-num">已选0个</p>
+        {{else}}
+            <p class="choose-num">已选{{curItems.length}}个</p>
+        {{/if}}
     {{/layout-push}}
     {{#layout-push direction='col' classNames="search-container"}}
-        {{input classNames="search-input" value=inputVal keyUp=(action "onSearchChange" inputVal)}}
+        {{input classNames="search-input" value=inputVal placeholder="输入姓名或联系方式以检索" keyUp=(action "onSearchChange" inputVal)}}
     {{/layout-push}}
     {{#layout-push direction='col' classNames="table-container"}}
         <table class='ib_table_head class_add_stud_table'>
@@ -21,14 +24,20 @@
                     </td>
                     <td class='ib_table_content_item'>{{bmdob/bmdob2age item.dob}}岁</td>
                     <td class='ib_table_content_item'>
-                        {{#each item.Guardians as |elem idx|}}
-                            {{#if (eq idx 0)}}
-                                {{elem.contact}}
-                            {{/if}}
-                        {{/each}}
+                        {{!-- {{#each item.guardians as |elem idx|}}
+                            {{#if (eq idx 0)}} --}}
+                                {{item.contact}}
+                            {{!-- {{/if}}
+                        {{/each}} --}}
                         </td>
                     <td class='ib_table_content_item'>
-                        {{input classNames="multi-check" type="checkbox" click=(action "onCheckChange" item)}}
+                        {{input classNames="multi-check" type="checkbox" checked=item.state click=(action "onCheckChange" item)}}
+                        {{!-- {{#if (eq item.state 1)}}
+                            <img src="/images/checkbox_Checked@3x.png" class="multi-check" onclick={{action "onCheckChange" item}}/>
+                        {{else}}
+                            <img src="/images/checkbox_Unchecked -resting@3x.png" class="multi-check" onclick={{action "onCheckChange" item}}/>
+                        {{/if}} --}}
+                        {{!-- <input class="multi-check" type="checkbox" checked={{item.state}} onclick={{action "onCheckChange" item}}> --}}
                     </td>
                 </tr>
             {{/each}}
