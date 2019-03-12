@@ -204,7 +204,11 @@
 
         .class-teachers {
             height: 32px;
-
+            .note {
+                font-family: PingFangSC-Regular;
+                font-size: 11px;
+                color: #FFC400;
+            }
             img {
                 margin-right: 16px;
                 width: 24px;
