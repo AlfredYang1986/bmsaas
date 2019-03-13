@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 
 export default Component.extend({
-    positionalParams: ['selTitle', 'options', 'curSelect', 'pHolder', "selId", "type"],
+    positionalParams: ['selTitle', 'options', 'curSelect', 'pHolder', "selId", "type", "disabled"],
     handleChangeFlag: false,
     idType: false,
     chooseReservable: false,

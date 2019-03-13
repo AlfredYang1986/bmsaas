@@ -9,6 +9,7 @@ export default Controller.extend({
     savePicDoneFlag: false,
     bm_error_service: service(),
     toast: service(),
+    saveInfo: false,
     toastOptions: EmberObject.create({
         closeButton: false,
         positionClass: 'toast-top-center',
@@ -34,7 +35,14 @@ export default Controller.extend({
                 that.bm_error_service.handleError(error)
             }
             if(that.model.course.cover) {
-                if(Number(that.model.course.alb) <= Number(that.model.course.aub)) {
+                if(Number(that.model.course.alb) == -1 || Number(that.model.course.aub) == -1) {
+                    that.set('saveInfo', true)
+                } else if(Number(that.model.course.alb) < Number(that.model.course.aub)) {
+                    that.set('saveInfo', true)
+                } else {
+                    that.set('saveInfo', false)
+                }
+                if(that.saveInfo) {
                     if(this.model.course.images.length === 0) {
                         this.model.course.save().then(onSuccess, onFail);
                     } else {

@@ -4,7 +4,7 @@
         <span class='alt_course_title'>结束后，宝贝将获得什么实质性的成果呢？</span>
         <span class='alt_course_des'>如：小礼物、手作機器人等…</span>
         {{!-- {{input type="text" class="edit_input" value=session.acquisition disabled=ifAcqInput}} --}}
-        {{bmform/dynamic-input listInputs=session.acquisition disabled=checkFlag needBottomHint=true}}
+        {{bmform/dynamic-input listInputs=session.acquisition disabled=checkFlag needBottomHint=true maxlength='10' maxCount='10'}}
         <div class="course-edit-check course-edit-check-low no-inc-margin">
             <span class="radio-inline" {{action 'noAcq'}}>
                 {{#if checkFlag}}

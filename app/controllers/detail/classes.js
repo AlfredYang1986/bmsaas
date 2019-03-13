@@ -12,7 +12,7 @@ export default Controller.extend({
         progressBar: false,
         timeOut: '2000',
     }),
-    
+    able: false,
     urls: null,
 
     jobDuty: A([{name:'主讲'}, {name:'助教'}]),
@@ -198,7 +198,7 @@ export default Controller.extend({
                     that.bm_error_service.handleError(error, '添加老师失败')
                     // that.toast.error('', '添加老师失败', that.toastOptions);
                 }
-    
+
                 for(let idx = 0;idx < this.model.techs.length;idx++) {
                     if(this.addTechId == this.model.techs.objectAt(idx).id) {
                         // this.model.transTech(this.model.techs.objectAt(idx))

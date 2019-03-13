@@ -81,5 +81,9 @@ export default Route.extend({
         } else {
             controller.set("rela_idx", 0);
         }
+        if(model.stud.dob == 0) {
+            let now = new Date().getTime();
+            model.stud.set('dob', now);
+        }
     }
 });

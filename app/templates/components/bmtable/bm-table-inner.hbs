@@ -170,7 +170,7 @@
             <td class='ib_table_content_item'>{{item.teacherDuty}}</td>
             <td class='ib_table_content_item'>{{item.teacher.contact}}</td>
             <td class='ib_table_content_item'>{{item.teacher.wechat}}</td>
-            <td class="ib_table_content_item">
+            {{!-- <td class="ib_table_content_item">
                 {{#bs-dropdown class="btn-dropdown" as |dd|}}
                     {{#dd.button class="reserve-more-btn"}}{{/dd.button}}
                     {{#dd.menu align="right" as |menu|}}
@@ -181,7 +181,7 @@
                         {{/menu.item}}
                     {{/dd.menu}}
                 {{/bs-dropdown}}
-            </td>
+            </td> --}}
         {{else if (bmeq type "classStud")}}
             <td class='ib_table_content_item'>{{item.name}}</td>
             <td class="ib_table_content_item">
@@ -207,9 +207,9 @@
                     {{#dd.menu align="right" as |menu|}}
                         {{#menu.item align="right"}}
                             {{#layout-push direction='col' classNames="dropdown-content"}}
-                                {{#link-to 'detail.stud' item.id}}
+                                {{!-- {{#link-to 'detail.stud' item.id}}
                                     <a class="normal">学生详情</a>
-                                {{/link-to}}
+                                {{/link-to}} --}}
                                 <a class="warning" onclick={{action 'onRemoveStudClick' item dd.closeDropdown}}>移出班级</a>
                             {{/layout-push}}
                         {{/menu.item}}
