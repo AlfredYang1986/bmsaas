@@ -9,7 +9,7 @@
 
 .course_content_top {
 	@extend %course_content_basic;
-	height: fit-content;
+	height: 100%;
 	padding-top: 64px;
 	min-width: 1200px;
 
@@ -17,13 +17,22 @@
 		margin: 24px;
 		height: calc(100vh - 112px);
 	}
+
+	.bp-empty-state {
+		margin: 24px;
+		width: calc(100% - 48px);
+		height: calc(100vh - 112px);
+	}
 }
 
 .course_content {
 	background: #f7f8fa;
 	padding: 24px;
-	// margin-bottom: 0;
-	// height: calc(100vh - 79px);
+
+	.bp-empty-state {
+		margin: 24px 0;
+		height: calc(100vh - 192px);
+	}
 
 	.course-title-flex {
 		background: $color-neutral-N000;
@@ -58,7 +67,7 @@
 
 	.reservable-empty-state {
 		margin-top: 0;
-		height: calc(100vh - 168px);
+		height: calc(100vh - 200px);
 	}
 
 	.course-empty-state {

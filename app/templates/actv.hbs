@@ -1,16 +1,35 @@
-<div class="course_content_top" >
-    {{#layout-push direction="col" classNames="course_content"}}
-        {{#layout-push direction="row" split=true classNames="course-title-flex"}}
-            <p class="page_title">活动</p>
-            {{#link-to 'edit.actv.rsb' classNames='course_add_btn'}}+ 创建活动{{/link-to}}
-        {{/layout-push}}
-        {{#if (eq page_count 0)}}
-            {{bmcom/bm-empty-state class="reservable-empty-state" picUrl="/images/img_empty@2x.png" title="暂无活动" des="请创建活动"}}
-        {{else}}
-            {{bmcom/bm-card-area onCourseCardClicked=(action 'cardClicked')  onRefreshDataComplete=(action 'refreshDataComplete') type='actv' curPage=pagenum}}
-            {{bmcom/bm-pagination pageCount=page_count curPage=pagenum sendPageNum=(action "handlePageChange")}}
-        {{/if}}
-
-    {{/layout-push}}
+<div class="course_content_top">
+	{{#layout-push direction="col" classNames="course_content"}}
+		{{#layout-push direction="row" split=true classNames="course-title-flex"}}
+			<p class="page_title">活动</p>
+			{{#link-to 'edit.actv.rsb' classNames='course_add_btn'}}+ 创建活动{{/link-to}}
+		{{/layout-push}}
+		{{#if (eq page_count 0)}}
+			{{bp-empty-state/no-button
+					class="reservable-empty-state"
+					src='/images/img_empty@2x.png'
+					title="暂无活动"
+					desc="请创建活动"
+				}}
+			{{!-- {{bmcom/bm-empty-state
+				class="reservable-empty-state" 
+				picUrl="/images/img_empty@2x.png" 
+				title="暂无活动" 
+				des="请创建活动"}} --}}
+		{{else}}
+			{{bmcom/bm-card-area
+				onCourseCardClicked=(action 'cardClicked')  
+				onRefreshDataComplete=(action 'refreshDataComplete') 
+				type='actv' 
+				curPage=pagenum}}
+			{{!-- {{bmcom/bm-pagination
+				pageCount=page_count 
+				curPage=pagenum 
+				sendPageNum=(action "handlePageChange")}} --}}
+			{{bp-pagination
+				totalPageCounts=page_count 
+				onClickPage=(action ( mut pagenum))}}
+		{{/if}}
+	{{/layout-push}}
 </div>
 {{outlet}}
