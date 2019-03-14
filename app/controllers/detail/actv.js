@@ -42,7 +42,7 @@ export default Controller.extend({
     classes: computed('pagenum', function() {
         let ps = this.store.query('class', { 'page[number]': this.pagenum, 'page[size]': 20, "reservable-id": this.model.actv.get("id")})
         ps.then(() => {
-            this.set('total_count', localStorage.getItem('classes-count')) 
+            this.set('total_count', localStorage.getItem('classes-count'))
         }, error => {
             this.bm_error_service.handleError(error)
         })
@@ -106,6 +106,10 @@ export default Controller.extend({
             let onFail = function(error) {
                 that.bm_error_service.handleError(error, '删除体验课失败')
                 // that.toast.error('', '删除体验课失败', that.toastOptions);
+                that.store.unloadRecord(that.model.actv)
+                that.store.findRecord('reservableitem', that.model.actvid).then(res => {
+                    that.set('model.actv', res)
+                })
             }
             this.model.actv.deleteRecord(this.model.actv)
             this.model.actv.save().then(onSuccess, onFail);
