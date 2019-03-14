@@ -14,6 +14,7 @@ export default Controller.extend({
     savePicDoneFlag: false,
     actions: {
         saveCourseBtnClicked() {
+            //新建
             if (this.model.isPushing) {
                 let imgCount = 0;
                 let that = this;
@@ -45,23 +46,32 @@ export default Controller.extend({
                             this.model.course.save().then(onSuccess, onFail);
                         } else {
                             this.model.course.images.forEach((item, index, arr) => {
-                                if(item.dirtyType !== undefined) {
-                                    item.save().then(() => {
-                                        if(imgCount + 1 == arr.length) {
-                                            this.set("savePicDoneFlag", true);
+                                // if(item.id != null && item.id != '') {
+                                    if(item.dirtyType !== undefined) {
+                                        item.save().then(() => {
+                                            if(imgCount + 1 == arr.length) {
+                                                this.set("savePicDoneFlag", true);
+                                            } else {
+                                                this.set("savePicDoneFlag", false);
+                                            }
+                                            imgCount ++;
+                                            if(item.id != null && item.id != '') {
+                                                if(this.savePicDoneFlag) {
+                                                    this.model.course.save().then(onSuccess, onFail);
+                                                }
+                                            }
+                                        }, error => {
+                                            this.bm_error_service.handleError(error)
+                                        });
+                                    } else {
+                                        if(item.id != null && item.id != '') {
+                                            if(this.savePicDoneFlag) {
+                                                this.model.course.save().then(onSuccess, onFail);
+                                            }
                                         }
-                                        imgCount ++;
-                                        if(this.savePicDoneFlag) {
-                                            this.model.course.save().then(onSuccess, onFail);
-                                        }
-                                    }, error => {
-                                        this.bm_error_service.handleError(error)
-                                    });
-                                } else {
-                                    if(this.savePicDoneFlag) {
-                                        this.model.course.save().then(onSuccess, onFail);
+
                                     }
-                                }
+                                // }
                             });
                         }
                     } else {
@@ -70,18 +80,20 @@ export default Controller.extend({
                 } else {
                     that.toast.error('', '请添加封面图片', that.toastOptions);
                 }
-            } else {
+            }
+            //编辑
+            else {
                 if(Number(this.model.course.alb) > Number(this.model.course.aub)) {
                     this.toast.error('', '请检查年龄信息', this.toastOptions);
                     return;
                 }
+                let imgCount = 0;
                 let that = this;
                 let onSuccess = function () {
                     if(that.model.course.category.get("id")) {
                         that.model.course.category.set('title', that.model.course.category.get("title"));
                         let cate = that.store.peekRecord("category", that.model.course.category.get("id"));
                         cate.save().then(() => {
-
                         }, error => {
                             this.bm_error_service.handleError(error)
                         });
@@ -91,29 +103,38 @@ export default Controller.extend({
                 let onFail = function (error) {
                     that.bm_error_service.handleError(error)
                 }
-                // this.model.course.save().then(onSuccess, onFail);
                 if(that.model.course.cover) {
                     if(Number(that.model.course.alb) <= Number(that.model.course.aub)) {
                         if(this.model.course.images.length === 0) {
                             this.model.course.save().then(onSuccess, onFail);
                         } else {
                             this.model.course.images.forEach((item, index, arr) => {
-                                if(index + 1 == arr.length) {
+                                if(imgCount + 1 == arr.length) {
                                     this.set("savePicDoneFlag", true);
-                                }
-                                if(item.dirtyType !== undefined) {
-                                    item.save().then(() => {
-                                        if(this.savePicDoneFlag) {
-                                            this.model.course.save().then(onSuccess, onFail);
-                                        }
-                                    }, error => {
-                                        this.bm_error_service.handleError(error)
-                                    });
                                 } else {
-                                    if(this.savePicDoneFlag) {
-                                        this.model.course.save().then(onSuccess, onFail);
-                                    }
+                                    this.set("savePicDoneFlag", false);
                                 }
+                                imgCount ++;
+                                // if(item.id != null && item.id != '') {
+                                    if(item.dirtyType !== undefined) {
+                                        item.save().then(() => {
+                                            if(item.id != null && item.id != '') {
+                                                if(this.savePicDoneFlag) {
+                                                    this.model.course.save().then(onSuccess, onFail);
+                                                }
+                                            }
+                                        }, error => {
+                                            this.bm_error_service.handleError(error)
+                                        });
+
+                                    } else {
+                                        if(item.id != null && item.id != '') {
+                                            if(this.savePicDoneFlag) {
+                                                this.model.course.save().then(onSuccess, onFail);
+                                            }
+                                        }
+                                    }
+                                // }
                             });
                         }
                     } else {

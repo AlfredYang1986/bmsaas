@@ -62,17 +62,23 @@ export default Controller.extend({
                                 item.save().then(() => {
                                     if(imgCount + 1 == arr.length) {
                                         this.set("savePicDoneFlag", true);
+                                    } else {
+                                        this.set("savePicDoneFlag", false);
                                     }
                                     imgCount ++;
-                                    if(this.savePicDoneFlag) {
-                                        this.model.si.save().then(onSuccess, onFail);
+                                    if(item.id != null && item.id != '') {
+                                        if(this.savePicDoneFlag) {
+                                            this.model.si.save().then(onSuccess, onFail);
+                                        }
                                     }
                                 }, error => {
                                     this.bm_error_service.handleError(error)
                                 });
                             } else {
-                                if(this.savePicDoneFlag) {
-                                    this.model.si.save().then(onSuccess, onFail);
+                                if(item.id != null && item.id != '') {
+                                    if(this.savePicDoneFlag) {
+                                        this.model.si.save().then(onSuccess, onFail);
+                                    }
                                 }
                             }
                         });
