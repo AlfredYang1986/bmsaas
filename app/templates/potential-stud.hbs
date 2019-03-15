@@ -1,0 +1,33 @@
+<div class="course_content_top">
+    {{#layout-push direction='col' classNames='course_content'}}
+        {{#layout-push direction='row' split=true classNames='course-title-flex'}}
+            <p class="title">潜在学生</p>
+            {{#bs-button classNames="add_btn" onClick=(action (mut showAddSessionDlg) true)}}<span>+ 添加潜在学生</span>{{/bs-button}}
+        {{/layout-push}}
+        {{#layout-push direction='row'}}
+            {{!-- {{bmform/bm-search-multi-check }} --}}
+        {{/layout-push}}
+    {{/layout-push}}
+    {{#bmcom/bm-modal-container title="" mswitch=showAddSessionDlg
+            needSubmit=couldSubmit
+            successbtncss='exp-modal-confirm'
+            cancelbtncss='exp-modal-cancel'
+            canceltext='取消'
+            successtext='手动添加'
+            onCancelBtnClicked=(action 'cancelHandled')
+            onSuccessBtnClicked=(action 'successHandled')}}
+            <div class="pt-stud-modal">
+                {{#layout-push direction='col'}}
+                    {{#layout-push direction='col'}}
+                        <p class="title">添加潜在学生</p>
+                        <p class="note">您可以推荐家长在小程序上使用注册功能或手动添加潜在学生</p>
+                    {{/layout-push}}
+                    {{#layout-push direction='col' mid=true classNames='code'}}
+                        <img src={{codeImg}} alt="" class="code-img">
+                        <p class="img-title">推荐使用</p>
+                    {{/layout-push}}
+                {{/layout-push}}
+            </div>
+    {{/bmcom/bm-modal-container}}
+</div>
+{{outlet}}

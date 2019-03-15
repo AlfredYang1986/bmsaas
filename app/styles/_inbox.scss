@@ -448,6 +448,40 @@
         background: #fff;
     }
 }
+.pt-stud-modal {
+    width: 400px;
+    padding: 24px 0;
+    .title {
+        margin-bottom: 24px;
+        font-family: PingFangSC-Medium;
+        font-size: 16px;
+        color: #172B4D;
+        font-weight: 600;
+    }
+    .note {
+        margin-bottom: 56px;
+        font-family: PingFangSC-Regular;
+        font-size: 14px;
+        color: #172B4D;
+    }
+    .code {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .code-img {
+        margin-bottom: 24px;
+        width: 240px;
+        height: 240px;
+    }
+    .img-title {
+        font-weight: 600;
+        font-family: PingFangSC-Medium;
+        font-size: 16px;
+        color: #172B4D;
+    }
+}
 .ib_title_container {
     padding: 20px 24px;
     background-color: #fff;

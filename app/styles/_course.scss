@@ -24,7 +24,19 @@
     padding: 24px;
     // margin-bottom: 0;
     // height: calc(100vh - 79px);
+    .add_btn {
+        border: none;
+        background: $color-theme-T100;
+        border-radius: 100px;
+        font-family: PingFangSC-Medium;
+        font-size: $font-size-main;
+        color: $color-neutral-N000;
+        letter-spacing: 2px;
+        height: 32px;
+        line-height: 16px;
+        padding: 8px 24px;
 
+    }
     .course-title-flex{
         background: $color-neutral-N000;
         align-items: center;

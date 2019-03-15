@@ -64,6 +64,7 @@ Router.map(function() {
   this.route('exp');
   this.route('actv');
   this.route('not-found');
+  this.route('potential-stud');
 });
 
 export default Router;
