@@ -37,14 +37,22 @@
         padding: 8px 24px;
 
     }
+    .search {
+        margin-top: 24px;
+        margin-bottom: 32px;
+        input.seatch-stud {
+            width: 159px;
+            height: 32px;
+            border: 0 solid #DFE1E5;
+            border-radius: 4px;
+        }
+    }
     .course-title-flex{
         background: $color-neutral-N000;
         align-items: center;
         height: 72px;
         padding: 20px 24px;
         margin-bottom: 8px;
-
-
         p.page_title {
             font-family: PingFangSC-Medium;
             font-size: 24px;

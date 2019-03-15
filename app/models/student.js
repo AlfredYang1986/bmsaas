@@ -14,7 +14,7 @@ export default DS.Model.extend({
     wechat: DS.attr('string'),
     school: DS.attr('string'),
     sourceWay: DS.attr('string'),
-
+    status: DS.attr('number'),
     province: DS.attr('string'),
     city: DS.attr('string'),
     district: DS.attr('string'),

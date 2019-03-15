@@ -1,12 +1,34 @@
 <div class="course_content_top">
     {{#layout-push direction='col' classNames='course_content'}}
         {{#layout-push direction='row' split=true classNames='course-title-flex'}}
-            <p class="title">潜在学生</p>
+            <p class="page_title">潜在学生</p>
             {{#bs-button classNames="add_btn" onClick=(action (mut showAddSessionDlg) true)}}<span>+ 添加潜在学生</span>{{/bs-button}}
         {{/layout-push}}
-        {{#layout-push direction='row'}}
-            {{!-- {{bmform/bm-search-multi-check }} --}}
+        {{#layout-push direction='col'}}
+            {{#layout-push direction='row' classNames='search'}}
+                <input type="text" placeholder="姓名/手机号" name="" value="" class="seatch-stud">
+            {{/layout-push}}
+            <table class='ib_table_head exp_table'>
+                <tr class='ib_table_title'>
+                    {{#each model.studTitle as |item|}}
+                        <th class='ib_table_item'>{{item}}</th>
+                    {{/each}}
+                </tr>
+            </table>
         {{/layout-push}}
+        {{#layout-push direction="col" classNames="stud-list-outer"}}
+			{{#if (eq model.studs.length 0)}}
+				{{bmcom/bm-empty-state class="stud-empty-state" picUrl="/images/img_empty@2x.png" title="暂无学生" des="暂无数据"}}
+			{{else}}
+				{{#layout-push direction="row" classNames="stud-list-area" }}
+					<table class='ib_table_head stud_list_table'>
+						{{bmtable/bm-table-inner type="studsList" listData=studs }}
+					</table>
+				{{/layout-push}}
+				{{bmcom/bm-pagination pageCount=page_count curPage=pagenum sendPageNum=(action "handlePageChange")}}
+			{{/if}}
+		{{/layout-push}}
+
     {{/layout-push}}
     {{#bmcom/bm-modal-container title="" mswitch=showAddSessionDlg
             needSubmit=couldSubmit
