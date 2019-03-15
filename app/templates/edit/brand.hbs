@@ -31,7 +31,7 @@
                 {{#layout-push direction='col' classNames="brand-logo-continer"}}
                     {{#layout-push direction='col'}}
                         <span class="edit_title" >品牌logo</span>
-                        <span class="edit_subtitle" >支持jpg、png，小于300KB</span>
+                        <span class="edit_subtitle" >支持jpg、png，小于1M</span>
                     {{/layout-push }}
                     {{bmcom/bm-img-uploader needTag=false canEdit=true img=model.brand.logo classNames=''}}
                 {{/layout-push }}
@@ -49,7 +49,7 @@
                     {{#layout-push direction="col" classNames='brand-input-group'}}
                         <span class="edit_title">品牌亮点</span>
                         <span class='edit_subtitle'>您的品牌有什么独特之处？（限6个字 至多添加三个）如:PBL教学</span>
-                        {{bmform/dynamic-input listInputs=model.brand.brandTags needBottomHint=true limit=3}}
+                        {{bmform/dynamic-input listInputs=model.brand.brandTags needBottomHint=true limit=3 maxlength='6' maxCount='6'}}
                         {{!-- {{input type="text" class="edit_input_medium" value=model.brand.brand_tangs}} --}}
                     {{/layout-push}}
                     {{#layout-push direction='row' split=true}}

@@ -3,10 +3,9 @@ import { inject as service } from '@ember/service';
 import EmberObject from '@ember/object';
 
 export default Controller.extend({
-
     isCreate: true,
     isPushing: false,
-
+    saveInfo: false,
     savePicDoneFlag: false,
     bm_error_service: service(),
     toast: service(),
@@ -45,7 +44,14 @@ export default Controller.extend({
                 that.bm_error_service.handleError(error)
             }
             if(that.model.si.cover) {
-                if(Number(that.model.si.alb) <= Number(that.model.si.aub)) {
+                if(Number(that.model.si.alb) == -1 || Number(that.model.si.aub) == -1) {
+                    that.set('saveInfo', true)
+                } else if(Number(that.model.si.alb) < Number(that.model.si.aub)) {
+                    that.set('saveInfo', true)
+                } else {
+                    that.set('saveInfo', false)
+                }
+                if(that.saveInfo) {
                     if(this.model.si.images.length === 0) {
                         this.model.si.save().then(onSuccess, onFail);
                     } else {
@@ -55,17 +61,23 @@ export default Controller.extend({
                                 item.save().then(() => {
                                     if(imgCount + 1 == arr.length) {
                                        this.set("savePicDoneFlag", true);
+                                   } else {
+                                       this.set("savePicDoneFlag", false);
                                    }
                                    imgCount ++;
-                                    if(this.savePicDoneFlag) {
-                                        this.model.si.save().then(onSuccess, onFail);
-                                    }
+                                   if(item.id != null && item.id != '') {
+                                       if(this.savePicDoneFlag) {
+                                           this.model.si.save().then(onSuccess, onFail);
+                                       }
+                                   }
                                 }, error => {
                                     this.bm_error_service.handleError(error)
                                 });
                             } else {
-                                if(this.savePicDoneFlag) {
-                                    this.model.course.save().then(onSuccess, onFail);
+                                if(item.id != null && item.id != '') {
+                                    if(this.savePicDoneFlag) {
+                                        this.model.si.save().then(onSuccess, onFail);
+                                    }
                                 }
                             }
                         });

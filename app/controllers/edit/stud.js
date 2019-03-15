@@ -85,17 +85,36 @@ export default Controller.extend({
             that.model.stud.set('teacher', tmpTech);
             for(let idx = 0;idx < that.model.stud.guardians.length;idx++) {
                 that.model.stud.guardians.objectAt(idx).save().then(() => {
-                    
+
                 }, error => {
                     that.bm_error_service.handleError(error)
                 })
             }
             let name = that.model.stud.name;
             let nickname = that.model.stud.nickname;
+            let dob = new Date(that.model.stud.dob);
+            let now = new Date();
+            function dealDate(date) {
+                var year = date.getFullYear();
+                var month = date.getMonth() + 1;
+                var strDate = date.getDate();
+                var week = date.getDay();
+                var hour = date.getHours();
+                var minute = date.getMinutes();
+                function addZero(m) {
+                   return m < 10 ? '0' + m : m;
+                }
+                let dealDate = year + '-' + addZero(month) + '-' + (strDate);
+                return dealDate
+            }
+            let dealDob = dealDate(dob);
+            let dealNow = dealDate(now);
             if( name == '' || name == undefined || name.replace(/(^\s*)|(\s*$)/g, "").length == 0) {
                 that.toast.error('', '孩子姓名不能为空', that.toastOptions);
             } else if(nickname == '' || nickname == undefined || nickname.replace(/(^\s*)|(\s*$)/g, "").length == 0) {
                 that.toast.error('', '孩子昵称不能为空', that.toastOptions);
+            } else if(dealDob == dealNow) {
+                that.toast.error('', '请选择正确的出生日期', that.toastOptions);
             } else {
                 that.model.stud.save().then(() => {
                     if (that.model.isPushing) {
@@ -109,7 +128,7 @@ export default Controller.extend({
                                 let apply = res;
                                 apply.set('status', 1);
                                 apply.save().then(() => {
-                                    
+
                                 }, error => {
                                     that.bm_error_service.handleError(error)
                                 });

@@ -2,14 +2,14 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 
 export default Component.extend({
-    positionalParams: ['left', 'top', 'width', 'height', 'bgColor', 'unit'],
+    positionalParams: ['left', 'top', 'width', 'height', 'bgColor', 'unit', 'staDare', 'endDate'],
     tagName: 'div',
     classNames: ['bm-time-event', 'bm-time-container-panel', 'bm-content', 'line_container'],
     margin: 3,
     step: 26,
     left: 0,
     display: 'inline-flex',
-    top: computed('unit', function(){
+    top: computed('unit', 'staDare', 'endDate', function(){
         let st = new Date();
         st.setTime(this.unit.startDate);
 
@@ -22,7 +22,7 @@ export default Component.extend({
 
         return this.step * (sh + sm);
     }),
-    height: computed('unit', function(){
+    height: computed('unit', 'staDare', 'endDate', function(){
         let st = new Date();
         st.setTime(this.unit.startDate);
         let sh = st.getHours();
@@ -34,7 +34,7 @@ export default Component.extend({
         let em = et.getMinutes();
 
         let tt = (eh - sh) * 4;
-        let ee = (em - sm) / 15; 
+        let ee = (em - sm) / 15;
 
         return this.step * Math.max((tt + ee), 2) - 2 * this.margin;
     }),
@@ -43,12 +43,12 @@ export default Component.extend({
     unit: null,
     attributeBindings: ['style'],
     style: computed('width', 'height', 'margin', 'bgColor', function(){
-        return 'left:' + this.left + 'px;' + 
-               'top:' + this.top + 'px;' + 
-               'width:' + this.width + '%;' + 
-               'height:' + this.height + 'px;' + 
-               'background:' + this.bgColor + ';' + 
-               'margin:' + this.margin + 'px;' + 
+        return 'left:' + this.left + 'px;' +
+               'top:' + this.top + 'px;' +
+               'width:' + this.width + '%;' +
+               'height:' + this.height + 'px;' +
+               'background:' + this.bgColor + ';' +
+               'margin:' + this.margin + 'px;' +
                'display:' + this.display;
     }),
     showDetailPanel: false,
@@ -59,7 +59,7 @@ export default Component.extend({
     //     this.onPanelClick(this.unit);
     // }
 
-    
+
     actions: {
         onCloseClick() {
             // this.onCloseClick(unit);

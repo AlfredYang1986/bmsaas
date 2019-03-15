@@ -49,7 +49,7 @@ export default Component.extend({
     },
 
     handleDuty() {
-        let client = this.bmOss.get('ossClient');
+        // let client = this.bmOss.get('ossClient');
         //     if(this.techPics.length < 3) {
         //         let tmpObj = {};
         //         if(proObj.get("icon") != "" && proObj.get("icon") != undefined) {
@@ -62,7 +62,7 @@ export default Component.extend({
         //         this.set("techPicsOverFlow", this.cls.duties.length - 3)
         //     }
         //     console.log(this.techPics)
-        
+
         // this.duties.forEach((item, index, arr) => {
         //     item.get("teacher").then(res => {
         //         // console.log(index)

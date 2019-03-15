@@ -15,6 +15,7 @@ export default Route.extend({
             })
         })
         return RSVP.hash({
+            expid: params.expid,
             yard: tmp,
             exp: this.store.find('reservableitem', params.expid),
             tabs: A(['场次安排', '体验课详情']),

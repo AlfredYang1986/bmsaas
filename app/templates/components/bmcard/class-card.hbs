@@ -1,39 +1,3 @@
-{{!-- {{#layout-push direction="col" classNames="class-card"}}
-    {{#layout-push direction="col" classNames="class-card-head-info"}}
-        <p class="headline">{{cls.classTitle}}</p>
-        <p class="secondary-title">{{cls.sessioninfo.title}}</p>
-    {{/layout-push}}
-    {{#layout-push direction="col" classNames="class-card-content"}} --}}
-        {{!-- {{#layout-push direction="col"}}
-            <div class="progress-label">
-                <p>课程进度</p>
-                <p class="course-count">{{cls.courseExpireCount}}/{{cls.courseTotalCount}}</p>
-                <p class="no-course-count">-</p>
-            </div>
-            {{#bs-progress as |p|}}
-                {{p.bar value=cls.courseExpireCount minValue=0 maxValue=cls.courseTotalCount}}
-            {{/bs-progress}}
-        {{/layout-push}}
-        {{#layout-push direction='row' classNames="no-arr-des"}}
-            <p class="no-arr-des-title">暂无安排</p>
-        {{/layout-push}}
-        {{#layout-push direction='row' classNames="list"}}
-            <p class="class-date">{{arrangedDate}}</p>
-        {{/layout-push}}
-        {{#layout-push direction='row' classNames="split-line"}}
-        {{/layout-push}} --}}
-        {{!-- {{#layout-push direction="row" classNames="class-teachers"}}
-            {{#each techPics as |item|}}
-                <img src={{item.url}} alt="">
-            {{/each}}
-            {{#if (gt techPicsOverFlow 0)}}
-                <p class="teacher-num">+{{techPicsOverFlow}}</p>
-            {{/if}}
-        {{/layout-push}}
-    {{/layout-push}}
-{{/layout-push}} --}}
-
-
 {{#layout-push direction="col" classNames="class-card"}}
     {{#layout-push direction="col" classNames="class-card-head-info"}}
         <p class="headline">{{cls.classTitle}}</p>
@@ -43,18 +7,22 @@
         {{#layout-push direction='row' classNames="split-line"}}
         {{/layout-push}}
         {{#layout-push direction="row" classNames="class-teachers"}}
-            {{#each cls.duties as |item index|}}
-                {{#if (lt index 3)}}
-                    {{#if (eq item.teacher.icon "")}}
-                        <img src={{headImg}} alt="">
-                    {{else}}
-                        <img src={{bmcom/bm-img-uri item.teacher.icon bmOss}} alt="">
+            {{#if (bmeq cls.duties.length 0)}}
+                <p class="note">尚未添加教师</p>
+            {{else}}
+                {{#each cls.duties as |item index|}}
+                    {{#if (lt index 3)}}
+                        {{#if (eq item.teacher.icon "")}}
+                            <img src={{headImg}} alt="">
+                        {{else}}
+                            <img src={{bmcom/bm-img-uri item.teacher.icon bmOss}} alt="">
+                        {{/if}}
                     {{/if}}
-                {{/if}}
-                {{#if (gt index 2)}}
-                    <p class="teacher-num">+{{bmcom/bm-minus cls.duties.length 3}}</p>
-                {{/if}}
-            {{/each}}
+                    {{#if (gt index 2)}}
+                        <p class="teacher-num">+{{bmcom/bm-minus cls.duties.length 3}}</p>
+                    {{/if}}
+                {{/each}}
+            {{/if}}
             {{!-- {{#each techPics as |item|}}
                 <img src={{item.url}} alt="">
             {{/each}}
