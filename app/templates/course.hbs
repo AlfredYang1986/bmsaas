@@ -13,7 +13,10 @@
 					desc="请添加课程"
 				}}
 			{{else}}
-				{{bmcom/bm-card-area onCourseCardClicked=(action 'cardClicked')  onRefreshDataComplete=(action 'refreshDataComplete') type='course' curPage=pagenum}}
+				{{bmcom/bm-card-area
+					onCourseCardClicked=(action 'cardClicked')  
+					onRefreshDataComplete=(action 'refreshDataComplete') 
+					type='course' curPage=pagenum}}
 				{{bmcom/bm-pagination pageCount=page_count curPage=pagenum sendPageNum=(action "handlePageChange")}}
 			{{/if}}
 		{{/layout-push}}
