@@ -24,7 +24,7 @@ export default Controller.extend({
     }),
     actions: {
         successHandled() {
-
+            this.transitionToRoute('edit.potential-stud')
         },
         cancelHandled() {
             this.set('showAddSessionDlg', false)

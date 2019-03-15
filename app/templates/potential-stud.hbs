@@ -22,7 +22,7 @@
 			{{else}}
 				{{#layout-push direction="row" classNames="stud-list-area" }}
 					<table class='ib_table_head stud_list_table'>
-						{{bmtable/bm-table-inner type="studsList" listData=studs }}
+						{{bmtable/bm-table-inner type="ptStudsList" listData=studs }}
 					</table>
 				{{/layout-push}}
 				{{bmcom/bm-pagination pageCount=page_count curPage=pagenum sendPageNum=(action "handlePageChange")}}
@@ -45,7 +45,7 @@
                         <p class="note">您可以推荐家长在小程序上使用注册功能或手动添加潜在学生</p>
                     {{/layout-push}}
                     {{#layout-push direction='col' mid=true classNames='code'}}
-                        <img src={{codeImg}} alt="" class="code-img">
+                        <img src='' alt="" class="code-img">
                         <p class="img-title">推荐使用</p>
                     {{/layout-push}}
                 {{/layout-push}}

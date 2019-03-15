@@ -134,6 +134,23 @@
             <td  class="ib_table_content_item">
                 {{#bs-button classNames="ib_table_content_link_btn" onClick=(action 'onClickInner' item.id)}}<span>查看</span>{{/bs-button}}
             </td>
+        {{else if (bmeq type 'ptStudsList')}}
+            <td class="ib_table_content_item">{{item.name}}</td>
+            <td class="ib_table_content_item">{{item.contact}}</td>
+            <td class="ib_table_content_item">
+                {{#if (bmeq item.gender 1)}}
+                男
+                {{else if (bmeq item.gender 0)}}
+                女
+                {{else}}
+                其他
+                {{/if}}
+            </td>
+            <td class="ib_table_content_item">{{bmdob/bmdob2age item.dob}}</td>
+            <td class="ib_table_content_item">{{item.guardians.firstObject.name}}</td>
+            {{log item.create-time}}
+            <td class="ib_table_content_item">{{bmdob/bmdobformat item.createTime}}</td>
+            <td class="ib_table_content_item">报课</td>
         {{else if (bmeq type "room")}}
             <td class='ib_table_content_item'>{{item.title}}</td>
             <td class='ib_table_content_item'>

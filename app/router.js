@@ -36,6 +36,7 @@ Router.map(function() {
       this.route('info', { path: '/info/:sessionid/:resid' });
       this.route('rsb');
     });
+    this.route('potential-stud');
   });
 
   this.route('detail', function() {

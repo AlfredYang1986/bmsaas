@@ -19,7 +19,7 @@ export default DS.Model.extend({
     city: DS.attr('string'),
     district: DS.attr('string'),
     address: DS.attr('string'),
-
+    createTime: DS.attr('number'),
     // applicants: DS.hasMany('applicant'),
     teacher: DS.belongsTo('teacher'),
     guardians: DS.hasMany('guardian'),
