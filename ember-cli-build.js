@@ -15,6 +15,9 @@ module.exports = function(defaults) {
         'bower_components/foundation/scss',
       ],
       // nodeSass: nodeSass
+    },
+    'ember-cli-babel': {
+      includePolyfill: true
     }
   });
 
