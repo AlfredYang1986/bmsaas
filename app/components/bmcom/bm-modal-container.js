@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 
 export default Component.extend({
-    positionalParams: ['title', 'mswitch', 'canceltext', 'successtext', 'cancelbtncss', 'successbtncss', 'needSubmit', 'contentSubmit','backdropClose'],
+    positionalParams: ['type', 'title', 'mswitch', 'canceltext', 'successtext', 'cancelbtncss', 'successbtncss', 'needSubmit', 'contentSubmit','backdropClose'],
     needTitle: computed(function(){
         return this.title != null && this.title.length > 0;
     }),

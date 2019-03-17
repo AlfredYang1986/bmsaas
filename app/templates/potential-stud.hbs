@@ -6,7 +6,8 @@
         {{/layout-push}}
         {{#layout-push direction='col'}}
             {{#layout-push direction='row' classNames='search'}}
-                <input type="text" placeholder="姓名/手机号" name="" value="" class="seatch-stud">
+                <input type="text" placeholder="姓名/手机号" name="" value="" class="search-stud">
+                <i class="icon-search" {{action 'searchStud'}}></i>
             {{/layout-push}}
             <table class='ib_table_head exp_table'>
                 <tr class='ib_table_title'>
@@ -31,7 +32,7 @@
 
     {{/layout-push}}
     {{#bmcom/bm-modal-container title="" mswitch=showAddSessionDlg
-            needSubmit=couldSubmit
+            type='codeImg'
             successbtncss='exp-modal-confirm'
             cancelbtncss='exp-modal-cancel'
             canceltext='取消'

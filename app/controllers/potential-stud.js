@@ -24,6 +24,7 @@ export default Controller.extend({
     }),
     actions: {
         successHandled() {
+            this.set('showAddSessionDlg', false)
             this.transitionToRoute('edit.potential-stud')
         },
         cancelHandled() {
@@ -38,5 +39,8 @@ export default Controller.extend({
                 this.bm_error_service.handleError(error)
             })
         },
+        searchStud() {
+            
+        }
     }
 });

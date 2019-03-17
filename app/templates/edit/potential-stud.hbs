@@ -1,15 +1,45 @@
 {{#layout-push direction='row' split=true classNames='edit_nav' }}
 	<span classNames='edit_nav_title'>添加潜在学员</span>
 	<span>
-		<button class="edit_nav_btn btn_cacel" {{action 'cancelInputBtnClicked'}}>关闭流程</button>
+		<button class="edit_nav_btn btn_cacel" {{action 'closeProcess'}}>关闭流程</button>
 	</span>
 {{/layout-push}}
 
 {{#layout-push direction='row' split=true classNames='edit_container experience-content' }}
-	<ul class="edit_left_nav">
-	
-	</ul>
-	<div class="input_container">
+	<div class="edit_area">
+		{{#layout-push direction='col' split=true classNames='add-pt-stud'}}
+			{{#layout-push direction='col' mid=true classNames='search-area'}}
+				<div class="search">
+					<input type="text" name="" value="" class="search-input" placeholder="手机号">
+					<i class="icon-search" {{action 'searchStud' argument}}></i>
+					{{#if studList}}
+						{{#layout-push direction="row" classNames="stud-list-area" }}
+							<table class='ib_table_head_pt stud_list_table'>
+								{{bmtable/bm-table-inner type="srarchptStuds" listData=studs }}
+							</table>
+						{{/layout-push}}
+					{{else}}
+						{{#layout-push direction='row'}}
+							<p class="note">若尚未在小程序进行注册者，请先帮助注册</p>
+							<img src="" alt="" class="code-img">
+						{{/layout-push}}
+					{{/if}}
+				</div>
+			{{/layout-push}}
+			{{#layout-push direction='row' classNames='btn-area'}}
+				{{#if inputVal}}
+					{{#layout-push direction='row' classNames='add-stud'}}
+						<p>没有要添加的学员？</p>
+						<p class="link">添加学生</p>
+						<button type="button" name="button" class="btn_save" {{action 'addPtStud'}}>添加</button>
+					{{/layout-push}}
+				{{else}}
+					<button type="button" name="button" class="edit_between_btn">下一步</button>
+				{{/if}}
+			{{/layout-push}}
+		{{/layout-push}}
+	</div>
+	{{!-- <div class="input_container">
 		<a id="kid-info" class="anchor-point"></a>
 		<section class="kids_info stu_section">
 			<p class="title-name">孩子信息</p>
@@ -76,7 +106,86 @@
 			{{bmform/bm-base-select type="id" idType=true selId='teacherName' selTitle="课程顾问" options=model.techs curSelect=cur_tech_id classNames="input_area area-margin-bottom"}}
 			{{bmform/bm-base-select selId='sourceWay' selTitle="渠道来源" options=origin curSelect=model.stud.sourceWay classNames="input_area"}}
 		</section>
-	</div>
+	</div> --}}
 {{/layout-push}}
-
+{{#bmcom/bm-modal-container title="" mswitch=showAddSelect
+		type='codeImg'
+		successbtncss='exp-modal-confirm'
+		cancelbtncss='exp-modal-cancel'
+		canceltext='取消'
+		successtext='手动添加'
+		onCancelBtnClicked=(action 'cancelHandled')
+		onSuccessBtnClicked=(action 'successHandled')}}
+		<div class="pt-stud-modal">
+			{{#layout-push direction='col'}}
+				{{#layout-push direction='col'}}
+					<p class="title">此手机号尚未注册</p>
+					<p class="note">此手机号尚未注册，您可以</p>
+					<p class="note">1.手动添加</p>
+					<p class="note">2.推荐家长使用小程序</p>
+				{{/layout-push}}
+				{{#layout-push direction='col' mid=true classNames='code'}}
+					<img src='' alt="" class="code-img">
+				{{/layout-push}}
+			{{/layout-push}}
+		</div>
+{{/bmcom/bm-modal-container}}
+{{#bmcom/bm-modal-container title="" mswitch=showAddStud
+		type='addPtStud'
+		successbtncss='exp-modal-confirm'
+		cancelbtncss='exp-modal-cancel'
+		canceltext='取消'
+		successtext='手动添加'
+		onCancelBtnClicked=(action 'cancelAdd')
+		onSuccessBtnClicked=(action 'successAdd')}}
+		<div class="add-pt-stud-modal">
+			{{#layout-push direction='col'}}
+				<p class="title">添加学生</p>
+				<p class="title">孩子信息</p>
+				{{#layout-push direction='row' split=true}}
+					{{#layout-push direction='row' classNames='group'}}
+						<p class="subtitle">孩子姓名</p>
+						<input type="text" name="" value="" class="input-large">
+					{{/layout-push}}
+					{{#layout-push direction='row' classNames='group'}}
+						<p class="subtitle">就读学校</p>
+						<input type="text" name="" value="" class="input-middle">
+					{{/layout-push}}
+				{{/layout-push}}
+				{{#layout-push direction='row' split=true}}
+					{{#layout-push direction='row' classNames='group'}}
+						<p class="subtitle">性别</p>
+						{{bmcom/bm-radio-inline cur_idx=sex_idx judge=sex titles=genderCheck}}
+					{{/layout-push}}
+					{{#layout-push direction='row' classNames='group'}}
+						<p class="subtitle">年级</p>
+						{{bmform/bm-base-select selId='sourceWay' selTitle="" options=origin curSelect=model.stud.sourceWay classNames="grade-select"}}
+					{{/layout-push}}
+				{{/layout-push}}
+				{{#layout-push direction='row' classNames='group bottom'}}
+					<p class="subtitle">出生日期</p>
+					{{#layout-push direction="row" split=false classNames='date_choose' }}
+						{{bmform/bm-lay-date inputVal=''}}
+					{{/layout-push}}
+				{{/layout-push}}
+				<p class="title">家长信息</p>
+				{{#layout-push direction='row' split=true}}
+					{{#layout-push direction='row' classNames='group'}}
+						<p class="subtitle">姓名</p>
+						<input type="text" name="" value="" class="input-large">
+					{{/layout-push}}
+					{{#layout-push direction='row' classNames='group'}}
+						<p class="subtitle">联系方式</p>
+						<input type="text" name="" value="" class="input-middle">
+					{{/layout-push}}
+				{{/layout-push}}
+				{{#layout-push direction='row' split=true}}
+					{{#layout-push direction='row' classNames='group'}}
+						<p class="subtitle">关系</p>
+						{{bmcom/bm-radio-inline cur_idx=rela_idx titles=relaChecked judge=rela}}
+					{{/layout-push}}
+				{{/layout-push}}
+			{{/layout-push}}
+		</div>
+{{/bmcom/bm-modal-container}}
 {{outlet}}
