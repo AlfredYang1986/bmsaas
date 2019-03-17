@@ -3,7 +3,8 @@
 		{{#layout-push direction="col" classNames="course_content"}}
 			{{#layout-push direction="row" split=true classNames="course-title-flex"}}
 				<p class="page_title">课程</p>
-				{{#link-to 'edit.course' 'course/push' 'course/push' classNames='course_add_btn'}}+ 创建课程{{/link-to}}
+				{{!-- {{#link-to 'edit.course' 'course/push' 'course/push' classNames='course_add_btn'}}+ 创建课程{{/link-to}} --}}
+				{{#link-to 'edit.course' 'course/push' 'course/push' classNames='p-btn primary'}}+ 创建课程{{/link-to}}
 			{{/layout-push}}
 			{{#if (eq page_count 0)}}
 				{{bp-empty-state/no-button

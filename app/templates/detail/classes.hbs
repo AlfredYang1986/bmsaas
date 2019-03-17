@@ -67,14 +67,60 @@
 
             {{/layout-push}}
 
-            {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs needAction=true onTabClicked=(action "onTabClicked")}}
+            {{!-- {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs needAction=true onTabClicked=(action "onTabClicked")}} --}}
+            {{#bp-tabs selection=selected class='class-tabs' as |tabs|}}
+				{{#tabs.tablist as |list|}}
+					<li class="nav-item">
+						{{#list.tab
+				selectPaneId='tech-info' 
+				onSelect=(action (mut selected))}}班级教师{{/list.tab}}
+					</li>
+					<li class="nav-item">
+						{{#list.tab
+				selectPaneId='stud-info' 
+				onSelect=(action (mut selected))}}学生名单
+						{{/list.tab}}
+					</li>
+                    <li class="nav-item">
+						{{#list.tab
+				selectPaneId='unit-info' 
+				onSelect=(action (mut selected))}}课程安排
+						{{/list.tab}}
+					</li>
+				{{/tabs.tablist}}
+				<div class="tab-content">
+					{{#tabs.pane elementId="tech-info"}}
+                        {{#if (eq model.class.duties.length 0)}}
+                            {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无教师" des="快去为孩子们选择教师吧" btnText="添加教师" onBtnClick=(action (mut addTechDlg) true)}}
+                        {{else}}
+                            {{bmtable/bm-table-class-tech listData=model.class.duties titles=model.techTitles onRemoveTeacherClick=(action "onRemoveTeacherClick")}}
+                            {{!-- {{bmcom/bm-pagination pageCount=bm_sessionable_service.totalPageCount sendPageNum=(action "handlePageChange")}} --}}
+                        {{/if}}
+                    {{/tabs.pane}}
+                    {{#tabs.pane elementId="stud-info"}}
+                        {{#if (eq model.class.students.length 0)}}
+                            {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无学生" des="快去添加孩子们吧" btnText="添加学生" onBtnClick=(action (mut addStudDlg) true)}}
+                        {{else}}
+                            {{bmtable/bm-table-class-stud listData=model.class.students titles=model.studTitles onRemoveStudClick=(action "onRemoveStudClick")}}
+                            {{!-- {{bmcom/bm-pagination pageCount=bm_sessionable_service.totalPageCount sendPageNum=(action "handlePageChange")}} --}}
+                        {{/if}}
+                    {{/tabs.pane}}
+                    {{#tabs.pane elementId="unit-info"}}
+                        {{#if (eq model.units.length 0)}}
+                            {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无课程安排" des="快去添加课程安排吧" btnText="添加课程安排" onBtnClick=(action 'onAddArrClassClick')}}
+                        {{else}}
+                            {{bmtable/bm-table-class-arrcourse listData=model.units titles=model.arrTitles onRemoveArrcourseClick=(action "onRemoveArrcourseClick")}}
+                            {{!-- {{bmcom/bm-pagination pageCount=bm_sessionable_service.totalPageCount sendPageNum=(action "handlePageChange")}} --}}
+                        {{/if}}
+                    {{/tabs.pane}}
+				</div>
+			{{/bp-tabs}}
 
-            {{#if (bmeq cur_idx 0)}}
+            {{!-- {{#if (bmeq cur_idx 0)}}
                 {{#if (eq model.class.duties.length 0)}}
                     {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无教师" des="快去为孩子们选择教师吧" btnText="添加教师" onBtnClick=(action (mut addTechDlg) true)}}
                 {{else}}
                     {{bmtable/bm-table-class-tech listData=model.class.duties titles=model.techTitles onRemoveTeacherClick=(action "onRemoveTeacherClick")}}
-                    {{!-- {{bmcom/bm-pagination pageCount=bm_sessionable_service.totalPageCount sendPageNum=(action "handlePageChange")}} --}}
                 {{/if}}
             {{/if}}
 
@@ -83,7 +129,6 @@
                     {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无学生" des="快去添加孩子们吧" btnText="添加学生" onBtnClick=(action (mut addStudDlg) true)}}
                 {{else}}
                     {{bmtable/bm-table-class-stud listData=model.class.students titles=model.studTitles onRemoveStudClick=(action "onRemoveStudClick")}}
-                    {{!-- {{bmcom/bm-pagination pageCount=bm_sessionable_service.totalPageCount sendPageNum=(action "handlePageChange")}} --}}
                 {{/if}}
             {{/if}}
 
@@ -92,9 +137,8 @@
                     {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无课程安排" des="快去添加课程安排吧" btnText="添加课程安排" onBtnClick=(action 'onAddArrClassClick')}}
                 {{else}}
                     {{bmtable/bm-table-class-arrcourse listData=model.units titles=model.arrTitles onRemoveArrcourseClick=(action "onRemoveArrcourseClick")}}
-                    {{!-- {{bmcom/bm-pagination pageCount=bm_sessionable_service.totalPageCount sendPageNum=(action "handlePageChange")}} --}}
                 {{/if}}
-            {{/if}}
+            {{/if}} --}}
         {{/layout-push}}
     </div>
 </div>

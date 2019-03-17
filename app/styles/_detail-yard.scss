@@ -6,7 +6,7 @@
 	}
 
 	.yard-detail {
-		margin-bottom: 40px;
+		margin-bottom: 24px;
 		background-color: #fff;
 
 		.p-h-body .left-area p:last-child {
@@ -16,6 +16,14 @@
 
 	.yard-tabs {
 
+		.tab-content {
+			&:focus {
+				outline: none;
+			}
+			div:focus {
+				outline: none;
+			}
+		}
 		.nav {
 			position: static;
 			justify-content: flex-start;
@@ -25,7 +33,7 @@
 			box-shadow: none;
 			background-color: transparent;
 
-			.nav-line.active {
+			.nav-link.active {
 				background-color: transparent;
 			}
 		}

@@ -4,7 +4,10 @@
     {{/layout-push}}
     {{!-- {{#bs-button classNames="cls-arr-add-btn" onClick=(action (mut showAddDlg) true)}}<span>+ 添加排课</span>{{/bs-button}} --}}
     {{!-- {{#bs-button classNames="cls-arr-add-btn" onClick=(action "addUnitOnClick")}}<span>+ 添加排课</span>{{/bs-button}} --}}
-    <button class="cls-arr-add-btn" onClick={{action "addUnitOnClick"}}><span>+ 添加排课</span></button>
+    {{!-- <button class="cls-arr-add-btn" onClick={{action "addUnitOnClick"}}><span>+ 添加排课</span></button> --}}
+    {{#bp-button type="primary" onClick=(action 'addUnitOnClick')}}
+        + 添加排课
+    {{/bp-button}}
 {{/layout-push}}
 
 {{#layout-push direction='row' split=true}}
