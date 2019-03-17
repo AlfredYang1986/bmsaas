@@ -18,7 +18,10 @@
 					onCourseCardClicked=(action 'cardClicked')  
 					onRefreshDataComplete=(action 'refreshDataComplete') 
 					type='course' curPage=pagenum}}
-				{{bmcom/bm-pagination pageCount=page_count curPage=pagenum sendPageNum=(action "handlePageChange")}}
+				{{!-- {{bmcom/bm-pagination pageCount=page_count curPage=pagenum sendPageNum=(action "handlePageChange")}} --}}
+				{{bp-pagination
+				totalPageCounts=page_count 
+				onClickPage=(action (mut pagenum))}}
 			{{/if}}
 		{{/layout-push}}
 	{{else}}

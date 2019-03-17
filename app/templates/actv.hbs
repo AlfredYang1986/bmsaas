@@ -2,7 +2,7 @@
 	{{#layout-push direction="col" classNames="course_content"}}
 		{{#layout-push direction="row" split=true classNames="course-title-flex"}}
 			<p class="page_title">活动</p>
-			{{#link-to 'edit.actv.rsb' classNames='course_add_btn'}}+ 创建活动{{/link-to}}
+			{{#link-to 'edit.actv.rsb' classNames='p-btn primary'}}+ 创建活动{{/link-to}}
 		{{/layout-push}}
 		{{#if (eq page_count 0)}}
 			{{bp-empty-state/no-button
@@ -28,7 +28,7 @@
 				sendPageNum=(action "handlePageChange")}} --}}
 			{{bp-pagination
 				totalPageCounts=page_count 
-				onClickPage=(action ( mut pagenum))}}
+				onClickPage=(action (mut pagenum))}}
 		{{/if}}
 	{{/layout-push}}
 </div>

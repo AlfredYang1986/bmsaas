@@ -2,7 +2,7 @@
 	{{#layout-push direction="col" classNames="stud_content" }}
 		{{#layout-push direction='row' split=true classNames="stud-title-flex"}}
 			<p class="page_title">学生管理</p>
-			{{#link-to 'edit.stud' 'stud/push' classNames='stud_add_btn'}}+ 学生注册{{/link-to}}
+			{{#link-to 'edit.stud' 'stud/push' classNames='p-btn primary'}}+ 学生注册{{/link-to}}
 		{{/layout-push}}
 		{{#layout-push direction="col" classNames="stud-list-outer"}}
 			{{#if (eq studs.length 0)}}
