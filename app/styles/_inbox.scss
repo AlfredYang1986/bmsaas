@@ -142,8 +142,10 @@
         input.input-large {
             width: 318px;
         }
-        input.input-middle {
-            width: 242px;
+        .input-middle {
+            input {
+                width: 242px;
+            }
         }
         input.input-small {
             width: 131px;

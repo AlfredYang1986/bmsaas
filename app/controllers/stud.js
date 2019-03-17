@@ -10,7 +10,7 @@ export default Controller.extend({
     studs: computed("refreshFlag", function() {
         // return this.store.query('student', { 'page[number]': 1, 'page[size]': 20, "brand-id": localStorage.getItem("brandid")})
         let result;
-        result = this.store.query('student', { 'page[number]': 1, 'page[size]': 20, "brand-id": localStorage.getItem("brandid")});
+        result = this.store.query('student', { 'page[number]': 1, 'page[size]': 20, 'status': 1, "brand-id": localStorage.getItem("brandid")});
         result.then(() => {
         }, error => {
             this.bm_error_service.handleError(error)

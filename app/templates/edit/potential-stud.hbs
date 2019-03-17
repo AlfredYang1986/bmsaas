@@ -145,11 +145,11 @@
 				{{#layout-push direction='row' split=true}}
 					{{#layout-push direction='row' classNames='group'}}
 						<p class="subtitle">孩子姓名</p>
-						<input type="text" name="" value="" class="input-large">
+						{{bmform/bm-edit-line notitlt=true  inputVal=model.stud.name classNames='input_area area-margin-bottom'}}
 					{{/layout-push}}
 					{{#layout-push direction='row' classNames='group'}}
 						<p class="subtitle">就读学校</p>
-						<input type="text" name="" value="" class="input-middle">
+						{{bmform/bm-edit-line notitlt=true  inputVal=model.stud.school classNames='input-middle'}}
 					{{/layout-push}}
 				{{/layout-push}}
 				{{#layout-push direction='row' split=true}}
@@ -165,26 +165,28 @@
 				{{#layout-push direction='row' classNames='group bottom'}}
 					<p class="subtitle">出生日期</p>
 					{{#layout-push direction="row" split=false classNames='date_choose' }}
-						{{bmform/bm-lay-date inputVal=''}}
+						{{bmform/bm-lay-date inputVal=model.stud.dob}}
 					{{/layout-push}}
 				{{/layout-push}}
+				{{#each model.stud.guardians as |item|}}
 				<p class="title">家长信息</p>
-				{{#layout-push direction='row' split=true}}
-					{{#layout-push direction='row' classNames='group'}}
-						<p class="subtitle">姓名</p>
-						<input type="text" name="" value="" class="input-large">
+					{{#layout-push direction='row' split=true}}
+						{{#layout-push direction='row' classNames='group'}}
+							<p class="subtitle">姓名</p>
+							{{bmform/bm-edit-line notitlt=true  inputVal=item.name classNames='input_area area-margin-bottom'}}
+						{{/layout-push}}
+						{{#layout-push direction='row' classNames='group'}}
+							<p class="subtitle">联系方式</p>
+							{{bmform/bm-edit-line notitlt=true numberInput=true maxlength="11" inputVal=item.contact classNames='input-middle'}}
+						{{/layout-push}}
 					{{/layout-push}}
-					{{#layout-push direction='row' classNames='group'}}
-						<p class="subtitle">联系方式</p>
-						<input type="text" name="" value="" class="input-middle">
+					{{#layout-push direction='row' split=true}}
+						{{#layout-push direction='row' classNames='group'}}
+							<p class="subtitle">关系</p>
+							{{bmcom/bm-radio-inline cur_idx=rela_idx titles=relaChecked judge=rela}}
+						{{/layout-push}}
 					{{/layout-push}}
-				{{/layout-push}}
-				{{#layout-push direction='row' split=true}}
-					{{#layout-push direction='row' classNames='group'}}
-						<p class="subtitle">关系</p>
-						{{bmcom/bm-radio-inline cur_idx=rela_idx titles=relaChecked judge=rela}}
-					{{/layout-push}}
-				{{/layout-push}}
+				{{/each}}
 			{{/layout-push}}
 		</div>
 {{/bmcom/bm-modal-container}}

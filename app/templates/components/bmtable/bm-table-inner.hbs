@@ -136,7 +136,7 @@
             </td>
         {{else if (bmeq type 'ptStudsList')}}
             <td class="ib_table_content_item">{{item.name}}</td>
-            <td class="ib_table_content_item">{{item.contact}}</td>
+            <td class="ib_table_content_item">{{item.guardians.firstObject.contact}}</td>
             <td class="ib_table_content_item">
                 {{#if (bmeq item.gender 1)}}
                 男

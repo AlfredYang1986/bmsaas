@@ -4,16 +4,6 @@ import RSVP from 'rsvp';
 export default Route.extend({
     model(params) {
         if (params.studid == "stud/push") {
-            // let stud = this.store.createRecord('student', {"brandId": localStorage.getItem("brandid")});
-            // let gards = this.store.createRecord('guardian', {"brandId": localStorage.getItem("brandid")});
-            // let techs = this.store.query('teacher', {"brand-id": localStorage.getItem("brandid")});
-            //
-            // return RSVP.hash({
-            //     isPushing: true,
-            //     stud: stud,
-            //     gards: gards,
-            //     techs: techs,
-            // })
             let onSuccess = function() {
                 stud.guardians.pushObject(gard)
             }
