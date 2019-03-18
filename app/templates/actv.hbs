@@ -1,9 +1,21 @@
 <div class="course_content_top">
 	{{#layout-push direction="col" classNames="course_content"}}
-		{{#layout-push direction="row" split=true classNames="course-title-flex"}}
+		{{!-- {{#layout-push direction="row" split=true classNames="course-title-flex"}}
 			<p class="page_title">活动</p>
 			{{#link-to 'edit.actv.rsb' classNames='p-btn primary'}}+ 创建活动{{/link-to}}
-		{{/layout-push}}
+		{{/layout-push}} --}}
+		{{#bp-page-header as |ph|}}
+			{{#ph.body as |body|}}
+				{{#body.left as |left|}}
+					{{#left.item}}
+						活动
+					{{/left.item}}
+				{{/body.left}}
+				{{#body.right}}
+					{{#link-to 'edit.actv.rsb' classNames='p-btn primary'}}+ 创建活动{{/link-to}}
+				{{/body.right}}
+			{{/ph.body}}
+		{{/bp-page-header}}
 		{{#if (eq page_count 0)}}
 			{{bp-empty-state/no-button
 					class="reservable-empty-state"

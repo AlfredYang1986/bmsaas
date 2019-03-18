@@ -53,9 +53,9 @@
 
 .class_content {
 	background: #fff;
-	padding: 20px 24px;
-	height: 72px;
-	margin: 24px 24px 0 24px;
+	// padding: 20px 24px;
+	height: calc(100vh - 112px);
+	margin: 24px;
 
 	p.class-content-title {
 		font-family: PingFangSC-Medium;
@@ -74,7 +74,7 @@
 
 .class-content-panel-scroller {
 	background: #fff;
-	padding: 20px 24px;
+	// padding: 20px 24px;
 	margin: 24px;
 	position: relative;
 

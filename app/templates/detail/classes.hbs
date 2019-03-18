@@ -7,16 +7,19 @@
                 {{#link-to url.link class="reserve_detail_href_ref"}}{{url.pageName}}{{/link-to}}
             {{/if}}
         {{/bmcom/bm-breadcrumb}}
-
-        {{#layout-push direction='col' classNames="detail_panel class-detail-outer"}}
-            {{#layout-push direction='row' split=true classNames="class-detail-title-top"}}
-                {{#layout-push direction='col' split=true classNames="class-detail-title-top-left"}}
-                    <p class="class-title">{{model.class.classTitle}}</p>
-                    {{#link-to 'detail.course' model.class.reservableitem.id}}
-                        <p class="class-subtitle">{{model.class.reservableitem.sessioninfo.title}}</p>
-                    {{/link-to}}
-                {{/layout-push}}
-                {{#layout-push direction='row' classNames="class-detail-title-top-right"}}
+        {{#bp-page-header as |ph|}}
+            {{#ph.body as |body|}}
+                {{#body.left as |left|}}
+                    {{#left.item}}
+                        {{model.class.classTitle}}
+                    {{/left.item}}
+                    {{#left.item}}
+                        {{#link-to 'detail.course' model.class.reservableitem.id}}
+                            {{model.class.reservableitem.sessioninfo.title}}
+                        {{/link-to}}
+                    {{/left.item}}
+                {{/body.left}}
+                {{#body.right}}
                     {{#bs-dropdown class="btn-dropdown" as |dd|}}
                         {{#dd.button class="reserve-more-btn"}}{{/dd.button}}
                         {{#dd.menu align="right" as |menu|}}
@@ -40,18 +43,61 @@
                             {{/menu.item}}
                         {{/dd.menu}}
                     {{/bs-dropdown}}
+                {{/body.right}}
+            {{/ph.body}}
+            {{#ph.footer as |footer|}}
+                {{#footer.left as |left|}}
+                    {{#left.item}}
+                        校区 {{model.class.yard.title}}
+                    {{/left.item}}
+                {{/footer.left}}
+                {{#footer.right as |right|}}
+                    {{#right.item}}
+                        {{model.class.students.length}} 学生人数
+                    {{/right.item}}
+                    {{#right.item}}
+                        {{model.class.students.length}} 学生人数
+                    {{/right.item}}
+                {{/footer.right}}
+                
+            {{/ph.footer}}
+        {{/bp-page-header}}
+
+        {{#layout-push direction='col' classNames="detail_panel class-detail-outer"}}
+            {{!-- {{#layout-push direction='row' split=true classNames="class-detail-title-top"}}
+                {{#layout-push direction='col' split=true classNames="class-detail-title-top-left"}}
+                    <p class="class-title">{{model.class.classTitle}}</p>
+                    {{#link-to 'detail.course' model.class.reservableitem.id}}
+                        <p class="class-subtitle">{{model.class.reservableitem.sessioninfo.title}}</p>
+                    {{/link-to}}
+                {{/layout-push}}
+                {{#layout-push direction='row' classNames="class-detail-title-top-right"}}
+                    {{#bs-dropdown class="btn-dropdown" as |dd|}}
+                        {{#dd.button class="reserve-more-btn"}}{{/dd.button}}
+                        {{#dd.menu align="right" as |menu|}}
+                            {{#menu.item align="right"}}
+                                {{#layout-push direction='col' classNames="dropdown-content"}}
+                                    <a onclick={{action "onEditClassClick" dd.closeDropdown}}>编辑班级</a>
+                                {{/layout-push}}
+                            {{/menu.item}}
+                        {{/dd.menu}}
+                    {{/bs-dropdown}}
+                    {{#bs-dropdown class="btn-dropdown" as |dd|}}
+                        {{#dd.button class="add-muti-btn"}}添加{{/dd.button}}
+                        {{#dd.menu align="right" as |menu|}}
+                            {{#menu.item align="right"}}
+                                {{#layout-push direction='col' classNames="dropdown-content"}}
+                                    <a onclick={{action "onAddArrClassClick" dd.closeDropdown}}>添加排课</a>
+                                    <a onclick={{action (mut addStudDlg) true dd.closeDropdown}}>添加学生</a>
+                                    <a onclick={{action (mut addTechDlg) true dd.closeDropdown}}>添加老师</a>
+                                {{/layout-push}}
+                            {{/menu.item}}
+                        {{/dd.menu}}
+                    {{/bs-dropdown}}
                 {{/layout-push}}
             {{/layout-push}}
             {{#layout-push direction='row' split=true classNames="class-detail-title-sec"}}
                 {{#layout-push direction='col' split=true classNames="class-detail-title-sec-left"}}
-                    {{!-- {{#layout-push direction='row' classNames="sec-left-top"}}
-                        <p class="sec-title">时间</p>
-                        {{#if (eq model.units.length 0)}}
-                            <p class="sec-des">暂无安排</p>
-                        {{else}}
-                            <p class="sec-des">{{bmdob/bmdobformat model.class.startDate}}~{{bmdob/bmdobformat model.class.endDate}}</p>
-                        {{/if}}
-                    {{/layout-push}} --}}
                     {{#layout-push direction='row' classNames="sec-left-bottom"}}
                         <p class="sec-title">校区</p>
                         <p class="sec-des">{{model.class.yard.title}}</p>
@@ -60,12 +106,11 @@
                 {{#layout-push direction='row' split=true classNames="class-detail-title-sec-right"}}
                     <p class="sec-right-num">{{model.class.students.length}}</p>
                     <p class="sec-right-des">学生人数</p>
-                    {{!-- <p class="sec-right-num">{{model.class.courseTotalCount}}</p> --}}
                     <p class="sec-right-num">{{model.units.length}}</p>
                     <p class="sec-right-des">课次</p>
                 {{/layout-push}}
 
-            {{/layout-push}}
+            {{/layout-push}} --}}
 
             {{!-- {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs needAction=true onTabClicked=(action "onTabClicked")}} --}}
             {{#bp-tabs selection=selected class='class-tabs' as |tabs|}}
@@ -92,7 +137,10 @@
 				<div class="tab-content">
 					{{#tabs.pane elementId="tech-info"}}
                         {{#if (eq model.class.duties.length 0)}}
-                            {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无教师" des="快去为孩子们选择教师吧" btnText="添加教师" onBtnClick=(action (mut addTechDlg) true)}}
+                            <div class="exp-empty-state">
+                                {{bp-empty-state/primary-button src='/images/img_empty@2x.png' title="尚无教师" desc="快去为孩子们选择教师吧" btnText="添加教师" onClick=(action (mut addTechDlg) true)}}
+                            </div>
+                            {{!-- {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无教师" des="快去为孩子们选择教师吧" btnText="添加教师" onBtnClick=(action (mut addTechDlg) true)}} --}}
                         {{else}}
                             {{bmtable/bm-table-class-tech listData=model.class.duties titles=model.techTitles onRemoveTeacherClick=(action "onRemoveTeacherClick")}}
                             {{!-- {{bmcom/bm-pagination pageCount=bm_sessionable_service.totalPageCount sendPageNum=(action "handlePageChange")}} --}}
@@ -100,7 +148,10 @@
                     {{/tabs.pane}}
                     {{#tabs.pane elementId="stud-info"}}
                         {{#if (eq model.class.students.length 0)}}
-                            {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无学生" des="快去添加孩子们吧" btnText="添加学生" onBtnClick=(action (mut addStudDlg) true)}}
+                            <div class="exp-empty-state">
+                                {{bp-empty-state/primary-button src='/images/img_empty@2x.png' title="尚无学生" desc="快去添加孩子们吧" btnText="添加学生" onClick=(action (mut addStudDlg) true)}}
+                            </div>
+                            {{!-- {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无学生" des="快去添加孩子们吧" btnText="添加学生" onBtnClick=(action (mut addStudDlg) true)}} --}}
                         {{else}}
                             {{bmtable/bm-table-class-stud listData=model.class.students titles=model.studTitles onRemoveStudClick=(action "onRemoveStudClick")}}
                             {{!-- {{bmcom/bm-pagination pageCount=bm_sessionable_service.totalPageCount sendPageNum=(action "handlePageChange")}} --}}
@@ -108,7 +159,10 @@
                     {{/tabs.pane}}
                     {{#tabs.pane elementId="unit-info"}}
                         {{#if (eq model.units.length 0)}}
-                            {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无课程安排" des="快去添加课程安排吧" btnText="添加课程安排" onBtnClick=(action 'onAddArrClassClick')}}
+                            <div class="exp-empty-state">
+                                {{bp-empty-state/primary-button src='/images/img_empty@2x.png' title="尚无课程安排" desc="快去添加课程安排吧" btnText="添加课程安排" onClick=(action (mut onAddArrClassClick) true)}}
+                            </div>
+                            {{!-- {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无课程安排" des="快去添加课程安排吧" btnText="添加课程安排" onBtnClick=(action 'onAddArrClassClick')}} --}}
                         {{else}}
                             {{bmtable/bm-table-class-arrcourse listData=model.units titles=model.arrTitles onRemoveArrcourseClick=(action "onRemoveArrcourseClick")}}
                             {{!-- {{bmcom/bm-pagination pageCount=bm_sessionable_service.totalPageCount sendPageNum=(action "handlePageChange")}} --}}

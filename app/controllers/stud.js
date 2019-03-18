@@ -7,10 +7,10 @@ export default Controller.extend({
     pagenum: 1,
     refreshFlag: false,
 
-    studs: computed("refreshFlag", function() {
+    studs: computed('pagenum', "refreshFlag", function() {
         // return this.store.query('student', { 'page[number]': 1, 'page[size]': 20, "brand-id": localStorage.getItem("brandid")})
         let result;
-        result = this.store.query('student', { 'page[number]': 1, 'page[size]': 20, "brand-id": localStorage.getItem("brandid")});
+        result = this.store.query('student', { 'page[number]': this.pagenum, 'page[size]': 20, "brand-id": localStorage.getItem("brandid")});
         result.then(() => {
         }, error => {
             this.bm_error_service.handleError(error)
@@ -30,11 +30,11 @@ export default Controller.extend({
         handlePageChange(target_page) {
             // let that = this;
             this.set('pagenum', target_page)
-            this.store.query('student', { 'page[number]': target_page, 'page[size]': 20, "brand-id": localStorage.getItem("brandid")}).then((res) => {
-                this.set('studs', res)
-            }, error => {
-                this.bm_error_service.handleError(error)
-            })
+            // this.store.query('student', { 'page[number]': target_page, 'page[size]': 20, "brand-id": localStorage.getItem("brandid")}).then((res) => {
+            //     this.set('studs', res)
+            // }, error => {
+            //     this.bm_error_service.handleError(error)
+            // })
         },
     },
 });

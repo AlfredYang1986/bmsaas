@@ -1,23 +1,39 @@
 <div class="class_content_top">
 	{{#if openFlag}}
-		{{#layout-push direction="col" classNames="class_content"}}
+		{{!-- {{#layout-push direction="col" classNames="class_content"}}
 			{{#layout-push direction="row" split=true}}
 				<p class="class-content-title">班级</p>
 				{{#bp-button type="primary" onClick=(action 'onAddClassClick')}}
 					+ 创建班级
 				{{/bp-button}}
 			{{/layout-push}}
+		{{/layout-push}} --}}
+		{{#layout-push direction="col" classNames="class_content"}}
+			{{#bp-page-header as |ph|}}
+				{{#ph.body as |body|}}
+					{{#body.left as |left|}}
+						{{#left.item}}
+							班级
+						{{/left.item}}
+					{{/body.left}}
+					{{#body.right}}
+						{{#bp-button type="primary" onClick=(action 'onAddClassClick')}}
+							+ 创建班级
+						{{/bp-button}}
+					{{/body.right}}
+				{{/ph.body}}
+			{{/bp-page-header}}
+
+			{{#if (eq cls.length 0)}}
+				{{bp-empty-state/no-button
+					class="class-empty-state"
+					src='/images/img_empty@2x.png'
+					title="暂无数据"
+					desc="请创建班级"}}
+			{{else}}
+				{{bmclass/bm-class-scroller cls=cls onCardClicked=(action 'cardClicked')}}
+			{{/if}}
 		{{/layout-push}}
-		{{#if (eq cls.length 0)}}
-			{{bp-empty-state/no-button
-			class="class-empty-state"
-			src='/images/img_empty@2x.png'
-			title="暂无数据"
-			desc="请创建班级"
-		}}
-		{{else}}
-			{{bmclass/bm-class-scroller cls=cls onCardClicked=(action 'cardClicked')}}
-		{{/if}}
 	{{else}}
 		{{bp-empty-state/no-button
 			class="class-not-open"

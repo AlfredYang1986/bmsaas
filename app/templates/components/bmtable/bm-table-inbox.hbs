@@ -2,7 +2,10 @@
 
 <table class='ib_table_head inbox_table'>
     {{#if (eq applies.length 0)}}
-        {{bmcom/bm-empty-state class="inbox-empty-state" picUrl="/images/img_empty@2x.png" title="暂无数据" des="请添加待预约学员"}}
+        <div class="inbox-empty-state">
+            {{bp-empty-state/no-button src='/images/img_empty@2x.png' title="暂无数据" desc="请添加待预约学员"}}
+        </div>
+        {{!-- {{bmcom/bm-empty-state class="inbox-empty-state" picUrl="/images/img_empty@2x.png" title="暂无数据" des="请添加待预约学员"}} --}}
     {{else}}
         {{#if (eq applies.firstObject.courseType -1)}}
             {{bmtable/bm-table-inner type="preRegister" listData=applies registerId=registerId onClickInner=(action 'setCurrentApply')}}

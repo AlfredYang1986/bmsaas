@@ -46,8 +46,8 @@ export default Controller.extend({
             let paramsArr = res.split(' ');
             let count = paramsArr[0];
             let page = paramsArr[1];
-            this.set('total_count', count)
-            this.set('page_count', page)
+            this.set('total_count', Number(count))
+            this.set('page_count', Number(page))
         },
         linkToExpField(idx) {
             this.transitionToRoute('detail.exp-field', idx, this.model.exp.id);

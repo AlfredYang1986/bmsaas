@@ -7,14 +7,63 @@
                 {{#link-to url.link class="reserve_detail_href_ref"}}{{url.pageName}}{{/link-to}}
             {{/if}}
         {{/bmcom/bm-breadcrumb}}
-        <div class='detail_panel detail_margin_top detail_margin_top_big' >
+        {{#bp-page-header as |ph|}}
+            {{#ph.body as |body|}}
+                {{#body.left as |left|}}
+                    {{#left.item}}
+                        {{model.exp.sessioninfo.title}}
+                    {{/left.item}}
+                {{/body.left}}
+                {{#body.right}}
+                    {{#bs-dropdown class="btn-dropdown" as |dd|}}
+						{{#dd.button class="reserve-more-btn"}}{{/dd.button}}
+						{{#dd.menu align="right" as |menu|}}
+							{{#menu.item align="right"}}
+								{{#layout-push direction='col' classNames="dropdown-content"}}
+									{{#if (eq model.exp.startDate -1)}}
+										{{#if (eq model.exp.endDate -1)}}
+											<a onclick={{action "onOpenExpClick" item dd.closeDropdown}}>开启报名</a>
+										{{else}}
+											<a onclick={{action (mut closeExpDlg) true dd.closeDropdown}}>关闭报名</a>
+										{{/if}}
+									{{else}}
+										<a onclick={{action (mut closeExpDlg) true dd.closeDropdown}}>关闭报名</a>
+									{{/if}}
+									<a class="warning" onclick={{action (mut deleteExpDlg) true dd.closeDropdown}}>删除活动</a>
+								{{/layout-push}}
+							{{/menu.item}}
+						{{/dd.menu}}
+					{{/bs-dropdown}}
+                    {{#bp-button type="primary" onClick=(action (mut showAddSessionDlg) true)}}+ 添加场次{{/bp-button}}
+                {{/body.right}}
+            {{/ph.body}}
+            {{#ph.footer as |footer|}}
+                {{#footer.left as |left|}}
+                    {{#left.item}}
+                        {{#if (eq  model.exp.startDate -1)}}
+                            {{#if (eq  model.exp.endDate -1)}}
+                                <span class="status_before_dot_outer"><span class="status_before_dot_disable"></span></span>
+                                <span class="detail_panel_role_num">未开放</span>
+                            {{else}}
+                                <span class="status_before_dot_outer"><span class="status_before_dot"></span></span>
+                                <span class="detail_panel_role_num">开放中</span>
+                            {{/if}}
+                        {{else}}
+                            <span class="status_before_dot_outer"><span class="status_before_dot"></span></span>
+                            <span class="detail_panel_role_num">开放中</span>
+                        {{/if}}
+                    {{/left.item}}
+                {{/footer.left}}
+                {{#footer.right}}
+                    {{total_count}} 场次数
+                {{/footer.right}}
+            {{/ph.footer}}
+        {{/bp-page-header}}
+        {{!-- <div class='detail_panel detail_margin_top detail_margin_top_big' >
             {{#layout-push direction='row' split=true classNames="reserve-detail-head"}}
                 {{#layout-push direction='col' mid=true }}
                     {{#layout-push direction='col' classNames="detail_margin_top_left"}}
                         <span class="detail_panel_title_name">{{model.exp.sessioninfo.title}}</span>
-                        {{!-- {{#layout-push direction='row'}}
-                        <p class="detail_panel_role_num">{{reserve_number}}</p>
-                        {{/layout-push}} --}}
                     {{/layout-push}}
                 {{/layout-push}}
                 {{#layout-push direction="row" classNames="reserve-detail-btn"}}
@@ -38,92 +87,6 @@
                         {{/dd.menu}}
                     {{/bs-dropdown}}
                     {{#bs-button classNames="add_btn" onClick=(action (mut showAddSessionDlg) true)}}<span>+ 添加场次</span>{{/bs-button}}
-                    {{#bmcom/bm-modal-container title="" mswitch=showAddSessionDlg
-                            needSubmit=couldSubmit
-                            successbtncss='exp-modal-confirm'
-                            cancelbtncss='exp-modal-cancel'
-                            canceltext='取消'
-                            onCancelBtnClicked=(action 'cancelHandled')
-                            onSuccessBtnClicked=(action 'successHandled')}}
-                            <div class="session-modal">
-                                {{#layout-push direction='col' }}
-                                    {{#layout-push direction='row'}}
-                                        <p class="title">编辑场次</p>
-                                    {{/layout-push}}
-                                    {{#if noteError}}
-                                        <div class="form-checked">
-                                            {{#layout-push direction='row' classNames="error-line"}}
-                                                <img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
-                                                <span class="error-info">请检查表单信息</span>
-                                            {{/layout-push}}
-                                        </div>
-                                    {{/if}}
-                                    {{#if noteTimeError}}
-                                        <div class="form-checked">
-                                            {{#layout-push direction='row' classNames="error-line"}}
-                                                <img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
-                                                <span class="error-info">时间错误</span>
-                                            {{/layout-push}}
-                                        </div>
-                                    {{/if}}
-                                    {{#layout-push direction='row' classNames="line-list"}}
-                                        <p class="subtitle">校区设置</p>
-                                        <p class="edit_subtitle_content">{{model.yard.title}}</p>
-                                    {{/layout-push}}
-                                    {{#if noteError}}
-                                        {{#layout-push direction="col" classNames='input_area' }}
-                                            {{bmform/bm-base-select selId="roomSel" type="id" chooseCourse=true selTitle="选择教室" options=cur_rooms curSelect=cur_room_id classNames="error-border input-inline-select input_area area-margin-bottom"}}
-                                        {{/layout-push}}
-                                    {{else}}
-                                        {{#layout-push direction="col" classNames='input_area' }}
-                                            {{bmform/bm-base-select selId="roomSel" type="id" chooseCourse=true selTitle="选择教室" options=cur_rooms curSelect=cur_room_id classNames="input-inline-select input_area area-margin-bottom"}}
-                                        {{/layout-push}}
-                                    {{/if}}
-                                    {{#if (eq tmpSessionable "")}}
-                                        {{#layout-push direction="row" classNames="line-list"}}
-                                            <p class="subtitle">日期设置</p>
-                                            {{bmform/bm-lay-date inputVal=cur_tmp_date}}
-                                        {{/layout-push}}
-                                        {{#layout-push direction="row" classNames="line-list"}}
-                                            <p class="subtitle">时间设置</p>
-                                            {{#if noteTimeError}}
-                                                {{bmform/bm-lay-date cssClass="error-border" inputVal=cur_start_date pickType="time"}}
-                                                {{bmform/bm-lay-date cssClass="error-border" inputVal=cur_end_date pickType="time"}}
-                                            {{else}}
-                                                {{bmform/bm-lay-date inputVal=cur_start_date pickType="time"}}
-                                                {{bmform/bm-lay-date inputVal=cur_end_date pickType="time"}}
-                                            {{/if}}
-                                        {{/layout-push}}
-                                    {{else}}
-                                        {{#layout-push direction="row" classNames="line-list"}}
-                                            <p class="subtitle">日期设置</p>
-                                            {{bmform/bm-lay-date inputVal=cur_tmp_date}}
-                                        {{/layout-push}}
-                                        {{#layout-push direction="row" classNames="line-list"}}
-                                            <p class="subtitle">时间设置</p>
-                                            {{#if noteTimeError}}
-                                                {{bmform/bm-lay-date cssClass="error-border" inputVal=cur_start_date pickType="time"}}
-                                                {{bmform/bm-lay-date cssClass="error-border" inputVal=cur_end_date pickType="time"}}
-                                            {{else}}
-                                                {{bmform/bm-lay-date inputVal=cur_start_date pickType="time"}}
-                                                {{bmform/bm-lay-date inputVal=cur_end_date pickType="time"}}
-                                            {{/if}}
-                                        {{/layout-push}}
-                                    {{/if}}
-                                {{/layout-push}}
-                            </div>
-                    {{/bmcom/bm-modal-container}}
-                    {{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteExpDlg cancelHandled=(action 'cancelHandled') successHandled=(action "onDeleteExpClick")}}
-                        <p class="warning-modal-body-content">您确定要删除体验课「{{model.exp.sessioninfo.title}}」吗？</p>
-                        <p class="warning-modal-body-content">删除后所有场次信息都将删除。</p>
-                    {{/bmcom/bm-warning-modal}}
-                    {{#bmcom/bm-warning-modal title="关闭" mainBtnText="关闭" type="warning" switchParam=closeExpDlg cancelHandled=(action 'cancelHandled') successHandled=(action "onShutdownExpClick")}}
-                        <p class="warning-modal-body-content">您确定要关闭体验课吗？</p>
-                        <p class="warning-modal-body-content">关闭后体验课将不在小程序中显示。</p>
-                    {{/bmcom/bm-warning-modal}}
-                    {{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteSessionDlg cancelHandled=(action 'cancelHandled') successHandled=(action "onDeleteSessionClickOk")}}
-                        <p class="warning-modal-body-content">您确定要删除该场次吗？</p>
-                    {{/bmcom/bm-warning-modal}}
                 {{/layout-push}}
             {{/layout-push}}
         </div>
@@ -148,7 +111,7 @@
                     <span class="detail_panel_role_num">场次数</span>
                 {{/layout-push}}
             {{/layout-push}}
-        </div>
+        </div> --}}
 
         {{!-- {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs}}
 
@@ -188,7 +151,7 @@
             <div class="tab-content">
                 {{#tabs.pane elementId="field-info"}}
                     {{bmpage/bm-sessionable-lst titles=model.titles resid=model.exp.id curPage=pagenum totalCount=totalCount onRefreshDataComplete=(action 'refreshDataComplete')  onClickInner=(action "linkToExpField") onEditSessionClick=(action "onEditSessionClick") onDeleteSessionClick=(action "onDeleteSessionClick")}}
-                    {{#if (bmeq total_count 0)}}
+                    {{#if (bmeq page_count 0)}}
                     {{else}}
                         {{bp-pagination
                             totalPageCounts=page_count 
@@ -208,4 +171,91 @@
         {{/bp-tabs}}
     </div>
 </div>
+{{#bmcom/bm-modal-container title="" mswitch=showAddSessionDlg
+        needSubmit=couldSubmit
+        successbtncss='exp-modal-confirm'
+        cancelbtncss='exp-modal-cancel'
+        canceltext='取消'
+        onCancelBtnClicked=(action 'cancelHandled')
+        onSuccessBtnClicked=(action 'successHandled')}}
+        <div class="session-modal">
+            {{#layout-push direction='col' }}
+                {{#layout-push direction='row'}}
+                    <p class="title">编辑场次</p>
+                {{/layout-push}}
+                {{#if noteError}}
+                    <div class="form-checked">
+                        {{#layout-push direction='row' classNames="error-line"}}
+                            <img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
+                            <span class="error-info">请检查表单信息</span>
+                        {{/layout-push}}
+                    </div>
+                {{/if}}
+                {{#if noteTimeError}}
+                    <div class="form-checked">
+                        {{#layout-push direction='row' classNames="error-line"}}
+                            <img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
+                            <span class="error-info">时间错误</span>
+                        {{/layout-push}}
+                    </div>
+                {{/if}}
+                {{#layout-push direction='row' classNames="line-list"}}
+                    <p class="subtitle">校区设置</p>
+                    <p class="edit_subtitle_content">{{model.yard.title}}</p>
+                {{/layout-push}}
+                {{#if noteError}}
+                    {{#layout-push direction="col" classNames='input_area' }}
+                        {{bmform/bm-base-select selId="roomSel" type="id" chooseCourse=true selTitle="选择教室" options=cur_rooms curSelect=cur_room_id classNames="error-border input-inline-select input_area area-margin-bottom"}}
+                    {{/layout-push}}
+                {{else}}
+                    {{#layout-push direction="col" classNames='input_area' }}
+                        {{bmform/bm-base-select selId="roomSel" type="id" chooseCourse=true selTitle="选择教室" options=cur_rooms curSelect=cur_room_id classNames="input-inline-select input_area area-margin-bottom"}}
+                    {{/layout-push}}
+                {{/if}}
+                {{#if (eq tmpSessionable "")}}
+                    {{#layout-push direction="row" classNames="line-list"}}
+                        <p class="subtitle">日期设置</p>
+                        {{bmform/bm-lay-date inputVal=cur_tmp_date}}
+                    {{/layout-push}}
+                    {{#layout-push direction="row" classNames="line-list"}}
+                        <p class="subtitle">时间设置</p>
+                        {{#if noteTimeError}}
+                            {{bmform/bm-lay-date cssClass="error-border" inputVal=cur_start_date pickType="time"}}
+                            {{bmform/bm-lay-date cssClass="error-border" inputVal=cur_end_date pickType="time"}}
+                        {{else}}
+                            {{bmform/bm-lay-date inputVal=cur_start_date pickType="time"}}
+                            {{bmform/bm-lay-date inputVal=cur_end_date pickType="time"}}
+                        {{/if}}
+                    {{/layout-push}}
+                {{else}}
+                    {{#layout-push direction="row" classNames="line-list"}}
+                        <p class="subtitle">日期设置</p>
+                        {{bmform/bm-lay-date inputVal=cur_tmp_date}}
+                    {{/layout-push}}
+                    {{#layout-push direction="row" classNames="line-list"}}
+                        <p class="subtitle">时间设置</p>
+                        {{#if noteTimeError}}
+                            {{bmform/bm-lay-date cssClass="error-border" inputVal=cur_start_date pickType="time"}}
+                            {{bmform/bm-lay-date cssClass="error-border" inputVal=cur_end_date pickType="time"}}
+                        {{else}}
+                            {{bmform/bm-lay-date inputVal=cur_start_date pickType="time"}}
+                            {{bmform/bm-lay-date inputVal=cur_end_date pickType="time"}}
+                        {{/if}}
+                    {{/layout-push}}
+                {{/if}}
+            {{/layout-push}}
+        </div>
+{{/bmcom/bm-modal-container}}
+{{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteExpDlg cancelHandled=(action 'cancelHandled') successHandled=(action "onDeleteExpClick")}}
+    <p class="warning-modal-body-content">您确定要删除体验课「{{model.exp.sessioninfo.title}}」吗？</p>
+    <p class="warning-modal-body-content">删除后所有场次信息都将删除。</p>
+{{/bmcom/bm-warning-modal}}
+{{#bmcom/bm-warning-modal title="关闭" mainBtnText="关闭" type="warning" switchParam=closeExpDlg cancelHandled=(action 'cancelHandled') successHandled=(action "onShutdownExpClick")}}
+    <p class="warning-modal-body-content">您确定要关闭体验课吗？</p>
+    <p class="warning-modal-body-content">关闭后体验课将不在小程序中显示。</p>
+{{/bmcom/bm-warning-modal}}
+{{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteSessionDlg cancelHandled=(action 'cancelHandled') successHandled=(action "onDeleteSessionClickOk")}}
+    <p class="warning-modal-body-content">您确定要删除该场次吗？</p>
+{{/bmcom/bm-warning-modal}}
+
 {{outlet}}
