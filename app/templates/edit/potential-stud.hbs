@@ -10,8 +10,10 @@
 		{{#layout-push direction='col' split=true classNames='add-pt-stud'}}
 			{{#layout-push direction='col' mid=true classNames='search-area'}}
 				<div class="search">
-					<input type="text" name="" value="" class="search-input" placeholder="手机号">
-					<i class="icon-search" {{action 'searchStud' argument}}></i>
+					{{#layout-push direction='row' classNames='search-btn-input'}}
+						<input type="text" name="" value="" class="search-input" placeholder="手机号">
+						<button type="button" name="button" class="btn_save" {{action 'searchStud'}}>搜索</button>
+					{{/layout-push}}
 					{{#if studList}}
 						{{#layout-push direction="row" classNames="stud-list-area" }}
 							<table class='ib_table_head_pt stud_list_table'>
@@ -39,74 +41,6 @@
 			{{/layout-push}}
 		{{/layout-push}}
 	</div>
-	{{!-- <div class="input_container">
-		<a id="kid-info" class="anchor-point"></a>
-		<section class="kids_info stu_section">
-			<p class="title-name">孩子信息</p>
-			{{#layout-push direction='row'}}
-				{{#layout-push direction="col"  classNames='input_area area-margin-bottom name-area' }}
-					{{bmform/bm-edit-line title='真实姓名'  inputVal=model.stud.name classNames='input_area area-margin-bottom'}}
-				{{/layout-push}}
-				{{#layout-push direction="col" classNames='input_area area-margin-bottom' }}
-					{{bmform/bm-edit-line title='昵称'  inputVal=model.stud.nickname classNames='input_area area-margin-bottom'}}
-				{{/layout-push}}
-			{{/layout-push}}
-
-			{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
-				<p class="edit_title">性别</p>
-				{{bmcom/bm-radio-inline cur_idx=sex_idx judge=sex titles=genderCheck}}
-			{{/layout-push}}
-
-			{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
-				<p class="edit_title">出生日期</p>
-				{{#layout-push direction="row" split=false classNames='date_choose' }}
-	                {{#if (bmcom/bm-nil-obj model.stud)}}
-	                {{else}}
-						{{bmform/bm-lay-date inputVal=model.stud.dob}}
-	                {{/if}}
-				{{/layout-push}}
-			{{/layout-push}}
-
-			{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
-				{{bmform/bm-edit-line title='就读学校' largeInput=true  inputVal=model.stud.school classNames='input_area area-margin-bottom'}}
-			{{/layout-push}}
-
-			{{bmform/bm-detail-address
-                provinces=provinces
-                citys=citys
-                areas=areas
-                province=model.stud.province
-                city=model.stud.city
-                area=model.stud.district
-                title='地址'
-                detailAddress=model.stud.address
-				classNames="area-margin-bottom"}}
-		</section>
-		<a id="par-story" class="anchor-point"></a>
-		{{#each model.stud.guardians as |item|}}
-			<section class="parent_info stu_section">
-				<p class="title-name">监护人信息</p>
-				{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
-					{{bmform/bm-edit-line title='姓名'  inputVal=item.name classNames='input_area area-margin-bottom'}}
-				{{/layout-push}}
-
-				{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
-					<p class="edit_title">与孩子关系</p>
-						{{bmcom/bm-radio-inline cur_idx=rela_idx titles=relaChecked judge=rela}}
-				{{/layout-push}}
-				{{#layout-push direction="col" split=true classNames='input_area area-margin-bottom' }}
-					{{bmform/bm-edit-line numberInput=true title='联系方式' maxlength="11" inputVal=item.contact classNames='input_area area-margin-bottom'}}
-					{{bmform/bm-edit-line title='微信'  inputVal=item.wechat classNames='input_area area-margin-bottom'}}
-				{{/layout-push}}
-			</section>
-		{{/each}}
-		<a id="other-info" class="anchor-point"></a>
-		<section class="kids_info stu_section">
-			<p class="title-name">更多信息</p>
-			{{bmform/bm-base-select type="id" idType=true selId='teacherName' selTitle="课程顾问" options=model.techs curSelect=cur_tech_id classNames="input_area area-margin-bottom"}}
-			{{bmform/bm-base-select selId='sourceWay' selTitle="渠道来源" options=origin curSelect=model.stud.sourceWay classNames="input_area"}}
-		</section>
-	</div> --}}
 {{/layout-push}}
 {{#bmcom/bm-modal-container title="" mswitch=showAddSelect
 		type='codeImg'

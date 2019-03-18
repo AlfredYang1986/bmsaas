@@ -30,7 +30,7 @@ export default Route.extend({
             reservable : res,
             course : si,
             cate: cate,
-            describe: A(["课程类别","课程名称","分类/标签","收费模式", "课程详情", "课程图片"]),
+            describe: A(["课程分类","课程名称","基础信息","收费设定", "课程详情", "图片"]),
         })
     },
 });

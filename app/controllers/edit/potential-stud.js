@@ -6,7 +6,7 @@ export default Controller.extend({
     showAddSelect: true,
     showAddStud: false,
     inputVal: true,
-    studList: false,
+    studList: true,
     sex_idx: 0,
     rela_idx: 0,
     sex_idx: 0,
