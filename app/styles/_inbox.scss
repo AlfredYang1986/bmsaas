@@ -623,6 +623,13 @@
         }
     }
 }
+
+.bp-pagination-item {
+    .page-link {
+        background-color: transparent;
+    }
+}
+
 .bm-pagination {
     .pagination {
         margin: 0;
