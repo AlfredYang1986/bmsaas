@@ -114,7 +114,6 @@ export default Controller.extend({
             this.set('showAddStud', true);
         },
         addPtStud() {
-            debugger
         },
         searchStud() {
             this.toggleProperty('refreshFlag');
