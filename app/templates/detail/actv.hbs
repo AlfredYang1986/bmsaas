@@ -251,6 +251,9 @@
                         {{bp-pagination
                             totalPageCounts=page_count 
                             onClickPage=(action (mut pagenum))}}
+                        {{log page_count}}
+                        {{log "45"}}
+                        {{log pagenum}}
                     {{/if}}
                 {{/tabs.pane}}
                 {{#tabs.pane elementId="detail-info"}}

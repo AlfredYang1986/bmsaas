@@ -39,6 +39,10 @@ export default Controller.extend({
     closeActvDlg: false,
     deleteSessionDlg: false,
 
+    page_count: computed(function () {
+		return Number.parseInt(localStorage.getItem('classes'));
+	}),
+
     classes: computed('pagenum', function() {
         let ps = this.store.query('class', { 'page[number]': this.pagenum, 'page[size]': 20, "reservable-id": this.model.actv.get("id")})
         ps.then(() => {
