@@ -1,404 +1,445 @@
 @import './bm-saas-standard/args';
+
 .edit_nav {
-    margin-bottom: 24px;
-    padding: 16px 24px;
-    height: 64px;
-    font-family: $font-brand;
-    background-color: #FFF;
-    span:first-child {
-        @extend %font-page-header-title;
-    }
+	margin-bottom: 24px;
+	padding: 16px 24px;
+	height: 64px;
+	font-family: $font-brand;
+	background-color: #FFF;
 
-    span:last-child {
-        // a {
-        //   @extend %button-system-subtle-default;
-        // }
+	span:first-child {
+		@extend %font-page-header-title;
+	}
 
-        .edit_nav_btn.btn_cacel {
-            background: 0 0;
-            color: #42526E;
-            outline: 0;
-            padding: 6px 12px;
-            height: 32px;
-            min-width: 80px;
-            line-height: 20px;
-            font-family: Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif;
-            font-size: 14px;
-            border-radius: 2px;
-            display: inline-block;
-            vertical-align: middle;
-            text-align: center;
-            white-space: nowrap;
-        }
-        .btn_save {
-            font-family: PingFangSC-Semibold;
-            min-width: 80px;
-            height: 32px;
-            border: none;
-            border-radius: 4px;
-            background: #80AEFF;
-            font-size: 14px;
-            color: #fff;
-            padding: 0 16px;
-        }
-    }
+	span:last-child {
+
+		.edit_nav_btn.btn_cacel {
+			background: 0 0;
+			color: #42526E;
+			outline: 0;
+			padding: 6px 12px;
+			height: 32px;
+			min-width: 80px;
+			line-height: 20px;
+			font-size: 14px;
+			border-radius: 2px;
+			display: inline-block;
+			vertical-align: middle;
+			text-align: center;
+			white-space: nowrap;
+		}
+
+		.btn_save {
+			min-width: 80px;
+			height: 32px;
+			border: none;
+			border-radius: 4px;
+			background: #80AEFF;
+			font-size: 14px;
+			color: #fff;
+			padding: 0 16px;
+		}
+	}
 }
 
 .edit_container {
-    padding-top: 64px;
-    font-family: $font-brand;
-    min-width: 1200px;
+	padding-top: 64px;
+	font-family: $font-brand;
+	min-width: 1200px;
 
-    .edit_left_nav {
-        position: fixed;
-    	padding-top: 24px;
-    	z-index: 3;
-    	background-color: #f7f8fa;
-        flex: 0 0 240px;
-        margin-bottom: 0;
-        height: calc(100vh - 64px);
-        width: 240px;
-        li.title-sub {
-            position: absolute;
-            margin-top: 160px;
-            padding: 17px 0;
-        }
-        li.left_bar_title{
-            padding-left: 24px;
-            // margin-top: 32px;
-            margin-bottom: 17px;
+	.edit_left_nav {
+		position: fixed;
+		padding-top: 24px;
+		z-index: 3;
+		background-color: #f7f8fa;
+		flex: 0 0 240px;
+		margin-bottom: 0;
+		height: calc(100vh - 64px);
+		width: 240px;
 
-            &:nth-child(1){
-                margin-top: 0;
-            }
+		li.title-sub {
+			position: absolute;
+			margin-top: 160px;
+			padding: 17px 0;
+		}
 
-            .edit_left_menu_text {
-                color: #6B778C;
-            }
-        }
+		li.left_bar_title {
+			padding-left: 24px;
+			// margin-top: 32px;
+			margin-bottom: 17px;
 
-    	li.left_bar_item {
-            // margin-bottom: 40px;
-            padding-left: 40px;
-            text-align: left;
-            height: 40px;
-            @extend %font-form-info-title;
-            .ib_tab_btn_active {
-                color: #80AEFF;
-            }
-    		a.edit_left_menu_text {
-                line-height: 40px;
-                @extend %font-form-info-title;
-    		}
-            a.active {
-                color: red;
-            }
-            a.edit_left_menu_stud {
-                @extend %font-form-info-title;
-            }
-    	}
-    }
+			&:nth-child(1) {
+				margin-top: 0;
+			}
 
-  .input_container {
-    flex: 1;
-    padding-top: 24px;
-    padding-bottom: 40px;
-    margin-bottom: 68px;
-    margin-left: 240px;
+			.edit_left_menu_text {
+				color: #6B778C;
+			}
+		}
 
-    &.tech_input_container {
-        margin-bottom: 24px;
-    }
+		li.left_bar_item {
+			// margin-bottom: 40px;
+			padding-left: 40px;
+			text-align: left;
+			height: 40px;
+			@extend %font-form-info-title;
 
-    // .tech-infos-container{
+			.ib_tab_btn_active {
+				color: #80AEFF;
+			}
 
-    //     .tech-infos-icon{
+			a.edit_left_menu_text {
+				line-height: 40px;
+				@extend %font-form-info-title;
+			}
 
-    //         .edit_title{
-    //             margin-bottom: 16px;
-    //             font-family: $font-family;
-    //             font-size: 14px;
-    //             font-weight: 700;
-    //             color: #172B4D;
-    //         }
-    //     }
-    // }
-    section.stu_section {
-        margin: 0 24px 8px;
-        padding: 24px;
-        background-color: $color-neutral-N000;
-        .course-reserve-modal-select {
-            select {
-                @extend %select-box-dropdown-default;
-            }
-        }
-       .title-name {
-          margin-bottom: 45px;
-          @extend %font-dialog-title;
-       }
-       .name-area {
-          margin-right: 40px;
-       }
-       .input_area {
+			a.active {
+				color: red;
+			}
 
-        input[type=radio] {
-            opacity: 0.5;
-            & + label{
-                margin-left: 10px;
-            }
-        }
-        &.area-margin-bottom {
-            margin-bottom: 32px;
-        }
+			a.edit_left_menu_stud {
+				@extend %font-form-info-title;
+			}
+		}
+	}
 
-        .edit_title {
-            margin-bottom: 16px;
-            @extend %font-form-info-title;
-            span.sub_title {
-                font-size: 11px;
-                color: #6B778C;
-            }
-        }
+	.input_container {
+		flex: 1;
+		padding-top: 24px;
+		padding-bottom: 40px;
+		margin-bottom: 68px;
+		margin-left: 240px;
 
-        .radio-inline {
-            margin-right: 11px;
-            min-width: 80px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        }
+		&.tech_input_container {
+			margin-bottom: 24px;
+		}
 
-        input.edit_input {
-            margin-bottom: 4px;
-            width: 144px;
-            height: 32px;
-            border: 1px solid #DFE1E5;
-            border-radius: $border-radius-button-product;
-            box-shadow: none;
-        }
-        input.kid_school {
-            width: 536px;
-            margin-bottom: 4px;
-            height: 32px;
-            border: 1px solid #DFE1E5;
-            border-radius: $border-radius-button-product;
-            box-shadow: none;
-        }
+		// .tech-infos-container{
 
-        .edit_hint {
-          font-family: $font-family;
-          font-size: 11px;
-          color: $color-neutral-N200;
-        }
+		//     .tech-infos-icon{
 
-        .date_choose {
-          select {
-            margin-right: 16px;
-            padding: 0 8px;
-            width: 120px;
-            height: 32px;
-            background: $color-select-bg-dafault;
-            border-radius: $border-radius-button-product;
-          }
-        }
-        &.area-margin-bottom:last-child {
-            margin-bottom: 0;
-        }
-      }
-    }
-    section.tech_section {
-        margin: 0 24px;
-        padding: 24px;
-        background-color: $color-neutral-N000;
+		//         .edit_title{
+		//             margin-bottom: 16px;
+		//             font-family: $font-family;
+		//             font-size: 14px;
+		//             font-weight: 700;
+		//             color: #172B4D;
+		//         }
+		//     }
+		// }
+		section.stu_section {
+			margin: 0 24px 8px;
+			padding: 24px;
+			background-color: $color-neutral-N000;
 
-        .years-select {
-            select { 
-                width: 80px!important;                
-            }
-        }
-        select {
-            @extend %select-box-dropdown-default;
+			.course-reserve-modal-select {
+				select {
+					@extend %select-box-dropdown-default;
+				}
+			}
 
-            &.years-select {
-                width: 80px!important;
-            }
-        }
-        .area-margin-bottom {
-            margin-bottom: 40px;
-        }
-        .area-margin-bottom-job {
-            margin-bottom: 24px;
-        }
-        .area-margin-left {
-            margin-left: 40px;
-            flex-grow: 1;
-        }
-        .tech-infos-container {
-            .tech-infos-icon{
-                min-width: 272px;
+			.title-name {
+				margin-bottom: 45px;
+				@extend %font-dialog-title;
+			}
 
-                .bm-upload-container {
-                    width: 272px;
+			.name-area {
+				margin-right: 40px;
+			}
 
-                    img {
-                        width: 272px;
-                        height: 272px;
-                    }
-                }
-                .edit_title{
-                    margin-bottom: 16px;
-                    font-family: $font-family;
-                    font-size: 14px;
-                    font-weight: 700;
-                    color: #172B4D;
-                }
-            }
-            .tech-avatar {
-                flex: 0 0 272px;
-                p{
-                    height: 22px;
-                    margin-bottom: 16px;
-                }
-                input{
-                    height: 32px;
-                    line-height: 26px;
-                }
-                img {
-                    width: 272px;
-                    height: 272px;
-                }
-            }
-            .tech-basis-info {
-                flex: 1;
-                padding-left: 56px;
-            }
-        }
-        .input_area {
+			.input_area {
 
-            input[type=radio] {
+				input[type=radio] {
+					opacity: 0.5;
 
-                & + label{
-                    margin-left: 0;
-                    margin-right: 32px;
-                }
-            }
+					&+label {
+						margin-left: 10px;
+					}
+				}
 
-          .edit_title {
-            margin-bottom: 16px;
-            font-family: $font-family;
-            font-size: $font-size-main;
-            font-weight: 700;
-            color: $color-neutral-N800;
+				&.area-margin-bottom {
+					margin-bottom: 32px;
+				}
 
-            span.sub_title {
-              font-size: 11px;
-              color: $color-neutral-N200;
-            }
-            &.edit_title_no_margin {
-                margin-bottom: 4px;
-            }
-            & + .edit_title_des {
-                margin-bottom: 16px;
-            }
-          }
+				.edit_title {
+					margin-bottom: 16px;
+					@extend %font-form-info-title;
 
-          .edit_title_des {
-            font-family: PingFangSC-Regular;
-            font-size: 14px;
-            color: #6B778C;
-            text-align: left;
-          }
+					span.sub_title {
+						font-size: 11px;
+						color: #6B778C;
+					}
+				}
 
-          input.edit_input {
-          margin-bottom: 4px;
-          width: 144px;
-          height: 32px;
-          border: 1px solid #DFE1E5;
-          border-radius: $border-radius-button-product;
-          box-shadow: none;
-          }
-          input.input_100 {
-                width: 100%;
-          }
+				.radio-inline {
+					margin-right: 11px;
+					min-width: 80px;
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+				}
 
-          .edit_hint {
-            font-family: $font-family;
-            font-size: 11px;
-            color: $color-neutral-N200;
-          }
+				input.edit_input {
+					margin-bottom: 4px;
+					width: 144px;
+					height: 32px;
+					border: 1px solid #DFE1E5;
+					border-radius: $border-radius-button-product;
+					box-shadow: none;
+				}
 
-          .date_choose {
-            select {
-              margin-right: 16px;
-              padding: 0 8px;
-              width: 120px;
-              height: 32px;
-              background: $color-select-bg-dafault;
-              border-radius: $border-radius-button-product;
-            }
-          }
-          &.area-margin-bottom:last-child {
-              margin-bottom: 0;
-          }
-        }
-        &.job-infos {
-            margin-bottom: 8px;
-        }
-        &.edu-lifes,&.work-lifes {
-            display: none;
+				input.kid_school {
+					width: 536px;
+					margin-bottom: 4px;
+					height: 32px;
+					border: 1px solid #DFE1E5;
+					border-radius: $border-radius-button-product;
+					box-shadow: none;
+				}
 
-            font-family: $font-family;
-            .edu_exper_nav {
-                // padding: 0 24px;
-                height: 32px;
-                line-height: 32px;
-                span:first-child {
-                  font-weight: 700;
-                  font-size: $font-size-dialog;
-                  color: $color-neutral-N800;
-                }
+				.edit_hint {
+					font-family: $font-family;
+					font-size: 11px;
+					color: $color-neutral-N200;
+				}
 
-                .btn_addedu {
-                    padding: 0;
-                    width: 80px;
-                    height: 32px;
-                    background: rgba(9,30,66,0.04);
-                    border-radius: 3px;
-                    font-size: $font-size-main;
-                    color: $color-neutral-N070;
-                    text-align: center;
-                }
-            }
-            .edu_exper_container {
-                padding: 24px 0 24px;
-                .edu_exper_left {
-                    flex: 0 1 120px;
-                    opacity: 0.7;
-                    font-size: $font-size-main;
-                    color: $color-neutral-N200;
-                }
-                .edu_exper_change {
-                    flex: 0 1 120px;
-                }
-                .edu_exper_content {
-                    flex-grow: 1;
-                    padding: 0 24px;
-                    p {
-                        margin-bottom: 8px;
-                        line-height: 20px;
-                        font-size: $font-size-main;
-                        color: $color-neutral-N800;
-                        letter-spacing: 1px;
-                    }
+				.date_choose {
+					select {
+						margin-right: 16px;
+						padding: 0 8px;
+						width: 120px;
+						height: 32px;
+						background: $color-select-bg-dafault;
+						border-radius: $border-radius-button-product;
+					}
+				}
+
+				&.area-margin-bottom:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+
+		section.tech_section {
+			margin: 0 24px;
+			padding: 24px;
+			background-color: $color-neutral-N000;
+
+			.years-select {
+				select {
+					width: 80px !important;
+				}
+			}
+
+			select {
+				@extend %select-box-dropdown-default;
+
+				&.years-select {
+					width: 80px !important;
+				}
+			}
+
+			.area-margin-bottom {
+				margin-bottom: 40px;
+			}
+
+			.area-margin-bottom-job {
+				margin-bottom: 24px;
+			}
+
+			.area-margin-left {
+				margin-left: 40px;
+				flex-grow: 1;
+			}
+
+			.tech-infos-container {
+				.tech-infos-icon {
+					min-width: 272px;
+
+					.bm-upload-container {
+						width: 272px;
+
+						img {
+							width: 272px;
+							height: 272px;
+						}
+					}
+
+					.edit_title {
+						margin-bottom: 16px;
+						font-family: $font-family;
+						font-size: 14px;
+						font-weight: 700;
+						color: #172B4D;
+					}
+				}
+
+				.tech-avatar {
+					flex: 0 0 272px;
+
+					p {
+						height: 22px;
+						margin-bottom: 16px;
+					}
+
+					input {
+						height: 32px;
+						line-height: 26px;
+					}
+
+					img {
+						width: 272px;
+						height: 272px;
+					}
+				}
+
+				.tech-basis-info {
+					flex: 1;
+					padding-left: 56px;
+				}
+			}
+
+			.input_area {
+
+				input[type=radio] {
+
+					&+label {
+						margin-left: 0;
+						margin-right: 32px;
+					}
+				}
+
+				.edit_title {
+					margin-bottom: 16px;
+					font-family: $font-family;
+					font-size: $font-size-main;
+					font-weight: 700;
+					color: $color-neutral-N800;
+
+					span.sub_title {
+						font-size: 11px;
+						color: $color-neutral-N200;
+					}
+
+					&.edit_title_no_margin {
+						margin-bottom: 4px;
+					}
+
+					&+.edit_title_des {
+						margin-bottom: 16px;
+					}
+				}
+
+				.edit_title_des {
+					font-family: PingFangSC-Regular;
+					font-size: 14px;
+					color: #6B778C;
+					text-align: left;
+				}
+
+				input.edit_input {
+					margin-bottom: 4px;
+					width: 144px;
+					height: 32px;
+					border: 1px solid #DFE1E5;
+					border-radius: $border-radius-button-product;
+					box-shadow: none;
+				}
+
+				input.input_100 {
+					width: 100%;
+				}
+
+				.edit_hint {
+					font-family: $font-family;
+					font-size: 11px;
+					color: $color-neutral-N200;
+				}
+
+				.date_choose {
+					select {
+						margin-right: 16px;
+						padding: 0 8px;
+						width: 120px;
+						height: 32px;
+						background: $color-select-bg-dafault;
+						border-radius: $border-radius-button-product;
+					}
+				}
+
+				&.area-margin-bottom:last-child {
+					margin-bottom: 0;
+				}
+			}
+
+			&.job-infos {
+				margin-bottom: 8px;
+			}
+
+			&.edu-lifes,
+			&.work-lifes {
+				display: none;
+
+				font-family: $font-family;
+
+				.edu_exper_nav {
+					// padding: 0 24px;
+					height: 32px;
+					line-height: 32px;
+
+					span:first-child {
+						font-weight: 700;
+						font-size: $font-size-dialog;
+						color: $color-neutral-N800;
+					}
+
+					.btn_addedu {
+						padding: 0;
+						width: 80px;
+						height: 32px;
+						background: rgba(9, 30, 66, 0.04);
+						border-radius: 3px;
+						font-size: $font-size-main;
+						color: $color-neutral-N070;
+						text-align: center;
+					}
+				}
+
+				.edu_exper_container {
+					padding: 24px 0 24px;
+
+					.edu_exper_left {
+						flex: 0 1 120px;
+						opacity: 0.7;
+						font-size: $font-size-main;
+						color: $color-neutral-N200;
+					}
+
+					.edu_exper_change {
+						flex: 0 1 120px;
+					}
+
+					.edu_exper_content {
+						flex-grow: 1;
+						padding: 0 24px;
+
+						p {
+							margin-bottom: 8px;
+							line-height: 20px;
+							font-size: $font-size-main;
+							color: $color-neutral-N800;
+							letter-spacing: 1px;
+						}
 
 
-                }
-            }
-            .line {
-                opacity: 0.12;
-                border: 1px solid #000000;
-            }
-        }
-    }
-  }
+					}
+				}
+
+				.line {
+					opacity: 0.12;
+					border: 1px solid #000000;
+				}
+			}
+		}
+	}
 }
