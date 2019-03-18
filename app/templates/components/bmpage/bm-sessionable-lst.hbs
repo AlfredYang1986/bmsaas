@@ -1,5 +1,8 @@
 {{#if (bmeq classes.length 0)}}
-    {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="暂无场次" des="点击右上角添加场次，安排体验课时间与场地吧"}}
+    <div class="exp-empty-state">
+        {{bp-empty-state/no-button src='/images/img_empty@2x.png' title="暂无场次" desc="点击右上角添加场次，安排体验课时间与场地吧"}}
+    </div>
+    {{!-- {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="暂无场次" des="点击右上角添加场次，安排体验课时间与场地吧"}} --}}
 {{else}}
     <table class='ib_table_head exp_table'>
         <tr>

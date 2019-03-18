@@ -14,17 +14,26 @@
 </div> --}}
 <div class="course_content_top">
 	{{#layout-push direction="col" classNames="course_content"}}
-		{{#layout-push direction="row" split=true classNames="course-title-flex"}}
+		{{!-- {{#layout-push direction="row" split=true classNames="course-title-flex"}}
 			<p class="page_title">体验课</p>
 			{{#link-to 'edit.exp.rsb' classNames='p-btn primary'}}+ 创建体验课{{/link-to}}
-		{{/layout-push}}
+		{{/layout-push}} --}}
+        {{#bp-page-header as |ph|}}
+			{{#ph.body as |body|}}
+				{{#body.left as |left|}}
+					{{#left.item}}
+						体验课
+					{{/left.item}}
+				{{/body.left}}
+				{{#body.right}}
+					{{#link-to 'edit.exp.rsb' classNames='p-btn primary'}}+ 创建体验课{{/link-to}}
+				{{/body.right}}
+			{{/ph.body}}
+		{{/bp-page-header}}
 		{{#if (eq page_count 0)}}
-			{{bp-empty-state/no-button
-					class="reservable-empty-state"
-					src='/images/img_empty@2x.png'
-					title="暂无体验课"
-					desc="请创建体验课"
-				}}
+            <div class="reservable-empty-state">
+                {{bp-empty-state/no-button src='/images/img_empty@2x.png' title="暂无体验课" desc="请创建体验课"}}
+            </div>
 		{{else}}
 			{{bmcom/bm-card-area
 				onCourseCardClicked=(action 'cardClicked')  
