@@ -3,22 +3,27 @@ import { computed } from '@ember/object';
 import { A } from '@ember/array';
 
 export default Controller.extend({
-    showAddSelect: true,
+    showAddSelect: false,
     showAddStud: false,
-    inputVal: true,
-    studList: true,
+    inputVal: false,
+    studList: false,
     sex_idx: 0,
     rela_idx: 0,
     sex_idx: 0,
     rela_idx: 0,
     genderCheck: A(['男', '女']),
     relaChecked: A(['父亲', '母亲', '其他']),
-
-    studs: computed("refreshFlag", function() {
-        // return this.store.query('student', { 'page[number]': 1, 'page[size]': 20, "brand-id": localStorage.getItem("brandid")})
+    type: '',
+    studs: computed("refreshFlag", 'type', function() {
         let result;
-        result = this.store.query('student', { 'page[number]': 1, 'page[size]': 20, 'status': 0, "brand-id": localStorage.getItem("brandid")});
-        result.then(() => {
+        let that = this;
+        result = this.store.query('student', {'contact': '18842806328'});
+        result.then((res) => {
+            if(res.length > 0) {
+                this.set('inputVal', true);
+            } else {
+                this.set('showAddSelect', true)
+            }
         }, error => {
             this.bm_error_service.handleError(error)
         })
@@ -105,11 +110,15 @@ export default Controller.extend({
                 // .catch(err => window.console.info(err))
             }
         },
-        addPtStud() {
+        addPtStudModal() {
             this.set('showAddStud', true);
         },
+        addPtStud() {
+            debugger
+        },
         searchStud() {
-
+            this.toggleProperty('refreshFlag');
+            this.set('studList', true);
         }
     }
 });

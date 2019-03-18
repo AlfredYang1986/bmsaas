@@ -17,7 +17,7 @@
 					{{#if studList}}
 						{{#layout-push direction="row" classNames="stud-list-area" }}
 							<table class='ib_table_head_pt stud_list_table'>
-								{{bmtable/bm-table-inner type="srarchptStuds" listData=studs }}
+								{{bmtable/bm-table-inner type="srarchptStuds" listData=studs}}
 							</table>
 						{{/layout-push}}
 					{{else}}
@@ -32,7 +32,7 @@
 				{{#if inputVal}}
 					{{#layout-push direction='row' classNames='add-stud'}}
 						<p>没有要添加的学员？</p>
-						<p class="link">添加学生</p>
+						<p class="link"  {{action 'addPtStudModal'}}>添加学生</p>
 						<button type="button" name="button" class="btn_save" {{action 'addPtStud'}}>添加</button>
 					{{/layout-push}}
 				{{else}}
