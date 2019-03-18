@@ -70,14 +70,16 @@
 								{{/layout-push}}
 								{{#layout-push direction='col' classNames='alt_yard_detail_panel'}}
 									<span class='alt_right_panel_perperty_title'>校区认证</span>
-									{{#if (bmcom/bm-nil-obj tempCertImgs)}}
+									{{#if (bmcom/bm-nil-obj model.yard.images)}}
 										{{#layout-push direction='row'}}
 											<span class='alt_right_panel_perperty_des'>请上传信息</span>
 										{{/layout-push}}
 									{{else}}
 										<div class='line_conatainer_warp'>
-											{{#each tempCertImgs as |item|}}
-												{{bmcom/bm-img-uploader needTag=true canEdit=false img=item.img tag=item.tag classNames='alt-yard-tag-img-adjust'}}
+											{{#each model.yard.images as |item|}}
+												{{#if (eq item.flag 2)}}
+													{{bmcom/bm-img-uploader needTag=true canEdit=false img=item.img tag=item.tag classNames='alt-yard-tag-img-adjust'}}
+												{{/if}}
 											{{/each}}
 										</div>
 									{{/if}}
