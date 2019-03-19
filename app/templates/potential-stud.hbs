@@ -1,14 +1,14 @@
 <div class="course_content_top">
-    {{#layout-push direction='col' classNames='course_content'}}
-        {{#layout-push direction='row' split=true classNames='course-title-flex'}}
+    {{#bp-layout direction='col' classNames='course_content'}}
+        {{#bp-layout direction='row' main='between' classNames='course-title-flex'}}
             <p class="page_title">潜在学生</p>
             {{#bs-button classNames="add_btn" onClick=(action (mut showAddSessionDlg) true)}}<span>+ 添加潜在学生</span>{{/bs-button}}
-        {{/layout-push}}
-        {{#layout-push direction='col'}}
-            {{#layout-push direction='row' classNames='search'}}
+        {{/bp-layout}}
+        {{#bp-layout direction='col'}}
+            {{#bp-layout direction='row' classNames='search'}}
                 <input type="text" placeholder="姓名/手机号" name="" value="" class="search-stud">
                 <i class="icon-search" {{action 'searchStud'}}></i>
-            {{/layout-push}}
+            {{/bp-layout}}
             <table class='ib_table_head exp_table'>
                 <tr class='ib_table_title'>
                     {{#each model.studTitle as |item|}}
@@ -16,11 +16,11 @@
                     {{/each}}
                 </tr>
             </table>
-        {{/layout-push}}
+        {{/bp-layout}}
 
         {{bmtable/bm-table-pt-stud refreshFlag=refreshFlag type=type page_count=page_count onRefreshDataComplete=(action 'refreshDataComplete')}}
 
-    {{/layout-push}}
+    {{/bp-layout}}
     {{#bmcom/bm-modal-container title="" mswitch=showAddSessionDlg
             type='codeImg'
             successbtncss='exp-modal-confirm'
@@ -30,16 +30,16 @@
             onCancelBtnClicked=(action 'cancelHandled')
             onSuccessBtnClicked=(action 'successHandled')}}
             <div class="pt-stud-modal">
-                {{#layout-push direction='col'}}
-                    {{#layout-push direction='col'}}
+                {{#bp-layout direction='col'}}
+                    {{#bp-layout direction='col'}}
                         <p class="title">添加潜在学生</p>
                         <p class="note">您可以推荐家长在小程序上使用注册功能或手动添加潜在学生</p>
-                    {{/layout-push}}
-                    {{#layout-push direction='col' mid=true classNames='code'}}
+                    {{/bp-layout}}
+                    {{#bp-layout direction='col' main='center' classNames='code'}}
                         <img src='' alt="" class="code-img">
                         <p class="img-title">推荐使用</p>
-                    {{/layout-push}}
-                {{/layout-push}}
+                    {{/bp-layout}}
+                {{/bp-layout}}
             </div>
     {{/bmcom/bm-modal-container}}
 </div>

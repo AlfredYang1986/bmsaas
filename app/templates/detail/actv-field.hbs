@@ -21,10 +21,10 @@
                         {{#dd.button class="reserve-more-btn"}}{{/dd.button}}
                         {{#dd.menu align="right" as |menu|}}
                             {{#menu.item align="right"}}
-                                {{#layout-push direction='col' classNames="dropdown-content"}}
+                                {{#bp-layout direction='col' classNames="dropdown-content"}}
                                     <a onclick={{action "onEditSessionable" true dd.closeDropdown}}>编辑场次</a>
                                     <a class="warning" onclick={{action (mut deleteSessionDlg) true dd.closeDropdown}}>删除场次</a>
-                                {{/layout-push}}
+                                {{/bp-layout}}
                             {{/menu.item}}
                         {{/dd.menu}}
                     {{/bs-dropdown}}
@@ -45,50 +45,50 @@
             {{/ph.footer}}
         {{/bp-page-header}}
         {{!-- <div class='detail_panel detail_margin_top detail_margin_top_field' >
-            {{#layout-push direction='row' split=true classNames="reserve-detail-head"}}
-                {{#layout-push direction='col' mid=true }}
-                    {{#layout-push direction='col' classNames="detail_margin_top_left"}}
+            {{#bp-layout direction='row' main='between' classNames="reserve-detail-head"}}
+                {{#bp-layout direction='col' main='center' }}
+                    {{#bp-layout direction='col' classNames="detail_margin_top_left"}}
                         <span class="detail_panel_title_name">
                             {{bmdob/bmdobformat model.class.startDate}}
                             {{bmdob/bmdob2weekday model.class.startDate}}
                             {{bmdob/bmdob2clocktime model.class.startDate}}-{{bmdob/bmdob2clocktime model.class.endDate}}
                         </span>
-                    {{/layout-push}}
-                {{/layout-push}} 
-                {{#layout-push direction="row" classNames="reserve-detail-btn"}}
+                    {{/bp-layout}}
+                {{/bp-layout}} 
+                {{#bp-layout direction="row" classNames="reserve-detail-btn"}}
                     {{#bs-dropdown class="btn-dropdown" as |dd|}}
                         {{#dd.button class="reserve-more-btn"}}{{/dd.button}}
                         {{#dd.menu align="right" as |menu|}}
                             {{#menu.item align="right"}}
-                                {{#layout-push direction='col' classNames="dropdown-content"}}
+                                {{#bp-layout direction='col' classNames="dropdown-content"}}
                                     <a onclick={{action "onEditSessionable" dd.closeDropdown}}>编辑场次</a>
                                     <a class="warning" onclick={{action (mut deleteSessionDlg) true dd.closeDropdown}}>删除场次</a>
-                                {{/layout-push}}
+                                {{/bp-layout}}
                             {{/menu.item}}
                         {{/dd.menu}}
                     {{/bs-dropdown}}
-                {{/layout-push}}
-            {{/layout-push}}
+                {{/bp-layout}}
+            {{/bp-layout}}
         </div>
         <div class='detail_panel detail_margin_top detail_margin_top_field_des' >
-            {{#layout-push direction='row' split=true classNames="reserve-detail-head"}}
-                {{#layout-push direction='col' mid=true }}
-                    {{#layout-push direction='col' classNames="detail_margin_top_left"}}
-                        {{#layout-push direction='row' classNames="detail_margin_top_left_content"}}
+            {{#bp-layout direction='row' main='between' classNames="reserve-detail-head"}}
+                {{#bp-layout direction='col' main='center' }}
+                    {{#bp-layout direction='col' classNames="detail_margin_top_left"}}
+                        {{#bp-layout direction='row' classNames="detail_margin_top_left_content"}}
                             <span class="detail_panel_role_num">活动</span>
                             <span class="detail_panel_role_num">{{model.class.reservableitem.sessioninfo.title}}</span>
-                        {{/layout-push}}
-                        {{#layout-push direction='row' classNames="detail_margin_top_left_content"}}
+                        {{/bp-layout}}
+                        {{#bp-layout direction='row' classNames="detail_margin_top_left_content"}}
                             <span class="detail_panel_role_num">校区</span>
                             <span class="detail_panel_role_num">{{model.class.yard.address}}</span>
-                        {{/layout-push}}
-                    {{/layout-push}}
-                {{/layout-push}}
-                {{#layout-push direction='row' classNames="detail_margin_top_right"}}
+                        {{/bp-layout}}
+                    {{/bp-layout}}
+                {{/bp-layout}}
+                {{#bp-layout direction='row' classNames="detail_margin_top_right"}}
                     <span class="detail_panel_role_num">{{model.class.students.length}}</span>
                     <span class="detail_panel_role_num">报名人数</span>
-                {{/layout-push}}
-            {{/layout-push}}
+                {{/bp-layout}}
+            {{/bp-layout}}
         </div> --}}
         {{#if (eq model.class.students.length 0)}}
             <div class="field-empty-state">
@@ -108,34 +108,34 @@
         onCancelBtnClicked=(action 'cancelHandled')
         onSuccessBtnClicked=(action 'successHandled')}}
         <div class="session-modal">
-            {{#layout-push direction='col' }}
-                {{#layout-push direction='row'}}
+            {{#bp-layout direction='col' }}
+                {{#bp-layout direction='row'}}
                     <p class="title">编辑场次</p>
-                {{/layout-push}}
+                {{/bp-layout}}
                 {{#if noteError}}
                     <div class="form-checked">
-                        {{#layout-push direction='row' classNames="error-line"}}
+                        {{#bp-layout direction='row' classNames="error-line"}}
                             <img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
                             <span class="error-info">请检查表单信息</span>
-                        {{/layout-push}}
+                        {{/bp-layout}}
                     </div>
                 {{/if}}
                 {{#if noteTimeError}}
                     <div class="form-checked">
-                        {{#layout-push direction='row' classNames="error-line"}}
+                        {{#bp-layout direction='row' classNames="error-line"}}
                             <img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
                             <span class="error-info">时间错误</span>
-                        {{/layout-push}}
+                        {{/bp-layout}}
                     </div>
                 {{/if}}
-                {{#layout-push direction='row' classNames="line-list"}}
+                {{#bp-layout direction='row' classNames="line-list"}}
                     <p class="subtitle">校区设置</p>
                     <p class="edit_subtitle_content">{{model.class.yard.title}}</p>
-                    {{!-- {{#layout-push direction='col' }}
+                    {{!-- {{#bp-layout direction='col' }}
                         <span class="radio-col">
                             <input type="radio" name="rel01" value="fa" checked/>
                             <label for="">
-                                {{#layout-push direction=row}}
+                                {{#bp-layout direction=row}}
                                     {{#if noteError}}
                                         <select class="session-modal-select error-border" id='reservableselect' name="" onchange={{action 'reservableChanged'}}>
                                             <option value="">选择已有场地</option>
@@ -163,29 +163,29 @@
                                             {{/each}}
                                         </select>
                                     {{/if}}
-                                {{/layout-push}}
+                                {{/bp-layout}}
                             </label>
                         </span> --}}
                         {{!-- <span class="radio-col">
                             <input type="radio" name="rel" value="ma"/>
                             <label for="">其他场地</label>
                         </span> --}}
-                    {{!-- {{/layout-push}} --}}
-                {{/layout-push}}
+                    {{!-- {{/bp-layout}} --}}
+                {{/bp-layout}}
                 {{#if noteError}}
-                    {{#layout-push direction="col" classNames='input_area' }}
+                    {{#bp-layout direction="col" classNames='input_area' }}
                         {{bmform/bm-base-select selId="roomSel" type="id" chooseCourse=true selTitle="选择教室" options=cur_rooms curSelect=cur_room_id classNames="error-border input-inline-select input_area area-margin-bottom"}}
-                    {{/layout-push}}
+                    {{/bp-layout}}
                 {{else}}
-                    {{#layout-push direction="col" classNames='input_area' }}
+                    {{#bp-layout direction="col" classNames='input_area' }}
                         {{bmform/bm-base-select selId="roomSel" type="id" chooseCourse=true selTitle="选择教室" options=cur_rooms curSelect=cur_room_id classNames="input-inline-select input_area area-margin-bottom"}}
-                    {{/layout-push}}
+                    {{/bp-layout}}
                 {{/if}}
-                {{#layout-push direction="row" classNames="line-list"}}
+                {{#bp-layout direction="row" classNames="line-list"}}
                     <p class="subtitle">日期设置</p>
                     {{bmform/bm-lay-date inputVal=cur_tmp_date}}
-                {{/layout-push}}
-                {{#layout-push direction="row" classNames="line-list"}}
+                {{/bp-layout}}
+                {{#bp-layout direction="row" classNames="line-list"}}
                     <p class="subtitle">时间设置</p>
                     {{#if noteTimeError}}
                         {{bmform/bm-lay-date cssClass="error-border" inputVal=cur_start_date pickType="time"}}
@@ -194,10 +194,10 @@
                         {{bmform/bm-lay-date inputVal=cur_start_date pickType="time"}}
                         {{bmform/bm-lay-date inputVal=cur_end_date pickType="time"}}
                     {{/if}}
-                {{/layout-push}}
-                {{!-- {{#layout-push direction='row' classNames="line-area "}}
+                {{/bp-layout}}
+                {{!-- {{#bp-layout direction='row' classNames="line-area "}}
                     <p class="subtitle">名额设置</p>
-                    {{#layout-push direction='col' }}
+                    {{#bp-layout direction='col' }}
                         <span class="radio-col">
                             <input type="radio" name="rel02" value="ma" checked/>
                             <label for="">不限制</label>
@@ -208,9 +208,9 @@
                                 <input type="text" name="" value="">
                             </label>
                         </span> --}}
-                    {{!-- {{/layout-push}}
-                {{/layout-push}} --}}
-            {{/layout-push}}
+                    {{!-- {{/bp-layout}}
+                {{/bp-layout}} --}}
+            {{/bp-layout}}
         </div>
     {{/bmcom/bm-modal-container}}
     {{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteSessionDlg cancelHandled=(action 'cancelHandled') successHandled=(action "onDeleteSessionableClick")}}

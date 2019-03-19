@@ -1,5 +1,5 @@
 <section id="start-story" class="alt_course_section" >
-    {{#layout-push direction='col' classNames='alt_course_panel edit_panel edit_second_panel'}}
+    {{#bp-layout direction='col' classNames='alt_course_panel edit_panel edit_second_panel'}}
         <span class='alt_course_title alt_course_big_title'>基本信息</span>
 
         {{#if (bmeq session.status 1)}}
@@ -11,13 +11,13 @@
         <span class='alt_course_des'>如：奇妙的色彩艺术之旅</span>
         {{input type="text" class="edit_input" value=session.title}}
 
-        {{#layout-push direction="col" classNames="alt-course-input-group"}}
+        {{#bp-layout direction="col" classNames="alt-course-input-group"}}
             {{#if (bmeq session.status 1)}}
                 <span class='alt_course_title'>体验课时长（分钟）</span>
             {{else}}
                 <span class='alt_course_title'>活动时长（分钟）</span>
             {{/if}}
-            {{#layout-push direction="col" classNames="alt-course-age-group"}}
+            {{#bp-layout direction="col" classNames="alt-course-age-group"}}
                 {{#if lengthIf}}
                     {{!-- <div class="course-edit-check course-edit-check-low">
                         <div class="input-group">
@@ -45,14 +45,14 @@
                         </span>
                     </div>
                 {{/if}}
-            {{/layout-push}}
-        {{/layout-push}}
+            {{/bp-layout}}
+        {{/bp-layout}}
 
-        {{#layout-push direction='col' classNames='select-age'}}
+        {{#bp-layout direction='col' classNames='select-age'}}
             <span class='alt_course_title alt_course_title_age'>适宜年龄</span>
             <div class="course-edit-check">
                 {{#if ageInput}}
-                    {{#layout-push direction="row" classNames="alt-course-age-group"}}
+                    {{#bp-layout direction="row" classNames="alt-course-age-group"}}
                         {{bmform/bm-edit-line haveHeader=false ageInput=true inputVal=session.alb maxlength="2" classNames=''}}
                         {{!-- <div class="input-group">
                             {{input value=session.alb  maxlength='2' class="edit_input_age"  type="number" key-press=(action "onKeyPress")}}
@@ -68,13 +68,13 @@
                                 <span class="input-group-text">岁</span>
                             </div>
                         </div> --}}
-                    {{/layout-push}}
+                    {{/bp-layout}}
                     <div class="course-edit-check course-edit-check-age">
                         {{#bmform/age-select-input alb=session.alb aub=session.aub ageSelect=(action 'ageSelect')}}
                         {{/bmform/age-select-input}}
                     </div>
                 {{else}}
-                    {{#layout-push direction="row" classNames="alt-course-age-group"}}
+                    {{#bp-layout direction="row" classNames="alt-course-age-group"}}
                         {{bmform/bm-edit-line haveHeader=false ageInput=true inputVal="" maxlength="2" readonly='readonly' classNames=''}}
                         {{!-- <div class="input-group">
                             {{input value='' maxlength='2' class="edit_input_age" readonly='readonly'  type="number" key-press=(action "onKeyPress")}}
@@ -90,15 +90,15 @@
                                 <span class="input-group-text">岁</span>
                             </div>
                         </div> --}}
-                    {{/layout-push}}
+                    {{/bp-layout}}
                     <div class="course-edit-check course-edit-check-age">
                         {{#bmform/age-select-input alb=session.alb aub=session.aub ageSelect=(action 'ageSelect') checked='checked'}}
                         {{/bmform/age-select-input}}
                     </div>
                 {{/if}}
             </div>
-        {{/layout-push}}
+        {{/bp-layout}}
 
         {{yield}}
-    {{/layout-push}}
+    {{/bp-layout}}
 </section>

@@ -1,36 +1,36 @@
 
 {{#if isSetActivity}}
-    {{#layout-push classNames='experience_card'}}
-        {{#layout-push classNames='experience_card_background'}}
+    {{#bp-layout classNames='experience_card'}}
+        {{#bp-layout classNames='experience_card_background'}}
             <img src={{activity.cover}} class='experience_card_img' />
-            {{#layout-push classNames="apply-num" }}
+            {{#bp-layout classNames="apply-num" }}
                 <p>开放{{periodCount}}个场次</p>
-            {{/layout-push}}
-        {{/layout-push}}
-        {{#layout-push direction='col' mid=true classNames='experience_card_content'}}
-            {{#layout-push direction='row' classNames='experience_card_content_line'}}
+            {{/bp-layout}}
+        {{/bp-layout}}
+        {{#bp-layout direction='col' main='center' classNames='experience_card_content'}}
+            {{#bp-layout direction='row' classNames='experience_card_content_line'}}
                 <span class="experience_card_title">{{activity.name}}</span>
-            {{/layout-push }}
-            {{#layout-push direction='row' classNames='experience_card_content_line'}}
+            {{/bp-layout }}
+            {{#bp-layout direction='row' classNames='experience_card_content_line'}}
                 <span class="experience_card_text">{{activity.cat}}</span>
-            {{/layout-push }}
-        {{/layout-push }}
-    {{/layout-push }}
+            {{/bp-layout }}
+        {{/bp-layout }}
+    {{/bp-layout }}
 {{else}}
-    {{#layout-push classNames='experience_card'}}
-        {{#layout-push classNames="apply-num" }}
+    {{#bp-layout classNames='experience_card'}}
+        {{#bp-layout classNames="apply-num" }}
             <p>10个场次报名中</p>
-        {{/layout-push}}
-        {{#layout-push direction='col' mid=true classNames='experience_card_content'}}
-            {{#layout-push direction='row' classNames='experience_card_content_line'}}
+        {{/bp-layout}}
+        {{#bp-layout direction='col' main='center' classNames='experience_card_content'}}
+            {{#bp-layout direction='row' classNames='experience_card_content_line'}}
                 <span class="experience_card_title">奇妙的色彩艺术之旅</span>
-            {{/layout-push }}
-            {{#layout-push direction='row' classNames='experience_card_content_line'}}
+            {{/bp-layout }}
+            {{#bp-layout direction='row' classNames='experience_card_content_line'}}
                 <span class="experience_card_text">类别</span>
                 <span class="experience_card_text">子类别</span>
-            {{/layout-push }}
-        {{/layout-push }}
-    {{/layout-push }}
+            {{/bp-layout }}
+        {{/bp-layout }}
+    {{/bp-layout }}
 {{/if}}
 
 {{yield}}

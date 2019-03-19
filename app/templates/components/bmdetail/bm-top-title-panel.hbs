@@ -1,6 +1,6 @@
 {{yield}}
 
-{{#layout-push direction="row" split=true }}
+{{#bp-layout direction="row" main='between' }}
     <p class="detail_top_title_text">{{title}}</p>
     {{#if (eq linkParam2 null)}}
         {{#link-to linkAddr linkParam classNames='detail_top_more_btn'}}
@@ -11,4 +11,4 @@
             {{rightText}}
         {{/link-to}}
     {{/if}}
-{{/layout-push}}
+{{/bp-layout}}

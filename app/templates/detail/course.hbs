@@ -1,5 +1,5 @@
 <section class='alt_course_selection alt_course_padding'>
-    {{#layout-push direction='col' classNames='alt_course_container'}}
+    {{#bp-layout direction='col' classNames='alt_course_container'}}
     {{#bmcom/bm-breadcrumb urls=urls as |url|}}
         {{#if (not-eq url.id "")}}
             {{#link-to url.link url.id class="reserve_detail_href_ref"}}{{url.pageName}}{{/link-to}}
@@ -14,34 +14,34 @@
     {{!-- </div> --}}
 
     {{!-- <div class='detail_panel detail_margin_top course_margin_top_big detail_margin_bottom' >
-        {{#layout-push direction='row' split=true classNames="reserve-detail-head"}}
-            {{#layout-push direction='col' mid=true }}
-                {{#layout-push direction='col' classNames="detail_margin_top_left"}}
+        {{#bp-layout direction='row' main='between' classNames="reserve-detail-head"}}
+            {{#bp-layout direction='col' main='center' }}
+                {{#bp-layout direction='col' classNames="detail_margin_top_left"}}
                     <span class="detail_panel_title_name">{{model.course.sessioninfo.title}}</span>
-                    {{#layout-push direction='row'}}
+                    {{#bp-layout direction='row'}}
                     <p class="detail_panel_role_num">{{model.course.sessioninfo.category.title}}</p>
-                    {{/layout-push}}
-                {{/layout-push}}
-            {{/layout-push}} --}}
-            {{!-- {{#layout-push direction="row" classNames="reserve-detail-btn"}}
+                    {{/bp-layout}}
+                {{/bp-layout}}
+            {{/bp-layout}} --}}
+            {{!-- {{#bp-layout direction="row" classNames="reserve-detail-btn"}}
                 {{#bs-dropdown class="btn-dropdown" as |dd|}}
                     {{#dd.button class="reserve-more-btn"}}{{/dd.button}}
                     {{#dd.menu align="right" as |menu|}}
                         {{#menu.item align="right"}}
-                            {{#layout-push direction='col' classNames="dropdown-content"}}
+                            {{#bp-layout direction='col' classNames="dropdown-content"}}
                                 <a class="warning" onclick={{action (mut deleteExpDlg) true dd.closeDropdown}}>删除课程</a>
-                            {{/layout-push}}
+                            {{/bp-layout}}
                         {{/menu.item}}
                     {{/dd.menu}}
                 {{/bs-dropdown}}
                 {{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteExpDlg cancelHandled='cancelHandled' successHandled="onDeleteCourseClick"}}
                     <p class="warning-modal-body-content">您确定要删除课程「{{model.course.sessioninfo.title}}」吗？</p>
                 {{/bmcom/bm-warning-modal}}
-            {{/layout-push}} --}}
-        {{!-- {{/layout-push}}
+            {{/bp-layout}} --}}
+        {{!-- {{/bp-layout}}
     </div> --}}
         {{#bmpage/bm-session-info session=model.course.sessioninfo}}
             {{bmdetail/bm-top-title-panel title="课程详情" rightText="编辑" linkAddr='edit.course' linkParam=model.course.sessioninfo.id linkParam2=model.course.id}}
         {{/bmpage/bm-session-info}}
-    {{/layout-push}}
+    {{/bp-layout}}
 </section>

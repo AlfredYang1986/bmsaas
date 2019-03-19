@@ -1,9 +1,9 @@
 <div class="course_content_top">
-	{{#layout-push direction="col" classNames="course_content"}}
-		{{!-- {{#layout-push direction="row" split=true classNames="course-title-flex"}}
+	{{#bp-layout direction="col" classNames="course_content"}}
+		{{!-- {{#bp-layout direction="row" main='between' classNames="course-title-flex"}}
 			<p class="page_title">活动</p>
 			{{#link-to 'edit.actv.rsb' classNames='p-btn primary'}}+ 创建活动{{/link-to}}
-		{{/layout-push}} --}}
+		{{/bp-layout}} --}}
 		{{#bp-page-header as |ph|}}
 			{{#ph.body as |body|}}
 				{{#body.left as |left|}}
@@ -42,6 +42,6 @@
 				totalPageCounts=page_count 
 				onClickPage=(action (mut pagenum))}}
 		{{/if}}
-	{{/layout-push}}
+	{{/bp-layout}}
 </div>
 {{outlet}}

@@ -1,16 +1,16 @@
-{{#layout-push direction='col' classNames="bm-search-check-container"}}
-    {{#layout-push direction='row' split=true classNames="title-container"}}
+{{#bp-layout direction='col' classNames="bm-search-check-container"}}
+    {{#bp-layout direction='row' main='between' classNames="title-container"}}
         <p class="search-title">{{searchTitle}}</p>
         {{#if (eq curItems null)}}
             <p class="choose-num">已选0个</p>
         {{else}}
             <p class="choose-num">已选{{curItems.length}}个</p>
         {{/if}}
-    {{/layout-push}}
-    {{#layout-push direction='col' classNames="search-container"}}
+    {{/bp-layout}}
+    {{#bp-layout direction='col' classNames="search-container"}}
         {{input classNames="search-input" value=inputVal placeholder="输入姓名或联系方式以检索" keyUp=(action "onSearchChange" inputVal)}}
-    {{/layout-push}}
-    {{#layout-push direction='col' classNames="table-container"}}
+    {{/bp-layout}}
+    {{#bp-layout direction='col' classNames="table-container"}}
         <table class='ib_table_head class_add_stud_table'>
             {{#each handledMultiData as |item index|}}
                 <tr class="session-list">
@@ -42,5 +42,5 @@
                 </tr>
             {{/each}}
         </table>
-    {{/layout-push}}
-{{/layout-push}}
+    {{/bp-layout}}
+{{/bp-layout}}

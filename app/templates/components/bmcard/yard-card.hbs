@@ -1,15 +1,15 @@
-{{#layout-push direction='col' classNames='yard_card'}}
+{{#bp-layout direction='col' classNames='yard_card'}}
         <img src={{iconImg}} class="yard_card_icon" />
-    {{#layout-push direction='col' mid=true classNames='yard_card_content'}}
-        {{#layout-push direction='col' midt=true }}
-            {{#layout-push direction='row' classNames='yard_card_content_line'}}
+    {{#bp-layout direction='col' main='center' classNames='yard_card_content'}}
+        {{#bp-layout direction='col' midt=true }}
+            {{#bp-layout direction='row' classNames='yard_card_content_line'}}
                 <span class="yard_card_title">{{yard.title}}</span>
-            {{/layout-push }}
-            {{#layout-push direction='row' classNames='yard_card_content_line'}}
+            {{/bp-layout }}
+            {{#bp-layout direction='row' classNames='yard_card_content_line'}}
                 <span class="yard_card_text">{{yard.address}}</span>
-            {{/layout-push }}
-        {{/layout-push }}
-    {{/layout-push }}
-{{/layout-push }}
+            {{/bp-layout }}
+        {{/bp-layout }}
+    {{/bp-layout }}
+{{/bp-layout }}
 
 {{yield}}
