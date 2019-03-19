@@ -1,7 +1,7 @@
 {{#if haveHeader}}
     {{#if needTitleDes}}
-        {{#layout-push direction="row" split=true classNames="pre-input"}}
-            {{#layout-push direction="row" classNames="title-area"}}
+        {{#bp-layout direction="row" main='between' classNames="pre-input"}}
+            {{#bp-layout direction="row" classNames="title-area"}}
                 {{#unless notitlt}}
                     <span class="edit_subtitle edit_title_with_des" >{{title}}</span>
                 {{/unless}}
@@ -10,19 +10,19 @@
                         <span class="edit_required" >(选填)</span>
                     </div>
                 {{/if}}
-            {{/layout-push}}
+            {{/bp-layout}}
             <div class="v_end">
                 <span class="edit_condition" >{{countHint}}</span>
             </div>
-        {{/layout-push}}
-        {{#layout-push direction="row" split=true}}
-            {{#layout-push direction="row" classNames="title-des-area"}}
+        {{/bp-layout}}
+        {{#bp-layout direction="row" main='between'}}
+            {{#bp-layout direction="row" classNames="title-des-area"}}
                 <span class="edit_title_des">{{titleDes}}</span>
-            {{/layout-push}}
-        {{/layout-push}}
+            {{/bp-layout}}
+        {{/bp-layout}}
     {{else}}
-        {{#layout-push direction="row" split=true classNames="pre-input"}}
-            {{#layout-push direction="row" classNames="title-area"}}
+        {{#bp-layout direction="row" main='between' classNames="pre-input"}}
+            {{#bp-layout direction="row" classNames="title-area"}}
                 {{#unless notitlt}}
                     <span class="edit_subtitle" >{{title}}</span>
                 {{/unless}}
@@ -31,15 +31,15 @@
                         <span class="edit_required" >(选填)</span>
                     </div>
                 {{/if}}
-            {{/layout-push}}
+            {{/bp-layout}}
             <div class="v_end">
                 <span class="edit_condition" >{{countHint}}</span>
             </div>
-        {{/layout-push}}
+        {{/bp-layout}}
     {{/if}}
 {{/if}}
-{{#layout-push direction="col" classNames="input-group-outer"}}
-    {{#layout-push direction="row" classNames="input-group"}}
+{{#bp-layout direction="col" classNames="input-group-outer"}}
+    {{#bp-layout direction="row" classNames="input-group"}}
         {{#if (eq group 'prepend')}}
             <div class="input-group-prepend">
                 {{yield}}
@@ -77,10 +77,10 @@
         {{#if (eq group undefined)}}
             {{yield}}
         {{/if}}
-    {{/layout-push}}
+    {{/bp-layout}}
     {{#if needBottomHint}}
         <div class="v_end">
             <span class="edit_condition" >{{countHint}}</span>
         </div>
     {{/if}}
-{{/layout-push}}
+{{/bp-layout}}

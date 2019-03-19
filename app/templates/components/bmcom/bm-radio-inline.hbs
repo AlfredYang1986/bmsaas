@@ -1,4 +1,4 @@
-{{#layout-push direction='row' classNames='ib_radio_area'}}
+{{#bp-layout direction='row' classNames='ib_radio_area'}}
     {{#each titles as |item idx|}}
         {{bmcom/bm-radio-item
             select_idx=cur_idx
@@ -7,4 +7,4 @@
             onItemClicked=(action 'itemClicked')
             classNames='ib_radio_inline'}}
     {{/each}}
-{{/layout-push}}
+{{/bp-layout}}

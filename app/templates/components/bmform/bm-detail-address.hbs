@@ -1,9 +1,9 @@
 {{!-- {{yield}} --}}
-{{#layout-push direction="col" classNames='detail-address'}}
-    {{#layout-push direction="row"}}
+{{#bp-layout direction="col" classNames='detail-address'}}
+    {{#bp-layout direction="row"}}
         <span class="add-title">{{title}}</span>
-    {{/layout-push}}
-    {{#layout-push direction='row' classNames='detail-address-select'}}
+    {{/bp-layout}}
+    {{#bp-layout direction='row' classNames='detail-address-select'}}
         {{bmform/region-choose
             provinces=provinces
             citys=citys
@@ -11,7 +11,7 @@
             province=province
             city=city
             area=area}}
-    {{/layout-push}}
+    {{/bp-layout}}
     <span class='add-sub'>详细地址</span>
     {{bmform/bm-edit-line largeInput=true inputVal=detailAddress classNames='input_area'}}
-{{/layout-push}}
+{{/bp-layout}}

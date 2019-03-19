@@ -1,10 +1,10 @@
 <section id="start-story" class="alt_course_section" >
-    {{#layout-push direction='col' classNames='alt_course_panel edit_panel edit_second_panel'}}
+    {{#bp-layout direction='col' classNames='alt_course_panel edit_panel edit_second_panel'}}
         <span class='alt_course_title alt_course_big_title'>课程定价</span>
 
         {{bmform/bm-edit-line title='课程定价(元)' largeNumberInput=true inputVal=session.standardPrice classNames='input_area area-margin-bottom'}}
 
         {{bmform/bm-edit-line title='标准课时(次)数' largeNumberInput=true  inputVal=session.standardCourseCount classNames='input_area area-margin-bottom alt_course_title_top'}}
         {{yield}}
-    {{/layout-push}}
+    {{/bp-layout}}
 </section>

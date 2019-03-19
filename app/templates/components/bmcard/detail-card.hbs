@@ -1,25 +1,25 @@
 {{#if isSetData}}
-    {{#layout-push direction='col' classNames='detail_card'}}
+    {{#bp-layout direction='col' classNames='detail_card'}}
         <img  src={{card.img_src}} class="detail_card_icon" />
-        {{#layout-push direction='col' mid=true classNames='detail_card_content'}}
-            {{#layout-push direction='col' midt=true }}
-                {{#layout-push direction='row' mid=true classNames='detail_card_content_line'}}
+        {{#bp-layout direction='col' main='center' classNames='detail_card_content'}}
+            {{#bp-layout direction='col' midt=true }}
+                {{#bp-layout direction='row' main='center' classNames='detail_card_content_line'}}
                     <span class="tetail_card_title">{{card.img_tag}}</span>
-                {{/layout-push }}
-            {{/layout-push }}
-        {{/layout-push }}
-    {{/layout-push }}
+                {{/bp-layout }}
+            {{/bp-layout }}
+        {{/bp-layout }}
+    {{/bp-layout }}
 {{else}}
-    {{#layout-push direction='col' classNames='detail_card'}}
+    {{#bp-layout direction='col' classNames='detail_card'}}
         <img  src="../images/cover_pic_2.jpeg" class="detail_card_icon" />
-        {{#layout-push direction='col' mid=true classNames='detail_card_content'}}
-            {{#layout-push direction='col' midt=true }}
-                {{#layout-push direction='row' mid=true classNames='detail_card_content_line'}}
+        {{#bp-layout direction='col' main='center' classNames='detail_card_content'}}
+            {{#bp-layout direction='col' midt=true }}
+                {{#bp-layout direction='row' main='center' classNames='detail_card_content_line'}}
                     <span class="tetail_card_title">休息区</span>
-                {{/layout-push }}
-            {{/layout-push }}
-        {{/layout-push }}
-    {{/layout-push }}
+                {{/bp-layout }}
+            {{/bp-layout }}
+        {{/bp-layout }}
+    {{/bp-layout }}
 {{/if}}
 
 {{yield}}

@@ -1,4 +1,4 @@
-{{#bp-modal open=mswitch backdropClose=backdropClose onHidden=(action 'cancelBtnClicked') onSubmit=(action 'successBtnClicked') onClose=(action 'cancelBtnClicked') as |modal|}}
+{{#bp-modal open=mswitch backdropClose=false backdrop=true onHidden=(action 'cancelBtnClicked') onSubmit=(action 'successBtnClicked') onClose=(action 'cancelBtnClicked') as |modal|}}
     {{#if (bmeq type "addPtStud")}}
         <div class="add-pt-stud-info">
             {{#if needTitle}}

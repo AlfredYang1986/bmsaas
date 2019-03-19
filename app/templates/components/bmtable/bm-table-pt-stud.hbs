@@ -1,13 +1,13 @@
-{{#layout-push direction="col" classNames="stud-list-outer"}}
+{{#bp-layout direction="col" classNames="stud-list-outer"}}
     {{#if (eq model.studs.length 0)}}
         {{bmcom/bm-empty-state class="stud-empty-state" picUrl="/images/img_empty@2x.png" title="暂无学生" des="暂无数据"}}
     {{else}}
-        {{#layout-push direction="row" classNames="stud-list-area" }}
+        {{#bp-layout direction="row" classNames="stud-list-area" }}
             <table class='ib_table_head stud_list_table'>
                 {{bmtable/bm-table-inner type="ptStudsList" listData=studs }}
             </table>
-        {{/layout-push}}
+        {{/bp-layout}}
         {{bmcom/bm-pagination pageCount=page_count curPage=pagenum sendPageNum=(action "handlePageChange")}}
     {{/if}}
-{{/layout-push}}
+{{/bp-layout}}
 {{yield}}

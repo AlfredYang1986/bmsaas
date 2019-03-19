@@ -11,13 +11,13 @@
             {{#bs-modal open=modal3 onHidden=(action (mut modal3) false) as |modal|}}
                 <div class="course-reserve-pop-ups">
                     {{#modal.body classNames="course-reserve-success"}}
-                        {{#layout-push direction=row classNames="success-info"}}
+                        {{#bp-layout direction=row classNames="success-info"}}
                             <img src="../images/success.png" alt="">
-                            {{#layout-push direction=col}}
+                            {{#bp-layout direction=col}}
                                 <p>成功创建课程： 课程名称 </p>
                                 <p>您可以将该课程放入课程预约中！</p>
-                            {{/layout-push}}
-                        {{/layout-push}}
+                            {{/bp-layout}}
+                        {{/bp-layout}}
                     {{/modal.body}}
                     {{#modal.footer}}
                      {{#bs-button type="success" classNames="nav_cancel_btn menu_button_between" }}暂不开放{{/bs-button}}
@@ -29,28 +29,28 @@
     </li>
 </ul>
 <section id="basic-info" class="edit_page_top_margin edit_page_head_content" >
-{{#layout-push direction="col" }}
+{{#bp-layout direction="col" }}
     <p class="edit_page_head_title">足球小将的英雄之旅</p>
-    {{#layout-push direction="row" classNames="edit_page_head_subtitle"}}
+    {{#bp-layout direction="row" classNames="edit_page_head_subtitle"}}
         <p>体验课</p>
         <p>足球</p>
         <p>2个场次报名中</p>
-    {{/layout-push}}
-{{/layout-push}}
+    {{/bp-layout}}
+{{/bp-layout}}
 </section>
 <section id="basic-info" class="line_container_mid" >
-    {{#layout-push direction='col' classNames="edit_panel edit_first_panel"}}
-        {{#layout-push direction='row'}}
+    {{#bp-layout direction='col' classNames="edit_panel edit_first_panel"}}
+        {{#bp-layout direction='row'}}
             <span class="edit_title">体验地点</span>
-        {{/layout-push }}
-        {{#layout-push direction='col' classNames='select-school'}}
+        {{/bp-layout }}
+        {{#bp-layout direction='col' classNames='select-school'}}
             {{#if enteredSite}}
-                {{#layout-push direction="row" classNames="select-site"}}
+                {{#bp-layout direction="row" classNames="select-site"}}
                     <span class="selected-site" {{action 'enteredSite'}}></span>
                     <p class="no-age-limit" {{action 'enteredSite'}}>使用已录入的场地</p>
                     <span class="not-selected-site" {{action 'otherSite'}}></span>
                     <p class="no-age-limit" {{action 'otherSite'}}>其它场地</p>
-                {{/layout-push}}
+                {{/bp-layout}}
                 <select class="" name="" class="select-entered-site" size="5">
                     <option value="">选择场地</option>
                     <option value="">场地地址</option>
@@ -62,14 +62,14 @@
                 </select>
             {{/if}}
             {{#if otherSite}}
-                {{#layout-push direction="row" classNames="select-site"}}
+                {{#bp-layout direction="row" classNames="select-site"}}
                     <span class="not-selected-site" {{action 'enteredSite'}}></span>
                     <p class="no-age-limit" {{action 'enteredSite'}}>使用已录入的场地</p>
                     <span class="selected-site"  {{action 'otherSite'}}></span>
                     <p class="no-age-limit" {{action 'otherSite'}}>其它场地</p>
-                {{/layout-push}}
+                {{/bp-layout}}
                 <p class="edit_subtitle">地址</p>
-                {{#layout-push direction="row" }}
+                {{#bp-layout direction="row" }}
                     <div class="line_container" >
                         <select class="start-time" name="">
                             <option value="">科学</option>
@@ -88,21 +88,21 @@
                             <option value="">2018</option>
                         </select>
                     </div>
-                {{/layout-push}}
+                {{/bp-layout}}
                 {{bmform/bm-edit-line pholder="如：街道门牌号、小区楼号、楼层号" }}
             {{/if}}
-        {{/layout-push}}
-    {{/layout-push }}
+        {{/bp-layout}}
+    {{/bp-layout }}
 </section>
 
 <section id="basic-info" class="line_container_mid" >
-    {{#layout-push direction='col' classNames="edit_panel"}}
-        {{#layout-push direction='row'}}
+    {{#bp-layout direction='col' classNames="edit_panel"}}
+        {{#bp-layout direction='row'}}
             <span class="edit_title">体验时间</span>
-        {{/layout-push }}
-        {{#layout-push direction='col' classNames='select-school'}}
+        {{/bp-layout }}
+        {{#bp-layout direction='col' classNames='select-school'}}
 
-            {{!-- {{#layout-push direction="row"}}
+            {{!-- {{#bp-layout direction="row"}}
                 <div class="line_container" >
                     <select class="start-time" name="">
                         <option value="">年</option>
@@ -115,9 +115,9 @@
                         <option value="">2018</option>
                     </select>
                 </div>
-            {{/layout-push}} --}}
-            {{#layout-push direction="row"}}
-                {{#layout-push direction="col"}}
+            {{/bp-layout}} --}}
+            {{#bp-layout direction="row"}}
+                {{#bp-layout direction="col"}}
                     <div class="line_container_split" >
                         <div class="line_container" >
                             <span class="select-time-subtitle">开始时间</span>
@@ -130,8 +130,8 @@
                             <option value="">2018</option>
                         </select>
                     </div>
-                {{/layout-push}}
-                {{#layout-push direction="col"}}
+                {{/bp-layout}}
+                {{#bp-layout direction="col"}}
                     <div class="line_container_split" >
                         <div class="line_container" >
                             <span class="select-time-subtitle">结束时间</span>
@@ -144,28 +144,28 @@
                             <option value="">2018</option>
                         </select>
                     </div>
-                {{/layout-push}}
-            {{/layout-push}}
-        {{/layout-push}}
-    {{/layout-push }}
+                {{/bp-layout}}
+            {{/bp-layout}}
+        {{/bp-layout}}
+    {{/bp-layout }}
 </section>
 
 <section id="basic-info" class="line_container_mid" >
-    {{#layout-push direction='col' classNames="edit_panel"}}
-        {{#layout-push direction='row'}}
+    {{#bp-layout direction='col' classNames="edit_panel"}}
+        {{#bp-layout direction='row'}}
             <span class="edit_title">报名设置</span>
-        {{/layout-push }}
+        {{/bp-layout }}
         <p class="edit_subtitle">报名截止时间</p>
         {{!-- {{bmform/date-choose data=se_date}} --}}
-        {{#layout-push direction='col' classNames='select-school'}}
-            {{#layout-push direction="row"  classNames="select-site"}}
+        {{#bp-layout direction='col' classNames='select-school'}}
+            {{#bp-layout direction="row"  classNames="select-site"}}
                 <p class="no-age-limit"><input type="checkbox" name="vehicle" value="赛事"/>无年龄限制</p>
                 <p class="no-age-limit"><input type="checkbox" name="vehicle" value="赛事"/>无年龄限制</p>
-            {{/layout-push}}
-            {{#layout-push direction="row"}}
-                {{#layout-push direction="row" classNames="select-site"}}
+            {{/bp-layout}}
+            {{#bp-layout direction="row"}}
+                {{#bp-layout direction="row" classNames="select-site"}}
                     <p class="no-age-limit"><input type="checkbox" name="vehicle" value="赛事"/>其他</p>
-                {{/layout-push}}
+                {{/bp-layout}}
                 <div class="line_container" >
                     <select class="start-time" name="">
                         <option value="">科学</option>
@@ -178,12 +178,12 @@
                         <option value="">2018</option>
                     </select>
                 </div>
-            {{/layout-push}}
-        {{/layout-push}}
+            {{/bp-layout}}
+        {{/bp-layout}}
         {{bmform/bm-edit-line title="活动名额" classNames="line_half"}}
-        {{#layout-push direction="row" classNames="select-site"}}
+        {{#bp-layout direction="row" classNames="select-site"}}
             <p class="no-age-limit"><input type="checkbox" name="vehicle" value="赛事"/>不限制</p>
-        {{/layout-push}}
-    {{/layout-push }}
+        {{/bp-layout}}
+    {{/bp-layout }}
 </section>
 {{outlet}}

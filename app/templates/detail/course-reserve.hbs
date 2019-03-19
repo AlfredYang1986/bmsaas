@@ -4,18 +4,18 @@
             返回
         {{/link-to}}
         <div class='detail_panel detail_margin_top' >
-            {{#layout-push direction='row' split=true classNames="reserve-detail-head"}}
-                {{#layout-push direction='col' mid=true }}
-                    {{#layout-push direction='col'}}
+            {{#bp-layout direction='row' main='between' classNames="reserve-detail-head"}}
+                {{#bp-layout direction='col' main='center' }}
+                    {{#bp-layout direction='col'}}
                         <span class="detail_panel_title_name">{{model.res.course.name}}</span>
-                        {{#layout-push direction='row'}}
+                        {{#bp-layout direction='row'}}
                         <p class="detail_panel_role_num">累计预约人数&nbsp;&nbsp;{{reserve_number}}</p>
                             {{!-- <span class="course_detail_panel_role_des">{{model.res.course.category.cat}}</span> --}}
                             {{!-- <span class="course_detail_panel_role_des">{{model.res.course.category.sub}}</span> --}}
-                        {{/layout-push}}
-                    {{/layout-push}}
-                {{/layout-push}}
-                {{#layout-push direction="row" classNames="reserve-detail-btn"}}
+                        {{/bp-layout}}
+                    {{/bp-layout}}
+                {{/bp-layout}}
+                {{#bp-layout direction="row" classNames="reserve-detail-btn"}}
                     <p class="reserve-more-btn"></p>
                     {{!-- {{#bs-button onClick=(action (mut courseCode) true) classNames="reserve-code-btn"}}{{/bs-button}} --}}
                     {{#bs-button classNames="reserve-code-btn"}}{{/bs-button}} 
@@ -33,8 +33,8 @@
                             </div>
                         {{/bs-modal}}
                     </div>
-                {{/layout-push}}
-            {{/layout-push}}
+                {{/bp-layout}}
+            {{/bp-layout}}
         </div>
 
         <table class='ib_table_head'>

@@ -1,18 +1,18 @@
 <div class="yard_content_top" >
     {{#if openFlag}}
-        {{#layout-push direction="col" classNames="yard_content"}}
-            {{#layout-push direction="row" split=true classNames="yard-title-flex"}}
+        {{#bp-layout direction="col" classNames="yard_content"}}
+            {{#bp-layout direction="row" main='between' classNames="yard-title-flex"}}
                 <p class="page_title">校区</p>
                 {{#link-to 'edit.yard' 'yard/push' classNames='yard_add_btn'}}+ 添加场地{{/link-to}}
-            {{/layout-push}}
-            {{#layout-push direction="row" wrap=true classNames="yard-card-wrap"}}
+            {{/bp-layout}}
+            {{#bp-layout direction="row" wrap=true classNames="yard-card-wrap"}}
                 {{#each bm_yard_service.yards as |item|}}
                     <div class="line_container_warp yard_card_container" >
                         {{bmcard/yard-card onYardCardClicked=(action 'cardClicked') yard=item}}
                     </div>
                 {{/each}}
-            {{/layout-push}}
-        {{/layout-push}}
+            {{/bp-layout}}
+        {{/bp-layout}}
     {{else}}
         <div class="yard-not-open">
             {{bp-empty-state/no-button src='/images/img_openningsoon.png' title="即将开放" desc="更加强大便捷的功能马上到来"}}

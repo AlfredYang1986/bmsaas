@@ -1,18 +1,18 @@
 <section id="start-story" class="alt_course_section" >
-    {{#layout-push direction='col' classNames='alt_course_panel edit_panel edit_seventh_panel'}}
+    {{#bp-layout direction='col' classNames='alt_course_panel edit_panel edit_seventh_panel'}}
         <span class='alt_course_title alt_course_big_title'>添加图片</span>
         <span class='alt_course_title'>封面图片</span>
         <span class='alt_course_des'>挑选一张最具代表性的照片，这会是参与者浏览时看到的第一张照片</span>
         <span class='alt_course_des'>图片小于1M</span>
-        {{#layout-push direction='row'}}
+        {{#bp-layout direction='row'}}
             <div class='line_conatainer_warp'>
                 {{bmcom/bm-img-uploader needTag=false canEdit=true img=session.cover classNames='alt-course-edit-tag-img-adjust'}}
             </div>
-        {{/layout-push}}
+        {{/bp-layout}}
         <span class='alt_course_title'>精彩时刻</span>
         <span class='alt_course_des'>添加最多9张照片</span>
         <span class='alt_course_des'>支持jpg、png，每张图片小于1M</span>
-        {{#layout-push direction='row'}}
+        {{#bp-layout direction='row'}}
             <div class='line_conatainer_warp'>
                 {{!-- {{#each tempImgs as |item|}}
                     {{bmcom/bm-img-uploader needTag=true canEdit=true img=item.img tag=item.tag classNames='alt-course-edit-tag-img-adjust'}}
@@ -21,22 +21,22 @@
                     {{bmcom/bm-img-uploader needTag=true canEdit=true canEditTag=true canDeleteImg=false canDeleteObj=true imgObj=item img=item.img tag=item.tag onDeleteObj=(action "deleteImg") classNames='alt-course-edit-tag-img-adjust'}}
                 {{/each}}
                 {{#if (bmcom/bm-nil-obj tempImgs)}}
-                    {{#layout-push direction='row' mid=true classNames="add-img-div"}}
+                    {{#bp-layout direction='row' main='center' classNames="add-img-div"}}
                         <div class="add-new-img-div"  {{action "addPicOnClick"}}>
                             <img class="add-new-img" src='/images/icon_add-photo@3x.png'/>
                         </div>
-                    {{/layout-push}}
+                    {{/bp-layout}}
                 {{else}}
                     {{#if (lt tempImgs.length 9)}}
-                        {{#layout-push direction='row' mid=true classNames="add-img-div"}}
+                        {{#bp-layout direction='row' main='center' classNames="add-img-div"}}
                             <div class="add-new-img-div"  {{action "addPicOnClick"}}>
                                 <img class="add-new-img" src='/images/icon_add-photo@3x.png'/>
                             </div>
-                        {{/layout-push}}
+                        {{/bp-layout}}
                     {{/if}}
                 {{/if}}
             </div>
-        {{/layout-push}}
+        {{/bp-layout}}
         {{yield}}
-    {{/layout-push}}
+    {{/bp-layout}}
 </section>

@@ -1,13 +1,13 @@
 {{!-- <div class="class_content_top" >
-    {{#layout-push direction="col" mid=true}}
+    {{#bp-layout direction="col" main='center'}}
         <p class="not-found">404</p>
         <p class="not-found-des">PAGE NOT FOUND</p>
         {{#link-to 'inbox' classNames='course_add_btn'}}返回首页{{/link-to}}
-    {{/layout-push}}
+    {{/bp-layout}}
 </div> --}}
-{{#layout-push direction="col" mid=true classNames="not-found-page-outer"}}
+{{#bp-layout direction="col" main='center' classNames="not-found-page-outer"}}
     <div class="not-found-empty-state">
         {{bp-empty-state/primary-button src='/images/img_404@3x.png' title="404" desc="抱歉，你访问的页面不存在" btnText="返回首页" onClick=(action "linkToInbox")}}
     </div>
     {{!-- {{bmcom/bm-empty-state class="not-found-empty-state" picUrl="/images/img_404@3x.png" title="404" des="抱歉，你访问的页面不存在" btnText="返回首页" onBtnClick=(action "linkToInbox")}} --}}
-{{/layout-push}}
+{{/bp-layout}}

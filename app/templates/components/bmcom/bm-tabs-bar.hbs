@@ -1,4 +1,4 @@
-{{#layout-push direction='row' classNames='ib_tab_bar'}}
+{{#bp-layout direction='row' classNames='ib_tab_bar'}}
     {{#each titles as |item idx|}}
         {{bmcom/bm-tabs-item   
             select_idx=cur_idx 
@@ -7,4 +7,4 @@
             onItemClicked=(action 'itemClicked') 
             classNames='ib_tab_btn'}}
     {{/each}}
-{{/layout-push}}
+{{/bp-layout}}

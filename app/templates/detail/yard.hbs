@@ -129,36 +129,36 @@
         onCancelBtnClicked=(action 'cancelHandled')
         onSuccessBtnClicked=(action 'successHandled')}}
 	<div class="session-modal">
-		{{#layout-push direction='col' }}
-			{{#layout-push direction='row'}}
+		{{#bp-layout direction='col' }}
+			{{#bp-layout direction='row'}}
 				<p class="title">编辑教室</p>
-			{{/layout-push}}
+			{{/bp-layout}}
 			{{#if noteError}}
 				<div class="form-checked">
-					{{#layout-push direction='row' classNames="error-line"}}
+					{{#bp-layout direction='row' classNames="error-line"}}
 						<img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
 						<span class="error-info">请填写完整信息</span>
-					{{/layout-push}}
+					{{/bp-layout}}
 				</div>
 			{{/if}}
-			{{#layout-push direction="col" classNames='input_area area-margin-bottom' }}
+			{{#bp-layout direction="col" classNames='input_area area-margin-bottom' }}
 				<p class="edit_subtitle">所属校区</p>
 				<p class="edit_subtitle_content">{{model.yard.title}}</p>
-			{{/layout-push}}
-			{{#layout-push direction="col" classNames='input_area area-margin-bottom' }}
+			{{/bp-layout}}
+			{{#bp-layout direction="col" classNames='input_area area-margin-bottom' }}
 				<p class="edit_subtitle">使用类型</p>
 				{{bmcom/bm-radio-inline cur_idx=type_idx titles=typeChecked}}
-			{{/layout-push}}
+			{{/bp-layout}}
 			{{#if noteError}}
-				{{#layout-push direction="row"  classNames='input_area' }}
+				{{#bp-layout direction="row"  classNames='input_area' }}
 					{{bmform/bm-edit-line title='教室名称' inputVal=tempRoomTitle classNames='input_area input-full-width error-border'}}
-				{{/layout-push}}
+				{{/bp-layout}}
 			{{else}}
-				{{#layout-push direction="row"  classNames='input_area' }}
+				{{#bp-layout direction="row"  classNames='input_area' }}
 					{{bmform/bm-edit-line title='教室名称' inputVal=tempRoomTitle classNames='input_area input-full-width'}}
-				{{/layout-push}}
+				{{/bp-layout}}
 			{{/if}}
-		{{/layout-push}}
+		{{/bp-layout}}
 	</div>
 {{/bmcom/bm-modal-container}}
 {{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteRoomDlg cancelHandled=(action 'cancelHandled') successHandled=(action "onDeleteRoomClickOk")}}
