@@ -36,6 +36,7 @@ Router.map(function() {
       this.route('info', { path: '/info/:sessionid/:resid' });
       this.route('rsb');
     });
+    this.route('potential-stud');
   });
 
   this.route('detail', function() {
@@ -64,6 +65,7 @@ Router.map(function() {
   this.route('exp');
   this.route('actv');
   this.route('not-found');
+  this.route('potential-stud');
 });
 
 export default Router;

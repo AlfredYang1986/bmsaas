@@ -53,14 +53,17 @@ export default Component.extend({
 			// this.sendAction("onRemoveArrcourseClick", params);
 			this.onRemoveArrcourseClick(params);
 		},
+		onRadioChange(param) {
+			this.onRadioChange(param);
+        },
 	},
-	didReceiveAttrs() {		
+	didReceiveAttrs() {
 		if(this.type == "classTeacher" && this.listData != null) {
 			let client = this.bmOss.get('ossClient');
 			this.iconData = [];
 			for(let idx = 0;idx < this.listData.length;idx++) {
 				// window.console.log(this.listData);
-				
+
 				// if(this.listData[idx].iconUrl) {
 				// 	console.log(1)
 				// 	this.set("listData[idx].iconUrl", client.signatureUrl(this.listData[idx].icon));
@@ -76,7 +79,7 @@ export default Component.extend({
 			}
 		}
 
-		
+
 		// let that = this
 		// if(this.type == 'inbox') {
 		// 	if(this.attrs.listData.value.firstObject.courseType == -1) {

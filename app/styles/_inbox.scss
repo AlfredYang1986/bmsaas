@@ -93,6 +93,71 @@
 .modal-footer {
     border-top: none;
 }
+.code-img-modal {
+    margin-left: 50px;
+    width: 400px;
+    height: auto;
+    background: #fff;
+}
+.add-pt-stud-info {
+    margin-left: -150px;
+    width: 800px;
+    height: auto;
+    background: #fff;
+    .add-pt-stud-modal {
+        padding: 24px 0;
+        .group {
+            margin-bottom: 24px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .bottom {
+            margin-bottom: 64px;
+        }
+        .title {
+            margin-bottom: 24px;
+            font-family: PingFangSC-Medium;
+            font-size: 16px;
+            color: #172B4D;
+            font-weight: 600;
+        }
+        .subtitle {
+            text-align: right;
+            margin-right: 16px;
+            min-width: 56px;
+            font-family: PingFangSC-Medium;
+            font-size: 14px;
+            color: #172B4D;
+            font-weight: 600;
+        }
+        input{
+            width: 318px;
+            height: 32px;
+            margin: 0;
+            border: 1px solid #DFE1E5;
+            border-radius: 4px;
+            box-shadow: none;
+        }
+        input.input-large {
+            width: 318px;
+        }
+        .input-middle {
+            input {
+                width: 242px;
+            }
+        }
+        input.input-small {
+            width: 131px;
+        }
+        .grade-select {
+            select {
+                width: 242px;
+                @extend %select-box-dropdown-default;
+            }
+        }
+    }
+}
 .course-reserve-pop-ups {
     width: 512px;
     height: auto;
@@ -446,6 +511,41 @@
         width: 580px;
         height: 323px;
         background: #fff;
+    }
+}
+.pt-stud-modal {
+    // width: 400px;
+    padding: 24px 0;
+    .title {
+        margin-bottom: 24px;
+        font-family: PingFangSC-Medium;
+        font-size: 16px;
+        color: #172B4D;
+        font-weight: 600;
+    }
+    .note {
+        font-family: PingFangSC-Regular;
+        font-size: 14px;
+        color: #172B4D;
+    }
+    .code {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .code-img {
+        margin-top: 56px;
+        background: #42526E;
+        margin-bottom: 24px;
+        width: 240px;
+        height: 240px;
+    }
+    .img-title {
+        font-weight: 600;
+        font-family: PingFangSC-Medium;
+        font-size: 16px;
+        color: #172B4D;
     }
 }
 .ib_title_container {

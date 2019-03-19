@@ -6,7 +6,6 @@ import EmberObject from '@ember/object';
 
 export default Component.extend({
     store: service(),
-    // tagName: '',
     positionalParams: ['multiData' ,'type', 'curItems', 'filterData'],
     curItems: A([]),
     searchTitle: "选择学生",
@@ -14,7 +13,6 @@ export default Component.extend({
     filterData: null,
     clonedData: null,
     inputVal: "",
-
     actions: {
         onSearchChange(keyWord) {
             let reg = new RegExp(keyWord);
@@ -35,7 +33,7 @@ export default Component.extend({
             })
             let tempObj = this.store.peekRecord("student", param.id)
             let haveCurItemFlag = false;
-            
+
             if(this.curItems == null) {
                 this.set("curItems", A([]));
                 this.curItems.pushObject(tempObj);
@@ -81,7 +79,7 @@ export default Component.extend({
             }
         }
         this.set('clonedData', this.handledMultiData)
-        
+
     },
     // deepClone(source){
     //     return source;

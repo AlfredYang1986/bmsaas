@@ -40,12 +40,12 @@ export default Controller.extend({
     rela: computed('rela_idx', function() {
         if(this.model.stud.guardians.length > 0) {
             if(this.rela_idx == 0) {
-            this.model.stud.guardians.objectAt(0).set("relationShip", "爸爸")
-        } else if(this.rela_idx == 1) {
-            this.model.stud.guardians.objectAt(0).set("relationShip", '妈妈')
-        } else {
-            this.model.stud.guardians.objectAt(0).set("relationShip", '其他')
-        }
+                this.model.stud.guardians.objectAt(0).set("relationShip", "爸爸")
+            } else if(this.rela_idx == 1) {
+                this.model.stud.guardians.objectAt(0).set("relationShip", '妈妈')
+            } else {
+                this.model.stud.guardians.objectAt(0).set("relationShip", '其他')
+            }
         }
     }),
 
@@ -69,7 +69,6 @@ export default Controller.extend({
                     this.transitionToRoute("detail.stud", this.model.stud.id)
                 }
             }
-
         },
         saveInputBtnClicked() {
             let that = this;
@@ -116,6 +115,7 @@ export default Controller.extend({
             } else if(dealDob == dealNow) {
                 that.toast.error('', '请选择正确的出生日期', that.toastOptions);
             } else {
+                that.model.stud.set('status', 1);
                 that.model.stud.save().then(() => {
                     if (that.model.isPushing) {
                         if(that.model.stud.guardians.firstObject.relationShip == '') {
