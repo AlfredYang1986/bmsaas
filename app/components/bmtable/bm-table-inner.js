@@ -54,7 +54,6 @@ export default Component.extend({
 			this.onRemoveArrcourseClick(params);
 		},
 		onRadioChange(param) {
-			debugger
 			this.onRadioChange(param);
         },
 	},

@@ -120,7 +120,6 @@ export default Controller.extend({
             this.set('studList', true);
         },
         radioChange(param) {
-            debugger
             let that = this;
             let stud = param;
             if(stud.gender == undefined || stud.gender == null) {
