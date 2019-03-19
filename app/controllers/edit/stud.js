@@ -115,6 +115,7 @@ export default Controller.extend({
             } else if(dealDob == dealNow) {
                 that.toast.error('', '请选择正确的出生日期', that.toastOptions);
             } else {
+                that.model.stud.set('status', 1);
                 that.model.stud.save().then(() => {
                     if (that.model.isPushing) {
                         if(that.model.stud.guardians.firstObject.relationShip == '') {

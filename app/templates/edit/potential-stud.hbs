@@ -17,7 +17,7 @@
 					{{#if studList}}
 						{{#layout-push direction="row" classNames="stud-list-area" }}
 							<table class='ib_table_head_pt stud_list_table'>
-								{{bmtable/bm-table-inner type="srarchptStuds" listData=studs}}
+								{{bmtable/bm-table-inner type="srarchptStuds" listData=studs onRadioChange=(action 'radioChange')}}
 							</table>
 						{{/layout-push}}
 					{{else}}

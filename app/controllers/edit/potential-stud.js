@@ -118,6 +118,24 @@ export default Controller.extend({
         searchStud() {
             this.toggleProperty('refreshFlag');
             this.set('studList', true);
+        },
+        radioChange(param) {
+            debugger
+            let that = this;
+            let stud = param;
+            if(stud.gender == undefined || stud.gender == null) {
+                stud.set('gender', 1);
+            }
+            stud.set('status', 0);
+            stud.save().then(() => {
+                // if(stud.guardians.firstObject.relationShip == '') {
+                //     that.model.stud.guardians.objectAt(0).set("relationShip", '爸爸')
+                // }
+                that.transitionToRoute('potential-stud')
+            }, error => {
+                that.bm_error_service.handleError(error)
+            })
+
         }
     }
 });
