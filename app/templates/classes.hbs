@@ -1,77 +1,97 @@
-<div class="class_content_top" >
-    {{#if openFlag}}
-        {{#layout-push direction="col" classNames="class_content"}}
-            {{#layout-push direction="row" split=true}}
-                <p class="class-content-title">班级</p>
-                <button class="class_add_btn" {{action 'onAddClassClick'}}>+ 创建班级</button>
-            {{/layout-push}}
-        {{/layout-push}}
+<div class="class_content_top">
+	{{#if openFlag}}
+		{{!-- {{#layout-push direction="col" classNames="class_content"}}
+			{{#layout-push direction="row" split=true}}
+				<p class="class-content-title">班级</p>
+				{{#bp-button type="primary" onClick=(action 'onAddClassClick')}}
+					+ 创建班级
+				{{/bp-button}}
+			{{/layout-push}}
+		{{/layout-push}} --}}
+		{{#layout-push direction="col" classNames="class_content"}}
+			{{#bp-page-header as |ph|}}
+				{{#ph.body as |body|}}
+					{{#body.left as |left|}}
+						{{#left.item}}
+							班级
+						{{/left.item}}
+					{{/body.left}}
+					{{#body.right}}
+						{{#bp-button type="primary" onClick=(action 'onAddClassClick')}}
+							+ 创建班级
+						{{/bp-button}}
+					{{/body.right}}
+				{{/ph.body}}
+			{{/bp-page-header}}
 
-        {{!-- {{#layout-push direction='col' classNames='class-content-tab-bar'}}
-            {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=titles }}
-        {{/layout-push}} --}}
-
-        {{#if (eq cls.length 0)}}
-            {{bmcom/bm-empty-state class="class-empty-state" picUrl="/images/img_empty@2x.png" title="暂无数据" des="请创建班级"}}
-        {{else}}
-            {{bmclass/bm-class-scroller cls=cls onCardClicked=(action 'cardClicked')}}
-        {{/if}}
-    {{else}}
-        {{bmcom/bm-empty-state class="class-not-open" picUrl="/images/img_openningsoon.png" title="即将开放" des="更加强大便捷的功能马上到来"}}
-    {{/if}}
+			{{#if (eq cls.length 0)}}
+				{{bp-empty-state/no-button
+					class="class-empty-state"
+					src='/images/img_empty@2x.png'
+					title="暂无数据"
+					desc="请创建班级"}}
+			{{else}}
+				{{bmclass/bm-class-scroller cls=cls onCardClicked=(action 'cardClicked')}}
+			{{/if}}
+		{{/layout-push}}
+	{{else}}
+		{{bp-empty-state/no-button
+			class="class-not-open"
+			src='/images/img_openningsoon.png'
+			title="即将开放"
+			desc="更加强大便捷的功能马上到来"
+		}}
+	{{/if}}
 </div>
-
 {{#bmcom/bm-modal-container title="" mswitch=addClassDlg
     successbtncss='exp-modal-confirm'
     cancelbtncss='exp-modal-cancel'
     canceltext='取消'
     onCancelBtnClicked=(action 'cancelHandled')
     onSuccessBtnClicked=(action 'successHandled')}}
-    <div class="session-modal">
-        {{#layout-push direction='col' }}
-            {{#layout-push direction='row'}}
-                <p class="title">添加班级</p>
-            {{/layout-push}}
-            {{#if noteCourseError}}
-                <div class="form-checked">
-                    {{#layout-push direction='row' classNames="error-line"}}
-                        <img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
-                        <span class="error-info">请选择课程</span>
-                    {{/layout-push}}
-                </div>
-            {{/if}}
-            {{#if noteError}}
-                <div class="form-checked">
-                    {{#layout-push direction='row' classNames="error-line"}}
-                        <img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
-                        <span class="error-info">请填写完整信息</span>
-                    {{/layout-push}}
-                </div>
-            {{/if}}
-            {{#if noteCourseError}}
-                {{#layout-push direction="col" classNames='input_area' }}
-                    {{bmform/bm-base-select type="id" chooseReservable=true selTitle="选择课程" options=model.courses curSelect=cur_course_id classNames="input_area area-margin-bottom error-border"}}
-                {{/layout-push}}
-            {{else}}
-                {{#layout-push direction="col" classNames='input_area' }}
-                    {{bmform/bm-base-select type="id" chooseReservable=true selTitle="选择课程" options=model.courses curSelect=cur_course_id classNames="input_area area-margin-bottom"}}
-                {{/layout-push}}
-            {{/if}}
-            {{#if noteError}}
-                {{#layout-push direction="row"  classNames='input_area' }}
-                    {{bmform/bm-edit-line title='班级名称' needTitleDes=true titleDes="请为班级设定名称，方便识别" inputVal=classTitle classNames='input_area input-full-width error-border'}}
-                {{/layout-push}}
-            {{else}}
-                {{#layout-push direction="row"  classNames='input_area' }}
-                    {{bmform/bm-edit-line title='班级名称' needTitleDes=true titleDes="请为班级设定名称，方便识别" inputVal=classTitle classNames='input_area input-full-width'}}
-                {{/layout-push}}
-            {{/if}}
-
-        {{/layout-push}}
-    </div>
+	<div class="session-modal">
+		{{#layout-push direction='col' }}
+			{{#layout-push direction='row'}}
+				<p class="title">添加班级</p>
+			{{/layout-push}}
+			{{#if noteCourseError}}
+				<div class="form-checked">
+					{{#layout-push direction='row' classNames="error-line"}}
+						<img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
+						<span class="error-info">请选择课程</span>
+					{{/layout-push}}
+				</div>
+			{{/if}}
+			{{#if noteError}}
+				<div class="form-checked">
+					{{#layout-push direction='row' classNames="error-line"}}
+						<img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
+						<span class="error-info">请填写完整信息</span>
+					{{/layout-push}}
+				</div>
+			{{/if}}
+			{{#if noteCourseError}}
+				{{#layout-push direction="col" classNames='input_area' }}
+					{{bmform/bm-base-select type="id" chooseReservable=true selTitle="选择课程" options=model.courses curSelect=cur_course_id classNames="input_area area-margin-bottom error-border"}}
+				{{/layout-push}}
+			{{else}}
+				{{#layout-push direction="col" classNames='input_area' }}
+					{{bmform/bm-base-select type="id" chooseReservable=true selTitle="选择课程" options=model.courses curSelect=cur_course_id classNames="input_area area-margin-bottom"}}
+				{{/layout-push}}
+			{{/if}}
+			{{#if noteError}}
+				{{#layout-push direction="row"  classNames='input_area' }}
+					{{bmform/bm-edit-line title='班级名称' needTitleDes=true titleDes="请为班级设定名称，方便识别" inputVal=classTitle classNames='input_area input-full-width error-border'}}
+				{{/layout-push}}
+			{{else}}
+				{{#layout-push direction="row"  classNames='input_area' }}
+					{{bmform/bm-edit-line title='班级名称' needTitleDes=true titleDes="请为班级设定名称，方便识别" inputVal=classTitle classNames='input_area input-full-width'}}
+				{{/layout-push}}
+			{{/if}}
+		{{/layout-push}}
+	</div>
 {{/bmcom/bm-modal-container}}
 {{#bmcom/bm-warning-modal title="创建成功" mainBtnText="完善班级信息" type="normal" switchParam=addSuccessDlg cancelHandled=(action "cancelSuccessHandled") successHandled=(action "onAddSuccess")}}
-    <p class="warning-modal-body-content">您可以前往班级为该班级安排上课时间与授课教师</p>
+	<p class="warning-modal-body-content">您可以前往班级为该班级安排上课时间与授课教师</p>
 {{/bmcom/bm-warning-modal}}
-
 {{outlet}}

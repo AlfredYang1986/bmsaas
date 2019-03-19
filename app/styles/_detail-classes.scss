@@ -30,6 +30,7 @@
         background-color: #fff;
         height: 80px;
         padding: 16px 24px;
+        margin-bottom: 24px;
         .class-detail-title-sec-left {
             .sec-title {
                 font-family: PingFangSC-Medium;
@@ -66,6 +67,31 @@
                 color: #6B778C;
                 line-height: 22px;
             }
+        }
+    }
+}
+
+.class-tabs {
+
+    .tab-content {
+        &:focus {
+            outline: none;
+        }
+        div:focus {
+            outline: none;
+        }
+    }
+    .nav {
+        position: static;
+        justify-content: flex-start;
+        margin-bottom: 24px;
+        padding: 0;
+        height: auto;
+        box-shadow: none;
+        background-color: transparent;
+
+        .nav-link.active {
+            background-color: transparent;
         }
     }
 }

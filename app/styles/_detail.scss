@@ -326,9 +326,10 @@ span.list-status {
         height: calc(100vh - 471px);
     }
     .exp-empty-state {
-        // height: calc(100vh - 356px);
+        height: 100%;
     }
     .field-empty-state {
+        margin-top: 24px;
         height: calc(100vh - 336px);
     }
 

@@ -6,7 +6,9 @@
             </div>
         </div>
     {{else}}
-        {{bmcom/bm-empty-state class="arr-class-not-open" picUrl="/images/img_openningsoon.png" title="即将开放" des="更加强大便捷的功能马上到来"}}
+        <div class="arr-class-not-open">
+            {{bp-empty-state/no-button src='/images/img_openningsoon.png' title="即将开放" desc="更加强大便捷的功能马上到来"}}
+        </div>
     {{/if}}
 </div>
 

@@ -252,8 +252,8 @@ a.reserve_detail_href_ref {
     margin-bottom: 24px;
 }
 .detail_margin_top.course_margin_top_big {
-    height: 110px;
-    padding: 24px;
+    height: fit-content;
+    padding: 0;
 
     .reserve-detail-head{
         min-height: 32px;
@@ -270,6 +270,7 @@ a.reserve_detail_href_ref {
 
 .detail_margin_top.detail_margin_top_des {
     margin-top: 0;
+    margin-bottom: 24px;
     height: 52px;
     padding: 16px 24px;
 
@@ -280,29 +281,7 @@ a.reserve_detail_href_ref {
         .detail_margin_top_left{
             height: 20px;
 
-            .status_before_dot_outer {
-                width: 20px;
-                height: 20px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
 
-                .status_before_dot {
-                    display: inline-block;
-                    width: 8px;
-                    height: 8px;
-                    border-radius: 50%;
-                    background-color: #39BF5F;
-                }
-
-                .status_before_dot_disable {
-                    display: inline-block;
-                    width: 8px;
-                    height: 8px;
-                    border-radius: 50%;
-                    background-color: #DE350B;
-                }
-            }
 
             span:nth-child(2){
                 font-family: PingFangSC-Regular;
@@ -751,7 +730,7 @@ a.btn_sign {
         margin-left: 16px;
     }
 
-    .add-muti-btn {
+    .btn.add-muti-btn {
         font-family: PingFangSC-Medium;
         font-size: 14px;
         color: #FFFFFF;
@@ -783,9 +762,10 @@ a.btn_sign {
         }
     }
 
-    .reserve-more-btn {
+    .btn.reserve-more-btn {
         background-color: #FFFFFF;
         border: none;
+        border-radius: 4px;
         // margin-right: 16px;
         width: 32px;
         height: 32px;
@@ -1064,4 +1044,32 @@ a.btn_sign {
             background-color: #DE350B
         }
     }
+}
+
+
+.status_before_dot_outer {
+    width: 20px;
+    height: 20px;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+
+    .status_before_dot {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #39BF5F;
+    }
+
+    .status_before_dot_disable {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #DE350B;
+    }
+}
+.bp-tabs {
+    margin-top: 24px;
 }

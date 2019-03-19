@@ -1,44 +1,60 @@
-{{#layout-push direction='row' split=true}}
+{{!-- {{#layout-push direction='row' split=true}}
     {{#layout-push direction="row" split=true}}
         <p class="arrange-class-title">排课</p>
     {{/layout-push}}
-    {{!-- {{#bs-button classNames="cls-arr-add-btn" onClick=(action (mut showAddDlg) true)}}<span>+ 添加排课</span>{{/bs-button}} --}}
-    {{!-- {{#bs-button classNames="cls-arr-add-btn" onClick=(action "addUnitOnClick")}}<span>+ 添加排课</span>{{/bs-button}} --}}
-    <button class="cls-arr-add-btn" onClick={{action "addUnitOnClick"}}><span>+ 添加排课</span></button>
-{{/layout-push}}
+    {{#bp-button type="primary" onClick=(action 'addUnitOnClick')}} 
+        + 添加排课
+    {{/bp-button}}
+{{/layout-push}} --}}
+{{#bp-page-header as |ph|}}
+    {{#ph.body as |body|}}
+        {{#body.left as |left|}}
+            {{#left.item}}
+                排课
+            {{/left.item}}
+        {{/body.left}}
+        {{#body.right}}
+            {{#bp-button type="primary" onClick=(action 'addUnitOnClick')}} 
+                + 添加排课
+            {{/bp-button}}
+        {{/body.right}}
+    {{/ph.body}}
+{{/bp-page-header}}
 
-{{#layout-push direction='row' split=true}}
-    {{#layout-push direction="row" split=true}}
-        {{#layout-push direction='row' classNames="options"}}
-            <p class="title">选择教室</p>
-            <form class="select-site">
-                <select name="" id='roomselect' onChange={{action 'roomChanged'}}>
-                    {{#each rooms as |item idx|}}
-                        <option value={{item.id}}>{{item.title}}</option>
-                        {{#if (bmeq idx 0)}}
-                            {{refreshSelected}}
-                        {{/if}}
-                    {{/each}}
-                </select>
-            </form>
+{{#layout-push direction='col' classNames="arr-cls-content"}}
+    {{#layout-push direction='row' split=true}}
+        {{#layout-push direction="row" split=true}}
+            {{#layout-push direction='row' classNames="options"}}
+                <p class="title">选择教室</p>
+                <form class="select-site">
+                    <select name="" id='roomselect' onChange={{action 'roomChanged'}}>
+                        {{#each rooms as |item idx|}}
+                            <option value={{item.id}}>{{item.title}}</option>
+                            {{#if (bmeq idx 0)}}
+                                {{refreshSelected}}
+                            {{/if}}
+                        {{/each}}
+                    </select>
+                </form>
+            {{/layout-push}}
+        {{/layout-push}}
+
+        {{#layout-push direction='row' classNames="calender-btn-group"}}
+            {{#layout-push direction='col' mid=true}}
+                {{bmcls/cls-week-display start_date=start_date end_date=end_date}}
+            {{/layout-push}}
+            {{bmcls/cls-btn isPrev=true onBtnClicked=(action 'prevBtnClicked')}}
+                {{!-- {{#layout-push direction='col' mid=true}}
+                    <span>&lt;</span>
+                {{/layout-push}} --}}
+            {{!-- {{/bmcls/cls-btn}} --}}
+            {{bmcls/cls-btn isNext=true onBtnClicked=(action 'nextBtnClicked')}}
+                {{!-- {{#layout-push direction='col' mid=true}}
+                    <span>&gt;</span>
+                {{/layout-push}} --}}
+            {{!-- {{/bmcls/cls-btn}}       --}}
         {{/layout-push}}
     {{/layout-push}}
-
-    {{#layout-push direction='row' classNames="calender-btn-group"}}
-        {{#layout-push direction='col' mid=true}}
-            {{bmcls/cls-week-display start_date=start_date end_date=end_date}}
-        {{/layout-push}}
-        {{bmcls/cls-btn isPrev=true onBtnClicked=(action 'prevBtnClicked')}}
-            {{!-- {{#layout-push direction='col' mid=true}}
-                <span>&lt;</span>
-            {{/layout-push}} --}}
-        {{!-- {{/bmcls/cls-btn}} --}}
-        {{bmcls/cls-btn isNext=true onBtnClicked=(action 'nextBtnClicked')}}
-            {{!-- {{#layout-push direction='col' mid=true}}
-                <span>&gt;</span>
-            {{/layout-push}} --}}
-        {{!-- {{/bmcls/cls-btn}}       --}}
-    {{/layout-push}}
-{{/layout-push}}
     
-{{bmcls/cls-week-calendar onPanelClick=(action 'onPanelClick') onEditClick=(action "onEditClick") onDeleteClick=(action "onDeleteClick") start_date=start_date end_date=end_date}}
+    {{bmcls/cls-week-calendar onPanelClick=(action 'onPanelClick') onEditClick=(action "onEditClick") onDeleteClick=(action "onDeleteClick") start_date=start_date end_date=end_date}}
+{{/layout-push}}

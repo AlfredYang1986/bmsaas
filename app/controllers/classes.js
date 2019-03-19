@@ -14,6 +14,7 @@ export default Controller.extend({
         progressBar: false,
         timeOut: '2000',
     }),
+    openFlag: true,
     titles: A(['全部', '未排课', 'On Going', 'Finished']),
     openFlag: true, 
     refreshFlag: false,

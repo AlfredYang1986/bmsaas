@@ -7,7 +7,13 @@
             {{#link-to url.link class="reserve_detail_href_ref"}}{{url.pageName}}{{/link-to}}
         {{/if}}
     {{/bmcom/bm-breadcrumb}}
-    <div class='detail_panel detail_margin_top course_margin_top_big detail_margin_bottom' >
+    {{!-- <div class='detail_panel course_margin_top_big detail_margin_bottom' > --}}
+        {{bp-page-header/only-title-desc
+            title=model.course.sessioninfo.title
+            desc=model.course.sessioninfo.category.title}}
+    {{!-- </div> --}}
+
+    {{!-- <div class='detail_panel detail_margin_top course_margin_top_big detail_margin_bottom' >
         {{#layout-push direction='row' split=true classNames="reserve-detail-head"}}
             {{#layout-push direction='col' mid=true }}
                 {{#layout-push direction='col' classNames="detail_margin_top_left"}}
@@ -16,7 +22,7 @@
                     <p class="detail_panel_role_num">{{model.course.sessioninfo.category.title}}</p>
                     {{/layout-push}}
                 {{/layout-push}}
-            {{/layout-push}}
+            {{/layout-push}} --}}
             {{!-- {{#layout-push direction="row" classNames="reserve-detail-btn"}}
                 {{#bs-dropdown class="btn-dropdown" as |dd|}}
                     {{#dd.button class="reserve-more-btn"}}{{/dd.button}}
@@ -32,9 +38,9 @@
                     <p class="warning-modal-body-content">您确定要删除课程「{{model.course.sessioninfo.title}}」吗？</p>
                 {{/bmcom/bm-warning-modal}}
             {{/layout-push}} --}}
-        {{/layout-push}}
-    </div>
-        {{#bmpage/bm-session-info session=model.course.sessioninfo isCourse=true}}
+        {{!-- {{/layout-push}}
+    </div> --}}
+        {{#bmpage/bm-session-info session=model.course.sessioninfo}}
             {{bmdetail/bm-top-title-panel title="课程详情" rightText="编辑" linkAddr='edit.course' linkParam=model.course.sessioninfo.id linkParam2=model.course.id}}
         {{/bmpage/bm-session-info}}
     {{/layout-push}}

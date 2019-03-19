@@ -1,19 +1,47 @@
-<div class="course_content_top" >
-    {{#if openFlag}}
-        {{#layout-push direction="col" classNames="course_content"}}
-            {{#layout-push direction="row" split=true classNames="course-title-flex"}}
-                <p class="page_title">课程</p>
-                {{#link-to 'edit.course' 'course/push' 'course/push' classNames='course_add_btn'}}+ 创建课程{{/link-to}}
-            {{/layout-push}}
-            {{#if (eq page_count 0)}}
-                {{bmcom/bm-empty-state class="course-empty-state" picUrl="/images/img_empty@2x.png" title="暂无数据" des="请添加课程"}}
-            {{else}}
-                {{bmcom/bm-card-area onCourseCardClicked=(action 'cardClicked')  onRefreshDataComplete=(action 'refreshDataComplete') type='course' curPage=pagenum}}
-                {{bmcom/bm-pagination pageCount=page_count curPage=pagenum sendPageNum=(action "handlePageChange")}}
-            {{/if}}
-        {{/layout-push}}
-    {{else}}
-        {{bmcom/bm-empty-state class="course-not-open" picUrl="/images/img_openningsoon.png" title="即将开放" des="更加强大便捷的功能马上到来"}}
-    {{/if}}
+<div class="course_content_top">
+	{{#if openFlag}}
+		{{#layout-push direction="col" classNames="course_content"}}
+			{{!-- {{#layout-push direction="row" split=true classNames="course-title-flex"}}
+				<p class="page_title">课程</p>
+				{{#link-to 'edit.course' 'course/push' 'course/push' classNames='p-btn primary'}}+ 创建课程{{/link-to}}
+			{{/layout-push}} --}}
+			{{#bp-page-header as |ph|}}
+				{{#ph.body as |body|}}
+					{{#body.left as |left|}}
+						{{#left.item}}
+							课程
+						{{/left.item}}
+					{{/body.left}}
+					{{#body.right}}
+						{{#link-to 'edit.course' 'course/push' 'course/push' classNames='p-btn primary'}}+ 创建课程{{/link-to}}
+					{{/body.right}}
+				{{/ph.body}}
+			{{/bp-page-header}}
+			{{#if (eq page_count 0)}}
+				{{bp-empty-state/no-button
+					class="course-empty-state"
+					src='/images/img_empty@2x.png'
+					title="暂无数据"
+					desc="请添加课程"
+				}}
+			{{else}}
+				{{bmcom/bm-card-area
+					onCourseCardClicked=(action 'cardClicked')  
+					onRefreshDataComplete=(action 'refreshDataComplete') 
+					type='course' curPage=pagenum}}
+				{{!-- {{bmcom/bm-pagination pageCount=page_count curPage=pagenum sendPageNum=(action "handlePageChange")}} --}}
+				{{bp-pagination
+				totalPageCounts=page_count 
+				onClickPage=(action (mut pagenum))}}
+			{{/if}}
+		{{/layout-push}}
+	{{else}}
+		{{bp-empty-state/no-button
+			class="course-not-open"
+			src='/images/img_openningsoon.png'
+			title="即将开放"
+			desc="更加强大便捷的功能马上到来"
+		}}
+	{{/if}}
 </div>
 {{outlet}}

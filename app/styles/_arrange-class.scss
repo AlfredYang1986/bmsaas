@@ -1,7 +1,7 @@
 @import 'args';
 
 .content_page {
-    padding: 20px 24px;
+    // padding: 20px 24px;
     background: #fff;
     .arrange-class-title {
         margin-bottom: 30px;
@@ -9,6 +9,11 @@
         font-size: 24px;
         color: #172B4D;
     }
+
+    .arr-cls-content {
+        padding: 24px;
+    }
+
     .options {
         display: flex;
         flex-direction: row;
