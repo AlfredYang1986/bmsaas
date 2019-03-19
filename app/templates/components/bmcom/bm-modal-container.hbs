@@ -1,4 +1,4 @@
-{{#bs-modal open=mswitch backdropClose=backdropClose onHidden=(action 'cancelBtnClicked') onSubmit=(action 'successBtnClicked') onClose=(action 'cancelBtnClicked') as |modal|}}
+{{#bp-modal open=mswitch backdropClose=backdropClose onHidden=(action 'cancelBtnClicked') onSubmit=(action 'successBtnClicked') onClose=(action 'cancelBtnClicked') as |modal|}}
     {{#if (bmeq type "addPtStud")}}
         <div class="add-pt-stud-info">
             {{#if needTitle}}
@@ -14,9 +14,9 @@
 
             {{#modal.footer}}
                 {{#if needcancel}}
-                    {{#bs-button type="cancel" classNames=cancelbtncss onClick=(action 'cancelBtnClicked') }}{{canceltext}}{{/bs-button}}
+                    {{#bp-button type="cancel" classNames=cancelbtncss onClick=(action 'cancelBtnClicked') }}{{canceltext}}{{/bp-button}}
                 {{/if }}
-                    {{#bs-button type="success" classNames=successbtncss onClick=(action 'successBtnClicked') }}{{successtext}}{{/bs-button}}
+                    {{#bp-button type="success" classNames=successbtncss onClick=(action 'successBtnClicked') }}{{successtext}}{{/bp-button}}
             {{/modal.footer}}
         </div>
     {{else if (bmeq type 'codeImg')}}
@@ -34,9 +34,9 @@
 
             {{#modal.footer}}
                 {{#if needcancel}}
-                    {{#bs-button type="cancel" classNames=cancelbtncss onClick=(action 'cancelBtnClicked') }}{{canceltext}}{{/bs-button}}
+                    {{#bp-button type="cancel" classNames=cancelbtncss onClick=(action 'cancelBtnClicked') }}{{canceltext}}{{/bp-button}}
                 {{/if }}
-                    {{#bs-button type="success" classNames=successbtncss onClick=(action 'successBtnClicked') }}{{successtext}}{{/bs-button}}
+                    {{#bp-button type="success" classNames=successbtncss onClick=(action 'successBtnClicked') }}{{successtext}}{{/bp-button}}
             {{/modal.footer}}
         </div>
     {{else}}
@@ -54,10 +54,10 @@
 
             {{#modal.footer}}
                 {{#if needcancel}}
-                    {{#bs-button type="cancel" classNames=cancelbtncss onClick=(action 'cancelBtnClicked') }}{{canceltext}}{{/bs-button}}
+                    {{#bp-button type="cancel" classNames=cancelbtncss onClick=(action 'cancelBtnClicked') }}{{canceltext}}{{/bp-button}}
                 {{/if }}
-                    {{#bs-button type="success" classNames=successbtncss onClick=(action 'successBtnClicked') }}{{successtext}}{{/bs-button}}
+                    {{#bp-button type="success" classNames=successbtncss onClick=(action 'successBtnClicked') }}{{successtext}}{{/bp-button}}
             {{/modal.footer}}
         </div>
     {{/if}}
-{{/bs-modal}}
+{{/bp-modal}}
