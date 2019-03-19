@@ -26,10 +26,7 @@
 	<div class="input_container">
 		{{#if (bmeq current_idx 0)}}
 			<section id="yard-loc" class="yard-infos yard_section">
-				{{#bp-layout direction='col' classNames='edit_panel edit_first_panel'}}
-					{{!-- {{#bp-layout direction='row' classNames='edit_title_container'}}
-						<span class="edit_title">基本信息</span>
-					{{/bp-layout }} --}}
+				{{#layout-push direction='col' classNames='edit_panel edit_first_panel'}}
 					<p class="edit_title">基本信息</p>
 					{{bmform/bm-detail-address
 						provinces=provinces
@@ -41,13 +38,6 @@
 						title='校区地址'
 						detailAddress=model.yard.address
 						classNames="area-margin-bottom"}}
-					{{!-- {{bmform/bm-edit-line
-						maxlength='20'
-						title='校区名称'
-						inputVal=model.yard.title
-						classNames='input_area area-margin-bottom yard-name'
-						needTitleDes=true
-						titleDes="如:PRO科学空间站 海淀校区"}} --}}
 					{{bp-input
 						classNames="input_area area-margin-bottom yard-name"
 						block=true 
@@ -56,29 +46,16 @@
 						maxLength=20
 						value=model.yard.title
 						onChange=(action (mut model.yard.title))}}
-					{{#bp-layout direction="col" classNames='area-margin-bottom'}}
-						<p class="alt-edit-title">校区属性</p>
-						<div class="single-select card-wrap">
-							{{log model.yard.attribute}}
-							{{bmform/checkbox-label
-								limit=1
-								candidate=yardCandidate
-								titlecss='edit_sub_title'
-								btncss='form-check-label'
-								curSel=model.yard.attribute}}
-						</div>
-					{{/bp-layout}}
-					{{#bp-layout direction="col" classNames='area-margin-bottom'}}
-						<p class="alt-edit-title">校区场景</p>
-						{{#bp-layout direction="col" classNames="single-select card-wrap"}}
-							{{bmform/checkbox-label limit=1
-                            candidate=surroundings
-                            titlecss='edit_sub_title'
-                            btncss='form-check-label'
-                            curSel=model.yard.scenario
-                            }}
-						{{/bp-layout}}
-					{{/bp-layout}}
+					{{#layout-push direction="col" classNames='area-margin-bottom'}}
+						{{bp-radio title='校区属性' 
+							curValue=model.yard.attribute 
+							radios=yardCandidate}}
+					{{/layout-push}}
+					{{#layout-push direction="col" classNames='area-margin-bottom'}}
+						{{bp-radio title='校区场景' 
+							curValue=model.yard.scenario
+							radios=surroundings}}
+					{{/layout-push}}
 					{{bp-input
 						classNames='input_area area-margin-bottom yard-contact'
 						block=true 
@@ -90,7 +67,7 @@
 						block=true 
 						label='营业时间'
 						helpText='如:周一，周三至周五，周日 10:00~22:00' 	
-						maxLength=20
+						maxLength=30
 						value=model.yard.openTime}}
 				{{/bp-layout}}
 				<div class="edit_panel_bottom_btn_container">
@@ -100,14 +77,8 @@
 		{{/if}}
 		{{#if (bmeq current_idx 1)}}
 			<section class="yard-infos yard_section">
-				{{#bp-layout direction='col' classNames='edit_panel edit_second_panel'}}
-					{{!-- {{#bp-layout direction='row' classNames='edit_title_container'}}
-						<span class="edit_title">校区图片</span>
-					{{/bp-layout }} --}}
+				{{#layout-push direction='col' classNames='edit_panel edit_second_panel'}}
 					<p class="edit_title">校区图片</p>
-					{{!-- {{#bp-layout direction="row"}}
-						<span class="alt-edit-title">校区图片</span>
-					{{/bp-layout}} --}}
 					<p class="alt-edit-title">校区图片</p>
 					<span class='edit_sub_title'>图片的区域名称将被展示在小程序中</span>
 					<span class='edit_sub_title'>每张图片小于300KB，至多上传9项</span>
@@ -151,9 +122,11 @@
 							checkboxItem=facilities
 							curItems=model.yard.facilities
 							change=(action 'multiCheckOnClick')}}
-					{{/bp-layout}}
-				{{/bp-layout }}
-				{{#bp-layout classNames='edit_panel_bottom_btn_container' direction='row'}}
+					{{/layout-push}}
+					{{bp-checkbox classNames="multi-select" vertical=false curValues=model.yard.facilities 
+							checkboxs=facilities}}
+				{{/layout-push }}
+				{{#layout-push classNames='edit_panel_bottom_btn_container' direction='row'}}
 					<button class='edit_panel_bottom_btn' {{action (mut current_idx) 3}}>下一步</button>
 				{{/bp-layout}}
 			</section>
