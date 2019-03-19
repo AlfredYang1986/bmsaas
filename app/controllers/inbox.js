@@ -8,6 +8,7 @@ export default Controller.extend({
     cur_tab_idx: 0,
     cur_reserve_type: 0,
     pageNum: 1,
+    pageNumSec: 1,
     
     bm_error_service: service(),
     toast: service(),
@@ -78,9 +79,9 @@ export default Controller.extend({
     }),
     actions: {
         /* 今天全部预约与注册*/
-        handleBookPageChange (pagenum) {
-            this.set('pageNum', pagenum)
-        },
+        // handleBookPageChange (pagenum) {
+        //     this.set('pageNum', pagenum)
+        // },
         onTabClicked() {},
         saveInfo() {
             this.set('modal3',false);
@@ -165,13 +166,15 @@ export default Controller.extend({
             let paramsArr = appliesCount.split(' ');
             let applies_Count = paramsArr[0];
             let page_Count = paramsArr[1];
-            this.set('applies_count', applies_Count)
-            this.set('page_count', page_Count)
-            // if(page_Count == 0) {
-            //     this.set('page_count', 1)
-            // } else {
-            //     this.set('page_count', page_Count)
-            // }
+            this.set('applies_count', Number(applies_Count))
+            this.set('page_count', Number(page_Count))
+        },
+        refreshDataCompleteSec(appliesCount) {
+            let paramsArr = appliesCount.split(' ');
+            let applies_Count = paramsArr[0];
+            let page_Count = paramsArr[1];
+            this.set('applies_count_sec', Number(applies_Count))
+            this.set('page_count_sec', Number(page_Count))
         }
     },
     checkValidate() {},

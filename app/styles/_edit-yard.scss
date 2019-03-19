@@ -41,6 +41,8 @@
                 // }
 				.edit_title {
                     margin-bottom: 40px;
+				}
+				.school-facilities {
 
 				}
                 .edit_sub_title{
@@ -236,21 +238,28 @@
 
                     // .alt-edit-line-area {
 					// 	margin-bottom: 40px;
+					// }
+					.school-facilities  {
+						width: 620px;
+						label {
+							margin: 0 40px 8px 0;
+                            width: 104px;
+						}
+					}
+                    // .box-content {
+                    //     width: 620px;
+                    //     flex-wrap: wrap;
+
+                    //     .box-item {
+                    //         margin: 0 40px 16px 0;
+                    //         width: 112px;
+
+                    //         input[type=checkbox] {
+                    //             margin-left: 0;
+                    //             margin-right: 8px;
+                    //         }
+                    //     }
                     // }
-                    .box-content {
-                        width: 620px;
-                        flex-wrap: wrap;
-
-                        .box-item {
-                            margin: 0 40px 16px 0;
-                            width: 112px;
-
-                            input[type=checkbox] {
-                                margin-left: 0;
-                                margin-right: 8px;
-                            }
-                        }
-                    }
                 }
 
 				&.edit_fourth_panel {

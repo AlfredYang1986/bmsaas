@@ -7,11 +7,12 @@
 			onClick=(action 'saveYardBtnClicked')}}保存{{/bp-button}}
 	</span>
 {{/bp-layout}}
-{{!-- {{#bp-layout direction='row' main='between' classNames='edit_container' }} --}}
 {{#bp-layout main="between" classNames='edit_container' }}
 	<ul class="edit_left_nav">
 		<li class="left_bar_item">
-			<a class="edit_left_menu_text" href="#yard-loc" {{action (mut current_idx) 0}}>基本信息</a>
+			<a class="edit_left_menu_text" href="#yard-loc" {{action (mut current_idx) 0}}>
+				基本信息
+			</a>
 		</li>
 		<li class="left_bar_item">
 			<a class="edit_left_menu_text" href="#yard-cert" {{action (mut current_idx) 1}}>校区图片</a>
@@ -26,7 +27,7 @@
 	<div class="input_container">
 		{{#if (bmeq current_idx 0)}}
 			<section id="yard-loc" class="yard-infos yard_section">
-				{{#bp-layout direction='col' classNames='edit_panel edit_first_panel'}}
+				{{#bp-layout direction="col" classNames="edit_panel edit_first_panel"}}
 					<p class="edit_title">基本信息</p>
 					{{bmform/bm-detail-address
 						provinces=provinces
@@ -46,16 +47,12 @@
 						maxLength=20
 						value=model.yard.title
 						onChange=(action (mut model.yard.title))}}
-					{{#bp-layout direction="col" classNames='area-margin-bottom'}}
-						{{bp-radio title='校区属性' 
+					{{bp-radio classNames='area-margin-bottom' title='校区属性' 
 							curValue=model.yard.attribute 
 							radios=yardCandidate}}
-					{{/bp-layout}}
-					{{#bp-layout direction="col" classNames='area-margin-bottom'}}
-						{{bp-radio title='校区场景' 
+					{{bp-radio classNames='area-margin-bottom' title='校区场景' 
 							curValue=model.yard.scenario
 							radios=surroundings}}
-					{{/bp-layout}}
 					{{bp-input
 						classNames='input_area area-margin-bottom yard-contact'
 						block=true 
@@ -82,78 +79,73 @@
 					<p class="alt-edit-title">校区图片</p>
 					<span class='edit_sub_title'>图片的区域名称将被展示在小程序中</span>
 					<span class='edit_sub_title'>每张图片小于300KB，至多上传9项</span>
-					{{#bp-layout direction='row'}}
-						<div class='line_conatainer_warp'>
-							{{#each tempYardImgs as |item|}}
-								{{bmcom/bm-img-uploader needTag=true canEdit=true canEditTag=true canDeleteImg=false canDeleteObj=true imgObj=item img=item.img tag=item.tag onDeleteObj=(action "deleteYardImg") classNames='alt-yard-edit-tag-img-adjust'}}
-							{{/each}}
-							{{#if (bmcom/bm-nil-obj tempYardImgs)}}
-								{{#bp-layout direction='row' main='center' classNames="add-img-div"}}
+					<div class='line_conatainer_warp'>
+						{{#each tempYardImgs as |item|}}
+							{{bmcom/bm-img-uploader needTag=true canEdit=true canEditTag=true canDeleteImg=false canDeleteObj=true imgObj=item img=item.img tag=item.tag onDeleteObj=(action "deleteYardImg") classNames='alt-yard-edit-tag-img-adjust'}}
+						{{/each}}
+						{{#if (bmcom/bm-nil-obj tempYardImgs)}}
+							{{#bp-layout
+								main='center'
+								classNames="add-img-div"}}
+								<div class="add-new-img-div" {{action "addYardPicOnClick"}}>
+									<img class="add-new-img" src='/images/icon_add-photo@3x.png' />
+								</div>
+							{{/bp-layout}}
+						{{else}}
+							{{#if (lt tempYardImgs.length 9)}}
+								{{#bp-layout
+									main='center'
+									classNames="add-img-div"}}
 									<div class="add-new-img-div" {{action "addYardPicOnClick"}}>
 										<img class="add-new-img" src='/images/icon_add-photo@3x.png' />
 									</div>
 								{{/bp-layout}}
-							{{else}}
-								{{#if (lt tempYardImgs.length 9)}}
-									{{#bp-layout direction='row' main='center' classNames="add-img-div"}}
-										<div class="add-new-img-div" {{action "addYardPicOnClick"}}>
-											<img class="add-new-img" src='/images/icon_add-photo@3x.png' />
-										</div>
-									{{/bp-layout}}
-								{{/if}}
 							{{/if}}
-						</div>
-					{{/bp-layout}}
-				{{/bp-layout }}
+						{{/if}}
+					</div>
+				{{/bp-layout}}
 				<div class="edit_panel_bottom_btn_container">
-					{{#bp-button onClick=(action (mut current_idx) 2)}}下一步{{/bp-button}}
+					{{#bp-button onClick=(action (mut current_idx) 2)}}
+						下一步
+					{{/bp-button}}
 				</div>
 			</section>
 		{{/if}}
 		{{#if (bmeq current_idx 2)}}
 			<section id="yard-faclity" class="yard-infos yard_section">
-				{{#bp-layout direction='col' classNames='edit_panel edit_third_panel'}}
-					{{#bp-layout direction='row' classNames='edit_title_container'}}
-						<span class="edit_title">校区设施</span>
-					{{/bp-layout }}
-					{{#bp-layout direction="col" classNames="multi-select"}}
-						{{bmform/bm-checkbox
-							flag=changeFlag
-							checkboxItem=facilities
-							curItems=model.yard.facilities
-							change=(action 'multiCheckOnClick')}}
-					{{/bp-layout}}
-					{{bp-checkbox classNames="multi-select" vertical=false curValues=model.yard.facilities 
+				<div class="edit_panel edit_third_panel">
+					<p class="edit_title">校区设施</p>
+					{{bp-checkbox classNames='school-facilities' vertical=false curValues=model.yard.facilities 
 							checkboxs=facilities}}
-				{{/bp-layout }}
-				{{#bp-layout classNames='edit_panel_bottom_btn_container' direction='row'}}
-					<button class='edit_panel_bottom_btn' {{action (mut current_idx) 3}}>下一步</button>
-				{{/bp-layout}}
+				</div>
+				<div class="edit_panel_bottom_btn_container">
+					{{#bp-button onClick=(action (mut current_idx) 3)}}
+						下一步
+					{{/bp-button}}
+				</div>
 			</section>
 		{{/if}}
 		{{#if (bmeq current_idx 3)}}
 			<section class="yard-infos yard_section">
 				{{#bp-layout direction='col' classNames='edit_panel edit_fourth_panel'}}
-					{{#bp-layout direction='row' classNames='edit_title_container'}}
-						<span class="edit_title">校区认证</span>
-					{{/bp-layout }}
+					<p class="edit_title">校区认证</p>
 					<span class='edit_sub_title'>请上传您获得的相关资质认证</span>
 					<span class='edit_sub_title'>如：国际儿童场地友好性证明</span>
 					<span class='edit_sub_title'>每张图片小于300KB，至多上传8项</span>
-					{{#bp-layout direction='row'}}
+					{{#bp-layout }}
 						<div class='line_conatainer_warp'>
 							{{#each tempCertImgs as |item|}}
 								{{bmcom/bm-img-uploader needTag=true canEdit=true canEditTag=true canDeleteImg=false canDeleteObj=true imgObj=item img=item.img tag=item.tag onDeleteObj=(action "deleteCertImg") classNames='alt-yard-edit-tag-img-adjust'}}
 							{{/each}}
 							{{#if (bmcom/bm-nil-obj tempCertImgs)}}
-								{{#bp-layout direction='row' main='center' classNames="add-img-div"}}
+								{{#bp-layout main="center" classNames="add-img-div"}}
 									<div class="add-new-img-div" {{action "addCertPicOnClick"}}>
 										<img class="add-new-img" src='/images/icon_add-photo@3x.png' />
 									</div>
 								{{/bp-layout}}
 							{{else}}
 								{{#if (lt tempCertImgs.length 8)}}
-									{{#bp-layout direction='row' main='center' classNames="add-img-div"}}
+									{{#bp-layout main="center" classNames="add-img-div"}}
 										<div class="add-new-img-div" {{action "addCertPicOnClick"}}>
 											<img class="add-new-img" src='/images/icon_add-photo@3x.png' />
 										</div>
@@ -167,5 +159,3 @@
 		{{/if}} 
 	</div>
 {{/bp-layout}}
-{{!-- {{/bp-layout}} --}}
-{{outlet}}
