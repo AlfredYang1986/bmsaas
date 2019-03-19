@@ -130,34 +130,32 @@
         onSuccessBtnClicked=(action 'successHandled')}}
 	<div class="session-modal">
 		{{#bp-layout direction='col' }}
-			{{#bp-layout direction='row'}}
-				<p class="title">编辑教室</p>
-			{{/bp-layout}}
+			<p class="title">编辑教室</p>
 			{{#if noteError}}
 				<div class="form-checked">
-					{{#bp-layout direction='row' classNames="error-line"}}
+					{{#bp-layout classNames="error-line"}}
 						<img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
 						<span class="error-info">请填写完整信息</span>
 					{{/bp-layout}}
 				</div>
 			{{/if}}
+			{{bp-input
+				classNames="input_area area-margin-bottom"
+				block=true
+				disabled=true
+				label='所属校区'
+				value=model.yard.title}}
 			{{#bp-layout direction="col" classNames='input_area area-margin-bottom' }}
-				<p class="edit_subtitle">所属校区</p>
-				<p class="edit_subtitle_content">{{model.yard.title}}</p>
-			{{/bp-layout}}
-			{{#bp-layout direction="col" classNames='input_area area-margin-bottom' }}
-				<p class="edit_subtitle">使用类型</p>
+				{{!-- 这里应该替换为 bp-radio，但是值有问题，所以先使用标题 --}}
+				{{bp-radio vertical=false title='使用类型' }}
 				{{bmcom/bm-radio-inline cur_idx=type_idx titles=typeChecked}}
 			{{/bp-layout}}
-			{{#if noteError}}
-				{{#bp-layout direction="row"  classNames='input_area' }}
-					{{bmform/bm-edit-line title='教室名称' inputVal=tempRoomTitle classNames='input_area input-full-width error-border'}}
-				{{/bp-layout}}
-			{{else}}
-				{{#bp-layout direction="row"  classNames='input_area' }}
-					{{bmform/bm-edit-line title='教室名称' inputVal=tempRoomTitle classNames='input_area input-full-width'}}
-				{{/bp-layout}}
-			{{/if}}
+			{{bp-input
+				classNames="input_area input-full-width {{if noteError 'error-border'}}"
+			block=true
+			label='教室名称'
+			value=tempRoomTitle
+			onChange=(action (mut tempRoomTitle))}}
 		{{/bp-layout}}
 	</div>
 {{/bmcom/bm-modal-container}}

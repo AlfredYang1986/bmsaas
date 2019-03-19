@@ -1,29 +1,24 @@
-<div class="tech_content_top" >
-    {{#bp-layout direction="col" classNames="tech_content"}}
-        {{!-- {{#bp-layout direction="row" main='between' classNames="tech-title-flex"}}
-            <p class="page_title">教师</p>
-            {{#link-to 'edit.tech' 'tech/push' classNames='p-btn primary'}}+ 添加教师{{/link-to}}
-        {{/bp-layout}} --}}
-        {{#bp-page-header as |ph|}}
-            {{#ph.body as |body|}}
-                {{#body.left as |left|}}
-                    {{#left.item}}
-                        教师
-                    {{/left.item}}
-                {{/body.left}}
-                {{#body.right}}
-                    {{#link-to 'edit.tech' 'tech/push' classNames='p-btn primary'}}+ 添加教师{{/link-to}}
-                {{/body.right}}
-            {{/ph.body}}
-        {{/bp-page-header}}
-        {{#bp-layout direction="row" wrap=true classNames="tech-card-wrap"}}
-            {{#each model.techs as |item|}}
-                <div class="line_container_warp tech_card_container" >
-                    {{bmcard/tech-card onTechCardClicked=(action 'cardClicked') tech=item}}
-                </div>
-            {{/each}}
-        {{/bp-layout}}
-    {{/bp-layout}}
+<div class="tech_content_top">
+	{{#bp-layout direction="col" classNames="tech_content"}}
+		{{#bp-page-header as |ph|}}
+			{{#ph.body as |body|}}
+				{{#body.left as |left|}}
+					{{#left.item}}
+						教师
+					{{/left.item}}
+				{{/body.left}}
+				{{#body.right}}
+					{{#link-to 'edit.tech' 'tech/push' classNames='p-btn primary'}}+ 添加教师{{/link-to}}
+				{{/body.right}}
+			{{/ph.body}}
+		{{/bp-page-header}}
+		{{#bp-layout wrap=true classNames="tech-card-wrap"}}
+			{{#each model.techs as |item|}}
+				<div class="line_container_warp tech_card_container">
+					{{bmcard/tech-card onTechCardClicked=(action 'cardClicked') tech=item}}
+				</div>
+			{{/each}}
+		{{/bp-layout}}
+	{{/bp-layout}}
 </div>
-
 {{outlet}}
