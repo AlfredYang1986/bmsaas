@@ -10,6 +10,7 @@ export default Controller.extend({
     refreshFlag: false,
     type: '',
     refreshFlag: false,
+    contact: '',
     page_count: computed(function(){
         return Number.parseInt(localStorage.getItem('students'));
     }),
@@ -24,6 +25,7 @@ export default Controller.extend({
         searchStud() {
             let that = this
             this.set('type', 'searchName')
+            this.toggleProperty('refreshFlag')
         },
         refreshDataComplete(page) {
             this.set('page_count', page)
