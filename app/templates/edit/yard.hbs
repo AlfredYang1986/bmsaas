@@ -26,7 +26,7 @@
 	<div class="input_container">
 		{{#if (bmeq current_idx 0)}}
 			<section id="yard-loc" class="yard-infos yard_section">
-				{{#layout-push direction='col' classNames='edit_panel edit_first_panel'}}
+				{{#bp-layout direction='col' classNames='edit_panel edit_first_panel'}}
 					<p class="edit_title">基本信息</p>
 					{{bmform/bm-detail-address
 						provinces=provinces
@@ -46,16 +46,16 @@
 						maxLength=20
 						value=model.yard.title
 						onChange=(action (mut model.yard.title))}}
-					{{#layout-push direction="col" classNames='area-margin-bottom'}}
+					{{#bp-layout direction="col" classNames='area-margin-bottom'}}
 						{{bp-radio title='校区属性' 
 							curValue=model.yard.attribute 
 							radios=yardCandidate}}
-					{{/layout-push}}
-					{{#layout-push direction="col" classNames='area-margin-bottom'}}
+					{{/bp-layout}}
+					{{#bp-layout direction="col" classNames='area-margin-bottom'}}
 						{{bp-radio title='校区场景' 
 							curValue=model.yard.scenario
 							radios=surroundings}}
-					{{/layout-push}}
+					{{/bp-layout}}
 					{{bp-input
 						classNames='input_area area-margin-bottom yard-contact'
 						block=true 
@@ -77,7 +77,7 @@
 		{{/if}}
 		{{#if (bmeq current_idx 1)}}
 			<section class="yard-infos yard_section">
-				{{#layout-push direction='col' classNames='edit_panel edit_second_panel'}}
+				{{#bp-layout direction='col' classNames='edit_panel edit_second_panel'}}
 					<p class="edit_title">校区图片</p>
 					<p class="alt-edit-title">校区图片</p>
 					<span class='edit_sub_title'>图片的区域名称将被展示在小程序中</span>
@@ -122,11 +122,11 @@
 							checkboxItem=facilities
 							curItems=model.yard.facilities
 							change=(action 'multiCheckOnClick')}}
-					{{/layout-push}}
+					{{/bp-layout}}
 					{{bp-checkbox classNames="multi-select" vertical=false curValues=model.yard.facilities 
 							checkboxs=facilities}}
-				{{/layout-push }}
-				{{#layout-push classNames='edit_panel_bottom_btn_container' direction='row'}}
+				{{/bp-layout }}
+				{{#bp-layout classNames='edit_panel_bottom_btn_container' direction='row'}}
 					<button class='edit_panel_bottom_btn' {{action (mut current_idx) 3}}>下一步</button>
 				{{/bp-layout}}
 			</section>
