@@ -15,7 +15,7 @@ export default Component.extend({
     tagName: 'div',
     classNames: ['bm-scroller bm-time-grid-container'],
     height: computed(function(){
-        return window.innerHeight - 344;
+        return window.innerHeight - 360;
     }),
     attributeBindings: ['style'],
     overflow: 'hidden scroll',

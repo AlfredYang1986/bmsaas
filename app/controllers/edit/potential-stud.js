@@ -63,7 +63,11 @@ export default Controller.extend({
             this.set('showAddStud', false)
         },
         successAdd() {
+            debugger
             let that = this;
+            // let applicant = this.store.createRecord('applicant');
+            // applicant.set('name', that.model.stud.guardians.firstObject.name);
+            // applicant.set('gender', that.model.stud.guardians.firstObject.gender);
             if(this.model.stud.gender == undefined || this.model.stud.gender == null) {
                 that.model.stud.set('gender', 1);
             }

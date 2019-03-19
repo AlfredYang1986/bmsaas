@@ -1,5 +1,20 @@
 {{#bp-layout direction='col' classNames="alt_course_card"}}
 	<img src={{cover}} class='alt_course_cover' />
+	{{#if (eq course.startDate -1)}}
+		{{#if (eq course.endDate -1)}}
+			<div class='alt_course_field_closed_info'>
+				<p class='alt_course_field_info_text'>未开放</p>
+			</div>
+		{{else}}
+			<div class='alt_course_field_info'>
+				<p class='alt_course_field_info_text'>开放中</p>
+			</div>
+		{{/if}}
+	{{else}}
+		<div class='alt_course_field_info'>
+			<p class='alt_course_field_info_text'>开放中</p>
+		</div>
+	{{/if}}
 	{{#bp-layout direction='col' main='center' classNames="alt_course_content"}}
 		{{#bp-layout direction='col'}}
 			<span class='alt_course_cat'>{{course.sessioninfo.category.title}}</span>
@@ -8,5 +23,5 @@
 	{{/bp-layout}}
 {{/bp-layout}}
 {{bmcom/bm-handle-promise
-	promiseResovled=(action 'promiseResovled') 
+	promiseResovled=(action 'promiseResovled')
 	promiseObj=course.sessioninfo}}

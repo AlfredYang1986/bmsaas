@@ -7,41 +7,67 @@
             {{#link-to url.link class="reserve_detail_href_ref"}}{{url.pageName}}{{/link-to}}
         {{/if}}
     {{/bmcom/bm-breadcrumb}}
-    {{!-- <div class='detail_panel course_margin_top_big detail_margin_bottom' > --}}
-        {{bp-page-header/only-title-desc
-            title=model.course.sessioninfo.title
-            desc=model.course.sessioninfo.category.title}}
-    {{!-- </div> --}}
-
-    {{!-- <div class='detail_panel detail_margin_top course_margin_top_big detail_margin_bottom' >
-        {{#bp-layout direction='row' main='between' classNames="reserve-detail-head"}}
-            {{#bp-layout direction='col' main='center' }}
-                {{#bp-layout direction='col' classNames="detail_margin_top_left"}}
-                    <span class="detail_panel_title_name">{{model.course.sessioninfo.title}}</span>
-                    {{#bp-layout direction='row'}}
-                    <p class="detail_panel_role_num">{{model.course.sessioninfo.category.title}}</p>
-                    {{/bp-layout}}
-                {{/bp-layout}}
-            {{/bp-layout}} --}}
-            {{!-- {{#bp-layout direction="row" classNames="reserve-detail-btn"}}
+    {{#bp-page-header as |ph|}}
+        {{#ph.body as |body|}}
+            {{#body.left as |left|}}
+                {{#left.item}}
+                    {{model.course.sessioninfo.title}}
+                    {{!-- {{bp-page-header/only-title-desc
+                        desc=model.course.sessioninfo.category.title}} --}}
+                {{/left.item}}
+            {{/body.left}}
+            {{#body.right}}
                 {{#bs-dropdown class="btn-dropdown" as |dd|}}
                     {{#dd.button class="reserve-more-btn"}}{{/dd.button}}
                     {{#dd.menu align="right" as |menu|}}
                         {{#menu.item align="right"}}
                             {{#bp-layout direction='col' classNames="dropdown-content"}}
-                                <a class="warning" onclick={{action (mut deleteExpDlg) true dd.closeDropdown}}>删除课程</a>
+                                {{#if (eq model.course.startDate -1)}}
+                                    {{#if (eq model.course.endDate -1)}}
+                                        <a onclick={{action "onOpenExpClick" item dd.closeDropdown}}>开启报名</a>
+                                    {{else}}
+                                        <a onclick={{action (mut closeExpDlg) true dd.closeDropdown}}>关闭报名</a>
+                                    {{/if}}
+                                {{else}}
+                                    <a onclick={{action (mut closeExpDlg) true dd.closeDropdown}}>关闭报名</a>
+                                {{/if}}
+                                <a onclick={{action 'linkToDetail' true dd.closeDropdown}}>编辑</a>
                             {{/bp-layout}}
                         {{/menu.item}}
                     {{/dd.menu}}
                 {{/bs-dropdown}}
-                {{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteExpDlg cancelHandled='cancelHandled' successHandled="onDeleteCourseClick"}}
-                    <p class="warning-modal-body-content">您确定要删除课程「{{model.course.sessioninfo.title}}」吗？</p>
-                {{/bmcom/bm-warning-modal}}
-            {{/bp-layout}} --}}
-        {{!-- {{/bp-layout}}
-    </div> --}}
-        {{#bmpage/bm-session-info session=model.course.sessioninfo}}
-            {{bmdetail/bm-top-title-panel title="课程详情" rightText="编辑" linkAddr='edit.course' linkParam=model.course.sessioninfo.id linkParam2=model.course.id}}
-        {{/bmpage/bm-session-info}}
+                {{#bp-button type="primary" onClick=(action (mut showAddSessionDlg) true)}}+ 开班{{/bp-button}}
+            {{/body.right}}
+        {{/ph.body}}
+        {{#ph.footer as |footer|}}
+            {{#footer.left as |left|}}
+                {{#left.item}}
+                    {{#if (eq  model.course.startDate -1)}}
+                        {{#if (eq  model.course.endDate -1)}}
+                            <span class="status_before_dot_outer"><span class="status_before_dot_disable"></span></span>
+                            <span class="detail_panel_role_num">未开放</span>
+                        {{else}}
+                            <span class="status_before_dot_outer"><span class="status_before_dot"></span></span>
+                            <span class="detail_panel_role_num">开放中</span>
+                        {{/if}}
+                    {{else}}
+                        <span class="status_before_dot_outer"><span class="status_before_dot"></span></span>
+                        <span class="detail_panel_role_num">开放中</span>
+                    {{/if}}
+                {{/left.item}}
+            {{/footer.left}}
+            {{#footer.right}}
+                {{total_count}} 场次数
+            {{/footer.right}}
+        {{/ph.footer}}
+    {{/bp-page-header}}
+
+    {{#bmpage/bm-session-info session=model.course.sessioninfo isCourse=true}}
+        {{bmdetail/bm-top-title-panel title="课程详情" rightText="编辑" linkAddr='edit.course' linkParam=model.course.sessioninfo.id linkParam2=model.course.id  classNames='detail_top_title_panel_top'}}
+    {{/bmpage/bm-session-info}}
     {{/bp-layout}}
 </section>
+{{#bmcom/bm-warning-modal title="关闭" mainBtnText="关闭" type="warning" switchParam=closeExpDlg cancelHandled=(action 'cancelHandled') successHandled=(action "onShutdownExpClick")}}
+    <p class="warning-modal-body-content">确认关闭报课吗?</p>
+    <p class="warning-modal-body-content">关闭报课时，该课程将无法被报名，如需报名可重新开放报课。</p>
+{{/bmcom/bm-warning-modal}}
