@@ -1,10 +1,6 @@
 <div class="course_content_top">
 	{{#if openFlag}}
 		{{#bp-layout direction="col" classNames="course_content"}}
-			{{!-- {{#bp-layout direction="row" main='between' classNames="course-title-flex"}}
-				<p class="page_title">课程</p>
-				{{#link-to 'edit.course' 'course/push' 'course/push' classNames='p-btn primary'}}+ 创建课程{{/link-to}}
-			{{/bp-layout}} --}}
 			{{#bp-page-header as |ph|}}
 				{{#ph.body as |body|}}
 					{{#body.left as |left|}}
@@ -26,12 +22,13 @@
 				}}
 			{{else}}
 				{{bmcom/bm-card-area
-					onCourseCardClicked=(action 'cardClicked')  
-					onRefreshDataComplete=(action 'refreshDataComplete') 
-					type='course' curPage=pagenum}}
+					onCourseCardClicked=(action 'cardClicked')
+					onRefreshDataComplete=(action 'refreshDataComplete')
+					type='course'
+					curPage=pagenum}}
 				{{!-- {{bmcom/bm-pagination pageCount=page_count curPage=pagenum sendPageNum=(action "handlePageChange")}} --}}
 				{{bp-pagination
-				totalPageCounts=page_count 
+				totalPageCounts=page_count
 				onClickPage=(action (mut pagenum))}}
 			{{/if}}
 		{{/bp-layout}}
