@@ -2,7 +2,7 @@
     {{#bp-layout direction='col' classNames='course_content'}}
         {{#bp-layout direction='row' main='between' classNames='course-title-flex'}}
             <p class="page_title">潜在学生</p>
-            {{#bs-button classNames="add_btn" onClick=(action (mut showAddSessionDlg) true)}}<span>+ 添加潜在学生</span>{{/bs-button}}
+            {{#bs-button classNames="course_add_btn" onClick=(action (mut showAddSessionDlg) true)}}<span>+ 添加潜在学生</span>{{/bs-button}}
         {{/bp-layout}}
         {{#bp-layout direction='col'}}
             {{#bp-layout direction='row' classNames='search'}}
