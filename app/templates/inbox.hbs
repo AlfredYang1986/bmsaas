@@ -7,9 +7,87 @@
         {{/bp-layout}} --}}
         {{bp-page-header/only-title-desc title="收件箱"}}
 
-        {{bmcom/bm-tabs-bar cur_idx=cur_tab_idx  titles=tabs needAction=true onTabClicked=(action "onTabClicked")}}
+        {{#bp-tabs selection=selected class='class-tabs' as |tabs|}}
+				{{#tabs.tablist as |list|}}
+					<li class="nav-item">
+						{{#list.tab
+				selectPaneId='order-info' 
+				onSelect=(action (mut selected))}}预约
+                        {{/list.tab}}
+					</li>
+					<li class="nav-item">
+						{{#list.tab
+				selectPaneId='reg-info' 
+				onSelect=(action (mut selected))}}预注册
+						{{/list.tab}}
+					</li>
+				{{/tabs.tablist}}
+				<div class="tab-content">
+                    
+					{{#tabs.pane elementId="order-info"}}
+                        {{#bp-layout direction='row' main='between' classNames='ib_table_select_area'}}
+                            <span class="ib_table_num">共{{applies_count}}条</span>
+                            <span class="ib_table_num"></span>
+                            {{#if (eq cur_reserve_type 0)}}
+                                <select class="ib_table_select" name="" id='selectReserve' onChange={{action 'reserveTypeChanged'}}>
+                                    <option selected value="0">全部</option>
+                                    <option value="1">今天</option>
+                                </select>
+                            {{else}}
+                                <select class="ib_table_select" name="" id='selectReserve' onChange={{action 'reserveTypeChanged'}}>
+                                    <option  value="0">全部</option>
+                                    <option selected value="1">今天</option>
+                                </select>
+                            {{/if}}
+                        {{/bp-layout}}
+                        <table class='ib_table_head exp_table'>
+                            <tr class='ib_table_title'>
+                                {{#each model.reserveTitle as |item|}}
+                                    <th class='ib_table_item'>{{item}}</th>
+                                {{/each}}
+                            </tr>
+                        </table>
+                        {{bmtable/bm-table-inbox reserveType=true isPreReg=0 reserveType=cur_reserve_type curPage=pageNum setCurrentApply=(action "setCurrentApply") onRefreshDataComplete=(action 'refreshDataComplete')}}
+                        {{#if (eq page_count 0)}}
+                        {{else}}
+                            {{bp-pagination totalPageCounts=page_count onClickPage=(action (mut pageNum))}}
+                        {{/if}}
+					{{/tabs.pane}}
+					{{#tabs.pane elementId="reg-info"}}
+                        {{#bp-layout direction='row' main='between' classNames='ib_table_select_area'}}
+                            <span class="ib_table_num">共{{applies_count_sec}}条</span>
+                            <span class="ib_table_num"></span>
+                            {{#if (eq cur_reserve_type 0)}}
+                                <select class="ib_table_select" name="" id='selectReserve' onChange={{action 'reserveTypeChanged'}}>
+                                    <option selected value="0">全部</option>
+                                    <option value="1">今天</option>
+                                </select>
+                            {{else}}
+                                <select class="ib_table_select" name="" id='selectReserve' onChange={{action 'reserveTypeChanged'}}>
+                                    <option  value="0">全部</option>
+                                    <option selected value="1">今天</option>
+                                </select>
+                            {{/if}}
+                        {{/bp-layout}}
+                        <table class='ib_table_head exp_table'>
+                            <tr class='ib_table_title'>
+                                {{#each model.preRegisterTtitle as |item|}}
+                                    <th class='ib_table_item'>{{item}}</th>
+                                {{/each}}
+                            </tr>
+                        </table>
+                        {{bmtable/bm-table-inbox reserveType=true isPreReg=1 reserveType=cur_reserve_type curPage=pageNumSec setCurrentApply=(action "setCurrentApply") onRefreshDataComplete=(action 'refreshDataCompleteSec')}}
+                        {{#if (eq page_count_sec 0)}}
+                        {{else}}
+                            {{bp-pagination totalPageCounts=page_count_sec onClickPage=(action (mut pageNumSec))}}
+                        {{/if}}
+					{{/tabs.pane}}
+				</div>
+			{{/bp-tabs}}
 
-        {{#bp-layout direction='row' main='between' classNames='ib_table_select_area'}}
+        {{!-- {{bmcom/bm-tabs-bar cur_idx=cur_tab_idx  titles=tabs needAction=true onTabClicked=(action "onTabClicked")}} --}}
+
+        {{!-- {{#bp-layout direction='row' main='between' classNames='ib_table_select_area'}}
             <span class="ib_table_num">共{{applies_count}}条</span>
             <span class="ib_table_num"></span>
             {{#if (eq cur_reserve_type 0)}}
@@ -41,60 +119,60 @@
         {{bmtable/bm-table-inbox reserveType=true isPreReg=cur_tab_idx reserveType=cur_reserve_type curPage=pageNum setCurrentApply=(action "setCurrentApply") onRefreshDataComplete=(action 'refreshDataComplete')}}
         {{#if (eq page_count '0')}}
         {{else}}
-            {{bmcom/bm-pagination pageCount=page_count curPage=pageNum sendPageNum=(action "handleBookPageChange")}}
-        {{/if}}
+            {{bp-pagination totalPageCounts=page_count onClickPage=(action (mut pageNum))}}
+        {{/if}} --}}
 
-        {{#bmcom/bm-modal-container
-                needTitle=false
-                mswitch=showhandledlg
-                needSubmit=couldSubmit
-                contentSubmit=contentSubmit
-                successbtncss='exp-modal-confirm'
-                cancelbtncss='exp-modal-cancel'
-                canceltext='取消'
-                onCancelBtnClicked=(action 'cancelHandled')
-                onSuccessBtnClicked=(action 'successHandled')}}
-            {{#bp-layout direction=row classNames="course-reserve-pop-ups-content"}}
-                {{mail-processing-pop-ups
-                        classNames="course-reserve-modal-body"
-                        toggleAction=(action 'toggleAction')
-                        exp=model.exp
-                        actv=model.actv
-                        saClasses=saClasses
-                        srClasses=srClasses
-                        noSr=noSr
-                        noSy=noSy
-                        noSa=noSa
-                        noSs=noSs
-                        formErrorFlag=formErrorFlag
-                        selectedReservable=sr
-                        selectedYard=sy
-                        selectedDate=dt
-                        selectedActivity=sa
-                        selectedSession=ss
-                        innerCat=isCourse
-                        apply=current_apply}}
-            {{/bp-layout}}
-        {{/bmcom/bm-modal-container}}
-
-        {{#bmcom/bm-modal-container
-                needTitle=false
-                mswitch=showRegister
-                needSubmit=couldSubmit
-                contentSubmit=contentSubmit
-                successbtncss='exp-modal-confirm'
-                cancelbtncss='exp-modal-cancel'
-                canceltext='取消'
-                onCancelBtnClicked=(action 'cancelRegisterHandled')
-                onSuccessBtnClicked=(action 'successRegisterHandled')}}
-            {{#bp-layout direction=row classNames="course-reserve-pop-ups-content"}}
-                {{mail-register-pop-ups
-                    classNames="course-reserve-modal-body"
-                    apply=current_edit_apply
-                    }}
-            {{/bp-layout}}
-        {{/bmcom/bm-modal-container}}
 
     </div>
 </div>
-{{outlet}}
+
+{{#bmcom/bm-modal-container
+        needTitle=false
+        mswitch=showhandledlg
+        needSubmit=couldSubmit
+        contentSubmit=contentSubmit
+        successbtncss='exp-modal-confirm'
+        cancelbtncss='exp-modal-cancel'
+        canceltext='取消'
+        onCancelBtnClicked=(action 'cancelHandled')
+        onSuccessBtnClicked=(action 'successHandled')}}
+    {{#bp-layout direction=row classNames="course-reserve-pop-ups-content"}}
+        {{mail-processing-pop-ups
+                classNames="course-reserve-modal-body"
+                toggleAction=(action 'toggleAction')
+                exp=model.exp
+                actv=model.actv
+                saClasses=saClasses
+                srClasses=srClasses
+                noSr=noSr
+                noSy=noSy
+                noSa=noSa
+                noSs=noSs
+                formErrorFlag=formErrorFlag
+                selectedReservable=sr
+                selectedYard=sy
+                selectedDate=dt
+                selectedActivity=sa
+                selectedSession=ss
+                innerCat=isCourse
+                apply=current_apply}}
+    {{/bp-layout}}
+{{/bmcom/bm-modal-container}}
+
+{{#bmcom/bm-modal-container
+        needTitle=false
+        mswitch=showRegister
+        needSubmit=couldSubmit
+        contentSubmit=contentSubmit
+        successbtncss='exp-modal-confirm'
+        cancelbtncss='exp-modal-cancel'
+        canceltext='取消'
+        onCancelBtnClicked=(action 'cancelRegisterHandled')
+        onSuccessBtnClicked=(action 'successRegisterHandled')}}
+    {{#bp-layout direction=row classNames="course-reserve-pop-ups-content"}}
+        {{mail-register-pop-ups
+            classNames="course-reserve-modal-body"
+            apply=current_edit_apply
+            }}
+    {{/bp-layout}}
+{{/bmcom/bm-modal-container}}
