@@ -12,6 +12,13 @@
             city=city
             area=area}}
     {{/bp-layout}}
-    <span class='add-sub'>详细地址</span>
-    {{bmform/bm-edit-line largeInput=true inputVal=detailAddress classNames='input_area'}}
+    {{!-- <span class='add-sub'>详细地址</span>
+    {{bmform/bm-edit-line largeInput=true inputVal=detailAddress classNames='input_area'}} --}}
+    {{bp-input
+        classNames="input_area"
+        block=true 
+        label='详细地址'
+        maxLength=50
+        value=detailAddress
+        onChange=(action (mut detailAddress))}}  
 {{/bp-layout}}
