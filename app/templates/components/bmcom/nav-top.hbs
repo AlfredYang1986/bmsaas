@@ -1,13 +1,13 @@
 <ul class="nav">
     <li class="nav-item">
-        {{#layout-push direction='row' classNames="nav-item-left"}}
+        {{#bp-layout direction='row' classNames="nav-item-left"}}
             {{#if (bmcom/bm-nil-obj logo)}}
             {{else}}
                 <img src='{{logo}}' alt="">
             {{/if}}
             {{!-- <a class="brand-name" href="home">{{bm_brand_service.brand.title}}</a> --}}
             {{#link-to 'home' classNames='brand-name'}}{{title}}{{/link-to}}
-        {{/layout-push}}
+        {{/bp-layout}}
     </li>
     <li class="nav-item menu_mid">
         <div class="menu_container">
@@ -15,14 +15,14 @@
                 {{#dd.button class="logout-btn"}}{{/dd.button}}
                 {{#dd.menu align="right" as |menu|}}
                     {{#menu.item align="right"}}
-                        {{#layout-push direction='col' classNames="dropdown-content"}}
+                        {{#bp-layout direction='col' classNames="dropdown-content"}}
                             {{#link-to "home"}}品牌信息{{/link-to}}
-                        {{/layout-push}}
+                        {{/bp-layout}}
                     {{/menu.item}}
                     {{#menu.item align="right"}}
-                        {{#layout-push direction='col' classNames="dropdown-content"}}
+                        {{#bp-layout direction='col' classNames="dropdown-content"}}
                             <a onclick={{action 'exitSystem'}}>退出</a>
-                        {{/layout-push}}
+                        {{/bp-layout}}
                     {{/menu.item}}
                 {{/dd.menu}}
             {{/bs-dropdown}}

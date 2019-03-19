@@ -1,5 +1,5 @@
 {{yield}}
-{{#layout-push direction='row' mid=true}}
+{{#bp-layout direction='row' main='center'}}
     <span class="basis_sex_age">
         {{#if (bmeq gender 0)}}
             女{{contentBelow}} <img src={{female}} alt="">
@@ -10,4 +10,4 @@
     <span class="basis_sex_age">
         {{bmdob/bmdob2age dob}}岁
     </span>
-{{/layout-push}}
+{{/bp-layout}}

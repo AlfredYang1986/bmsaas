@@ -1,5 +1,5 @@
-{{#layout-push direction='row' mid=true classNames='jigsaw_pic'}}
-    {{#layout-push direction='row' mid=true classNames='jigsaw_pic_left'}}
+{{#bp-layout direction='row' main='center' classNames='jigsaw_pic'}}
+    {{#bp-layout direction='row' main='center' classNames='jigsaw_pic_left'}}
         {{#if (bmcom/bm-nil-array images)}}
         {{else}}
             {{#each images as |item index|}}
@@ -8,9 +8,9 @@
                 {{/if}}
             {{/each}}
         {{/if}}
-    {{/layout-push}}
-    {{#layout-push direction='col' classNames='jigsaw_pic_right'}}
-        {{#layout-push direction='row' classNames='jigsaw_pic_right_top'}}
+    {{/bp-layout}}
+    {{#bp-layout direction='col' classNames='jigsaw_pic_right'}}
+        {{#bp-layout direction='row' classNames='jigsaw_pic_right_top'}}
             {{#if (bmcom/bm-nil-array images)}}
             {{else}}
                 {{#each images as |item index|}}
@@ -19,8 +19,8 @@
                     {{/if}}
                 {{/each}}
             {{/if}}
-        {{/layout-push}}
-        {{#layout-push direction='row' classNames='jigsaw_pic_right_bottom'}}
+        {{/bp-layout}}
+        {{#bp-layout direction='row' classNames='jigsaw_pic_right_bottom'}}
             {{#if (bmcom/bm-nil-array images)}}
             {{else}}
                 {{#each images as |item index|}}
@@ -30,54 +30,54 @@
                 {{/each}}
             {{/if}}
             <button class="more-pic-link" {{action 'openMorePic'}}>查看更多</button>
-        {{/layout-push}}
-    {{/layout-push}}
-{{/layout-push}}
+        {{/bp-layout}}
+    {{/bp-layout}}
+{{/bp-layout}}
 
 {{#bs-modal class="more-pic-modal" id="myModal" fade=false open=isMorePic onHidden=(action (mut isMorePic) false) as |modal|}}
     {{#modal.header}}
 
     {{/modal.header}}
     {{#modal.body class="more-pic-modal-body"}}
-        {{#layout-push direction='col' classNames='more-pic-outer'}}
-            {{#layout-push direction='row' classNames='more-pic-title'}}
+        {{#bp-layout direction='col' classNames='more-pic-outer'}}
+            {{#bp-layout direction='row' classNames='more-pic-title'}}
                 {{#bs-button classNames="close-more-pic-btn" onClick=(action "closeMorePic")}}{{/bs-button}}
-            {{/layout-push}}
-            {{#layout-push direction='row' mid=true classNames='more-pic-main'}}
+            {{/bp-layout}}
+            {{#bp-layout direction='row' main='center' classNames='more-pic-main'}}
                 {{#each images as |item index|}}
                     {{#if (eq index mainPicIdx)}}
                         <img src={{item.url}} class="img-main">
                     {{/if}}
                 {{/each}}
-            {{/layout-push}}
-            {{#layout-push direction='row' mid=true classNames='more-pic-list'}}
-                {{#layout-push direction='row' classNames='more-pic-list-left'}}
+            {{/bp-layout}}
+            {{#bp-layout direction='row' main='center' classNames='more-pic-list'}}
+                {{#bp-layout direction='row' classNames='more-pic-list-left'}}
                     {{#bs-button classNames="close-more-pic-btn" onClick=(action "prevPic")}}{{/bs-button}}
-                {{/layout-push}}
-                {{#layout-push direction='row' classNames='more-pic-list-mid'}}
+                {{/bp-layout}}
+                {{#bp-layout direction='row' classNames='more-pic-list-mid'}}
                     {{#each images as |item index|}}
                         {{#if (gte index listPicIdxDown)}}
                             {{#if (lte index listPicIdxUp)}}
                                 {{#if (eq index mainPicIdx)}}
-                                    {{#layout-push direction='col' split=true classNames='more-pic-list-each'}}
+                                    {{#bp-layout direction='col' main='between' classNames='more-pic-list-each'}}
                                         <img src={{item.url}} class="list-each-img pic-checked" onclick={{action "onSmPicClick" index}}>
                                         <p class="list-each-img-des">{{item.tag}}</p>
-                                    {{/layout-push}}
+                                    {{/bp-layout}}
                                 {{else}}
-                                    {{#layout-push direction='col' split=true classNames='more-pic-list-each'}}
+                                    {{#bp-layout direction='col' main='between' classNames='more-pic-list-each'}}
                                         <img src={{item.url}} class="list-each-img" onclick={{action "onSmPicClick" index}}>
                                         <p class="list-each-img-des">{{item.tag}}</p>
-                                    {{/layout-push}}
+                                    {{/bp-layout}}
                                 {{/if}}
                             {{/if}}
                         {{/if}}
                     {{/each}}
-                {{/layout-push}}
-                {{#layout-push direction='row' classNames='more-pic-list-right'}}
+                {{/bp-layout}}
+                {{#bp-layout direction='row' classNames='more-pic-list-right'}}
                     {{#bs-button classNames="close-more-pic-btn" onClick=(action "nextPic")}}{{/bs-button}}
-                {{/layout-push}}
-            {{/layout-push}}
-        {{/layout-push}}
+                {{/bp-layout}}
+            {{/bp-layout}}
+        {{/bp-layout}}
     {{/modal.body}}
     {{#modal.footer}}
 

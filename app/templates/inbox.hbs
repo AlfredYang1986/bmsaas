@@ -1,15 +1,15 @@
 <div class="detail_content_top">
     <div class="detail_page detail_page_inbox">
-        {{!-- {{#layout-push direction='row' classNames='ib_title_container'}}
-            {{#layout-push direction='col' mid=true classNames='ib_title'}}
+        {{!-- {{#bp-layout direction='row' classNames='ib_title_container'}}
+            {{#bp-layout direction='col' main='center' classNames='ib_title'}}
                 <p>收件箱</p>
-            {{/layout-push}}
-        {{/layout-push}} --}}
+            {{/bp-layout}}
+        {{/bp-layout}} --}}
         {{bp-page-header/only-title-desc title="收件箱"}}
 
         {{bmcom/bm-tabs-bar cur_idx=cur_tab_idx  titles=tabs needAction=true onTabClicked=(action "onTabClicked")}}
 
-        {{#layout-push direction='row' split=true classNames='ib_table_select_area'}}
+        {{#bp-layout direction='row' main='between' classNames='ib_table_select_area'}}
             <span class="ib_table_num">共{{applies_count}}条</span>
             <span class="ib_table_num"></span>
             {{#if (eq cur_reserve_type 0)}}
@@ -23,7 +23,7 @@
                     <option selected value="1">今天</option>
                 </select>
             {{/if}}
-        {{/layout-push}}
+        {{/bp-layout}}
 
         <table class='ib_table_head exp_table'>
             <tr class='ib_table_title'>
@@ -54,7 +54,7 @@
                 canceltext='取消'
                 onCancelBtnClicked=(action 'cancelHandled')
                 onSuccessBtnClicked=(action 'successHandled')}}
-            {{#layout-push direction=row classNames="course-reserve-pop-ups-content"}}
+            {{#bp-layout direction=row classNames="course-reserve-pop-ups-content"}}
                 {{mail-processing-pop-ups
                         classNames="course-reserve-modal-body"
                         toggleAction=(action 'toggleAction')
@@ -74,7 +74,7 @@
                         selectedSession=ss
                         innerCat=isCourse
                         apply=current_apply}}
-            {{/layout-push}}
+            {{/bp-layout}}
         {{/bmcom/bm-modal-container}}
 
         {{#bmcom/bm-modal-container
@@ -87,12 +87,12 @@
                 canceltext='取消'
                 onCancelBtnClicked=(action 'cancelRegisterHandled')
                 onSuccessBtnClicked=(action 'successRegisterHandled')}}
-            {{#layout-push direction=row classNames="course-reserve-pop-ups-content"}}
+            {{#bp-layout direction=row classNames="course-reserve-pop-ups-content"}}
                 {{mail-register-pop-ups
                     classNames="course-reserve-modal-body"
                     apply=current_edit_apply
                     }}
-            {{/layout-push}}
+            {{/bp-layout}}
         {{/bmcom/bm-modal-container}}
 
     </div>

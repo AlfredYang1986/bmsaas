@@ -4,31 +4,31 @@
         {{#link-to 'detail.experience' model.act.id class="detail_href_ref"}}>场次安排 {{/link-to}}
         {{#link-to 'detail.actarrangement' model.act.id model.period.id class="detail_href_ref"}}>场次详情 {{/link-to}}
         <div class='detail_panel' >
-            {{#layout-push direction='row' split=true }}
-                {{#layout-push direction='col' classNames='session-left-info'}}
+            {{#bp-layout direction='row' main='between' }}
+                {{#bp-layout direction='col' classNames='session-left-info'}}
                     <p class="headline">{{model.act.name}}</p>
-                    {{#layout-push direction='col' classNames="session-info"}}
+                    {{#bp-layout direction='col' classNames="session-info"}}
                         
                         <p>场地：{{address}}</p>
                         <p>时间：{{start_time}} - {{end_time}} </p>
-                    {{/layout-push}}
-                {{/layout-push}}
+                    {{/bp-layout}}
+                {{/bp-layout}}
                 
-                {{#layout-push direction="col" classNames="session-temp"}}
+                {{#bp-layout direction="col" classNames="session-temp"}}
                     <p>
                         {{model.period.studs.length}}/{{model.period.limits}}
                         <label class="sub-text">报名人数</label>
                     </p>
                     {{!-- <p class="open-apply-btn">开放报名</p> --}}
-                    {{!-- {{#layout-push direction="col" classNames="chooses"}}
-                        {{#layout-push direction='col' mid=true classNames="choose-list"}}
+                    {{!-- {{#bp-layout direction="col" classNames="chooses"}}
+                        {{#bp-layout direction='col' main='center' classNames="choose-list"}}
                             <p>更多</p>
                             <a href="">修改场次</a>
                             <a href="" class="delete-class">删除场次</a>
-                        {{/layout-push}}
-                    {{/layout-push}} --}}
-                {{/layout-push}}
-            {{/layout-push}}
+                        {{/bp-layout}}
+                    {{/bp-layout}} --}}
+                {{/bp-layout}}
+            {{/bp-layout}}
         </div>
 
         <table class='ib_table_head'>

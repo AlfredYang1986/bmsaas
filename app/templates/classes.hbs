@@ -1,14 +1,14 @@
 <div class="class_content_top">
 	{{#if openFlag}}
-		{{!-- {{#layout-push direction="col" classNames="class_content"}}
-			{{#layout-push direction="row" split=true}}
+		{{!-- {{#bp-layout direction="col" classNames="class_content"}}
+			{{#bp-layout direction="row" main='between'}}
 				<p class="class-content-title">班级</p>
 				{{#bp-button type="primary" onClick=(action 'onAddClassClick')}}
 					+ 创建班级
 				{{/bp-button}}
-			{{/layout-push}}
-		{{/layout-push}} --}}
-		{{#layout-push direction="col" classNames="class_content"}}
+			{{/bp-layout}}
+		{{/bp-layout}} --}}
+		{{#bp-layout direction="col" classNames="class_content"}}
 			{{#bp-page-header as |ph|}}
 				{{#ph.body as |body|}}
 					{{#body.left as |left|}}
@@ -33,7 +33,7 @@
 			{{else}}
 				{{bmclass/bm-class-scroller cls=cls onCardClicked=(action 'cardClicked')}}
 			{{/if}}
-		{{/layout-push}}
+		{{/bp-layout}}
 	{{else}}
 		{{bp-empty-state/no-button
 			class="class-not-open"
@@ -50,45 +50,45 @@
     onCancelBtnClicked=(action 'cancelHandled')
     onSuccessBtnClicked=(action 'successHandled')}}
 	<div class="session-modal">
-		{{#layout-push direction='col' }}
-			{{#layout-push direction='row'}}
+		{{#bp-layout direction='col' }}
+			{{#bp-layout direction='row'}}
 				<p class="title">添加班级</p>
-			{{/layout-push}}
+			{{/bp-layout}}
 			{{#if noteCourseError}}
 				<div class="form-checked">
-					{{#layout-push direction='row' classNames="error-line"}}
+					{{#bp-layout direction='row' classNames="error-line"}}
 						<img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
 						<span class="error-info">请选择课程</span>
-					{{/layout-push}}
+					{{/bp-layout}}
 				</div>
 			{{/if}}
 			{{#if noteError}}
 				<div class="form-checked">
-					{{#layout-push direction='row' classNames="error-line"}}
+					{{#bp-layout direction='row' classNames="error-line"}}
 						<img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
 						<span class="error-info">请填写完整信息</span>
-					{{/layout-push}}
+					{{/bp-layout}}
 				</div>
 			{{/if}}
 			{{#if noteCourseError}}
-				{{#layout-push direction="col" classNames='input_area' }}
+				{{#bp-layout direction="col" classNames='input_area' }}
 					{{bmform/bm-base-select type="id" chooseReservable=true selTitle="选择课程" options=model.courses curSelect=cur_course_id classNames="input_area area-margin-bottom error-border"}}
-				{{/layout-push}}
+				{{/bp-layout}}
 			{{else}}
-				{{#layout-push direction="col" classNames='input_area' }}
+				{{#bp-layout direction="col" classNames='input_area' }}
 					{{bmform/bm-base-select type="id" chooseReservable=true selTitle="选择课程" options=model.courses curSelect=cur_course_id classNames="input_area area-margin-bottom"}}
-				{{/layout-push}}
+				{{/bp-layout}}
 			{{/if}}
 			{{#if noteError}}
-				{{#layout-push direction="row"  classNames='input_area' }}
+				{{#bp-layout direction="row"  classNames='input_area' }}
 					{{bmform/bm-edit-line title='班级名称' needTitleDes=true titleDes="请为班级设定名称，方便识别" inputVal=classTitle classNames='input_area input-full-width error-border'}}
-				{{/layout-push}}
+				{{/bp-layout}}
 			{{else}}
-				{{#layout-push direction="row"  classNames='input_area' }}
+				{{#bp-layout direction="row"  classNames='input_area' }}
 					{{bmform/bm-edit-line title='班级名称' needTitleDes=true titleDes="请为班级设定名称，方便识别" inputVal=classTitle classNames='input_area input-full-width'}}
-				{{/layout-push}}
+				{{/bp-layout}}
 			{{/if}}
-		{{/layout-push}}
+		{{/bp-layout}}
 	</div>
 {{/bmcom/bm-modal-container}}
 {{#bmcom/bm-warning-modal title="创建成功" mainBtnText="完善班级信息" type="normal" switchParam=addSuccessDlg cancelHandled=(action "cancelSuccessHandled") successHandled=(action "onAddSuccess")}}

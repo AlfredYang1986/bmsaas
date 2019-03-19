@@ -1,9 +1,9 @@
 {{!-- {{yield}} --}}
-{{#layout-push direction='col' classNames='detail_inner_content_line'}}
+{{#bp-layout direction='col' classNames='detail_inner_content_line'}}
     {{#each data as |item|}}
-        {{#layout-push direction="row"}}
+        {{#bp-layout direction="row"}}
             <span class="list-status"></span>
             <p>{{item}}</p>
-        {{/layout-push}}
+        {{/bp-layout}}
     {{/each}}
-{{/layout-push}}
+{{/bp-layout}}

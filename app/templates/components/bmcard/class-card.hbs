@@ -1,12 +1,12 @@
-{{#layout-push direction="col" classNames="class-card"}}
-    {{#layout-push direction="col" classNames="class-card-head-info"}}
+{{#bp-layout direction="col" classNames="class-card"}}
+    {{#bp-layout direction="col" classNames="class-card-head-info"}}
         <p class="headline">{{cls.classTitle}}</p>
         <p class="secondary-title">{{cls.sessioninfo.title}}</p>
-    {{/layout-push}}
-    {{#layout-push direction="col" classNames="class-card-content"}}
-        {{#layout-push direction='row' classNames="split-line"}}
-        {{/layout-push}}
-        {{#layout-push direction="row" classNames="class-teachers"}}
+    {{/bp-layout}}
+    {{#bp-layout direction="col" classNames="class-card-content"}}
+        {{#bp-layout direction='row' classNames="split-line"}}
+        {{/bp-layout}}
+        {{#bp-layout direction="row" classNames="class-teachers"}}
             {{#if (bmeq cls.duties.length 0)}}
                 <p class="note">尚未添加教师</p>
             {{else}}
@@ -29,9 +29,9 @@
             {{#if (gt techPicsOverFlow 0)}}
                 <p class="teacher-num">+{{techPicsOverFlow}}</p>
             {{/if}} --}}
-        {{/layout-push}}
-    {{/layout-push}}
-{{/layout-push}}
+        {{/bp-layout}}
+    {{/bp-layout}}
+{{/bp-layout}}
 
 {{!-- {{bmcom/bm-handle-promise promiseResovled=(action 'promiseResovled') promiseObj=cls.duties}}
 {{#if (not-eq duties.length 0)}}

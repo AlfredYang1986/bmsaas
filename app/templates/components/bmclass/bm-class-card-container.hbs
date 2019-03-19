@@ -1,8 +1,8 @@
 {{!-- {{yield}} --}}
-{{#layout-push direction="row" wrap=true classNames="card-wrap"}}
+{{#bp-layout direction="row" wrap=true classNames="card-wrap"}}
     {{#each cls as |item|}}
         <div class="line_container_warp class_card_container" >
             {{bmcard/class-card onClassCardClicked=(action 'cardClicked') cls=item}}
         </div>
     {{/each}}
-{{/layout-push}}
+{{/bp-layout}}

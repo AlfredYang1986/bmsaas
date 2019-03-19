@@ -1,12 +1,12 @@
 {{yield}}
 
-{{#layout-push direction='row' mid=true classNames='deltail_title'}}
+{{#bp-layout direction='row' main='center' classNames='deltail_title'}}
     {{title}}
-{{/layout-push}}
-{{#layout-push direction='row' mid=true classNames='detail_cat'}}
+{{/bp-layout}}
+{{#bp-layout direction='row' main='center' classNames='detail_cat'}}
     {{subTitle}}
     {{#if (bmcom/bm-nil-length subTitleBehind)}}
     {{else}}
     · {{subTitleBehind}}
     {{/if}}
-{{/layout-push}}
+{{/bp-layout}}

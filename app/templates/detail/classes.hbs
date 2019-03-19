@@ -24,10 +24,10 @@
                         {{#dd.button class="reserve-more-btn"}}{{/dd.button}}
                         {{#dd.menu align="right" as |menu|}}
                             {{#menu.item align="right"}}
-                                {{#layout-push direction='col' classNames="dropdown-content"}}
+                                {{#bp-layout direction='col' classNames="dropdown-content"}}
                                     <a onclick={{action "onEditClassClick" dd.closeDropdown}}>编辑班级</a>
                                     {{!-- <a class="warning" onclick={{action (mut deleteClassDlg) true dd.closeDropdown}}>删除班级</a> --}}
-                                {{/layout-push}}
+                                {{/bp-layout}}
                             {{/menu.item}}
                         {{/dd.menu}}
                     {{/bs-dropdown}}
@@ -35,11 +35,11 @@
                         {{#dd.button class="add-muti-btn"}}添加{{/dd.button}}
                         {{#dd.menu align="right" as |menu|}}
                             {{#menu.item align="right"}}
-                                {{#layout-push direction='col' classNames="dropdown-content"}}
+                                {{#bp-layout direction='col' classNames="dropdown-content"}}
                                     <a onclick={{action "onAddArrClassClick" dd.closeDropdown}}>添加排课</a>
                                     <a onclick={{action (mut addStudDlg) true dd.closeDropdown}}>添加学生</a>
                                     <a onclick={{action (mut addTechDlg) true dd.closeDropdown}}>添加老师</a>
-                                {{/layout-push}}
+                                {{/bp-layout}}
                             {{/menu.item}}
                         {{/dd.menu}}
                     {{/bs-dropdown}}
@@ -63,22 +63,22 @@
             {{/ph.footer}}
         {{/bp-page-header}}
 
-        {{#layout-push direction='col' classNames="detail_panel class-detail-outer"}}
-            {{!-- {{#layout-push direction='row' split=true classNames="class-detail-title-top"}}
-                {{#layout-push direction='col' split=true classNames="class-detail-title-top-left"}}
+        {{#bp-layout direction='col' classNames="detail_panel class-detail-outer"}}
+            {{!-- {{#bp-layout direction='row' main='between' classNames="class-detail-title-top"}}
+                {{#bp-layout direction='col' main='between' classNames="class-detail-title-top-left"}}
                     <p class="class-title">{{model.class.classTitle}}</p>
                     {{#link-to 'detail.course' model.class.reservableitem.id}}
                         <p class="class-subtitle">{{model.class.reservableitem.sessioninfo.title}}</p>
                     {{/link-to}}
-                {{/layout-push}}
-                {{#layout-push direction='row' classNames="class-detail-title-top-right"}}
+                {{/bp-layout}}
+                {{#bp-layout direction='row' classNames="class-detail-title-top-right"}}
                     {{#bs-dropdown class="btn-dropdown" as |dd|}}
                         {{#dd.button class="reserve-more-btn"}}{{/dd.button}}
                         {{#dd.menu align="right" as |menu|}}
                             {{#menu.item align="right"}}
-                                {{#layout-push direction='col' classNames="dropdown-content"}}
+                                {{#bp-layout direction='col' classNames="dropdown-content"}}
                                     <a onclick={{action "onEditClassClick" dd.closeDropdown}}>编辑班级</a>
-                                {{/layout-push}}
+                                {{/bp-layout}}
                             {{/menu.item}}
                         {{/dd.menu}}
                     {{/bs-dropdown}}
@@ -86,31 +86,31 @@
                         {{#dd.button class="add-muti-btn"}}添加{{/dd.button}}
                         {{#dd.menu align="right" as |menu|}}
                             {{#menu.item align="right"}}
-                                {{#layout-push direction='col' classNames="dropdown-content"}}
+                                {{#bp-layout direction='col' classNames="dropdown-content"}}
                                     <a onclick={{action "onAddArrClassClick" dd.closeDropdown}}>添加排课</a>
                                     <a onclick={{action (mut addStudDlg) true dd.closeDropdown}}>添加学生</a>
                                     <a onclick={{action (mut addTechDlg) true dd.closeDropdown}}>添加老师</a>
-                                {{/layout-push}}
+                                {{/bp-layout}}
                             {{/menu.item}}
                         {{/dd.menu}}
                     {{/bs-dropdown}}
-                {{/layout-push}}
-            {{/layout-push}}
-            {{#layout-push direction='row' split=true classNames="class-detail-title-sec"}}
-                {{#layout-push direction='col' split=true classNames="class-detail-title-sec-left"}}
-                    {{#layout-push direction='row' classNames="sec-left-bottom"}}
+                {{/bp-layout}}
+            {{/bp-layout}}
+            {{#bp-layout direction='row' main='between' classNames="class-detail-title-sec"}}
+                {{#bp-layout direction='col' main='between' classNames="class-detail-title-sec-left"}}
+                    {{#bp-layout direction='row' classNames="sec-left-bottom"}}
                         <p class="sec-title">校区</p>
                         <p class="sec-des">{{model.class.yard.title}}</p>
-                    {{/layout-push}}
-                {{/layout-push}}
-                {{#layout-push direction='row' split=true classNames="class-detail-title-sec-right"}}
+                    {{/bp-layout}}
+                {{/bp-layout}}
+                {{#bp-layout direction='row' main='between' classNames="class-detail-title-sec-right"}}
                     <p class="sec-right-num">{{model.class.students.length}}</p>
                     <p class="sec-right-des">学生人数</p>
                     <p class="sec-right-num">{{model.units.length}}</p>
                     <p class="sec-right-des">课次</p>
-                {{/layout-push}}
+                {{/bp-layout}}
 
-            {{/layout-push}} --}}
+            {{/bp-layout}} --}}
 
             {{!-- {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs needAction=true onTabClicked=(action "onTabClicked")}} --}}
             {{#bp-tabs selection=selected class='class-tabs' as |tabs|}}
@@ -194,7 +194,7 @@
                     {{bmtable/bm-table-class-arrcourse listData=model.units titles=model.arrTitles onRemoveArrcourseClick=(action "onRemoveArrcourseClick")}}
                 {{/if}}
             {{/if}} --}}
-        {{/layout-push}}
+        {{/bp-layout}}
     </div>
 </div>
 {{#bmcom/bm-modal-container title="" mswitch=editClassDlg
@@ -204,32 +204,32 @@
     onCancelBtnClicked=(action 'cancelHandled')
     onSuccessBtnClicked=(action 'editClassHandled')}}
     <div class="session-modal">
-        {{#layout-push direction='col' }}
-            {{#layout-push direction='row'}}
+        {{#bp-layout direction='col' }}
+            {{#bp-layout direction='row'}}
                 <p class="title">编辑班级</p>
-            {{/layout-push}}
+            {{/bp-layout}}
             {{#if noteError}}
                 <div class="form-checked">
-                    {{#layout-push direction='row' classNames="error-line"}}
+                    {{#bp-layout direction='row' classNames="error-line"}}
                         <img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
                         <span class="error-info">请填写完整信息</span>
-                    {{/layout-push}}
+                    {{/bp-layout}}
                 </div>
             {{/if}}
-            {{#layout-push direction="col" classNames='input_area' }}
+            {{#bp-layout direction="col" classNames='input_area' }}
                 {{bmform/bm-base-select type="id" chooseReservable=true selTitle="选择课程" options=model.courses curSelect=cur_course_id classNames="input_area area-margin-bottom" disabled=able}}
-            {{/layout-push}}
+            {{/bp-layout}}
             {{#if noteError}}
-                {{#layout-push direction="row"  classNames='input_area' }}
+                {{#bp-layout direction="row"  classNames='input_area' }}
                     {{bmform/bm-edit-line title='班级名称' needTitleDes=true titleDes="请为班级设定名称，方便识别" inputVal=classTitle classNames='input_area input-full-width error-border'}}
-                {{/layout-push}}
+                {{/bp-layout}}
             {{else}}
-                {{#layout-push direction="row"  classNames='input_area' }}
+                {{#bp-layout direction="row"  classNames='input_area' }}
                     {{bmform/bm-edit-line title='班级名称' needTitleDes=true titleDes="请为班级设定名称，方便识别" inputVal=classTitle classNames='input_area input-full-width'}}
-                {{/layout-push}}
+                {{/bp-layout}}
             {{/if}}
 
-        {{/layout-push}}
+        {{/bp-layout}}
     </div>
 {{/bmcom/bm-modal-container}}
 {{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteClassDlg cancelHandled=(action 'cancelHandled') successHandled=(action "onDeleteClassClick")}}
@@ -245,37 +245,37 @@
     onCancelBtnClicked=(action 'cancelHandled')
     onSuccessBtnClicked=(action 'addTechHandled')}}
     <div class="session-modal">
-        {{#layout-push direction='col' }}
-            {{#layout-push direction='row'}}
+        {{#bp-layout direction='col' }}
+            {{#bp-layout direction='row'}}
                 <p class="title">添加教师</p>
-            {{/layout-push}}
+            {{/bp-layout}}
             {{#if formErrorFlag}}
                 <div class="form-checked">
-                    {{#layout-push direction='row' classNames="error-line"}}
+                    {{#bp-layout direction='row' classNames="error-line"}}
                         <img class="error" src="https://bm-web.oss-cn-beijing.aliyuncs.com/icon_status_error%402x.png" alt="">
                         <span class="error-info">请检查表单内容</span>
-                    {{/layout-push}}
+                    {{/bp-layout}}
                 </div>
             {{/if}}
             {{#if techErrorFlag}}
-                {{#layout-push direction="col" classNames='input_area' }}
+                {{#bp-layout direction="col" classNames='input_area' }}
                     {{bmform/bm-base-select type="id" idType=true selTitle="选择教师" options=model.techs curSelect=addTechId classNames="error-border input_area area-margin-bottom"}}
-                {{/layout-push}}
+                {{/bp-layout}}
             {{else}}
-                {{#layout-push direction="col" classNames='input_area' }}
+                {{#bp-layout direction="col" classNames='input_area' }}
                     {{bmform/bm-base-select type="id" idType=true selTitle="选择教师" options=model.techs curSelect=addTechId classNames="input_area area-margin-bottom"}}
-                {{/layout-push}}
+                {{/bp-layout}}
             {{/if}}
             {{#if dutyErrorFlag}}
-                {{#layout-push direction="col" classNames='input_area' }}
+                {{#bp-layout direction="col" classNames='input_area' }}
                     {{bmform/bm-base-select selId="job" selTitle="选择职责" options=jobDuty curSelect=addJobDuty classNames="error-border input_area area-margin-bottom"}}
-                {{/layout-push}}
+                {{/bp-layout}}
             {{else}}
-                {{#layout-push direction="col" classNames='input_area' }}
+                {{#bp-layout direction="col" classNames='input_area' }}
                     {{bmform/bm-base-select selId="job" selTitle="选择职责" options=jobDuty curSelect=addJobDuty classNames="input_area area-margin-bottom"}}
-                {{/layout-push}}
+                {{/bp-layout}}
             {{/if}}
-        {{/layout-push}}
+        {{/bp-layout}}
     </div>
 {{/bmcom/bm-modal-container}}
 {{#bmcom/bm-warning-modal title="移出班级" mainBtnText="移出" type="error" switchParam=removeTechDlg cancelHandled=(action 'cancelHandled') successHandled=(action "onRemoveTeacherClickOk")}}
@@ -289,12 +289,12 @@
     onCancelBtnClicked=(action 'cancelHandled')
     onSuccessBtnClicked=(action 'addStudHandled')}}
     <div class="session-modal">
-        {{#layout-push direction='col' }}
-            {{#layout-push direction='row'}}
+        {{#bp-layout direction='col' }}
+            {{#bp-layout direction='row'}}
                 <p class="title">添加班级学生</p>
-            {{/layout-push}}
+            {{/bp-layout}}
             {{bmform/bm-search-multi-check multiData=model.studs type="" curItems=selectedStuds filterData=model.class.students}}
-        {{/layout-push}}
+        {{/bp-layout}}
     </div>
 {{/bmcom/bm-modal-container}}
 {{#bmcom/bm-warning-modal title="移出班级" mainBtnText="移出" type="error" switchParam=removeStudDlg cancelHandled=(action 'cancelHandled') successHandled=(action "onRemoveStudClickOk")}}

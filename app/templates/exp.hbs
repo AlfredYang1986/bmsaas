@@ -1,23 +1,23 @@
 {{!-- <div class="course_content_top" >
-    {{#layout-push direction="col" classNames="course_content"}}
-        {{#layout-push direction="row" split=true classNames="course-title-flex"}}
+    {{#bp-layout direction="col" classNames="course_content"}}
+        {{#bp-layout direction="row" main='between' classNames="course-title-flex"}}
             <p class="page_title">体验课</p>
             {{#link-to 'edit.exp.rsb' classNames='course_add_btn'}}+ 创建体验课{{/link-to}}
-        {{/layout-push}}
+        {{/bp-layout}}
         {{#if (eq page_count 0)}}
             {{bmcom/bm-empty-state class="reservable-empty-state" picUrl="/images/img_empty@2x.png" title="暂无活动" des="请创建活动"}}
         {{else}}
             {{bmcom/bm-card-area onCourseCardClicked=(action 'cardClicked')  onRefreshDataComplete=(action 'refreshDataComplete') type='exp' curPage=pagenum}}
             {{bmcom/bm-pagination pageCount=page_count curPage=pagenum sendPageNum=(action "handlePageChange")}}
         {{/if}}
-    {{/layout-push}}
+    {{/bp-layout}}
 </div> --}}
 <div class="course_content_top">
-	{{#layout-push direction="col" classNames="course_content"}}
-		{{!-- {{#layout-push direction="row" split=true classNames="course-title-flex"}}
+	{{#bp-layout direction="col" classNames="course_content"}}
+		{{!-- {{#bp-layout direction="row" main='between' classNames="course-title-flex"}}
 			<p class="page_title">体验课</p>
 			{{#link-to 'edit.exp.rsb' classNames='p-btn primary'}}+ 创建体验课{{/link-to}}
-		{{/layout-push}} --}}
+		{{/bp-layout}} --}}
         {{#bp-page-header as |ph|}}
 			{{#ph.body as |body|}}
 				{{#body.left as |left|}}
@@ -44,6 +44,6 @@
 				totalPageCounts=page_count 
 				onClickPage=(action (mut pagenum))}}
 		{{/if}}
-	{{/layout-push}}
+	{{/bp-layout}}
 </div>
 {{outlet}}

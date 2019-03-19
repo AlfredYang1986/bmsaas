@@ -1,4 +1,4 @@
-{{#layout-push direction='col'}}
+{{#bp-layout direction='col'}}
     <form id={{upid}} enctype="multipart/form-data" class='bm-upload-form'>
         <div class='bm-upload-container'>
             {{#if canEdit}}
@@ -23,7 +23,7 @@
             {{/if}}
         </div>
     </form>
-    {{#layout-push direction='row' mid=true classNames='bm-upload-tag'}}
+    {{#bp-layout direction='row' main='center' classNames='bm-upload-tag'}}
         {{#if needTag}}
             {{#if canEditTag}}
                 {{bmform/bm-edit-line 
@@ -34,5 +34,5 @@
                 <span>{{tag}}</span>
             {{/if}}
         {{/if}}
-    {{/layout-push}}
-{{/layout-push}}
+    {{/bp-layout}}
+{{/bp-layout}}

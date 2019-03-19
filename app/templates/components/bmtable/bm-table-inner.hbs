@@ -85,10 +85,10 @@
                     {{#dd.button class="reserve-more-btn"}}{{/dd.button}}
                     {{#dd.menu align="right" as |menu|}}
                         {{#menu.item align="right"}}
-                            {{#layout-push direction='col' classNames="dropdown-content"}}
+                            {{#bp-layout direction='col' classNames="dropdown-content"}}
                                 <a onclick={{action 'onEditSessionClick' item dd.closeDropdown}}>编辑场次</a>
                                 <a class="warning" onclick={{action 'onDeleteSessionClick' item dd.closeDropdown}}>删除场次</a>
-                            {{/layout-push}}
+                            {{/bp-layout}}
                         {{/menu.item}}
                     {{/dd.menu}}
                 {{/bs-dropdown}}
@@ -187,10 +187,10 @@
                     {{#dd.button class="reserve-more-btn"}}{{/dd.button}}
                     {{#dd.menu align="right" as |menu|}}
                         {{#menu.item align="right"}}
-                            {{#layout-push direction='col' classNames="dropdown-content"}}
+                            {{#bp-layout direction='col' classNames="dropdown-content"}}
                                 <a onclick={{action 'onEditRoomClick' item dd.closeDropdown}}>编辑教室</a>
                                 {{!-- <a class="warning" onclick={{action 'onDeleteRoomClick' item dd.closeDropdown}}>删除教室</a> --}}
-                            {{/layout-push}}
+                            {{/bp-layout}}
                         {{/menu.item}}
                     {{/dd.menu}}
                 {{/bs-dropdown}}
@@ -231,9 +231,9 @@
                     {{#dd.button class="reserve-more-btn"}}{{/dd.button}}
                     {{#dd.menu align="right" as |menu|}}
                         {{#menu.item align="right"}}
-                            {{#layout-push direction='col' classNames="dropdown-content"}}
+                            {{#bp-layout direction='col' classNames="dropdown-content"}}
                                 <a class="warning" onclick={{action 'onRemoveStudClick' item dd.closeDropdown}}>移出班级</a>
-                            {{/layout-push}}
+                            {{/bp-layout}}
                         {{/menu.item}}
                     {{/dd.menu}}
                 {{/bs-dropdown}}
@@ -251,11 +251,11 @@
                     {{#dd.button class="reserve-more-btn"}}{{/dd.button}}
                     {{#dd.menu align="right" as |menu|}}
                         {{#menu.item align="right"}}
-                            {{#layout-push direction='col' classNames="dropdown-content"}}
+                            {{#bp-layout direction='col' classNames="dropdown-content"}}
                                 {{!-- <a class="" onclick={{action 'onArrcourseClick' item dd.closeDropdown}}>查看</a>
                                 <a class="" onclick={{action 'onEditArrcourseClick' item dd.closeDropdown}}>编辑</a> --}}
                                 <a class="warning" onclick={{action 'onRemoveArrcourseClick' item dd.closeDropdown}}>删除</a>
-                            {{/layout-push}}
+                            {{/bp-layout}}
                         {{/menu.item}}
                     {{/dd.menu}}
                 {{/bs-dropdown}}

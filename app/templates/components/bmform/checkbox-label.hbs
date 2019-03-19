@@ -1,6 +1,6 @@
-{{#layout-push direction="col" classNames="sort-sub-name"}}
+{{#bp-layout direction="col" classNames="sort-sub-name"}}
     <p class={{titlecss}}>{{title}}</p>
-    {{#layout-push direction="row" classNames="sort-sub-checkbox"}}
+    {{#bp-layout direction="row" classNames="sort-sub-checkbox"}}
         {{#each candidate as |item|}}
             {{#if (bmeq item curSel)}}
                 {{bmform/checkbox-item text=item
@@ -19,5 +19,5 @@
                 }}
             {{/if}}
         {{/each}}
-    {{/layout-push}}
-{{/layout-push}}
+    {{/bp-layout}}
+{{/bp-layout}}

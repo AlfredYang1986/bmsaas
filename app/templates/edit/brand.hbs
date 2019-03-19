@@ -1,11 +1,11 @@
-{{#layout-push direction='row' split=true classNames='edit_nav' }}
+{{#bp-layout direction='row' main='between' classNames='edit_nav' }}
   <span>编辑-品牌主页</span>
   <span>
         <button class="edit_nav_btn btn_cacel" {{action 'cancelBrandClicked'}}>取消</button>
         <button class="edit_nav_btn btn_save" {{action 'saveBrand'}}>提交</button>
   </span>
-{{/layout-push}}
-{{#layout-push direction='row' split=true classNames='edit_container' }}
+{{/bp-layout}}
+{{#bp-layout direction='row' main='between' classNames='edit_container' }}
     <ul class="edit_left_nav">
         <li class="left_bar_item">
             <a class="edit_left_menu_text" href="#basic-info" {{action (mut cur_idx) 0}}>基础信息</a>
@@ -23,75 +23,75 @@
     <div class="input_container">
     {{#if (bmeq cur_idx 0)}}
     <section id="basic-info" class="brand_section" >
-        {{#layout-push direction='col' classNames="edit_panel edit_first_panel"}}
-            {{#layout-push direction='row' classNames=""}}
+        {{#bp-layout direction='col' classNames="edit_panel edit_first_panel"}}
+            {{#bp-layout direction='row' classNames=""}}
                 <span class="edit_title_top" >基础信息</span>
-            {{/layout-push }}
-            {{#layout-push direction='row' classNames="edit_panel_bottom_container"}}
-                {{#layout-push direction='col' classNames="brand-logo-continer"}}
-                    {{#layout-push direction='col'}}
+            {{/bp-layout }}
+            {{#bp-layout direction='row' classNames="edit_panel_bottom_container"}}
+                {{#bp-layout direction='col' classNames="brand-logo-continer"}}
+                    {{#bp-layout direction='col'}}
                         <span class="edit_title" >品牌logo</span>
                         <span class="edit_subtitle" >支持jpg、png，小于1M</span>
-                    {{/layout-push }}
+                    {{/bp-layout }}
                     {{bmcom/bm-img-uploader needTag=false canEdit=true img=model.brand.logo classNames=''}}
-                {{/layout-push }}
-                {{#layout-push direction='col' classNames="brand-base-info-continer"}}
+                {{/bp-layout }}
+                {{#bp-layout direction='col' classNames="brand-base-info-continer"}}
                     {{bmform/bm-base-select selTitle="分类" options=cateArr curSelect=cur_cate_id classNames="input_area area-margin-bottom"}}
-                    {{#layout-push direction="col" classNames='brand-input-group'}}
+                    {{#bp-layout direction="col" classNames='brand-input-group'}}
                         <span class="edit_title">品牌名称</span>
                         {{input type="text" class="edit_input_small" value=model.brand.title}}
-                    {{/layout-push}}
-                    {{#layout-push direction="col" classNames='brand-input-group'}}
+                    {{/bp-layout}}
+                    {{#bp-layout direction="col" classNames='brand-input-group'}}
                         <span class="edit_title">一句话介绍</span>
                         <span class='edit_subtitle'>请您⽤⼀句话向家长和孩子们传递您的品牌理念</span>
                         {{input type="text" class="edit_input_medium" value=model.brand.slogan}}
-                    {{/layout-push}}
-                    {{#layout-push direction="col" classNames='brand-input-group'}}
+                    {{/bp-layout}}
+                    {{#bp-layout direction="col" classNames='brand-input-group'}}
                         <span class="edit_title">品牌亮点</span>
                         <span class='edit_subtitle'>您的品牌有什么独特之处？（限6个字 至多添加三个）如:PBL教学</span>
                         {{bmform/dynamic-input listInputs=model.brand.brandTags needBottomHint=true limit=3 maxlength='6' maxCount='6'}}
                         {{!-- {{input type="text" class="edit_input_medium" value=model.brand.brand_tangs}} --}}
-                    {{/layout-push}}
-                    {{#layout-push direction='row' split=true}}
-                        {{#layout-push direction='row' classNames="brand-setup-time"}}
+                    {{/bp-layout}}
+                    {{#bp-layout direction='row' main='between'}}
+                        {{#bp-layout direction='row' classNames="brand-setup-time"}}
                             <span class="edit_title" >成立时间</span>
-                        {{/layout-push }}
-                    {{/layout-push }}
+                        {{/bp-layout }}
+                    {{/bp-layout }}
                     {{#if (bmcom/bm-nil-obj model.brand)}}
                     {{else}}
                         {{bmform/bm-lay-date inputVal=model.brand.found}}
                     {{/if}}
-                {{/layout-push}}
-            {{/layout-push}}
-            {{#layout-push direction='row' classNames='edit_panel_btn_margin'}}
+                {{/bp-layout}}
+            {{/bp-layout}}
+            {{#bp-layout direction='row' classNames='edit_panel_btn_margin'}}
                 <button class="edit_between_btn" {{action (mut cur_idx) 1}}>下一步</button>
-            {{/layout-push}}
-        {{/layout-push }}
+            {{/bp-layout}}
+        {{/bp-layout }}
     </section>
     {{/if}}
 
     {{#if (bmeq cur_idx 1)}}
     <section id="start-story" class="brand_section" >
-        {{#layout-push direction='col' classNames='edit_panel edit_second_panel'}}
-            {{#layout-push direction="col" classNames='brand-input-group'}}
+        {{#bp-layout direction='col' classNames='edit_panel edit_second_panel'}}
+            {{#bp-layout direction="col" classNames='brand-input-group'}}
                 <span class="edit_title_top">品牌故事</span>
                 <span class="edit_title">品牌的成立宗旨、教学理念、发展历程与未来期许</span>
                 <span class='edit_subtitle'>初心故事将作为品牌介绍将展示在小程序中，让您的品牌口口相传。</span>
                 {{textarea value=model.brand.foundStory classNames='edit_input_big alt-edit-text-area' rows=4}}
-            {{/layout-push}}
-        {{#layout-push direction='row' classNames='edit_panel_btn_margin'}}
+            {{/bp-layout}}
+        {{#bp-layout direction='row' classNames='edit_panel_btn_margin'}}
             <button class="edit_between_btn" {{action (mut cur_idx) 2}}>下一步</button>
-        {{/layout-push}}
-        {{/layout-push}}
+        {{/bp-layout}}
+        {{/bp-layout}}
     </section>
     {{/if}}
 
     {{#if (bmeq cur_idx 2)}}
     <section id="brand-reward" class="brand_section" >
-        {{#layout-push direction='col' classNames='edit_panel edit_reward_panel edit_third_panel'}}
-            {{#layout-push direction='row' }}
+        {{#bp-layout direction='col' classNames='edit_panel edit_reward_panel edit_third_panel'}}
+            {{#bp-layout direction='row' }}
                 <span class="edit_title_top">品牌荣誉</span>
-            {{/layout-push }}
+            {{/bp-layout }}
             <span class="edit_subtitle_nomargin ">请上传证书、奖状等证明，并注明“成立时间-奖项标题”成立时间-奖项标题。</span>
             <span class="edit_subtitle_nomargin ">展示品牌在教学上获得的殊荣，有助于用户更加了解您的品牌。</span>
             <span class="edit_subtitle ">如:2016-年度中国最具价值品牌服务机构奖</span>
@@ -101,35 +101,35 @@
                     {{bmcom/bm-img-uploader needTag=true canEdit=true canEditTag=true canDeleteImg=false canDeleteObj=true imgObj=item img=item.img tag=item.tag onDeleteObj=(action "deleteHonorImg") classNames='brand-honor-pic-upload'}}
                 {{/each}}
                 {{#if (bmcom/bm-nil-obj tempHonorImgs)}}
-                    {{#layout-push direction='row' mid=true classNames="add-img-div"}}
+                    {{#bp-layout direction='row' main='center' classNames="add-img-div"}}
                         <div class="add-new-img-div"  {{action "addHonorPicOnClick"}}>
                             <img class="add-new-img" src='/images/icon_add-photo@3x.png'/>
                         </div>
-                    {{/layout-push}}
+                    {{/bp-layout}}
                 {{else}}
                     {{#if (lt tempHonorImgs.length 5)}}
-                        {{#layout-push direction='row' mid=true classNames="add-img-div"}}
+                        {{#bp-layout direction='row' main='center' classNames="add-img-div"}}
                         <div class="add-new-img-div"  {{action "addHonorPicOnClick"}}>
                             <img class="add-new-img" src='/images/icon_add-photo@3x.png'/>
                         </div>
-                        {{/layout-push}}
+                        {{/bp-layout}}
                     {{/if}}
                 {{/if}}
             </div>
 
-        {{#layout-push direction='row' classNames='edit_panel_btn_margin'}}
+        {{#bp-layout direction='row' classNames='edit_panel_btn_margin'}}
             <button class="edit_between_btn" {{action (mut cur_idx) 3}}>下一步</button>
-        {{/layout-push}}
-        {{/layout-push }}
+        {{/bp-layout}}
+        {{/bp-layout }}
     </section>
     {{/if}}
 
     {{#if (bmeq cur_idx 3)}}
     <section id="cert" class="brand_section" >
-        {{#layout-push direction='col' classNames='edit_panel edit_reward_panel edit_fourth_panel'}}
-            {{#layout-push direction='row' }}
+        {{#bp-layout direction='col' classNames='edit_panel edit_reward_panel edit_fourth_panel'}}
+            {{#bp-layout direction='row' }}
                 <span class="edit_title_top">资质认证</span>
-            {{/layout-push }}
+            {{/bp-layout }}
             <span class="edit_subtitle_nomargin ">请上传您获得的相关资质认证</span>
             <span class="edit_subtitle ">如：国际艺术教育联合会常务理事单位</span>
             <span class="edit_subtitle_nomargin ">每张图片小于100 KB，至多添加5项</span>
@@ -139,23 +139,23 @@
                     {{bmcom/bm-img-uploader needTag=true canEdit=true canEditTag=true canDeleteImg=false canDeleteObj=true imgObj=item img=item.img tag=item.tag onDeleteObj=(action "deleteCertImg") classNames='brand-cert-pic-upload'}}
                 {{/each}}
                 {{#if (bmcom/bm-nil-obj tempCertImgs)}}
-                    {{#layout-push direction='row' mid=true classNames="add-img-div"}}
+                    {{#bp-layout direction='row' main='center' classNames="add-img-div"}}
                         <div class="add-new-img-div"  {{action "addCertPicOnClick"}}>
                             <img class="add-new-img" src='/images/icon_add-photo@3x.png'/>
                         </div>
-                    {{/layout-push}}
+                    {{/bp-layout}}
                 {{else}}
                     {{#if (lt tempCertImgs.length 5)}}
-                        {{#layout-push direction='row' mid=true classNames="add-img-div"}}
+                        {{#bp-layout direction='row' main='center' classNames="add-img-div"}}
                             <div class="add-new-img-div"  {{action "addCertPicOnClick"}}>
                                 <img class="add-new-img" src='/images/icon_add-photo@3x.png'/>
                             </div>
-                        {{/layout-push}}
+                        {{/bp-layout}}
                     {{/if}}
                 {{/if}}
             </div>
-        {{/layout-push }}
+        {{/bp-layout }}
     </section>
     {{/if}}
 </div>
-{{/layout-push}}
+{{/bp-layout}}

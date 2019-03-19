@@ -1,5 +1,5 @@
 {{!-- {{yield}} --}}
-{{#layout-push direction='row' mid=true classNames='bm-pagination'}}
+{{#bp-layout direction='row' main='center' classNames='bm-pagination'}}
     <ul class="pagination">
         {{#if previousFlag}}
             <li class="page-item">
@@ -44,4 +44,4 @@
         {{/if}}
     </ul>
     <p class="pagination-count">共{{pageCount}}页</p>
-{{/layout-push}}
+{{/bp-layout}}

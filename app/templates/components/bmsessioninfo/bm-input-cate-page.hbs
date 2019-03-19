@@ -1,36 +1,36 @@
 <section id="start-story" class="alt_course_section" >
-    {{#layout-push direction='col' classNames='alt_course_panel edit_panel edit_first_panel'}}
+    {{#bp-layout direction='col' classNames='alt_course_panel edit_panel edit_first_panel'}}
         {{#if (bmeq session.status 1)}}
             <span class='alt_course_title alt_course_big_title'>您的体验课属于哪一个分类</span>
             <span class='alt_course_des'>为体验课选择详细类目，这样便于用户快速查找您的体验服务。</span>
-            {{#layout-push direction="row"}}
+            {{#bp-layout direction="row"}}
                 {{#if (bmcom/bm-nil-obj session)}}
                 {{else}}
                 {{!-- {{bmform/bm-cate-choose cat_candi=cat_exp crs_cat=cur_cate_id}} --}}
                 {{bmform/bm-base-select options=cat_exp curSelect=cur_cate}}
                 {{/if}}
-            {{/layout-push}}
+            {{/bp-layout}}
         {{else if (bmeq session.status 2)}}
             <span class='alt_course_title alt_course_big_title'>课程类别</span>
             <span class='alt_course_des'>明确的分类，能让家长们对课程有明确的初步印象，并便于查找。</span>
-            {{#layout-push direction="row"}}
+            {{#bp-layout direction="row"}}
                 {{#if (bmcom/bm-nil-obj session)}}
                 {{else}}
                 {{!-- {{bmform/bm-cate-choose cat_candi=cat_exp crs_cat=cur_cate_id}} --}}
                 {{bmform/bm-base-select options=cat_course curSelect=cur_cate}}
                 {{/if}}
-            {{/layout-push}}
+            {{/bp-layout}}
         {{else}}
             <span class='alt_course_title alt_course_big_title'>您的活动属于哪一个分类</span>
             <span class='alt_course_des'>请选择最能说明您活动的类别</span>
-            {{#layout-push direction="row"}}
+            {{#bp-layout direction="row"}}
                 {{#if (bmcom/bm-nil-obj session)}}
                 {{else}}
                 {{!-- {{bmform/bm-cate-choose cat_candi=cat_actv crs_cat=cur_cate_id crs_sub_cat=cur_cate_sub_id}} --}}
                 {{bmform/bm-base-select options=cat_actv curSelect=cur_cate}}
                 {{/if}}
-            {{/layout-push}}
+            {{/bp-layout}}
         {{/if}}
         {{yield}}
-    {{/layout-push}}
+    {{/bp-layout}}
 </section>

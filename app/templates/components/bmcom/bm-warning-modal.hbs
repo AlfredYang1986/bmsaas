@@ -8,15 +8,15 @@
             backdropClose=false
             onCancelBtnClicked=(action 'cancelHandled')
             onSuccessBtnClicked=(action 'successHandled')}}
-        {{#layout-push direction='col' classNames="warning-modal"}}
-            {{#layout-push direction='row' classNames="warning-modal-title"}}
+        {{#bp-layout direction='col' classNames="warning-modal"}}
+            {{#bp-layout direction='row' classNames="warning-modal-title"}}
                 <img class="warning-modal-title-pic" src="/images/icon_status_error@2x.png"/>
                 <p class="warning-modal-title-content">{{title}}</p>
-            {{/layout-push}}
-            {{#layout-push direction='col' classNames="warning-modal-body"}}
+            {{/bp-layout}}
+            {{#bp-layout direction='col' classNames="warning-modal-body"}}
                 {{yield}}
-            {{/layout-push}}
-        {{/layout-push}}
+            {{/bp-layout}}
+        {{/bp-layout}}
     {{/bmcom/bm-modal-container}}
 {{else if (eq type "normal")}}
     {{#bmcom/bm-modal-container title="" mswitch=switchParam
@@ -28,15 +28,15 @@
             backdropClose=false
             onCancelBtnClicked=(action 'cancelHandled')
             onSuccessBtnClicked=(action 'successHandled')}}
-        {{#layout-push direction='col' classNames="warning-modal"}}
-            {{#layout-push direction='row' classNames="warning-modal-title"}}
+        {{#bp-layout direction='col' classNames="warning-modal"}}
+            {{#bp-layout direction='row' classNames="warning-modal-title"}}
                 <img class="warning-modal-title-pic" src="/images/icon_status_error@2x.png"/>
                 <p class="warning-modal-title-content">{{title}}</p>
-            {{/layout-push}}
-            {{#layout-push direction='col' classNames="warning-modal-body"}}
+            {{/bp-layout}}
+            {{#bp-layout direction='col' classNames="warning-modal-body"}}
                 {{yield}}
-            {{/layout-push}}
-        {{/layout-push}}
+            {{/bp-layout}}
+        {{/bp-layout}}
     {{/bmcom/bm-modal-container}}
 {{else}}
     {{#bmcom/bm-modal-container title="" mswitch=switchParam
@@ -48,14 +48,14 @@
             backdropClose=false
             onCancelBtnClicked=(action 'cancelHandled')
             onSuccessBtnClicked=(action 'successHandled')}}
-        {{#layout-push direction='col' classNames="warning-modal"}}
-            {{#layout-push direction='row' classNames="warning-modal-title"}}
+        {{#bp-layout direction='col' classNames="warning-modal"}}
+            {{#bp-layout direction='row' classNames="warning-modal-title"}}
                 <img class="warning-modal-title-pic" src="/images/icon_status_warning@2x.png"/>
                 <p class="warning-modal-title-content">{{title}}</p>
-            {{/layout-push}}
-            {{#layout-push direction='col' classNames="warning-modal-body"}}
+            {{/bp-layout}}
+            {{#bp-layout direction='col' classNames="warning-modal-body"}}
                 {{yield}}
-            {{/layout-push}}
-        {{/layout-push}}
+            {{/bp-layout}}
+        {{/bp-layout}}
     {{/bmcom/bm-modal-container}}
 {{/if}}
