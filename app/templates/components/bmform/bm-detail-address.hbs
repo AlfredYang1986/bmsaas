@@ -1,24 +1,24 @@
 {{!-- {{yield}} --}}
 {{#bp-layout direction="col" classNames='detail-address'}}
-    {{#bp-layout direction="row"}}
-        <span class="add-title">{{title}}</span>
-    {{/bp-layout}}
-    {{#bp-layout direction='row' classNames='detail-address-select'}}
-        {{bmform/region-choose
+	{{#bp-layout direction="row"}}
+		<span class="add-title">{{title}}</span>
+	{{/bp-layout}}
+	{{#bp-layout direction='row' classNames='detail-address-select'}}
+		{{bmform/region-choose
             provinces=provinces
             citys=citys
             governmentAreas=areas
             province=province
             city=city
             area=area}}
-    {{/bp-layout}}
-    {{!-- <span class='add-sub'>详细地址</span>
+	{{/bp-layout}}
+	{{!-- <span class='add-sub'>详细地址</span>
     {{bmform/bm-edit-line largeInput=true inputVal=detailAddress classNames='input_area'}} --}}
-    {{bp-input
+	{{bp-input
         classNames="input_area"
         block=true 
         label='详细地址'
         maxLength=50
         value=detailAddress
-        onChange=(action (mut detailAddress))}}  
+        onChange=(action (mut detailAddress))}}
 {{/bp-layout}}

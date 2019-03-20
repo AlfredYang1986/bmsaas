@@ -19,17 +19,18 @@
 	<div class="input_container tech_input_container">
 		<a id="job-info" class="anchor-point"></a>
 		<section class="job-infos tech_section">
-			{{#bp-layout direction='col' main='between' classNames="job-infos-container"}}
+			{{#bp-layout direction='col' main='between' 
+				classNames="job-infos-container"}}
 				{{bp-dropdown-simple
 					classNames='mb-4'
 						title="职务"
 						choosedValue=model.tech.jobTitle 
 						options=jobArr
 						optionKey='name'}}
-				{{#bp-layout direction='col' classNames="input_area"}}
-					<p class="edit_title">类型</p>
-					{{bmcom/bm-radio-inline cur_idx=jobTypeIdx judge=jobType titles=jobTypeCheck}}
-				{{/bp-layout}}
+				{{bp-radio-index
+					title='类型' 
+					curValueIndex=jobTypeIdx 
+					radios=jobTypeCheck}}
 			{{/bp-layout}}
 		</section>
 		<a id="tech-info" class="anchor-point"></a>
@@ -37,42 +38,76 @@
 			{{#bp-layout main='between' classNames="tech-infos-container"}}
 				{{#bp-layout direction='col' classNames="tech-infos-icon"}}
 					<p class="edit_title">教师头像</p>
-					{{bmcom/bm-img-uploader needTag=false canEdit=true img=model.tech.icon }}
+					{{bmcom/bm-img-uploader
+						needTag=false canEdit=true img=model.tech.icon }}
 				{{/bp-layout}}
 				<div class="tech-basis-info">
-					{{#bp-layout}}
-						{{bmform/bm-edit-line title='姓名' inputVal=model.tech.name classNames='input_area area-margin-bottom'}}
-						{{bmform/bm-edit-line notNeeded=true title='昵称' inputVal=model.tech.nickname classNames='input_area area-margin-bottom area-margin-left'}}
+					{{#bp-layout classNames="mb-3"}}
+						{{bp-input
+							classNames="mr-3"
+								label='姓名'
+								value=model.tech.name 
+								onChange=(action (mut model.tech.name ))}}
+						{{bp-input
+								label='昵称'
+								value=model.tech.nickname 
+								onChange=(action (mut model.tech.nickname ))}}
 					{{/bp-layout}}
-					{{#bp-layout direction="col" main='between' classNames='input_area area-margin-bottom' }}
-						<p class="edit_title">性别</p>
-						{{bmcom/bm-radio-inline cur_idx=sex_idx judge=sex titles=genderCheck}}
-					{{/bp-layout}}
-					{{#bp-layout direction="col" main='between' classNames='input_area area-margin-bottom' }}
+					{{bp-radio-index
+						classNames='mb-3'
+						title='性别' 
+						curValueIndex=sex_idx 
+						radios=genderCheck}}
+					{{#bp-layout direction="col" main='between' 
+						classNames='input_area mb-3' }}
 						<p class="edit_title">出生日期</p>
-						{{#bp-layout direction="row" split=false classNames='date_choose' }}
-							{{#if (bmcom/bm-nil-obj model.tech)}}
-							{{else}}
+						{{#bp-layout classNames='date_choose' }}
+							{{#unless (bmcom/bm-nil-obj model.tech)}}
 								{{bmform/bm-lay-date inputVal=model.tech.dob}}
-							{{/if}}
+							{{/unless}}
 						{{/bp-layout}}
 					{{/bp-layout}}
-					{{bmform/bm-edit-line numberInput=true maxlength='11' title='手机号' inputVal=model.tech.contact classNames='input_area area-margin-bottom' needTitleDes=true titleDes="手机号将作为老师端账号，请确保正确无误"}}
-					{{bmform/bm-edit-line title='微信' inputVal=model.tech.wechat classNames='input_area area-margin-bottom'}}
-					{{bmform/bm-edit-line fullWidthInput=true title='来自城市' inputVal=model.tech.nativePlace classNames='input_area area-margin-bottom'}}
-					{{#bp-layout split=false classNames="input_area area-margin-bottom"}}
-						{{!-- {{#bp-layout direction="col" split=false classNames='input_area'}}
-                        <p class="edit_title">教龄</p>
-                        <select class="years-select" id="yearsSelect"  name="" onChange={{action 'selectedYears'}}>
-                            <option value="">{{model.tech.teachYears}}</option>
-                            {{#each teachYearsArr as |item|}}
-                                <option value={{item}}>{{item}}</option>
-                            {{/each}}
-                        </select>
-                        {{/bp-layout}} --}}
-						{{bmform/bm-base-select selId="yearsSelect" type="number" selTitle="教龄" options=teachYearsArr curSelect=model.tech.teachYears classNames="input_area years-select" pHolder=0}}
-						{{bmform/bm-edit-line fullWidthInput=true title='擅长科目' inputVal=model.tech.major classNames='input_area area-margin-bottom area-margin-left'}}
+					{{bp-input
+						classNames='mb-3'
+						type='number'
+						block=true
+						label='手机号'
+						helpText='手机号将作为老师端账号，请确保正确无误'
+						maxLength=11
+						value=model.tech.contact 
+						onChange=(action (mut model.tech.contact ))}}
+					{{bp-input
+						classNames='mb-3'
+						block=true
+						label='微信'
+						value=model.tech.wechat
+						onChange=(action (mut model.tech.wechat))}}
+					{{bp-input
+						classNames='mb-3'
+						block=true
+						label='来自城市'
+						value=model.tech.nativePlace
+						onChange=(action (mut model.tech.nativePlace))}}
+					{{#bp-layout classNames="input_area area-margin-bottom"}}
+						{{bmform/bm-base-select
+							selId="yearsSelect" 
+							type="number" 
+							selTitle="教龄" 
+							options=teachYearsArr 
+							curSelect=model.tech.teachYears 
+							classNames="input_area years-select" pHolder=0}}
+						{{!-- {{bp-dropdown-simple
+							title="教龄"
+							choosedValue=model.tech.teachYears 
+							options=teachYearsArr
+							optionKey='name'}} --}}
+						{{bp-input
+							classNames="ml-3"
+							label='擅长科目'
+							value=model.tech.major
+							onChange=(action (mut model.tech.major))}}
 					{{/bp-layout}}
+					<p class="my-3">{{model.tech.teachYears }}</p>
 					{{bmform/bm-detail-address
                         provinces=provinces
                         citys=citys
@@ -83,56 +118,9 @@
                         title='地址'
                         detailAddress=model.tech.address
                         classNames="area-margin-bottom"}}
-					{{!-- {{bmform/bm-edit-line notNeeded=true fullWidthInput=true title='地址' inputVal=model.tech.address classNames='input_area area-margin-bottom'}} --}}
 				</div>
 			{{/bp-layout}}
 		</section>
-		{{!-- <section id="edu-life" class="edu-lifes tech_section">
-            {{#bp-layout main='between' classNames='edu_exper_nav' }}
-            <span>教育经历</span>
-            <button class="edit_nav_btn btn_addedu" {{action 'addEduExper'}}>+教育经历</button>
-            {{/bp-layout}}
-            {{#bp-layout split=false classNames='edu_exper_container' }}
-            <div class="edu_exper_left">2017.04-2018.04</div>
-            <div class="edu_exper_content">
-                <p>学校名称：{{edu_name}}</p>
-                <p>所学专业：{{edu_category}}</p>
-                <p>学习经历：</p>
-            </div>
-            <div class="edu_exper_change">
-                <img src="../images/btn_more_default@2x.png" alt="">
-            </div>
-            {{/bp-layout}}
-            <div class="line"></div>
-            {{#bp-layout split=false classNames='edu_exper_container' }}
-            <div class="edu_exper_left">2018.04-2018.10</div>
-            <div class="edu_exper_content">
-                <p>学校名称：{{edu_name}}</p>
-                <p>所学专业：{{edu_category}}</p>
-                <p>学习经历：</p>
-            </div>
-            <div class="edu_exper_change">
-                <img src="../images/btn_more_default@2x.png" alt="">
-            </div>
-            {{/bp-layout}}
-        </section>
-        <section id="work-life" class="work-lifes tech_section">
-            {{#bp-layout main='between' classNames='edu_exper_nav' }}
-            <span>工作经历</span>
-            <button class="edit_nav_btn btn_addedu" {{action 'addEduExper'}}>+工作经历</button>
-            {{/bp-layout}}
-            {{#bp-layout split=false classNames='edu_exper_container' }}
-            <div class="edu_exper_left">2017.04-2018.04</div>
-            <div class="edu_exper_content">
-                <p>工作单位：{{ca_company}}</p>
-                <p>所在职位：{{ca_name}}</p>
-                <p>工作经历：</p>
-            </div>
-            <div class="edu_exper_change">
-                <img src="../images/btn_more_default@2x.png" alt="">
-            </div>
-            {{/bp-layout}}
-        </section> --}}
 	</div>
 {{/bp-layout}}
 {{outlet}}
