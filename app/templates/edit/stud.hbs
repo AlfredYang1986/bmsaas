@@ -2,10 +2,9 @@
 	<span classNames='edit_nav_title'>编辑学生信息</span>
 	<span>
 		{{#bp-button type="subtle" onClick=(action 'cancelInputBtnClicked')}}取消{{/bp-button}}
-        {{#bp-button type="primary" onClick=(action 'saveInputBtnClicked')}}提交{{/bp-button}}
+		{{#bp-button type="primary" onClick=(action 'saveInputBtnClicked')}}提交{{/bp-button}}
 	</span>
 {{/bp-layout}}
-
 {{#bp-layout direction='row' main='between' classNames='edit_container experience-content' }}
 	<ul class="edit_left_nav">
 		<li class="left_bar_item">
@@ -40,10 +39,10 @@
 			{{#bp-layout direction="col" main='between' classNames='input_area mb-4' }}
 				<p class="edit_title">出生日期</p>
 				{{#bp-layout direction="row" split=false classNames='date_choose' }}
-	                {{#if (bmcom/bm-nil-obj model.stud)}}
-	                {{else}}
+					{{#if (bmcom/bm-nil-obj model.stud)}}
+					{{else}}
 						{{bmform/bm-lay-date inputVal=model.stud.dob}}
-	                {{/if}}
+					{{/if}}
 				{{/bp-layout}}
 			{{/bp-layout}}
 			{{bp-input
@@ -52,7 +51,6 @@
 				block=true 
 				value=model.stud.school
 				onChange=(action (mut model.stud.school))}}
-
 			{{!-- {{#bp-layout direction='row'}}
 				{{#bp-layout direction="col"  classNames='input_area mb-4 name-area' }}
 					{{bmform/bm-edit-line title='真实姓名'  inputVal=model.stud.name classNames='input_area mb-4'}}
@@ -61,17 +59,13 @@
 					{{bmform/bm-edit-line title='昵称'  inputVal=model.stud.nickname classNames='input_area mb-4'}}
 				{{/bp-layout}}
 			{{/bp-layout}} --}}
-
 			{{!-- {{#bp-layout direction="col" main='between' classNames='input_area mb-4' }}
 				<p class="edit_title">性别</p>
 				{{bmcom/bm-radio-inline cur_idx=sex_idx judge=sex titles=genderCheck}}
 			{{/bp-layout}} --}}
-
-
 			{{!-- {{#bp-layout direction="col" main='between' classNames='input_area mb-4' }}
 				{{bmform/bm-edit-line title='就读学校' largeInput=true  inputVal=model.stud.school classNames='input_area mb-4'}}
 			{{/bp-layout}} --}}
-
 			{{bmform/bm-detail-address
                 provinces=provinces
                 citys=citys
@@ -83,7 +77,6 @@
                 detailAddress=model.stud.address
 				classNames="mb-4"}}
 		</section>
-
 		<a id="par-story" class="anchor-point"></a>
 		{{#each model.stud.guardians as |item|}}
 			<section class="parent_info stu_section">
@@ -112,7 +105,6 @@
 					label='微信'
 					value=item.wechat
 					onChange=(action (mut item.wechat))}}
-
 				{{!-- {{#bp-layout direction="col" main='between' classNames='input_area mb-4' }}
 					{{bmform/bm-edit-line title='姓名'  inputVal=item.name classNames='input_area mb-4'}}
 				{{/bp-layout}}
@@ -131,6 +123,7 @@
 		<section class="kids_info stu_section">
 			<p class="title-name">更多信息</p>
 			{{log model.techs}}
+			{{log model.stud.sourceWay}}
 			{{bp-dropdown-simple
 				classNames='mb-4'
 				title="课程顾问"
@@ -143,11 +136,9 @@
 				choosedValue=model.stud.sourceWay
 				options=origin
 				optionKey='name'}}
-
 			{{!-- {{bmform/bm-base-select type="id" idType=true selId='teacherName' selTitle="课程顾问" options=model.techs curSelect=cur_tech_id classNames="input_area mb-4"}}
 			{{bmform/bm-base-select selId='sourceWay' selTitle="渠道来源" options=origin curSelect=model.stud.sourceWay classNames="input_area"}} --}}
 		</section>
 	</div>
 {{/bp-layout}}
-
 {{outlet}}
