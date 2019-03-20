@@ -35,6 +35,10 @@
 				box-shadow: none;
                 width: 100%;
 
+                .area-margin-bottom {
+                    margin-bottom: 24px;
+                }
+
                 select {
                     @extend %select-box-dropdown-default;
 
@@ -188,14 +192,14 @@
                     line-height: 18px;
                 }
 
-                input[type=text] {
-                    margin: 0;
-                    margin-top: 16px;
-                    height: 32px;
-                    border: 1px solid #DFE1E5;
-                    border-radius: 4px;
-                    box-shadow: none;
-                }
+                // input[type=text] {
+                //     margin: 0;
+                //     margin-top: 16px;
+                //     height: 32px;
+                //     border: 1px solid #DFE1E5;
+                //     border-radius: 4px;
+                //     box-shadow: none;
+                // }
 
                 .edit_panel_btn_margin {
                     margin-top: 40px;

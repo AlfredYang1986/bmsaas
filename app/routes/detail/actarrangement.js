@@ -17,7 +17,7 @@ export default Route.extend({
             act: act,
             period: period,
             title: [{
-                title:"孩子姓名"
+                title:"学生姓名"
             },{
                 title:"生日"
             },{
