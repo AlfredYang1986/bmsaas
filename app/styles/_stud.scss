@@ -27,6 +27,26 @@
         margin-top: 16px;
         height: calc(100vh - 208px);
     }
+    .search {
+        margin-top: 24px;
+        margin-bottom: 32px;
+        input.search-stud {
+            width: 160px;
+            height: 32px;
+            margin: 0;
+            border: 1px solid #DFE1E5;
+            border-radius: 4px;
+            box-shadow: none;
+        }
+        i.icon-search {
+            background: url(/images/icon_search@1x.png) no-repeat;
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: 196px;
+            left: 396px;
+        }
+    }
     .stud-title-flex{
         align-items: center;
         height: 72px;

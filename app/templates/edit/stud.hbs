@@ -1,12 +1,115 @@
 {{#bp-layout direction='row' main='between' classNames='edit_nav' }}
-	<span classNames='edit_nav_title'>编辑学生信息</span>
+	<span classNames='edit_nav_title'>报名</span>
 	<span>
-		<button class="edit_nav_btn btn_cacel" {{action 'cancelInputBtnClicked'}}>取消</button>
-		<button class="edit_nav_btn btn_save" {{action 'saveInputBtnClicked'}}>提交</button>
+		<button class="edit_nav_btn btn_cacel" {{action 'cancelInputBtnClicked'}}>关闭流程</button>
 	</span>
 {{/bp-layout}}
-
 {{#bp-layout direction='row' main='between' classNames='edit_container experience-content' }}
+	<div class="edit_area">
+		{{#if (bmeq cur_page_idx 0)}}
+			{{#bp-layout direction='col' main='between' classNames='add-pt-stud add-pt-stud-height'}}
+				{{#bp-layout direction='col'}}
+					{{#bp-layout direction='row' main='center' classNames='add-stud-title'}}
+						{{#bp-layout direction='col' main='center' classNames='add-title active'}}
+							<img src="" alt="">
+							<p>学员信息</p>
+							<p>1</p>
+						{{/bp-layout}}
+						{{#bp-layout direction='col' main='center' classNames='add-title'}}
+							<img src="" alt="">
+							<p>选择课程</p>
+							<p>2</p>
+						{{/bp-layout}}
+						{{#bp-layout direction='col' main='center' classNames='add-title'}}
+							<img src="" alt="">
+							<p>费用结算</p>
+							<p>3</p>
+						{{/bp-layout}}
+					{{/bp-layout}}
+					{{#bp-layout direction='col' main='center' classNames='search-area'}}
+						<div class="search">
+							{{#bp-layout direction='row' classNames='search-btn-input'}}
+								{{input type="text" name="" value=contact class="search-input" placeholder="手机号"}}
+								<button type="button" name="button" class="btn_save" {{action 'searchStud'}}>搜索</button>
+							{{/bp-layout}}
+							{{#if studList}}
+								{{#bp-layout direction="row" classNames="stud-list-area" }}
+									<table class='ib_table_head_pt stud_list_table'>
+										{{bmtable/bm-table-inner type="srarchptStuds" listData=studs onRadioChange=(action 'radioChange')}}
+									</table>
+								{{/bp-layout}}
+							{{else}}
+								{{#bp-layout direction='row'}}
+									<p class="note">若尚未在小程序进行注册者，请先帮助注册</p>
+									<img src="" alt="" class="code-img">
+								{{/bp-layout}}
+							{{/if}}
+						</div>
+					{{/bp-layout}}
+				{{/bp-layout}}
+				{{#bp-layout direction='row' classNames='btn-area'}}
+					{{#if inputVal}}
+						{{#bp-layout direction='row' classNames='add-stud'}}
+							<p>没有要添加的学员？</p>
+							<p class="link"  {{action 'addPtStudModal'}}>添加学生</p>
+							<button type="button" name="button" class="btn_save" {{action (mut cur_page_idx) 1}}>下一步</button>
+						{{/bp-layout}}
+					{{else}}
+						<button type="button" name="button" class="edit_between_btn">下一步</button>
+					{{/if}}
+				{{/bp-layout}}
+			{{/bp-layout}}
+		{{/if}}
+		{{#if (bmeq cur_page_idx 1)}}
+			{{#bp-layout direction='col' main='between' classNames='add-pt-stud add-pt-stud-bottom'}}
+				{{#bp-layout direction='col'}}
+					{{#bp-layout direction='row' main='center' classNames='add-stud-title'}}
+						{{#bp-layout direction='col' main='center' classNames='add-title'}}
+							<img src="" alt="">
+							<p>学员信息</p>
+							<p>1</p>
+						{{/bp-layout}}
+						{{#bp-layout direction='col' main='center' classNames='add-title active'}}
+							<img src="" alt="">
+							<p>选择课程</p>
+							<p>2</p>
+						{{/bp-layout}}
+						{{#bp-layout direction='col' main='center' classNames='add-title'}}
+							<img src="" alt="">
+							<p>费用结算</p>
+							<p>3</p>
+						{{/bp-layout}}
+					{{/bp-layout}}
+				{{/bp-layout}}
+			{{/bp-layout}}
+			{{#bp-layout direction='row' main='between' classNames='stud_detail' }}
+				{{#bp-layout direction='col'  classNames='basis_margin basis_margin_height stud_detail_basis' }}
+					<div class="head-img">
+						<img src={{headImg}} alt="">
+					</div>
+					<p class="basis_name">name</p>
+					{{#bp-layout direction='col' main='center'}}
+						{{#bp-layout direction='col' main='left' classNames='stud_detail_other' }}
+							<div class="other_self">
+								{{#bp-layout direction='col'classNames="info-block-outer"}}
+									<div class="self_info">
+										{{bmdetail/stud-basis-info label="手机号" content='tel'}}
+										{{bmdetail/stud-basis-info label="性别" content="男"}}
+										{{bmdetail/stud-basis-info label="年龄" content='dob'}}
+									</div>
+								{{/bp-layout}}
+							</div>
+						{{/bp-layout}}
+					{{/bp-layout}}
+				{{/bp-layout }}
+				{{#bp-layout direction='col' classNames='stud_detail_other' }}
+					
+				{{/bp-layout }}
+			{{/bp-layout }}
+		{{/if}}
+	</div>
+{{/bp-layout}}
+{{!-- {{#bp-layout direction='row' main='between' classNames='edit_container experience-content' }}
 	<ul class="edit_left_nav">
 		<li class="left_bar_item">
 			<a class="edit_left_menu_stud" href="#kid-info">孩子信息</a>
@@ -86,6 +189,6 @@
 			{{bmform/bm-base-select selId='sourceWay' selTitle="渠道来源" options=origin curSelect=model.stud.sourceWay classNames="input_area"}}
 		</section>
 	</div>
-{{/bp-layout}}
+{{/bp-layout}} --}}
 
 {{outlet}}

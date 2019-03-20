@@ -5,10 +5,12 @@ import { inject as service } from '@ember/service';
 import EmberObject from '@ember/object';
 
 export default Controller.extend({
+    inputVal: true,
+    cur_page_idx: 0,
+    headImg: 'https://bm-web.oss-cn-beijing.aliyuncs.com/avatar_defautl_96px%20%401x.png',
     provinces: A(['北京']),
     citys: A(['北京市']),
     areas: A(["密云区", "延庆区", "朝阳区", "丰台区", "石景山区", "海淀区", "门头沟区", "房山区", "通州区", "顺义区", "昌平区", "大兴区", "怀柔区", "平谷区", "东城区", "西城区"]),
-
     cur_tech_id: "",
     sex_idx: 0,
     rela_idx: 0,
@@ -23,7 +25,9 @@ export default Controller.extend({
         progressBar: false,
         timeOut: '2000',
     }),
-
+    didInsertElement() {
+        this.set(this.cur_page_idx, 0);
+    },
     init() {
         this._super(...arguments);
         this.set('sex_idx', 0);

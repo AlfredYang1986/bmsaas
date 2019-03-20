@@ -46,7 +46,7 @@
 	padding-top: 64px;
 	font-family: $font-brand;
 	min-width: 1200px;
-	.edit_area{ 
+	.edit_area{
         position: fixed;
         padding: 24px;
         z-index: 3;
@@ -55,13 +55,50 @@
         width: 100%;
         height: calc(100vh - 64px);
         margin-bottom: 0;
+		.add-pt-stud-height {
+			height: calc(100vh - 138px);
+		}
+		.add-pt-stud-bottom {
+			margin-bottom: 8px;
+		}
         .add-pt-stud {
             padding: 24px 40px;
-            height: calc(100vh - 138px);
-            min-height: 600px;
-            margin: 0;
+            // min-height: 600px;
+            // margin: 0;
             background: #ffffff;
         }
+		.add-stud-title {
+			margin-top: 8px;
+			p {
+				font-family: SFUIText-Regular;
+				font-size: 14px;
+				color: #5E6C84;
+				text-align: center;
+				font-weight: bold;
+			}
+			img {
+				margin-bottom: 8px;
+				width: 8px;
+				height: 8px;
+				border-radius: 50%;
+				background: #A5ADBA;
+			}
+			.add-title {
+				width: 102px;
+				margin: 0 35px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+			.active {
+				p {
+					color: #3172E0;
+				}
+				img {
+					background: #3172E0;
+				}
+			}
+		}
         .edit_between_btn {
             padding: 6px 12px;
             height: 32px;
@@ -79,11 +116,14 @@
             outline: none;
         }
         .search-area {
+			margin-top: 60px;
             display: flex;
             flex-direction: column;
             align-items: center;
+			.search-top {
+				margin-top: 84px;
+			}
             .search {
-                margin-top: 144px;
                 .search-btn-input {
                     display: flex;
                     flex-direction: row;
