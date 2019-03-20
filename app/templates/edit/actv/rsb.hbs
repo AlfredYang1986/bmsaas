@@ -1,5 +1,6 @@
 {{#bmpage/bm-session-edit session=model.si onSaveSessionBtnClicked=(action 'saveCourseBtnClicked') describe=model.describe guide=model.guide  isCreate=isCreate cur_cate=model.si.category.title cur_time=model.si.length}}
-    {{#link-to 'actv' class="edit_nav_btn btn_cacel"}}
+    {{!-- {{#link-to 'actv' class="edit_nav_btn btn_cacel"}}
         取消
-    {{/link-to}}
+    {{/link-to}} --}}
+    {{#bp-button type="subtle" onClick=(action 'cancelClicked')}}取消{{/bp-button}}
 {{/bmpage/bm-session-edit}}

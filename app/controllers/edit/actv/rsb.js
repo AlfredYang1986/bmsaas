@@ -89,7 +89,7 @@ export default Controller.extend({
                 that.toast.error('', '请添加封面图片', that.toastOptions);
             }
         },
-        reserveCourse() {
+        cancelClicked() {
             this.transitionToRoute('actv');
         },
     },

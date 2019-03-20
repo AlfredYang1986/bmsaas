@@ -92,7 +92,7 @@ export default Controller.extend({
 
 
         },
-        reserveCourse() {
+        cancelClicked() {
             this.transitionToRoute('exp');
         },
     },

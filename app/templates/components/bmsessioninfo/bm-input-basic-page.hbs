@@ -3,30 +3,54 @@
         <span class='alt_course_title alt_course_big_title'>基本信息</span>
 
         {{#if (bmeq session.status 1)}}
-            <span class='alt_course_title'>体验课名称</span>
+            {{!-- <span class='alt_course_title'>体验课名称</span> --}}
+            {{bp-input
+				classNames="mb-4"
+				label='体验课名称'
+                helpText="生动、有趣的名称更能激发孩子们的好奇心。如：奇妙的色彩艺术之旅"
+				value=model.stud.name
+				onChange=(action (mut model.stud.name))}}
         {{else}}
-            <span class='alt_course_title'>活动名称</span>
+            {{bp-input
+				classNames="mb-4"
+				label='活动名称'
+                helpText="生动、有趣的名称更能激发孩子们的好奇心。如：奇妙的色彩艺术之旅"
+				value=model.stud.name
+				onChange=(action (mut model.stud.name))}}
+            {{!-- <span class='alt_course_title'>活动名称</span> --}}
         {{/if}}
-        <span class='alt_course_des'>生动、有趣的名称更能激发孩子们的好奇心。</span>
+        {{!-- <span class='alt_course_des'>生动、有趣的名称更能激发孩子们的好奇心。</span>
         <span class='alt_course_des'>如：奇妙的色彩艺术之旅</span>
-        {{input type="text" class="edit_input" value=session.title}}
+        {{input type="text" class="edit_input" value=session.title}} --}}
 
         {{#bp-layout direction="col" classNames="alt-course-input-group"}}
             {{#if (bmeq session.status 1)}}
-                <span class='alt_course_title'>体验课时长（分钟）</span>
+                {{!-- <span class='alt_course_title'>体验课时长（分钟）</span> --}}
+                {{bp-dropdown-simple
+                    disabled=lengthDisableFlag
+                    classNames='mb-4'
+                    title="体验课时长（分钟）"
+                    choosedValue=cur_time
+                    options=sel_time
+                    optionKey='name'}}
             {{else}}
-                <span class='alt_course_title'>活动时长（分钟）</span>
+                {{bp-dropdown-simple
+                    disabled=lengthDisableFlag
+                    classNames='mb-4'
+                    title="活动时长（分钟）"
+                    choosedValue=cur_time
+                    options=sel_time
+                    optionKey='name'}}
+                {{!-- <span class='alt_course_title'>活动时长（分钟）</span> --}}
             {{/if}}
-            {{#bp-layout direction="col" classNames="alt-course-age-group"}}
+            <div class="course-edit-check course-edit-check-low" {{action 'lengthNoSelected'}}>
+                <span class="radio-inline">
+                    <input type="checkbox" name="length" value="l"/>
+                    <label for="female">不限时长</label>
+                </span>
+            </div>
+            {{!-- {{#bp-layout direction="col" classNames="alt-course-age-group"}}
                 {{#if lengthIf}}
-                    {{!-- <div class="course-edit-check course-edit-check-low">
-                        <div class="input-group">
-                            {{input value=session.length class="edit_input_age" disabled='' type="number"}}
-                            <div class="input-group-append">
-                                <span class="input-group-text">分钟</span>
-                            </div>
-                        </div>
-                    </div> --}}
                     {{bmform/bm-base-select type='number' options=sel_time curSelect=cur_time}}
                     <div class="course-edit-check course-edit-check-low" {{action 'lengthNoSelected'}}>
                         <span class="radio-inline">
@@ -45,7 +69,7 @@
                         </span>
                     </div>
                 {{/if}}
-            {{/bp-layout}}
+            {{/bp-layout}} --}}
         {{/bp-layout}}
 
         {{#bp-layout direction='col' classNames='select-age'}}

@@ -155,8 +155,6 @@ export default Controller.extend({
                 }, error => {
                     this.bm_error_service.handleError(error)
                 })
-                // .then(() => {
-                // })
                 this.transitionToRoute('course');
             } else {
                 let resid = this.model.reservable.id;
