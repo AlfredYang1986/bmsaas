@@ -33,7 +33,6 @@ export default Controller.extend({
 
         },
         onOpenExpClick() {
-            debugger
             this.model.course.set("startDate", 0)
             this.model.course.set("endDate", 0)
 

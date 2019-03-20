@@ -17,6 +17,9 @@ export default Route.extend({
     },
     setupController(controller, model) {
         this._super(controller, model);
+        controller.set('showAddStud', false);
+        controller.set('inputVal', false);
+        controller.set('studList', false);
         if (model.stud.gender == 0) {
             controller.set("sex_idx", 1);
         } else {

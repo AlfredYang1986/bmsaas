@@ -11,7 +11,8 @@ export default Route.extend({
     },
     activate() {
         if(this.get("controller") != undefined) {
-            this.get("controller").toggleProperty("refreshFlag")
+            this.get("controller").set('type', 'searchAll');
+            this.get("controller").toggleProperty("refreshFlag");
         }
     }
 });
