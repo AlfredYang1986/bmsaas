@@ -97,9 +97,6 @@ export default Controller.extend({
                 var year = date.getFullYear();
                 var month = date.getMonth() + 1;
                 var strDate = date.getDate();
-                var week = date.getDay();
-                var hour = date.getHours();
-                var minute = date.getMinutes();
                 function addZero(m) {
                    return m < 10 ? '0' + m : m;
                 }

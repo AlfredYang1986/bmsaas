@@ -14,9 +14,6 @@ export default Controller.extend({
         timeOut: '2000',
     }),
     actions: {
-        cancelHandled() {
-            this.set('deleteExpDlg', false);
-        },
         onDeleteCourseClick() {
             let that = this;
             let onSuccess = function() {
@@ -47,21 +44,7 @@ export default Controller.extend({
             }
             this.model.course.save().then(onSuccess, onFail);
         },
-        onOpenExpClick() {
-            this.model.course.set("startDate", 0)
-            this.model.course.set("endDate", 0)
 
-            let that = this;
-            let onSuccess = function() {
-                that.set('closeExpDlg', false);
-                that.toast.success('', '开启成功', that.toastOptions);
-            }
-            let onFail = function(error) {
-                that.bm_error_service.handleError(error, '开启失败')
-                // that.toast.error('', '开启失败', that.toastOptions);
-            }
-            this.model.course.save().then(onSuccess, onFail);
-        },
         onShutdownExpClick() {
             this.model.course.set("startDate", -1)
             this.model.course.set("endDate", -1)

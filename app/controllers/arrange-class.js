@@ -128,7 +128,7 @@ export default Controller.extend({
                     this.tempUnit.set("teacher", this.store.peekRecord("teacher", this.cur_tech_id))
                     this.tempUnit.save().then(() => {
                         // tempclass.units.pushObject(res)
-                        tempclass.save().then((res) => {
+                        tempclass.save().then(() => {
                             this.bm_clsarr_service.set('refresh_all_token', this.bm_clsarr_service.guid());
                             this.set("tempUnit", null)
                             this.set('addUnitDlg', false);
@@ -152,7 +152,7 @@ export default Controller.extend({
             // window.console.log(this.cur_class_id);
             let that = this;
             let tempClass = this.store.peekRecord("class", this.cur_class_id)
-            tempClass.duties.then(res => {
+            tempClass.duties.then(() => {
                 let tmpArr = A([]);
                 for (let idx = 0; idx < tempClass.duties.length; idx++) {
                     tmpArr.pushObject(tempClass.duties.objectAt(idx).teacher)
@@ -183,7 +183,7 @@ export default Controller.extend({
             this.set("cur_tech_id", this.tempUnit.teacher.get("id"))
             let that = this;
             let tempClass = this.store.peekRecord("class", this.cur_class_id);
-            tempClass.duties.then(res => {
+            tempClass.duties.then(() => {
                 let tmpArr = A([]);
                 for (let idx = 0; idx < tempClass.duties.length; idx++) {
                     tmpArr.pushObject(tempClass.duties.objectAt(idx).teacher)

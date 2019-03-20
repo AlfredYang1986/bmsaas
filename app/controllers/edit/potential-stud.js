@@ -4,7 +4,6 @@ import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
 import EmberObject from '@ember/object';
 
-
 export default Controller.extend({
     bm_pt_stud_service: service(),
     toast: service(),
@@ -20,8 +19,6 @@ export default Controller.extend({
     studList: false,
     sex_idx: 0,
     rela_idx: 0,
-    sex_idx: 0,
-    rela_idx: 0,
     genderCheck: A(['男', '女']),
     relaChecked: A(['父亲', '母亲', '其他']),
     grade:A([{name: '学龄前'}, {name: '小班'}, {name: '中班'}, {name: '大班'}, {name: '小学一年级'}, {name: '小学二年级'}, {name: '小学三年级'}, {name: '小学四年级'}, {name: '小学五年级'}, {name: '小学六年级'}]),
@@ -33,9 +30,9 @@ export default Controller.extend({
         result = this.store.query('student', {'contact': this.contact});
         result.then((res) => {
             if(res.length > 0) {
-                this.set('inputVal', true);
+                that.set('inputVal', true);
             } else {
-                this.set('showAddSelect', true)
+                that.set('showAddSelect', true)
             }
         }, error => {
             this.bm_error_service.handleError(error)
