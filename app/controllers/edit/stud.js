@@ -53,7 +53,7 @@ export default Controller.extend({
         }
     }),
 
-    origin:A([{name: '学员转介绍'}, {name: '电话推广'}, {name: '小程序'}, {name: '线下活动推广'}, {name: '其他'}]),
+    origin:A([{name: '学生转介绍'}, {name: '电话推广'}, {name: '小程序'}, {name: '线下活动推广'}, {name: '其他'}]),
 
     actions: {
         cancelInputBtnClicked() {
@@ -110,9 +110,9 @@ export default Controller.extend({
             let dealDob = dealDate(dob);
             let dealNow = dealDate(now);
             if( name == '' || name == undefined || name.replace(/(^\s*)|(\s*$)/g, "").length == 0) {
-                that.toast.error('', '孩子姓名不能为空', that.toastOptions);
+                that.toast.error('', '学生姓名不能为空', that.toastOptions);
             } else if(nickname == '' || nickname == undefined || nickname.replace(/(^\s*)|(\s*$)/g, "").length == 0) {
-                that.toast.error('', '孩子昵称不能为空', that.toastOptions);
+                that.toast.error('', '学生昵称不能为空', that.toastOptions);
             } else if(dealDob == dealNow) {
                 that.toast.error('', '请选择正确的出生日期', that.toastOptions);
             } else {

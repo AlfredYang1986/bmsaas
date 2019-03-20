@@ -22,7 +22,7 @@
 			{{#bp-layout direction='col' main='between' 
 				classNames="job-infos-container"}}
 				{{bp-dropdown-simple
-					classNames='mb-4'
+					    classNames='mb-4'
 						title="职务"
 						choosedValue=model.tech.jobTitle 
 						options=jobArr
@@ -89,25 +89,25 @@
 						value=model.tech.nativePlace
 						onChange=(action (mut model.tech.nativePlace))}}
 					{{#bp-layout classNames="input_area area-margin-bottom"}}
-						{{bmform/bm-base-select
+						{{!-- {{bmform/bm-base-select
 							selId="yearsSelect" 
 							type="number" 
 							selTitle="教龄" 
 							options=teachYearsArr 
 							curSelect=model.tech.teachYears 
-							classNames="input_area years-select" pHolder=0}}
-						{{!-- {{bp-dropdown-simple
+							classNames="input_area years-select" pHolder=0}} --}}
+						{{bp-dropdown-simple
 							title="教龄"
 							choosedValue=model.tech.teachYears 
 							options=teachYearsArr
-							optionKey='name'}} --}}
+							optionKey='name'}}
 						{{bp-input
 							classNames="ml-3"
+							size='medium'
 							label='擅长科目'
 							value=model.tech.major
 							onChange=(action (mut model.tech.major))}}
 					{{/bp-layout}}
-					<p class="my-3">{{model.tech.teachYears }}</p>
 					{{bmform/bm-detail-address
                         provinces=provinces
                         citys=citys

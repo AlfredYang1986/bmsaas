@@ -1,10 +1,8 @@
 {{#bp-layout main="between" classNames='edit_nav' }}
 	<span>编辑场地</span>
 	<span>
-		{{#bp-button type="subtle" 
-				onClick=(action 'cancelYardBtnClicked')}}取消{{/bp-button}}
-		{{#bp-button type="primary" 
-			onClick=(action 'saveYardBtnClicked')}}保存{{/bp-button}}
+		{{#bp-button type="subtle" onClick=(action 'cancelYardBtnClicked')}}取消{{/bp-button}}
+		{{#bp-button type="primary" onClick=(action 'saveYardBtnClicked')}}保存{{/bp-button}}
 	</span>
 {{/bp-layout}}
 {{#bp-layout main="between" classNames='edit_container' }}
