@@ -2,92 +2,109 @@
     <div class="dd_content_top">
         {{#bp-layout direction="col" classNames="brand_detail_container_outer"}}
 
-            {{#bp-layout direction='col' classNames="detail_title brand_detail_title"}}
+            {{!-- {{#bp-layout direction='col' classNames="detail_title brand_detail_title"}}
                 <span class="title_text">{{model.brand.title}}</span>
                 <span class="sub_title_text">{{model.brand.category.title}}</span>
-            {{/bp-layout}}
+            {{/bp-layout}} --}}
 
-            {{#bp-layout direction="col" classNames="detail_panel_tab_container"}}
+            {{bp-page-header/only-title-desc
+				title=model.brand.title
+				desc=model.brand.category.title
+			}}
+
+            {{#bp-tabs selection=selected class='class-tabs' as |tabs|}}
+				{{#tabs.tablist as |list|}}
+					<li class="nav-item">
+						{{#list.tab
+				selectPaneId='brand-info' 
+				onSelect=(action (mut selected))}}校园信息{{/list.tab}}
+					</li>
+				{{/tabs.tablist}}
+				<div class="tab-content">
+					{{#tabs.pane elementId="brand-info"}}
+                        <div class="dd_container">
+                            {{#bp-layout direction="row" main='between' classNames="brand_panel_head"}}
+                                <p class="brand_panel_head_title">品牌主页</p>
+                                {{#link-to 'edit.brand'  classNames="edit_brand"}}
+                                    编辑
+                                {{/link-to}}
+                            {{/bp-layout}}
+                        </div>
+
+                        {{#bp-layout direction="row" classNames="brand_detail_container"}}
+                            <div class="dd_content dd_content_margin_top brand_detail_container_left">
+                                <div class="dd_container brand_detail_container_left_inner">
+                                    {{#bp-layout direction="col" classNames="brand_info_card"}}
+                                        {{#bp-layout direction="col" classNames="brand_info_card_head"}}
+                                            {{#if (bmcom/bm-nil-obj model.brand)}}
+                                            {{else}}
+                                                <img class="brand_logo" src={{logoPath}} />
+                                            {{/if}}
+                                            <p class="brand_title">{{model.brand.title}}</p>
+                                        {{/bp-layout}}
+                                        {{#bp-layout direction="col" classNames="brand_info_card_content"}}
+                                            {{#bp-layout direction="row" classNames="brand_info_card_list"}}
+                                                <p>成立时间</p>
+                                                <span class="detail_content ">{{bmdob/bmdobformat model.brand.found}}</span>
+                                            {{/bp-layout}}
+                                            {{#bp-layout direction="row" classNames=""}}
+                                                <p>一句话介绍</p>
+                                                <span class="brand_subtitle">{{model.brand.slogan}}</span>
+                                            {{/bp-layout}}
+                                        {{/bp-layout}}
+                                    {{/bp-layout}}
+                                </div>
+                            </div>
+                            <div class="dd_container dd_content_margin_top brand_detail brand_detail_container_right">
+                                {{#bp-layout direction="col"  classNames="brand_detail_info"}}
+                                    <p class="brand_detail_list_title">品牌亮点</p>
+                                    {{#bp-layout direction="row"}}
+                                        {{#each model.brand.brandTags as |item|}}
+                                            {{#bp-layout direction='col' main='center' classNames="brand_tags brand_tag_margin"}}
+                                                <span>{{item}}</span>
+                                            {{/bp-layout}}
+                                        {{/each}}
+                                    {{/bp-layout}}
+                                {{/bp-layout}}
+                                {{#bp-layout direction="col" classNames="brand_detail_info"}}
+                                    <p class="brand_detail_list_title">品牌故事</p>
+                                    <span class="brand_detail_list_content">{{model.brand.foundStory}}</span>
+                                {{/bp-layout}}
+                                {{!-- {{#bp-layout direction="col" classNames="brand_detail_info"}}
+                                    <p class="brand_detail_list_title">师资团队</p>
+                                    <span class="brand_detail_list_content">{{model.brand.edu_idea}}</span>
+                                {{/bp-layout}} --}}
+                                {{#bp-layout direction="col" classNames="brand_detail_info"}}
+                                    <p class="brand_detail_list_title">品牌荣誉</p>
+                                    {{#bp-layout direction="row" classNames="detail_reward_content"}}
+                                        {{#each model.brand.images as |item|}}
+                                            {{#if (eq item.flag 1)}}
+                                                {{!-- {{bmcom/bm-img-uploader needTag=true canEdit=false img=item.img tag=item.tag classNames='detail_reward_content_honor'}} --}}
+                                                {{bmcom/bm-img-uploader needTag=true canEdit=false img=item.img tag=item.tag classNames='detail_reward_content_cert'}}
+                                            {{/if}}
+                                        {{/each}}
+                                    {{/bp-layout}}
+                                {{/bp-layout}}
+                                {{#bp-layout direction="col" classNames="brand_detail_info"}}
+                                    <p class="brand_detail_list_title">资质认证</p>
+                                    {{#bp-layout direction="row" classNames="detail_reward_content"}}
+                                        {{#each model.brand.images as |item|}}
+                                            {{#if (eq item.flag 2)}}
+                                                {{bmcom/bm-img-uploader needTag=true canEdit=false img=item.img tag=item.tag classNames='detail_reward_content_cert'}}
+                                            {{/if}}
+                                        {{/each}}
+                                    {{/bp-layout}}
+                                {{/bp-layout}}
+                            </div>
+                        {{/bp-layout}}
+					{{/tabs.pane}}
+				</div>
+			{{/bp-tabs}}
+
+            {{!-- {{#bp-layout direction="col" classNames="detail_panel_tab_container"}}
                 {{bmcom/bm-tabs-bar cur_idx=cur_idx titles=model.tabs}}
-            {{/bp-layout}}
+            {{/bp-layout}} --}}
 
-            <div class="dd_container">
-                {{#bp-layout direction="row" main='between' classNames="brand_panel_head"}}
-                    <p class="brand_panel_head_title">品牌主页</p>
-                    {{#link-to 'edit.brand'  classNames="edit_brand"}}
-                        编辑
-                    {{/link-to}}
-                    {{!-- {{bmform/bm-lay-date}} --}}
-                    {{!-- {{bmcom/bm-img-uploader needTag=true canEdit=true }} --}}
-                {{/bp-layout}}
-            </div>
-
-            {{#bp-layout direction="row" classNames="brand_detail_container"}}
-                <div class="dd_content dd_content_margin_top brand_detail_container_left">
-                    <div class="dd_container brand_detail_container_left_inner">
-                        {{#bp-layout direction="col" classNames="brand_info_card"}}
-                            {{#bp-layout direction="col" classNames="brand_info_card_head"}}
-                                {{#if (bmcom/bm-nil-obj model.brand)}}
-                                {{else}}
-                                    <img class="brand_logo" src={{logoPath}} />
-                                {{/if}}
-                                <p class="brand_title">{{model.brand.title}}</p>
-                            {{/bp-layout}}
-                            {{#bp-layout direction="col" classNames="brand_info_card_content"}}
-                                {{#bp-layout direction="row" classNames="brand_info_card_list"}}
-                                    <p>成立时间</p>
-                                    <span class="detail_content ">{{bmdob/bmdobformat model.brand.found}}</span>
-                                {{/bp-layout}}
-                                {{#bp-layout direction="row" classNames=""}}
-                                    <p>一句话介绍</p>
-                                    <span class="brand_subtitle">{{model.brand.slogan}}</span>
-                                {{/bp-layout}}
-                            {{/bp-layout}}
-                        {{/bp-layout}}
-                    </div>
-                </div>
-                <div class="dd_container dd_content_margin_top brand_detail brand_detail_container_right">
-                    {{#bp-layout direction="col"  classNames="brand_detail_info"}}
-                        <p class="brand_detail_list_title">品牌亮点</p>
-                        {{#bp-layout direction="row"}}
-                            {{#each model.brand.brandTags as |item|}}
-                                {{#bp-layout direction='col' main='center' classNames="brand_tags brand_tag_margin"}}
-                                    <span>{{item}}</span>
-                                {{/bp-layout}}
-                            {{/each}}
-                        {{/bp-layout}}
-                    {{/bp-layout}}
-                    {{#bp-layout direction="col" classNames="brand_detail_info"}}
-                        <p class="brand_detail_list_title">品牌故事</p>
-                        <span class="brand_detail_list_content">{{model.brand.foundStory}}</span>
-                    {{/bp-layout}}
-                    {{!-- {{#bp-layout direction="col" classNames="brand_detail_info"}}
-                        <p class="brand_detail_list_title">师资团队</p>
-                        <span class="brand_detail_list_content">{{model.brand.edu_idea}}</span>
-                    {{/bp-layout}} --}}
-                    {{#bp-layout direction="col" classNames="brand_detail_info"}}
-                        <p class="brand_detail_list_title">品牌荣誉</p>
-                        {{#bp-layout direction="row" classNames="detail_reward_content"}}
-                            {{#each model.brand.images as |item|}}
-                                {{#if (eq item.flag 1)}}
-                                    {{!-- {{bmcom/bm-img-uploader needTag=true canEdit=false img=item.img tag=item.tag classNames='detail_reward_content_honor'}} --}}
-                                    {{bmcom/bm-img-uploader needTag=true canEdit=false img=item.img tag=item.tag classNames='detail_reward_content_cert'}}
-                                {{/if}}
-                            {{/each}}
-                        {{/bp-layout}}
-                    {{/bp-layout}}
-                    {{#bp-layout direction="col" classNames="brand_detail_info"}}
-                        <p class="brand_detail_list_title">资质认证</p>
-                        {{#bp-layout direction="row" classNames="detail_reward_content"}}
-                            {{#each model.brand.images as |item|}}
-                                {{#if (eq item.flag 2)}}
-                                    {{bmcom/bm-img-uploader needTag=true canEdit=false img=item.img tag=item.tag classNames='detail_reward_content_cert'}}
-                                {{/if}}
-                            {{/each}}
-                        {{/bp-layout}}
-                    {{/bp-layout}}
-                </div>
-            {{/bp-layout}}
         {{/bp-layout}}
     </div>
 </div>
