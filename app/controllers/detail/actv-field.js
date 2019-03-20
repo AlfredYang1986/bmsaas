@@ -4,7 +4,7 @@ import { A } from '@ember/array';
 import EmberObject from '@ember/object';
 
 export default Controller.extend({
-    tableTitle: A(["孩子","生日","性别", "联系方式", "渠道"]),
+    tableTitle: A(["学生","生日","性别", "联系方式", "渠道"]),
 
     bm_error_service: service(),
     toast: service(),

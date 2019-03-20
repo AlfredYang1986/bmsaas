@@ -138,9 +138,9 @@
 					{{#tabs.pane elementId="tech-info"}}
                         {{#if (eq model.class.duties.length 0)}}
                             <div class="exp-empty-state">
-                                {{bp-empty-state/primary-button src='/images/img_empty@2x.png' title="尚无教师" desc="快去为孩子们选择教师吧" btnText="添加教师" onClick=(action (mut addTechDlg) true)}}
+                                {{bp-empty-state/primary-button src='/images/img_empty@2x.png' title="尚无教师" desc="快去为学生们选择教师吧" btnText="添加教师" onClick=(action (mut addTechDlg) true)}}
                             </div>
-                            {{!-- {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无教师" des="快去为孩子们选择教师吧" btnText="添加教师" onBtnClick=(action (mut addTechDlg) true)}} --}}
+                            {{!-- {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无教师" des="快去为学生们选择教师吧" btnText="添加教师" onBtnClick=(action (mut addTechDlg) true)}} --}}
                         {{else}}
                             {{bmtable/bm-table-class-tech listData=model.class.duties titles=model.techTitles onRemoveTeacherClick=(action "onRemoveTeacherClick")}}
                             {{!-- {{bmcom/bm-pagination pageCount=bm_sessionable_service.totalPageCount sendPageNum=(action "handlePageChange")}} --}}
@@ -149,9 +149,9 @@
                     {{#tabs.pane elementId="stud-info"}}
                         {{#if (eq model.class.students.length 0)}}
                             <div class="exp-empty-state">
-                                {{bp-empty-state/primary-button src='/images/img_empty@2x.png' title="尚无学生" desc="快去添加孩子们吧" btnText="添加学生" onClick=(action (mut addStudDlg) true)}}
+                                {{bp-empty-state/primary-button src='/images/img_empty@2x.png' title="尚无学生" desc="快去添加学生们吧" btnText="添加学生" onClick=(action (mut addStudDlg) true)}}
                             </div>
-                            {{!-- {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无学生" des="快去添加孩子们吧" btnText="添加学生" onBtnClick=(action (mut addStudDlg) true)}} --}}
+                            {{!-- {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无学生" des="快去添加学生们吧" btnText="添加学生" onBtnClick=(action (mut addStudDlg) true)}} --}}
                         {{else}}
                             {{bmtable/bm-table-class-stud listData=model.class.students titles=model.studTitles onRemoveStudClick=(action "onRemoveStudClick")}}
                             {{!-- {{bmcom/bm-pagination pageCount=bm_sessionable_service.totalPageCount sendPageNum=(action "handlePageChange")}} --}}
@@ -173,7 +173,7 @@
 
             {{!-- {{#if (bmeq cur_idx 0)}}
                 {{#if (eq model.class.duties.length 0)}}
-                    {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无教师" des="快去为孩子们选择教师吧" btnText="添加教师" onBtnClick=(action (mut addTechDlg) true)}}
+                    {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无教师" des="快去为学生们选择教师吧" btnText="添加教师" onBtnClick=(action (mut addTechDlg) true)}}
                 {{else}}
                     {{bmtable/bm-table-class-tech listData=model.class.duties titles=model.techTitles onRemoveTeacherClick=(action "onRemoveTeacherClick")}}
                 {{/if}}
@@ -181,7 +181,7 @@
 
             {{#if (bmeq cur_idx 1)}}
                 {{#if (eq model.class.students.length 0)}}
-                    {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无学生" des="快去添加孩子们吧" btnText="添加学生" onBtnClick=(action (mut addStudDlg) true)}}
+                    {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无学生" des="快去添加学生们吧" btnText="添加学生" onBtnClick=(action (mut addStudDlg) true)}}
                 {{else}}
                     {{bmtable/bm-table-class-stud listData=model.class.students titles=model.studTitles onRemoveStudClick=(action "onRemoveStudClick")}}
                 {{/if}}

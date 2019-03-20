@@ -36,7 +36,7 @@
 						{{#bp-layout direction='col' main='center' classNames='stud_detail_other' }}
 							<div class="other_self">
 								{{#bp-layout direction='col'classNames="info-block-outer"}}
-									<p class="parent_info">孩子信息</p>
+									<p class="parent_info">学生信息</p>
 									<div class="self_info">
 										{{bmdetail/stud-basis-info label="昵称" content=model.stud.nickname}}
 										{{bmdetail/stud-basis-info label="星座" content="星座"}}
@@ -46,7 +46,7 @@
 									</div>
 								{{/bp-layout}}
 								{{#bp-layout direction='col' classNames="info-block-outer"}}
-									<p class="parent_info">监护人信息</p>
+									<p class="parent_info">家长信息</p>
 									<div class="self_info">
 										{{bmdetail/stud-basis-info label="姓名" content=model.stud.guardians.firstObject.name}}
 										{{bmdetail/stud-basis-info label="关系" content=model.stud.guardians.firstObject.relationShip}}

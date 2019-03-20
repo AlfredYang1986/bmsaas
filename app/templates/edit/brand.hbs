@@ -1,9 +1,9 @@
 {{#bp-layout direction='row' main='between' classNames='edit_nav' }}
-  <span>编辑-品牌主页</span>
-  <span>
-        <button class="edit_nav_btn btn_cacel" {{action 'cancelBrandClicked'}}>取消</button>
-        <button class="edit_nav_btn btn_save" {{action 'saveBrand'}}>提交</button>
-  </span>
+    <span>编辑-品牌主页</span>
+    <span>
+        {{#bp-button type="subtle" onClick=(action 'cancelBrandClicked')}}取消{{/bp-button}}
+        {{#bp-button type="primary" onClick=(action 'saveBrand')}}提交{{/bp-button}}
+    </span>
 {{/bp-layout}}
 {{#bp-layout direction='row' main='between' classNames='edit_container' }}
     <ul class="edit_left_nav">
@@ -36,8 +36,29 @@
                     {{bmcom/bm-img-uploader needTag=false canEdit=true img=model.brand.logo classNames=''}}
                 {{/bp-layout }}
                 {{#bp-layout direction='col' classNames="brand-base-info-continer"}}
-                    {{bmform/bm-base-select selTitle="分类" options=cateArr curSelect=cur_cate_id classNames="input_area area-margin-bottom"}}
-                    {{#bp-layout direction="col" classNames='brand-input-group'}}
+                    {{bp-dropdown-simple
+					    classNames='mb-4'
+						title="分类"
+						choosedValue=cur_cate_id
+						options=cateArr
+						optionKey='name'}}
+                    {{!-- {{bmform/bm-base-select selTitle="分类" options=cateArr curSelect=cur_cate_id classNames="input_area mb-4"}} --}}
+                    {{bp-input
+						classNames="edit_input_small mb-4"
+						block=true 
+						label='品牌名称'
+						maxLength=20
+						value=model.brand.title
+						onChange=(action (mut model.brand.title))}}
+                    {{bp-input
+						classNames="edit_input_medium mb-4"
+						block=true 
+						label='一句话介绍'
+						helpText='请您⽤⼀句话向家长和孩子们传递您的品牌理念' 	
+						maxLength=20
+						value=model.brand.slogan
+						onChange=(action (mut model.brand.slogan))}}
+                    {{!-- {{#bp-layout direction="col" classNames='brand-input-group'}}
                         <span class="edit_title">品牌名称</span>
                         {{input type="text" class="edit_input_small" value=model.brand.title}}
                     {{/bp-layout}}
@@ -45,7 +66,7 @@
                         <span class="edit_title">一句话介绍</span>
                         <span class='edit_subtitle'>请您⽤⼀句话向家长和孩子们传递您的品牌理念</span>
                         {{input type="text" class="edit_input_medium" value=model.brand.slogan}}
-                    {{/bp-layout}}
+                    {{/bp-layout}} --}}
                     {{#bp-layout direction="col" classNames='brand-input-group'}}
                         <span class="edit_title">品牌亮点</span>
                         <span class='edit_subtitle'>您的品牌有什么独特之处？（限6个字 至多添加三个）如:PBL教学</span>
@@ -64,7 +85,8 @@
                 {{/bp-layout}}
             {{/bp-layout}}
             {{#bp-layout direction='row' classNames='edit_panel_btn_margin'}}
-                <button class="edit_between_btn" {{action (mut cur_idx) 1}}>下一步</button>
+                {{#bp-button type="default" onClick=(action (mut cur_idx) 1)}}下一步{{/bp-button}}
+                {{!-- <button class="edit_between_btn" {{action (mut cur_idx) 1}}>下一步</button> --}}
             {{/bp-layout}}
         {{/bp-layout }}
     </section>
@@ -80,7 +102,8 @@
                 {{textarea value=model.brand.foundStory classNames='edit_input_big alt-edit-text-area' rows=4}}
             {{/bp-layout}}
         {{#bp-layout direction='row' classNames='edit_panel_btn_margin'}}
-            <button class="edit_between_btn" {{action (mut cur_idx) 2}}>下一步</button>
+            {{#bp-button type="default" onClick=(action (mut cur_idx) 2)}}下一步{{/bp-button}}
+            {{!-- <button class="edit_between_btn" {{action (mut cur_idx) 2}}>下一步</button> --}}
         {{/bp-layout}}
         {{/bp-layout}}
     </section>
@@ -118,7 +141,8 @@
             </div>
 
         {{#bp-layout direction='row' classNames='edit_panel_btn_margin'}}
-            <button class="edit_between_btn" {{action (mut cur_idx) 3}}>下一步</button>
+            {{#bp-button type="default" onClick=(action (mut cur_idx) 3)}}下一步{{/bp-button}}
+            {{!-- <button class="edit_between_btn" {{action (mut cur_idx) 3}}>下一步</button> --}}
         {{/bp-layout}}
         {{/bp-layout }}
     </section>

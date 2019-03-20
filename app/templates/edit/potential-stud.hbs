@@ -1,5 +1,5 @@
 {{#bp-layout direction='row' main='between' classNames='edit_nav' }}
-	<span classNames='edit_nav_title'>添加潜在学员</span>
+	<span classNames='edit_nav_title'>添加潜在学生</span>
 	<span>
 		<button class="edit_nav_btn btn_cacel" {{action 'closeProcess'}}>关闭流程</button>
 	</span>
@@ -31,7 +31,7 @@
 			{{#bp-layout direction='row' classNames='btn-area'}}
 				{{#if inputVal}}
 					{{#bp-layout direction='row' classNames='add-stud'}}
-						<p>没有要添加的学员？</p>
+						<p>没有要添加的学生？</p>
 						<p class="link"  {{action 'addPtStudModal'}}>添加学生</p>
 						<button type="button" name="button" class="btn_save" {{action 'addPtStud'}}>添加</button>
 					{{/bp-layout}}
@@ -75,10 +75,10 @@
 		<div class="add-pt-stud-modal">
 			{{#bp-layout direction='col'}}
 				<p class="title">添加学生</p>
-				<p class="title">孩子信息</p>
+				<p class="title">学生信息</p>
 				{{#bp-layout direction='row' main='between'}}
 					{{#bp-layout direction='row' classNames='group'}}
-						<p class="subtitle">孩子姓名</p>
+						<p class="subtitle">学生姓名</p>
 						{{bmform/bm-edit-line notitlt=true  inputVal=model.stud.name classNames='input_area area-margin-bottom'}}
 					{{/bp-layout}}
 					{{#bp-layout direction='row' classNames='group'}}
