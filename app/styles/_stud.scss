@@ -11,7 +11,7 @@
 
 .stud_container {
     @extend %stud_content_basic;
-    height: fit-content;
+    height: 100vh;
     padding-top: 64px;
     min-width: 1200px;
 }
@@ -19,9 +19,13 @@
 .stud_content {
     background: transparent;
     padding: 0;
-    padding: 24px 24px 0 24px;
+    padding: 24px;
     // margin-bottom: 0;
-    height: calc(100vh - 88px);
+    height: calc(100vh - 64px);
+
+    .bp-page-header {
+        margin-bottom: 24px;
+    }
 
     .stud-empty-state {
         margin-top: 16px;

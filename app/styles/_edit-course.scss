@@ -109,22 +109,22 @@
                     line-height: 18px;
                 }
 
-                input[type=text] {
-                    margin: 0;
-                    margin-top: 16px;
-                    height: 32px;
-                    border: 1px solid #DFE1E5;
-                    border-radius: 4px;
-                    box-shadow: none;
-                }
-				input[type=number] {
-                    margin: 0;
-                    margin-top: 16px;
-                    height: 32px;
-                    border: 1px solid #DFE1E5;
-                    border-radius: 4px;
-                    box-shadow: none;
-                }
+                // input[type=text] {
+                //     margin: 0;
+                //     margin-top: 16px;
+                //     height: 32px;
+                //     border: 1px solid #DFE1E5;
+                //     border-radius: 4px;
+                //     box-shadow: none;
+                // }
+				// input[type=number] {
+                //     margin: 0;
+                //     margin-top: 16px;
+                //     height: 32px;
+                //     border: 1px solid #DFE1E5;
+                //     border-radius: 4px;
+                //     box-shadow: none;
+                // }
 
                 .course-edit-check + .course-edit-check {
                     margin-top: 8px;
@@ -163,10 +163,10 @@
 				}
 
 				&.edit_second_panel {
-                    .alt-course-input-group {
-                        margin-top: 40px;
-                        margin-bottom: 0;
-                    }
+                    // .alt-course-input-group {
+                    //     margin-top: 40px;
+                    //     margin-bottom: 0;
+                    // }
                     .alt_course_title_age{
                         margin-top: 40px;
                     }
@@ -177,12 +177,12 @@
 					.alt-course-age-group{
                         justify-content: flex-start;
 
-                        .alt_course_des{
-                            position: relative;
-                            left: -22px;
-                            line-height: 58px;
-                            height: 32px;
-                        }
+                        // .alt_course_des{
+                        //     position: relative;
+                        //     left: -22px;
+                        //     line-height: 58px;
+                        //     height: 32px;
+                        // }
                         .input-group{
                             width:200px;
 
@@ -203,12 +203,12 @@
                     .alt-course-age-group{
                         justify-content: flex-start;
 
-                        .alt_course_des{
-                            position: relative;
-                            left: -22px;
-                            line-height: 58px;
-                            height: 32px;
-                        }
+                        // .alt_course_des{
+                        //     position: relative;
+                        //     left: -22px;
+                        //     line-height: 58px;
+                        //     height: 32px;
+                        // }
                         .input-group{
                             width:200px;
 
@@ -338,10 +338,11 @@
                         justify-content: flex-start;
 
                         .alt_course_des{
-                            position: relative;
-                            left: -22px;
-                            line-height: 58px;
+                            // position: relative;
+                            // left: -22px;
+                            line-height: 32px;
                             height: 32px;
+                            padding: 0 8px;
                         }
                         .input-group{
                             width:125px;

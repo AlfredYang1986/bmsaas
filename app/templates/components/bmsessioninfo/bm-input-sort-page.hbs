@@ -4,46 +4,41 @@
         {{#bp-layout direction='col' classNames='select-age'}}
             <span class='alt_course_title'>适宜年龄</span>
             <div class="course-edit-check">
+                {{bp-input
+                    classNames="age-input"
+                    maxLength='2'
+                    type='number'
+                    disabled=ageDisableFlag
+                    prepend='岁'
+                    prependDirection='right'
+                    value=session.alb
+                    onChange=(action (mut session.alb))}}
+                <span class="alt_course_des">至</span>
+                {{bp-input
+                    classNames="age-input"
+                    maxLength='2'
+                    type='number'
+                    disabled=ageDisableFlag
+                    prepend='岁'
+                    prependDirection='right'
+                    value=session.aub
+                    onChange=(action (mut session.aub))}}
                 {{#if ageInput}}
-                    {{#bp-layout direction="row" classNames="alt-course-age-group"}}
+                    {{!-- {{#bp-layout direction="row" classNames="alt-course-age-group"}}
                         {{bmform/bm-edit-line haveHeader=false ageInput=true inputVal=session.alb maxlength="2" classNames=''}}
-                        {{!-- <div class="input-group">
-                            {{input value=session.alb  maxlength='2' class="edit_input_age"  type="number"}}
-                                <div class="input-group-append">
-                                    <span class="input-group-text">岁</span>
-                                </div>
-                        </div> --}}
                         <span class="alt_course_des">至</span>
                         {{bmform/bm-edit-line haveHeader=false ageInput=true inputVal=session.aub maxlength="2" classNames=''}}
-                        {{!-- <div class="input-group">
-                            {{input value=session.aub class="edit_input_age"  type="number"  maxlength='2'}}
-                            <div class="input-group-append">
-                                <span class="input-group-text">岁</span>
-                            </div>
-                        </div> --}}
-                    {{/bp-layout}}
+                    {{/bp-layout}} --}}
                     <div class="course-edit-check course-edit-check-age">
                         {{#bmform/age-select-input alb=session.alb aub=session.aub ageSelect=(action 'ageSelect')}}
                         {{/bmform/age-select-input}}
                     </div>
                 {{else}}
-                    {{#bp-layout direction="row" classNames="alt-course-age-group"}}
+                    {{!-- {{#bp-layout direction="row" classNames="alt-course-age-group"}}
                         {{bmform/bm-edit-line haveHeader=false ageInput=true inputVal="" maxlength="2" readonly='readonly' classNames=''}}
-                        {{!-- <div class="input-group">
-                            {{input value='' maxlength='2' class="edit_input_age" readonly='readonly'  type="number"}}
-                            <div class="input-group-append">
-                                <span class="input-group-text">岁</span>
-                            </div>
-                        </div> --}}
                         <span class="alt_course_des">至</span>
                         {{bmform/bm-edit-line haveHeader=false ageInput=true inputVal="" maxlength="2" readonly='readonly' classNames=''}}
-                        {{!-- <div class="input-group">
-                            {{input value='' class="edit_input_age"  type="number" readonly='readonly'  maxlength='2'}}
-                            <div class="input-group-append">
-                                <span class="input-group-text">岁</span>
-                            </div>
-                        </div> --}}
-                    {{/bp-layout}}
+                    {{/bp-layout}} --}}
                     <div class="course-edit-check course-edit-check-age">
                         {{#bmform/age-select-input alb=session.alb aub=session.aub ageSelect=(action 'ageSelect') checked='checked'}}
                         {{/bmform/age-select-input}}
@@ -52,11 +47,18 @@
             </div>
         {{/bp-layout}}
         {{#bp-layout direction="col" main='between' classNames="alt_course_title_top"}}
-            <span class='alt_course_title_class'>课程时长(分钟)</span>
+            {{bp-dropdown-simple
+                disabled=lengthDisableFlag
+                classNames='mb-4'
+                title="课程时长（分钟）"
+                choosedValue=session.length
+                options=sel_time
+                optionKey='name'}}
+            {{!-- <span class='alt_course_title_class'>课程时长(分钟)</span>
             {{#if (bmcom/bm-nil-obj session)}}
             {{else}}
-            {{bmform/bm-base-select options=sel_time curSelect=cur_time}}
-            {{/if}}
+                {{bmform/bm-base-select options=sel_time curSelect=cur_time}}
+            {{/if}} --}}
         {{/bp-layout}}
         {{yield}}
     {{/bp-layout}}
