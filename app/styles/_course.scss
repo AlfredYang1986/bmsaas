@@ -472,6 +472,7 @@
 			font-size: 14px;
 			color: #6B778C;
 			text-align: left;
+			padding: 0 8px;
 		}
 	}
 }
@@ -499,4 +500,8 @@
 	.bm-upload-tag {
 		margin-top: 122px;
 	}
+}
+
+.bp-input.age-input .input-container input {
+	width: 40px;
 }

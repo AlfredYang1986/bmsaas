@@ -9,10 +9,17 @@
             {{/bp-layout}}
         {{else if (bmeq session.status 2)}}
             <span class='alt_course_title alt_course_big_title'>课程名称</span>
+            {{bp-input
+				classNames="mb-4"
+				label='课程名称'
+                helpText="有趣的课程名称能让家长和孩子对您的课程内容产生兴趣和好奇心。"
+				value=session.title
+				onChange=(action (mut session.title))}}
+            {{!-- <span class='alt_course_title alt_course_big_title'>课程名称</span>
             {{#bp-layout direction="col" classNames='alt-course-input-group'}}
                     <span class='alt-edit-up-hit'>有趣的课程名称能让家长和孩子对您的课程内容产生兴趣和好奇心。</span>
                 {{input type="text" class="edit_input" value=session.title}}
-            {{/bp-layout}}
+            {{/bp-layout}} --}}
         {{else}}
             <span class='alt_course_title alt_course_big_title'>描述一下活动的内容吧</span>
             {{#bp-layout direction="col" classNames='alt-course-input-group'}}
