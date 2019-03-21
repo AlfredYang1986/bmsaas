@@ -39,7 +39,7 @@
                 {{#bp-button type="primary" onClick=(action (mut showAddSessionDlg) true)}}+ 开班{{/bp-button}}
             {{/body.right}}
         {{/ph.body}}
-        {{#ph.footer as |footer|}}
+        {{!-- {{#ph.footer as |footer|}}
             {{#footer.left as |left|}}
                 {{#left.item}}
                     {{#if (eq  model.course.startDate -1)}}
@@ -59,7 +59,7 @@
             {{#footer.right}}
                 {{total_count}} 场次数
             {{/footer.right}}
-        {{/ph.footer}}
+        {{/ph.footer}} --}}
     {{/bp-page-header}}
 
     {{#bmpage/bm-session-info session=model.course.sessioninfo isCourse=true}}

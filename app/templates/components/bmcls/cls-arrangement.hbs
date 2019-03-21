@@ -26,7 +26,13 @@
         {{#bp-layout direction="row" main='between'}}
             {{#bp-layout direction='row' classNames="options"}}
                 <p class="title">选择教室</p>
-                <form class="select-site">
+                {{refreshSelected}}
+                {{bp-dropdown-simple
+                    valueId=selectedRoom
+                    options=rooms
+                    optionKey='title'
+                    onclick=(action 'roomChanged')}}
+                {{!-- <form class="select-site">
                     <select name="" id='roomselect' onChange={{action 'roomChanged'}}>
                         {{#each rooms as |item idx|}}
                             <option value={{item.id}}>{{item.title}}</option>
@@ -35,7 +41,7 @@
                             {{/if}}
                         {{/each}}
                     </select>
-                </form>
+                </form> --}}
             {{/bp-layout}}
         {{/bp-layout}}
 

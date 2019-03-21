@@ -47,7 +47,6 @@
 						classNames="edit_input_small mb-4"
 						block=true 
 						label='品牌名称'
-						maxLength=20
 						value=model.brand.title
 						onChange=(action (mut model.brand.title))}}
                     {{bp-input
@@ -55,7 +54,6 @@
 						block=true 
 						label='一句话介绍'
 						helpText='请您⽤⼀句话向家长和孩子们传递您的品牌理念' 	
-						maxLength=20
 						value=model.brand.slogan
 						onChange=(action (mut model.brand.slogan))}}
                     {{!-- {{#bp-layout direction="col" classNames='brand-input-group'}}

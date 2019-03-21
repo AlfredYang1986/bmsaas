@@ -29,6 +29,18 @@ export default Route.extend({
     },
     setupController(controller, model) {
         this._super(controller, model);
+        let tempArr = A([])
+        model.courses.forEach(elem => {
+            let tempObj = {};
+            tempObj.id = elem.id;
+            elem.get('sessioninfo').then(res => {
+                tempObj.title = res.title;
+            }, error => {
+                this.bm_error_service.handleError(error)
+            });
+            tempArr.pushObject(tempObj)
+        });
+        this.controller.set('lessons', tempArr);
         this.controller.set('cur_course_id', model.class.reservableitem.get("id"));
         if(model.class.students.length > 0) {
             this.controller.set("able", true);

@@ -137,7 +137,7 @@
 				<div class="tab-content">
 					{{#tabs.pane elementId="tech-info"}}
                         {{#if (eq model.class.duties.length 0)}}
-                            <div class="exp-empty-state">
+                            <div class="class-field-empty-state">
                                 {{bp-empty-state/primary-button src='/images/img_empty@2x.png' title="尚无教师" desc="快去为学生们选择教师吧" btnText="添加教师" onClick=(action (mut addTechDlg) true)}}
                             </div>
                             {{!-- {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无教师" des="快去为学生们选择教师吧" btnText="添加教师" onBtnClick=(action (mut addTechDlg) true)}} --}}
@@ -148,7 +148,7 @@
                     {{/tabs.pane}}
                     {{#tabs.pane elementId="stud-info"}}
                         {{#if (eq model.class.students.length 0)}}
-                            <div class="exp-empty-state">
+                            <div class="class-field-empty-state">
                                 {{bp-empty-state/primary-button src='/images/img_empty@2x.png' title="尚无学生" desc="快去添加学生们吧" btnText="添加学生" onClick=(action (mut addStudDlg) true)}}
                             </div>
                             {{!-- {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无学生" des="快去添加学生们吧" btnText="添加学生" onBtnClick=(action (mut addStudDlg) true)}} --}}
@@ -159,8 +159,8 @@
                     {{/tabs.pane}}
                     {{#tabs.pane elementId="unit-info"}}
                         {{#if (eq model.units.length 0)}}
-                            <div class="exp-empty-state">
-                                {{bp-empty-state/primary-button src='/images/img_empty@2x.png' title="尚无课程安排" desc="快去添加课程安排吧" btnText="添加课程安排" onClick=(action (mut onAddArrClassClick) true)}}
+                            <div class="class-field-empty-state">
+                                {{bp-empty-state/primary-button src='/images/img_empty@2x.png' title="尚无课程安排" desc="快去添加课程安排吧" btnText="添加课程安排" onClick=(action "onAddArrClassClick")}}
                             </div>
                             {{!-- {{bmcom/bm-empty-state class="exp-empty-state" picUrl="/images/img_empty@2x.png" title="尚无课程安排" des="快去添加课程安排吧" btnText="添加课程安排" onBtnClick=(action 'onAddArrClassClick')}} --}}
                         {{else}}
@@ -217,16 +217,36 @@
                 </div>
             {{/if}}
             {{#bp-layout direction="col" classNames='input_area' }}
-                {{bmform/bm-base-select type="id" chooseReservable=true selTitle="选择课程" options=model.courses curSelect=cur_course_id classNames="input_area area-margin-bottom" disabled=able}}
+                {{bp-dropdown-simple
+					classNames="mb-4 error-border"
+					title='选择课程'
+                    valueId=cur_course_id
+                    options=lessons
+                    optionKey='title'}}
+                {{!-- {{bmform/bm-base-select type="id" chooseReservable=true selTitle="选择课程" options=model.courses curSelect=cur_course_id classNames="input_area area-margin-bottom" disabled=able}} --}}
             {{/bp-layout}}
             {{#if noteError}}
-                {{#bp-layout direction="row"  classNames='input_area' }}
+                {{bp-input
+					classNames="input-full-width error-border"
+					block=true 
+					label='班级名称'
+					helpText='请为班级设定名称，方便识别'
+					value=classTitle
+					onChange=(action (mut classTitle))}}
+                {{!-- {{#bp-layout direction="row"  classNames='input_area' }}
                     {{bmform/bm-edit-line title='班级名称' needTitleDes=true titleDes="请为班级设定名称，方便识别" inputVal=classTitle classNames='input_area input-full-width error-border'}}
-                {{/bp-layout}}
+                {{/bp-layout}} --}}
             {{else}}
-                {{#bp-layout direction="row"  classNames='input_area' }}
+                {{bp-input
+					classNames="input-full-width"
+					block=true 
+					label='班级名称'
+					helpText='请为班级设定名称，方便识别'
+					value=classTitle
+					onChange=(action (mut classTitle))}}
+                {{!-- {{#bp-layout direction="row"  classNames='input_area' }}
                     {{bmform/bm-edit-line title='班级名称' needTitleDes=true titleDes="请为班级设定名称，方便识别" inputVal=classTitle classNames='input_area input-full-width'}}
-                {{/bp-layout}}
+                {{/bp-layout}} --}}
             {{/if}}
 
         {{/bp-layout}}
@@ -258,22 +278,46 @@
                 </div>
             {{/if}}
             {{#if techErrorFlag}}
-                {{#bp-layout direction="col" classNames='input_area' }}
+                {{bp-dropdown-simple
+                    classNames="mb-4 error-border"
+                    title='选择教师'
+                    valueId=addTechId
+                    options=model.techs
+                    optionKey='name'}}
+                {{!-- {{#bp-layout direction="col" classNames='input_area' }}
                     {{bmform/bm-base-select type="id" idType=true selTitle="选择教师" options=model.techs curSelect=addTechId classNames="error-border input_area area-margin-bottom"}}
-                {{/bp-layout}}
+                {{/bp-layout}} --}}
             {{else}}
-                {{#bp-layout direction="col" classNames='input_area' }}
+                {{bp-dropdown-simple
+					classNames="mb-4"
+					title='选择教师'
+                    valueId=addTechId
+                    options=model.techs
+                    optionKey='name'}}
+                {{!-- {{#bp-layout direction="col" classNames='input_area' }}
                     {{bmform/bm-base-select type="id" idType=true selTitle="选择教师" options=model.techs curSelect=addTechId classNames="input_area area-margin-bottom"}}
-                {{/bp-layout}}
+                {{/bp-layout}} --}}
             {{/if}}
             {{#if dutyErrorFlag}}
-                {{#bp-layout direction="col" classNames='input_area' }}
+                {{bp-dropdown-simple
+					classNames="mb-4 error-border"
+					title='选择教师'
+                    choosedValue=addJobDuty
+                    options=jobDuty
+                    optionKey='name'}}
+                {{!-- {{#bp-layout direction="col" classNames='input_area' }}
                     {{bmform/bm-base-select selId="job" selTitle="选择职责" options=jobDuty curSelect=addJobDuty classNames="error-border input_area area-margin-bottom"}}
-                {{/bp-layout}}
+                {{/bp-layout}} --}}
             {{else}}
-                {{#bp-layout direction="col" classNames='input_area' }}
+                {{bp-dropdown-simple
+					classNames="mb-4"
+					title='选择教师'
+                    choosedValue=addJobDuty
+                    options=jobDuty
+                    optionKey='name'}}
+                {{!-- {{#bp-layout direction="col" classNames='input_area' }}
                     {{bmform/bm-base-select selId="job" selTitle="选择职责" options=jobDuty curSelect=addJobDuty classNames="input_area area-margin-bottom"}}
-                {{/bp-layout}}
+                {{/bp-layout}} --}}
             {{/if}}
         {{/bp-layout}}
     </div>
