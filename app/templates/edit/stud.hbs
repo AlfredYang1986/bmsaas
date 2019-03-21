@@ -32,6 +32,8 @@
 				value=model.stud.nickname
 				onChange=(action (mut model.stud.nickname))}}
 			{{bp-radio-index
+				vertical=false
+				judge=sex
 				classNames='mb-4'
 				title='性别' 
 				curValueIndex=sex_idx 
@@ -88,6 +90,8 @@
 					value=item.name
 					onChange=(action (mut item.name))}}
 				{{bp-radio-index
+					vertical=false
+					judge=rela
 					classNames='mb-4'
 					title='关系' 
 					curValueIndex=rela_idx 
