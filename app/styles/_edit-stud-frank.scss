@@ -91,12 +91,66 @@
 						line-height: 20px;
 					}
 				}
-				.pre-btn {
+				.p-btn-right {
 					margin-right: 4px;
 				}
 			}
 
 		}
+		.scroll {
+			min-height: 496px;
+			overflow-y: auto;
+			.price-area {
+				margin: 24px 56px;
+				border-bottom: 2px solid #F7F8FA;
+				.price-table {
+					margin-top: 32px;
+					height: 284px;
+					// width: 100%;
+					background: #F7F8FA;
+					border-radius: 4px;
+				}
+				.price-text {
+					margin: 24px;
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					p {
+						font-family: PingFangSC-Medium;
+						font-size: 14px;
+						color: #172B4D;
+					}
+					span.p-icon {
+						padding: 5px;
+						background: #FF8F73;
+						border-radius: 4px;
+						width: 24px;
+						height: 24px;
+						font-family: PingFangSC-Medium;
+						font-size: 14px;
+						color: #FFFFFF;
+					}
+					p.price {
+						margin-left: 24px;
+						font-size: 29px;
+						text-align: right;
+						// line-height: 32px;
+						font-weight: bold;
+					}
+				}
+			}
+
+			.payment-area {
+				margin: 0 56px;
+				.title {
+					font-weight: bold;
+					font-family: PingFangSC-Medium;
+					font-size: 16px;
+					color: #172B4D;
+				}
+			}
+		}
+
 		.add-stud-title {
 			margin-top: 8px;
 			p {
