@@ -1,9 +1,5 @@
 <div class="stud_container">
 	{{#bp-layout direction="col" classNames="stud_content" }}
-		{{!-- {{#bp-layout direction='row' main='between' classNames="stud-title-flex"}}
-			<p class="page_title">学生管理</p>
-			{{#link-to 'edit.stud' 'stud/push' classNames='p-btn primary'}}+ 学生注册{{/link-to}}
-		{{/bp-layout}} --}}
 		{{#bp-page-header as |ph|}}
             {{#ph.body as |body|}}
                 {{#body.left as |left|}}
@@ -12,7 +8,7 @@
                     {{/left.item}}
                 {{/body.left}}
                 {{#body.right}}
-                    {{#link-to 'edit.stud' 'stud/push' classNames='p-btn primary'}}+ 学生注册{{/link-to}}
+                    {{#link-to 'edit.stud' 'stud/push' classNames='p-btn primary'}}+ 报课{{/link-to}}
                 {{/body.right}}
             {{/ph.body}}
         {{/bp-page-header}}
@@ -21,17 +17,26 @@
 				<div class="stud-empty-state">
 					{{bp-empty-state/no-button src='/images/img_empty@2x.png' title="暂无学生" desc="暂无数据"}}
 				</div>
-				{{!-- {{bmcom/bm-empty-state class="stud-empty-state" picUrl="/images/img_empty@2x.png" title="暂无学生" des="暂无数据"}} --}}
 			{{else}}
+				{{#bp-layout direction='row' classNames='search'}}
+	                {{input type="text" placeholder="姓名/手机号" name="" value=contact class="search-stud"}}
+	                <i class="icon-search" {{action 'searchStud'}}></i>
+	            {{/bp-layout}}
+				<table class='ib_table_head exp_table'>
+	                <tr class='ib_table_title'>
+	                    {{#each model.studTitle as |item|}}
+	                        <th class='ib_table_item'>{{item}}</th>
+	                    {{/each}}
+	                </tr>
+	            </table>
 				{{#bp-layout direction="row" classNames="stud-list-area" }}
 					<table class='ib_table_head stud_list_table'>
 						{{bmtable/bm-table-inner type="studsList" listData=studs onClickInner=(action "cardClicked")}}
 					</table>
 				{{/bp-layout}}
 				{{bp-pagination
-					totalPageCounts=page_count 
+					totalPageCounts=page_count
 					onClickPage=(action (mut pagenum))}}
-				{{!-- {{bmcom/bm-pagination pageCount=page_count curPage=pagenum sendPageNum=(action "handlePageChange")}} --}}
 			{{/if}}
 		{{/bp-layout}}
 	{{/bp-layout}}

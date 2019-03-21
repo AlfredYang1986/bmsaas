@@ -7,11 +7,11 @@
 
 {{#bp-layout direction='row' main='between' classNames='edit_container experience-content' }}
 	<div class="edit_area">
-		{{#bp-layout direction='col' main='between' classNames='add-pt-stud'}}
+		{{#bp-layout direction='col' main='between' classNames='add-pt-stud add-pt-stud-height'}}
 			{{#bp-layout direction='col' main='center' classNames='search-area'}}
-				<div class="search">
+				<div class="search search-top">
 					{{#bp-layout direction='row' classNames='search-btn-input'}}
-						<input type="text" name="" value="" class="search-input" placeholder="手机号">
+						{{input type="text" name="" value=contact class="search-input" placeholder="手机号"}}
 						<button type="button" name="button" class="btn_save" {{action 'searchStud'}}>搜索</button>
 					{{/bp-layout}}
 					{{#if studList}}
@@ -33,7 +33,7 @@
 					{{#bp-layout direction='row' classNames='add-stud'}}
 						<p>没有要添加的学生？</p>
 						<p class="link"  {{action 'addPtStudModal'}}>添加学生</p>
-						<button type="button" name="button" class="btn_save" {{action 'addPtStud'}}>添加</button>
+						<button type="button" name="button" class="btn_save" {{action 'addPtStudModal'}}>添加</button>
 					{{/bp-layout}}
 				{{else}}
 					<button type="button" name="button" class="edit_between_btn">下一步</button>
@@ -93,7 +93,7 @@
 					{{/bp-layout}}
 					{{#bp-layout direction='row' classNames='group'}}
 						<p class="subtitle">年级</p>
-						{{bmform/bm-base-select selId='sourceWay' selTitle="" options=origin curSelect=model.stud.sourceWay classNames="grade-select"}}
+						{{bmform/bm-base-select selId='sourceWay' selTitle="" options=grade curSelect=model.stud.grade classNames="grade-select"}}
 					{{/bp-layout}}
 				{{/bp-layout}}
 				{{#bp-layout direction='row' classNames='group bottom'}}

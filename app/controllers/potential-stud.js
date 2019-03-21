@@ -1,7 +1,6 @@
 import Controller from '@ember/controller';
 import { A } from '@ember/array';
 import { computed } from '@ember/object';
-import { inject as service } from '@ember/service';
 
 export default Controller.extend({
     showAddSessionDlg: false,
@@ -9,7 +8,7 @@ export default Controller.extend({
     studTitle: A(['姓名'], ['联系电话'], ['性别'], ['年龄'], ['家长称呼'], ['创建时间'], ['操作']),
     refreshFlag: false,
     type: '',
-    refreshFlag: false,
+    contact: '',
     page_count: computed(function(){
         return Number.parseInt(localStorage.getItem('students'));
     }),
@@ -22,8 +21,8 @@ export default Controller.extend({
             this.set('showAddSessionDlg', false)
         },
         searchStud() {
-            let that = this
             this.set('type', 'searchName')
+            this.toggleProperty('refreshFlag')
         },
         refreshDataComplete(page) {
             this.set('page_count', page)
