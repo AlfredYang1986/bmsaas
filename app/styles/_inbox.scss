@@ -131,6 +131,20 @@
             color: #172B4D;
             font-weight: 600;
         }
+        .search {
+            position: relative;
+        }
+        input.search-stud-course {
+            width: 752px;
+        }
+        .icon-search {
+            background: url(/images/icon_search@1x.png) no-repeat;
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: 4px;
+            left: 720px;
+        }
         input{
             width: 318px;
             height: 32px;

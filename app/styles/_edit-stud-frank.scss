@@ -67,6 +67,36 @@
             // margin: 0;
             background: #ffffff;
         }
+		.stud_detail {
+			.stud_detail_other {
+				// height: calc(100vh - 64px);
+				background: #fff;
+			}
+			.stud_detail_other_height {
+				padding: 24px;
+				margin-bottom: 43px;
+				height: calc(100vh - 256px);
+				.stud_course_area {
+					margin-top: 24px;
+					margin-bottom: 32px;
+					background: #F7F8FA;
+					border-radius: 4px;
+					height: 344px;
+					width: 100%;
+					.note {
+						font-family: PingFangSC-Regular;
+						font-size: 14px;
+						color: #6B778C;
+						text-align: left;
+						line-height: 20px;
+					}
+				}
+				.pre-btn {
+					margin-right: 4px;
+				}
+			}
+
+		}
 		.add-stud-title {
 			margin-top: 8px;
 			p {
@@ -141,15 +171,6 @@
                 }
                 .btn_save {
                     margin-left: 4px;
-                    font-family: PingFangSC-Semibold;
-                    min-width: 80px;
-                    height: 32px;
-                    border: none;
-                    border-radius: 4px;
-                    background: #80AEFF;
-                    font-size: 14px;
-                    color: #fff;
-                    padding: 0 16px;
                 }
                 i.icon-search {
                     background: url(/images/icon_search@1x.png) no-repeat;

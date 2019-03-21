@@ -1,7 +1,7 @@
 {{#bp-layout direction='row' main='between' classNames='edit_nav' }}
 	<span classNames='edit_nav_title'>报名</span>
 	<span>
-		<button class="edit_nav_btn btn_cacel" {{action 'cancelInputBtnClicked'}}>关闭流程</button>
+		{{#bp-button type="subtle" onClick=(action 'cancelInputBtnClicked')}}关闭流程{{/bp-button}}
 	</span>
 {{/bp-layout}}
 {{#bp-layout direction='row' main='between' classNames='edit_container experience-content' }}
@@ -30,7 +30,8 @@
 						<div class="search">
 							{{#bp-layout direction='row' classNames='search-btn-input'}}
 								{{input type="text" name="" value=contact class="search-input" placeholder="手机号"}}
-								<button type="button" name="button" class="btn_save" {{action 'searchStud'}}>搜索</button>
+								{{#bp-button type="primary" class="btn_save" onClick=(action 'searchStud')}}搜索{{/bp-button}}
+								{{!-- <button type="button" name="button" class="btn_save" {{action ''}}></button> --}}
 							{{/bp-layout}}
 							{{#if studList}}
 								{{#bp-layout direction="row" classNames="stud-list-area" }}
@@ -52,10 +53,12 @@
 						{{#bp-layout direction='row' classNames='add-stud'}}
 							<p>没有要添加的学员？</p>
 							<p class="link"  {{action 'addPtStudModal'}}>添加学生</p>
+							{{log cur_page_idx}}
+							{{!-- {{#bp-button type="primary" onClick=(action (mut cur_page_idx 1))}}下一步{{/bp-button}} --}}
 							<button type="button" name="button" class="btn_save" {{action (mut cur_page_idx) 1}}>下一步</button>
 						{{/bp-layout}}
 					{{else}}
-						<button type="button" name="button" class="edit_between_btn">下一步</button>
+						{{#bp-button disabled=true}}下一步{{/bp-button}}
 					{{/if}}
 				{{/bp-layout}}
 			{{/bp-layout}}
@@ -102,13 +105,40 @@
 						{{/bp-layout}}
 					{{/bp-layout}}
 				{{/bp-layout }}
-				{{#bp-layout direction='col' classNames='stud_detail_other' }}
-
-				{{/bp-layout }}
+				{{#bp-layout direction='col' main='between' classNames='stud_detail_other stud_detail_other_height' }}
+					{{#bp-layout direction='row' main='end'}}
+						{{#bp-button onClick=(action 'addStudCourse')}}选择课程{{/bp-button}}
+					{{/bp-layout}}
+					{{#bp-layout direction='col' main='center' cross='center' classNames='stud_course_area'}}
+						<p class="note">点击“选择课程”为学生选择需要的课程</p>
+					{{/bp-layout}}
+					{{#bp-layout direction='row' main='end'}}
+						{{#bp-button classNames='pre-btn'}}上一步{{/bp-button}}
+						{{#bp-button type='primary'}}下一步{{/bp-button}}
+					{{/bp-layout}}
+				{{/bp-layout}}
 			{{/bp-layout }}
 		{{/if}}
 	</div>
 {{/bp-layout}}
+{{#bmcom/bm-modal-container title="" mswitch=showAddCourse
+		type='addPtStud'
+		successbtncss='exp-modal-confirm'
+		cancelbtncss='exp-modal-cancel'
+		canceltext='取消'
+		successtext='手动添加'
+		onCancelBtnClicked=(action 'cancelAdd')
+		onSuccessBtnClicked=(action 'successAdd')}}
+		<div class="add-pt-stud-modal">
+			{{#bp-layout direction='col' main='center'}}
+				<p class="title">选择课程</p>
+				{{#bp-layout direction='row' classNames='search'}}
+					{{input type="text" name="" value=contact class="search-stud-course" placeholder="搜索"}}
+					<i class="icon-search" {{action 'searchCourse' argument}}></i>
+				{{/bp-layout}}
+			{{/bp-layout}}
+		</div>
+{{/bmcom/bm-modal-container}}
 {{!-- {{#bp-layout direction='row' main='between' classNames='edit_container experience-content' }}
 	<ul class="edit_left_nav">
 		<li class="left_bar_item">
