@@ -1020,6 +1020,14 @@ span.list-status {
     letter-spacing: 2px;
 }
 
+.yard-input-show.bp-input {
+    .input-container {
+        input:disabled {
+            color: rgba(9, 30, 66, 0.82);
+        }
+    }
+}
+
 
 
 .popover {
@@ -1041,6 +1049,9 @@ span.list-status {
     } 
 }
 
+.bp-dropdown button.dropdown-button {
+    height: 32px;
+}
 
 .bp-input .input-container input:disabled {
     color: transparent;

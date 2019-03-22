@@ -1,14 +1,9 @@
 {{!-- {{yield}} --}}
-<select class="address-select" onchange={{action 'changeProvinces' value="target.value"}}>
+{{!-- <select class="address-select" onchange={{action 'changeProvinces' value="target.value"}}>
     {{#if (eq province "")}}
         <option value="" disabled selected hidden>省份</option>
     {{/if}}
     {{#each provinces as |item|}}
-        {{!-- {{#if (eq province item.name)}}
-            <option selected=true value={{item.name}}>{{item.name}}</option>
-        {{else}}
-            <option value={{item.name}}>{{item.name}}</option>
-        {{/if}} --}}
         <option value="" disabled selected hidden>请选择省份</option>
         {{#if (eq province item)}}
             <option selected=true value={{item}}>{{item}}</option>
@@ -23,11 +18,6 @@
         <option value="" disabled selected hidden>城市</option>
     {{/if}}
     {{#each citys as |item|}}
-        {{!-- {{#if (eq city item.name)}} --}}
-            {{!-- <option selected=true value={{item.name}}>{{item.name}}</option> --}}
-        {{!-- {{else}} --}}
-            {{!-- <option value={{item.name}}>{{item.name}}</option> --}}
-        {{!-- {{/if}} --}}
         <option value="" disabled selected hidden>请选择城市</option>
         {{#if (eq city item)}}
             <option selected=true value={{item}}>{{item}}</option>
@@ -41,11 +31,6 @@
         <option value="" disabled selected hidden>行政区域</option>
     {{/if}}
     {{#each governmentAreas as |item|}}
-        {{!-- {{#if (eq area item.name)}}
-            <option selected=true value={{item.name}}>{{item.name}}</option>
-        {{else}}
-            <option value={{item.name}}>{{item.name}}</option>
-        {{/if}} --}}
         <option value="" disabled selected hidden>请选择行政区域</option>
         {{#if (eq area item)}}
             <option selected=true value={{item}}>{{item}}</option>
@@ -53,4 +38,22 @@
             <option value={{item}}>{{item}}</option>
         {{/if}}
     {{/each}}
-</select>
+</select> --}}
+
+{{bp-dropdown-simple
+    classNames="address-select"
+    title="省份"
+    choosedValue=province
+    options=provinces
+    optionKey='name'}}
+{{bp-dropdown-simple
+    classNames="address-select"
+    title="城市"
+    choosedValue=city
+    options=citys
+    optionKey='name'}}
+{{bp-dropdown-simple
+    title="行政区域"
+    choosedValue=area
+    options=governmentAreas
+    optionKey='name'}}
