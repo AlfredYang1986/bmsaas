@@ -210,9 +210,15 @@
                     {{/bp-layout}}
                 </div>
             {{/if}}
-            {{#bp-layout direction='row' classNames="line-list"}}
-                <p class="subtitle">校区设置</p>
-                <p class="edit_subtitle_content">{{model.yard.title}}</p>
+            {{#bmform/bm-label-form-container label='校区设置'}}
+                {{bp-input
+                    classNames="mb-4"
+                    disabled=true
+                    value=model.yard.title}}
+            {{/bmform/bm-label-form-container}}
+            {{!-- {{#bp-layout direction='row' classNames="line-list"}} --}}
+                {{!-- <p class="subtitle">校区设置</p>
+                <p class="edit_subtitle_content">{{model.yard.title}}</p> --}}
                 {{!-- {{#bp-layout direction='col' }}
                         <span class="radio-col">
                             <input type="radio" name="rel01" value="fa" checked/>
@@ -253,15 +259,29 @@
                             <label for="">其他场地</label>
                         </span> --}}
                 {{!-- {{/bp-layout}} --}}
-            {{/bp-layout}}
+            {{!-- {{/bp-layout}} --}}
             {{#if noteError}}
-                {{#bp-layout direction="col" classNames='input_area' }}
+                {{#bmform/bm-label-form-container label='选择教室'}}
+                    {{bp-dropdown-simple
+                        classNames="mb-4 error-border"
+                        valueId=cur_room_id
+                        options=cur_rooms
+                        optionKey='title'}}
+                {{/bmform/bm-label-form-container}}
+                {{!-- {{#bp-layout direction="col" classNames='input_area' }}
                     {{bmform/bm-base-select selId="roomSel" type="id" chooseCourse=true selTitle="选择教室" options=cur_rooms curSelect=cur_room_id classNames="error-border input-inline-select input_area area-margin-bottom"}}
-                {{/bp-layout}}
+                {{/bp-layout}} --}}
             {{else}}
-                {{#bp-layout direction="col" classNames='input_area' }}
+                {{#bmform/bm-label-form-container label='选择教室'}}
+                    {{bp-dropdown-simple
+                        classNames="mb-4"
+                        valueId=cur_room_id
+                        options=cur_rooms
+                        optionKey='title'}}
+                {{/bmform/bm-label-form-container}}
+                {{!-- {{#bp-layout direction="col" classNames='input_area' }}
                     {{bmform/bm-base-select selId="roomSel" type="id" chooseCourse=true selTitle="选择教室" options=cur_rooms curSelect=cur_room_id classNames="input-inline-select input_area area-margin-bottom"}}
-                {{/bp-layout}}
+                {{/bp-layout}} --}}
             {{/if}}
             {{#if (eq tmpSessionable "")}}
                 {{#bp-layout direction="row" classNames="line-list"}}

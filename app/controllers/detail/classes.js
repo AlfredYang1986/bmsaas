@@ -30,6 +30,7 @@ export default Controller.extend({
     techErrorFlag: false,
     dutyErrorFlag: false,
     formErrorFlag: false,
+    lessons: null,
 
     cur_idx: 0,
     // sessions: computed(function(){

@@ -7,7 +7,7 @@ export default Component.extend({
     bm_clsarr_service: service(),
     selectedRoom: '',
     showAddDlg: false,
-    refreshSelected: computed(function(){
+    refreshSelected: computed('selectedRoom', function(){
         this.refresh_date();
         return '';
     }),
@@ -26,6 +26,7 @@ export default Component.extend({
         this._super(...arguments);
         this.start_date = this.initStartDate();
         this.end_date = this.computedEndDate();
+        this.selectedRoom = this.rooms.firstObject.id;
     },
     initStartDate() {
         let tmp = new Date();
@@ -48,8 +49,8 @@ export default Component.extend({
         return tmp.getTime();
     },
     refresh_date() {
-        var sel = document.getElementById("roomselect");
-        this.set('selectedRoom', sel.options[sel.selectedIndex].value);
+        // var sel = document.getElementById("roomselect");
+        // this.set('selectedRoom', sel.options[sel.selectedIndex].value);
         this.bm_clsarr_service.set('roomid', this.selectedRoom);
         this.bm_clsarr_service.set('st', this.start_date);
         this.bm_clsarr_service.set('et', new Date(this.end_date + 24 * 60 * 60 * 1000).getTime());

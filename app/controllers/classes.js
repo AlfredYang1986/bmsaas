@@ -6,6 +6,14 @@ import EmberObject from '@ember/object';
 
 
 export default Controller.extend({
+    // init() {
+    //     this._super(...arguments);
+    //     this.model.courses.forEach(elem => {
+    //         elem.set("title", elem.sessioninfo.title);
+    //     });
+    //     console.log(this.model.courses)
+    // },
+
     bm_error_service: service(),
     toast: service(),
     toastOptions: EmberObject.create({
@@ -25,6 +33,7 @@ export default Controller.extend({
     cur_course_id: "",
     tmpClass: null,
     classTitle: "",
+    lessons: null,
 
     cur_idx: 0,
     cur_page: 1,
