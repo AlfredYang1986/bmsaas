@@ -126,11 +126,13 @@
 
 .stud_detail_other {
 	flex: 2;
-
+	// background: #fff;
 	.other_self {
 		background-color: transparent;
 		min-width: 608px;
-
+		.info-block-outer-color {
+			 background-color: #FFF;
+		}
 		.info-block-outer {
 			// background-color: #FFF;
 			margin-top: 8px;

@@ -422,6 +422,16 @@
 			margin: 0 24px 8px;
 			padding: 24px;
 			background-color: $color-neutral-N000;
+			.left-area {
+				margin-right: 56px;
+			}
+			.bp-dropdown-simple-title {
+				margin-bottom: 16px;
+				font-weight: bold;
+			}
+			.input-label-text {
+				font-weight: bold;
+			}
 
 			.course-reserve-modal-select {
 				select {

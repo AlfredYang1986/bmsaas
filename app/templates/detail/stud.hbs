@@ -17,7 +17,7 @@
             {{#tabs.tablist as |list|}}
                 <li class="nav-item">
                     {{#list.tab
-            selectPaneId='stud-info' 
+            selectPaneId='stud-info'
             onSelect=(action (mut selected))}}学生详情
                     {{/list.tab}}
                 </li>
@@ -33,9 +33,9 @@
 							<p class="basis_name">{{model.stud.name}}</p>
 							{{bmdetail/stud-basis-left-subtitle gender=model.stud.gender dob=model.stud.dob contentBelow="生"}}
 						{{/bp-layout }}
-						{{#bp-layout direction='col' main='center' classNames='stud_detail_other' }}
+						{{#bp-layout direction='col' classNames='stud_detail_other' }}
 							<div class="other_self">
-								{{#bp-layout direction='col'classNames="info-block-outer"}}
+								{{#bp-layout direction='col'classNames="info-block-outer info-block-outer-color"}}
 									<p class="parent_info">学生信息</p>
 									<div class="self_info">
 										{{bmdetail/stud-basis-info label="昵称" content=model.stud.nickname}}
@@ -45,7 +45,7 @@
 										{{bmdetail/stud-basis-info label="出生日期" content=(bmdob/bmdobformat model.stud.dob)}}
 									</div>
 								{{/bp-layout}}
-								{{#bp-layout direction='col' classNames="info-block-outer"}}
+								{{#bp-layout direction='col' classNames="info-block-outer info-block-outer-color"}}
 									<p class="parent_info">家长信息</p>
 									<div class="self_info">
 										{{bmdetail/stud-basis-info label="姓名" content=model.stud.guardians.firstObject.name}}
@@ -54,7 +54,7 @@
 										{{bmdetail/stud-basis-info label="微信" content=model.stud.guardians.firstObject.wechat}}
 									</div>
 								{{/bp-layout}}
-								{{#bp-layout direction='col' classNames="info-block-outer"}}
+								{{#bp-layout direction='col' classNames="info-block-outer info-block-outer-color"}}
 									<p class="parent_info">更多信息</p>
 									<div class="self_info">
 										{{bmdetail/stud-basis-info label="课程顾问" content=model.stud.teacher.name}}
@@ -62,7 +62,7 @@
 										{{bmdetail/stud-basis-info label="注册时间" content=(bmdob/bmdobformat model.stud.regDate)}}
 									</div>
 								{{/bp-layout}}
-								{{#bp-layout direction='col' classNames="info-block-outer"}}
+								{{#bp-layout direction='col' classNames="info-block-outer info-block-outer-color"}}
 									<p class="parent_info">关注者信息</p>
 									{{!-- {{#each model.stud.Applyees as |item|}}
 										{{bmdetail/stud-followers-info item=item}}
