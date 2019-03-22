@@ -37,8 +37,6 @@ export default Route.extend({
     },
     setupController(controller, model) {
         this._super(controller, model);
-        controller.set('cur_page_idx', 2);
-        controller.set('inputVal', false);
         if(model.stud.teacher) {
             controller.set("cur_tech_id", model.stud.teacher.get("id"));
         } else {

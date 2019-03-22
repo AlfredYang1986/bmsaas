@@ -5,9 +5,6 @@ import { inject as service } from '@ember/service';
 import EmberObject from '@ember/object';
 
 export default Controller.extend({
-    inputVal: false,
-    cur_page_idx: 0,
-    showAddCourse: false,
     headImg: 'https://bm-web.oss-cn-beijing.aliyuncs.com/avatar_defautl_96px%20%401x.png',
     provinces: A(['北京']),
     citys: A(['北京市']),
@@ -57,21 +54,6 @@ export default Controller.extend({
     origin:A([{name: '学员转介绍'}, {name: '电话推广'}, {name: '小程序'}, {name: '线下活动推广'}, {name: '其他'}]),
 
     actions: {
-        searchStud() {
-            this.set('inputVal', true);
-        },
-        addStudCourse() {
-            this.set('showAddCourse', true);
-        },
-        cancelAdd() {
-            this.set('showAddCourse', false)
-        },
-        successAdd() {
-
-        },
-        searchCourse() {
-
-        },
         cancelInputBtnClicked() {
             let that = this
             if(this.model.applyid != undefined) {
