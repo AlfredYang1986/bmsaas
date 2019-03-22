@@ -502,6 +502,9 @@
 	}
 }
 
-.bp-input.age-input .input-container input {
-	width: 40px;
+.bp-input.age-input .input-container {
+	// width: 40px;
+	input {
+		width: 40px;
+	}
 }

@@ -155,7 +155,10 @@ export default Controller.extend({
             tempClass.duties.then(() => {
                 let tmpArr = A([]);
                 for (let idx = 0; idx < tempClass.duties.length; idx++) {
-                    tmpArr.pushObject(tempClass.duties.objectAt(idx).teacher)
+                    // tmpArr.pushObject(tempClass.duties.objectAt(idx).teacher)
+                    let tempId = tempClass.duties.objectAt(idx).get("teacher").get("id")
+                    let tempObj = this.store.peekRecord("teacher", tempId)
+                    tmpArr.pushObject(tempObj)
                 }
 
                 that.set("tempTechs", tmpArr);

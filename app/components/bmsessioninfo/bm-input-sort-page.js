@@ -57,13 +57,13 @@ export default Component.extend({
             if(this.ageInput == true) {
                 this.set('ageInput', false);
                 this.set('ageDisableFlag', true);
-                this.set('session.alb', -1)
-                this.set('session.aub', -1)
+                this.set('session.alb', "-1")
+                this.set('session.aub', "-1")
             } else {
                 this.set('ageInput', true);
                 this.set('ageDisableFlag', false);
-                this.set('session.alb', 0)
-                this.set('session.aub', 0)
+                this.set('session.alb', "0")
+                this.set('session.aub', "0")
             }
         },
         lengthNoSelected() {
