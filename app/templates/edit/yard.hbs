@@ -39,30 +39,30 @@
 						classNames="area-margin-bottom"}}
 					{{bp-input
 						classNames="input_area area-margin-bottom yard-name"
-						block=true 
+						block=true
 						label='校区名称'
-						helpText='如:PRO科学空间站 海淀校区' 	
+						helpText='如:PRO科学空间站 海淀校区'
 						maxLength=20
 						value=model.yard.title
 						onChange=(action (mut model.yard.title))}}
-					{{bp-radio classNames='area-margin-bottom' title='校区属性' 
-							curValue=model.yard.attribute 
+					{{bp-radio classNames='area-margin-bottom' title='校区属性'
+							curValue=model.yard.attribute
 							radios=yardCandidate}}
-					{{bp-radio classNames='area-margin-bottom' title='校区场景' 
+					{{bp-radio classNames='area-margin-bottom' title='校区场景'
 							curValue=model.yard.scenario
 							radios=surroundings}}
 					{{bp-input
 						classNames='input_area area-margin-bottom yard-contact'
-						block=true 
+						block=true
 						label='客服联系电话'
 						maxLength=20
 						value=model.yard.serviceContact
 						onKeyPress=(action 'onKeyPress')}}
 					{{bp-input
 						classNames='input_area yard-contact'
-						block=true 
+						block=true
 						label='营业时间'
-						helpText='如:周一，周三至周五，周日 10:00~22:00' 	
+						helpText='如:周一，周三至周五，周日 10:00~22:00'
 						maxLength=30
 						value=model.yard.openTime}}
 				{{/bp-layout}}
@@ -77,7 +77,7 @@
 					<p class="edit_title">校区图片</p>
 					<p class="alt-edit-title">校区图片</p>
 					<span class='edit_sub_title'>图片的区域名称将被展示在小程序中</span>
-					<span class='edit_sub_title'>每张图片小于300KB，至多上传9项</span>
+					<span class='edit_sub_title'>每张图片小于1MB，至多上传9项</span>
 					<div class='line_conatainer_warp'>
 						{{#each tempYardImgs as |item|}}
 							{{bmcom/bm-img-uploader needTag=true canEdit=true canEditTag=true canDeleteImg=false canDeleteObj=true imgObj=item img=item.img tag=item.tag onDeleteObj=(action "deleteYardImg") classNames='alt-yard-edit-tag-img-adjust'}}
@@ -114,7 +114,7 @@
 			<section id="yard-faclity" class="yard-infos yard_section">
 				<div class="edit_panel edit_third_panel">
 					<p class="edit_title">校区设施</p>
-					{{bp-checkbox classNames='school-facilities' vertical=false curValues=model.yard.facilities 
+					{{bp-checkbox classNames='school-facilities' vertical=false curValues=model.yard.facilities
 							checkboxs=facilities}}
 				</div>
 				<div class="edit_panel_bottom_btn_container">
@@ -130,7 +130,7 @@
 					<p class="edit_title">校区认证</p>
 					<span class='edit_sub_title'>请上传您获得的相关资质认证</span>
 					<span class='edit_sub_title'>如：国际儿童场地友好性证明</span>
-					<span class='edit_sub_title'>每张图片小于300KB，至多上传8项</span>
+					<span class='edit_sub_title'>每张图片小于1MB，至多上传8项</span>
 					{{#bp-layout }}
 						<div class='line_conatainer_warp'>
 							{{#each tempCertImgs as |item|}}

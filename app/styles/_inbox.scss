@@ -149,6 +149,88 @@
             background: #F7F8FA;
             height: 464px;
             margin: 8px 0;
+            padding: 8px;
+            .table-area {
+                padding: 16px 24px;
+                background: #fff;
+                height: 448px;
+                width: 736px;
+                overflow-y: auto;
+                overflow-x: hidden;
+                .co_table_head {
+                    border: none;
+                    background: transparent;
+                    width: 100%;
+                    border-collapse: collapse;
+                    border-spacing: 0;
+                    table-layout: fixed;
+                    .ib_table_item {
+                        padding: 0px 24px 8px 24px;
+                        font-family: PingFangSC-Regular;;
+                        font-size: 12px;
+                        color: #6B778C;
+                        line-height: 16px;
+
+                        min-width: 100px;
+                    }
+
+                    .ib_table_content_item {
+                        padding: 8px 24px;
+                        // white-space: nowrap;
+                        // text-overflow: ellipsis;
+                        // overflow: hidden;
+                        // @extend %font-main-text;
+                        font-family: PingFangSC-Regular;
+                        text-align: left;
+
+                        max-width: 200px;
+
+                        .table-img {
+                            width: 24px;
+                            height: 24px;
+                            border-radius: 50%;
+                        }
+
+                        span.dealed {
+                            @extend %font-help-text;
+                        }
+                        .ib_table_content_btn {
+                            border: none;
+                            background: #80AEFF;
+                            border-radius: 4px;
+                            padding: 6px 12px;
+
+                            font-family: $font-nav-acc;
+                            font-size: 14px;
+                            color: #FFFFFF;
+                            letter-spacing: 0;
+                            text-align: center;
+                        }
+                        .ib_table_content_link_btn {
+                            border: none;
+                            background: transparent;
+                            border-radius: 4px;
+                            padding: 0;
+                            margin: 6px 0;
+                            font-family: $font-nav-acc;
+                            font-size: 14px;
+                            color: #80AEFF;
+                            letter-spacing: 0;
+                            text-align: center;
+
+                            &:active{
+                                background-color: transparent;
+                                border-color: transparent;
+                                color: #80AEFF;
+                            }
+                        }
+                    }
+                }
+                .tr-height {
+                    height: 48px;
+                    border-bottom: 1px solid #F7F8FA;
+                }
+            }
         }
         .count {
             font-family: PingFangSC-Regular;
@@ -156,7 +238,7 @@
             color: #6B778C;
             text-align: left;
         }
-        input{
+        input[type=text]{
             width: 318px;
             height: 32px;
             margin: 0;
@@ -684,8 +766,6 @@
     border-spacing: 0;
     table-layout: fixed;
 
-    .ib_table_title {
-    }
     .ib_table_item {
         padding: 0px 24px 8px 24px;
         font-family: PingFangSC-Regular;;

@@ -8,7 +8,7 @@ export default Component.extend({
     studs: computed("refreshFlag", 'type', function() {
         let result;
         if(this.type == 'searchName') {
-            result = this.store.query('student', {'page[number]': 1, 'page[size]': 20, 'status': 0, 'contact': this.searchContent});
+            result = this.store.query('student', {'page[number]': this.pagenum, 'page[size]': 20, 'status': 0, 'contact': this.searchContent});
             result.then(() => {
                 let page = Number.parseInt(localStorage.getItem('students'));
                 this.onRefreshDataComplete(page)
@@ -16,7 +16,7 @@ export default Component.extend({
                 this.bm_error_service.handleError(error)
             })
         } else {
-            result = this.store.query('student', { 'page[number]': 1, 'page[size]': 20, 'status': 0, "brand-id": localStorage.getItem("brandid")});
+            result = this.store.query('student', { 'page[number]': this.pagenum, 'page[size]': 20, 'status': 0, "brand-id": localStorage.getItem("brandid")});
             result.then(() => {
                 let page = Number.parseInt(localStorage.getItem('students'));
                 this.onRefreshDataComplete(page)

@@ -36,7 +36,7 @@
 							{{#if studList}}
 								{{#bp-layout direction="row" classNames="stud-list-area" }}
 									<table class='ib_table_head_pt stud_list_table'>
-										{{bmtable/bm-table-inner type="srarchptStuds" listData=studs onRadioChange=(action 'radioChange')}}
+										{{bmtable/bm-table-inner type="srarchStuds" listData=studs onRadioChange=(action 'radioChange')}}
 									</table>
 								{{/bp-layout}}
 							{{else}}
@@ -53,7 +53,6 @@
 						{{#bp-layout direction='row' classNames='add-stud'}}
 							<p>没有要添加的学员？</p>
 							<p class="link"  {{action 'addPtStudModal'}}>添加学生</p>
-							{{log cur_page_idx}}
 							{{!-- {{#bp-button type="primary" onClick=(action (mut cur_page_idx 1))}}下一步{{/bp-button}} --}}
 							<button type="button" name="button" class="p-btn primary" {{action (mut cur_page_idx) 1}}>下一步</button>
 						{{/bp-layout}}
@@ -96,9 +95,9 @@
 							<div class="other_self">
 								{{#bp-layout direction='col'classNames="info-block-outer"}}
 									<div class="self_info">
-										{{bmdetail/stud-basis-info label="手机号" content='tel'}}
-										{{bmdetail/stud-basis-info label="性别" content="男"}}
-										{{bmdetail/stud-basis-info label="年龄" content='dob'}}
+										{{bmdetail/stud-basis-info label="手机号" content=studInfo.guardians.firstObject.contact}}
+										{{bmdetail/stud-basis-info label="性别" content=studInfo.gender}}
+										{{bmdetail/stud-basis-info label="年龄" content=studInfo.dob}}
 									</div>
 								{{/bp-layout}}
 							</div>
@@ -215,19 +214,93 @@
 		cancelbtncss='exp-modal-cancel'
 		canceltext='取消'
 		successtext='确定'
-		onCancelBtnClicked=(action 'cancelAdd')
-		onSuccessBtnClicked=(action 'successAdd')}}
+		onCancelBtnClicked=(action 'cancelCourse')
+		onSuccessBtnClicked=(action 'successCourse')}}
 		<div class="add-pt-stud-modal">
 			{{#bp-layout direction='col' main='center'}}
 				<p class="title">选择课程</p>
 				{{#bp-layout direction='row' classNames='search'}}
-					{{input type="text" name="" value=contact class="search-stud-course" placeholder="搜索"}}
+					{{input type="text" name="" value=courseName class="search-stud-course" placeholder="搜索"}}
 					<i class="icon-search" {{action 'searchCourse' argument}}></i>
 				{{/bp-layout}}
 				{{#bp-layout direction='col' classNames='course-list'}}
+					{{#bp-layout direction='col' classNames='table-area'}}
+						<table class='co_table_head'>
+							<tr class='ib_table_title tr-height'>
+								{{#each model.courseTitle as |item|}}
+									<th class='ib_table_item'>{{item}}</th>
+								{{/each}}
+							</tr>
+						</table>
+						<table class='co_table_head'>
+							{{bmtable/bm-table-inner type="courseList" listData=model.courseList onCheckChange=(action 'checkChange')}}
+							{{log 222}}
+							{{log courseList}}
+						</table>
+						{{!-- {{bmtable/bm-table-inner type="studsList" listData=studs onClickInner=(action "courseClicked")}} --}}
+						{{!-- {{bmtable/bm-table-inner type="studsList" listData=courseList}} --}}
+					{{/bp-layout}}
 
 				{{/bp-layout}}
 				<p class="count">已选0项</p>
+			{{/bp-layout}}
+		</div>
+{{/bmcom/bm-modal-container}}
+{{#bmcom/bm-modal-container title="" mswitch=showAddStud
+		type='addPtStud'
+		successbtncss='exp-modal-confirm'
+		cancelbtncss='exp-modal-cancel'
+		canceltext='取消'
+		successtext='手动添加'
+		onCancelBtnClicked=(action 'cancelAdd')
+		onSuccessBtnClicked=(action 'successAdd')}}
+		<div class="add-pt-stud-modal">
+			{{#bp-layout direction='col'}}
+				<p class="title">添加学生</p>
+				<p class="title">学生信息</p>
+				{{#bp-layout direction='row' main='between'}}
+					{{#bp-layout direction='row' classNames='group'}}
+						<p class="subtitle">学生姓名</p>
+						{{bmform/bm-edit-line notitlt=true  inputVal=model.stud.name classNames='input_area area-margin-bottom'}}
+					{{/bp-layout}}
+					{{#bp-layout direction='row' classNames='group'}}
+						<p class="subtitle">就读学校</p>
+						{{bmform/bm-edit-line notitlt=true  inputVal=model.stud.school classNames='input-middle'}}
+					{{/bp-layout}}
+				{{/bp-layout}}
+				{{#bp-layout direction='row' main='between'}}
+					{{#bp-layout direction='row' classNames='group'}}
+						<p class="subtitle">性别</p>
+						{{bmcom/bm-radio-inline cur_idx=sex_idx judge=sex titles=genderCheck}}
+					{{/bp-layout}}
+					{{#bp-layout direction='row' classNames='group'}}
+						<p class="subtitle">年级</p>
+						{{bmform/bm-base-select selId='sourceWay' selTitle="" options=grade curSelect=model.stud.grade classNames="grade-select"}}
+					{{/bp-layout}}
+				{{/bp-layout}}
+				{{#bp-layout direction='row' classNames='group bottom'}}
+					<p class="subtitle">出生日期</p>
+					{{#bp-layout direction="row" split=false classNames='date_choose' }}
+						{{bmform/bm-lay-date inputVal=model.stud.dob}}
+					{{/bp-layout}}
+				{{/bp-layout}}
+				<p class="title">家长信息</p>
+					{{#bp-layout direction='row' main='between'}}
+						{{#bp-layout direction='row' classNames='group'}}
+							<p class="subtitle">姓名</p>
+							{{bmform/bm-edit-line notitlt=true  inputVal=item.name classNames='input_area area-margin-bottom'}}
+						{{/bp-layout}}
+						{{#bp-layout direction='row' classNames='group'}}
+							<p class="subtitle">联系方式</p>
+							{{bmform/bm-edit-line notitlt=true numberInput=true maxlength="11" inputVal=item.contact classNames='input-middle'}}
+						{{/bp-layout}}
+					{{/bp-layout}}
+					{{#bp-layout direction='row' main='between'}}
+						{{#bp-layout direction='row' classNames='group'}}
+							<p class="subtitle">关系</p>
+							{{bmcom/bm-radio-inline cur_idx=rela_idx titles=relaChecked judge=rela}}
+						{{/bp-layout}}
+					{{/bp-layout}}
 			{{/bp-layout}}
 		</div>
 {{/bmcom/bm-modal-container}}
