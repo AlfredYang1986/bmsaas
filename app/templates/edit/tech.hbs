@@ -69,13 +69,13 @@
 					{{/bp-layout}}
 					{{bp-input
 						classNames='mb-3'
-						type='number'
 						block=true
 						label='手机号'
 						helpText='手机号将作为老师端账号，请确保正确无误'
 						maxLength=11
 						value=model.tech.contact 
-						onChange=(action (mut model.tech.contact ))}}
+						onChange=(action (mut model.tech.contact ))
+						onKeyPress=(action 'onKeyPress')}}
 					{{bp-input
 						classNames='mb-3'
 						block=true

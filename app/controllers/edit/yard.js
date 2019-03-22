@@ -98,6 +98,20 @@ export default Controller.extend({
 		deleteCertImg(param) {
 			this.tempCertImgs.removeObject(param);
 		},
+		onKeyPress() {
+            let regex = new RegExp(/^[0-9]+(.[0-9]{2})?$/);
+            if(regex.test(String.fromCharCode(event.keyCode))) {
+                return;
+            } else {
+                if (event && event.preventDefault){
+                    //非IE浏览器
+                    event.preventDefault();
+                } else {
+                    //IE浏览器
+                    window.event.returnValue = false;
+                }
+            }
+        },
 	},
 
 	saveYard() {

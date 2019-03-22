@@ -11,7 +11,8 @@
                     prepend='岁'
                     prependDirection='right'
                     value=session.alb
-                    onChange=(action (mut session.alb))}}
+                    onChange=(action (mut session.alb))
+                    onKeyPress=(action 'onKeyPress')}}
                 <span class="alt_course_des">至</span>
                 {{bp-input
                     classNames="age-input"
@@ -20,7 +21,8 @@
                     prepend='岁'
                     prependDirection='right'
                     value=session.aub
-                    onChange=(action (mut session.aub))}}
+                    onChange=(action (mut session.aub))
+                    onKeyPress=(action 'onKeyPress')}}
                 {{#if ageInput}}
                     {{!-- {{#bp-layout direction="row" classNames="alt-course-age-group"}}
                         {{bmform/bm-edit-line haveHeader=false ageInput=true inputVal=session.alb maxlength="2" classNames=''}}

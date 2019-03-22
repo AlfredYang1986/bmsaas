@@ -72,16 +72,12 @@ export default Component.extend({
                 // this.set('cur_time', 0)
             }
         },
-        onKeyPress(value) {
-            debugger
+        onKeyPress() {
             let regex = new RegExp(/^[0-9]+(.[0-9]{2})?$/);
-            // console.log(value)
-            // console.log(event)
-            // debugger
-            if(regex.test(value)) {
+            if(regex.test(String.fromCharCode(event.keyCode))) {
                 return;
             } else {
-                if (event && event.preventDefault ){
+                if (event && event.preventDefault){
                     //非IE浏览器
                     event.preventDefault();
                 } else {
@@ -89,9 +85,6 @@ export default Component.extend({
                     window.event.returnValue = false;
                 }
             }
-            // if(regex.test(value)) {
-
-            // };
         },
     }
 });

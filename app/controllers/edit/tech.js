@@ -6,9 +6,9 @@ import { A } from '@ember/array';
 export default Controller.extend({
     bm_error_service: service(),
 
-    provinces: A(['北京']),
-    citys: A(['北京市']),
-    areas: A(["密云区", "延庆区", "朝阳区", "丰台区", "石景山区", "海淀区", "门头沟区", "房山区", "通州区", "顺义区", "昌平区", "大兴区", "怀柔区", "平谷区", "东城区", "西城区"]),
+    provinces: A([{name: '北京'}]),
+    citys: A([{name: '北京市'}]),
+    areas: A([{name: '密云区'}, {name: '延庆区'}, {name: '朝阳区'}, {name: '丰台区'}, {name: '石景山区'}, {name: '海淀区'}, {name: '门头沟区'}, {name: '房山区'}, {name: '房山区'}, {name: '通州区'}, {name: '顺义区'}, {name: '昌平区'}, {name: '大兴区'}, {name: '怀柔区'}, {name: '平谷区'}, {name: '东城区'}, {name: '西城区'}]),
 
     sex_idx: 0,
     genderCheck: A(['男', '女']),
@@ -76,6 +76,20 @@ export default Controller.extend({
                 // this.set('model.tech.jobTitle', sel.options[sel.selectedIndex].value);
                 this.model.tech.set('jobTitle', sel.options[sel.selectedIndex].value);
             }
-        }
+        },
+        onKeyPress() {
+            let regex = new RegExp(/^[0-9]+(.[0-9]{2})?$/);
+            if(regex.test(String.fromCharCode(event.keyCode))) {
+                return;
+            } else {
+                if (event && event.preventDefault){
+                    //非IE浏览器
+                    event.preventDefault();
+                } else {
+                    //IE浏览器
+                    window.event.returnValue = false;
+                }
+            }
+        },
     },
 });
