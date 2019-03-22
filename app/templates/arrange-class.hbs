@@ -37,22 +37,52 @@
                     </div>
                 {{/if}}
                 {{#if roomErrorFlag}}
-                    {{#bp-layout direction="col" classNames='input_area' }}
+                    {{#bmform/bm-label-form-container label='选择教室'}}
+                        {{bp-dropdown-simple
+                            classNames="mb-4 error-border"
+                            valueId=cur_room_id
+                            options=model.rooms
+                            optionKey='title'}}
+                    {{/bmform/bm-label-form-container}}
+                    {{!-- {{#bp-layout direction="col" classNames='input_area' }}
                         {{bmform/bm-base-select selId="roomSel" type="id" chooseCourse=true selTitle="选择教室" options=model.rooms curSelect=cur_room_id classNames="error-border input-inline-select input_area area-margin-bottom"}}
-                    {{/bp-layout}}
+                    {{/bp-layout}} --}}
                 {{else}}
-                    {{#bp-layout direction="col" classNames='input_area' }}
+                    {{#bmform/bm-label-form-container label='选择教室'}}
+                        {{bp-dropdown-simple
+                            classNames="mb-4"
+                            valueId=cur_room_id
+                            options=model.rooms
+                            optionKey='title'}}
+                    {{/bmform/bm-label-form-container}}
+                    {{!-- {{#bp-layout direction="col" classNames='input_area' }}
                         {{bmform/bm-base-select selId="roomSel" type="id" chooseCourse=true selTitle="选择教室" options=model.rooms curSelect=cur_room_id classNames="input-inline-select input_area area-margin-bottom"}}
-                    {{/bp-layout}}
+                    {{/bp-layout}} --}}
                 {{/if}}
                 {{#if classErrorFlag}}
-                    {{#bp-layout direction="col" classNames='input_area' }}
+                    {{#bmform/bm-label-form-container label='排课班级'}}
+                        {{bp-dropdown-simple
+                            classNames="mb-4 error-border"
+                            valueId=cur_class_id
+                            options=model.classes
+                            optionKey='classTitle'
+                            onChange=(action "afterClassChange")}}
+                    {{/bmform/bm-label-form-container}}
+                    {{!-- {{#bp-layout direction="col" classNames='input_area' }}
                         {{bmform/bm-base-select selId="classSel" handleChangeFlag=true handleChange=(action "afterClassChange") type="id" chooseClass=true selTitle="排课班级" options=model.classes curSelect=cur_class_id classNames="error-border input-inline-select input_area area-margin-bottom"}}
-                    {{/bp-layout}}
+                    {{/bp-layout}} --}}
                 {{else}}
-                    {{#bp-layout direction="col" classNames='input_area' }}
+                    {{#bmform/bm-label-form-container label='排课班级'}}
+                        {{bp-dropdown-simple
+                            classNames="mb-4"
+                            valueId=cur_class_id
+                            options=model.classes
+                            optionKey='classTitle'
+                            onChange=(action "afterClassChange")}}
+                    {{/bmform/bm-label-form-container}}
+                    {{!-- {{#bp-layout direction="col" classNames='input_area' }}
                         {{bmform/bm-base-select selId="classSel" handleChangeFlag=true handleChange=(action "afterClassChange") type="id" chooseClass=true selTitle="排课班级" options=model.classes curSelect=cur_class_id classNames="input-inline-select input_area area-margin-bottom"}}
-                    {{/bp-layout}}
+                    {{/bp-layout}} --}}
                 {{/if}}
                 {{#if (eq tmpSessionable "")}}
                     {{#bp-layout direction="row" classNames="line-list"}}
@@ -86,22 +116,51 @@
                     {{/bp-layout}}
                 {{/if}}
                 {{#if periodErrorFlag}}
-                    {{#bp-layout direction="col" classNames='input_area' }}
+                    {{#bmform/bm-label-form-container label='课时/次'}}
+                        {{bp-dropdown-simple
+                            classNames="mb-4 error-border"
+                            choosedValue=cur_course_time
+                            options=courseTimeArr
+                            optionKey='name'}}
+                    {{/bmform/bm-label-form-container}}
+                    {{!-- {{#bp-layout direction="col" classNames='input_area' }}
                         {{bmform/bm-base-select selId="courseTimeSel" type="number" selTitle="课时/次" options=courseTimeArr curSelect=cur_course_time classNames="error-border input-inline-select input_area area-margin-bottom"}}
-                    {{/bp-layout}}
+                    {{/bp-layout}} --}}
                 {{else}}
-                    {{#bp-layout direction="col" classNames='input_area' }}
+                    {{#bmform/bm-label-form-container label='课时/次'}}
+                        {{bp-dropdown-simple
+                            classNames="mb-4"
+                            choosedValue=cur_course_time
+                            options=courseTimeArr
+                            optionKey='name'}}
+                    {{/bmform/bm-label-form-container}}
+                    {{!-- {{#bp-layout direction="col" classNames='input_area' }}
                         {{bmform/bm-base-select selId="courseTimeSel" type="number" selTitle="课时/次" options=courseTimeArr curSelect=cur_course_time classNames="input-inline-select input_area area-margin-bottom"}}
-                    {{/bp-layout}}
+                    {{/bp-layout}} --}}
                 {{/if}}
+                {{log tempTechs}}
                 {{#if techErrorFlag}}
-                    {{#bp-layout direction="col" classNames='input_area' }}
+                    {{#bmform/bm-label-form-container label='选择教师'}}
+                        {{bp-dropdown-simple
+                            classNames="mb-4 error-border"
+                            valueId=cur_tech_id
+                            options=tempTechs
+                            optionKey='name'}}
+                    {{/bmform/bm-label-form-container}}
+                    {{!-- {{#bp-layout direction="col" classNames='input_area' }}
                         {{bmform/bm-base-select selId="techSel" type="id" idType=true selTitle="选择教师" options=tempTechs curSelect=cur_tech_id classNames="error-border input-inline-select input_area area-margin-bottom"}}
-                    {{/bp-layout}}
+                    {{/bp-layout}} --}}
                 {{else}}
-                    {{#bp-layout direction="col" classNames='input_area' }}
+                    {{#bmform/bm-label-form-container label='选择教师'}}
+                        {{bp-dropdown-simple
+                            classNames="mb-4"
+                            valueId=cur_tech_id
+                            options=tempTechs
+                            optionKey='name'}}
+                    {{/bmform/bm-label-form-container}}
+                    {{!-- {{#bp-layout direction="col" classNames='input_area' }}
                         {{bmform/bm-base-select selId="techSel" type="id" idType=true selTitle="选择教师" options=tempTechs curSelect=cur_tech_id classNames="input-inline-select input_area area-margin-bottom"}}
-                    {{/bp-layout}}
+                    {{/bp-layout}} --}}
                 {{/if}}
             {{/bp-layout}}
         </div>

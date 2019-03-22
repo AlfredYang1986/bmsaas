@@ -35,40 +35,70 @@
                     {{/bp-layout}}
 
                     {{#bp-layout direction='row' classNames="line-list"}}
-                        <p class="course-reserve-label select-title">参与内容</p>
+                        {{!-- <p class="course-reserve-label select-title">参与内容</p> --}}
                         {{#if noSr}}
-                            <select class="course-reserve-modal-select error-border" id='reservableselect' name="" onChange={{action 'reservableChanged'}}>
+                            {{#bmform/bm-label-form-container label='参与内容'}}
+                                {{bp-dropdown-simple
+                                    classNames="error-border"
+                                    valueId=selectedReservable
+                                    options=expSession
+                                    optionKey='title'
+                                    onChange=(action 'reservableChanged')}}
+                            {{/bmform/bm-label-form-container}}
+                            {{!-- <select class="course-reserve-modal-select error-border" id='reservableselect' name="" onChange={{action 'reservableChanged'}}>
                                <option value="">请选择参与内容</option>
                                {{#each exp as |item|}}
                                    <option value={{item.id}}>{{item.sessioninfo.title}}</option>
                                {{/each}}
-                            </select>
+                            </select> --}}
                         {{else}}
-                            <select class="course-reserve-modal-select" id='reservableselect' name="" onChange={{action 'reservableChanged'}}>
+                            {{#bmform/bm-label-form-container label='参与内容'}}
+                                {{bp-dropdown-simple
+                                    classNames=""
+                                    valueId=selectedReservable
+                                    options=expSession
+                                    optionKey='title'
+                                    onChange=(action 'reservableChanged')}}
+                            {{/bmform/bm-label-form-container}}
+                            {{!-- <select class="course-reserve-modal-select" id='reservableselect' name="" onChange={{action 'reservableChanged'}}>
                                <option value="">请选择参与内容</option>
                                {{#each exp as |item|}}
                                    <option value={{item.id}}>{{item.sessioninfo.title}}</option>
                                {{/each}}
-                           </select>
+                           </select> --}}
                         {{/if}}
                     {{/bp-layout}}
 
                     {{#bp-layout direction='row' classNames="line-area"}}
-                        <p class="course-reserve-label select-title">场次安排</p>
+                        {{!-- <p class="course-reserve-label select-title">场次安排</p> --}}
                         {{#if noSy}}
-                            <select class="course-reserve-modal-select error-border" id='yardselect' name="" onChange={{action 'yardChanged'}}>
+                            {{#bmform/bm-label-form-container label='场次安排'}}
+                                {{bp-dropdown-simple
+                                    classNames="error-border"
+                                    valueId=selectedYard
+                                    options=expField
+                                    optionKey='title'}}
+                            {{/bmform/bm-label-form-container}}
+                            {{!-- <select class="course-reserve-modal-select error-border" id='yardselect' name="" onChange={{action 'yardChanged'}}>
                                 <option value="" disabled selected hidden>请选择场次安排</option>
                                 {{#each sr as |item|}}
                                     <option value={{item.id}}>{{bmdob/bmdobformat item.startDate}} {{bmdob/bmdob2clocktime item.startDate}}-{{bmdob/bmdob2clocktime item.endDate}} {{item.yard.title}}</option>
                                 {{/each}}
-                            </select>
+                            </select> --}}
                         {{else}}
-                            <select class="course-reserve-modal-select" id='yardselect' name="" onChange={{action 'yardChanged'}}>
+                            {{#bmform/bm-label-form-container label='场次安排'}}
+                                {{bp-dropdown-simple
+                                    classNames=""
+                                    valueId=selectedYard
+                                    options=expField
+                                    optionKey='title'}}
+                            {{/bmform/bm-label-form-container}}
+                            {{!-- <select class="course-reserve-modal-select" id='yardselect' name="" onChange={{action 'yardChanged'}}>
                                 <option value="" disabled selected hidden>请选择场次安排</option>
                                 {{#each sr as |item|}}
                                     <option value={{item.id}}>{{bmdob/bmdobformat item.startDate}} {{bmdob/bmdob2clocktime item.startDate}}-{{bmdob/bmdob2clocktime item.endDate}} {{item.yard.title}}</option>
                                 {{/each}}
-                            </select>
+                            </select> --}}
                         {{/if}}
                     {{/bp-layout}}
 
@@ -119,40 +149,70 @@
                     {{/bp-layout}}
 
                     {{#bp-layout direction='col' classNames="line-list"}}
-                        <p class="course-reserve-label select-title">参与内容</p>
+                        {{!-- <p class="course-reserve-label select-title">参与内容</p> --}}
                         {{#if noSa}}
-                            <select class="course-reserve-modal-select error-border" id='actselect' name="" onChange={{action 'activityChanged'}}>
+                            {{#bmform/bm-label-form-container label='参与内容'}}
+                                {{bp-dropdown-simple
+                                    classNames="error-border"
+                                    valueId=selectedActivity
+                                    options=actvSession
+                                    optionKey='title'
+                                    onChange=(action 'activityChanged')}}
+                            {{/bmform/bm-label-form-container}}
+                            {{!-- <select class="course-reserve-modal-select error-border" id='actselect' name="" onChange={{action 'activityChanged'}}>
                                <option value="">请选择参与内容</option>
                                {{#each actv as |item|}}
                                    <option value={{item.id}}>{{item.sessioninfo.title}}</option>
                                {{/each}}
-                            </select>
+                            </select> --}}
                         {{else}}
-                            <select class="course-reserve-modal-select" id='actselect' name="" onChange={{action 'activityChanged'}}>
+                            {{#bmform/bm-label-form-container label='参与内容'}}
+                                {{bp-dropdown-simple
+                                    classNames=""
+                                    valueId=selectedActivity
+                                    options=actvSession
+                                    optionKey='title'
+                                    onChange=(action 'activityChanged')}}
+                            {{/bmform/bm-label-form-container}}
+                            {{!-- <select class="course-reserve-modal-select" id='actselect' name="" onChange={{action 'activityChanged'}}>
                                <option value="">请选择参与内容</option>
                                {{#each actv as |item|}}
                                    <option value={{item.id}}>{{item.sessioninfo.title}}</option>
                                {{/each}}
-                            </select>
+                            </select> --}}
                         {{/if}}
                     {{/bp-layout}}
 
                     {{#bp-layout direction='col' classNames="line-area"}}
-                        <p class="course-reserve-label select-title">场次安排</p>
+                        {{!-- <p class="course-reserve-label select-title">场次安排</p> --}}
                         {{#if noSs}}
-                            <select class="course-reserve-modal-select error-border" id='sessionselect' name="" onChange={{action 'sessionChanged'}}>
+                            {{#bmform/bm-label-form-container label='场次安排'}}
+                                {{bp-dropdown-simple
+                                    classNames="error-border"
+                                    valueId=selectedSession
+                                    options=actvField
+                                    optionKey='title'}}
+                            {{/bmform/bm-label-form-container}}
+                            {{!-- <select class="course-reserve-modal-select error-border" id='sessionselect' name="" onChange={{action 'sessionChanged'}}>
                               <option value="" disabled selected hidden>请选择场次安排</option>
                               {{#each sa as |item|}}
                                   <option value={{item.id}}>{{bmdob/bmdobformat item.startDate}} {{bmdob/bmdob2clocktime item.startDate}}-{{bmdob/bmdob2clocktime item.endDate}} {{item.yard.title}}</option>
                               {{/each}}
-                            </select>
+                            </select> --}}
                         {{else}}
-                            <select class="course-reserve-modal-select" id='sessionselect' name="" onChange={{action 'sessionChanged'}}>
+                            {{#bmform/bm-label-form-container label='场次安排'}}
+                                {{bp-dropdown-simple
+                                    classNames=""
+                                    valueId=selectedSession
+                                    options=actvField
+                                    optionKey='title'}}
+                            {{/bmform/bm-label-form-container}}
+                            {{!-- <select class="course-reserve-modal-select" id='sessionselect' name="" onChange={{action 'sessionChanged'}}>
                               <option value="" disabled selected hidden>请选择场次安排</option>
                               {{#each sa as |item|}}
                                   <option value={{item.id}}>{{bmdob/bmdobformat item.startDate}} {{bmdob/bmdob2clocktime item.startDate}}-{{bmdob/bmdob2clocktime item.endDate}} {{item.yard.title}}</option>
                               {{/each}}
-                            </select>
+                            </select> --}}
                         {{/if}}
 
                     {{/bp-layout}}

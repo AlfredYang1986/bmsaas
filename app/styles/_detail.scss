@@ -1031,3 +1031,23 @@ span.list-status {
         padding: 0;
     }
 }
+
+.error-border {
+    div.bp-dropdown {
+        border: 1px solid #DE350B;
+    }
+    &.bp-input .input-container input.input-default {
+        border: 1px solid #DE350B;
+    } 
+}
+
+
+.bp-input .input-container input:disabled {
+    color: transparent;
+}
+
+.dropdown-button:disabled {
+    p {
+        color: transparent;
+    }
+}

@@ -50,13 +50,13 @@ export default Component.extend({
             if(this.ageInput == true) {
                 this.set('ageInput', false);
                 this.set('ageDisableFlag', true);
-                this.set('session.alb', -1)
-                this.set('session.aub', -1)
+                this.set('session.alb', "-1")
+                this.set('session.aub', "-1")
             } else {
                 this.set('ageInput', true);
                 this.set('ageDisableFlag', false);
-                this.set('session.alb', 0)
-                this.set('session.aub', 0)
+                this.set('session.alb', "0")
+                this.set('session.aub', "0")
             }
         },
         lengthNoSelected() {
@@ -72,12 +72,16 @@ export default Component.extend({
                 // this.set('cur_time', 0)
             }
         },
-        onKeyPress() {
+        onKeyPress(value) {
+            // debugger
             let regex = new RegExp(/^[0-9]+(.[0-9]{2})?$/);
-            if(regex.test(String.fromCharCode(event.keyCode))) {
+            // console.log(value)
+            // console.log(event)
+            // debugger
+            if(regex.test(value)) {
                 return;
             } else {
-                if ( event && event.preventDefault ){
+                if (event && event.preventDefault ){
                     //非IE浏览器
                     event.preventDefault();
                 } else {
