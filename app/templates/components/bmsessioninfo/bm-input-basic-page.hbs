@@ -92,6 +92,7 @@
                     prependDirection='right'
                     value=session.alb
                     onChange=(action (mut session.alb))}}
+                    {{!-- onKeyDown=(action 'onKeyPress') --}}
                 <span class="alt_course_des">至</span>
                 {{bp-input
                     classNames="age-input"
@@ -101,6 +102,7 @@
                     prependDirection='right'
                     value=session.aub
                     onChange=(action (mut session.aub))}}
+                    {{!-- onKeyDown=(action 'onKeyPress') --}}
                 {{#if ageInput}}
                     <div class="course-edit-check course-edit-check-age">
                         {{#bmform/age-select-input alb=session.alb aub=session.aub ageSelect=(action 'ageSelect')}}

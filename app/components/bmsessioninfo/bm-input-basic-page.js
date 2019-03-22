@@ -73,7 +73,7 @@ export default Component.extend({
             }
         },
         onKeyPress(value) {
-            // debugger
+            debugger
             let regex = new RegExp(/^[0-9]+(.[0-9]{2})?$/);
             // console.log(value)
             // console.log(event)
