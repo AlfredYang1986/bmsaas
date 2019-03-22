@@ -5,8 +5,6 @@ import { inject as service } from '@ember/service';
 import EmberObject from '@ember/object';
 
 export default Controller.extend({
-    inputVal: true,
-    cur_page_idx: 0,
     headImg: 'https://bm-web.oss-cn-beijing.aliyuncs.com/avatar_defautl_96px%20%401x.png',
     provinces: A(['北京']),
     citys: A(['北京市']),

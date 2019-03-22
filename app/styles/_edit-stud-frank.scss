@@ -56,19 +56,145 @@
         height: calc(100vh - 64px);
         margin-bottom: 0;
 		.add-pt-stud-height {
-			height: calc(100vh - 138px);
+			height: calc(100vh - 140px);
 		}
 		.add-pt-stud-bottom {
 			margin-bottom: 8px;
 		}
+		.add-pt-stud-bottom {
+			padding-bottom: 24px;
+		}
         .add-pt-stud {
-            padding: 24px 40px;
+            padding-left: 40px;
+			padding-right: 40px;
             // min-height: 600px;
             // margin: 0;
             background: #ffffff;
         }
+		.stud_detail {
+			.stud_detail_other {
+				// height: calc(100vh - 64px);
+				background: #fff;
+			}
+			.stud_detail_other_height {
+				padding: 24px;
+				margin-bottom: 43px;
+				height: calc(100vh - 296px);
+				.stud_course_area {
+					margin-top: 24px;
+					margin-bottom: 32px;
+					background: #F7F8FA;
+					border-radius: 4px;
+					height: 344px;
+					width: 100%;
+					.note {
+						font-family: PingFangSC-Regular;
+						font-size: 14px;
+						color: #6B778C;
+						text-align: left;
+						line-height: 20px;
+					}
+				}
+			}
+
+		}
+		.p-btn-right {
+			margin-right: 4px;
+		}
+		.scroll {
+			height: 496px;
+			overflow-y: auto;
+			margin-bottom: 40px;
+			.scroll-area {
+				height: 500px;
+				// overflow: auto;
+			}
+			.price-area {
+				margin: 24px 56px;
+				border-bottom: 2px solid #F7F8FA;
+				min-height: 280px;
+				.price-table {
+					margin-top: 32px;
+					height: 284px;
+					// width: 100%;
+					background: #F7F8FA;
+					border-radius: 4px;
+				}
+				.price-text {
+					margin: 24px;
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					p {
+						font-family: PingFangSC-Medium;
+						font-size: 14px;
+						color: #172B4D;
+					}
+					span.p-icon {
+						padding: 5px;
+						background: #FF8F73;
+						border-radius: 4px;
+						width: 24px;
+						height: 24px;
+						font-family: PingFangSC-Medium;
+						font-size: 14px;
+						color: #FFFFFF;
+					}
+					p.price {
+						margin-left: 24px;
+						font-size: 29px;
+						text-align: right;
+						// line-height: 32px;
+						font-weight: bold;
+					}
+				}
+			}
+
+			.payment-area {
+				margin: 0 56px;
+				min-height: 315px;
+				.from-second {
+					margin-top: 48px;
+					margin-bottom: 32PX;
+				}
+				.title {
+					margin-bottom: 24px;
+					font-weight: bold;
+					font-family: PingFangSC-Medium;
+					font-size: 16px;
+					color: #172B4D;
+				}
+				.left-form-margin {
+					margin-right: 48px;
+				}
+				.form-list {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					.form-title {
+						min-width: 84px;
+						margin-right: 16px;
+						font-family: PingFangSC-Regular;
+						font-size: 14px;
+						color: #172B4D;
+						text-align: left;
+					}
+					.manager {
+						color: #6B778C;
+					}
+				}
+				.form-top {
+					margin-top: 32px;
+				}
+			}
+		}
+		.add-stud-title-bottom {
+			margin-bottom: 24px;
+		}
 		.add-stud-title {
 			margin-top: 8px;
+			min-height: 112px;
+			// margin-bottom: 24px;
 			p {
 				font-family: SFUIText-Regular;
 				font-size: 14px;
@@ -116,7 +242,7 @@
             outline: none;
         }
         .search-area {
-			margin-top: 60px;
+			margin-top: 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -141,15 +267,6 @@
                 }
                 .btn_save {
                     margin-left: 4px;
-                    font-family: PingFangSC-Semibold;
-                    min-width: 80px;
-                    height: 32px;
-                    border: none;
-                    border-radius: 4px;
-                    background: #80AEFF;
-                    font-size: 14px;
-                    color: #fff;
-                    padding: 0 16px;
                 }
                 i.icon-search {
                     background: url(/images/icon_search@1x.png) no-repeat;
@@ -305,6 +422,16 @@
 			margin: 0 24px 8px;
 			padding: 24px;
 			background-color: $color-neutral-N000;
+			.left-area {
+				margin-right: 56px;
+			}
+			.bp-dropdown-simple-title {
+				margin-bottom: 16px;
+				font-weight: bold;
+			}
+			.input-label-text {
+				font-weight: bold;
+			}
 
 			.course-reserve-modal-select {
 				select {

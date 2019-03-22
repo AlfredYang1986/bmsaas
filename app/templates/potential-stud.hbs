@@ -1,9 +1,17 @@
 <div class="course_content_top">
     {{#bp-layout direction='col' classNames='course_content'}}
-        {{#bp-layout direction='row' main='between' classNames='course-title-flex'}}
-            <p class="page_title">潜在学生</p>
-            {{#bs-button classNames="course_add_btn" onClick=(action (mut showAddSessionDlg) true)}}<span>+ 添加潜在学生</span>{{/bs-button}}
-        {{/bp-layout}}
+        {{#bp-page-header as |ph|}}
+            {{#ph.body as |body|}}
+                {{#body.left as |left|}}
+                    {{#left.item}}
+                        潜在学生
+                    {{/left.item}}
+                {{/body.left}}
+                {{#body.right}}
+                    {{#bs-button classNames="p-btn primary" onClick=(action (mut showAddSessionDlg) true)}}<span>+ 添加潜在学生</span>{{/bs-button}}
+                {{/body.right}}
+            {{/ph.body}}
+        {{/bp-page-header}}
         {{#bp-layout direction='col'}}
             {{#bp-layout direction='row' classNames='search'}}
                 {{input type="text" placeholder="姓名/手机号" name="" value=contact class="search-stud"}}

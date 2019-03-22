@@ -33,19 +33,6 @@ export default Route.extend({
                 techs: techs,
                 applyid: applyid
             })
-            // let str = params.studid;
-            // let paramsArr = str.split(' ');
-            // let studid = paramsArr[0];
-            // let applyid = paramsArr[1];
-            // let stud = this.store.find('student', studid);
-            // let techs = this.store.query('teacher', {"brand-id": localStorage.getItem("brandid")});
-            // return RSVP.hash({
-            //     isPushing: false,
-            //     stud: stud,
-            //     techs: techs,
-            //     gards: stud.guardians,
-            //     applyid: applyid
-            // })
         }
     },
     setupController(controller, model) {

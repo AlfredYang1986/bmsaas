@@ -37,6 +37,7 @@ Router.map(function() {
       this.route('rsb');
     });
     this.route('potential-stud');
+    this.route('stud-course');
   });
 
   this.route('detail', function() {
