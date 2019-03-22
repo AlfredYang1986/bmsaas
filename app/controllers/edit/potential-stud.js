@@ -94,53 +94,6 @@ export default Controller.extend({
                     that.toast.success('', '添加成功', that.toastOptions);
                 })
             }
-
-
-            // if(this.model.stud.gender == undefined || this.model.stud.gender == null) {
-            //     that.model.stud.set('gender', 1);
-            // }
-            //
-            // for(let idx = 0;idx < that.model.stud.guardians.length;idx++) {
-            //     that.model.stud.guardians.objectAt(idx).save().then(() => {
-            //
-            //     }, error => {
-            //         that.bm_error_service.handleError(error)
-            //     })
-            // }
-            // let name = that.model.stud.name;
-            // let dob = new Date(that.model.stud.dob);
-            // let now = new Date();
-            // function dealDate(date) {
-            //     var year = date.getFullYear();
-            //     var month = date.getMonth() + 1;
-            //     var strDate = date.getDate();
-            //     var week = date.getDay();
-            //     var hour = date.getHours();
-            //     var minute = date.getMinutes();
-            //     function addZero(m) {
-            //        return m < 10 ? '0' + m : m;
-            //     }
-            //     let dealDate = year + '-' + addZero(month) + '-' + (strDate);
-            //     return dealDate
-            // }
-            // let dealDob = dealDate(dob);
-            // let dealNow = dealDate(now);
-            // if( name == '' || name == undefined || name.replace(/(^\s*)|(\s*$)/g, "").length == 0) {
-            //     that.toast.error('', '孩子姓名不能为空', that.toastOptions);
-            // } else if(dealDob == dealNow) {
-            //     that.toast.error('', '请选择正确的出生日期', that.toastOptions);
-            // } else {
-            //     that.model.stud.set('status', 0);
-            //     that.model.stud.save().then(() => {
-            //         if(that.model.stud.guardians.firstObject.relationShip == '') {
-            //             that.model.stud.guardians.objectAt(0).set("relationShip", '爸爸')
-            //         }
-            //         that.transitionToRoute('potential-stud')
-            //     }, error => {
-            //         that.bm_error_service.handleError(error)
-            //     })
-            //     // .catch(err => window.console.info(err))
-            // }
         },
         addPtStudModal() {
             this.set('showAddStud', true);

@@ -56,6 +56,9 @@ export default Component.extend({
 		onRadioChange(param) {
 			this.onRadioChange(param);
         },
+		onCheckChange(param) {
+			this.onCheckChange(param);
+		}
 	},
 	didReceiveAttrs() {
 		if(this.type == "classTeacher" && this.listData != null) {

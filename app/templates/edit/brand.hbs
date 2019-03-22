@@ -45,15 +45,15 @@
                     {{!-- {{bmform/bm-base-select selTitle="分类" options=cateArr curSelect=cur_cate_id classNames="input_area mb-4"}} --}}
                     {{bp-input
 						classNames="edit_input_small mb-4"
-						block=true 
+						block=true
 						label='品牌名称'
 						value=model.brand.title
 						onChange=(action (mut model.brand.title))}}
                     {{bp-input
 						classNames="edit_input_medium mb-4"
-						block=true 
+						block=true
 						label='一句话介绍'
-						helpText='请您⽤⼀句话向家长和孩子们传递您的品牌理念' 	
+						helpText='请您⽤⼀句话向家长和孩子们传递您的品牌理念'
 						value=model.brand.slogan
 						onChange=(action (mut model.brand.slogan))}}
                     {{!-- {{#bp-layout direction="col" classNames='brand-input-group'}}
@@ -116,7 +116,7 @@
             <span class="edit_subtitle_nomargin ">请上传证书、奖状等证明，并注明“成立时间-奖项标题”成立时间-奖项标题。</span>
             <span class="edit_subtitle_nomargin ">展示品牌在教学上获得的殊荣，有助于用户更加了解您的品牌。</span>
             <span class="edit_subtitle ">如:2016-年度中国最具价值品牌服务机构奖</span>
-            <span class="edit_subtitle_nomargin ">每张图片小于100 KB，至多添加5项</span>
+            <span class="edit_subtitle_nomargin ">每张图片小于1MB，至多添加5项</span>
             <div class='line_conatainer_warp'>
                 {{#each tempHonorImgs as |item|}}
                     {{bmcom/bm-img-uploader needTag=true canEdit=true canEditTag=true canDeleteImg=false canDeleteObj=true imgObj=item img=item.img tag=item.tag onDeleteObj=(action "deleteHonorImg") classNames='brand-honor-pic-upload'}}
@@ -154,7 +154,7 @@
             {{/bp-layout }}
             <span class="edit_subtitle_nomargin ">请上传您获得的相关资质认证</span>
             <span class="edit_subtitle ">如：国际艺术教育联合会常务理事单位</span>
-            <span class="edit_subtitle_nomargin ">每张图片小于100 KB，至多添加5项</span>
+            <span class="edit_subtitle_nomargin ">每张图片小于1MB，至多添加5项</span>
 
             <div class='line_conatainer_warp'>
                 {{#each tempCertImgs as |item|}}
