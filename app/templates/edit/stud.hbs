@@ -7,7 +7,7 @@
 {{#bp-layout direction='row' main='between' classNames='edit_container experience-content' }}
 	<div class="edit_area">
 		{{#if (bmeq cur_page_idx 0)}}
-			{{#bp-layout direction='col' main='between' classNames='add-pt-stud add-pt-stud-height'}}
+			{{#bp-layout direction='col' main='between' classNames='add-pt-stud add-pt-stud-bottom add-pt-stud-height add-stud-title-bottom'}}
 				{{#bp-layout direction='col'}}
 					{{#bp-layout direction='row' main='center' classNames='add-stud-title'}}
 						{{#bp-layout direction='col' main='center' classNames='add-title active'}}
@@ -122,7 +122,7 @@
 			{{/bp-layout }}
 		{{/if}}
 		{{#if (bmeq cur_page_idx 2)}}
-			{{#bp-layout direction='col' classNames='add-pt-stud add-pt-stud-height'}}
+			{{#bp-layout direction='col' main='between' classNames='add-pt-stud add-pt-stud-bottom add-pt-stud-height add-stud-title-bottom'}}
 				{{#bp-layout direction='col'}}
 					{{#bp-layout direction='row' main='center' classNames='add-stud-title'}}
 						{{#bp-layout direction='col' main='center' classNames='add-title'}}
@@ -143,61 +143,67 @@
 					{{/bp-layout}}
 				{{/bp-layout}}
 				{{#bp-layout direction='col' classNames='scroll'}}
-					{{#bp-layout direction='col' classNames='price-area'}}
-						{{#bp-layout direction='col' classNames='price-table'}}
+					{{#bp-layout direction='col' classNames='scroll-area'}}
+						{{#bp-layout direction='col' classNames='price-area'}}
+							{{#bp-layout direction='col' classNames='price-table'}}
 
+							{{/bp-layout}}
+							{{#bp-layout direction='row' main='between' cross='center' classNames='price-text'}}
+								<p>优惠方案</p>
+								<p>
+									<span class="p-icon">减</span>手动输入优惠
+								</p>
+								<p>￥-1000.00</p>
+							{{/bp-layout}}
+							{{#bp-layout direction='row' main='end' cross='center' classNames='price-text'}}
+									<p>金额(实收款)</p>
+									<p class="price">￥27000.00</p>
+							{{/bp-layout}}
 						{{/bp-layout}}
-						{{#bp-layout direction='row' main='between' cross='center' classNames='price-text'}}
-							<p>优惠方案</p>
-							<p>
-								<span class="p-icon">减</span>手动输入优惠
-							</p>
-							<p>￥-1000.00</p>
-						{{/bp-layout}}
-						{{#bp-layout direction='row' main='end' cross='center' classNames='price-text'}}
-								<p>金额(实收款)</p>
-								<p class="price">￥27000.00</p>
-						{{/bp-layout}}
-					{{/bp-layout}}
-					{{#bp-layout direction='col' classNames='payment-area'}}
-						{{#bp-layout direction='col'}}
-							<p class="title">支付信息</p>
-							{{#bp-layout direction='row' main='between'}}
+						{{#bp-layout direction='col' classNames='payment-area'}}
+							{{#bp-layout direction='col'}}
+								<p class="title">支付信息</p>
 								{{#bp-layout direction='row'}}
-									<p class="form-title">选择付款方式</p>
-									{{bp-dropdown-simple
-										choosedValue=simpleChoosedValue
-										options=model.keyName
-										optionKey='name'}}
+									{{#bp-layout direction='row' classNames='form-list left-form-margin'}}
+										<p class="form-title">选择付款方式</p>
+										{{bp-dropdown-simple
+											choosedValue=simpleChoosedValue
+											options=model.keyName
+											optionKey='name'}}
+									{{/bp-layout}}
+									{{#bp-layout direction='row' cross='main' classNames='form-list'}}
+										<p class="form-title">实收金额</p>
+										{{bp-input }}
+										{{#bp-button}}全款{{/bp-button}}
+									{{/bp-layout}}
 								{{/bp-layout}}
+							{{/bp-layout}}
+							{{#bp-layout direction='col' classNames='from-second'}}
+								<p class="title">经办信息</p>
 								{{#bp-layout direction='row'}}
-									<p class="form-title">实收金额</p>
+									{{#bp-layout direction='row' classNames='form-list left-form-margin'}}
+										<p class="form-title">选择课程顾问</p>
+										{{bp-dropdown-simple
+											choosedValue=simpleChoosedValue
+											options=model.keyName
+											optionKey='name'}}
+									{{/bp-layout}}
+									{{#bp-layout direction='row' classNames='form-list'}}
+										<p class="form-title">经办人</p>
+										<p class="form-title manager">百造</p>
+									{{/bp-layout}}
+								{{/bp-layout}}
+								{{#bp-layout direction='row' classNames='form-list form-top'}}
+									<p class="form-title">备注</p>
 									{{bp-input }}
-									{{#bp-button}}全款{{/bp-button}}
 								{{/bp-layout}}
 							{{/bp-layout}}
-						{{/bp-layout}}
-						{{#bp-layout direction='col'}}
-							<p class="title">经办信息</p>
-							{{#bp-layout direction='row' main='between'}}
-								{{#bp-layout direction='row'}}
-									<p class="form-title">选择课程顾问</p>
-									{{bp-dropdown-simple
-										choosedValue=simpleChoosedValue
-										options=model.keyName
-										optionKey='name'}}
-								{{/bp-layout}}
-								{{#bp-layout direction='row'}}
-									<p class="form-title">经办人</p>
-									<p>百造</p>
-								{{/bp-layout}}
-							{{/bp-layout}}
-						{{/bp-layout}}
-						{{#bp-layout direction='row'}}
-							<p>备注</p>
-							{{input type="text" name="" value=contact class="search-stud-course" placeholder="搜索"}}
 						{{/bp-layout}}
 					{{/bp-layout}}
+				{{/bp-layout}}
+				{{#bp-layout direction='row' main='end'}}
+					<button type="button" name="button" class="p-btn default p-btn-right" {{action (mut cur_page_idx) 1}}>上一步</button>
+					<button type="button" name="button" class="p-btn primary" {{action (mut cur_page_idx) 2}}>确认报名</button>
 				{{/bp-layout}}
 			{{/bp-layout}}
 		{{/if}}

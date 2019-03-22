@@ -56,13 +56,17 @@
         height: calc(100vh - 64px);
         margin-bottom: 0;
 		.add-pt-stud-height {
-			height: calc(100vh - 138px);
+			height: calc(100vh - 140px);
 		}
 		.add-pt-stud-bottom {
 			margin-bottom: 8px;
 		}
+		.add-pt-stud-bottom {
+			padding-bottom: 24px;
+		}
         .add-pt-stud {
-            padding: 24px 40px;
+            padding-left: 40px;
+			padding-right: 40px;
             // min-height: 600px;
             // margin: 0;
             background: #ffffff;
@@ -75,7 +79,7 @@
 			.stud_detail_other_height {
 				padding: 24px;
 				margin-bottom: 43px;
-				height: calc(100vh - 256px);
+				height: calc(100vh - 296px);
 				.stud_course_area {
 					margin-top: 24px;
 					margin-bottom: 32px;
@@ -91,18 +95,24 @@
 						line-height: 20px;
 					}
 				}
-				.p-btn-right {
-					margin-right: 4px;
-				}
 			}
 
 		}
+		.p-btn-right {
+			margin-right: 4px;
+		}
 		.scroll {
-			min-height: 496px;
+			height: 496px;
 			overflow-y: auto;
+			margin-bottom: 40px;
+			.scroll-area {
+				height: 500px;
+				// overflow: auto;
+			}
 			.price-area {
 				margin: 24px 56px;
 				border-bottom: 2px solid #F7F8FA;
+				min-height: 280px;
 				.price-table {
 					margin-top: 32px;
 					height: 284px;
@@ -142,17 +152,49 @@
 
 			.payment-area {
 				margin: 0 56px;
+				min-height: 315px;
+				.from-second {
+					margin-top: 48px;
+					margin-bottom: 32PX;
+				}
 				.title {
+					margin-bottom: 24px;
 					font-weight: bold;
 					font-family: PingFangSC-Medium;
 					font-size: 16px;
 					color: #172B4D;
 				}
+				.left-form-margin {
+					margin-right: 48px;
+				}
+				.form-list {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					.form-title {
+						min-width: 84px;
+						margin-right: 16px;
+						font-family: PingFangSC-Regular;
+						font-size: 14px;
+						color: #172B4D;
+						text-align: left;
+					}
+					.manager {
+						color: #6B778C;
+					}
+				}
+				.form-top {
+					margin-top: 32px;
+				}
 			}
 		}
-
+		.add-stud-title-bottom {
+			margin-bottom: 24px;
+		}
 		.add-stud-title {
 			margin-top: 8px;
+			min-height: 112px;
+			// margin-bottom: 24px;
 			p {
 				font-family: SFUIText-Regular;
 				font-size: 14px;
@@ -200,7 +242,7 @@
             outline: none;
         }
         .search-area {
-			margin-top: 60px;
+			margin-top: 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
