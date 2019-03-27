@@ -53,6 +53,7 @@ Router.map(function() {
     this.route('exp-field', { path: '/exp-field/:expfieldid/:reexpid' });
     this.route('actv', { path: '/actv/:actvid' });
     this.route('actv-field', { path: '/actv-field/:actvfieldid/:reactvid' });
+    this.route('order', { path: '/order/:orderid' });
   });
 
   this.route('stud');
@@ -67,6 +68,7 @@ Router.map(function() {
   this.route('actv');
   this.route('not-found');
   this.route('potential-stud');
+  this.route('order');
 });
 
 export default Router;

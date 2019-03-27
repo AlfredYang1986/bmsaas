@@ -27,6 +27,12 @@ export default Component.extend({
             expond: true,
         },
         {
+            icon: '/images/navbar_teach_normal@2x.png',
+            title: '订单管理',
+            expond: false,
+            pageUrl:'order',
+        },
+        {
             icon: '/images/navbar_management_normal@2x.png',
             title: '管理中心',
             expond: true,

@@ -1,0 +1,30 @@
+{{#bp-layout direction='col' classNames='order_content_top'}}
+    {{#bp-layout direction='col' classNames='order-page-container'}}
+        {{bp-page-header/only-title-desc classNames="order-page-header" title="订单管理"}}
+
+        {{#bp-layout direction="col" classNames="order-list-outer"}}
+			{{#if (eq trans.length 0)}}
+				<div class="order-empty-state">
+					{{bp-empty-state/no-button src='/images/img_empty@2x.png' title="暂无订单" desc="暂无数据"}}
+				</div>
+			{{else}}
+				<table class='ib_table_head exp_table'>
+	                <tr class='ib_table_title'>
+	                    {{#each model.orderTitle as |item|}}
+	                        <th class='ib_table_item'>{{item}}</th>
+	                    {{/each}}
+	                </tr>
+	            </table>
+				{{#bp-layout direction="row" classNames="order-list-area" }}
+					<table class='ib_table_head order_list_table'>
+						{{bmtable/bm-table-inner type="ordersList" listData=trans onClickInner=(action "cardClicked")}}
+					</table>
+				{{/bp-layout}}
+				{{bp-pagination
+					totalPageCounts=page_count
+					onClickPage=(action (mut pagenum))}}
+			{{/if}}
+		{{/bp-layout}}
+    {{/bp-layout}}
+{{/bp-layout}}
+{{outlet}}

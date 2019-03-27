@@ -1,5 +1,6 @@
 @import 'foundation';
 @import "ember-bootstrap/bootstrap";
+@import 'bp-components';
 
 @import "home";
 @import "edit";
@@ -15,6 +16,7 @@
 @import "course-reserve";
 @import "index";
 @import "not-found";
+@import "order";
 
 @import 'bm-layouts/bm-layouts';
 @import 'bm-layouts/bm_layouts_item';
