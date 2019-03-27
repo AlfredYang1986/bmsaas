@@ -317,6 +317,26 @@
                     {{/dd.menu}}
                 {{/bs-dropdown}}
             </td>
+        {{else if (bmeq type "ordersList")}}
+            <td class='ib_table_content_item'>{{item.orderId}}</td>
+            <td class="ib_table_content_item">{{item.applicant.name}}</td>
+            <td class="ib_table_content_item">￥{{item.moneyReceivable}}</td>
+            <td class="ib_table_content_item">￥{{item.moneyReceived}}</td>
+            <td class="ib_table_content_item">
+                {{#bs-dropdown class="btn-dropdown" as |dd|}}
+                    {{#dd.button class="reserve-more-btn"}}{{/dd.button}}
+                    {{#dd.menu align="right" as |menu|}}
+                        {{#menu.item align="right"}}
+                            {{#bp-layout direction='col' classNames="dropdown-content"}}
+                                <a class="warning" onclick={{action 'onRemoveStudClick' item dd.closeDropdown}}>未定义</a>
+                            {{/bp-layout}}
+                        {{/menu.item}}
+                    {{/dd.menu}}
+                {{/bs-dropdown}}
+            </td>
+            <td  class="ib_table_content_item">
+                {{#bs-button classNames="ib_table_content_link_btn" onClick=(action 'onClickInner' item.id)}}<span>查看</span>{{/bs-button}}
+            </td>
         {{/if}}
     </tr>
 {{/each}}

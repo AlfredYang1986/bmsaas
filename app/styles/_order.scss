@@ -1,0 +1,24 @@
+.order_content_top {
+    height: fit-content;
+    padding-top: 64px;
+    padding-left: 240px;
+    min-width: 1200px;
+
+    .order-page-container {
+        height: calc(100vh - 64px);
+        padding: $spacing*3;
+
+        .order-list-outer {
+            margin-top: $spacing*3;
+        }
+        .order-empty-state {
+            height: calc(100vh - 208px);
+        }
+        .order-list-area {
+            margin-bottom: 24px;
+            height: 750px;
+            overflow: auto;
+            background-color: transparent;
+        }
+    }
+}
