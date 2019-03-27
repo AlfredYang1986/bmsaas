@@ -108,9 +108,24 @@
 					{{#bp-layout direction='row' main='end'}}
 						{{#bp-button onClick=(action 'addStudCourse')}}选择课程{{/bp-button}}
 					{{/bp-layout}}
-					{{#bp-layout direction='col' main='center' cross='center' classNames='stud_course_area'}}
-						<p class="note">点击“选择课程”为学生选择需要的课程</p>
-					{{/bp-layout}}
+					{{#if (bmeq curItems null)}}
+						{{#bp-layout direction='col' main='center' cross='center' classNames='stud_course_area'}}
+							<p class="note">点击“选择课程”为学生选择需要的课程</p>
+						{{/bp-layout}}
+					{{else}}
+						{{#bp-layout direction='col'  classNames='stud_course_area'}}
+							<table class='co_table_head'>
+								<tr class='ib_table_title tr-height'>
+									{{#each model.courseTItlePage as |item|}}
+										<th class='ib_table_item'>{{item}}</th>
+									{{/each}}
+								</tr>
+							</table>
+							<table class='co_table_head table-self'>
+								{{bmtable/bm-table-inner type="coursePageList" listData=curItems onCheckChange=(action 'checkChange')}}
+							</table>
+						{{/bp-layout}}
+					{{/if}}
 					{{#bp-layout direction='row' main='end'}}
 						<button type="button" name="button" class="p-btn default p-btn-right" {{action (mut cur_page_idx) 0}}>上一步</button>
 						<button type="button" name="button" class="p-btn primary" {{action (mut cur_page_idx) 2}}>下一步</button>
@@ -145,7 +160,18 @@
 					{{#bp-layout direction='col' classNames='scroll-area'}}
 						{{#bp-layout direction='col' classNames='price-area'}}
 							{{#bp-layout direction='col' classNames='price-table'}}
-
+								{{#bp-layout direction='col'  classNames='stud_course_area'}}
+									<table class='co_table_head'>
+										<tr class='ib_table_title tr-height'>
+											{{#each model.courseTitleOrder as |item|}}
+												<th class='ib_table_item'>{{item}}</th>
+											{{/each}}
+										</tr>
+									</table>
+									<table class='co_table_head table-self'>
+										{{bmtable/bm-table-inner type="courseOrderList" listData=curItems onCheckChange=(action 'checkChange')}}
+									</table>
+								{{/bp-layout}}
 							{{/bp-layout}}
 							{{#bp-layout direction='row' main='between' cross='center' classNames='price-text'}}
 								<p>优惠方案</p>
@@ -167,7 +193,7 @@
 										<p class="form-title">选择付款方式</p>
 										{{bp-dropdown-simple
 											choosedValue=simpleChoosedValue
-											options=model.keyName
+											options=model.payment
 											optionKey='name'}}
 									{{/bp-layout}}
 									{{#bp-layout direction='row' cross='main' classNames='form-list'}}
@@ -184,7 +210,7 @@
 										<p class="form-title">选择课程顾问</p>
 										{{bp-dropdown-simple
 											choosedValue=simpleChoosedValue
-											options=model.keyName
+											options=model.techs
 											optionKey='name'}}
 									{{/bp-layout}}
 									{{#bp-layout direction='row' classNames='form-list'}}
@@ -202,7 +228,7 @@
 				{{/bp-layout}}
 				{{#bp-layout direction='row' main='end'}}
 					<button type="button" name="button" class="p-btn default p-btn-right" {{action (mut cur_page_idx) 1}}>上一步</button>
-					<button type="button" name="button" class="p-btn primary" {{action (mut cur_page_idx) 2}}>确认报名</button>
+					<button type="button" name="button" class="p-btn primary" {{action 'confirm'}}>确认报名</button>
 				{{/bp-layout}}
 			{{/bp-layout}}
 		{{/if}}
@@ -234,8 +260,6 @@
 						</table>
 						<table class='co_table_head'>
 							{{bmtable/bm-table-inner type="courseList" listData=model.courseList onCheckChange=(action 'checkChange')}}
-							{{log 222}}
-							{{log courseList}}
 						</table>
 						{{!-- {{bmtable/bm-table-inner type="studsList" listData=studs onClickInner=(action "courseClicked")}} --}}
 						{{!-- {{bmtable/bm-table-inner type="studsList" listData=courseList}} --}}

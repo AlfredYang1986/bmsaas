@@ -12,6 +12,8 @@ export default Controller.extend({
     headImg: 'https://bm-web.oss-cn-beijing.aliyuncs.com/avatar_defautl_96px%20%401x.png',
     sex_idx: 0,
     rela_idx: 0,
+    checkArr: A([]),
+    curItems: null,
     genderCheck: A(['男', '女']),
     relaChecked: A(['父亲', '母亲', '其他']),
     grade:A([{name: '学龄前'}, {name: '小班'}, {name: '中班'}, {name: '大班'}, {name: '小学一年级'}, {name: '小学二年级'}, {name: '小学三年级'}, {name: '小学四年级'}, {name: '小学五年级'}, {name: '小学六年级'}]),
@@ -65,7 +67,6 @@ export default Controller.extend({
             this.transitionToRoute("stud")
         },
         radioChange(param) {
-            let that = this;
             let stud = param;
             this.set('studInfo', stud)
             // stud.save().then(() => {
@@ -78,7 +79,10 @@ export default Controller.extend({
             // })
 
         },
-        checkChange(param) {
+        addPtStudModal() {
+            this.set('showAddStud', true);
+        },
+        checkChange() {
             this.set('course')
         },
         cancelAdd() {
@@ -108,10 +112,52 @@ export default Controller.extend({
             }
         },
         cancelCourse() {
+            // this.set('curItems', null);
             this.set('showAddCourse', false)
         },
         successCourse() {
-
+            this.set('showAddCourse', false)
         },
+        checkChange(param) {
+            param.set('state', 1);
+            if(this.checkArr.length == 0) {
+                this.checkArr.pushObject(param)
+            } else {
+                this.checkArr.forEach(item => {
+                    if(item.id == param.id) {
+                        param.set('state', 0);
+                        item.set('state', 0);
+                    }
+                })
+                if(param.state == 1) {
+                    this.checkArr.pushObject(param);
+                }
+            }
+            let arrCheck = this.checkArr.filter(item => {
+                return item.state == 1;
+            })
+            let tempObj = this.store.peekRecord('reservableitem', param.id);
+            console.log(tempObj);
+            let haveCurItemFlag = false;
+            if(this.curItems == null) {
+                this.set('curItems', A([]));
+                this.curItems.pushObject(tempObj);
+            } else {
+                this.curItems.forEach(item => {
+                    if(item.id == tempObj.id) {
+                        haveCurItemFlag = true;
+                    }
+                })
+                if(haveCurItemFlag) {
+                    this.curItems.removeObject(tempObj);
+                } else {
+                    this.curItems.pushObject(tempObj);
+                }
+            }
+            console.log(this.curItems)
+        },
+        confirm() {
+            
+        }
     },
 });

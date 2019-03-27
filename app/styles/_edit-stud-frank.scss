@@ -83,16 +83,32 @@
 				.stud_course_area {
 					margin-top: 24px;
 					margin-bottom: 32px;
+					padding: 8px;
 					background: #F7F8FA;
 					border-radius: 4px;
 					height: 344px;
 					width: 100%;
+					overflow: auto;
 					.note {
 						font-family: PingFangSC-Regular;
 						font-size: 14px;
 						color: #6B778C;
 						text-align: left;
 						line-height: 20px;
+					}
+					.co_table_head {
+						height: 49px;
+						border: none;
+						background: #fff;
+						border-bottom: 1px solid #F7F8FA;
+					}
+					.table-self {
+						// height: 100px;
+						// overflow: hidden;
+						td {
+							padding-left: 24px;
+							width: 228px;
+						}
 					}
 				}
 			}
@@ -112,13 +128,25 @@
 			.price-area {
 				margin: 24px 56px;
 				border-bottom: 2px solid #F7F8FA;
-				min-height: 280px;
+				min-height: 480px;
 				.price-table {
 					margin-top: 32px;
 					height: 284px;
 					// width: 100%;
 					background: #F7F8FA;
 					border-radius: 4px;
+					padding: 8px;
+					overflow: auto;
+					.co_table_head {
+						height: 49px;
+						border: none;
+						background: #fff;
+						border-bottom: 1px solid #F7F8FA;
+					}
+					td {
+						padding-left: 24px;
+						width: 228px;
+					}
 				}
 				.price-text {
 					margin: 24px;
@@ -148,6 +176,7 @@
 						font-weight: bold;
 					}
 				}
+
 			}
 
 			.payment-area {
