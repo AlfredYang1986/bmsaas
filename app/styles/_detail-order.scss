@@ -1,0 +1,77 @@
+.order-detail-page {
+
+    .self_container {
+        margin-bottom: $spacing;
+
+        &:nth-last-child(1) {
+            margin-bottom: 0;
+        }
+        span:nth-child(1) {
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #6B778C;
+            min-width: 56px;
+            margin-right: $spacing*2;
+        }
+        span:nth-child(2) {
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #172B4D;
+        }
+    }
+    .detail-container {
+        background-color: #FFFFFF;
+        margin-bottom: $spacing;
+        padding: $spacing*2 $spacing*3;
+    }
+    
+    .order-detail-title {
+        margin-bottom: $spacing*3;
+    
+        .detail-title {
+            font-family: PingFangSC-Medium;
+            font-size: 14px;
+            color: #172B4D;
+            line-height: 20px;
+        }
+    }
+    
+    .person-detail {
+        margin-top: $spacing*3;
+        padding: 0;
+        margin-bottom: $spacing;
+    
+        .applicant-detail {
+            background-color: #FFFFFF;
+            padding: $spacing*2 $spacing*3;
+            width: calc(50% - 4px);
+            margin-right: $spacing;
+        }
+        .stud-detail {
+            background-color: #FFFFFF;
+            padding: $spacing*2 $spacing*3;
+            width: calc(50% - 4px);
+        }
+    }
+    .cost-detail {
+        
+    }
+    .payment-detail {
+        .self_container {
+            margin-bottom: $spacing;
+    
+            &:nth-last-child(1) {
+                margin-bottom: 0;
+            }
+        }
+    }
+    .handle-detail {
+        .self_container {
+            margin-bottom: $spacing;
+    
+            &:nth-last-child(1) {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
