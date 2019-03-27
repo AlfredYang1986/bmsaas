@@ -11,12 +11,14 @@ export default Route.extend({
             courseTitleOrder: ['课程名称', '适应年龄', '标准课时数', '课程定价', '优惠价格', '签约价格'],
             payment: A([{name: '微信支付'}, {name: '支付宝'}, {name: '现金'}]),
             techs: this.store.query('teacher', { "brand-id": localStorage.getItem("brandid")}),
+            attachable: this.store.createRecord('attachable'),
+            transaction: this.store.createRecord('transaction')
         })
     },
     setupController(controller, model) {
         this._super(controller, model);
-
-        controller.set('cur_page_idx', 1);
+        debugger
+        controller.set('cur_page_idx', 0);
         controller.set('inputVal', false);
         controller.set('curItems', null);
     }

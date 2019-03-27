@@ -157,7 +157,23 @@ export default Controller.extend({
             console.log(this.curItems)
         },
         confirm() {
-            
+            let that = this;
+            this.curItems.forEach((item, index, arr) => {
+                that.model.attachable.set('reservableId', item.id);
+                that.model.attachable.set('sessioninfoId', item.get('sessioninfo').get('id'));
+                that.model.attachable.set('title',  item.get('sessioninfo').get('title'));
+                that.model.attachable.set('alb',  item.get('sessioninfo').get('alb'));
+                that.model.attachable.set('aub',  item.get('sessioninfo').get('aub'));
+                that.model.attachable.set('standardCourseCount',  item.get('sessioninfo').get('standardCourseCount'));
+                that.model.attachable.set('standardPrice',  item.get('sessioninfo').get('standardPrice'));
+                that.model.attachable.set('standardPriceUnit',  item.get('sessioninfo').get('standardPriceUnit'));
+                // that.model.attachable.set('aub',  item.get('sessioninfo').get('aub'));
+                // that.model.attachable.set('aub',  item.get('sessioninfo').get('aub'));
+                // that.model.attachable.set('aub',  item.get('sessioninfo').get('aub'));
+                that.model.transaction.attachables.pushObject(that.model.attachable);
+            })
+            // this.model.transaction.set('attachables', this.curItems);
+            this.model.transaction.save();
         }
     },
 });
