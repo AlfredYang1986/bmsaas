@@ -23,8 +23,8 @@ export default DS.Model.extend({
     // applicants: DS.hasMany('applicant'),
     teacher: DS.belongsTo('teacher'),
     guardians: DS.hasMany('guardian'),
-    grade: DS.attr('string')
-
+    grade: DS.attr('string'),
+    kid: DS.belongsTo('kid')
 
     // sessionable: DS.belongsTo('sessionable'),
 });

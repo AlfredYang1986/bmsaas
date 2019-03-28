@@ -17,6 +17,8 @@ export default Controller.extend({
     totalpp: 0,
     moneyReceived: undefined,
     studInfo: null,
+    applicant: null,
+    contact: undefined,
     genderCheck: A(['男', '女']),
     relaChecked: A(['父亲', '母亲', '其他']),
     grade:A([{name: '学龄前'}, {name: '小班'}, {name: '中班'}, {name: '大班'}, {name: '小学一年级'}, {name: '小学二年级'}, {name: '小学三年级'}, {name: '小学四年级'}, {name: '小学五年级'}, {name: '小学六年级'}]),
@@ -34,16 +36,21 @@ export default Controller.extend({
     studs: computed("refreshFlag", 'type', function() {
         let result;
         let that = this;
-        result = this.store.query('student', {'contact': this.contact});
-        result.then((res) => {
-            if(res.length > 0) {
-                that.set('inputVal', true);
-            } else {
-                that.set('showAddStud', true)
-            }
-        }, error => {
-            this.bm_error_service.handleError(error)
-        })
+        if(isNaN(this.contact)) {
+            this.toast.error('', '请输入电话号码', that.toastOptions);
+        } else {
+            result = this.store.query('student', {'contact': this.contact});
+            result.then((res) => {
+                if(res.length > 0) {
+                    that.set('inputVal', true);
+                } else {
+                    that.set('showAddStud', true)
+                }
+            }, error => {
+                this.bm_error_service.handleError(error)
+            })
+        }
+
         return result;
     }),
     totalsp: computed('curItems', 'totalpp', function() {
@@ -53,7 +60,14 @@ export default Controller.extend({
         })
         return totalsp
     }),
+    teacher: computed('teacherId', function() {
+        if(this.teacherId != undefined) {
+            return this.store.find('teacher', this.teacherId);
+        } else {
+            return
+        }
 
+    }),
     origin:A([{name: '学员转介绍'}, {name: '电话推广'}, {name: '小程序'}, {name: '线下活动推广'}, {name: '其他'}]),
 
     actions: {
@@ -64,35 +78,30 @@ export default Controller.extend({
         addStudCourse() {
             this.set('showAddCourse', true);
         },
-        cancelAdd() {
-            this.set('showAddCourse', false)
-        },
-        successAdd() {
-
-        },
         searchCourse() {
 
         },
         cancelInputBtnClicked() {
-            this.transitionToRoute("stud")
+            this.set('contact', undefined);
+            this.set('studList', false);
+            this.model.courseList.forEach(item => {
+                item.set('state', 0);
+            })
+            this.transitionToRoute("stud");
         },
         radioChange(param) {
             this.set('studInfo', param)
-            // stud.save().then(() => {
-            //     // if(stud.guardians.firstObject.relationShip == '') {
-            //     //     that.model.stud.guardians.objectAt(0).set("relationShip", '爸爸')
-            //     // }
-            //     that.transitionToRoute('potential-stud')
-            // }, error => {
-            //     that.bm_error_service.handleError(error)
-            // })
+            let that = this;
+            this.store.find('student', param.id).then(res => {
+                res.kid.then(result => {
+                    that.set('applicant', result.applicant);
+                })
+            })
+
 
         },
         addPtStudModal() {
             this.set('showAddStud', true);
-        },
-        checkChange() {
-            this.set('course')
         },
         cancelAdd() {
             this.set('showAddStud', false)
@@ -128,23 +137,33 @@ export default Controller.extend({
             this.set('showAddCourse', false)
         },
         checkChange(param) {
-            param.set('state', 1);
+            if(param.state == undefined) {
+                param.set('state', 1);
+            }
+
             if(this.checkArr.length == 0) {
                 this.checkArr.pushObject(param)
             } else {
                 this.checkArr.forEach(item => {
-                    if(item.id == param.id) {
+                    if(item.state == true) {
+                        item.set('state', 1)
+                    } else if(item.state == false) {
+                        item.set('state', 0)
+                    }
+                    if(item.id == param.id && item.state == 1) {
                         param.set('state', 0);
                         item.set('state', 0);
+                    } else if(item.id == param.id && item.state == 0) {
+                        item.set('state', 1)
                     }
                 })
                 if(param.state == 1) {
                     this.checkArr.pushObject(param);
                 }
             }
-            let arrCheck = this.checkArr.filter(item => {
-                return item.state == 1;
-            })
+            // this.checkArr.filter(item => {
+            //     return item.state == 1;
+            // })
             let tempObj = this.store.peekRecord('reservableitem', param.id);
             tempObj.set('preferentialPrice', 0);
             tempObj.set('standardPrice', tempObj.get('sessioninfo').get('standardPrice'));
@@ -198,7 +217,7 @@ export default Controller.extend({
         confirm() {
             let that = this;
             let atta = A([]);
-            this.curItems.forEach((item, index, arr) => {
+            this.curItems.forEach((item) => {
                 that.model.attachable.set('reservableId', item.id);
                 that.model.attachable.set('sessioninfoId', item.get('sessioninfo').get('id'));
                 that.model.attachable.set('title',  item.get('sessioninfo').get('title'));
@@ -217,7 +236,12 @@ export default Controller.extend({
             that.model.transaction.set('orderTime', timestamp)
             that.model.transaction.set('moneyReceivable', this.totalsp);
             that.model.transaction.set('moneyReceived', this.moneyReceived);
-            this.model.transaction.save();
+            that.model.transaction.set('applicant', this.applicant);
+            that.model.transaction.set('teacher', this.teacher)
+            this.model.transaction.save().then(() => {
+                that.transitionToRoute('stud');
+                that.toast.success('', '报课成功', that.toastOptions);
+            })
         }
     },
 });

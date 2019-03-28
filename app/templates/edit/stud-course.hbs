@@ -211,7 +211,7 @@
 									{{#bp-layout direction='row' classNames='form-list left-form-margin'}}
 										<p class="form-title">选择课程顾问</p>
 										{{bp-dropdown-simple
-											choosedValue=model.transaction.teacher
+											valueId=teacherId
 											options=model.techs
 											optionKey='name'}}
 									{{/bp-layout}}
@@ -263,7 +263,7 @@
 							</tr>
 						</table>
 						<table class='co_table_head'>
-							{{bmtable/bm-table-inner type="courseList" listData=model.courseList onCheckChange=(action 'checkChange')}}
+							{{bmtable/bm-table-inner type="courseList" state=state listData=model.courseList onCheckChange=(action 'checkChange')}}
 						</table>
 						{{!-- {{bmtable/bm-table-inner type="studsList" listData=studs onClickInner=(action "courseClicked")}} --}}
 						{{!-- {{bmtable/bm-table-inner type="studsList" listData=courseList}} --}}

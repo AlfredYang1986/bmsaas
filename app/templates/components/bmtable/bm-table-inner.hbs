@@ -155,7 +155,7 @@
             </td>
         {{else if (bmeq type 'courseList')}}
             <td class="ib_table_content_item">
-                {{input type="checkbox" name="" name='studCourse' click=(action "onCheckChange" item)}}
+                {{input type="checkbox" name="" name='studCourse' click=(action "onCheckChange" item) checked=item.state}}
             </td>
             <td class="ib_table_content_item">{{item.sessioninfo.title}}</td>
             <td class="ib_table_content_item">{{item.sessioninfo.category.title}}</td>
