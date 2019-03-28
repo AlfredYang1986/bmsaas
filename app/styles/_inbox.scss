@@ -740,6 +740,10 @@
     height: 585px;
     margin: 24px 0;
 }
+.bm-order-detail-table {
+    padding-top: $spacing*2;
+    background-color: #FFFFFF;
+}
 .ib_table_title {
 
 }
@@ -777,6 +781,7 @@
     }
 
     .ib_table_content_item {
+        position: relative;
         padding: 8px 24px;
         // white-space: nowrap;
         // text-overflow: ellipsis;
@@ -791,6 +796,14 @@
             width: 24px;
             height: 24px;
             border-radius: 50%;
+        }
+
+        .collapse-icon {
+            position: absolute;
+            left: 4px;
+            top: 16px;
+            height: 24px;
+            width: 24px;
         }
 
         span.dealed {

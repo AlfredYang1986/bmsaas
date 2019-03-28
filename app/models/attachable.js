@@ -13,5 +13,6 @@ export default DS.Model.extend({
     preferentialPrice: DS.attr('number'),
     signedPrice: DS.attr('number'),
     archive: DS.attr('number'),
+    
     student: DS.belongsTo('student'),
 });

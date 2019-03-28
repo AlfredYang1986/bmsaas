@@ -40,6 +40,7 @@
                 {{#bp-layout direction='row' classNames='order-detail-title'}}
                     <p class="detail-title">绑定学员</p>
                 {{/bp-layout}}
+                <p class="detail-content">未绑定开卡学员</p>
                 {{!-- {{bmdetail/stud-basis-info label="学生姓名" content=model.trans}}
                 {{bmdetail/stud-basis-info label="手机号" content=model.trans}} --}}
             {{/bp-layout}}
@@ -49,20 +50,43 @@
             {{#bp-layout direction='row' classNames='order-detail-title'}}
                 <p class="detail-title">消费明细</p>
             {{/bp-layout}}
+            {{#bp-layout direction='row' classNames='cost-table-container'}}
+                {{bmtable/bm-table-order-detail title=attTitle atts=model.trans.attachables}}
+            {{/bp-layout}}
+            {{#bp-layout direction='col' classNames='cost-detail-footer'}}
+                {{#bp-layout direction='row' main="between" classNames='cost-detail-footer-top'}}
+                    <p class="footer-title">优惠方案</p>
+                    <p class="footer-content"><span class="discount-icon">减</span>手动输入折扣</p>
+                    <p class="footer-discount-money">-￥{{total_discount}}</p>
+                {{/bp-layout}}
+                {{#bp-layout direction='row' main="end" classNames='cost-detail-footer-bottom'}}
+                    {{#bp-layout direction='col' cross="start" classNames='cost-detail-footer-bottom-inner'}}
+                        {{#bp-layout direction='row' classNames='cost-detail-footer-bottom-first'}}
+                            <p>应收金额</p>
+                            <p>￥{{model.trans.moneyReceivable}}</p>
+                        {{/bp-layout}}
+                        {{#bp-layout direction='row' cross="center" classNames='cost-detail-footer-bottom-second'}}
+                            <p>实收金额</p>
+                            <p>￥{{model.trans.moneyReceived}}</p>
+                        {{/bp-layout}}
+                    {{/bp-layout}}
+                {{/bp-layout}}
+            {{/bp-layout}}
+
         {{/bp-layout}}
         {{#bp-layout direction='col' classNames='payment-detail detail-container'}}
             {{#bp-layout direction='row' classNames='order-detail-title'}}
                 <p class="detail-title">支付信息</p>
             {{/bp-layout}}
             {{bmdetail/stud-basis-info label="支付方式" content=model.trans.payment}}
-            {{bmdetail/stud-basis-info label="支付时间" content="(bmdob/bmdobformat model.trans.orderTime)"}}
+            {{bmdetail/stud-basis-info label="支付时间" content=(bmdob/bmdobformat model.trans.orderTime)}}
         {{/bp-layout}}
         {{#bp-layout direction='col' classNames='handle-detail detail-container'}}
             {{#bp-layout direction='row' classNames='order-detail-title'}}
                 <p class="detail-title">经办信息</p>
             {{/bp-layout}}
             {{bmdetail/stud-basis-info label="课程顾问" content=model.trans.teacher.name}}
-            {{bmdetail/stud-basis-info label="经办人" content="model.trans."}}
+            {{bmdetail/stud-basis-info label="经办人" content=model.trans.operator}}
         {{/bp-layout}}
 
     {{/bp-layout}}

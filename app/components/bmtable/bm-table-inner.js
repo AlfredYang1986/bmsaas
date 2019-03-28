@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
+import { A } from '@ember/array'
 
 export default Component.extend({
 	bmOss: service(),
@@ -8,6 +9,9 @@ export default Component.extend({
 	dealed: false,
 	iconData: null,
 	headImg: 'https://bm-web.oss-cn-beijing.aliyuncs.com/avatar_defautl_96px%20%401x.png',
+	withLayout: true,
+	// showOrderDetailFlag: true,
+	attTitle: A(['课时', '', '', '', '', '' ]),
 
     actions: {
 		onClickInner(params) {
@@ -61,6 +65,9 @@ export default Component.extend({
 		},
 		onChangeInner(param) {
 			this.onChangeInner(param);
+		},
+		onOrderClick(param) {
+			param.toggleProperty("showOrderDetailFlag");
 		}
 	},
 	didReceiveAttrs() {
@@ -84,5 +91,21 @@ export default Component.extend({
 				this.iconData.pushObject(tmpObj);
 			}
 		}
+<<<<<<< HEAD
+=======
+		if(this.type == "attDetail" && this.listData != null) {
+			this.listData.forEach(elem => {
+				elem.showOrderDetailFlag = true;
+			});
+		}
+
+
+		// let that = this
+		// if(this.type == 'inbox') {
+		// 	if(this.attrs.listData.value.firstObject.courseType == -1) {
+		// 		this.set('type', 'preRegister');
+		// 	}
+		// }
+>>>>>>> alfred-stud-2019-03-11
     }
 });

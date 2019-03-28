@@ -1,5 +1,6 @@
 {{yield}}
 {{#each listData as |item index|}}
+    {{#if withLayout}}
     <tr class="session-list">
         {{#if (bmeq type "inbox")}}
             <td class='ib_table_content_item'>
@@ -341,4 +342,45 @@
             </td>
         {{/if}}
     </tr>
+    {{/if}}
+    {{#if (bmeq type "attDetail")}}
+        <tr class='session-list' data-toggle="collapse" data-target="#collapse{{index}}">
+            <td class='ib_table_content_item'>
+                {{#if item.showOrderDetailFlag}}
+                    <img class="collapse-icon" src="/images/chevron_down_normal@2x.png" onClick={{action "onOrderClick" item}}>
+                {{else}}
+                    <img class="collapse-icon" src="/images/chevron_up_normal@2x.png" onClick={{action "onOrderClick" item}}>
+                {{/if}}
+                {{item.title}}
+            </td>
+            <td class="ib_table_content_item">￥{{item.standardPrice}}</td>
+            <td class="ib_table_content_item">1</td>
+            <td class="ib_table_content_item">-￥{{item.preferentialPrice}}</td>
+            <td class="ib_table_content_item">￥{{item.signedPrice}}</td>
+        </tr>
+        {{#if item.showOrderDetailFlag}}
+            {{!-- <tr class='acc-container' id="collapse{{index}}">
+                <td>123</td>
+            </tr> --}}
+            {{!-- {{#bp-layout direction='col' classNames='att-detail-table'}} --}}
+	                <tr class='ib_table_title att-detail-table'>
+                        {{#each attTitle as |item|}}
+                            <th class='ib_table_item att-detail-table'>{{item}}</th>
+                        {{/each}}
+	                    {{!-- {{#each model.orderTitle as |item|}}
+	                        <th class='ib_table_item'>{{item}}</th>
+	                    {{/each}} --}}
+	                </tr>
+                    <tr class='session-list att-detail-table'>
+                        <td class="ib_table_content_item att-detail-table">{{item.standardCourseCount}}</td>
+                        <td class="ib_table_content_item att-detail-table"></td>
+                        <td class="ib_table_content_item att-detail-table"></td>
+                        <td class="ib_table_content_item att-detail-table"></td>
+                        <td class="ib_table_content_item att-detail-table"></td>
+                        <td class="ib_table_content_item att-detail-table"></td>
+                    </tr>
+					{{!-- {{bmtable/bm-table-inner type="ordersList" listData=trans onClickInner=(action "cardClicked")}} --}}
+            {{!-- {{/bp-layout}} --}}
+        {{/if}}
+    {{/if}}
 {{/each}}
