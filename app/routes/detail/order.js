@@ -12,6 +12,11 @@ export default Route.extend({
     
     setupController(controller, model) {
         this._super(controller, model);
+        let total_discount = 0;
+        model.trans.attachables.forEach(elem => {
+            total_discount += elem.preferentialPrice;
+        });
+        this.controller.set('total_discount', total_discount);
         let urls = A([
             {
                 "pageName":"订单管理",
@@ -25,5 +30,7 @@ export default Route.extend({
             }
         ])
         this.controller.set("urls", urls)
+        let attTitle = ['购买项目', '定价', '数量', '优惠金额', '签约价格'];
+        this.controller.set("attTitle", attTitle)
     }
 });

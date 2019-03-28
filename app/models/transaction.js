@@ -11,6 +11,7 @@ export default DS.Model.extend({
     moneyUnit: DS.attr('string'),
     payment: DS.attr('string'),
     remark: DS.attr('string'),
+    operator: DS.attr('string'),
 
     attachables: DS.hasMany('attachable'),
     applicant: DS.belongsTo('applicant'),

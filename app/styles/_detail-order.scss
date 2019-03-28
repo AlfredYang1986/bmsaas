@@ -1,5 +1,6 @@
 .order-detail-page {
 
+
     .self_container {
         margin-bottom: $spacing;
 
@@ -51,10 +52,89 @@
             background-color: #FFFFFF;
             padding: $spacing*2 $spacing*3;
             width: calc(50% - 4px);
+
+            .detail-content {
+                font-family: PingFangSC-Regular;
+                font-size: 14px;
+                color: #6B778C;
+            }
         }
     }
     .cost-detail {
-        
+        height: fit-content;
+        // min-height: 100px;
+        .cost-table-container {
+            padding: $spacing;
+            background-color: #F7F8FA;
+            height: fit-content;
+            // min-height: 100px;
+        }
+        .cost-detail-footer {
+            .cost-detail-footer-top {
+                width: 100%;
+                padding: $spacing*3 $spacing*4;
+                border-bottom: 1px solid #f7f7f7;
+
+                .footer-title {
+                    font-family: PingFangSC-Regular;
+                    font-size: 14px;
+                    color: #172B4D;
+                }
+                .footer-content {
+                    font-family: PingFangSC-Regular;
+                    font-size: 14px;
+                    color: #6B778C;
+                    .discount-icon {
+                        display: inline-block;
+                        padding: 0 4px;
+                        height: 24px;
+                        width: 24px;
+                        background-color: #FF8F73;
+                        border-radius: 4px;
+                        font-family: PingFangSC-Medium;
+                        font-size: 14px;
+                        color: #FFFFFF;
+                    }
+                }
+                .footer-discount-money {
+                    font-family: PingFangSC-Medium;
+                    font-size: 16px;
+                    color: #FE5151;
+                }
+            }
+            .cost-detail-footer-bottom {
+                padding: $spacing*3 $spacing*4 0 $spacing*4;
+                .cost-detail-footer-bottom-first {
+                    margin-bottom: $spacing*2;
+
+                    p:nth-child(1) {
+                        margin-right: $spacing*3;
+                        font-family: PingFangSC-Regular;
+                        font-size: 14px;
+                        color: #172B4D;
+                    }
+                    p:nth-child(2) {
+                        font-family: PingFangSC-Medium;
+                        font-size: 14px;
+                        color: #172B4D;
+                    }
+                }
+                .cost-detail-footer-bottom-second {
+                    p:nth-child(1) {
+                        margin-right: $spacing*3;
+                        font-family: PingFangSC-Regular;
+                        font-size: 14px;
+                        color: #172B4D;
+                    }
+                    p:nth-child(2) {
+                        font-family: PingFangSC-Medium;
+                        font-size: 29px;
+                        color: #172B4D;
+                        line-height: 32px;
+                    }
+                }
+            }
+        }
     }
     .payment-detail {
         .self_container {
@@ -73,5 +153,17 @@
                 margin-bottom: 0;
             }
         }
+    }
+}
+
+.order_content_top .order-page-container.order-detail-page {
+    height: 100%;
+}
+
+.att-detail-table {
+    background-color: #EBECF0;
+
+    &.ib_table_title &.ib_table_item{
+        padding-top: $spacing*2; 
     }
 }
