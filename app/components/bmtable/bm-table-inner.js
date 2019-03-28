@@ -91,8 +91,6 @@ export default Component.extend({
 				this.iconData.pushObject(tmpObj);
 			}
 		}
-<<<<<<< HEAD
-=======
 		if(this.type == "attDetail" && this.listData != null) {
 			this.listData.forEach(elem => {
 				elem.showOrderDetailFlag = true;
@@ -106,6 +104,5 @@ export default Component.extend({
 		// 		this.set('type', 'preRegister');
 		// 	}
 		// }
->>>>>>> alfred-stud-2019-03-11
     }
 });
