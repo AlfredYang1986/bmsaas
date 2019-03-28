@@ -14,6 +14,9 @@ export default Controller.extend({
     rela_idx: 0,
     checkArr: A([]),
     curItems: null,
+    totalpp: 0,
+    moneyReceived: undefined,
+    studInfo: null,
     genderCheck: A(['男', '女']),
     relaChecked: A(['父亲', '母亲', '其他']),
     grade:A([{name: '学龄前'}, {name: '小班'}, {name: '中班'}, {name: '大班'}, {name: '小学一年级'}, {name: '小学二年级'}, {name: '小学三年级'}, {name: '小学四年级'}, {name: '小学五年级'}, {name: '小学六年级'}]),
@@ -43,6 +46,13 @@ export default Controller.extend({
         })
         return result;
     }),
+    totalsp: computed('curItems', 'totalpp', function() {
+        let totalsp = 0;
+        this.curItems.forEach((item) => {
+            totalsp = Number(totalsp) + Number(item.signedPrice);
+        })
+        return totalsp
+    }),
 
     origin:A([{name: '学员转介绍'}, {name: '电话推广'}, {name: '小程序'}, {name: '线下活动推广'}, {name: '其他'}]),
 
@@ -67,8 +77,7 @@ export default Controller.extend({
             this.transitionToRoute("stud")
         },
         radioChange(param) {
-            let stud = param;
-            this.set('studInfo', stud)
+            this.set('studInfo', param)
             // stud.save().then(() => {
             //     // if(stud.guardians.firstObject.relationShip == '') {
             //     //     that.model.stud.guardians.objectAt(0).set("relationShip", '爸爸')
@@ -137,7 +146,9 @@ export default Controller.extend({
                 return item.state == 1;
             })
             let tempObj = this.store.peekRecord('reservableitem', param.id);
-            console.log(tempObj);
+            tempObj.set('preferentialPrice', 0);
+            tempObj.set('standardPrice', tempObj.get('sessioninfo').get('standardPrice'));
+            tempObj.set('signedPrice', tempObj.get('sessioninfo').get('standardPrice'));
             let haveCurItemFlag = false;
             if(this.curItems == null) {
                 this.set('curItems', A([]));
@@ -154,10 +165,39 @@ export default Controller.extend({
                     this.curItems.pushObject(tempObj);
                 }
             }
-            console.log(this.curItems)
+        },
+        onChangeInner(param) {
+            let sprice = param.standardPrice;
+            if(param.signedPrice >= param.preferentialPrice) {
+                let sp = sprice - param.preferentialPrice;
+                this.curItems.forEach((item) => {
+                    if(param.id == item.id) {
+                        item.set('signedPrice', sp);
+                    }
+                })
+            } else {
+                this.curItems.forEach((item) => {
+                    if(param.id == item.id) {
+                        item.set('preferentialPrice', 0);
+                        item.set('signedPrice', sprice);
+                    }
+                })
+            }
+            let totalpp = 0;
+            // let totalsp = 0;
+            this.curItems.forEach((item) => {
+                totalpp = Number(totalpp) + Number(item.preferentialPrice);
+                // totalsp = Number(totalsp) + Number(item.signedPrice);
+            })
+            this.set('totalpp', totalpp);
+            // this.set('totalsp', totalsp);
+        },
+        totalsp() {
+            this.set('moneyReceived', this.totalsp);
         },
         confirm() {
             let that = this;
+            let atta = A([]);
             this.curItems.forEach((item, index, arr) => {
                 that.model.attachable.set('reservableId', item.id);
                 that.model.attachable.set('sessioninfoId', item.get('sessioninfo').get('id'));
@@ -167,12 +207,16 @@ export default Controller.extend({
                 that.model.attachable.set('standardCourseCount',  item.get('sessioninfo').get('standardCourseCount'));
                 that.model.attachable.set('standardPrice',  item.get('sessioninfo').get('standardPrice'));
                 that.model.attachable.set('standardPriceUnit',  item.get('sessioninfo').get('standardPriceUnit'));
-                // that.model.attachable.set('aub',  item.get('sessioninfo').get('aub'));
-                // that.model.attachable.set('aub',  item.get('sessioninfo').get('aub'));
-                // that.model.attachable.set('aub',  item.get('sessioninfo').get('aub'));
-                that.model.transaction.attachables.pushObject(that.model.attachable);
+                that.model.attachable.set('preferentialPrice', item.preferentialPrice);
+                that.model.attachable.set('signedPrice', item.signedPrice);
+                that.model.attachable.set('student', that.studInfo);
+                atta.push(that.model.attachable);
             })
-            // this.model.transaction.set('attachables', this.curItems);
+            that.model.transaction.set('attachable', atta);
+            let timestamp = Date.parse(new Date());
+            that.model.transaction.set('orderTime', timestamp)
+            that.model.transaction.set('moneyReceivable', this.totalsp);
+            that.model.transaction.set('moneyReceived', this.moneyReceived);
             this.model.transaction.save();
         }
     },

@@ -58,6 +58,9 @@ export default Component.extend({
         },
 		onCheckChange(param) {
 			this.onCheckChange(param);
+		},
+		onChangeInner(param) {
+			this.onChangeInner(param);
 		}
 	},
 	didReceiveAttrs() {
@@ -81,13 +84,5 @@ export default Component.extend({
 				this.iconData.pushObject(tmpObj);
 			}
 		}
-
-
-		// let that = this
-		// if(this.type == 'inbox') {
-		// 	if(this.attrs.listData.value.firstObject.courseType == -1) {
-		// 		this.set('type', 'preRegister');
-		// 	}
-		// }
     }
 });

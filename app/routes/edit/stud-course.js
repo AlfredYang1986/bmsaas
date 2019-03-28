@@ -17,7 +17,6 @@ export default Route.extend({
     },
     setupController(controller, model) {
         this._super(controller, model);
-        debugger
         controller.set('cur_page_idx', 0);
         controller.set('inputVal', false);
         controller.set('curItems', null);

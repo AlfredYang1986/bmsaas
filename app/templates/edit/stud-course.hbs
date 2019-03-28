@@ -169,7 +169,7 @@
 										</tr>
 									</table>
 									<table class='co_table_head table-self'>
-										{{bmtable/bm-table-inner type="courseOrderList" listData=curItems onCheckChange=(action 'checkChange')}}
+										{{bmtable/bm-table-inner type="courseOrderList" listData=curItems onChangeInner=(action 'onChangeInner')}}
 									</table>
 								{{/bp-layout}}
 							{{/bp-layout}}
@@ -178,11 +178,11 @@
 								<p>
 									<span class="p-icon">减</span>手动输入优惠
 								</p>
-								<p>￥-1000.00</p>
+								<p>￥-{{totalpp}}</p>
 							{{/bp-layout}}
 							{{#bp-layout direction='row' main='end' cross='center' classNames='price-text'}}
 									<p>金额(实收款)</p>
-									<p class="price">￥27000.00</p>
+									<p class="price">￥{{totalsp}}</p>
 							{{/bp-layout}}
 						{{/bp-layout}}
 						{{#bp-layout direction='col' classNames='payment-area'}}
@@ -192,14 +192,16 @@
 									{{#bp-layout direction='row' classNames='form-list left-form-margin'}}
 										<p class="form-title">选择付款方式</p>
 										{{bp-dropdown-simple
-											choosedValue=simpleChoosedValue
+											choosedValue=model.transaction.payment
 											options=model.payment
 											optionKey='name'}}
 									{{/bp-layout}}
 									{{#bp-layout direction='row' cross='main' classNames='form-list'}}
 										<p class="form-title">实收金额</p>
-										{{bp-input }}
-										{{#bp-button}}全款{{/bp-button}}
+										{{bp-input
+											value=moneyReceived
+										}}
+										{{#bp-button onClick=(action 'totalsp')}}全款{{/bp-button}}
 									{{/bp-layout}}
 								{{/bp-layout}}
 							{{/bp-layout}}
@@ -209,7 +211,7 @@
 									{{#bp-layout direction='row' classNames='form-list left-form-margin'}}
 										<p class="form-title">选择课程顾问</p>
 										{{bp-dropdown-simple
-											choosedValue=simpleChoosedValue
+											choosedValue=model.transaction.teacher
 											options=model.techs
 											optionKey='name'}}
 									{{/bp-layout}}
@@ -220,7 +222,9 @@
 								{{/bp-layout}}
 								{{#bp-layout direction='row' classNames='form-list form-top'}}
 									<p class="form-title">备注</p>
-									{{bp-input }}
+									{{bp-input
+										value=model.transaction.remark
+									}}
 								{{/bp-layout}}
 							{{/bp-layout}}
 						{{/bp-layout}}
