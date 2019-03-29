@@ -20,7 +20,9 @@
 						{{bmtable/bm-table-inner type="ordersList" listData=trans onClickInner=(action "cardClicked")}}
 					</table>
 				{{/bp-layout}}
+
 				{{bp-pagination
+					curPage=pagenum
 					totalPageCounts=page_count
 					onClickPage=(action (mut pagenum))}}
 			{{/if}}

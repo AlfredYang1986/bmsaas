@@ -57,7 +57,7 @@
                 {{#bp-layout direction='row' main="between" classNames='cost-detail-footer-top'}}
                     <p class="footer-title">优惠方案</p>
                     <p class="footer-content"><span class="discount-icon">减</span>手动输入折扣</p>
-                    <p class="footer-discount-money">-￥{{total_discount}}</p>
+                    <p class="footer-discount-money">-￥{{bm-order-total-discount model.trans.attachables}}</p>
                 {{/bp-layout}}
                 {{#bp-layout direction='row' main="end" classNames='cost-detail-footer-bottom'}}
                     {{#bp-layout direction='col' cross="start" classNames='cost-detail-footer-bottom-inner'}}
