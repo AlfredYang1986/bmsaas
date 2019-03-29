@@ -93,7 +93,7 @@ export default Component.extend({
 		}
 		if(this.type == "attDetail" && this.listData != null) {
 			this.listData.forEach(elem => {
-				elem.showOrderDetailFlag = true;
+				elem.set("showOrderDetailFlag", true);
 			});
 		}
 
