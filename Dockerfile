@@ -19,19 +19,26 @@ RUN npm update && \
 
 WORKDIR /app
 
-RUN git clone https://github.com/AlfredYang1986/bmsaas.git
+RUN git clone https://github.com/AlfredYang1986/bmsaas.git && \
+	git clone https://github.com/PharbersDeveloper/BP-Components.git 
+	
+WORKDIR /app/BP-Components
 
-WORKDIR bmsaas
+RUN git checkout -b frank && \
+	npm install && \
+	npm link
 
-RUN npm install && \
+WORKDIR /app/bmsaas
+
+RUN git checkout -b alfred-stud-2019-03-11 && \
+	npm install && \
+	npm link bp-components && \
 	bower install foundation --allow-root && \
-	bower install jsonapi-datastore --allow-root && \
-	bower install ali-oss --allow-root
+	bower install ali-oss --allow-root && \
+	bower install jsonapi-datastore --allow-root
 
-RUN npm i heimdalljs-logger
-
-RUN ember b --environment production
+RUN ember b -prod
 
 EXPOSE 4200
 
-ENTRYPOINT ["ember", "s", "--live-reload=false"]
+ENTRYPOINT ["ember", "s"]
