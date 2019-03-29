@@ -13,7 +13,7 @@
             {{/ph.body}}
         {{/bp-page-header}}
 		{{#bp-layout direction="col" classNames="stud-list-outer"}}
-			{{#if (eq page_count 0)}}
+			{{#if (eq studs.length 0)}}
 				<div class="stud-empty-state">
 					{{bp-empty-state/no-button src='/images/img_empty@2x.png' title="暂无学生" desc="暂无数据"}}
 				</div>

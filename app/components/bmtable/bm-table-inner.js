@@ -68,6 +68,9 @@ export default Component.extend({
 		},
 		onOrderClick(param) {
 			param.toggleProperty("showOrderDetailFlag");
+		},
+		onDeleteCour(param) {
+			this.onDeleteCour(param)
 		}
 	},
 	didReceiveAttrs() {

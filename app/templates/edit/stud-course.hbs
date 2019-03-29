@@ -54,7 +54,7 @@
 							<p>没有要添加的学员？</p>
 							<p class="link"  {{action 'addPtStudModal'}}>添加学生</p>
 							{{!-- {{#bp-button type="primary" onClick=(action (mut cur_page_idx 1))}}下一步{{/bp-button}} --}}
-							<button type="button" name="button" class="p-btn primary" {{action (mut cur_page_idx) 1}}>下一步</button>
+							<button type="button" name="button" class="p-btn primary" {{action 'addStud'}}>下一步</button>
 						{{/bp-layout}}
 					{{else}}
 						{{#bp-button disabled=true}}下一步{{/bp-button}}
@@ -122,13 +122,13 @@
 								</tr>
 							</table>
 							<table class='co_table_head table-self'>
-								{{bmtable/bm-table-inner type="coursePageList" listData=curItems onCheckChange=(action 'checkChange')}}
+								{{bmtable/bm-table-inner type="coursePageList" listData=curItems onDeleteCour=(action 'deleteCour')}}
 							</table>
 						{{/bp-layout}}
 					{{/if}}
 					{{#bp-layout direction='row' main='end'}}
 						<button type="button" name="button" class="p-btn default p-btn-right" {{action (mut cur_page_idx) 0}}>上一步</button>
-						<button type="button" name="button" class="p-btn primary" {{action (mut cur_page_idx) 2}}>下一步</button>
+						<button type="button" name="button" class="p-btn primary" {{action 'addCourse'}}>下一步</button>
 						{{!-- {{#bp-button classNames='pre-btn' onClick=(action (mut cur_page_idx 0))}}上一步{{/bp-button}} --}}
 						{{!-- {{#bp-button type='primary' onClick=(action (mut cur_page_idx 2))}}下一步{{/bp-button}} --}}
 					{{/bp-layout}}
@@ -312,7 +312,8 @@
 						{{bmform/bm-lay-date inputVal=model.stud.dob}}
 					{{/bp-layout}}
 				{{/bp-layout}}
-				<p class="title">家长信息</p>
+				{{#each model.stud.guardians as |item|}}
+					<p class="title">家长信息</p>
 					{{#bp-layout direction='row' main='between'}}
 						{{#bp-layout direction='row' classNames='group'}}
 							<p class="subtitle">姓名</p>
@@ -329,6 +330,7 @@
 							{{bmcom/bm-radio-inline cur_idx=rela_idx titles=relaChecked judge=rela}}
 						{{/bp-layout}}
 					{{/bp-layout}}
+				{{/each}}
 			{{/bp-layout}}
 		</div>
 {{/bmcom/bm-modal-container}}

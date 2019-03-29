@@ -168,7 +168,7 @@
             <td class="ib_table_content_item">{{bmdob/bmdob2age item.sessioninfo.alb}} - {{bmdob/bmdob2age item.sessioninfo.aub}} 岁</td>
             <td class="ib_table_content_item">{{item.sessioninfo.standardCourseCount}}</td>
             <td class="ib_table_content_item">{{item.sessioninfo.standardPrice}}</td>
-            <td class="ib_table_content_item">删除</td>
+            <td class="ib_table_content_item delete" {{action 'onDeleteCour' item}}>删除</td>
         {{else if (bmeq type 'courseOrderList')}}
             <td class="ib_table_content_item">{{item.sessioninfo.title}}</td>
             <td class="ib_table_content_item">{{bmdob/bmdob2age item.sessioninfo.alb}} - {{bmdob/bmdob2age item.sessioninfo.aub}} 岁</td>

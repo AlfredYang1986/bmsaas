@@ -9,7 +9,7 @@ export default Route.extend({
             trans: this.store.find('transaction', params.orderid),
         })
     },
-    
+
     setupController(controller, model) {
         this._super(controller, model);
         let total_discount = 0;

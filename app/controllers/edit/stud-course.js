@@ -5,6 +5,7 @@ import { inject as service } from '@ember/service';
 import EmberObject from '@ember/object';
 
 export default Controller.extend({
+    bm_pt_stud_service: service(),
     inputVal: false,
     cur_page_idx: 0,
     showAddCourse: false,
@@ -87,6 +88,9 @@ export default Controller.extend({
             this.model.courseList.forEach(item => {
                 item.set('state', 0);
             })
+            this.set('totalpp', 0);
+            this.set('totalsp', 0);
+            this.set('moneyReceived', undefined);
             this.transitionToRoute("stud");
         },
         radioChange(param) {
@@ -99,6 +103,28 @@ export default Controller.extend({
             })
 
 
+        },
+        addStud() {
+            if(this.studInfo == null) {
+                this.toast.error('', '请选择一个孩子', this.toastOptions);
+            } else {
+                this.set('cur_page_idx', 1);
+            }
+        },
+        addCourse() {
+            if(this.curItems == null || this.curItems.length == 0) {
+                this.toast.error('', '请至少选择一门课程', this.toastOptions);
+            } else {
+                this.set('cur_page_idx', 2);
+            }
+        },
+        deleteCour(param) {
+            this.curItems.forEach(item => {
+                if(param.id == item.id) {
+                    item.set('state', 0);
+                    this.curItems.removeObject(param);
+                }
+            })
         },
         addPtStudModal() {
             this.set('showAddStud', true);
@@ -186,9 +212,9 @@ export default Controller.extend({
             }
         },
         onChangeInner(param) {
-            let sprice = param.standardPrice;
-            if(param.signedPrice >= param.preferentialPrice) {
-                let sp = sprice - param.preferentialPrice;
+            let sprice = Number(param.standardPrice);
+            if(Number(param.signedPrice) >= Number(param.preferentialPrice)) {
+                let sp = Number(sprice) - Number(param.preferentialPrice);
                 this.curItems.forEach((item) => {
                     if(param.id == item.id) {
                         item.set('signedPrice', sp);
@@ -239,9 +265,15 @@ export default Controller.extend({
             that.model.transaction.set('applicant', this.applicant);
             that.model.transaction.set('teacher', this.teacher)
             this.model.transaction.save().then(() => {
+                that.store.find('student', that.studInfo.id).then(res => {
+                    res.set('status', 1);
+                    res.save();
+                })
                 that.transitionToRoute('stud');
                 that.toast.success('', '报课成功', that.toastOptions);
             })
+
+
         }
     },
 });
