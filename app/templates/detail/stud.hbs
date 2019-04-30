@@ -34,6 +34,8 @@
 							{{bmdetail/stud-basis-info label="就读学校" content=model.stud.school}}
 							{{bmdetail/stud-basis-info label="住址" content=(bmcom/bm-trans-address model.stud)}}
 							{{bmdetail/stud-basis-info label="出生日期" content=(bmdob/bmdobformat model.stud.dob)}}
+							{{bmdetail/stud-basis-info label="总课时" content=model.stud.lessonCount}}
+							{{bmdetail/stud-basis-info label="已销课时" content=model.stud.punchedCount}}
 						</div>
 					{{/layout-push}}
 					{{#layout-push direction='col' classNames="info-block-outer"}}

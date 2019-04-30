@@ -92,15 +92,17 @@ export default Controller.extend({
             }
             let name = that.model.stud.name;
             let nickname = that.model.stud.nickname;
+            let lessonCount = that.model.stud.lessonCount;
+            let punchedCount = that.model.stud.punchedCount;
             let dob = new Date(that.model.stud.dob);
             let now = new Date();
             function dealDate(date) {
                 var year = date.getFullYear();
                 var month = date.getMonth() + 1;
                 var strDate = date.getDate();
-                var week = date.getDay();
-                var hour = date.getHours();
-                var minute = date.getMinutes();
+                // var week = date.getDay();
+                // var hour = date.getHours();
+                // var minute = date.getMinutes();
                 function addZero(m) {
                    return m < 10 ? '0' + m : m;
                 }
@@ -115,6 +117,8 @@ export default Controller.extend({
                 that.toast.error('', '孩子昵称不能为空', that.toastOptions);
             } else if(dealDob == dealNow) {
                 that.toast.error('', '请选择正确的出生日期', that.toastOptions);
+            } else if(punchedCount > lessonCount) {
+                that.toast.error('', '已销课时不能大于总课时', that.toastOptions);
             } else {
                 that.model.stud.save().then(() => {
                     if (that.model.isPushing) {

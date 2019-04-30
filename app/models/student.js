@@ -15,6 +15,9 @@ export default DS.Model.extend({
     school: DS.attr('string'),
     sourceWay: DS.attr('string'),
 
+    lessonCount: DS.attr('number'),
+    punchedCount: DS.attr('number'),
+
     province: DS.attr('string'),
     city: DS.attr('string'),
     district: DS.attr('string'),

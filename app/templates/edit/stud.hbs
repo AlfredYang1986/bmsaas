@@ -59,7 +59,16 @@
                 area=model.stud.district
                 title='地址'
                 detailAddress=model.stud.address
-				classNames="area-margin-bottom"}}
+				classNames="input_area area-margin-bottom"}}
+
+			{{#layout-push direction='row'}}
+				{{#layout-push direction="col"  classNames='input_area name-area' }}
+					{{bmform/bm-edit-line title='总课时' numberInput=true maxlength="3" inputVal=model.stud.lessonCount classNames='input_area'}}
+				{{/layout-push}}
+				{{#layout-push direction="col" classNames='input_area area-margin-bottom' }}
+					{{bmform/bm-edit-line title='已销课时' numberInput=true maxlength="3" inputVal=model.stud.punchedCount classNames='input_area'}}
+				{{/layout-push}}
+			{{/layout-push}}
 		</section>
 		<a id="par-story" class="anchor-point"></a>
 		{{#each model.stud.guardians as |item|}}

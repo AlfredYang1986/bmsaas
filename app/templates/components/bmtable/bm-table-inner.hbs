@@ -131,6 +131,7 @@
                 {{/if}}
             </td>
             <td class='ib_table_content_item'>{{bmdob/bmdob2age item.dob}}岁</td>
+            <td class='ib_table_content_item'>{{item.punchedCount}} / {{item.lessonCount}} 课时</td>
             <td  class="ib_table_content_item">
                 {{#bs-button classNames="ib_table_content_link_btn" onClick=(action 'onClickInner' item.id)}}<span>查看</span>{{/bs-button}}
             </td>
