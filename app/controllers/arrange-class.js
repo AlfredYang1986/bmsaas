@@ -128,7 +128,7 @@ export default Controller.extend({
                     this.tempUnit.set("teacher", this.store.peekRecord("teacher", this.cur_tech_id))
                     this.tempUnit.save().then(() => {
                         // tempclass.units.pushObject(res)
-                        tempclass.save().then(() => {
+                        tempclass.save().then((res) => {
                             this.bm_clsarr_service.set('refresh_all_token', this.bm_clsarr_service.guid());
                             this.set("tempUnit", null)
                             this.set('addUnitDlg', false);
@@ -150,20 +150,23 @@ export default Controller.extend({
         },
         afterClassChange() {
             // window.console.log(this.cur_class_id);
-            let tempClass = this.store.peekRecord("class", this.cur_class_id);
-            this.set("tempDuties", tempClass.duties);
-            let tmpArr = A([]);
-            tempClass.duties.forEach((item) => {
-                tmpArr.pushObject(item.teacher)
-            });
-            this.set("tempTechs", tmpArr);
-            this.set("cur_tech_id", "");
+            let that = this;
+            let tempClass = this.store.peekRecord("class", this.cur_class_id)
+            tempClass.duties.then(res => {
+                let tmpArr = A([]);
+                for (let idx = 0; idx < tempClass.duties.length; idx++) {
+                    tmpArr.pushObject(tempClass.duties.objectAt(idx).teacher)
+                }
 
-            if(tmpArr.length == 0) {
-                this.toast.error('', '请先在班级中添加教师！', this.toastOptions);
-            }
+                that.set("tempTechs", tmpArr);
+                that.set("cur_tech_id", "");
 
-            // 有BUG 选择的班级没有老师时触发
+                if(tmpArr.length == 0) {
+                    that.toast.error('', '请先在班级中添加教师！', that.toastOptions);
+                }
+            })
+
+
         },
         onPanelClick() {
             // console.log(param)
@@ -178,14 +181,23 @@ export default Controller.extend({
             this.set("cur_room_id", this.tempUnit.room.get("id"))
             this.set("cur_class_id", this.tempUnit.class.get("id"))
             this.set("cur_tech_id", this.tempUnit.teacher.get("id"))
-
+            let that = this;
             let tempClass = this.store.peekRecord("class", this.cur_class_id);
-            this.set("tempDuties", tempClass.duties);
-            let tmpArr = A([]);
-            tempClass.duties.forEach((item) => {
-                tmpArr.pushObject(item.teacher)
-            });
-            this.set("tempTechs", tmpArr);
+            tempClass.duties.then(res => {
+                let tmpArr = A([]);
+                for (let idx = 0; idx < tempClass.duties.length; idx++) {
+                    tmpArr.pushObject(tempClass.duties.objectAt(idx).teacher)
+                }
+
+                that.set("tempTechs", tmpArr);
+                // that.set("cur_tech_id", "");
+
+                if(tmpArr.length == 0) {
+                    that.toast.error('', '请先在班级中添加教师！', that.toastOptions);
+                }
+            })
+            // this.set("tempDuties", tempClass.duties);
+
         },
         onDeleteClick(param) {
             this.set("tempUnit", param)

@@ -49,18 +49,24 @@ export default Controller.extend({
                         this.model.course.images.forEach((item, index, arr) => {
                             if(index + 1 == arr.length) {
                                 this.set("savePicDoneFlag", true);
+                            } else {
+                                this.set("savePicDoneFlag", false);
                             }
                             if(item.dirtyType !== undefined) {
                                 item.save().then(() => {
-                                    if(this.savePicDoneFlag) {
-                                        this.model.course.save().then(onSuccess, onFail);
+                                    if(item.id != null && item.id != '') {
+                                        if(this.savePicDoneFlag) {
+                                            this.model.course.save().then(onSuccess, onFail);
+                                        }
                                     }
                                 }, error => {
                                     this.bm_error_service.handleError(error)
                                 });
                             } else {
-                                if(this.savePicDoneFlag) {
-                                    this.model.course.save().then(onSuccess, onFail);
+                                if(item.id != null && item.id != '') {
+                                    if(this.savePicDoneFlag) {
+                                        this.model.course.save().then(onSuccess, onFail);
+                                    }
                                 }
                             }
                         });

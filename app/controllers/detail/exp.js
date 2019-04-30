@@ -96,7 +96,13 @@ export default Controller.extend({
             let onFail = function(error) {
                 that.bm_error_service.handleError(error, '删除体验课失败')
                 // that.toast.error('', '删除体验课失败', that.toastOptions);
+                // that.store.unloadRecord(that.model.actv)
+                that.store.unloadRecord(that.model.exp)
+                that.store.findRecord('reservableitem', that.model.expid).then(res => {
+                    that.set('model.exp', res)
+                })
             }
+
             this.model.exp.deleteRecord(this.model.exp)
             this.model.exp.save().then(onSuccess, onFail);
         },
