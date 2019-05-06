@@ -117,7 +117,7 @@ export default Controller.extend({
                 that.toast.error('', '孩子昵称不能为空', that.toastOptions);
             } else if(dealDob == dealNow) {
                 that.toast.error('', '请选择正确的出生日期', that.toastOptions);
-            } else if(punchedCount > lessonCount) {
+            } else if(Number(punchedCount) > Number(lessonCount)) {
                 that.toast.error('', '已销课时不能大于总课时', that.toastOptions);
             } else {
                 that.model.stud.save().then(() => {
