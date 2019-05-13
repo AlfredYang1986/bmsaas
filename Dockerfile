@@ -19,9 +19,11 @@ RUN npm update && \
 
 WORKDIR /app
 
+LABEL bmsaas.version=2.1.31
+
 RUN git clone https://github.com/AlfredYang1986/bmsaas.git
 
-WORKDIR bmsaas
+WORKDIR /app/bmsaas
 
 RUN npm install && \
 	bower install foundation --allow-root && \
