@@ -22,7 +22,21 @@
     margin-top: 24px;
     margin-bottom: 26px;
     padding: 40px 24px;
-    background-color: #FFF;
+	background-color: #FFF;
+	
+	.delete-btn {
+		padding: 6px 26px;
+		height: 32px;
+		font-size: 14px;
+		color: #42526E;
+		text-align: center;
+		background: rgba(9, 30, 66, 0.04);
+		border-radius: 3px;
+
+		&:focus {
+			outline: none;
+		}
+	}
 
     &.tech_detail_title {
       height: 72px;

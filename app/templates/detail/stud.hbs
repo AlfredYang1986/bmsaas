@@ -9,6 +9,7 @@
         {{/bmcom/bm-breadcrumb}}
 		{{#layout-push direction='row' split=true class="detail_title" }}
 			<span class="title_text">{{model.stud.name}}</span>
+			<button class="delete-btn" onclick={{action "delBtnClick"}}>删除学生</button>
 		{{/layout-push}}
 
 		<div class="tab-area">
@@ -66,5 +67,9 @@
 		{{/layout-push }}
 	</div>
 </div>
+
+{{#bmcom/bm-warning-modal title="删除" mainBtnText="删除" type="error" switchParam=deleteStudDlg cancelHandled=(action 'cancelHandled') successHandled=(action "deleteStud")}}
+    <p class="warning-modal-body-content">您确定要删除该学生吗？</p>
+{{/bmcom/bm-warning-modal}}
 
 {{outlet}}
